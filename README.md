@@ -49,11 +49,3 @@ npm install react-core-form --save
 - 通过支持自定义渲染、自定义组件的模式，可以 100%覆盖业务场景
 
 </Alert>
-
-## 不足
-
-<Alert type="error">
-
-- 由于底层是基于 antd 的 Form，使得扩展性不足不能搭配其他组件库使用
-
-</Alert>
