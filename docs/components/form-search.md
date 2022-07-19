@@ -26,10 +26,10 @@ export default () => {
       schema={schema}
       onReset={() => {
         console.log('onReset');
-      } as any }
+      }}
       onSearch={(params) => {
         console.log('params ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -50,10 +50,10 @@ export default () => {
       schema={schema}
       onReset={() => {
         console.log('onReset');
-      } as any }
+      }}
       onSearch={(params) => {
         console.log('params ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -75,10 +75,10 @@ export default () => {
       toolReverse
       onReset={() => {
         console.log('onReset');
-      } as any }
+      }}
       onSearch={(params) => {
         console.log('params ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -101,10 +101,10 @@ export default () => {
         level: 1,
         sex: 1,
         date: '2022-02-12',
-      } as any }
+      }}
       onSearch={(params) => {
         console.log('onSearch ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -131,14 +131,14 @@ export default () => {
           onClick={async () => {
             const values = await form.submit(); // 提交
             console.log('search', values);
-          } as any }
+          }}
         >
           外部查询
         </Button>
         <Button
           onClick={() => {
             form.reset();
-          } as any }
+          }}
         >
           外部重制
         </Button>
@@ -167,7 +167,7 @@ export default () => {
       onSearch={async (params) => {
         await new Promise((res) => setTimeout(res, 1000));
         console.log('onSearch ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -188,7 +188,7 @@ export default () => {
       schema={schema}
       onSearch={(params) => {
         console.log('onSearch ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -210,7 +210,7 @@ export default () => {
       toolReverse
       onSearch={(params) => {
         console.log('onSearch ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -233,7 +233,7 @@ export default () => {
       toolReverse
       onSearch={(params) => {
         console.log('onSearch ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -255,11 +255,11 @@ export default () => {
       gridStyle={{
         columnGap: 20,
         rowGap: 0,
-      } as any }
+      }}
       schema={schema}
       onSearch={(params) => {
         console.log('params ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -281,7 +281,7 @@ export default () => {
       schema={schema}
       onSearch={(params) => {
         console.log('params ->', params);
-      } as any }
+      }}
     />
   );
 };
@@ -302,7 +302,7 @@ export default () => {
       schema={schema}
       onSearch={(params) => {
         console.log('params ->', params);
-      } as any }
+      }}
     />
   );
 };

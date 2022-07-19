@@ -56,7 +56,7 @@ export default () => {
         unCheckedChildren="pop"
         onChange={(v) => {
           setType(v ? 'alert' : 'pop');
-        } as any }
+        }}
       />
       <br />
       <br />
@@ -69,7 +69,7 @@ export default () => {
           okText: '确认',
           cancelText: '取消',
           type,
-        } as any }
+        }}
         onClick={submit}
       >
         开始部署
@@ -116,7 +116,7 @@ export default () => {
         type="primary"
         onBeforeClick={async () => {
           await form.validateFields();
-        } as any }
+        }}
         confirm={{
           title: '提示下',
           content: '是否确认发布?',
@@ -161,7 +161,7 @@ export default () => {
               overflow: 'auto',
             },
           },
-        } as any }
+        }}
         type="primary"
       >
         打开 ModalForm
@@ -172,7 +172,7 @@ export default () => {
           title: '添加用户',
           schema,
           onSubmit,
-        } as any }
+        }}
       >
         打开 DrawerForm
       </Button>

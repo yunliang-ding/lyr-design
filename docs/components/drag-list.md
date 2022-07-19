@@ -25,10 +25,10 @@ export default () => {
         defaultActiveKey={3}
         onClick={(item) => {
           console.log(item);
-        } as any }
+        }}
         onChange={(list) => {
           console.log(list);
-        } as any }
+        }}
         list={[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
           return {
             key: i,

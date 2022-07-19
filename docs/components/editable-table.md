@@ -32,7 +32,7 @@ export default () => {
         checked={position === 'bottom'}
         onChange={(v) => {
           setPosition(v ? 'bottom' : 'top');
-        } as any }
+        }}
       />
       &nbsp;&nbsp;
       <Switch
@@ -104,7 +104,7 @@ export default () => {
               age: 12,
             },
           ],
-        } as any }
+        }}
         onSubmit={onSubmit}
         schema={[
           {

@@ -112,7 +112,7 @@ export default () => {
           ],
           success: true,
         };
-      } as any }
+      }}
     />
   );
 };
@@ -187,7 +187,7 @@ export default () => {
         onChange: (keys, rows) => {
           console.log(keys, rows);
         },
-      } as any }
+      }}
       alertConfig={(selectedRowKeys, selectedRows, onCleanSelected) => {
         return {
           visible: selectedRowKeys.length > 0, // 控制展示
@@ -212,7 +212,7 @@ export default () => {
             </Button>
           ),
         };
-      } as any }
+      }}
     />
   );
 };
@@ -257,7 +257,7 @@ export default () => {
                   onSearch({
                     keywords: keywords || undefined,
                   });
-                } as any }
+                }}
                 enterButton
                 allowClear
               />
@@ -288,7 +288,7 @@ export default () => {
         size: 'small',
         pageSizeOptions: [5, 10, 20],
         showTotal: (total: number) => `总计 ${total} 条数据`,
-      } as any }
+      }}
     />
   );
 };
@@ -310,7 +310,7 @@ export default () => {
     <Table
       params={{
         level: 1,
-      } as any }
+      }}
       {...tableSchema}
       searchSchema={searchSchema}
     />
@@ -334,7 +334,7 @@ export default () => {
     <Table
       params={{
         level: 1,
-      } as any }
+      }}
       {...tableSchema}
       searchSchema={searchSchema}
     />
@@ -385,13 +385,13 @@ export default () => {
                 display: 'flex',
                 width: '100%',
                 justifyContent: 'space-between',
-              } as any }
+              }}
             >
               <div
                 style={{
                   width: 256,
                   border: '1px solid #f0f0f0',
-                } as any }
+                }}
               >
                 <Menu
                   onSelect={(e) => setKey(e.key as string)}
@@ -399,7 +399,7 @@ export default () => {
                     table.onSearch({
                       menuKey: e.key,
                     });
-                  } as any }
+                  }}
                   style={{ width: 256 }}
                   defaultSelectedKeys={['1']}
                   defaultOpenKeys={['sub1']}
@@ -427,14 +427,14 @@ export default () => {
               <div
                 style={{
                   width: 'calc(100% - 266px)',
-                } as any }
+                }}
               >
                 {dom}
               </div>
             </div>
           </Space>
         );
-      } as any }
+      }}
     />
   );
 };

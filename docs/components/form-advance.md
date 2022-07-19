@@ -83,7 +83,7 @@ export default () => {
       ]}
       initialValues={{
         likes: '1,2',
-      } as any }
+      }}
     />
   );
 };
@@ -172,10 +172,10 @@ export default () => {
         layout={readOnly ? 'inline' : 'vertical'}
         gridStyle={{
           rowGap: readOnly ? 10 : 0,
-        } as any }
+        }}
         onValuesChange={(value, values) => {
           console.log('onValuesChange ->', value, values);
-        } as any }
+        }}
         column={2}
         schema={[
           {
@@ -260,7 +260,7 @@ export default () => {
         layout={readOnly ? 'inline' : 'vertical'}
         gridStyle={{
           rowGap: readOnly ? 10 : 0,
-        } as any }
+        }}
         onMount={onMount}
         schema={schema}
         column={2}
@@ -271,7 +271,7 @@ export default () => {
           sex: 1,
           position: ['zhejiang', 'dynamic1'],
           department: '0-0-1',
-        } as any }
+        }}
       />
     </>
   );
@@ -451,7 +451,7 @@ export default () => {
             sex: e ? 1 : 2,
           });
           form.touchSchemaRender(['age', 'level']); // 触发age、level刷新
-        } as any }
+        }}
       />
       <br />
       <br />
@@ -545,7 +545,7 @@ export default () => {
     <>
       <Button
         onClick={setReadOnly.bind(null, !readOnly)}
-        style={{ marginBottom: 20 } as any }
+        style={{ marginBottom: 20 }}
       >
         设置只读
       </Button>
@@ -554,8 +554,8 @@ export default () => {
         type="primary"
         onClick={() => {
           form.formListInstance.contactList.add();
-        } as any }
-        style={{ marginBottom: 20 } as any }
+        }}
+        style={{ marginBottom: 20 }}
       >
         添加一条
       </Button>
@@ -564,8 +564,8 @@ export default () => {
         type="primary"
         onClick={() => {
           form.formListInstance.contactList.remove();
-        } as any }
-        style={{ marginBottom: 20 } as any }
+        }}
+        style={{ marginBottom: 20 }}
       >
         删除第一条
       </Button>
@@ -585,7 +585,7 @@ export default () => {
               age: 18,
             },
           ],
-        } as any }
+        }}
       />
       <Button type="primary" onClick={submit}>
         提交
@@ -777,7 +777,7 @@ export default () => {
         form={form}
         widgets={{
           Input: CountInput, // 使用扩展的Input覆盖内置的Input部件、数据模型不变
-        } as any }
+        }}
         schema={[
           {
             type: 'Input',
