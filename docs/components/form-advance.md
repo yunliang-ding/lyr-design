@@ -12,8 +12,7 @@ toc: menu
  * desc: readOnly、disabled、required 属性都支持接受一个函数
  */
 import React from 'react';
-import { Button } from 'antd';
-import { Form } from 'react-core-form';
+import { Form, Button } from 'react-core-form';
 export default () => {
   const [form] = Form.useForm();
   const submit = async () => {
@@ -97,8 +96,7 @@ export default () => {
  * desc: 返回新对象会替换当前值
  */
 import React from 'react';
-import { Form } from 'react-core-form';
-import { Button } from 'antd';
+import { Form, Button } from 'react-core-form';
 import moment from 'moment';
 export default () => {
   const [form] = Form.useForm();
@@ -147,8 +145,7 @@ export default () => {
  * desc: 基于antd 输入框结合业务场景扩展
  */
 import React from 'react';
-import { Form } from 'react-core-form';
-import { Button } from 'antd';
+import { Form, Button } from 'react-core-form';
 
 export default () => {
   const [form] = Form.useForm();
@@ -229,8 +226,8 @@ export default () => {
  * desc: 这种模式只会再次渲染单个组件，不会重新渲染Form
  */
 import React from 'react';
-import { Form } from 'react-core-form';
-import { Button } from 'antd';
+import { Form, Button } from 'react-core-form';
+import {  } from 'antd';
 import schema from './schema/form-advance/async-option';
 export default () => {
   const [fresh, setFresh] = React.useState(false);
@@ -528,9 +525,8 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form, Button } from 'react-core-form';
 import schema from './schema/form-advance/form-list';
-import { Button } from 'antd';
 export default () => {
   const [form] = Form.useForm();
   const [readOnly, setReadOnly] = React.useState(false);
@@ -636,8 +632,8 @@ export default () => {
  * desc: 自定义渲染的使用场景通常用于展示，如果没有定义name属性则数据不会被表单收集，如果收集请设置name属性，此时将作为[自定义表单组件](https://ant.design/components/form-cn/#components-form-demo-customized-form-controls)渲染。
  */
 import React from 'react';
-import { Form } from 'react-core-form';
-import { Button, Alert } from 'antd';
+import { Form, Button } from 'react-core-form';
+import { Alert } from 'antd';
 export default () => {
   return (
     <Form
@@ -709,8 +705,8 @@ const schema: SchemaProps<{
  * desc: 自定义组件约定，当定义了name属性的FormItem回默认注入2个属性给children，value代表默认值，onChange用于表单收集值，同时会获取Form配置的readOnly属性负责渲染详情视图，建议我们在编写自定义组件的时候，按照业务场景添加详情视图。
  */
 import React from 'react';
-import { Form } from 'react-core-form';
-import { Input, Button } from 'antd';
+import { Form, Button } from 'react-core-form';
+import { Input  } from 'antd';
 const UrlInput = ({ readOnly, value, ...rest }) => {
   if (readOnly) return <div>{`https://${value || ''}.com`}</div>;
   return (
@@ -761,8 +757,7 @@ export default () => {
  * desc: 自定义组件约定和上面一致，推荐使用注入widgets的方式，更加符合组件复用的特性
  */
 import React from 'react';
-import { Form } from 'react-core-form';
-import { Button } from 'antd';
+import { Form, Button } from 'react-core-form';
 import CountInput from './demo/count-input';
 
 export default () => {

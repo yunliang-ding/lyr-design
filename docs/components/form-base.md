@@ -85,9 +85,8 @@ export default () => {
  * desc: 吐出的数据格式按照层级会自动划分 规定必须有name属性
  */
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Button, Form } from 'react-core-form';
 import schema from './schema/form-base/schema2';
-import { Button } from 'antd';
 export default () => {
   const [form] = Form.useForm();
   return (
