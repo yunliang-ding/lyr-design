@@ -20,7 +20,7 @@ export default () => {
       schema={schema}
       onValuesChange={(value, values) => {
         console.log('onValuesChange ->', value, values);
-      }}
+      } as any }
     />
   );
 };
@@ -50,7 +50,7 @@ export default () => {
         schema={schema}
         onValuesChange={(value, values) => {
           console.log('onValuesChange ->', value, values);
-        }}
+        } as any }
       />
     </div>
   );
@@ -70,7 +70,7 @@ export default () => {
       schema={schema}
       onValuesChange={(value, values) => {
         console.log('onValuesChange ->', value, values);
-      }}
+      } as any }
     />
   );
 };
@@ -97,7 +97,7 @@ export default () => {
         schema={schema}
         onValuesChange={(value, values) => {
           console.log('onValuesChange ->', value, values);
-        }}
+        } as any }
         form={form}
         initialValues={{
           'fieldset-1': {
@@ -135,7 +135,7 @@ export default () => {
               'fieldset-4-2': { input3: '2323' },
             },
           },
-        }}
+        } as any }
       />
       <br />
       <br />
@@ -143,7 +143,7 @@ export default () => {
         type="primary"
         onClick={() => {
           alert(JSON.stringify(form.getValues()));
-        }}
+        } as any }
       >
         提交
       </Button>
@@ -187,7 +187,7 @@ export default () => {
         schema={schema}
         onValuesChange={(value, values) => {
           console.log('onValuesChange ->', value, values);
-        }}
+        } as any }
         disabled={disabled}
         readOnly={readOnly}
         readOnlyEmptyValueNode={<span style={{ color: '#999' }}>暂无数据</span>}
@@ -221,7 +221,7 @@ export default () => {
               url: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
             },
           ],
-        }}
+        } as any }
       />
     </>
   );

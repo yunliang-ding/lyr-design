@@ -82,11 +82,11 @@ export default () => {
       title="新增联系人"
       onValuesChange={(v, vs) => {
         console.log(vs);
-      }}
+      } as any }
       initialValues={{
         userName: 'test-001',
         relationList: [{}],
-      }}
+      } as any }
       onSubmit={onSubmit}
       schema={[
         {

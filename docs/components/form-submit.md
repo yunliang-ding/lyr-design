@@ -43,7 +43,7 @@ export default () => {
           height: 500,
           overflow: 'auto',
         },
-      }}
+      } as any }
       title="新增用户"
       onSubmit={onSubmit}
       schema={schema}
@@ -92,7 +92,7 @@ export default () => {
             height: 500,
             overflow: 'auto',
           },
-        }}
+        } as any }
         actionAlign={actionAlign}
         onSubmit={onSubmit}
         schema={schema}
@@ -180,7 +180,7 @@ export default () => {
         unCheckedChildren="加载状态"
         onChange={(v) => {
           form.setFormLoading(v);
-        }}
+        } as any }
       />
       &nbsp;&nbsp;
       <Switch
@@ -188,7 +188,7 @@ export default () => {
         unCheckedChildren="按钮禁用"
         onChange={(v) => {
           form.setFooterDisabled(v);
-        }}
+        } as any }
       />
       &nbsp;&nbsp;
       <Switch
@@ -200,7 +200,7 @@ export default () => {
           } else {
             form.setFooterActions(actions1);
           }
-        }}
+        } as any }
       />
       <CardForm
         title="新增用户"
@@ -214,11 +214,11 @@ export default () => {
             height: 500,
             overflow: 'auto',
           },
-        }}
+        } as any }
         column={2}
         initialValues={{
           input: '这里是默认值',
-        }}
+        } as any }
         actions={actions1}
       />
     </>
@@ -267,7 +267,7 @@ export default (props) => {
             height: 500,
             overflow: 'auto',
           },
-        }}
+        } as any }
         onClose={setOpen.bind(null, false)}
         onSubmit={onSubmit}
         schema={schema}
@@ -369,7 +369,7 @@ export default (props) => {
           modalForm.open({
             onSubmit,
           });
-        }}
+        } as any }
       >
         打开弹窗
       </Button>
@@ -379,7 +379,7 @@ export default (props) => {
           drawerForm.open({
             onSubmit,
           });
-        }}
+        } as any }
       >
         打开抽屉
       </Button>
@@ -400,7 +400,7 @@ export default (props) => {
                         ...value,
                         userName: e.target.value,
                       });
-                    }}
+                    } as any }
                   />
                   <br />
                   <br />
@@ -412,13 +412,13 @@ export default (props) => {
                         ...value,
                         address: e.target.value,
                       });
-                    }}
+                    } as any }
                   />
                 </div>
               );
             },
           });
-        }}
+        } as any }
       >
         打开弹窗自定义渲染
       </Button>
