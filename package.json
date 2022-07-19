@@ -4,7 +4,8 @@
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
-    "build": "father-build"
+    "build": "father-build",
+    "prepublish": "npm run build"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -52,5 +53,8 @@
     "yorkie": "^2.0.0",
     "@types/react": "17.0.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "yunliang-ding:registry": "https://npm.pkg.github.com"
+  }
 }
