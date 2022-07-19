@@ -18,15 +18,16 @@ export default () => {
   const onSubmit = async (values) => {
     alert(JSON.stringify(values));
   };
+  const formProps = {
+    schema,
+    onSubmit,
+  }
   return (
     <AnchorCardForm
       fixHeight={193} // 偏移量
       height={460} // 容器高度
       defaultActivityKey="baseInfo"
-      formProps={{
-        schema,
-        onSubmit,
-      }}
+      formProps={formProps}
     />
   );
 };
