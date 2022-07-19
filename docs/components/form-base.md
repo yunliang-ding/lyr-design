@@ -86,7 +86,7 @@ export default () => {
  */
 import React from 'react';
 import { Form } from 'react-core-form';
-import schema from './schema/form-base/schema2';
+// import schema from './schema/form-base/schema2';
 import { Button } from 'antd';
 export default () => {
   const [form] = Form.useForm();
@@ -94,7 +94,7 @@ export default () => {
     <div>
       <Form
         column={2}
-        schema={schema}
+        schema={[]}
         onValuesChange={(value, values) => {
           console.log('onValuesChange ->', value, values);
         }}
