@@ -14,6 +14,7 @@
     "pre-commit": "lint-staged"
   },
   "homepage": "https://yunliang-ding.github.io/core-form",
+  "keywords": ["schema", "form", "react", "antd"],
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
       "prettier --write"
