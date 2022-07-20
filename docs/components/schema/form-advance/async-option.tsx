@@ -1,4 +1,5 @@
 import { Tag } from 'antd';
+import React from 'react';
 import { SchemaProps } from 'react-core-form';
 
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));

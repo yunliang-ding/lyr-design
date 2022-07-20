@@ -1,6 +1,6 @@
 import { Select } from 'antd';
 
-export default ({
+const _Select = ({
   readOnlyEmptyValueNode,
   fieldNames = { value: 'value', label: 'label' },
   ...props
@@ -23,3 +23,5 @@ export default ({
   }
   return <Select {...props} fieldNames={fieldNames} />;
 };
+_Select.displayName = 'Select';
+export default _Select;
