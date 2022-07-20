@@ -1,11 +1,3 @@
-## 设计初衷
-
-- 将视图层 Jsx 中所依赖的配置抽离成独立 schema 模块，避免后期不同人开发导致单个页面庞大不好维护
-
-- 采用统一的开发模式，提高项目代码的统一性、可读性、在一定程度上即使你不会 React 也可以完成基础的 CRUD 的页面（后端同学）且代码风格一致
-
-- 统一管理表单项，我们希望所有的表单被统一管理，我们能有入口可以拦截到，去做一些事情。
-
 ## 安装
 
 组件库本身依赖 ant design，使用需要同时安装 antd，在 src/global.less 中全量引入 antd less 文件
@@ -18,22 +10,165 @@ npm install react-core-form --save
 @import '~antd/dist/antd.less';
 ```
 
-## 为什么不是 XRender、Formily
+## 基本使用
 
-- `XRender` 以及 `Formily` 都是比较成熟的表单解决方案但是他们在 Schema 规范、以及上手需要一定的学习成本
+```tsx
+import { From } from 'react-core-form';
 
-- 底层我们不能完全掌控，我们不能更好的从业务需求的角度去做扩展、加功能，Api 都是被第三方约束了
+export default () => {
+  return (
+    <Form
+      schema={[
+        {
+          type: 'Input',
+          label: '姓名',
+          name: 'name',
+          required: true,
+        },
+        {
+          type: 'Select',
+          label: '爱好',
+          name: 'liked',
+          required: true,
+          props: {
+            options: [
+              {
+                label: '爱好1',
+                value: 0,
+              },
+              {
+                label: '爱好2',
+                value: 1,
+              },
+            ],
+          },
+        },
+      ]}
+    />
+  );
+};
+```
 
-- 我们定义的数据模型更加的直观，只要掌握 antd4 表单使用可立即上手，底层也是我们自己掌控
+## 使用异步选择器
 
-- 最重要的一点，我们会结合自身的业务场景去做扩展，会内置更多符合业务的通用组件
+```tsx
+import { From } from 'react-core-form';
 
-## 优势
+export default () => {
+  return (
+    <Form
+      schema={[
+        {
+          type: 'AsyncSelect',
+          label: '爱好',
+          name: 'liked',
+          required: true,
+          props: {
+            options: async () => {
+              await new Promise((res) => setTimeout(res, 1000));
+              return [
+                {
+                  label: '爱好1',
+                  value: 0,
+                },
+                {
+                  label: '爱好2',
+                  value: 1,
+                },
+              ];
+            },
+          },
+        },
+      ]}
+    />
+  );
+};
+```
 
-- Form 我们基于 Antd4 的表单进行扩展、增强，编写好配置即可完成复杂的渲染和交互逻辑
+## 使用设置联动
 
-- 我们扩展多种异步选择器的 `widgets`，可以满足大部分的查询场景用少量代码即可实现
+```tsx
+import { From } from 'react-core-form';
 
-- 我们内置的组件，支持详情和编辑 2 种渲染模式可一键切换
+export default () => {
+  return (
+    <Form
+      schema={[
+        {
+          type: 'RadioGroup',
+          label: '性别',
+          name: 'sex',
+          props: {
+            options: [
+              {
+                label: '男',
+                value: 0,
+              },
+              {
+                label: '女',
+                value: 1,
+              },
+            ],
+          },
+        },
+        {
+          type: 'InputNumber',
+          label: '年龄',
+          name: 'age',
+          effect: ['sex'],
+          visible: ({ sex }) => sex === 0,
+        },
+      ]}
+    />
+  );
+};
+```
 
-- 通过支持自定义渲染、自定义组件的模式，可以 100%覆盖业务场景
+## 使用自定义渲染
+
+```tsx
+import { From } from 'react-core-form';
+
+export default () => {
+  return (
+    <Form
+      schema={[
+        {
+          label: '性别',
+          name: 'userList',
+          type: ({ value, onChange, form, ...props }) => {
+            return <div>自定义渲染</div>;
+          },
+        },
+        {
+          type: 'Render',
+          props: {
+            render(form) {
+              return <div>render</div>;
+            },
+          },
+        },
+        {
+          type: 'AsyncRender',
+          props: {
+            async render(form) {
+              await new Promise((res) => setTimeout(res, 1000));
+              return <div>render</div>;
+            },
+          },
+        },
+        {
+          type: 'MyWidget',
+          name: 'my-widget',
+          props: {},
+        },
+      ]}
+      widgets={{
+        MyWidget: ({ value, onChange, form, ...props }) => {
+          return <div>my-widget</div>;
+        },
+      }}
+    />
+  );
+};
+```

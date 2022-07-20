@@ -1,6 +1,8 @@
 {
   "name": "react-core-form",
-  "version": "0.0.1",
+  "description": "基于数据模型快速搭建表单",
+  "author": "yunliang-ding",
+  "version": "0.0.2",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -14,7 +16,16 @@
     "pre-commit": "lint-staged"
   },
   "homepage": "https://yunliang-ding.github.io/core-form",
-  "keywords": ["schema", "form", "react", "antd"],
+  "keywords": [
+    "schema",
+    "form",
+    "react",
+    "antd"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yunliang-ding/core-form"
+  },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
       "prettier --write"
@@ -31,7 +42,7 @@
     "react-resizable": "3.0.4",
     "react-dom": "16.14.0",
     "react-sortable-hoc": "2.0.0",
-    "react-draggable":"4.4.5"
+    "react-draggable": "4.4.5"
   },
   "peerDependencies": {
     "react": ">=16.9.0",

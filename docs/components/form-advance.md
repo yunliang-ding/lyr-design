@@ -146,7 +146,6 @@ export default () => {
  */
 import React from 'react';
 import { Form, Button } from 'react-core-form';
-import {} from 'antd';
 import schema from './schema/form-advance/async-option';
 export default () => {
   const [fresh, setFresh] = React.useState(false);
