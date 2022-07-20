@@ -92,7 +92,7 @@ export default ({
   // 获取当前查询条件
   const getParams = () => {
     return {
-      ...form.submit(),
+      ...form.getValues(),
       ...payload,
       pageSize: pagination.pageSize,
       pageNum: pagination.pageNum,
@@ -279,11 +279,11 @@ export default ({
           onReset={onReset}
           searchBtnRender={() => (
             <Button
-              {...{
-                key: 'search',
-                type: 'primary',
-                loading,
-                onClick: onSearch,
+              key="search"
+              type="primary"
+              loading={loading}
+              onClick={() => {
+                onSearch({});
               }}
             >
               查询

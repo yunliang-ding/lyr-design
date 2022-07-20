@@ -1,6 +1,6 @@
 import { Radio } from 'antd';
 
-const RadioGroup = ({ readOnlyEmptyValueNode, ...props }) => {
+export default ({ readOnlyEmptyValueNode, ...props }) => {
   // 渲染只读视图
   if (props.readOnly) {
     // 解析options得到label
@@ -15,5 +15,3 @@ const RadioGroup = ({ readOnlyEmptyValueNode, ...props }) => {
   }
   return <Radio.Group {...props} />;
 };
-RadioGroup.displayName = 'RadioGroup';
-export default RadioGroup;

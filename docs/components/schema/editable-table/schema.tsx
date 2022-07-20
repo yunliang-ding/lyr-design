@@ -34,7 +34,7 @@ export default {
       width: 300,
       fieldProps: {
         required: true,
-        type: 'CountInput',
+        type: 'Input',
         props: {
           maxLength: 100,
         },
@@ -45,7 +45,7 @@ export default {
       dataIndex: 'phone',
       width: 300,
       fieldProps: {
-        type: 'CountInput',
+        type: 'Input',
         props: {
           maxLength: 11,
         },

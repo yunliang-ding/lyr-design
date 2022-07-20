@@ -1,6 +1,6 @@
 import { Input } from 'antd';
 
-const TextArea = ({ readOnlyEmptyValueNode, ...props }) => {
+export default ({ readOnlyEmptyValueNode, ...props }) => {
   // 渲染只读视图
   if (props.readOnly) {
     return (
@@ -11,5 +11,3 @@ const TextArea = ({ readOnlyEmptyValueNode, ...props }) => {
   }
   return <Input.TextArea {...props} />;
 };
-TextArea.displayName = 'TextArea';
-export default TextArea;

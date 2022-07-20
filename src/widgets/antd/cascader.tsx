@@ -24,7 +24,7 @@ const queryLoop = (
   });
 };
 
-const __Cascader__ = ({ readOnlyEmptyValueNode, ...props }) => {
+export default ({ readOnlyEmptyValueNode, ...props }) => {
   // 渲染只读视图
   if (props.readOnly) {
     // 解析options得到label
@@ -39,5 +39,3 @@ const __Cascader__ = ({ readOnlyEmptyValueNode, ...props }) => {
   }
   return <Cascader {...props} />;
 };
-__Cascader__.displayName = 'Cascader';
-export default __Cascader__;

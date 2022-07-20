@@ -14,9 +14,8 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { TableList } from 'react-core-form';
+import { TableList, Switch } from 'react-core-form';
 import schema from './schema/table-list/schema';
-import { Switch } from 'antd';
 
 export default () => {
   const [showNo, setShowNo] = React.useState(false);

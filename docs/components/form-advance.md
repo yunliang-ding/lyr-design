@@ -137,87 +137,6 @@ export default () => {
 };
 ```
 
-## 使用扩展输入框
-
-```tsx
-/**
- * title: 说明
- * desc: 基于antd 输入框结合业务场景扩展
- */
-import React from 'react';
-import { Form, Button } from 'react-core-form';
-
-export default () => {
-  const [form] = Form.useForm();
-  const [readOnly, setReadOnly] = React.useState(false);
-  const submit = async () => {
-    const data = await form.submit(); // 校验并返回数值
-    alert(JSON.stringify(data));
-  };
-  return (
-    <>
-      <Button
-        onClick={setReadOnly.bind(null, !readOnly)}
-        style={{ marginBottom: 20 }}
-        type="primary"
-      >
-        设置只读
-      </Button>
-      <Form
-        form={form}
-        readOnly={readOnly}
-        layout={readOnly ? 'inline' : 'vertical'}
-        gridStyle={{
-          rowGap: readOnly ? 10 : 0,
-        }}
-        onValuesChange={(value, values) => {
-          console.log('onValuesChange ->', value, values);
-        }}
-        column={2}
-        schema={[
-          {
-            type: 'CountInput',
-            name: 'countInput',
-            label: '计数器输入框',
-            tooltip: '自带计数器功能',
-          },
-          {
-            type: 'AmountInput',
-            name: 'amountInput',
-            label: '金额类输入框',
-            tooltip: '默认开启千分位、最多15位数字、最小值为0、小数点默认2位',
-          },
-          {
-            type: 'BankCardInput',
-            name: 'bankCardInput',
-            label: '银行卡输入框',
-            tooltip: '每4位 自动添加空格',
-          },
-          {
-            type: 'RangeInput',
-            name: 'rangeInput',
-            label: '区间输入框',
-            props: {
-              startProps: {
-                precision: 2,
-                min: 0,
-              },
-              endProps: {
-                precision: 2,
-                max: 100,
-              },
-            },
-          },
-        ]}
-      />
-      <Button type="primary" onClick={submit} style={{ marginTop: 10 }}>
-        提交
-      </Button>
-    </>
-  );
-};
-```
-
 ## 使用异步的 options
 
 ```tsx
@@ -227,7 +146,7 @@ export default () => {
  */
 import React from 'react';
 import { Form, Button } from 'react-core-form';
-import {  } from 'antd';
+import {} from 'antd';
 import schema from './schema/form-advance/async-option';
 export default () => {
   const [fresh, setFresh] = React.useState(false);
@@ -705,8 +624,7 @@ const schema: SchemaProps<{
  * desc: 自定义组件约定，当定义了name属性的FormItem回默认注入2个属性给children，value代表默认值，onChange用于表单收集值，同时会获取Form配置的readOnly属性负责渲染详情视图，建议我们在编写自定义组件的时候，按照业务场景添加详情视图。
  */
 import React from 'react';
-import { Form, Button } from 'react-core-form';
-import { Input  } from 'antd';
+import { Form, Button, Input } from 'react-core-form';
 const UrlInput = ({ readOnly, value, ...rest }) => {
   if (readOnly) return <div>{`https://${value || ''}.com`}</div>;
   return (

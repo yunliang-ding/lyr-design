@@ -115,9 +115,6 @@ export default () => {
         'BlockQuote 平级区块',
         'FieldSet 父子级区块',
         'UploadImage 扩展图片上传',
-        'CountInput 计数器输入框',
-        'BankCardInput 银行卡输入框',
-        'AmountInput 金额类输入框',
         'RangeInput 数字范围输入框',
       ].map((item) => {
         return <Button key={item}>{item}</Button>;

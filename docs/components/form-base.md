@@ -192,7 +192,6 @@ export default () => {
         readOnlyEmptyValueNode={<span style={{ color: '#999' }}>暂无数据</span>}
         initialValues={{
           input: '这是默认值',
-          countInput: 'hello123',
           password: 'qazwsx',
           inputNumber: '50',
           textArea: '浙江省杭州市',

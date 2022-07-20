@@ -1,6 +1,6 @@
 import { InputNumber } from 'antd';
 
-const __InputNumber__ = ({ readOnlyEmptyValueNode, ...props }) => {
+export default ({ readOnlyEmptyValueNode, ...props }) => {
   // 渲染只读视图
   if (props.readOnly) {
     return (
@@ -11,5 +11,3 @@ const __InputNumber__ = ({ readOnlyEmptyValueNode, ...props }) => {
   }
   return <InputNumber {...props} />;
 };
-__InputNumber__.displayName = 'InputNumber';
-export default __InputNumber__;

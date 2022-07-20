@@ -1,7 +1,8 @@
-import axios from 'axios';
+import axios from '../../../axios';
 import { TableProps } from 'react-core-form';
 
 const tableSchema: TableProps = {
+  rowKey: 'id',
   title: '用户列表',
   scroll: {
     x: 1200,

@@ -1,3 +1,5 @@
+import { SchemaProps } from 'react-core-form';
+
 export default {
   column: 4,
   schema: [
@@ -45,6 +47,11 @@ export default {
       name: 'age',
       label: '年纪',
       expand: true,
+      transform({ age }) {
+        return {
+          userAge: age,
+        };
+      },
     },
     {
       type: 'Input',
@@ -52,5 +59,5 @@ export default {
       label: '地址',
       expand: true,
     },
-  ],
+  ] as SchemaProps,
 };

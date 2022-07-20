@@ -86,7 +86,7 @@ export default ({
       autoSearchNames.push(field.name);
     }
     // 处理输入框回车查询以及粘贴带空格问题
-    if (['Input', 'InputNumber', 'CountInput'].includes(field.type)) {
+    if (['Input', 'InputNumber'].includes(field.type)) {
       if (field.props === undefined) {
         field.props = {};
       }

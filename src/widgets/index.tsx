@@ -30,9 +30,6 @@ import DebounceSelect from './extension/debounce/select';
 import FormList from './extension/form-list';
 import BlockQuote from './extension/block-quote';
 import FieldSet from './extension/fields-set';
-import CountInput from './extension/input/count';
-import BankCardInput from './extension/input/bank-card';
-import AmountInput from './extension/input/amount';
 import RangeInput from './extension/input/range';
 import EditableTable from '@/table-editable';
 import TableList from '@/table-list';
@@ -70,9 +67,6 @@ export const BuiltInWidgetMapping: any = {
   BlockQuote,
   FieldSet,
   UploadImage,
-  CountInput,
-  BankCardInput,
-  AmountInput,
   RangeInput,
   EditableTable,
   TableList,
@@ -102,7 +96,7 @@ export default (field: any, formInstance: any = {}, widgets = {}) => {
       disabled={field.disabled}
       readOnly={field.readOnly}
       readOnlyEmptyValueNode={field.readOnlyEmptyValueNode}
-      actionRef={field.actionRef}
+      {...ExpProps}
       {...field.props}
       name={field.name}
       event={field.event} // FormList会用到

@@ -48,6 +48,7 @@ const AsyncTreeSelect = (props: any) => {
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
         )
       }
+      options={undefined}
       treeData={options}
     />
   );

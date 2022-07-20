@@ -41,6 +41,7 @@ export const isExpansionItemProps = {
   disabled: '',
   labelWidth: '',
   nameAlise: '',
+  actionRef: '',
 };
 
 // 渲染之前做些事情
@@ -110,7 +111,6 @@ export const tranfromSchema = (
       [
         'Input',
         'InputNumber',
-        'CountInput',
         'DebounceInput',
         'BankCardInput',
         'AmountInput',

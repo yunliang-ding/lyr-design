@@ -45,7 +45,7 @@ const SplitRangerPicker = ({ value = [], onChange, form, name, ...props }) => {
 /**
  * 官方内置的交互
  */
-const RangePicker = ({ mode, readOnlyEmptyValueNode, ...props }: any) => {
+export default ({ mode, readOnlyEmptyValueNode, ...props }: any) => {
   if (props.readOnly) {
     // 渲染只读视图
     const labels = props.value?.map((item: any) => {
@@ -65,5 +65,3 @@ const RangePicker = ({ mode, readOnlyEmptyValueNode, ...props }: any) => {
   }
   return <DatePicker.RangePicker {...props} />;
 };
-RangePicker.displayName = 'RangePicker';
-export default RangePicker;

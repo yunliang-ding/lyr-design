@@ -8,11 +8,6 @@ const schema: SchemaProps[] = [
     required: true,
   },
   {
-    type: 'CountInput',
-    name: 'countInput',
-    label: '计数器输入框',
-  },
-  {
     type: 'Password',
     name: 'password',
     label: '密码输入框',

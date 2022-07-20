@@ -20,6 +20,7 @@ const ProButton = ({
   drawerFormProps,
   modalFormProps,
   visible = true,
+  validator,
   ...props
 }: ProBtnProps) => {
   let submitForm;

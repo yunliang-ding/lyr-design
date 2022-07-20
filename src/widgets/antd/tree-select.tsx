@@ -19,7 +19,7 @@ const queryLoop = (
   });
 };
 
-const __TreeSelect__ = ({ readOnlyEmptyValueNode, ...props }) => {
+export default ({ readOnlyEmptyValueNode, ...props }) => {
   // 渲染只读视图
   if (props.readOnly) {
     // 解析options得到label
@@ -34,5 +34,3 @@ const __TreeSelect__ = ({ readOnlyEmptyValueNode, ...props }) => {
   }
   return <TreeSelect {...props} />;
 };
-__TreeSelect__.displayName = 'TreeSelect';
-export default __TreeSelect__;

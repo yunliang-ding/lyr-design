@@ -64,7 +64,6 @@ export interface SchemaProps<T = FieldProps>
     | 'BlockQuote'
     | 'FieldSet'
     | 'UploadImage'
-    | 'CountInput'
     | 'BankCardInput'
     | 'AmountInput'
     | 'EditableTable'

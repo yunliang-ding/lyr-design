@@ -37,8 +37,8 @@ export default () => {
  * background: '#fff'
  */
 import * as React from 'react';
-import { Switch, message } from 'antd';
-import { Button } from 'react-core-form';
+import { message } from 'antd';
+import { Button, Switch } from 'react-core-form';
 export default () => {
   const [type, setType] = React.useState('pop');
   const submit = async () => {
@@ -117,10 +117,12 @@ export default () => {
         onBeforeClick={async () => {
           await form.validateFields();
         }}
-        confirm={{
-          title: '提示下',
-          content: '是否确认发布?',
-        } as any}
+        confirm={
+          {
+            title: '提示下',
+            content: '是否确认发布?',
+          } as any
+        }
         onClick={submit}
       >
         提交

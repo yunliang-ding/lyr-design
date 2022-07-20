@@ -39,7 +39,6 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Button, Input } from 'antd';
 import { Table } from 'react-core-form';
 
 const userStateMapping = {
@@ -66,6 +65,7 @@ export default () => {
   return (
     <Table
       title={'用户列表'}
+      rowKey="userName"
       columns={[
         {
           title: '用户姓名',
@@ -127,6 +127,7 @@ export default () => {
 import React from 'react';
 import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema2';
+
 export default () => {
   return <Table {...tableSchema} />;
 };
@@ -139,9 +140,9 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Button, Input } from 'antd';
 import { Table } from 'react-core-form';
 import schema from './schema/form-table/schema2';
+
 export default () => {
   return (
     <Table
@@ -178,6 +179,7 @@ import React from 'react';
 import { Table, Button } from 'react-core-form';
 import tableSchema from './schema/form-table/schema';
 import { Space } from 'antd';
+
 export default () => {
   return (
     <Table
@@ -227,6 +229,7 @@ export default () => {
 import React from 'react';
 import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema1';
+
 export default () => {
   return <Table {...tableSchema} filterIds={['sex', 'city', 'sign']} />;
 };
@@ -242,6 +245,7 @@ import React from 'react';
 import { Table } from 'react-core-form';
 import { Input } from 'antd';
 import tableSchema from './schema/form-table/schema1';
+
 export default () => {
   return (
     <Table
@@ -279,6 +283,7 @@ export default () => {
 import React from 'react';
 import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema';
+
 export default () => {
   return (
     <Table

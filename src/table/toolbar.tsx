@@ -12,7 +12,6 @@ export default ({
   onFilter = () => {}, // filter回调
   onRefresh = () => {}, // refresh
   onSearch = () => {}, // search
-  params,
   setColumns = () => {},
   size = 'default',
   onSizeChange = () => {},
@@ -51,7 +50,7 @@ export default ({
     switch (tool.type) {
       case 'Refresh':
         return (
-          <Tooltip placement="topLeft" title={'刷新'}>
+          <Tooltip placement="topLeft" title="刷新" key={tool.type}>
             <Button
               {...btnProps}
               type="default"
@@ -80,7 +79,7 @@ export default ({
             }
             trigger={['click']}
           >
-            <Tooltip placement="topLeft" title={'密度'}>
+            <Tooltip placement="topLeft" title="密度">
               <Button
                 {...btnProps}
                 type="default"
@@ -97,7 +96,7 @@ export default ({
       case 'FilterColumns':
         return (
           <FilterColumns
-            key="filter-columns"
+            key={tool.type}
             filterIds={filterIds}
             columns={columns}
             setColumns={setColumns}
@@ -114,7 +113,7 @@ export default ({
         return (
           <Dropdown
             disabled={tool.disabled}
-            key={tool.key || tool.type}
+            key={tool.type}
             overlay={
               <Menu
                 onClick={(item) => {
@@ -152,14 +151,12 @@ export default ({
         );
     }
   };
-  // 支持方案
-  const _tools = [...tools];
-  return _tools || _tools.length > 0 ? (
+  return tools || tools.length > 0 ? (
     <div className="table-form-header">
       <div className="table-form-header-left">{title}</div>
       <div className="table-form-header-right">
         <Space>
-          {_tools.map((tool: any) => {
+          {tools.map((tool: any) => {
             return renderTool(tool);
           })}
         </Space>

@@ -1,11 +1,12 @@
 import { message } from 'antd';
-import axios from 'axios';
+import axios from '../../../axios';
 import { TableProps } from 'react-core-form';
 import schema from '../form-submit/schema';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 
 const tableSchema: TableProps = {
+  rowKey: 'id',
   title: '用户列表',
   scroll: {
     x: 1200,
