@@ -2,12 +2,11 @@
   "name": "react-core-form",
   "description": "基于数据模型快速搭建表单",
   "author": "yunliang-ding",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
-    "build": "father-build",
-    "prepublish": "npm run build"
+    "build": "father-build"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -68,6 +67,7 @@
   },
   "license": "MIT",
   "publishConfig": {
-    "yunliang-ding:registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   }
 }
