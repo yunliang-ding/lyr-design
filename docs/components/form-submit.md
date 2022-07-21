@@ -314,6 +314,97 @@ export default (props) => {
 };
 ```
 
+## 自定义渲染底部按钮
+
+```tsx
+import React from 'react';
+import { DrawerForm, ModalForm } from 'react-core-form';
+import schema from './schema/form-submit/schema';
+import { Button, message, Switch, Space } from 'antd';
+
+const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
+
+export default (props) => {
+  const [opeModal, setOpenModal] = React.useState(false);
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+  return (
+    <>
+      <Button type="primary" onClick={setOpenModal.bind(null, true)}>
+        新增Modal
+      </Button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <Button type="primary" onClick={setOpenDrawer.bind(null, true)}>
+        新增Drawer
+      </Button>
+      <ModalForm
+        title="新增用户"
+        visible={opeModal}
+        schema={schema}
+        column={2}
+        width={1000}
+        onClose={setOpenModal.bind(null, false)}
+        modalProps={{
+          bodyStyle: {
+            height: 500,
+            overflow: 'auto',
+          },
+        }}
+        footerRender={(form) => {
+          return (
+            <Space>
+              <a>这个是一个描述信息</a>
+              <Button onClick={setOpenModal.bind(null, false)}>取消</Button>
+              <Button
+                type="primary"
+                ghost
+                onClick={async () => {
+                  const data = await form.submit();
+                  const res = await delay(1000);
+                  if (res) {
+                    message.success('保存成功');
+                  }
+                  setOpenModal(false);
+                }}
+              >
+                提交
+              </Button>
+            </Space>
+          );
+        }}
+      />
+      <DrawerForm
+        title="新增用户"
+        schema={schema}
+        visible={openDrawer}
+        onClose={setOpenDrawer.bind(null, false)}
+        footerRender={(form) => {
+          return (
+            <Space>
+              <a>这个是一个描述信息</a>
+              <Button onClick={setOpenDrawer.bind(null, false)}>取消</Button>
+              <Button
+                type="primary"
+                ghost
+                onClick={async () => {
+                  const data = await form.submit();
+                  const res = await delay(1000);
+                  if (res) {
+                    message.success('保存成功');
+                  }
+                  setOpenDrawer(false);
+                }}
+              >
+                提交
+              </Button>
+            </Space>
+          );
+        }}
+      />
+    </>
+  );
+};
+```
+
 ## CreateForm 创建表单
 
 ```tsx

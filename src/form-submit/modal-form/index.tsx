@@ -23,6 +23,7 @@ export default ({
   confirmText = '保存',
   actions,
   render,
+  footerRender,
   drag = false,
   ...rest
 }: ModalFormProps) => {
@@ -115,6 +116,20 @@ export default ({
   ) : (
     title
   );
+  /** 控制底部按钮渲染 */
+  let footerNode: any = false;
+  if (typeof footerRender === 'function') {
+    footerNode = footerRender(form);
+  } else if (footer) {
+    footerNode = (
+      <Footer
+        actions={_actions}
+        actionClick={actionClick}
+        validatorForm={validatorForm}
+        form={form}
+      />
+    );
+  }
   return (
     <Modal
       {...{
@@ -139,18 +154,7 @@ export default ({
             )
           : undefined
       }
-      footer={
-        footer ? (
-          <Footer
-            actions={_actions}
-            actionClick={actionClick}
-            validatorForm={validatorForm}
-            form={form}
-          />
-        ) : (
-          false
-        )
-      }
+      footer={footerNode}
     >
       {typeof render === 'function' ? (
         render({

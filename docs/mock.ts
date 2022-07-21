@@ -2,6 +2,7 @@ const data: any = [];
 for (let i = 1; i < 1001; i++) {
   data.push({
     id: i,
+    index: i,
     username: '用户姓名' + i,
     sex: '性别' + i,
     city: '城市' + i,

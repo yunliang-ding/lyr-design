@@ -21,6 +21,7 @@ export default ({
   confirmText = '保存',
   actions,
   render,
+  footerRender,
   ...rest
 }: DrawerFormProps) => {
   const [value, onChange] = useState(rest.initialValues);
@@ -70,6 +71,20 @@ export default ({
   if (className) {
     _className.push(className);
   }
+  /** 控制底部按钮渲染 */
+  let footerNode: any = false;
+  if (typeof footerRender === 'function') {
+    footerNode = footerRender(form);
+  } else if (footer) {
+    footerNode = (
+      <Footer
+        actions={_actions}
+        actionClick={actionClick}
+        validatorForm={validatorForm}
+        form={form}
+      />
+    );
+  }
   return (
     <Drawer
       {...{
@@ -81,18 +96,7 @@ export default ({
       title={title}
       visible={visible}
       onClose={onClose}
-      footer={
-        footer ? (
-          <Footer
-            actions={_actions}
-            actionClick={actionClick}
-            validatorForm={validatorForm}
-            form={form}
-          />
-        ) : (
-          false
-        )
-      }
+      footer={footerNode}
     >
       {typeof render === 'function' ? (
         render({

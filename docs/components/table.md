@@ -32,6 +32,29 @@ export default () => {
 };
 ```
 
+## 配置 drag 属性，支持可拖动
+
+```tsx
+/**
+ * background: '#f6f7f9'
+ * title: 约定数据源选项包含 index 属性，做为唯一序号
+ */
+import React from 'react';
+import { Table } from 'react-core-form';
+import tableSchema from './schema/form-table/schema1';
+export default () => {
+  return (
+    <Table
+      {...tableSchema}
+      drag
+      onDragDone={(result) => {
+        console.log('onDragDone: ', result);
+      }}
+    />
+  );
+};
+```
+
 ## 使用 enums 配置 列枚举映射关系
 
 ```tsx

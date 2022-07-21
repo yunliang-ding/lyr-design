@@ -107,4 +107,10 @@ export interface TableProps
   table?: TableInstance;
   /** 唯一标识 */
   tableId?: string;
+  /** 是否开启拖拽 */
+  drag?: boolean;
+  /** 列信息 */
+  dragColumn?: TableColumnType;
+  /** 拖拽结束的钩子 */
+  onDragDone?: (data) => any;
 }

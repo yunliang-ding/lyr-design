@@ -133,7 +133,17 @@
     background: transparent !important;
   }
 }
-
+.core-table-row-dragging {
+  width: fit-content !important;
+  border: 1px solid #ccc;
+  .ant-table-cell {
+    max-width: 200px;
+    overflow: hidden;
+    background-color: #fafafa;
+    height: 45px;
+    padding: 4px 16px;
+  }
+}
 /** resizable */
 .react-resizable {
   position: relative;

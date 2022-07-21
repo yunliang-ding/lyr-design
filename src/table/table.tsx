@@ -6,6 +6,11 @@ import { Form, Search, Table } from '@/index';
 import ToolBar from './toolbar';
 import getRowOperations from './row-operations';
 import { defaultPaginationConfig, updateLocalFilter } from '.';
+import {
+  DraggableBodyRow,
+  DraggableContainer,
+  DragHandle,
+} from './drag-columns';
 import './index.less';
 
 export default ({
@@ -30,6 +35,9 @@ export default ({
   tableRender,
   table = Table.useTable()[0],
   tableId,
+  drag = false,
+  onDragDone = () => {},
+  dragColumn = {},
   ...restProp
 }: TableProps) => {
   const [_columns, setColumns] = useState([]);
@@ -230,18 +238,34 @@ export default ({
       firstRender.current = false;
     }
   }, []);
+  const newColumns = transformColumns(
+    lastColumns.filter((item: any) => !_filterIds.includes(item.dataIndex)),
+    emptyNode,
+    onCellWidthChange,
+    paginationInfo.current,
+  );
   /** 主体渲染Dom */
   const tableDom = (
     <AntdTable
       rowKey={rowKey}
       loading={loading}
       dataSource={dataSource}
-      columns={transformColumns(
-        lastColumns.filter((item: any) => !_filterIds.includes(item.dataIndex)),
-        emptyNode,
-        onCellWidthChange,
-        paginationInfo.current,
-      )}
+      columns={
+        drag
+          ? [
+              {
+                title: '排序',
+                dataIndex: '__sort__',
+                width: 60,
+                fixed: 'left',
+                className: 'drag-visible',
+                render: () => <DragHandle />,
+                ...dragColumn,
+              },
+              ...newColumns,
+            ]
+          : newColumns
+      }
       onChange={(_pagination, filters, sorter) => {
         if (typeof pagination.onChange === 'function') {
           pagination.onChange(_pagination, filters, sorter);
@@ -256,6 +280,29 @@ export default ({
         updateLocalFilter(tableId, false, false, _pagination.pageSize);
       }}
       rowSelection={innerRowSelection}
+      components={
+        drag
+          ? {
+              body: {
+                wrapper: (props) => {
+                  return (
+                    <DraggableContainer
+                      {...props}
+                      dataSource={dataSource}
+                      setDataSource={setDataSource}
+                      onDragDone={onDragDone}
+                    />
+                  );
+                },
+                row: (props) => {
+                  return (
+                    <DraggableBodyRow {...props} dataSource={dataSource} />
+                  );
+                },
+              },
+            }
+          : undefined
+      }
       {...restProp}
       pagination={
         restProp.pagination === false

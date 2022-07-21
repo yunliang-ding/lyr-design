@@ -32,6 +32,8 @@ interface FormSubmitProps extends CoreFormProps {
    * 自定义渲染
    */
   render?: ({ value, onChange }) => ReactNode;
+  /** 自定义渲染底部操作 */
+  footerRender?: (form) => ReactNode;
 }
 
 export interface CardFormProps extends FormSubmitProps {
