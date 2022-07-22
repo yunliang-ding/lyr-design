@@ -83,7 +83,7 @@ export default ({
   // 重置分页条件且刷新
   const clearPagination = () => {
     setPagination({
-      pageSize: pagination.pageSize,
+      ...pagination,
       pageNum: 1, // 页码重制为第一页
     });
     setRefresh(Math.random());
