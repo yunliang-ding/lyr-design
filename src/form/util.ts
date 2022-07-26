@@ -61,13 +61,13 @@ export const beforeFieldRender = (field: any, form: any) => {
     if (Array.isArray(field.rules)) {
       field.rules.push({
         required: true,
-        message: `${field.label}不能为空`,
+        message: `${field.label || ''}不能为空`,
       });
     } else {
       field.rules = [
         {
           required: true,
-          message: `${field.label}不能为空`,
+          message: `${field.label || ''}不能为空`,
         },
       ];
     }
