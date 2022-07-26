@@ -126,7 +126,7 @@ export const tranfromSchema = (
           field.props.allowClear === undefined ? true : field.props.allowClear; // 默认允许清除
       }
       field.props.placeholder =
-        field.props.placeholder || `请输入${field.label}`; // 默认提示
+        field.props.placeholder || `请输入${field.label || ''}`; // 默认提示
     }
     // 处理popup类挂载容器
     if (isPopupContainer(field.type)) {
@@ -140,7 +140,7 @@ export const tranfromSchema = (
       // 区间查询不需要设置
       if (!['RangePicker', 'TimeRange'].includes(field.type)) {
         field.props.placeholder =
-          field.props.placeholder || `请选择${field.label}`; // 默认提示
+          field.props.placeholder || `请选择${field.label || ''}`; // 默认提示
       }
       // 生成挂载容器标识
       field.popupid = `${name}_${popupName}`;
