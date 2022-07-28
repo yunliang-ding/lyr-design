@@ -1,3 +1,4 @@
+import React from 'react';
 import { SchemaProps, Button } from 'react-core-form';
 
 const schema: SchemaProps[] = [
@@ -8,6 +9,7 @@ const schema: SchemaProps[] = [
     label: '基础表单',
     props: {
       column: 3, // 子元素3等份排
+      subTitle: '这个是一个描述信息...',
       extra: [
         <Button type="primary" ghost key="operation">
           操作区域

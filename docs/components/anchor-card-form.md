@@ -30,6 +30,7 @@ export default () => {
             label: '基础表单',
             props: {
               column: 2,
+              subTitle: '这个是一个描述信息...',
               extra: [
                 <Button type="primary" ghost key="operation">
                   操作区域

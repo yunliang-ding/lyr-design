@@ -149,7 +149,7 @@ export default ({
     return childrenFields ? (
       <Grid
         gridStyle={field.props.gridStyle || gridStyle}
-        column={field.props.column}
+        column={field.props.column || 1}
       >
         <RenderSchema itemSchema={childrenFields || []} />
       </Grid>
@@ -190,6 +190,7 @@ export default ({
               label={field.label}
               style={style}
               extra={field.props?.extra}
+              subTitle={field.props?.subTitle}
               form={form}
               initialValues={_initialValues}
               effect={field.effect}

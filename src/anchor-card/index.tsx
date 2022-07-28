@@ -1,6 +1,6 @@
 import { Row, Col, Card, CardProps } from 'antd';
-import { useState, ReactNode } from 'react';
-import { getElementTop } from './util';
+import { useState, ReactNode, useEffect } from 'react';
+import { getElementTop, getLinkTabs } from './util';
 import './index.less';
 
 export interface AnchorCardProps {
@@ -33,6 +33,7 @@ export default ({
   fixedTop = 0,
   children = null,
 }: AnchorCardProps) => {
+  let ticking = false;
   const tabs = list.map((item) => {
     return {
       key: item.title,
@@ -40,6 +41,33 @@ export default ({
     };
   });
   const [activeKey, setActiveKey] = useState(defaultActivityKey);
+  // 监听滚动区域
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, true);
+    return () => {
+      window.removeEventListener('scroll', handleScroll, true);
+    };
+  }, []);
+  const handleScroll = (event) => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const elementScrollTop =
+          event.srcElement.scrollTop ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+        if (!elementScrollTop) {
+          return;
+        }
+        const linkTabs = getLinkTabs(tabs);
+        linkTabs.forEach((item) => {
+          if (Number(elementScrollTop) + Number(fixHeight) >= item.offsetTop) {
+            setActiveKey(item.key);
+          }
+        });
+        ticking = false;
+      });
+    }
+  };
   const onAnchorClick = (key) => {
     const el = document.querySelector(`#${key}`);
     if (el) {

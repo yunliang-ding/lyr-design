@@ -6,7 +6,8 @@ import './index.less';
 export default ({
   style = {},
   children = <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />,
-  label = '标题',
+  label = '',
+  subTitle = '',
   event,
   effect,
   extra = [],
@@ -31,7 +32,14 @@ export default ({
   const vNode = (
     <div style={style} className="core-form-fieldset" key={reload}>
       <div className="core-form-fieldset-title" id={fieldName}>
-        <div className="core-form-fieldset-label">{label}</div>
+        <div className="core-form-fieldset-label">
+          {label}
+          {subTitle && (
+            <span className="core-form-fieldset-label-subTitle">
+              {subTitle}
+            </span>
+          )}
+        </div>
         <div className="core-form-fieldset-extra">
           <Space>{extra?.map((dom) => dom)}</Space>
         </div>

@@ -25,7 +25,7 @@ export default ({
     if (tool.type === 'Refresh') {
       onRefresh();
     }
-    toolsClick({ ...tool }); // 外部回调
+    await toolsClick({ ...tool }); // 外部回调
   };
   const renderTool = (tool: any) => {
     const btnProps = {
