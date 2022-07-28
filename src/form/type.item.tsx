@@ -188,6 +188,11 @@ export interface ExtensionProps {
   creatorButtonProps?: any;
   // AsyncSelect 空提示信息
   emptyDescription?: ReactNode | string;
+  showCheckAll?:
+    | boolean
+    | {
+        text: ReactNode;
+      };
 }
 const Hello: React.FC<SchemaProps<{}>> = () => null;
 

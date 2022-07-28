@@ -236,3 +236,52 @@ export default () => {
   return <Form schema={schema} column={3} />;
 };
 ```
+
+## 复选框扩展支持全选
+
+```tsx
+import React from 'react';
+import { Form } from 'react-core-form';
+export default () => {
+  return (
+    <Form
+      initialValues={{
+        likes: [1, 2],
+        ranges: [1, 2, 3, 4],
+      }}
+      schema={[
+        {
+          type: 'CheckGroup',
+          name: 'likes',
+          label: '个人爱好',
+          props: {
+            showCheckAll: true,
+            options: [
+              { label: '洗澡', value: 1 },
+              { label: '游戏', value: 2 },
+              { label: '看书', value: 3 },
+              { label: '运动', value: 4 },
+            ],
+          },
+        },
+        {
+          type: 'CheckGroup',
+          name: 'ranges',
+          label: '管理范围',
+          props: {
+            showCheckAll: {
+              text: '选择全部',
+            },
+            options: [
+              { label: '前端开发', value: 1 },
+              { label: '后端开发', value: 2 },
+              { label: '测试人员', value: 3 },
+              { label: '产品设计', value: 4 },
+            ],
+          },
+        },
+      ]}
+    />
+  );
+};
+```

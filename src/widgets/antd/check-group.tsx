@@ -1,6 +1,7 @@
 import { Checkbox } from 'antd';
+import CheckGroupAll from './check-group-all';
 
-export default ({ readOnlyEmptyValueNode, ...props }) => {
+export default ({ readOnlyEmptyValueNode, showCheckAll = false, ...props }) => {
   // 渲染只读视图
   if (props.readOnly) {
     // 解析options得到labels
@@ -16,5 +17,9 @@ export default ({ readOnlyEmptyValueNode, ...props }) => {
       </span>
     );
   }
-  return <Checkbox.Group {...props} />;
+  return showCheckAll ? (
+    <CheckGroupAll {...props} showCheckAll={showCheckAll} />
+  ) : (
+    <Checkbox.Group {...props} />
+  );
 };
