@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import classNames from 'classnames';
 import { Form, Button } from '@/index';
 import { SearchProps } from './types';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep } from '@/util';
 import './index.less';
 
 export default ({

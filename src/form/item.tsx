@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { AsyncOptionsCache, isEmpty, NOTICESELF } from '@/util';
+import { cloneDeep, AsyncOptionsCache, isEmpty, NOTICESELF } from '@/util';
 import CreateWidget from '@/widgets';
-import cloneDeep from 'lodash/cloneDeep';
 import mergeWith from 'lodash/mergeWith';
 import AsyncRender from '@/widgets/extension/async/render';
 import { Form } from 'antd';

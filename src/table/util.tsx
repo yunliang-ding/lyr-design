@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-param-reassign */
 // 转换处理
-import cloneDeep from 'lodash/cloneDeep';
 import { Tooltip, Typography, Space } from 'antd';
 import AdjustWidth from './adjust-width';
-import { getType, isEmpty } from '@/util';
+import { getType, isEmpty, cloneDeep } from '@/util';
 import { Fragment } from 'react';
 import { TableColumnType } from './type.column';
+import moment from 'moment';
 
 export const transformColumns = (
   columns: TableColumnType[],
@@ -88,6 +88,13 @@ export const transformColumns = (
         // 处理空数据展示
         if (emptyNode) {
           vNode = isEmpty(vNode) ? emptyNode : vNode;
+        }
+        // 日期格式化
+        if (column.dateFormat && vNode) {
+          vNode = moment(vNode).format(column.dateFormat);
+          if (vNode === 'Invalid date') {
+            vNode = '-';
+          }
         }
         // 添加link标识
         if (column.link) {

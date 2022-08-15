@@ -1,3 +1,5 @@
+import { cloneDeepWith } from 'lodash';
+
 /** 判断空 */
 export const isEmpty = (param: any) => {
   if (param === null || param === undefined) {
@@ -105,3 +107,13 @@ export const getType = (obj: any): string => {
 };
 
 export const isObject = (obj) => getType(obj) === 'object';
+
+/** react fiber 对象不参与深拷贝 */
+export const cloneDeep = (source) => {
+  return cloneDeepWith(source, (target) => {
+    // 包含这两个属性的节点暂时认为是react fiber、不做拷贝
+    if (target?._owner && target?.$$typeof) {
+      return target;
+    }
+  });
+};

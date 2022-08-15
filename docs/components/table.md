@@ -95,6 +95,11 @@ export default () => {
           dataIndex: 'userName',
         },
         {
+          title: '用户日期',
+          dataIndex: 'userDate',
+          dateFormat: 'YYYY-MM-DD',
+        },
+        {
           title: '用户性别',
           dataIndex: 'userSex',
           enums: ['男', '女'], // 基本数组类型
@@ -131,6 +136,7 @@ export default () => {
               userSex: 0,
               userState: 'initial',
               userType: 'admin',
+              userDate: new Date().getTime(),
             },
           ],
           success: true,

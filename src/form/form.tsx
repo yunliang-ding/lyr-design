@@ -2,8 +2,13 @@
 import { useRef, useMemo, useEffect, useCallback, useState } from 'react';
 import { ConfigProvider, Empty, Form, Spin } from 'antd';
 import { Grid } from '../index';
-import { uuid, EventEmit, AsyncOptionsCache, queryFieldByName } from '../util';
-import cloneDeep from 'lodash/cloneDeep';
+import {
+  cloneDeep,
+  uuid,
+  EventEmit,
+  AsyncOptionsCache,
+  queryFieldByName,
+} from '@/util';
 import Item from './item';
 import FieldSet from '@/widgets/extension/fields-set';
 import { CoreFormProps } from './type.form';
