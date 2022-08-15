@@ -38,6 +38,7 @@ export default ({
   drag = false,
   onDragDone = () => {},
   dragColumn = {},
+  autoNo = false,
   ...restProp
 }: TableProps) => {
   const [_columns, setColumns] = useState([]);
@@ -170,7 +171,9 @@ export default ({
       (row) => row[rowKey as string],
     );
     setInnerSelectedRowKeys(_innerSelectedRowKeys);
-    rowSelection?.onChange?.(_innerSelectedRowKeys, innerSelectedRow);
+    rowSelection?.onChange?.(_innerSelectedRowKeys, innerSelectedRow, {
+      type: 'all',
+    });
   }, [innerSelectedRow]);
   /** 真正传递给Table的 */
   const innerRowSelection = rowSelection && {
@@ -238,34 +241,47 @@ export default ({
       firstRender.current = false;
     }
   }, []);
-  const newColumns = transformColumns(
-    lastColumns.filter((item: any) => !_filterIds.includes(item.dataIndex)),
+  let newColumns = lastColumns.filter(
+    (item: any) => !_filterIds.includes(item.dataIndex),
+  );
+  // 自增序号
+  if (autoNo) {
+    newColumns = [
+      {
+        title: '序号',
+        columnType: 'columnNo',
+      },
+      ...newColumns,
+    ];
+  }
+  newColumns = transformColumns(
+    newColumns,
     emptyNode,
     onCellWidthChange,
     paginationInfo.current,
   );
+  // 开启 drag
+  if (drag) {
+    newColumns = [
+      {
+        title: '排序',
+        dataIndex: '__sort__',
+        width: 60,
+        fixed: 'left',
+        className: 'drag-visible',
+        render: () => <DragHandle />,
+        ...dragColumn,
+      },
+      ...newColumns,
+    ];
+  }
   /** 主体渲染Dom */
   const tableDom = (
     <AntdTable
       rowKey={rowKey}
       loading={loading}
       dataSource={dataSource}
-      columns={
-        drag
-          ? [
-              {
-                title: '排序',
-                dataIndex: '__sort__',
-                width: 60,
-                fixed: 'left',
-                className: 'drag-visible',
-                render: () => <DragHandle />,
-                ...dragColumn,
-              },
-              ...newColumns,
-            ]
-          : newColumns
-      }
+      columns={newColumns}
       onChange={(_pagination, filters, sorter) => {
         if (typeof pagination.onChange === 'function') {
           pagination.onChange(_pagination, filters, sorter);

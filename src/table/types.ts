@@ -113,4 +113,6 @@ export interface TableProps
   dragColumn?: TableColumnType;
   /** 拖拽结束的钩子 */
   onDragDone?: (data) => any;
+  /** 开启自增序号 */
+  autoNo?: boolean;
 }

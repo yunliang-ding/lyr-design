@@ -162,7 +162,7 @@ export default () => {
 };
 ```
 
-## column 设置 columnType 属性 支持 分页序号
+## 开启 autoNo 分页序号
 
 ```tsx
 /**
@@ -173,12 +173,7 @@ import { Table } from 'react-core-form';
 import schema from './schema/form-table/schema2';
 
 export default () => {
-  return (
-    <Table
-      {...schema}
-      columns={[{ title: '序号', columnType: 'columnNo' }, ...schema.columns]}
-    />
-  );
+  return <Table autoNo {...schema} />;
 };
 ```
 

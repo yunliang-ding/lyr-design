@@ -1,3 +1,4 @@
+import React from 'react';
 import { cloneDeepWith } from 'lodash';
 
 /** 判断空 */
@@ -108,11 +109,10 @@ export const getType = (obj: any): string => {
 
 export const isObject = (obj) => getType(obj) === 'object';
 
-/** react fiber 对象不参与深拷贝 */
+/** ReactElement 对象不参与深拷贝 */
 export const cloneDeep = (source) => {
   return cloneDeepWith(source, (target) => {
-    // 包含这两个属性的节点暂时认为是react fiber、不做拷贝
-    if (target?._owner && target?.$$typeof) {
+    if (React.isValidElement(target)) {
       return target;
     }
   });
