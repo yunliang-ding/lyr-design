@@ -1,7 +1,7 @@
 import { Select } from 'antd';
 
 const _Select = ({
-  readOnlyEmptyValueNode,
+  readOnlyEmptyValueNode = '-',
   fieldNames = { value: 'value', label: 'label' },
   ...props
 }: any) => {

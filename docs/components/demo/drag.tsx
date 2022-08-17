@@ -1,3 +1,5 @@
+import React from 'react';
+
 const dragContainer: any = {
   position: 'relative',
   border: '2px solid var(--antd-wave-shadow-color)',

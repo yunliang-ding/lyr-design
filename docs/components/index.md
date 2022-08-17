@@ -70,6 +70,9 @@ npm install react-core-form --save
 ## Form 内置组件
 
 ```tsx
+/**
+ * title: 所有 antd 组件 扩展了 readOnly 属性
+ */
 import * as React from 'react';
 import { Grid } from 'react-core-form';
 import { Button } from 'antd';

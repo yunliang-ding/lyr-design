@@ -16,6 +16,7 @@ export default ({
   size = 'default',
   onSizeChange = () => {},
   tableId,
+  tableInstance,
 }: any) => {
   // toolClick
   const handelClick = async (tool: any) => {
@@ -25,7 +26,10 @@ export default ({
     if (tool.type === 'Refresh') {
       onRefresh();
     }
-    await toolsClick({ ...tool }); // 外部回调
+    if (typeof tool.onClick === 'function') {
+      await tool.onClick(tableInstance);
+    }
+    await toolsClick({ ...tool }, tableInstance); // 外部回调
   };
   const renderTool = (tool: any) => {
     const btnProps = {
@@ -36,16 +40,10 @@ export default ({
     };
     /** 扩展 modalFormProps、drawerFormProps 支持函数 */
     if (typeof tool.modalFormProps === 'function') {
-      tool.modalFormProps = tool.modalFormProps({
-        onSearch,
-        onRefresh,
-      });
+      tool.modalFormProps = tool.modalFormProps(tableInstance);
     }
     if (typeof tool.drawerFormProps === 'function') {
-      tool.drawerFormProps = tool.drawerFormProps({
-        onSearch,
-        onRefresh,
-      });
+      tool.drawerFormProps = tool.drawerFormProps(tableInstance);
     }
     switch (tool.type) {
       case 'Refresh':

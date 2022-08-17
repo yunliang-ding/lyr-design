@@ -1,3 +1,4 @@
+import React from 'react';
 import { Input } from 'react-core-form';
 /**
  * 计数器输入框

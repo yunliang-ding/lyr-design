@@ -20,7 +20,7 @@ export interface ToolsProps {
   spin?: boolean;
   visible?: boolean | Function;
   confirm?: object;
-  onClick?: Function;
+  onClick?: (table: TableInstance) => any;
   menu?: any;
   icon?: ReactNode;
   modalFormProps?:
@@ -86,9 +86,14 @@ export interface TableProps
   /** 加载完毕回调 */
   onLoad?: (response: any) => void;
   /** 表头按钮点击回调 */
-  toolsClick?: (tool: any) => void;
+  toolsClick?: (tool: any, table: TableInstance) => void;
   /** 表格列点击事件回调 */
-  rowOperationsClick?: (menu: any, record: any, index: number) => void;
+  rowOperationsClick?: (
+    menu: any,
+    record: any,
+    index: number,
+    table: TableInstance,
+  ) => void;
   /** 默认查询值 */
   params?: object;
   /** 分页配置 */

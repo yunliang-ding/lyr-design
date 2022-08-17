@@ -45,7 +45,11 @@ const SplitRangerPicker = ({ value = [], onChange, form, name, ...props }) => {
 /**
  * 官方内置的交互
  */
-export default ({ mode, readOnlyEmptyValueNode, ...props }: any) => {
+export default ({
+  mode = 'default',
+  readOnlyEmptyValueNode = '-',
+  ...props
+}: any) => {
   if (props.readOnly) {
     // 渲染只读视图
     const labels = props.value?.map((item: any) => {

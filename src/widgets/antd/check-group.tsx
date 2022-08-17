@@ -1,7 +1,11 @@
 import { Checkbox } from 'antd';
 import CheckGroupAll from './check-group-all';
 
-export default ({ readOnlyEmptyValueNode, showCheckAll = false, ...props }) => {
+export default ({
+  readOnlyEmptyValueNode = '-',
+  showCheckAll = false,
+  ...props
+}) => {
   // 渲染只读视图
   if (props.readOnly) {
     // 解析options得到labels

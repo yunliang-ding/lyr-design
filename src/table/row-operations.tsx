@@ -3,10 +3,9 @@ import { Menu, Dropdown, Typography } from 'antd';
 import { Button } from '@/index';
 
 export default ({
-  onSearch,
-  onRefresh,
   rowOperations = {},
   rowOperationsClick = (a: any, b: any, index: number) => {},
+  tableInstance,
 }: any) => {
   if (typeof rowOperations.menus !== 'function') {
     return false;
@@ -14,16 +13,10 @@ export default ({
   const RenderItem = ({ menu, record, index }: any) => {
     /** 扩展 modalFormProps、drawerFormProps 支持函数 */
     if (typeof menu.modalFormProps === 'function') {
-      menu.modalFormProps = menu.modalFormProps({
-        onSearch,
-        onRefresh,
-      });
+      menu.modalFormProps = menu.modalFormProps(tableInstance);
     }
     if (typeof menu.drawerFormProps === 'function') {
-      menu.drawerFormProps = menu.drawerFormProps({
-        onSearch,
-        onRefresh,
-      });
+      menu.drawerFormProps = menu.drawerFormProps(tableInstance);
     }
     return (
       <Button
@@ -33,7 +26,12 @@ export default ({
           if (menu.disabled) {
             return;
           }
-          await rowOperationsClick({ ...menu }, { ...record }, index);
+          await rowOperationsClick(
+            { ...menu },
+            { ...record },
+            index,
+            tableInstance,
+          );
         }}
       >
         {menu.copyable ? (

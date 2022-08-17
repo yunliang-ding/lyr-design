@@ -141,10 +141,9 @@ export default ({
   }, [refresh, pagination]);
   /** rowOperations */
   const rowOperationsColumns = getRowOperations({
-    onRefresh: query,
-    onSearch,
     rowOperations,
     rowOperationsClick,
+    tableInstance: table,
   });
   const lastColumns = rowOperationsColumns
     ? [..._columns, rowOperationsColumns]
@@ -370,6 +369,7 @@ export default ({
           toolsClick={toolsClick}
           onFilter={setFilterIds}
           tableId={tableId}
+          tableInstance={table}
         />
         {alertConfig && alertProps.visible !== false && (
           <Alert

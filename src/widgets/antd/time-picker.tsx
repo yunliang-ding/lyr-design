@@ -1,7 +1,7 @@
 import { TimePicker } from 'antd';
 import moment from 'moment';
 
-export default ({ readOnlyEmptyValueNode, ...props }) => {
+export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
   if (props.readOnly) {
     // 渲染只读视图
     const value = moment.isMoment(props.value)
