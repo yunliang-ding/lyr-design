@@ -136,6 +136,9 @@ const tableSchema: TableProps = {
           label: '编辑1',
           key: 'f1',
           disabled: record.id === 1,
+          visible: () => {
+            return record.id !== 2;
+          },
         },
         {
           label: '编辑2',
