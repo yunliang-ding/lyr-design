@@ -18,24 +18,24 @@ export interface ToolsProps {
   disabled?: boolean;
   auth?: any;
   spin?: boolean;
-  visible?: boolean | Function;
+  visible?: boolean | ((record?: any) => boolean);
   confirm?: object;
   onClick?: (table: TableInstance) => any;
   menu?: any;
   icon?: ReactNode;
   modalFormProps?:
     | CreateModalFormProps
-    | (({ onSearch, onRefresh }) => CreateModalFormProps);
+    | ((table: TableInstance) => CreateModalFormProps);
   drawerFormProps?:
     | CreateDrawerFormProps
-    | (({ onSearch, onRefresh }) => CreateDrawerFormProps);
+    | ((table: TableInstance) => CreateDrawerFormProps);
 }
 
 export interface RowOperationsTypes extends ColumnType<any> {
   showMore?: number;
   menus: (record) => ToolsProps[];
   /** 是否展示 */
-  visible?: boolean | ((record: any) => boolean);
+  visible?: boolean;
   dataIndex?: string;
 }
 
