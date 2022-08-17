@@ -35,7 +35,7 @@ export interface RowOperationsTypes extends ColumnType<any> {
   showMore?: number;
   menus: (record) => ToolsProps[];
   /** 是否展示 */
-  visible?: boolean;
+  visible?: boolean | ((record: any) => boolean);
   dataIndex?: string;
 }
 

@@ -54,9 +54,11 @@ export default ({
         dataIndex: 'row-operations-td-row-operation-area', // 配置默认的dataIndex, 用户不必关注改属性
         className: 'td-row-operation-area', // TODO 这里统一会覆盖操作列的className
         render: (_: any, record: any, index: number) => {
-          const menus = rowOperations
-            .menus(record, index)
-            .filter((i) => i.visible !== false); // 提前过滤
+          const menus = rowOperations.menus(record, index).filter((i) => {
+            return typeof i.visible === 'function'
+              ? i.visible(record) !== false
+              : i.visible !== false;
+          }); // 提前过滤
           if (!Array.isArray(menus) || menus.length === 0) {
             return;
           }

@@ -362,7 +362,14 @@ export default ({
           params={getParams()}
           setColumns={setColumns}
           columns={_columns}
-          tools={[...tools.filter((i) => i.visible !== false), ...defaultTools]} // 提前过滤
+          tools={[
+            ...tools.filter((i) => {
+              return typeof i.visible === 'function'
+                ? i.visible() !== false
+                : i.visible !== false;
+            }),
+            ...defaultTools,
+          ]} // 提前过滤
           onRefresh={query}
           onSearch={onSearch}
           filterIds={_filterIds}
