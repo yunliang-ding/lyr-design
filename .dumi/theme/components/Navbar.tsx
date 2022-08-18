@@ -4,6 +4,11 @@ import { context, Link, NavLink } from 'dumi/theme';
 import LocaleSelect from './LocaleSelect';
 import './Navbar.less';
 
+export const getMetaContentByName = (name) => {
+  const el: any = document.querySelector(`meta[name=${name}`);
+  return el?.content;
+};
+
 interface INavbarProps {
   location: any;
   navPrefix?: React.ReactNode;
@@ -33,43 +38,46 @@ const Navbar: FC<INavbarProps> = ({
       {/* logo & title */}
       <Link
         className="__dumi-default-navbar-logo"
-        style={{
-          backgroundImage: logo && `url('${logo}')`,
-        }}
+        style={
+          {
+            backgroundImage: logo && `url('${logo}')`,
+          } as any
+        }
         to={base}
         data-plaintext={logo === false || undefined}
       >
         {title}
+        <sup style={{ color: '#666', fontSize: 13, marginLeft: 8 }}>
+          {getMetaContentByName('revised')}
+        </sup>
       </Link>
       <nav>
         {navPrefix}
         {/* nav */}
-        {navItems
-          .filter((item) => item.title !== 'Form-playground')
-          .map((nav) => {
-            const child = Boolean(nav.children?.length) && (
-              <ul>
-                {nav.children.map((item) => (
-                  <li key={item.path}>
-                    <NavLink to={item.path}>{item.title}</NavLink>
-                  </li>
-                ))}
-              </ul>
-            );
+        {navItems.map((nav) => {
+          const child = Boolean(nav.children?.length) && (
+            <ul>
+              {nav.children.map((item) => (
+                <li key={item.path}>
+                  <NavLink to={item.path}>{item.title}</NavLink>
+                </li>
+              ))}
+            </ul>
+          );
 
-            return (
-              <span key={nav.title || nav.path}>
-                {nav.path ? (
-                  <NavLink to={nav.path} key={nav.path}>
-                    {nav.title}
-                  </NavLink>
-                ) : (
-                  nav.title
-                )}
-                {child}
-              </span>
-            );
-          })}
+          return (
+            <span key={nav.title || nav.path}>
+              {nav.path ? (
+                <NavLink to={nav.path} key={nav.path}>
+                  {nav.title}
+                </NavLink>
+              ) : (
+                nav.title
+              )}
+              {child}
+            </span>
+          );
+        })}
         <div className="__dumi-default-navbar-tool">
           <LocaleSelect location={location} />
           {darkPrefix}

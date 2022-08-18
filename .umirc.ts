@@ -5,6 +5,20 @@ export default defineConfig({
   title: 'react-core-form',
   outputPath: 'docs-dist',
   locales: [['zh-CN', '中文']],
+  metas: [
+    {
+      name: 'revised',
+      content: '0.0.7',
+    },
+    {
+      name: 'keywords',
+      content: 'form-designer, react-core-form',
+    },
+    {
+      name: 'description',
+      content: '低代码相关组件',
+    },
+  ],
   theme: {
     '@primary-background-color': '#f0f6ff',
     '@text-color': '#6a6a6a',
