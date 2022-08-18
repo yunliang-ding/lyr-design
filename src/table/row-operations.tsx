@@ -26,6 +26,9 @@ export default ({
           if (menu.disabled) {
             return;
           }
+          if (typeof menu.onClick === 'function') {
+            await menu.onClick(record, tableInstance);
+          }
           await rowOperationsClick(
             { ...menu },
             { ...record },
