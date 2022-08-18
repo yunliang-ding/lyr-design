@@ -177,6 +177,29 @@ export const tranfromSchema = (
         gridColumnStart: `span ${field.span}`,
       };
     }
+    // RangeInput 默认处理
+    if (field.type === 'RangeInput') {
+      // 没有配置 nameAlise 不做处理
+      if (!Array.isArray(field.nameAlise)) {
+        return;
+      }
+      const start = field.nameAlise?.[0];
+      const end = field.nameAlise?.[1];
+      if (!field.beforeReceive) {
+        field.beforeReceive = (values) => {
+          return (values[start] || values[end]) && [values[start], values[end]];
+        };
+      }
+      if (!field.transform) {
+        field.transform = (values) => {
+          const nowValue = values[field.name];
+          return {
+            [start]: nowValue?.[0],
+            [end]: nowValue?.[1],
+          };
+        };
+      }
+    }
     // 日期格式转换默认帮处理下
     if (['DatePicker', 'TimePicker'].includes(field.type)) {
       const format =

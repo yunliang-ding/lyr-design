@@ -108,7 +108,7 @@ export default ({
           onSearch, // 传递一个查询Api
         }); // 自定义渲染
       case 'Dropdown':
-        return (
+        return tool.menu?.length > 0 ? (
           <Dropdown
             disabled={tool.disabled}
             key={tool.type}
@@ -140,7 +140,7 @@ export default ({
               />
             </Button>
           </Dropdown>
-        );
+        ) : null;
       default:
         return (
           <Button {...btnProps} type={tool.btnType || 'primary'}>
