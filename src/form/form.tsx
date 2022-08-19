@@ -252,7 +252,7 @@ export default ({
   }
   return (
     <ConfigProvider locale={locale}>
-      <Spin spinning={spin}>
+      <Spin spinning={spin} wrapperClassName="core-form-spin">
         <Form
           layout={layout}
           labelCol={labelCol}

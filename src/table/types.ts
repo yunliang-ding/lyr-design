@@ -46,7 +46,7 @@ interface TableAlertProps extends AlertProps {
 export interface TableProps
   extends Omit<AntdTableProps<any>, 'title' | 'columns'> {
   /** 表格标题 */
-  title?: ReactNode | string;
+  title?: ReactNode;
   columns: TableColumnType[];
   /** 统一处理请求逻辑 */
   request: (
