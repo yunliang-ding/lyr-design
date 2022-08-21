@@ -8,8 +8,8 @@ for (let i = 1; i < 1001; i++) {
     city: '城市' + i,
     sign: '签名' + i,
     classify: '职业' + i,
-    score: '分数' + i,
-    logins: '登录次数' + i,
+    score: i,
+    logins: i,
   });
 }
 export default {
