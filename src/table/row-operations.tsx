@@ -13,10 +13,10 @@ export default ({
   const RenderItem = ({ menu, record, index }: any) => {
     /** 扩展 modalFormProps、drawerFormProps 支持函数 */
     if (typeof menu.modalFormProps === 'function') {
-      menu.modalFormProps = menu.modalFormProps(tableInstance);
+      menu.modalFormProps = menu.modalFormProps({ ...record }, tableInstance);
     }
     if (typeof menu.drawerFormProps === 'function') {
-      menu.drawerFormProps = menu.drawerFormProps(tableInstance);
+      menu.drawerFormProps = menu.drawerFormProps({ ...record }, tableInstance);
     }
     return (
       <Button
@@ -27,7 +27,7 @@ export default ({
             return;
           }
           if (typeof menu.onClick === 'function') {
-            await menu.onClick(record, tableInstance);
+            await menu.onClick({ ...record }, tableInstance);
           }
           await rowOperationsClick(
             { ...menu },
