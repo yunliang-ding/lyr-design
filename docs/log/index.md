@@ -7,6 +7,16 @@ nav:
   order: 6
 ---
 
+### 0.0.9
+
+- 修复 isShow 多级联动问题
+
+### 0.0.8 (2022-08-24)
+
+- RangeInput 支持字符串类型
+- Table title 类型 改为 ReactNode
+- 修复 Form 组件添加 spin 容器影响表单宽度的问题
+
 ### 0.0.7 (2022-08-18)
 
 - Table 的 tools 类型为 Dropdown、只有当 menu 属性 长度 大于 0 才展示

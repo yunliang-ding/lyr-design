@@ -43,7 +43,10 @@ export default ({
       ? `_${item.name.join('_')}` // 添加前缀_
       : item.name; // 兼容下子表单
     delete AsyncOptionsCache[`${form.name}_${formListName}${name}`]; // 清除异步缓存器中的数据
-    setReload(Math.random()); // 组件重新卸载，构建
+    // 处理渲染顺序问题，避免多级联动出现问题
+    setTimeout(() => {
+      setReload(Math.random()); // 组件重新卸载，构建
+    });
     if (_field.effectClearField === true) {
       // clear
       form.setFieldsValue({
