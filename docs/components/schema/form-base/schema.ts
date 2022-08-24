@@ -1,6 +1,6 @@
 import { SchemaProps } from 'react-core-form';
 
-const schema: SchemaProps[] = [
+const schema: SchemaProps<{}>[] = [
   {
     type: 'Input',
     name: 'input',
@@ -11,6 +11,21 @@ const schema: SchemaProps[] = [
     type: 'Password',
     name: 'password',
     label: '密码输入框',
+  },
+  {
+    type: 'RangeInput',
+    name: 'rangeInputNumber',
+    label: '区间数字输入框',
+    required: true,
+  },
+  {
+    type: 'RangeInput',
+    name: 'rangeInput',
+    label: '区间输入框',
+    required: true,
+    props: {
+      mode: 'Input',
+    },
   },
   {
     type: 'InputNumber',
