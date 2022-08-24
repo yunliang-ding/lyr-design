@@ -37,7 +37,9 @@ export default ({
           onChange([v, value?.[1]]);
         }}
         onBlur={(e) => {
-          onInnerBlur(e.target?.value, value?.[1]);
+          if (mode === 'InputNumber') {
+            onInnerBlur(e.target?.value, value?.[1]);
+          }
         }}
       />
       <span>-</span>
