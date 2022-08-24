@@ -13,9 +13,8 @@ nav:
 
 ### 0.0.8 (2022-08-24)
 
-- RangeInput 支持字符串类型
+- RangeInput 支持字符串输入框
 - Table title 类型 改为 ReactNode
-- 修复 Form 组件添加 spin 容器影响表单宽度的问题
 
 ### 0.0.7 (2022-08-18)
 
