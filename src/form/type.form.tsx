@@ -70,6 +70,7 @@ export interface CoreFormProps extends Omit<FormProps, 'fields' | 'form'> {
   form?: CoreFormInstance;
   search?: boolean;
   key?: string | number;
+  forceRender?: any;
 }
 
 export interface FormRefInstance extends Omit<MutableRefObject<{}>, 'current'> {

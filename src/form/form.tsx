@@ -43,6 +43,7 @@ export default ({
   layout = 'vertical', // 默认使用垂直布局
   readOnlyEmptyValueNode = '-',
   formConfig,
+  forceRender,
   ...rest
 }: CoreFormProps) => {
   /**
@@ -101,6 +102,7 @@ export default ({
       getScrollContainer,
       actionRef,
       setSpin,
+      forceRender,
     });
   }
   useEffect(() => {

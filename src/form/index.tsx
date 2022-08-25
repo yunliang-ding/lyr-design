@@ -1,16 +1,31 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Form from './form';
-import React from 'react';
+import React, { useState } from 'react';
 import { CoreFormProps, FormRefInstance } from './type.form';
 import { SchemaProps } from './type.item';
 /** 组件入口 */
 const CoreForm = (props: CoreFormProps) => {
-  return <Form {...props} />;
+  const [reload, setReload] = useState(Math.random());
+  const [initialValues, setInitialValues] = useState(props.initialValues);
+  const forceRender = (values) => {
+    setInitialValues(values);
+    // 重新构建下
+    setReload(Math.random());
+  };
+  return (
+    <Form
+      {...props}
+      key={reload}
+      initialValues={initialValues}
+      forceRender={forceRender}
+    />
+  );
 };
 CoreForm.useForm = () => {
   const ref: FormRefInstance = React.useRef({
     getValues: () => {},
     setValues: (data) => {},
+    setInitialValues: (data) => {},
     clearValues: () => {},
     setSchemaByName: (name, newField: SchemaProps, customizer?) => {},
     getSchemaByName: (name) => {},

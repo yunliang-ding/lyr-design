@@ -7,6 +7,8 @@ export interface CoreFormInstance {
   getValues: () => any;
   /** setFieldsValue 基础上执行配置的 beforeReceive，设置数据 */
   setValues: (data) => void;
+  /** 设置新的默认值、之后Form会重新渲染 */
+  setInitialValues: (value: any) => void;
   /** 手动清空所有值，不会还原到默认值 */
   clearValues: (names?: string[]) => void;
   /** 更新指定表单项的配置，重新渲染该组件 */

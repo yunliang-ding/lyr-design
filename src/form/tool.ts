@@ -13,6 +13,7 @@ export const expansionInstanceMethod = ({
   getScrollContainer,
   actionRef,
   setSpin,
+  forceRender,
 }) => {
   Object.assign(form, {
     ...antdForm,
@@ -109,5 +110,9 @@ export const expansionInstanceMethod = ({
     formListInstance: actionRef.current,
     /** 控制加载中 */
     setFormLoading: setSpin,
+    /** 接受新的默认值，form重新渲染 */
+    setInitialValues: (values) => {
+      forceRender(values);
+    },
   });
 };
