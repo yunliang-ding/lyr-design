@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Form from './form';
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { CoreFormProps, FormRefInstance } from './type.form';
 import { SchemaProps } from './type.item';
+import { AsyncOptionsCache, uuid } from '@/util';
 /** 组件入口 */
-const CoreForm = (props: CoreFormProps) => {
+const CoreForm = ({
+  form = CoreForm.useForm()[0],
+  onMount = () => {},
+  ...props
+}: CoreFormProps) => {
   const [reload, setReload] = useState(Math.random());
   const [initialValues, setInitialValues] = useState(props.initialValues);
   const forceRender = (values) => {
@@ -12,10 +17,31 @@ const CoreForm = (props: CoreFormProps) => {
     // 重新构建下
     setReload(Math.random());
   };
+  // 判断是否是初次加载
+  const firstRender: any = useRef(true);
+  const name: string = useMemo(() => {
+    return `form_${uuid(10)}`;
+  }, []);
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      onMount(form); // 第一次渲染完毕将Form实例吐出
+    }
+    return () => {
+      // 卸载清除缓存
+      Object.keys(AsyncOptionsCache).forEach((key) => {
+        if (key.startsWith(name)) {
+          delete AsyncOptionsCache[key];
+        }
+      });
+    };
+  }, []);
   return (
     <Form
       {...props}
       key={reload}
+      form={form}
+      name={name}
       initialValues={initialValues}
       forceRender={forceRender}
     />

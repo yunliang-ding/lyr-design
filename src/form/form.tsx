@@ -1,14 +1,8 @@
 /* eslint-disable no-param-reassign */
-import { useRef, useMemo, useEffect, useCallback, useState } from 'react';
+import { useRef, useMemo, useCallback, useState } from 'react';
 import { ConfigProvider, Empty, Form, Spin } from 'antd';
 import { Grid } from '../index';
-import {
-  cloneDeep,
-  uuid,
-  EventEmit,
-  AsyncOptionsCache,
-  queryFieldByName,
-} from '@/util';
+import { cloneDeep, EventEmit, queryFieldByName } from '@/util';
 import Item from './item';
 import FieldSet from '@/widgets/extension/fields-set';
 import { CoreFormProps } from './type.form';
@@ -44,8 +38,24 @@ export default ({
   readOnlyEmptyValueNode = '-',
   formConfig,
   forceRender,
+  name,
   ...rest
 }: CoreFormProps) => {
+  const [spin, setSpin] = useState(false);
+  const [antdForm]: any = Form.useForm();
+  // 一个表单对应一个发布订阅
+  const event = useMemo(() => {
+    return new EventEmit();
+  }, []);
+  // 克隆 schema
+  const cloneSchema = useMemo(() => {
+    const newSchema =
+      typeof schema === 'function'
+        ? cloneDeep(schema(form))
+        : cloneDeep(schema);
+    tranfromSchema(newSchema, name, column, formConfig); // 内部转换下
+    return newSchema;
+  }, [schema]); // cloneDeep 避免被污染
   /**
    * 处理默认布局
    * layout: 使用传入,没有传入按照SearchForm使用horizontal、Form使用vertical
@@ -60,26 +70,6 @@ export default ({
     rest.wrapperCol ?? layout === 'vertical'
       ? { span: 24 }
       : { span: wrapperColMap[column - 1] };
-  const [antdForm]: any = Form.useForm();
-  const name: string = useMemo(() => {
-    return `form_${uuid(10)}`;
-  }, []);
-  // 一个表单对应一个发布订阅
-  const event = useMemo(() => {
-    return new EventEmit();
-  }, []);
-  // 判断是否是初次加载
-  const firstRender: any = useRef(true);
-  const [spin, setSpin] = useState(false);
-  // 克隆 fields
-  const cloneSchema = useMemo(() => {
-    const newFields =
-      typeof schema === 'function'
-        ? cloneDeep(schema(form))
-        : cloneDeep(schema);
-    tranfromSchema(newFields, name, column, formConfig); // 内部转换下
-    return newFields;
-  }, [schema]); // cloneDeep 避免被污染
   // 处理下接受之前的转换
   const _initialValues = parseBeforeReceive({ ...initialValues }, cloneSchema, {
     name,
@@ -88,37 +78,20 @@ export default ({
   });
   // 获取 formList api
   const actionRef = useRef({});
-  // 初次渲染进行扩展实例Api
-  if (firstRender.current) {
-    /** 实例扩展方法 */
-    expansionInstanceMethod({
-      form,
-      antdForm,
-      name,
-      initialValues: _initialValues,
-      cloneSchema,
-      event,
-      scrollToFirstError,
-      getScrollContainer,
-      actionRef,
-      setSpin,
-      forceRender,
-    });
-  }
-  useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      onMount(form); // 第一次渲染完毕将Form实例吐出
-    }
-    return () => {
-      // 卸载清除缓存
-      Object.keys(AsyncOptionsCache).forEach((key) => {
-        if (key.startsWith(name)) {
-          delete AsyncOptionsCache[key];
-        }
-      });
-    };
-  }, []);
+  /** 实例扩展方法 */
+  expansionInstanceMethod({
+    form,
+    antdForm,
+    name,
+    initialValues: _initialValues,
+    cloneSchema,
+    event,
+    scrollToFirstError,
+    getScrollContainer,
+    actionRef,
+    setSpin,
+    forceRender,
+  });
   // 值改变 setFieldsValue不会触发该方法
   const onChange = (value: any, values: any) => {
     const key = Object.keys(value)[0];

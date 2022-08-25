@@ -159,15 +159,26 @@ export default () => {
  * desc: 我们将表单的disabled属性穿透到每一个字段中，指定了readOnly属性的表单则会渲染只读组件，即我们在每个小组件中控制了2中模式，详情和编辑。具体使用参看高级用法（自定义组件）
  */
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form, Button } from 'react-core-form';
 import schema from './schema/form-base/schema';
 import { Switch } from 'antd';
 
 export default () => {
   const [disabled, setDisabled] = React.useState(false);
   const [readOnly, setReadOnly] = React.useState(false);
+  const [reload, setReload] = React.useState(Math.random());
   return (
     <>
+      <Button
+        type="primary"
+        ghost
+        onClick={() => {
+          setReload(Math.random());
+        }}
+      >
+        重新加载
+      </Button>
+      &nbsp; &nbsp;
       <Switch
         checkedChildren="disabled"
         unCheckedChildren="disabled"
@@ -182,10 +193,32 @@ export default () => {
       <br />
       <br />
       <Form
+        key={reload}
         column={2}
         schema={schema}
         onValuesChange={(value, values) => {
           console.log('onValuesChange ->', value, values);
+        }}
+        onMount={async ({
+          setInitialValues,
+          initialValues,
+          setFormLoading,
+        }) => {
+          setFormLoading(true);
+          await new Promise((res) => setTimeout(res, 1000));
+          setFormLoading(false);
+          // 模拟请求接口之后重新设置默认值
+          setInitialValues({
+            ...initialValues,
+            datePicker: '2021-05-18',
+            startDate1: '2022-03-18',
+            endDate1: '2022-04-18',
+            startDate: '2022-05-18',
+            endDate: '2022-06-18',
+            timePicker: '15:08:23',
+            startTime: '15:08:23',
+            endTime: '23:08:23',
+          });
         }}
         disabled={disabled}
         readOnly={readOnly}
@@ -204,14 +237,6 @@ export default () => {
           rate: 3,
           treeSelect: '0-0-1',
           cascader: ['zhejiang', 'hangzhou'],
-          datePicker: '2021-05-18',
-          startDate: '2021-05-18',
-          endDate: '2021-06-18',
-          startDate1: '2021-06-18',
-          endDate1: '2021-07-18',
-          timePicker: '12:08:23',
-          startTime: '12:08:23',
-          endTime: '23:08:23',
           upload: [
             {
               uid: '1',
