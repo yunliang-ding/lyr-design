@@ -200,6 +200,10 @@ export default ({
       setInnerSelectedRow([..._selectedRows]);
     },
     onSelect: (record, selected) => {
+      // 单选不做处理
+      if (rowSelection.type === 'radio') {
+        return setInnerSelectedRow([record]);
+      }
       let currentSelectedRows = [...innerSelectedRow];
       if (selected) {
         // 添加这个ID

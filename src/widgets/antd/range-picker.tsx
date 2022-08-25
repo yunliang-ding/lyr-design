@@ -1,41 +1,39 @@
 import { DatePicker, Space } from 'antd';
 import moment from 'moment';
-import { useState } from 'react';
 import './range-picker.less';
 /**
  分开的交互
 */
-const SplitRangerPicker = ({ value = [], onChange, form, name, ...props }) => {
-  const [innerValue, setInnerValue] = useState(value);
+const SplitRangerPicker = ({
+  value = [],
+  onChange = () => {},
+  form,
+  name,
+  ...props
+}: any) => {
   const onInnerChange = (start, end) => {
     // 如果结束时间小于开始时间，进行调换位置处理
-    if (start && end && moment(end).isBefore(moment(start))) {
-      setInnerValue([end, start]); // 内部的状态
-      return onChange?.([end, start]);
+    if (moment(end).isBefore(moment(start))) {
+      return onChange([end, start]);
     } else {
-      setInnerValue([start, end]); // 内部的状态
-    }
-    if (start && end) {
-      onChange?.([start, end]);
-    } else {
-      onChange?.(undefined);
+      onChange([start, end]);
     }
   };
   return (
     <div className="react-core-form-split-range-picker">
       <Space>
         <DatePicker
-          value={innerValue[0]}
+          value={value[0]}
           {...props}
           onChange={(v) => {
-            onInnerChange(v, innerValue[1]);
+            onInnerChange(v, value[1]);
           }}
         />
         <DatePicker
-          value={innerValue[1]}
+          value={value[1]}
           {...props}
           onChange={(v) => {
-            onInnerChange(innerValue[0], v);
+            onInnerChange(value[0], v);
           }}
         />
       </Space>
