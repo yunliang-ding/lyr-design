@@ -166,19 +166,8 @@ import { Switch } from 'antd';
 export default () => {
   const [disabled, setDisabled] = React.useState(false);
   const [readOnly, setReadOnly] = React.useState(false);
-  const [reload, setReload] = React.useState(Math.random());
   return (
     <>
-      <Button
-        type="primary"
-        ghost
-        onClick={() => {
-          setReload(Math.random());
-        }}
-      >
-        重新加载
-      </Button>
-      &nbsp; &nbsp;
       <Switch
         checkedChildren="disabled"
         unCheckedChildren="disabled"
@@ -193,32 +182,10 @@ export default () => {
       <br />
       <br />
       <Form
-        key={reload}
         column={2}
         schema={schema}
         onValuesChange={(value, values) => {
           console.log('onValuesChange ->', value, values);
-        }}
-        onMount={async ({
-          setInitialValues,
-          initialValues,
-          setFormLoading,
-        }) => {
-          setFormLoading(true);
-          await new Promise((res) => setTimeout(res, 1000));
-          setFormLoading(false);
-          // 模拟请求接口之后重新设置默认值
-          setInitialValues({
-            ...initialValues,
-            datePicker: '2021-05-18',
-            startDate1: '2022-03-18',
-            endDate1: '2022-04-18',
-            startDate: '2022-05-18',
-            endDate: '2022-06-18',
-            timePicker: '15:08:23',
-            startTime: '15:08:23',
-            endTime: '23:08:23',
-          });
         }}
         disabled={disabled}
         readOnly={readOnly}
@@ -226,6 +193,8 @@ export default () => {
         initialValues={{
           input: '这是默认值',
           password: 'qazwsx',
+          rangeInputNumber: [12, 34],
+          rangeInput: ['react', 'core-form'],
           inputNumber: '50',
           textArea: '浙江省杭州市',
           select: 1,
@@ -237,6 +206,14 @@ export default () => {
           rate: 3,
           treeSelect: '0-0-1',
           cascader: ['zhejiang', 'hangzhou'],
+          datePicker: '2021-05-18',
+          startDate1: '2022-03-18',
+          endDate1: '2022-04-18',
+          startDate: '2022-05-18',
+          endDate: '2022-06-18',
+          timePicker: '15:08:23',
+          startTime: '15:08:23',
+          endTime: '23:08:23',
           upload: [
             {
               uid: '1',

@@ -274,6 +274,7 @@ export default () => {
  */
 import React from 'react';
 import { Form } from 'react-core-form';
+
 export default () => {
   return (
     <Form
@@ -339,6 +340,113 @@ export default () => {
         },
       ]}
     />
+  );
+};
+```
+
+## 使用 setInitialValues 解决 setFieldsValues 无法触发表单联动等问题
+
+```tsx
+/**
+ * title: 说明
+ * desc: 当默认值是接口下发需要晚点设置可用该方案
+ */
+import React from 'react';
+import { Form, Button } from 'react-core-form';
+
+export default () => {
+  const [reload, setReload] = React.useState(Math.random());
+  return (
+    <>
+      <Button
+        type="primary"
+        ghost
+        onClick={() => {
+          setReload(Math.random());
+        }}
+      >
+        重新加载
+      </Button>
+      <br /> <br />
+      <Form
+        key={reload}
+        onMount={async ({
+          setInitialValues,
+          initialValues,
+          setFormLoading,
+        }) => {
+          setFormLoading(true);
+          await new Promise((res) => setTimeout(res, 1000));
+          setFormLoading(false);
+          // 模拟请求接口之后重新设置默认值
+          setInitialValues({
+            sex: 1,
+            age: 30,
+          });
+        }}
+        schema={[
+          {
+            type: 'RadioGroup',
+            name: 'sex',
+            label: '性别',
+            props: {
+              optionType: 'button',
+              options: [
+                { label: '男', value: 1 },
+                { label: '女', value: 2 },
+              ],
+            },
+          },
+          {
+            type: 'InputNumber',
+            name: 'age',
+            label: '年龄',
+            effect: ['sex'], // 配置副作用
+            visible: ({ sex }) => {
+              return sex === 1;
+            },
+          },
+          {
+            type: 'AsyncRadioGroup',
+            name: 'level',
+            label: '级别 (类型按照年龄划分)',
+            effect: ['age', 'sex'], // 配置副作用
+            props: {
+              options: async ({ getFieldValue }) => {
+                return getFieldValue('age') > 20
+                  ? [
+                      {
+                        label: '专科毕业',
+                        value: 0,
+                      },
+                      {
+                        label: '本科毕业',
+                        value: 1,
+                      },
+                      {
+                        label: '985、211毕业',
+                        value: 2,
+                      },
+                    ]
+                  : [
+                      {
+                        label: '普通高中',
+                        value: 3,
+                      },
+                      {
+                        label: '重点高中',
+                        value: 4,
+                      },
+                    ];
+              },
+            },
+            visible: ({ sex }) => {
+              return sex === 1;
+            },
+          },
+        ]}
+      />
+    </>
   );
 };
 ```
