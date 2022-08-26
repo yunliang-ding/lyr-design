@@ -58,18 +58,24 @@ export const beforeFieldRender = (field: any, form: any) => {
   }
   // 必填逻辑处理
   if (field.required === true) {
-    if (Array.isArray(field.rules)) {
+    field.rules = Array.isArray(field.rules) ? field.rules : [];
+    if (field.type === 'RangePicker' && field.props?.mode === 'split') {
+      field.rules.push({ required: true, message: '' });
+      field.rules.push({
+        validator: (_, value: any) => {
+          if (value?.length && value[0] && value[1]) {
+            return Promise.resolve();
+          }
+          return Promise.reject(
+            new Error(`${field.label || ''}起始和结束都不能为空`),
+          );
+        },
+      });
+    } else {
       field.rules.push({
         required: true,
         message: `${field.label || ''}不能为空`,
       });
-    } else {
-      field.rules = [
-        {
-          required: true,
-          message: `${field.label || ''}不能为空`,
-        },
-      ];
     }
   }
   const pureFields: any = {};
@@ -238,29 +244,35 @@ export const tranfromSchema = (
       const startName = field.nameAlise?.[0];
       const endName = field.nameAlise?.[1];
       if (!field.beforeReceive) {
-        // string | number -> moment
         field.beforeReceive = (values) => {
-          return (
-            values[startName] &&
-            values[endName] && [
+          let start, end;
+          if (values[startName]) {
+            start =
               typeof values[startName] === 'number'
                 ? moment(values[startName])
-                : moment(values[startName], format),
+                : moment(values[startName], format);
+          }
+          if (values[endName]) {
+            end =
               typeof values[endName] === 'number'
                 ? moment(values[endName])
-                : moment(values[endName], format),
-            ]
-          );
+                : moment(values[endName], format);
+          }
+          return [start, end];
         };
       }
       if (!field.transform) {
-        // moment -> string
+        // moment- > string
         field.transform = (values) => {
           const dateMoment = values[field.name];
           return dateMoment
             ? {
-                [startName]: dateMoment[0].format(format),
-                [endName]: dateMoment[1].format(format),
+                [startName]: dateMoment?.[0]
+                  ? dateMoment[0].format(format)
+                  : undefined,
+                [endName]: dateMoment?.[1]
+                  ? dateMoment[1].format(format)
+                  : undefined,
               }
             : {
                 [startName]: undefined,
