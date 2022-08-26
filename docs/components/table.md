@@ -209,12 +209,17 @@ export default () => {
     <Table
       {...tableSchema}
       rowSelection={{
-        selectedRowKeys: [],
+        // 设置默认值
+        // defaultSelectedRows: [
+        //   { id: 1, score: 1, logins: 1 },
+        //   { id: 2, score: 2, logins: 2 },
+        // ],
+        // type: 'radio',
         onChange: (keys, rows) => {
           console.log(keys, rows);
         },
       }}
-      alertConfig={(selectedRowKeys, selectedRows, onCleanSelected) => {
+      alertConfig={(selectedRowKeys, selectedRows, setSelectedRows) => {
         return {
           visible: selectedRowKeys.length > 0, // 控制展示
           message: (
@@ -223,7 +228,7 @@ export default () => {
               <span>{`分数总计: ${selectedRows.reduce(
                 (pre, item) => pre + item.score,
                 0,
-              )} 份`}</span>
+              )} 分`}</span>
               <span>{`登录次数总计: ${selectedRows.reduce(
                 (pre, item) => pre + item.logins,
                 0,
@@ -233,7 +238,13 @@ export default () => {
           type: 'info',
           showIcon: true,
           action: (
-            <Button size="small" type="primary" onClick={onCleanSelected}>
+            <Button
+              size="small"
+              type="primary"
+              onClick={() => {
+                setSelectedRows([]);
+              }}
+            >
               取消选择
             </Button>
           ),

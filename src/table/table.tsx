@@ -39,6 +39,7 @@ export default ({
   onDragDone = () => {},
   dragColumn = {},
   autoNo = false,
+  keepRowSelection = true,
   ...restProp
 }: TableProps) => {
   const [_columns, setColumns] = useState([]);
@@ -157,14 +158,13 @@ export default ({
       setColumns([..._columns]);
     }
   };
-  /** 支持多选，内部维护一份数据状态 */
-  const onCleanSelected = () => {
-    setInnerSelectedRow([]);
-  };
-  const [innerSelectedRow, setInnerSelectedRow] = useState([]);
-  const [innerSelectedRowKeys, setInnerSelectedRowKeys] = useState(
-    rowSelection?.selectedRowKeys || [],
+  /**
+   * 支持多选，内部维护一份数据状态
+   */
+  const [innerSelectedRow, setInnerSelectedRow] = useState(
+    rowSelection?.defaultSelectedRows || [],
   );
+  const [innerSelectedRowKeys, setInnerSelectedRowKeys] = useState([]);
   /** 同步 innerSelectedRowKeys */
   useEffect(() => {
     const _innerSelectedRowKeys = innerSelectedRow.map(
@@ -176,51 +176,55 @@ export default ({
     });
   }, [innerSelectedRow]);
   /** 真正传递给Table的 */
-  const innerRowSelection = rowSelection && {
-    ...rowSelection,
-    onChange: () => {}, // 已在上面通知
-    selectedRowKeys: innerSelectedRowKeys,
-    onSelectAll: (selected, currentSelectedRows) => {
-      currentSelectedRows = currentSelectedRows.filter(
-        (item) => item !== undefined,
-      );
-      let _selectedRows = [...innerSelectedRow];
-      if (selected) {
-        // 合并之前选择的
-        currentSelectedRows.forEach((item) => {
-          if (!_selectedRows.some((_item) => _item.id === item.id)) {
-            _selectedRows.push(item);
+  let innerRowSelection;
+  if (keepRowSelection && typeof rowSelection === 'object') {
+    innerRowSelection =
+      rowSelection.type !== 'radio' // 单选不处理
+        ? {
+            ...rowSelection,
+            onChange: () => {}, // 已在上面通知
+            selectedRowKeys: innerSelectedRowKeys,
+            onSelectAll: (selected, currentSelectedRows) => {
+              currentSelectedRows = currentSelectedRows.filter(
+                (item) => item !== undefined,
+              );
+              let _selectedRows = [...innerSelectedRow];
+              if (selected) {
+                // 合并之前选择的
+                currentSelectedRows.forEach((item) => {
+                  if (
+                    !_selectedRows.some((_item: any) => _item.id === item.id)
+                  ) {
+                    _selectedRows.push(item);
+                  }
+                });
+              } else {
+                _selectedRows = _selectedRows.filter((i: any) => {
+                  return currentSelectedRows.some((item) => item.id === i.id);
+                });
+              }
+              setInnerSelectedRow([..._selectedRows]);
+            },
+            onSelect: (record, selected) => {
+              let currentSelectedRows = [...innerSelectedRow];
+              if (selected) {
+                // 添加这个ID
+                currentSelectedRows.push(record);
+              } else {
+                // 删除这个
+                currentSelectedRows = currentSelectedRows.filter(
+                  (i) => i[rowKey as string] !== record[rowKey as string],
+                );
+              }
+              setInnerSelectedRow(currentSelectedRows); // 更新
+            },
           }
-        });
-      } else {
-        _selectedRows = _selectedRows.filter((i) => {
-          return currentSelectedRows.some((item) => item.id === i.id);
-        });
-      }
-      setInnerSelectedRow([..._selectedRows]);
-    },
-    onSelect: (record, selected) => {
-      // 单选不做处理
-      if (rowSelection.type === 'radio') {
-        return setInnerSelectedRow([record]);
-      }
-      let currentSelectedRows = [...innerSelectedRow];
-      if (selected) {
-        // 添加这个ID
-        currentSelectedRows.push(record);
-      } else {
-        // 删除这个
-        currentSelectedRows = currentSelectedRows.filter(
-          (i) => i[rowKey as string] !== record[rowKey as string],
-        );
-      }
-      setInnerSelectedRow(currentSelectedRows); // 更新
-    },
-  };
+        : rowSelection;
+  }
   // 提示信息
   const alertProps =
     typeof alertConfig === 'function'
-      ? alertConfig(innerSelectedRowKeys, innerSelectedRow, onCleanSelected)
+      ? alertConfig(innerSelectedRowKeys, innerSelectedRow, setInnerSelectedRow)
       : alertConfig;
   // 调整表格尺寸
   const [size, setSize]: any = useState(restProp.size || 'middle');

@@ -1,6 +1,6 @@
 import { SearchProps } from '../search/types';
 import { AlertProps, TableProps as AntdTableProps } from 'antd';
-import { ColumnType } from 'antd/es/table/interface';
+import { ColumnType, TableRowSelection } from 'antd/es/table/interface';
 import { ReactNode } from 'react';
 import { TableColumnType } from './type.column';
 import { TableInstance } from './table.instance';
@@ -41,6 +41,10 @@ export interface RowOperationsTypes extends ColumnType<any> {
 
 interface TableAlertProps extends AlertProps {
   visible?: boolean;
+}
+
+export interface TableRowSelectionProps extends TableRowSelection<any> {
+  defaultSelectedRows?: [];
 }
 
 export interface TableProps
@@ -120,4 +124,10 @@ export interface TableProps
   onDragDone?: (data) => any;
   /** 开启自增序号 */
   autoNo?: boolean;
+  /**
+   * 多选保留选择历史
+   * @default true
+   */
+  keepRowSelection?: boolean;
+  rowSelection?: TableRowSelectionProps;
 }
