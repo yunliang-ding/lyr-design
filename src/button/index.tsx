@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Modal, Popconfirm } from 'antd';
 import { ProBtnProps } from './type';
-import { isEmpty, isObject } from '../util';
+import { isEmpty, isObject, isPromise } from '../util';
 import { CreateForm } from '..';
 
 // 私有变量只能 set、get
@@ -28,10 +28,10 @@ const ProButton = ({
   let onClick = props.onClick || function () {};
   const isPopConfirm = isObject(confirm) && confirm.type === 'pop';
   let label = props.children;
-  if (isObject(drawerFormProps)) {
+  if (isObject(drawerFormProps) || isPromise(modalFormProps)) {
     submitForm = CreateForm.Drawer(drawerFormProps);
     onClick = () => submitForm.open();
-  } else if (isObject(modalFormProps)) {
+  } else if (isObject(modalFormProps) || isPromise(modalFormProps)) {
     submitForm = CreateForm.Modal(modalFormProps);
     onClick = () => submitForm.open();
   }

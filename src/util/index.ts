@@ -109,6 +109,8 @@ export const getType = (obj: any): string => {
 
 export const isObject = (obj) => getType(obj) === 'object';
 
+export const isPromise = (obj) => getType(obj) === 'promise';
+
 /** ReactElement 对象不参与深拷贝 */
 export const cloneDeep = (source) => {
   return cloneDeepWith(source, (target) => {

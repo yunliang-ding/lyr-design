@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+import { uuid } from '@/util';
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
@@ -9,8 +9,6 @@ import {
 } from '../../index';
 
 const $: any = document.querySelector.bind(document);
-
-const uuid = 'popip_20220326';
 
 export interface CreateModalFormProps extends ModalFormProps {
   getPopupContainer?: () => HTMLElement | null;
@@ -23,16 +21,16 @@ export interface CreateDrawerFormProps extends DrawerFormProps {
   containId?: string;
 }
 
-const close = (containId = uuid) => {
+const close = (containId) => {
   setTimeout(() => {
-    $(`#${containId}`).remove();
+    $(`#${containId}`)?.remove();
   }, 500);
 };
 
 const ModalFormWapper = (props) => {
-  const [visible, setvisible] = useState(false);
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
-    setvisible(true);
+    setVisible(true);
   }, []);
   return (
     <ModalForm
@@ -40,7 +38,7 @@ const ModalFormWapper = (props) => {
       visible={visible}
       onClose={() => {
         props.onClose?.();
-        setvisible(false);
+        setVisible(false);
         close(props.containId);
       }}
       modalProps={{
@@ -52,9 +50,9 @@ const ModalFormWapper = (props) => {
 };
 
 const DrawerFormWapper = (props) => {
-  const [visible, setvisible] = useState(false);
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
-    setvisible(true);
+    setVisible(true);
   }, []);
   return (
     <DrawerForm
@@ -62,7 +60,7 @@ const DrawerFormWapper = (props) => {
       visible={visible}
       onClose={() => {
         props.onClose?.();
-        setvisible(false);
+        setVisible(false);
         close(props.containId);
       }}
       drawerProps={{
@@ -75,7 +73,7 @@ const DrawerFormWapper = (props) => {
 
 const CreateModalForm = (props) => {
   const tag = document.createElement('div');
-  tag.setAttribute('id', props.containId || uuid);
+  tag.setAttribute('id', props.containId);
   const target = props.getPopupContainer?.() || $('body');
   target.appendChild(tag);
   ReactDOM.render(<ModalFormWapper {...props} tag={tag} />, tag);
@@ -84,7 +82,7 @@ const CreateModalForm = (props) => {
 
 const CreateDrawerForm = (props) => {
   const tag = document.createElement('div');
-  tag.setAttribute('id', props.containId || uuid);
+  tag.setAttribute('id', props.containId);
   const target = props.getPopupContainer?.() || $('body');
   target.appendChild(tag);
   ReactDOM.render(<DrawerFormWapper {...props} tag={tag} />, tag);
@@ -92,40 +90,52 @@ const CreateDrawerForm = (props) => {
 };
 
 export default {
-  Modal(options: CreateModalFormProps) {
+  Modal(options: CreateModalFormProps | Promise<CreateModalFormProps>) {
+    const containId = `modalId_${uuid(6)}`;
     return {
-      open: (config: CreateModalFormProps = {}) => {
+      open: async (
+        config: CreateModalFormProps | Promise<CreateModalFormProps> = {},
+      ) => {
         const props: any = {
-          ...options,
-          ...config,
+          ...(await options),
+          ...(await config),
         };
         CreateModalForm({
           ...props,
+          containId,
           onSubmit: async (data) => {
             await props.onSubmit?.(data);
             close(props.containId); // 关闭
           },
         });
       },
-      close,
+      close: () => {
+        close(containId); // 关闭
+      },
     };
   },
-  Drawer(options: CreateDrawerFormProps) {
+  Drawer(options: CreateDrawerFormProps | Promise<CreateDrawerFormProps>) {
+    const containId = `drawerId_${uuid(6)}`;
     return {
-      open: (config: CreateDrawerFormProps = {}) => {
+      open: async (
+        config: CreateDrawerFormProps | Promise<CreateDrawerFormProps> = {},
+      ) => {
         const props: any = {
-          ...options,
-          ...config,
+          ...(await options),
+          ...(await config),
         };
         CreateDrawerForm({
           ...props,
+          containId,
           onSubmit: async (data) => {
             await props.onSubmit?.(data);
-            close(props.containId); // 关闭
+            close(containId); // 关闭
           },
         });
       },
-      close,
+      close: async () => {
+        close(containId); // 关闭
+      },
     };
   },
 };

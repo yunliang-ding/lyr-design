@@ -25,10 +25,14 @@ export interface ToolsProps {
   icon?: ReactNode;
   modalFormProps?:
     | CreateModalFormProps
-    | ((table: TableInstance) => CreateModalFormProps);
+    | ((
+        table: TableInstance,
+      ) => CreateModalFormProps | Promise<CreateModalFormProps>);
   drawerFormProps?:
     | CreateDrawerFormProps
-    | ((table: TableInstance) => CreateDrawerFormProps);
+    | ((
+        table: TableInstance,
+      ) => CreateDrawerFormProps | Promise<CreateDrawerFormProps>);
 }
 
 export interface RowOperationsTypes extends ColumnType<any> {
