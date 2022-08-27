@@ -373,9 +373,14 @@ export default ({
           columns={_columns}
           tools={[
             ...tools.filter((i) => {
-              return typeof i.visible === 'function'
-                ? i.visible() !== false
-                : i.visible !== false;
+              try {
+                return typeof i.visible === 'function'
+                  ? i.visible() !== false
+                  : i.visible !== false;
+              } catch (error) {
+                console.log(error);
+                return false;
+              }
             }),
             ...defaultTools,
           ]} // 提前过滤

@@ -65,9 +65,14 @@ export default ({
         className: 'td-row-operation-area', // TODO 这里统一会覆盖操作列的className
         render: (_: any, record: any, index: number) => {
           const menus = rowOperations.menus(record, index).filter((i) => {
-            return typeof i.visible === 'function'
-              ? i.visible(record) !== false
-              : i.visible !== false;
+            try {
+              return typeof i.visible === 'function'
+                ? i.visible(record) !== false
+                : i.visible !== false;
+            } catch (error) {
+              console.log(error);
+              return false;
+            }
           }); // 提前过滤
           if (!Array.isArray(menus) || menus.length === 0) {
             return;
