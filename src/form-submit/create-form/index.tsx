@@ -27,7 +27,7 @@ const close = (containId) => {
   }, 500);
 };
 
-const ModalFormWapper = (props) => {
+const ModalFormWapper = ({ containId, tag, ...props }) => {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     setVisible(true);
@@ -39,17 +39,17 @@ const ModalFormWapper = (props) => {
       onClose={() => {
         props.onClose?.();
         setVisible(false);
-        close(props.containId);
+        close(containId);
       }}
       modalProps={{
         ...(props.modalProps || {}),
-        getContainer: () => props.tag,
+        getContainer: () => tag,
       }}
     />
   );
 };
 
-const DrawerFormWapper = (props) => {
+const DrawerFormWapper = ({ containId, tag, ...props }) => {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     setVisible(true);
@@ -61,11 +61,11 @@ const DrawerFormWapper = (props) => {
       onClose={() => {
         props.onClose?.();
         setVisible(false);
-        close(props.containId);
+        close(containId);
       }}
       drawerProps={{
         ...(props.drawerProps || {}),
-        getContainer: () => props.tag,
+        getContainer: () => tag,
       }}
     />
   );
@@ -90,15 +90,13 @@ const CreateDrawerForm = (props) => {
 };
 
 export default {
-  Modal(options: CreateModalFormProps | Promise<CreateModalFormProps>) {
+  Modal(options: CreateModalFormProps) {
     const containId = `modalId_${uuid(6)}`;
     return {
-      open: async (
-        config: CreateModalFormProps | Promise<CreateModalFormProps> = {},
-      ) => {
+      open: async (config?: CreateModalFormProps) => {
         const props: any = {
-          ...(await options),
-          ...(await config),
+          ...options,
+          ...config,
         };
         CreateModalForm({
           ...props,
@@ -114,15 +112,13 @@ export default {
       },
     };
   },
-  Drawer(options: CreateDrawerFormProps | Promise<CreateDrawerFormProps>) {
+  Drawer(options: CreateDrawerFormProps) {
     const containId = `drawerId_${uuid(6)}`;
     return {
-      open: async (
-        config: CreateDrawerFormProps | Promise<CreateDrawerFormProps> = {},
-      ) => {
+      open: (config?: CreateDrawerFormProps) => {
         const props: any = {
-          ...(await options),
-          ...(await config),
+          ...options,
+          ...config,
         };
         CreateDrawerForm({
           ...props,

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Modal, Popconfirm } from 'antd';
 import { ProBtnProps } from './type';
-import { isEmpty, isObject, isPromise } from '../util';
+import { isEmpty, isObject } from '../util';
 import { CreateForm } from '..';
 
 // 私有变量只能 set、get
@@ -28,11 +28,11 @@ const ProButton = ({
   let onClick = props.onClick || function () {};
   const isPopConfirm = isObject(confirm) && confirm.type === 'pop';
   let label = props.children;
-  if (isObject(drawerFormProps) || isPromise(modalFormProps)) {
-    submitForm = CreateForm.Drawer(drawerFormProps);
+  if (isObject(drawerFormProps)) {
+    submitForm = CreateForm.Drawer(drawerFormProps as any);
     onClick = () => submitForm.open();
-  } else if (isObject(modalFormProps) || isPromise(modalFormProps)) {
-    submitForm = CreateForm.Modal(modalFormProps);
+  } else if (isObject(modalFormProps)) {
+    submitForm = CreateForm.Modal(modalFormProps as any);
     onClick = () => submitForm.open();
   }
   if (isObject(confirm)) {
@@ -58,20 +58,24 @@ const ProButton = ({
         : await confirmClick();
     };
     // 设置按钮loading
-  } else if (spin) {
-    onClick = async () => {
-      setLoading(true);
-      try {
-        await props.onClick?.();
-      } catch (error) {
-        console.error('error', error);
-      } finally {
-        // 延迟下
-        setTimeout(() => {
-          setLoading(false);
-        }, 500);
-      }
-    };
+  } else if (
+    spin ||
+    typeof drawerFormProps === 'function' ||
+    typeof modalFormProps === 'function'
+  ) {
+    if (typeof drawerFormProps === 'function') {
+      onClick = WapperSpinOnClick(setLoading, async () => {
+        const config = await drawerFormProps();
+        CreateForm.Drawer(config).open();
+      });
+    } else if (typeof modalFormProps === 'function') {
+      onClick = WapperSpinOnClick(setLoading, async () => {
+        const config = await modalFormProps();
+        CreateForm.Modal(config).open();
+      });
+    } else if (spin) {
+      onClick = WapperSpinOnClick(setLoading, props.onClick);
+    }
   }
   if (auth) {
     // 处理权限这块的逻辑
@@ -122,3 +126,18 @@ ProButton.hasAuth = (authKey: string) => {
 };
 
 export default ProButton;
+
+/** 处理 loading 的 onClick */
+export const WapperSpinOnClick = (setLoading, onClick) => async () => {
+  setLoading(true);
+  try {
+    await onClick?.();
+  } catch (error) {
+    console.error('error', error);
+  } finally {
+    // 延迟下
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }
+};

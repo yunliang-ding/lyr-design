@@ -38,16 +38,13 @@ export default ({
       size,
       onClick: handelClick.bind(null, tool),
     };
-    /** 扩展 modalFormProps、drawerFormProps 支持函数 */
-    try {
-      if (typeof tool.modalFormProps === 'function') {
-        tool.modalFormProps = tool.modalFormProps(tableInstance);
-      }
-      if (typeof tool.drawerFormProps === 'function') {
-        tool.drawerFormProps = tool.drawerFormProps(tableInstance);
-      }
-    } catch (error) {
-      console.log(error);
+    /** 扩展 modalFormProps, drawerFormProps 参数 */
+    const { modalFormProps, drawerFormProps } = tool;
+    if (typeof tool.modalFormProps === 'function') {
+      tool.modalFormProps = async () => await modalFormProps(tableInstance);
+    }
+    if (typeof tool.drawerFormProps === 'function') {
+      tool.drawerFormProps = async () => await drawerFormProps(tableInstance);
     }
     switch (tool.type) {
       case 'Refresh':

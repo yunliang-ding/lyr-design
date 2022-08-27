@@ -43,10 +43,12 @@ export interface ProBtnProps extends Omit<ButtonProps, 'onClick'> {
   /**
    * 绑定 弹出层
    */
-  modalFormProps?: CreateModalFormProps | Promise<CreateModalFormProps>;
+  modalFormProps?: CreateModalFormProps | (() => Promise<CreateModalFormProps>);
   /**
    * 绑定 抽屉
    */
-  drawerFormProps?: CreateDrawerFormProps | Promise<CreateDrawerFormProps>;
+  drawerFormProps?:
+    | CreateDrawerFormProps
+    | (() => Promise<CreateDrawerFormProps>);
   [key: string]: any;
 }

@@ -169,14 +169,18 @@ export default () => {
         打开 ModalForm
       </Button>
       <Button
-        drawerFormProps={{
-          width: 600,
-          title: '添加用户',
-          schema,
-          onSubmit,
+        spin
+        drawerFormProps={async () => {
+          await new Promise((res) => setTimeout(res, 2000));
+          return {
+            title: '添加用户',
+            width: 600,
+            schema,
+            onSubmit,
+          };
         }}
       >
-        打开 DrawerForm
+        打开 DrawerForm 支持异步
       </Button>
     </Space>
   );
