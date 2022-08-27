@@ -12,13 +12,9 @@ const $: any = document.querySelector.bind(document);
 
 export interface CreateModalFormProps extends ModalFormProps {
   getPopupContainer?: () => HTMLElement | null;
-  /** 容器ID */
-  containId?: string;
 }
 export interface CreateDrawerFormProps extends DrawerFormProps {
   getPopupContainer?: () => HTMLElement | null;
-  /** 容器ID */
-  containId?: string;
 }
 
 const close = (containId) => {
@@ -103,7 +99,7 @@ export default {
           containId,
           onSubmit: async (data) => {
             await props.onSubmit?.(data);
-            close(props.containId); // 关闭
+            close(containId); // 关闭
           },
         });
       },
