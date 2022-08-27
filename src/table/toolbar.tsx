@@ -39,11 +39,15 @@ export default ({
       onClick: handelClick.bind(null, tool),
     };
     /** 扩展 modalFormProps、drawerFormProps 支持函数 */
-    if (typeof tool.modalFormProps === 'function') {
-      tool.modalFormProps = tool.modalFormProps(tableInstance);
-    }
-    if (typeof tool.drawerFormProps === 'function') {
-      tool.drawerFormProps = tool.drawerFormProps(tableInstance);
+    try {
+      if (typeof tool.modalFormProps === 'function') {
+        tool.modalFormProps = tool.modalFormProps(tableInstance);
+      }
+      if (typeof tool.drawerFormProps === 'function') {
+        tool.drawerFormProps = tool.drawerFormProps(tableInstance);
+      }
+    } catch (error) {
+      console.log(error);
     }
     switch (tool.type) {
       case 'Refresh':

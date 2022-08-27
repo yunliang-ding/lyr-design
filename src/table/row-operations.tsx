@@ -11,12 +11,19 @@ export default ({
     return false;
   }
   const RenderItem = ({ menu, record, index }: any) => {
-    /** 扩展 modalFormProps、drawerFormProps 支持函数 */
-    if (typeof menu.modalFormProps === 'function') {
-      menu.modalFormProps = menu.modalFormProps({ ...record }, tableInstance);
-    }
-    if (typeof menu.drawerFormProps === 'function') {
-      menu.drawerFormProps = menu.drawerFormProps({ ...record }, tableInstance);
+    try {
+      /** 扩展 modalFormProps、drawerFormProps 支持函数 */
+      if (typeof menu.modalFormProps === 'function') {
+        menu.modalFormProps = menu.modalFormProps({ ...record }, tableInstance);
+      }
+      if (typeof menu.drawerFormProps === 'function') {
+        menu.drawerFormProps = menu.drawerFormProps(
+          { ...record },
+          tableInstance,
+        );
+      }
+    } catch (error) {
+      console.log(error);
     }
     return (
       <Button
