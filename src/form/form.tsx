@@ -78,20 +78,6 @@ export default ({
   });
   // 获取 formList api
   const actionRef = useRef({});
-  /** 实例扩展方法 */
-  expansionInstanceMethod({
-    form,
-    antdForm,
-    name,
-    initialValues: _initialValues,
-    cloneSchema,
-    event,
-    scrollToFirstError,
-    getScrollContainer,
-    actionRef,
-    setSpin,
-    forceRender,
-  });
   // 值改变 setFieldsValue不会触发该方法
   const onChange = (value: any, values: any) => {
     const key = Object.keys(value)[0];
@@ -115,6 +101,21 @@ export default ({
     }
     onValuesChange(value, values); // 通知外面
   };
+  /** 实例扩展方法 */
+  expansionInstanceMethod({
+    form,
+    antdForm,
+    name,
+    initialValues: _initialValues,
+    cloneSchema,
+    event,
+    scrollToFirstError,
+    getScrollContainer,
+    actionRef,
+    setSpin,
+    forceRender,
+    onChange,
+  });
   /** render FieldSet children */
   const RenderFieldSet = ({ field }) => {
     // 支持函数默认参数为form

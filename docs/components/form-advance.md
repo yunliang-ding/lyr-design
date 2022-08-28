@@ -547,6 +547,102 @@ export default () => {
 };
 ```
 
+## 使用 setFieldsValueTouchOnValuesChange 完成复杂联动交互
+
+```tsx
+/**
+ * title: 说明
+ * desc: 可替代 touchFieldsRender、完成联动交互
+ */
+import React from 'react';
+import { Form } from 'react-core-form';
+import { Switch } from 'antd';
+import schema from './schema/advance/schema5';
+
+export default () => {
+  const [form] = Form.useForm();
+  return (
+    <>
+      <Switch
+        checkedChildren="男"
+        unCheckedChildren="女"
+        onChange={(e) => {
+          form.setFieldsValueTouchOnValuesChange({
+            sex: e ? 1 : 2,
+          });
+        }}
+      />
+      <br />
+      <br />
+      <Form
+        schema={[
+          {
+            type: 'RadioGroup',
+            name: 'sex',
+            label: '性别',
+            props: {
+              optionType: 'button',
+              options: [
+                { label: '男', value: 1 },
+                { label: '女', value: 2 },
+              ],
+            },
+          },
+          {
+            type: 'InputNumber',
+            name: 'age',
+            label: '年龄',
+            effect: ['sex'], // 配置副作用
+            visible: ({ sex }) => {
+              return sex === 1;
+            },
+          },
+          {
+            type: 'AsyncRadioGroup',
+            name: 'level',
+            label: '级别 (类型按照年龄划分)',
+            effect: ['age', 'sex'], // 配置副作用
+            props: {
+              options: async ({ getFieldValue }) => {
+                return getFieldValue('age') > 20
+                  ? [
+                      {
+                        label: '专科毕业',
+                        value: 0,
+                      },
+                      {
+                        label: '本科毕业',
+                        value: 1,
+                      },
+                      {
+                        label: '985、211毕业',
+                        value: 2,
+                      },
+                    ]
+                  : [
+                      {
+                        label: '普通高中',
+                        value: 3,
+                      },
+                      {
+                        label: '重点高中',
+                        value: 4,
+                      },
+                    ];
+              },
+            },
+            visible: ({ sex }) => {
+              return sex === 1;
+            },
+          },
+        ]}
+        form={form}
+      />
+    </>
+  );
+};
+```
+
 ## 使用 FormList 子表单联动
 
 ```tsx

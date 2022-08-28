@@ -14,6 +14,7 @@ export const expansionInstanceMethod = ({
   actionRef,
   setSpin,
   forceRender,
+  onChange,
 }) => {
   Object.assign(form, {
     ...antdForm,
@@ -37,6 +38,7 @@ export const expansionInstanceMethod = ({
       });
       antdForm.setFieldsValue(values);
     },
+
     /** 新增submit、负责处理规则校验、字段转换等问题 */
     submit: async () => {
       try {
@@ -113,6 +115,12 @@ export const expansionInstanceMethod = ({
     /** 接受新的默认值，form重新渲染 */
     setInitialValues: (values) => {
       forceRender(values);
+    },
+    /** 设置值的时候，会触发 OnValuesChange */
+    setFieldsValueTouchOnValuesChange: (value: any) => {
+      form.setFieldsValue(value);
+      // 触发 OnValuesChange
+      onChange(value, form.getFieldsValue(true));
     },
   });
 };
