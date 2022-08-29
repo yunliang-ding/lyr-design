@@ -176,50 +176,49 @@ export default ({
     });
   }, [innerSelectedRow]);
   /** 真正传递给Table的 */
-  let innerRowSelection;
-  if (keepRowSelection && typeof rowSelection === 'object') {
-    innerRowSelection =
-      rowSelection.type !== 'radio' // 单选不处理
-        ? {
-            ...rowSelection,
-            onChange: () => {}, // 已在上面通知
-            selectedRowKeys: innerSelectedRowKeys,
-            onSelectAll: (selected, currentSelectedRows) => {
-              currentSelectedRows = currentSelectedRows.filter(
-                (item) => item !== undefined,
-              );
-              let _selectedRows = [...innerSelectedRow];
-              if (selected) {
-                // 合并之前选择的
-                currentSelectedRows.forEach((item) => {
-                  if (
-                    !_selectedRows.some((_item: any) => _item.id === item.id)
-                  ) {
-                    _selectedRows.push(item);
-                  }
-                });
-              } else {
-                _selectedRows = _selectedRows.filter((i: any) => {
-                  return currentSelectedRows.some((item) => item.id === i.id);
-                });
-              }
-              setInnerSelectedRow([..._selectedRows]);
-            },
-            onSelect: (record, selected) => {
-              let currentSelectedRows = [...innerSelectedRow];
-              if (selected) {
-                // 添加这个ID
-                currentSelectedRows.push(record);
-              } else {
-                // 删除这个
-                currentSelectedRows = currentSelectedRows.filter(
-                  (i) => i[rowKey as string] !== record[rowKey as string],
-                );
-              }
-              setInnerSelectedRow(currentSelectedRows); // 更新
-            },
-          }
-        : rowSelection;
+  let innerRowSelection = rowSelection;
+  if (
+    keepRowSelection &&
+    typeof rowSelection === 'object' &&
+    rowSelection.type !== 'radio' // 单选不处理
+  ) {
+    innerRowSelection = {
+      ...rowSelection,
+      onChange: () => {}, // 已在上面通知
+      selectedRowKeys: innerSelectedRowKeys,
+      onSelectAll: (selected, currentSelectedRows) => {
+        currentSelectedRows = currentSelectedRows.filter(
+          (item) => item !== undefined,
+        );
+        let _selectedRows = [...innerSelectedRow];
+        if (selected) {
+          // 合并之前选择的
+          currentSelectedRows.forEach((item) => {
+            if (!_selectedRows.some((_item: any) => _item.id === item.id)) {
+              _selectedRows.push(item);
+            }
+          });
+        } else {
+          _selectedRows = _selectedRows.filter((i: any) => {
+            return currentSelectedRows.some((item) => item.id === i.id);
+          });
+        }
+        setInnerSelectedRow([..._selectedRows]);
+      },
+      onSelect: (record, selected) => {
+        let currentSelectedRows = [...innerSelectedRow];
+        if (selected) {
+          // 添加这个ID
+          currentSelectedRows.push(record);
+        } else {
+          // 删除这个
+          currentSelectedRows = currentSelectedRows.filter(
+            (i) => i[rowKey as string] !== record[rowKey as string],
+          );
+        }
+        setInnerSelectedRow(currentSelectedRows); // 更新
+      },
+    };
   }
   // 提示信息
   const alertProps =
