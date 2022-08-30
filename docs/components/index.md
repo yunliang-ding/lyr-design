@@ -1,9 +1,9 @@
 ---
 order: 1
-title: 组件介绍
+title: 介绍
 toc: menu
 nav:
-  title: 组件介绍
+  title: 组件
   order: 1
 ---
 

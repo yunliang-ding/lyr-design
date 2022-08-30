@@ -12,9 +12,11 @@ const $: any = document.querySelector.bind(document);
 
 export interface CreateModalFormProps extends ModalFormProps {
   getPopupContainer?: () => HTMLElement | null;
+  containId?: string;
 }
 export interface CreateDrawerFormProps extends DrawerFormProps {
   getPopupContainer?: () => HTMLElement | null;
+  containId?: string;
 }
 
 const close = (containId) => {
@@ -87,7 +89,7 @@ const CreateDrawerForm = (props) => {
 
 export default {
   Modal(options: CreateModalFormProps) {
-    const containId = `modalId_${uuid(6)}`;
+    const containId = options.containId || `modalId_${uuid(6)}`;
     return {
       open: async (config?: CreateModalFormProps) => {
         const props: any = {
@@ -109,7 +111,7 @@ export default {
     };
   },
   Drawer(options: CreateDrawerFormProps) {
-    const containId = `drawerId_${uuid(6)}`;
+    const containId = options.containId || `drawerId_${uuid(6)}`;
     return {
       open: (config?: CreateDrawerFormProps) => {
         const props: any = {
