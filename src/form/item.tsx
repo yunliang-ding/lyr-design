@@ -1,5 +1,11 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { cloneDeep, AsyncOptionsCache, isEmpty, NOTICESELF } from '@/util';
+import {
+  cloneDeep,
+  AsyncOptionsCache,
+  isEmpty,
+  NOTICESELF,
+  uuid,
+} from '@/util';
 import CreateWidget from '@/widgets';
 import mergeWith from 'lodash/mergeWith';
 import AsyncRender from '@/widgets/extension/async/render';
@@ -92,10 +98,27 @@ export default ({
   // 处理默认设置
   const cloneField = cloneDeep(_field); // 拷贝一份原始_field,扩展的时候不会修改原始属性
   const pureFields = beforeFieldRender(cloneField, form); // 开始扩展处理
+  /** 兼容 antd 升级 导致 Search 组件样式问题 */
+  const itemID: string = useMemo(() => {
+    return `item_${uuid(10)}`;
+  }, []);
+  useEffect(() => {
+    const element = document.querySelector(`[itemId=${itemID}]`);
+    if (element) {
+      if (cloneField.expand) {
+        element.parentElement.setAttribute('data-expand', 'true');
+      }
+      element.classList.value = element.classList.value
+        .split(',')
+        .concat('ant-form-item')
+        .join(' ');
+    }
+  }, []);
   const FormItem = (
     <Form.Item
       {...pureFields}
       key={reload}
+      itemID={itemID}
       // 只读模式不需要rules
       rules={readOnly ? undefined : pureFields.rules}
       className={className}
