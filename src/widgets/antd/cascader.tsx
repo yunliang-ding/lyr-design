@@ -7,20 +7,19 @@ const queryLoop = (
   labels = [], // 存储器
   level = 0, // 层级
 ) => {
-  data.some((item) => {
+  data.forEach((item) => {
     if (item[fieldNames.value] === value?.[level]) {
       labels.push(item[fieldNames.label]);
+      if (Array.isArray(item[fieldNames.children])) {
+        queryLoop(
+          item[fieldNames.children],
+          value,
+          fieldNames,
+          labels,
+          level + 1,
+        );
+      }
     }
-    if (Array.isArray(item[fieldNames.children])) {
-      queryLoop(
-        item[fieldNames.children],
-        value,
-        fieldNames,
-        labels,
-        level + 1,
-      );
-    }
-    return false;
   });
 };
 
