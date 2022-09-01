@@ -36,6 +36,8 @@ export interface TableColumnType extends ColumnType<any> {
   };
   /** 字段类型 */
   columnType?: 'columnNo';
+  /** 日期格式化 */
+  dateFormat?: string;
 }
 
 const Hello: React.FC<TableColumnType> = () => null;
