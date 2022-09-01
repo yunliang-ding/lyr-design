@@ -74,7 +74,7 @@ const ProButton = ({
         CreateForm.Modal(config).open();
       });
     } else if (spin) {
-      onClick = WapperSpinOnClick(setLoading, props.onClick);
+      onClick = WapperSpinOnClick(setLoading, props.onClick, 500);
     }
   }
   if (auth) {
@@ -128,16 +128,18 @@ ProButton.hasAuth = (authKey: string) => {
 export default ProButton;
 
 /** 处理 loading 的 onClick */
-export const WapperSpinOnClick = (setLoading, onClick) => async () => {
-  setLoading(true);
-  try {
-    await onClick?.();
-  } catch (error) {
-    console.error('error', error);
-  } finally {
-    // 延迟下
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }
-};
+export const WapperSpinOnClick =
+  (setLoading, onClick, timer = 0) =>
+  async () => {
+    setLoading(true);
+    try {
+      await onClick?.();
+    } catch (error) {
+      console.error('error', error);
+    } finally {
+      // 延迟下
+      setTimeout(() => {
+        setLoading(false);
+      }, timer);
+    }
+  };
