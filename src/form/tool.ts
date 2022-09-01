@@ -43,12 +43,13 @@ export const expansionInstanceMethod = ({
     submit: async () => {
       try {
         const values = await antdForm.validateFields(); // 校验
-        // TableList 子表单校验
-        Object.keys(actionRef.current).forEach((key) => {
+        const arr = Object.keys(actionRef.current);
+        for (let i = 0; i < arr.length; i++) {
+          const key = arr[i];
           if (typeof actionRef.current[key].validateFields === 'function') {
-            actionRef.current[key].validateFields();
+            await actionRef.current[key].validateFields(); // TableList 子表单校验
           }
-        });
+        }
         return getCombination({ ...values }, cloneSchema, {
           name,
           form,
