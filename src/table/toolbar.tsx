@@ -150,7 +150,7 @@ export default ({
         );
     }
   };
-  return tools || tools.length > 0 ? (
+  return (tools && tools.length > 0) || title ? (
     <div className="table-form-header">
       <div className="table-form-header-left">{title}</div>
       <div className="table-form-header-right">
