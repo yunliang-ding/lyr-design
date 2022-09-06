@@ -208,12 +208,19 @@ export default () => {
   return (
     <Table
       {...tableSchema}
+      tools={[
+        {
+          label: '批量修改',
+          key: 'setting',
+          onClick: ({ getSelectRow, getDataSource }) => {
+            console.log('getSelectRow', getSelectRow());
+            console.log('getDataSource', getDataSource());
+          },
+        },
+      ]}
       rowSelection={{
         // 设置默认值
-        // defaultSelectedRows: [
-        //   { id: 1, score: 1, logins: 1 },
-        //   { id: 2, score: 2, logins: 2 },
-        // ],
+        // defaultSelectedRows: [],
         // type: 'radio',
         onChange: (keys, rows) => {
           console.log(keys, rows);

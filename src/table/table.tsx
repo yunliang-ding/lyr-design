@@ -230,24 +230,20 @@ export default ({
   const onSizeChange = (s) => {
     setSize(s);
   };
-  // 判断是否是初次加载
-  const firstRender: any = useRef(true);
-  // 初次渲染进行扩展实例Api
-  if (firstRender.current) {
-    /** 实例扩展方法 */
+  /** 实例扩展方法 */
+  useEffect(() => {
     Object.assign(table, {
       getDataSource: () => dataSource,
       getParams,
       onSearch,
       onReset,
       query,
+      getSelectRow: () => {
+        return innerSelectedRow;
+      },
     });
-  }
-  useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-    }
-  }, []);
+  }, [dataSource, innerSelectedRow]);
+  // 扩展 columns
   let newColumns = lastColumns.filter(
     (item: any) => !_filterIds.includes(item.dataIndex),
   );

@@ -75,6 +75,7 @@ CoreTable.useTable = () => {
       onSearch: (payload?) => {},
       onReset: () => {},
       query: () => {},
+      getSelectRow: () => [],
     }).current,
   ];
 };
