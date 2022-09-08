@@ -19,7 +19,7 @@ export default ({
   disabled,
   readOnly,
   event,
-  className,
+  className = field?.className || '',
   fieldKey,
   widgets = {},
   formListName = '', // 子表单名字
