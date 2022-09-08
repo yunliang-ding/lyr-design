@@ -58,7 +58,10 @@ export default ({
     : {
         ...rowOperations,
         dataIndex: 'row-operations-td-row-operation-area', // 配置默认的dataIndex, 用户不必关注改属性
-        className: 'td-row-operation-area', // TODO 这里统一会覆盖操作列的className
+        ellipsis: false,
+        className: rowOperations.className
+          ? `${rowOperations.className} td-row-operation-area`
+          : 'td-row-operation-area',
         render: (_: any, record: any, index: number) => {
           const menus = rowOperations.menus(record, index).filter((i) => {
             try {

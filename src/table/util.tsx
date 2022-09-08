@@ -63,7 +63,7 @@ export const transformColumns = (
         };
       }
       const defineRender: any = column.render; // 获取用户定义的render
-      // 扩展render
+      // 扩展 render
       column.render = (item, record, index) => {
         let vNode: any =
           typeof defineRender === 'function'
