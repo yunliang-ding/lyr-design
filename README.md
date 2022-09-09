@@ -13,7 +13,7 @@ npm install react-core-form --save
 ## 基本使用
 
 ```tsx
-import { From } from 'react-core-form';
+import { Form } from 'react-core-form';
 
 export default () => {
   return (
@@ -52,7 +52,7 @@ export default () => {
 ## 使用异步选择器
 
 ```tsx
-import { From } from 'react-core-form';
+import { Form } from 'react-core-form';
 
 export default () => {
   return (
@@ -88,7 +88,7 @@ export default () => {
 ## 使用设置联动
 
 ```tsx
-import { From } from 'react-core-form';
+import { Form } from 'react-core-form';
 
 export default () => {
   return (
@@ -127,7 +127,7 @@ export default () => {
 ## 使用自定义渲染
 
 ```tsx
-import { From } from 'react-core-form';
+import { Form } from 'react-core-form';
 
 export default () => {
   return (
