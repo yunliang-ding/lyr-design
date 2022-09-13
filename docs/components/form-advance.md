@@ -172,10 +172,6 @@ export default () => {
       <Form
         key={fresh}
         readOnly={readOnly}
-        layout={readOnly ? 'inline' : 'vertical'}
-        gridStyle={{
-          rowGap: readOnly ? 10 : 0,
-        }}
         onMount={onMount}
         schema={schema}
         column={2}
