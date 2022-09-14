@@ -56,7 +56,7 @@ export default ({
     tranfromSchema(newSchema, name, column, formConfig); // 内部转换下
     return newSchema;
   }, [schema]); // cloneDeep 避免被污染
-  // 默认只读模式 保持行 10px 间隙
+  // 默认只读模式 保持行10px间隙
   if (readOnly) {
     gridStyle.rowGap = gridStyle.rowGap || 10;
   }
