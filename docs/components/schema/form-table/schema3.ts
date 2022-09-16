@@ -26,7 +26,6 @@ const tableSchema: TableProps = {
   tools: [
     {
       label: '添加1',
-      key: 'add1',
       modalFormProps: ({ onSearch }) => {
         return {
           title: '新增用户2',
@@ -47,7 +46,6 @@ const tableSchema: TableProps = {
     },
     {
       label: '添加2',
-      key: 'add2',
       drawerFormProps: ({ onSearch }) => {
         return {
           title: '新增用户2',
@@ -131,7 +129,6 @@ const tableSchema: TableProps = {
       return [
         {
           label: '编辑1',
-          key: 'f1',
           modalFormProps: ({ onRefresh }) => {
             return {
               title: '新增用户2',
@@ -153,7 +150,6 @@ const tableSchema: TableProps = {
         },
         {
           label: '编辑2',
-          key: 'f2',
           drawerFormProps: ({ onRefresh }) => {
             return {
               title: '新增用户2',

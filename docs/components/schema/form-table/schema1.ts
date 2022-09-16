@@ -111,26 +111,21 @@ const tableSchema: TableProps = {
       return [
         {
           label: '复制链接',
-          key: 'copy',
           copyable: {
             text: '复制了拷贝内容',
           },
         },
         {
           label: '编辑1',
-          key: 'f1',
         },
         {
           label: '编辑2',
-          key: 'f2',
         },
         {
           label: '编辑3',
-          key: 'f3',
         },
         {
           label: '删除',
-          key: 'delete',
           confirm: {
             title: '提示',
             content: `确认删除ID为${record.id}的记录吗？`,

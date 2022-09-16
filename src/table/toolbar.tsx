@@ -7,8 +7,6 @@ export default ({
   filterIds = [], // 过滤的字段
   columns = [], // 全部的列
   tools = [], // 顶部工具栏
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  toolsClick = (tool: any) => {}, // 顶部工具栏点击回调
   onFilter = () => {}, // filter回调
   onRefresh = () => {}, // refresh
   onSearch = () => {}, // search
@@ -29,12 +27,11 @@ export default ({
     if (typeof tool.onClick === 'function') {
       await tool.onClick(tableInstance);
     }
-    await toolsClick({ ...tool }, tableInstance); // 外部回调
   };
   const renderTool = (tool: any) => {
     const btnProps = {
       ...tool,
-      key: tool.key || tool.type,
+      key: tool.key || tool.label || tool.type,
       size,
       onClick: handelClick.bind(null, tool),
     };

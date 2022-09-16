@@ -93,15 +93,6 @@ export interface TableProps
   onQuery?: (params?, filter?, sorter?) => void;
   /** 加载完毕回调 */
   onLoad?: (response: any) => void;
-  /** 表头按钮点击回调 */
-  toolsClick?: (tool: any, table: TableInstance) => void;
-  /** 表格列点击事件回调 */
-  rowOperationsClick?: (
-    menu: any,
-    record: any,
-    index: number,
-    table: TableInstance,
-  ) => void;
   /** 默认查询值 */
   params?: object;
   /** 分页配置 */

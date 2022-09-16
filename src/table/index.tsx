@@ -74,7 +74,7 @@ CoreTable.useTable = () => {
       getParams: () => {},
       onSearch: (payload?) => {},
       onReset: () => {},
-      query: () => {},
+      onRefresh: () => {},
       getSelectRow: () => [],
     }).current,
   ];

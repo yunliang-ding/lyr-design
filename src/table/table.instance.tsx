@@ -8,7 +8,7 @@ export interface TableInstance {
   /** 重置条件 */
   onReset: Function;
   /** 刷新当前页面 */
-  query: Function;
+  onRefresh: Function;
   /** 获取选中的行 */
   getSelectRow: Function;
 }

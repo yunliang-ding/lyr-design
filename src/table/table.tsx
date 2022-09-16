@@ -24,8 +24,6 @@ export default ({
   emptyNode,
   onQuery = () => {},
   onLoad = () => {},
-  toolsClick = () => {},
-  rowOperationsClick = () => {},
   params = {},
   paginationConfig,
   searchSchema,
@@ -144,7 +142,6 @@ export default ({
   /** rowOperations */
   const rowOperationsColumns = getRowOperations({
     rowOperations,
-    rowOperationsClick,
     tableInstance: table,
   });
   const lastColumns = rowOperationsColumns
@@ -237,7 +234,7 @@ export default ({
       getParams,
       onSearch,
       onReset,
-      query,
+      onRefresh: query,
       getSelectRow: () => {
         return innerSelectedRow;
       },
@@ -382,7 +379,6 @@ export default ({
           onRefresh={query}
           onSearch={onSearch}
           filterIds={_filterIds}
-          toolsClick={toolsClick}
           onFilter={setFilterIds}
           tableId={tableId}
           tableInstance={table}

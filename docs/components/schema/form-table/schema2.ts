@@ -81,7 +81,6 @@ const tableSchema: TableProps = {
   ],
   rowOperations: {
     title: '操作',
-    ellipsis: true,
     width: 200,
     showMore: 2,
     fixed: 'right',
@@ -89,15 +88,12 @@ const tableSchema: TableProps = {
       return [
         {
           label: '编辑1',
-          key: 'f1',
         },
         {
           label: '编辑2',
-          key: 'f2',
         },
         {
           label: '编辑3',
-          key: 'f3',
         },
       ];
     },

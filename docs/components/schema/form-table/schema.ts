@@ -22,19 +22,15 @@ const tableSchema: TableProps = {
   tools: [
     {
       label: '添加1',
-      key: 'f1',
     },
     {
       label: '添加2',
-      key: 'f2',
     },
     {
       label: '添加3',
-      key: 'f3',
     },
     {
       label: '导出数据',
-      key: 'export',
       spin: true,
     },
     {
@@ -42,19 +38,15 @@ const tableSchema: TableProps = {
       label: '更多操作',
       menu: [
         {
-          key: 'action_1',
           label: '更多操作1',
         },
         {
           type: 'Divider',
-          key: 'split',
         },
         {
-          key: 'action_2',
           label: '更多操作2',
         },
         {
-          key: 'action_3',
           label: '更多操作3',
         },
       ],
@@ -142,16 +134,13 @@ const tableSchema: TableProps = {
         },
         {
           label: '编辑2',
-          key: 'f2',
         },
         {
           label: '编辑3',
-          key: 'f3',
           visible: record.id !== 1,
         },
         {
           label: '删除',
-          key: 'delete',
           confirm: {
             title: '提示',
             content: `确认删除ID为${record.id}的记录吗？`,
@@ -165,15 +154,6 @@ const tableSchema: TableProps = {
   },
   onLoad: (res) => {
     console.log('onLoad ->', res);
-  },
-  toolsClick: async (tool) => {
-    if (tool.key === 'export') {
-      await new Promise((res) => setTimeout(res, 2000));
-    }
-    console.log('toolsClick ->', tool);
-  },
-  rowOperationsClick: (e, record) => {
-    console.log('rowOperationsClick ->', e, record);
   },
 };
 

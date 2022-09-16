@@ -2,15 +2,11 @@
 import { Menu, Dropdown, Typography } from 'antd';
 import { Button } from '@/index';
 
-export default ({
-  rowOperations = {},
-  rowOperationsClick = (a: any, b: any, index: number) => {},
-  tableInstance,
-}: any) => {
+export default ({ rowOperations = {}, tableInstance }: any) => {
   if (typeof rowOperations.menus !== 'function') {
     return false;
   }
-  const RenderItem = ({ menu, record, index }: any) => {
+  const RenderItem = ({ menu, record }: any) => {
     /** 扩展 modalFormProps、drawerFormProps 参数 */
     const { modalFormProps, drawerFormProps } = menu;
     if (typeof menu.modalFormProps === 'function') {
@@ -32,12 +28,6 @@ export default ({
           if (typeof menu.onClick === 'function') {
             await menu.onClick({ ...record }, tableInstance);
           }
-          await rowOperationsClick(
-            { ...menu },
-            { ...record },
-            index,
-            tableInstance,
-          );
         }}
       >
         {menu.copyable ? (
@@ -93,7 +83,7 @@ export default ({
               {showMenu.map((menu) => {
                 return (
                   <RenderItem
-                    key={menu.key}
+                    key={menu.key || menu.label}
                     menu={menu}
                     record={record}
                     index={index}
