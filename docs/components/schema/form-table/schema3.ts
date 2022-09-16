@@ -121,7 +121,6 @@ const tableSchema: TableProps = {
   ],
   rowOperations: {
     title: '操作',
-    ellipsis: true,
     width: 200,
     showMore: 2,
     fixed: 'right',
