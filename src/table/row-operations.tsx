@@ -6,16 +6,14 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
   if (typeof rowOperations.menus !== 'function') {
     return false;
   }
-  const RenderItem = ({ menu, record }: any) => {
+  const RenderItem = ({ menu }: any) => {
     /** 扩展 modalFormProps、drawerFormProps 参数 */
     const { modalFormProps, drawerFormProps } = menu;
     if (typeof menu.modalFormProps === 'function') {
-      menu.modalFormProps = async () =>
-        await modalFormProps({ ...record }, tableInstance);
+      menu.modalFormProps = async () => await modalFormProps(tableInstance);
     }
     if (typeof menu.drawerFormProps === 'function') {
-      menu.drawerFormProps = async () =>
-        await drawerFormProps({ ...record }, tableInstance);
+      menu.drawerFormProps = async () => await drawerFormProps(tableInstance);
     }
     return (
       <Button
@@ -26,7 +24,7 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
             return;
           }
           if (typeof menu.onClick === 'function') {
-            await menu.onClick({ ...record }, tableInstance);
+            await menu.onClick(tableInstance);
           }
         }}
       >
@@ -74,7 +72,7 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
           const menuItems = menus.slice(rowOperations.showMore).map((menu) => {
             return (
               <Menu.Item key={menu.key}>
-                <RenderItem menu={menu} record={record} index={index} />
+                <RenderItem menu={menu} index={index} />
               </Menu.Item>
             );
           });
@@ -85,7 +83,6 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
                   <RenderItem
                     key={menu.key || menu.label}
                     menu={menu}
-                    record={record}
                     index={index}
                   />
                 );
