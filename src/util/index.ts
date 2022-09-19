@@ -119,3 +119,11 @@ export const cloneDeep = (source) => {
     }
   });
 };
+
+export const getDefaultPropsByConfig = (key, props) => {
+  const config = window['react-core-form-config']?.[key];
+  if (config) {
+    return typeof config === 'function' ? config(props) : config;
+  }
+  return {};
+};

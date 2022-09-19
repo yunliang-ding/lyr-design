@@ -1,29 +1,30 @@
 import { Drawer } from 'antd';
 import { useMemo, useState } from 'react';
-import { uuid } from '@/util';
+import { getDefaultPropsByConfig, uuid } from '@/util';
 import { Form } from '@/index';
 import { DrawerFormProps } from '../types';
 import Footer from '../footer';
 import './index.less';
 
-export default ({
-  drawerProps = {},
-  form = Form.useForm()[0],
-  title,
-  actionAlign = 'end',
-  className,
-  width = 500,
-  visible = false,
-  onClose = () => {},
-  onSubmit = () => {},
-  footer = true,
-  cancelText = '关闭',
-  confirmText = '保存',
-  actions,
-  render,
-  footerRender,
-  ...rest
-}: DrawerFormProps) => {
+export default (props: DrawerFormProps) => {
+  const {
+    drawerProps = {},
+    form = Form.useForm()[0],
+    title,
+    actionAlign = 'end',
+    className,
+    width = 500,
+    visible = false,
+    onClose = () => {},
+    onSubmit = () => {},
+    footer = true,
+    cancelText = '关闭',
+    confirmText = '保存',
+    actions,
+    render,
+    footerRender,
+    ...rest
+  } = Object.assign(getDefaultPropsByConfig('DrawerForm', props), props);
   const [value, onChange] = useState(rest.initialValues);
   const _actions = actions || [
     {

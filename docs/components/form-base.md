@@ -13,6 +13,7 @@ toc: menu
 import React, { useState } from 'react';
 import { Form } from 'react-core-form';
 import schema from './schema/form-base/schema';
+
 export default () => {
   return (
     <Form

@@ -13,6 +13,7 @@ toc: menu
 import React from 'react';
 import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema';
+
 export default () => {
   return <Table {...tableSchema} />;
 };

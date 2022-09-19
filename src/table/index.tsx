@@ -5,6 +5,7 @@ import { PaginationConfig } from './type.pagination';
 import { TableInstance } from './table.instance';
 import zhCN from 'antd/lib/locale/zh_CN';
 import Table from './table';
+import { getDefaultPropsByConfig } from '@/util';
 
 /** 本地缓存 */
 export const updateLocalFilter = (tableId, columns?, filterIds?, pageSize?) => {
@@ -41,22 +42,23 @@ export const defaultPaginationConfig: PaginationConfig = {
   showTotal: (total: number) => `共 ${total} 条`,
 };
 
-const CoreTable = ({
-  emptyNode = '-',
-  defaultTools = [
-    {
-      type: 'Refresh',
-    },
-    {
-      type: 'AdjustSize',
-    },
-    {
-      type: 'FilterColumns',
-    },
-  ],
-  locale = zhCN,
-  ...rest
-}: TableProps) => {
+const CoreTable = (props: TableProps) => {
+  const {
+    emptyNode = '-',
+    defaultTools = [
+      {
+        type: 'Refresh',
+      },
+      {
+        type: 'AdjustSize',
+      },
+      {
+        type: 'FilterColumns',
+      },
+    ],
+    locale = zhCN,
+    ...rest
+  } = Object.assign(getDefaultPropsByConfig('Table', props), props);
   return (
     <Table
       emptyNode={emptyNode}

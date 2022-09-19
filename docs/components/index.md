@@ -127,7 +127,7 @@ export default () => {
 };
 ```
 
-## Form 统一配置
+## Form 默认配置
 
 ```ts
 export interface FormConfigProps {
@@ -156,6 +156,31 @@ export interface FormConfigProps {
 - 涉及到下拉容器组件统一设置了 getPopupContainer 指向到父节点，在设置了 overflow: auto 的容器内滑动不会偏移位置 `(默认开启 autoSetPopupContainer)`
 - 对于下拉选组件，配置了 showSearch 即可实现模糊查询的功能不需要设置 filterOption `（默认开启 autoSelectSearch）`
 - 对于时间、日期选择器，会自动提交进行 moment 和 string 的转化。不需要做额外处理 （`默认开启 autoTransfromDatePicker）`
+
+## 配置默认属性
+
+```
+ 通常组件在接入到项目中，会再封装一层便于对组件的属性统一拦截等，组件库提供全局配置属性，可以在不封装的前期下完成该操作
+```
+
+```html
+<script>
+  // 设置默认配置
+  window['react-core-form-config'] = {
+    Form: {},
+    Table: {},
+    DrawerForm: {
+      maskClosable: false,
+    },
+    // 支持如下函数配置，可拦截 props 处理
+    // DrawerForm: (props) => {
+    //   return {
+    //     maskClosable: props.onSubmit === undefined, // 没有提交的抽屉支持管理关闭
+    //   };
+    // },
+  };
+</script>
+```
 
 ## 高级用法
 

@@ -1,17 +1,20 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Form from './form';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { CoreFormProps, FormRefInstance } from './type.form';
 import { SchemaProps } from './type.item';
-import { AsyncOptionsCache, uuid } from '@/util';
+import { AsyncOptionsCache, getDefaultPropsByConfig, uuid } from '@/util';
 /** 组件入口 */
-const CoreForm = ({
-  form = CoreForm.useForm()[0],
-  onMount = () => {},
-  ...props
-}: CoreFormProps) => {
+const CoreForm = (props: CoreFormProps) => {
+  const {
+    form = CoreForm.useForm()[0],
+    onMount = () => {},
+    ...rest
+  } = Object.assign(getDefaultPropsByConfig('Form', props), props);
+  console.log(getDefaultPropsByConfig('Form', props));
   const [reload, setReload] = useState(Math.random());
-  const [initialValues, setInitialValues] = useState(props.initialValues);
+  const [initialValues, setInitialValues] = useState(rest.initialValues);
   const forceRender = (values) => {
     setInitialValues(values);
     // 重新构建下
@@ -38,7 +41,7 @@ const CoreForm = ({
   }, []);
   return (
     <Form
-      {...props}
+      {...rest}
       key={reload}
       form={form}
       name={name}
