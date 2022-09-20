@@ -90,18 +90,18 @@ export default (field: any, formInstance: any = {}, widgets = {}) => {
   const ExpProps: any = {};
   if (['FormList', 'TableList'].includes(field.type)) {
     ExpProps.actionRef = field.actionRef;
+    ExpProps.event = field.event;
+    ExpProps.widgets = field.widgets;
   }
   return (
     <Component
+      name={field.name}
+      form={formInstance}
       disabled={field.disabled}
       readOnly={field.readOnly}
       readOnlyEmptyValueNode={field.readOnlyEmptyValueNode}
       {...ExpProps}
       {...field.props}
-      name={field.name}
-      event={field.event} // FormList会用到
-      widgets={widgets} // FormList会用到
-      form={formInstance}
     />
   );
 };

@@ -5,20 +5,20 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { CoreFormProps, FormRefInstance } from './type.form';
 import { SchemaProps } from './type.item';
 import { AsyncOptionsCache, getDefaultPropsByConfig, uuid } from '@/util';
+
 /** 组件入口 */
 const CoreForm = (props: CoreFormProps) => {
   const {
     form = CoreForm.useForm()[0],
     onMount = () => {},
+    formConfig,
     ...rest
   } = Object.assign(getDefaultPropsByConfig('Form', props), props);
-  console.log(getDefaultPropsByConfig('Form', props));
   const [reload, setReload] = useState(Math.random());
   const [initialValues, setInitialValues] = useState(rest.initialValues);
   const forceRender = (values) => {
     setInitialValues(values);
-    // 重新构建下
-    setReload(Math.random());
+    setReload(Math.random()); // 重新构建下
   };
   // 判断是否是初次加载
   const firstRender: any = useRef(true);
@@ -45,6 +45,7 @@ const CoreForm = (props: CoreFormProps) => {
       key={reload}
       form={form}
       name={name}
+      formConfig={formConfig}
       initialValues={initialValues}
       forceRender={forceRender}
     />

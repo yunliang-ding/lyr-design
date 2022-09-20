@@ -5,18 +5,18 @@ import { SchemaProps } from './type.item';
 
 /** Form 统一配置 */
 export interface FormConfigProps {
-  /** 默认计数输入框最大长度 */
+  /** 默认输入框最大长度 */
   defaultInputMaxLength?: number;
   /** 是否开启自动填充 placeholder */
-  defaultOpenPlaceholder?: boolean;
+  defaultFillPlaceholder?: boolean;
   /** 是否开启自动清空 */
   defaultOpenAllowClear?: boolean;
   /** 是否自动为选择器挂载Popup容器 */
   autoSetPopupContainer?: boolean;
   /** 是否支持自动转换日期选择器moment和string */
   autoTransfromDatePicker?: boolean;
-  /** 是否默认开启选择器模糊搜索功能 */
-  autoSelectSearch?: boolean;
+  /** 输入框失去焦点自动清除前后空格 */
+  autoTrimInputSpaceOnBlur?: boolean;
 }
 
 /** FormProps */

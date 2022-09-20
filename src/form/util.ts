@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import moment from 'moment';
+import { defaultFormConfig } from '.';
 import { FormConfigProps } from './type.form';
 import { CoreFormInstance } from './type.instance';
 
@@ -93,8 +94,9 @@ export const tranfromSchema = (
   schema: any[],
   name: string,
   column = 1,
-  formConfig?: FormConfigProps,
+  formConfig = defaultFormConfig,
 ) => {
+  console.log(formConfig);
   schema?.forEach((field: any) => {
     // 兼容下
     if (field.props === undefined) {
@@ -110,29 +112,23 @@ export const tranfromSchema = (
     }
     // Input默认64长度限制
     if (field.type === 'Input') {
-      field.props.maxLength = field.props.maxLength || 64;
+      field.props.maxLength =
+        field.props.maxLength || formConfig?.defaultInputMaxLength;
     }
     // 默认开启allowClear和设置placeholder
-    if (
-      [
-        'Input',
-        'InputNumber',
-        'DebounceInput',
-        'BankCardInput',
-        'AmountInput',
-        'TextArea',
-        'Password',
-      ].includes(field.type)
-    ) {
-      if (
-        !['InputNumber', 'BankCardInput', 'AmountInput'].includes(field.type)
-      ) {
-        // 不支持allowClear属性
-        field.props.allowClear =
-          field.props.allowClear === undefined ? true : field.props.allowClear; // 默认允许清除
+    if (['Input', 'InputNumber', 'TextArea', 'Password'].includes(field.type)) {
+      if (!['InputNumber'].includes(field.type)) {
+        if (formConfig.defaultOpenAllowClear) {
+          field.props.allowClear =
+            field.props.allowClear === undefined
+              ? true
+              : field.props.allowClear;
+        }
       }
-      field.props.placeholder =
-        field.props.placeholder || `请输入${field.label || ''}`; // 默认提示
+      if (formConfig.defaultFillPlaceholder) {
+        field.props.placeholder =
+          field.props.placeholder || `请输入${field.label || ''}`;
+      }
     }
     // 处理popup类挂载容器
     if (isPopupContainer(field.type)) {
@@ -141,22 +137,26 @@ export const tranfromSchema = (
         // 处理FormList属性名是数组的问题
         popupName = popupName.join('_');
       }
-      field.props.allowClear =
-        field.props.allowClear === undefined ? true : field.props.allowClear; // 默认允许清除
+      if (formConfig.defaultOpenAllowClear) {
+        field.props.allowClear =
+          field.props.allowClear === undefined ? true : field.props.allowClear;
+      }
       // 区间查询不需要设置
       if (!['RangePicker', 'TimeRange'].includes(field.type)) {
         field.props.placeholder =
           field.props.placeholder || `请选择${field.label || ''}`; // 默认提示
       }
-      // 生成挂载容器标识
-      field.popupid = `${name}_${popupName}`;
-      // 挂载到指定的popupid
-      if (typeof field.props.getPopupContainer !== 'function') {
-        field.props.getPopupContainer = () => {
-          return document.querySelector(
-            `[popupid=${field.popupid}] .ant-form-item-control`,
-          );
-        };
+      if (formConfig.autoSetPopupContainer) {
+        // 生成挂载容器标识
+        field.popupid = `${name}_${popupName}`;
+        // 挂载到指定的popupid
+        if (typeof field.props.getPopupContainer !== 'function') {
+          field.props.getPopupContainer = () => {
+            return document.querySelector(
+              `[popupid=${field.popupid}] .ant-form-item-control`,
+            );
+          };
+        }
       }
     }
     // 配置了showSearch的查询框默认开启模糊匹配
@@ -206,79 +206,82 @@ export const tranfromSchema = (
         };
       }
     }
-    // 日期格式转换默认帮处理下
-    if (['DatePicker', 'TimePicker'].includes(field.type)) {
-      const format =
-        field.props.format ||
-        (field.type === 'DatePicker' ? 'YYYY-MM-DD' : 'hh:mm:ss');
-      if (!field.beforeReceive) {
-        // string | number -> moment
-        field.beforeReceive = (values) => {
-          return (
-            values[field.name] &&
-            (typeof values[field.name] === 'number'
-              ? moment(values[field.name])
-              : moment(values[field.name], format))
-          );
-        };
-      }
-      if (!field.transform) {
-        // moment- > string
-        field.transform = (values) => {
-          const dateMoment = values[field.name];
-          return {
-            [field.name]: dateMoment?.format(format),
+    if (formConfig.autoTransfromDatePicker) {
+      // 日期格式转换默认帮处理下
+      if (['DatePicker', 'TimePicker'].includes(field.type)) {
+        const format =
+          field.props.format ||
+          (field.type === 'DatePicker' ? 'YYYY-MM-DD' : 'hh:mm:ss');
+        if (!field.beforeReceive) {
+          // string | number -> moment
+          field.beforeReceive = (values) => {
+            return (
+              values[field.name] &&
+              (typeof values[field.name] === 'number'
+                ? moment(values[field.name])
+                : moment(values[field.name], format))
+            );
           };
-        };
+        }
+        if (!field.transform) {
+          // moment- > string
+          field.transform = (values) => {
+            const dateMoment = values[field.name];
+            return {
+              [field.name]: dateMoment?.format(format),
+            };
+          };
+        }
       }
-    }
-    // 日期区间格式转换默认帮处理下
-    if (['RangePicker', 'TimeRange'].includes(field.type)) {
-      // 没有配置nameAlise不做处理
-      if (!Array.isArray(field.nameAlise)) {
-        return;
-      }
-      const format =
-        field.props.format ||
-        (field.type === 'RangePicker' ? 'YYYY-MM-DD' : 'hh:mm:ss');
-      const startName = field.nameAlise?.[0];
-      const endName = field.nameAlise?.[1];
-      if (!field.beforeReceive) {
-        field.beforeReceive = (values) => {
-          let start, end;
-          if (values[startName]) {
-            start =
-              typeof values[startName] === 'number'
-                ? moment(values[startName])
-                : moment(values[startName], format);
-          }
-          if (values[endName]) {
-            end =
-              typeof values[endName] === 'number'
-                ? moment(values[endName])
-                : moment(values[endName], format);
-          }
-          return [start, end];
-        };
-      }
-      if (!field.transform) {
-        // moment- > string
-        field.transform = (values) => {
-          const dateMoment = values[field.name];
-          return dateMoment
-            ? {
-                [startName]: dateMoment?.[0]
-                  ? dateMoment[0].format(format)
-                  : undefined,
-                [endName]: dateMoment?.[1]
-                  ? dateMoment[1].format(format)
-                  : undefined,
-              }
-            : {
-                [startName]: undefined,
-                [endName]: undefined,
-              };
-        };
+      // 日期区间格式转换默认帮处理下
+      if (['RangePicker', 'TimeRange'].includes(field.type)) {
+        // 没有配置nameAlise不做处理
+        if (!Array.isArray(field.nameAlise)) {
+          return;
+        }
+        const format =
+          field.props.format ||
+          (field.type === 'RangePicker' ? 'YYYY-MM-DD' : 'hh:mm:ss');
+        const startName = field.nameAlise?.[0];
+        const endName = field.nameAlise?.[1];
+        if (!field.beforeReceive) {
+          field.beforeReceive = (values) => {
+            let start;
+            let end;
+            if (values[startName]) {
+              start =
+                typeof values[startName] === 'number'
+                  ? moment(values[startName])
+                  : moment(values[startName], format);
+            }
+            if (values[endName]) {
+              end =
+                typeof values[endName] === 'number'
+                  ? moment(values[endName])
+                  : moment(values[endName], format);
+            }
+            return [start, end];
+          };
+        }
+        if (!field.transform) {
+          // moment- > string
+          field.transform = (values) => {
+            const dateMoment = values[field.name];
+            return dateMoment
+              ? {
+                  [startName]: dateMoment?.[0]
+                    ? dateMoment[0].format(format)
+                    : undefined,
+                  [endName]: dateMoment?.[1]
+                    ? dateMoment[1].format(format)
+                    : undefined,
+                }
+              : {
+                  [startName]: undefined,
+                  [endName]: undefined,
+                };
+          };
+        }
       }
     }
   });
@@ -312,6 +315,7 @@ export const getCombination = (
     name: string;
     form: CoreFormInstance;
     initialValues: object;
+    formConfig: FormConfigProps;
   },
   combination = {},
 ) => {
@@ -335,7 +339,12 @@ export const getCombination = (
           : field.props?.children;
       // 格式处理下
       if (typeof field.props?.children === 'function') {
-        tranfromSchema(childrenFields, options.name, field.props.column);
+        tranfromSchema(
+          childrenFields,
+          options.name,
+          field.props.column,
+          options.formConfig,
+        );
       }
       combination[field.name] = {}; // 创建容器
       // 递归处理下
@@ -367,6 +376,7 @@ export const parseBeforeReceive = (
     name: string;
     form: CoreFormInstance;
     initialValues: object;
+    formConfig: FormConfigProps;
   },
   parseValue = {},
 ) => {
@@ -385,7 +395,12 @@ export const parseBeforeReceive = (
           : field.props?.children;
       // 格式处理下
       if (typeof field.props?.children === 'function') {
-        tranfromSchema(childrenFields, options.name, field.props.column);
+        tranfromSchema(
+          childrenFields,
+          options.name,
+          field.props.column,
+          options.formConfig,
+        );
       }
       return parseBeforeReceive(
         values[field.name] || {},

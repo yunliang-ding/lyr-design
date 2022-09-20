@@ -21,7 +21,7 @@ nav:
 
 ## 安装
 
-组件库本身依赖 ant design，使用需要同时安装 antd，在 src/global.less 中全量引入 antd less 文件
+> 组件库本身依赖 ant design，使用需要同时安装 antd，在 src/global.less 中全量引入 antd less 文件
 
 ```shell
 npm install react-core-form --save
@@ -130,49 +130,55 @@ export default () => {
 ## Form 默认配置
 
 ```ts
-export interface FormConfigProps {
-  /** 默认计数输入框最大长度 */
-  defaultInputMaxLength?: number;
+/** 默认配置 */
+export const defaultFormConfig: FormConfigProps = {
+  /** 默认输入框最大长度 */
+  defaultInputMaxLength: 64,
+  /** 是否开启自动填充 placeholder */
+  defaultFillPlaceholder: true,
+  /** 是否开启自动清空 */
+  defaultOpenAllowClear: true,
   /** 是否自动为选择器挂载Popup容器 */
-  autoSetPopupContainer?: boolean;
+  autoSetPopupContainer: true,
   /** 是否支持自动转换日期选择器moment和string */
-  autoTransfromDatePicker?: boolean;
-  /** 是否默认开启选择器模糊搜索功能 */
-  autoSelectSearch?: boolean;
-}
+  autoTransfromDatePicker: true,
+  /** 输入框失去焦点自动清除前后空格 */
+  autoTrimInputSpaceOnBlur: true,
+};
 ```
 
 ## 配置说明
 
-```
-  我们将模型转为Jsx的过程中会做一些默认处理，减少配置，如下
-```
+> 我们将模型转为 Jsx 的过程中会做一些默认处理，减少配置，如下
 
-- 默认为 Input 设置最大长度 `(默认 defaultInputMaxLength = 64)`
+- 默认为 Input 设置最大长度 64
+- 默认为 Input 失去焦点自动 trim
 - 默认输入框的 placeholder === 请输入 + label
 - 默认下拉选择的 placeholder === 请选择 + label
 - 默认输入框、选择框默认开启 allowClear
 - 设置了 required: true === rules:[{required: true, message: label + 不能为空}] 、如果配置了 rules、则会在 rules 里面插入该规则
-- 涉及到下拉容器组件统一设置了 getPopupContainer 指向到父节点，在设置了 overflow: auto 的容器内滑动不会偏移位置 `(默认开启 autoSetPopupContainer)`
-- 对于下拉选组件，配置了 showSearch 即可实现模糊查询的功能不需要设置 filterOption `（默认开启 autoSelectSearch）`
-- 对于时间、日期选择器，会自动提交进行 moment 和 string 的转化。不需要做额外处理 （`默认开启 autoTransfromDatePicker）`
+- 涉及到下拉容器组件统一设置了 getPopupContainer 指向到父节点，在设置了 overflow: auto 的容器内滑动不会偏移位置
+- 对于下拉选组件，配置了 showSearch 即可实现模糊查询的功能不需要设置 filterOption
+- 对于时间、日期选择器，会自动提交进行 moment 和 string 的转化。不需要做额外处理
 
-## 配置默认属性
+## 全局配置拦截
 
-```
- 通常组件在接入到项目中，会再封装一层便于对组件的属性统一拦截等，组件库提供全局配置属性，可以在不封装的前期下完成该操作
-```
+> 通常组件在接入到项目中，会再封装一层便于对组件的属性统一拦截等，组件库提供全局配置拦截方案，可以在不封装的前期下完成该操作
 
 ```html
 <script>
   // 设置默认配置
   window['react-core-form-config'] = {
-    Form: {},
-    Table: {},
+    Form: {
+      defaultInputMaxLength: 128,
+    },
+    Table: {
+      autoNo: true,
+    },
     DrawerForm: {
       maskClosable: false,
     },
-    // 支持如下函数配置，可拦截 props 处理
+    // 同时支持函数配置，可拦截 props 处理
     // DrawerForm: (props) => {
     //   return {
     //     maskClosable: props.onSubmit === undefined, // 没有提交的抽屉支持管理关闭

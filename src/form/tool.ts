@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import { AsyncOptionsCache } from '@/util';
 import { cloneDeep } from 'lodash';
 import { getCombination, parseBeforeReceive, scrollToElement } from './util';
@@ -15,6 +16,7 @@ export const expansionInstanceMethod = ({
   setSpin,
   forceRender,
   onChange,
+  formConfig,
 }) => {
   Object.assign(form, {
     ...antdForm,
@@ -27,6 +29,7 @@ export const expansionInstanceMethod = ({
         name,
         form,
         initialValues,
+        formConfig,
       });
     },
     /** 新增setValues、处理beforeReceive等逻辑 */
@@ -35,6 +38,7 @@ export const expansionInstanceMethod = ({
         name,
         form,
         initialValues,
+        formConfig,
       });
       antdForm.setFieldsValue(values);
     },
@@ -54,6 +58,7 @@ export const expansionInstanceMethod = ({
           name,
           form,
           initialValues,
+          formConfig,
         });
       } catch (errorInfo) {
         // 开启自动定位到第一个校验异常的位置

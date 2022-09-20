@@ -30,13 +30,12 @@ export default ({
   /** form-props */
   initialValues = {},
   onValuesChange = () => {},
-  onMount = () => {},
   locale = zhCN,
   getScrollContainer, // 设置滚动容器
   scrollToFirstError = true, // 默认开启滚动到第一个错误的位置
   layout = 'vertical', // 默认使用垂直布局
   readOnlyEmptyValueNode = '-',
-  formConfig,
+  formConfig = {},
   forceRender,
   name,
   ...rest
@@ -79,6 +78,7 @@ export default ({
     name,
     form,
     initialValues,
+    formConfig,
   });
   // 获取 formList api
   const actionRef = useRef({});
@@ -119,6 +119,7 @@ export default ({
     setSpin,
     forceRender,
     onChange,
+    formConfig,
   });
   /** render FieldSet children */
   const RenderFieldSet = ({ field }) => {
@@ -129,7 +130,7 @@ export default ({
         : field.props?.children;
     // 格式处理下
     if (typeof field.props?.children === 'function') {
-      tranfromSchema(childrenFields, name, field.props.column);
+      tranfromSchema(childrenFields, name, field.props.column, formConfig);
     }
     return childrenFields ? (
       <Grid
@@ -166,7 +167,12 @@ export default ({
               : field.props?.children;
           // 格式处理下
           if (typeof field.props?.children === 'function') {
-            tranfromSchema(childrenFields, name, field.props.column);
+            tranfromSchema(
+              childrenFields,
+              name,
+              field.props.column,
+              formConfig,
+            );
           }
           const FormItem = (
             <FieldSet
