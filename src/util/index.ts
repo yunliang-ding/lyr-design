@@ -121,20 +121,8 @@ export const cloneDeep = (source) => {
   });
 };
 
-export const getDefaultPropsByConfig = (key, props) => {
-  const defaultConfig = window['react-core-form-config'] || {
-    Form: {
-      formConfig: {
-        defaultInputMaxLength: 64,
-        defaultFillPlaceholder: true,
-        defaultOpenAllowClear: true,
-        autoSetPopupContainer: true,
-        autoTransfromDatePicker: true,
-        autoTrimInputSpaceOnBlur: true,
-      },
-    },
-  };
-  const config = defaultConfig?.[key];
+export const getDefaultPropsByConfig = (key, props = {}) => {
+  const config = window['react-core-form-config']?.[key];
   const defaultProps = config
     ? typeof config === 'function'
       ? config(props)

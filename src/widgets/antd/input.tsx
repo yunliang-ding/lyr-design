@@ -10,11 +10,11 @@ const _Input_ = ({ readOnlyEmptyValueNode = '-', ...props }) => {
       </span>
     );
   }
-  const { formConfig } = getDefaultPropsByConfig('Form', {});
+  const { autoTrimInputSpaceOnBlur } = getDefaultPropsByConfig('Antd', {});
   return (
     <Input
       onBlur={(e) => {
-        if (formConfig?.autoTrimInputSpaceOnBlur) {
+        if (autoTrimInputSpaceOnBlur) {
           props.onChange(e.target.value?.trim?.());
         }
       }}

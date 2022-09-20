@@ -169,6 +169,10 @@ export const defaultFormConfig: FormConfigProps = {
 <script>
   // 设置默认配置
   window['react-core-form-config'] = {
+    Antd: {
+      // 配置默认Input输入框onBlur自动trim去除前后空格
+      autoTrimInputSpaceOnBlur: true,
+    },
     Form: {
       defaultInputMaxLength: 128,
     },

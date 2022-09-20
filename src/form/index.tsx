@@ -2,9 +2,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Form from './form';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { CoreFormProps, FormRefInstance } from './type.form';
+import { CoreFormProps, FormConfigProps, FormRefInstance } from './type.form';
 import { SchemaProps } from './type.item';
 import { AsyncOptionsCache, getDefaultPropsByConfig, uuid } from '@/util';
+
+/** 默认配置 */
+export const defaultFormConfig: FormConfigProps = {
+  defaultInputMaxLength: 64,
+  defaultFillPlaceholder: true,
+  defaultOpenAllowClear: true,
+  autoSetPopupContainer: true,
+  autoTransfromDatePicker: true,
+};
 
 /** 组件入口 */
 const CoreForm = (props: CoreFormProps) => {
@@ -45,7 +54,7 @@ const CoreForm = (props: CoreFormProps) => {
       key={reload}
       form={form}
       name={name}
-      formConfig={formConfig}
+      formConfig={Object.assign({}, defaultFormConfig, formConfig)}
       initialValues={initialValues}
       forceRender={forceRender}
     />
