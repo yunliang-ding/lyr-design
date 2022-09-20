@@ -9,6 +9,8 @@ export interface TableInstance {
   onReset: Function;
   /** 刷新当前页面 */
   onRefresh: Function;
+  /** 设置选中的行 */
+  setSelectRow: Function;
   /** 获取选中的行 */
   getSelectRow: Function;
 }

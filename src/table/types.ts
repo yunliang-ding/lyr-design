@@ -1,7 +1,7 @@
 import { SearchProps } from '../search/types';
 import { AlertProps, TableProps as AntdTableProps } from 'antd';
 import { ColumnType, TableRowSelection } from 'antd/es/table/interface';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { TableColumnType } from './type.column';
 import { TableInstance } from './table.instance';
 import { PaginationConfig } from './type.pagination';
@@ -119,6 +119,8 @@ export interface TableProps
   onDragDone?: (data) => any;
   /** 开启自增序号 */
   autoNo?: boolean;
+  /** 主容器样式 */
+  style?: CSSProperties;
   /**
    * 多选保留选择历史
    * @default true

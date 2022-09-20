@@ -34,6 +34,7 @@ export default ({
   table = Table.useTable()[0],
   tableId,
   drag = false,
+  style = {},
   onDragDone = () => {},
   dragColumn = {},
   autoNo = false,
@@ -235,6 +236,7 @@ export default ({
       onSearch,
       onReset,
       onRefresh: query,
+      setSelectRow: setInnerSelectedRowKeys,
       getSelectRow: () => {
         return innerSelectedRow;
       },
@@ -355,7 +357,7 @@ export default ({
           form={form}
         />
       )}
-      <div className={`core-form-table core-form-table-${size}`}>
+      <div className={`core-form-table core-form-table-${size}`} style={style}>
         <ToolBar
           title={title}
           size={size}
