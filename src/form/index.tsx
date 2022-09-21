@@ -4,7 +4,7 @@ import Form from './form';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { CoreFormProps, FormConfigProps, FormRefInstance } from './type.form';
 import { SchemaProps } from './type.item';
-import { AsyncOptionsCache, getDefaultPropsByConfig, uuid } from '@/util';
+import { AsyncOptionsCache, getGlobalConfigByName, uuid } from '@/util';
 import { merge } from 'lodash';
 
 /** 默认配置 */
@@ -18,14 +18,20 @@ export const defaultFormConfig: FormConfigProps = {
 
 /** 组件入口 */
 const CoreForm = (props: CoreFormProps) => {
+  const globalConfig = getGlobalConfigByName('Form', props);
   const {
     form = CoreForm.useForm()[0],
     onMount = () => {},
     formConfig,
     ...rest
-  } = merge(
-    { formConfig: defaultFormConfig },
-    getDefaultPropsByConfig('Form', props),
+  } = Object.assign(
+    globalConfig,
+    {
+      formConfig: {
+        ...defaultFormConfig,
+        ...globalConfig.formConfig,
+      },
+    },
     props,
   );
   const [reload, setReload] = useState(Math.random());

@@ -1,4 +1,4 @@
-import { getDefaultPropsByConfig } from '@/util';
+import { getGlobalConfigByName } from '@/util';
 import { Input } from 'antd';
 
 const _Input_ = ({ readOnlyEmptyValueNode = '-', ...props }) => {
@@ -10,7 +10,7 @@ const _Input_ = ({ readOnlyEmptyValueNode = '-', ...props }) => {
       </span>
     );
   }
-  const { autoTrimInputSpaceOnBlur } = getDefaultPropsByConfig('Antd', {});
+  const { autoTrimInputSpaceOnBlur } = getGlobalConfigByName('Antd', {});
   return (
     <Input
       onBlur={(e) => {

@@ -5,8 +5,49 @@ import { PaginationConfig } from './type.pagination';
 import { TableInstance } from './table.instance';
 import zhCN from 'antd/lib/locale/zh_CN';
 import Table from './table';
-import { getDefaultPropsByConfig } from '@/util';
-import { merge } from 'lodash';
+import { getGlobalConfigByName } from '@/util';
+
+const CoreTable = (props: TableProps) => {
+  const globalConfig = getGlobalConfigByName('Table', props);
+  const {
+    emptyNode = '-',
+    defaultTools = [
+      {
+        type: 'Refresh',
+      },
+      {
+        type: 'AdjustSize',
+      },
+      {
+        type: 'FilterColumns',
+      },
+    ],
+    locale = zhCN,
+    ...rest
+  } = Object.assign(globalConfig, props);
+  return (
+    <Table
+      emptyNode={emptyNode}
+      locale={locale}
+      defaultTools={defaultTools}
+      {...rest}
+    />
+  );
+};
+
+CoreTable.useTable = () => {
+  return [
+    useRef<TableInstance>({
+      getDataSource: () => [],
+      getParams: () => {},
+      onSearch: (payload?) => {},
+      onReset: () => {},
+      onRefresh: () => {},
+      setSelectRow: () => [],
+      getSelectRow: () => [],
+    }).current,
+  ];
+};
 
 /** 本地缓存 */
 export const updateLocalFilter = (tableId, columns?, filterIds?, pageSize?) => {
@@ -41,47 +82,6 @@ export const defaultPaginationConfig: PaginationConfig = {
   showSizeChanger: true,
   showQuickJumper: true,
   showTotal: (total: number) => `共 ${total} 条`,
-};
-
-const CoreTable = (props: TableProps) => {
-  const {
-    emptyNode = '-',
-    defaultTools = [
-      {
-        type: 'Refresh',
-      },
-      {
-        type: 'AdjustSize',
-      },
-      {
-        type: 'FilterColumns',
-      },
-    ],
-    locale = zhCN,
-    ...rest
-  } = merge(getDefaultPropsByConfig('Table', props), props);
-  return (
-    <Table
-      emptyNode={emptyNode}
-      locale={locale}
-      defaultTools={defaultTools}
-      {...rest}
-    />
-  );
-};
-
-CoreTable.useTable = () => {
-  return [
-    useRef<TableInstance>({
-      getDataSource: () => [],
-      getParams: () => {},
-      onSearch: (payload?) => {},
-      onReset: () => {},
-      onRefresh: () => {},
-      setSelectRow: () => [],
-      getSelectRow: () => [],
-    }).current,
-  ];
 };
 
 export default CoreTable;

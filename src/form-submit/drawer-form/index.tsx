@@ -1,13 +1,13 @@
 import { Drawer } from 'antd';
 import { useMemo, useState } from 'react';
-import { getDefaultPropsByConfig, uuid } from '@/util';
+import { getGlobalConfigByName, uuid } from '@/util';
 import { Form } from '@/index';
 import { DrawerFormProps } from '../types';
 import Footer from '../footer';
-import { merge } from 'lodash';
 import './index.less';
 
 export default (props: DrawerFormProps) => {
+  const globalConfig = getGlobalConfigByName('DrawerForm', props);
   const {
     drawerProps = {},
     form = Form.useForm()[0],
@@ -25,7 +25,16 @@ export default (props: DrawerFormProps) => {
     render,
     footerRender,
     ...rest
-  } = merge(getDefaultPropsByConfig('DrawerForm', props), props);
+  } = Object.assign(
+    globalConfig,
+    {
+      drawerProps: {
+        ...props.drawerProps,
+        ...globalConfig.drawerProps,
+      },
+    },
+    props,
+  );
   const [value, onChange] = useState(rest.initialValues);
   const _actions = actions || [
     {
