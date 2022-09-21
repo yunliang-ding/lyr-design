@@ -72,7 +72,7 @@ export const beforeFieldRender = (field: any, form: any) => {
           );
         },
       });
-    } else {
+    } else if (field.rules.every((i) => i.required !== true)) {
       field.rules.push({
         required: true,
         message: `${field.label || ''}不能为空`,

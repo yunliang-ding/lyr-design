@@ -142,8 +142,6 @@ export const defaultFormConfig: FormConfigProps = {
   autoSetPopupContainer: true,
   /** 是否支持自动转换日期选择器moment和string */
   autoTransfromDatePicker: true,
-  /** 输入框失去焦点自动清除前后空格 */
-  autoTrimInputSpaceOnBlur: true,
 };
 ```
 
@@ -152,11 +150,10 @@ export const defaultFormConfig: FormConfigProps = {
 > 我们将模型转为 Jsx 的过程中会做一些默认处理，减少配置，如下
 
 - 默认为 Input 设置最大长度 64
-- 默认为 Input 失去焦点自动 trim
 - 默认输入框的 placeholder === 请输入 + label
 - 默认下拉选择的 placeholder === 请选择 + label
 - 默认输入框、选择框默认开启 allowClear
-- 设置了 required: true === rules:[{required: true, message: label + 不能为空}] 、如果配置了 rules、则会在 rules 里面插入该规则
+- 设置了 required: true === rules:[{required: true, message: label + 不能为空}] 、如果配置了 rules 且没有设置必填、则会在 rules 里面插入该规则
 - 涉及到下拉容器组件统一设置了 getPopupContainer 指向到父节点，在设置了 overflow: auto 的容器内滑动不会偏移位置
 - 对于下拉选组件，配置了 showSearch 即可实现模糊查询的功能不需要设置 filterOption
 - 对于时间、日期选择器，会自动提交进行 moment 和 string 的转化。不需要做额外处理
