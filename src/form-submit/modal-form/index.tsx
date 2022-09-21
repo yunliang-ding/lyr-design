@@ -132,10 +132,7 @@ export default ({
   }
   return (
     <Modal
-      {...{
-        getContainer: false, // 适配全局loading
-        ...modalProps,
-      }}
+      {...modalProps}
       className={_className.join(' ')}
       width={width}
       visible={visible}

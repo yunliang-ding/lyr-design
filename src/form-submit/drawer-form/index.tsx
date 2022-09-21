@@ -25,16 +25,12 @@ export default (props: DrawerFormProps) => {
     render,
     footerRender,
     ...rest
-  } = Object.assign(
-    globalConfig,
-    {
-      drawerProps: {
-        ...props.drawerProps,
-        ...globalConfig.drawerProps,
-      },
+  } = Object.assign({}, props, globalConfig, {
+    drawerProps: {
+      ...props.drawerProps, // 传入
+      ...globalConfig.drawerProps, // 全局配置
     },
-    props,
-  );
+  });
   const [value, onChange] = useState(rest.initialValues);
   const _actions = actions || [
     {
@@ -98,10 +94,7 @@ export default (props: DrawerFormProps) => {
   }
   return (
     <Drawer
-      {...{
-        getContainer: false, // 适配全局loading
-        ...drawerProps,
-      }}
+      {...drawerProps}
       className={_className.join(' ')}
       width={width}
       title={title}

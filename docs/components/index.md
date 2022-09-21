@@ -160,31 +160,35 @@ export const defaultFormConfig: FormConfigProps = {
 
 ## 全局配置拦截
 
-> 通常组件在接入到项目中，会再封装一层便于对组件的属性统一拦截等，组件库提供全局配置拦截方案，可以在不封装的前期下完成该操作
+> 通常组件在接入到项目中，会再封装一层便于对组件的属性统一拦截等，组件库提供全局配置拦截方案，可以在不封装的前期下完成该操作 `全局配置具有最高的优先级`
 
 ```html
 <script>
-  // 设置默认配置
   window['react-core-form-config'] = {
     Antd: {
-      // 配置默认Input输入框onBlur自动trim去除前后空格
-      autoTrimInputSpaceOnBlur: true,
+      autoTrimInputSpaceOnBlur: true, // 输入框onBlur自动trim去除前后空格
     },
-    Form: {
-      defaultInputMaxLength: 128,
+    Form: ({ schema }) => {
+      return {
+        schema: [
+          {
+            type: () => '--我是提前拦截下注入的--',
+          },
+          ...schema,
+        ],
+        formConfig: {
+          defaultInputMaxLength: 128,
+        },
+      };
     },
     Table: {
       autoNo: true,
     },
     DrawerForm: {
-      maskClosable: false,
+      drawerProps: {
+        maskClosable: false,
+      },
     },
-    // 同时支持函数配置，可拦截 props 处理
-    // DrawerForm: (props) => {
-    //   return {
-    //     maskClosable: props.onSubmit === undefined, // 没有提交的抽屉支持管理关闭
-    //   };
-    // },
   };
 </script>
 ```

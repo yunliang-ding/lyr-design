@@ -5,7 +5,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { CoreFormProps, FormConfigProps, FormRefInstance } from './type.form';
 import { SchemaProps } from './type.item';
 import { AsyncOptionsCache, getGlobalConfigByName, uuid } from '@/util';
-import { merge } from 'lodash';
 
 /** 默认配置 */
 export const defaultFormConfig: FormConfigProps = {
@@ -24,16 +23,13 @@ const CoreForm = (props: CoreFormProps) => {
     onMount = () => {},
     formConfig,
     ...rest
-  } = Object.assign(
-    globalConfig,
-    {
-      formConfig: {
-        ...defaultFormConfig,
-        ...globalConfig.formConfig,
-      },
+  } = Object.assign({}, props, globalConfig, {
+    formConfig: {
+      ...defaultFormConfig, // 默认配置
+      ...props.formConfig, // 传入的props
+      ...globalConfig.formConfig, // 全局配置
     },
-    props,
-  );
+  });
   const [reload, setReload] = useState(Math.random());
   const [initialValues, setInitialValues] = useState(rest.initialValues);
   const forceRender = (values) => {

@@ -96,7 +96,6 @@ export const tranfromSchema = (
   column = 1,
   formConfig = defaultFormConfig,
 ) => {
-  console.log(formConfig);
   schema?.forEach((field: any) => {
     // 兼容下
     if (field.props === undefined) {

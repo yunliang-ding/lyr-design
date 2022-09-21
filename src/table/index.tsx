@@ -24,7 +24,7 @@ const CoreTable = (props: TableProps) => {
     ],
     locale = zhCN,
     ...rest
-  } = Object.assign(globalConfig, props);
+  } = Object.assign({}, props, globalConfig);
   return (
     <Table
       emptyNode={emptyNode}
