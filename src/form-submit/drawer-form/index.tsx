@@ -4,6 +4,7 @@ import { getDefaultPropsByConfig, uuid } from '@/util';
 import { Form } from '@/index';
 import { DrawerFormProps } from '../types';
 import Footer from '../footer';
+import { merge } from 'lodash';
 import './index.less';
 
 export default (props: DrawerFormProps) => {
@@ -24,7 +25,7 @@ export default (props: DrawerFormProps) => {
     render,
     footerRender,
     ...rest
-  } = Object.assign(getDefaultPropsByConfig('DrawerForm', props), props);
+  } = merge(getDefaultPropsByConfig('DrawerForm', props), props);
   const [value, onChange] = useState(rest.initialValues);
   const _actions = actions || [
     {

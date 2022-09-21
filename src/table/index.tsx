@@ -6,6 +6,7 @@ import { TableInstance } from './table.instance';
 import zhCN from 'antd/lib/locale/zh_CN';
 import Table from './table';
 import { getDefaultPropsByConfig } from '@/util';
+import { merge } from 'lodash';
 
 /** 本地缓存 */
 export const updateLocalFilter = (tableId, columns?, filterIds?, pageSize?) => {
@@ -58,7 +59,7 @@ const CoreTable = (props: TableProps) => {
     ],
     locale = zhCN,
     ...rest
-  } = Object.assign(getDefaultPropsByConfig('Table', props), props);
+  } = merge(getDefaultPropsByConfig('Table', props), props);
   return (
     <Table
       emptyNode={emptyNode}
