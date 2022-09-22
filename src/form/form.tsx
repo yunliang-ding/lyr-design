@@ -55,7 +55,7 @@ export default ({
     return newSchema;
   }, [schema]); // cloneDeep 避免被污染
   // 默认只读模式 保持行 10px 间隙
-  if (readOnly) {
+  if (readOnly && layout !== 'vertical') {
     gridStyle.rowGap = gridStyle.rowGap || 10;
   }
   /**

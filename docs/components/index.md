@@ -131,14 +131,13 @@ export default () => {
 
 > 我们将模型转为 Jsx 的过程中会做一些默认处理，减少配置，如下
 
-- 默认为 Input 设置最大长度 64、且开启计数器
-- 默认输入框的 placeholder === 请输入 + label
-- 默认下拉选择的 placeholder === 请选择 + label
-- 默认输入框、选择框默认开启 allowClear
-- 设置了 required: true === rules:[{required: true, message: label + 不能为空}] 、如果配置了 rules 且没有设置必填、则会在 rules 里面插入该规则
-- 涉及到下拉容器组件统一设置了 getPopupContainer 指向到父节点，在设置了 overflow: auto 的容器内滑动不会偏移位置
-- 对于下拉选组件，配置了 showSearch 即可实现模糊查询的功能不需要设置 filterOption
-- 对于时间、日期选择器，会自动提交进行 moment 和 string 的转化。不需要做额外处理
+- Input 开启计数器，最大长度 `64`
+- 输入框 placeholder `请输入${label}`，下拉框 placeholder `请选择${label}`
+- 输入框、选择框开启 `allowClear`
+- FormItem required: true 等于 rules:[{required: true, message: `${label}不能为空`}]，如果配置了 ules 且没有设置必填则会在 rules 里面插入该规则
+- 下拉容器组件设置 getPopupContainer 指向到父节点
+- 下拉选配置了 showSearch 可实现模糊查询的功能不需要设置 filterOption
+- 对于时间日期选择器，会自动进行 moment 和 string 的转化
 
 ## 全局配置拦截
 
