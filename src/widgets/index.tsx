@@ -91,7 +91,7 @@ export default (field: any, formInstance: any = {}, widgets = {}) => {
   if (['FormList', 'TableList'].includes(field.type)) {
     ExpProps.actionRef = field.actionRef;
     ExpProps.event = field.event;
-    ExpProps.widgets = field.widgets;
+    ExpProps.widgets = widgets;
   }
   return (
     <Component
