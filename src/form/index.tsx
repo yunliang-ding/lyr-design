@@ -2,18 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Form from './form';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { CoreFormProps, FormConfigProps, FormRefInstance } from './type.form';
+import { CoreFormProps, FormRefInstance } from './type.form';
 import { SchemaProps } from './type.item';
-import { AsyncOptionsCache, getGlobalConfigByName, uuid } from '@/util';
-
-/** 默认配置 */
-export const defaultFormConfig: FormConfigProps = {
-  defaultInputMaxLength: 64,
-  defaultFillPlaceholder: true,
-  defaultOpenAllowClear: true,
-  autoSetPopupContainer: true,
-  autoTransfromDatePicker: true,
-};
+import { AsyncOptionsCache, uuid } from '@/util';
+import { getGlobalConfigByName } from '@/config';
 
 /** 组件入口 */
 const CoreForm = (props: CoreFormProps) => {
@@ -21,15 +13,8 @@ const CoreForm = (props: CoreFormProps) => {
   const {
     form = CoreForm.useForm()[0],
     onMount = () => {},
-    formConfig,
     ...rest
-  } = Object.assign({}, props, globalConfig, {
-    formConfig: {
-      ...defaultFormConfig, // 默认配置
-      ...props.formConfig, // 传入的props
-      ...globalConfig.formConfig, // 全局配置
-    },
-  });
+  } = Object.assign({}, props, globalConfig);
   const [reload, setReload] = useState(Math.random());
   const [initialValues, setInitialValues] = useState(rest.initialValues);
   const forceRender = (values) => {
@@ -61,7 +46,6 @@ const CoreForm = (props: CoreFormProps) => {
       key={reload}
       form={form}
       name={name}
-      formConfig={Object.assign({}, defaultFormConfig, formConfig)}
       initialValues={initialValues}
       forceRender={forceRender}
     />

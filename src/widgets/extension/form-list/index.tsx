@@ -24,7 +24,6 @@ export default ({
     },
     column: 2,
   },
-  formConfig,
 }: any) => {
   // 是否可以操作
   const notOperation = !operation || readOnly || disabled; // 不可操作的标识
@@ -89,7 +88,6 @@ export default ({
                           formListName={name} // 子表单的名字
                           fieldKey={[item.fieldKey, _field.name]}
                           key={_field.name || _field.key}
-                          formConfig={formConfig}
                         />
                       );
                     })}

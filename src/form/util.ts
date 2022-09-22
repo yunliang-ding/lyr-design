@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
+import { getGlobalConfigByName } from '@/config';
 import moment from 'moment';
-import { defaultFormConfig } from '.';
-import { FormConfigProps } from './type.form';
 import { CoreFormInstance } from './type.instance';
 
 // 表单项是否弹出层
@@ -90,12 +89,17 @@ export const beforeFieldRender = (field: any, form: any) => {
 };
 
 /** 前置格式转化下、默认处理一些逻辑 */
-export const tranfromSchema = (
-  schema: any[],
-  name: string,
-  column = 1,
-  formConfig = defaultFormConfig,
-) => {
+export const tranfromSchema = (schema: any[], name: string, column = 1) => {
+  // 读取全局Antd配置
+  const {
+    defaultInputMaxLength = 64,
+    defaultOpenAllowClear = true,
+    defaultFillPlaceholder = true,
+    defaultShowInputCount = true,
+    autoSetPopupContainer = true,
+    autoTransfromDatePicker = true,
+  } = getGlobalConfigByName('Antd');
+  /** 开始扩展 */
   schema?.forEach((field: any) => {
     // 兼容下
     if (field.props === undefined) {
@@ -103,30 +107,36 @@ export const tranfromSchema = (
     }
     if (field.type === 'FieldSet' && Array.isArray(field.props.children)) {
       // 递归下
-      return tranfromSchema(field.props.children, name, column, formConfig);
+      return tranfromSchema(field.props.children, name, column);
     }
     if (field.type === 'FormList' && Array.isArray(field.props.schema)) {
       // 递归下
-      tranfromSchema(field.props.schema, name, undefined, formConfig);
+      tranfromSchema(field.props.schema, name, undefined);
     }
     // Input默认64长度限制
     if (field.type === 'Input') {
-      field.props.maxLength =
-        field.props.maxLength || formConfig?.defaultInputMaxLength;
+      field.props.maxLength = field.props.maxLength || defaultInputMaxLength;
     }
     // 默认开启allowClear和设置placeholder
     if (['Input', 'InputNumber', 'TextArea', 'Password'].includes(field.type)) {
       if (!['InputNumber'].includes(field.type)) {
-        if (formConfig.defaultOpenAllowClear) {
+        if (defaultOpenAllowClear) {
           field.props.allowClear =
             field.props.allowClear === undefined
               ? true
               : field.props.allowClear;
         }
       }
-      if (formConfig.defaultFillPlaceholder) {
+      if (defaultFillPlaceholder) {
         field.props.placeholder =
           field.props.placeholder || `请输入${field.label || ''}`;
+      }
+      if (
+        defaultShowInputCount &&
+        field.type === 'Input' &&
+        field.props.showCount === undefined
+      ) {
+        field.props.showCount = true;
       }
     }
     // 处理popup类挂载容器
@@ -136,7 +146,7 @@ export const tranfromSchema = (
         // 处理FormList属性名是数组的问题
         popupName = popupName.join('_');
       }
-      if (formConfig.defaultOpenAllowClear) {
+      if (defaultOpenAllowClear) {
         field.props.allowClear =
           field.props.allowClear === undefined ? true : field.props.allowClear;
       }
@@ -145,7 +155,7 @@ export const tranfromSchema = (
         field.props.placeholder =
           field.props.placeholder || `请选择${field.label || ''}`; // 默认提示
       }
-      if (formConfig.autoSetPopupContainer) {
+      if (autoSetPopupContainer) {
         // 生成挂载容器标识
         field.popupid = `${name}_${popupName}`;
         // 挂载到指定的popupid
@@ -205,7 +215,7 @@ export const tranfromSchema = (
         };
       }
     }
-    if (formConfig.autoTransfromDatePicker) {
+    if (autoTransfromDatePicker) {
       // 日期格式转换默认帮处理下
       if (['DatePicker', 'TimePicker'].includes(field.type)) {
         const format =
@@ -314,7 +324,6 @@ export const getCombination = (
     name: string;
     form: CoreFormInstance;
     initialValues: object;
-    formConfig: FormConfigProps;
   },
   combination = {},
 ) => {
@@ -338,12 +347,7 @@ export const getCombination = (
           : field.props?.children;
       // 格式处理下
       if (typeof field.props?.children === 'function') {
-        tranfromSchema(
-          childrenFields,
-          options.name,
-          field.props.column,
-          options.formConfig,
-        );
+        tranfromSchema(childrenFields, options.name, field.props.column);
       }
       combination[field.name] = {}; // 创建容器
       // 递归处理下
@@ -375,7 +379,6 @@ export const parseBeforeReceive = (
     name: string;
     form: CoreFormInstance;
     initialValues: object;
-    formConfig: FormConfigProps;
   },
   parseValue = {},
 ) => {
@@ -394,12 +397,7 @@ export const parseBeforeReceive = (
           : field.props?.children;
       // 格式处理下
       if (typeof field.props?.children === 'function') {
-        tranfromSchema(
-          childrenFields,
-          options.name,
-          field.props.column,
-          options.formConfig,
-        );
+        tranfromSchema(childrenFields, options.name, field.props.column);
       }
       return parseBeforeReceive(
         values[field.name] || {},

@@ -1,4 +1,4 @@
-import { getGlobalConfigByName } from '@/util';
+import { getGlobalConfigByName } from '@/config';
 import { Input } from 'antd';
 
 const _Input_ = ({ readOnlyEmptyValueNode = '-', ...props }) => {

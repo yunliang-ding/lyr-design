@@ -5,7 +5,7 @@ import { PaginationConfig } from './type.pagination';
 import { TableInstance } from './table.instance';
 import zhCN from 'antd/lib/locale/zh_CN';
 import Table from './table';
-import { getGlobalConfigByName } from '@/util';
+import { getGlobalConfigByName } from '@/config';
 
 const CoreTable = (props: TableProps) => {
   const globalConfig = getGlobalConfigByName('Table', props);

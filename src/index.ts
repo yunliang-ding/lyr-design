@@ -31,5 +31,8 @@ export { default as AnchorCardForm } from './anchor-card-form';
 /** 类型 */
 export type { SchemaProps, FieldProps } from './form/type.item';
 export type { TableProps } from './table/types';
+export type { CoreFormProps } from './form/type.form';
 export type { CoreFormInstance } from './form/type.instance';
 export type { DrawerFormProps, ModalFormProps } from './form-submit/types';
+/** 全局配置 */
+export { default as setGlobalConfig } from './config';

@@ -127,29 +127,11 @@ export default () => {
 };
 ```
 
-## Form 默认配置
-
-```ts
-/** 默认配置 */
-export const defaultFormConfig: FormConfigProps = {
-  /** 默认输入框最大长度 */
-  defaultInputMaxLength: 64,
-  /** 是否开启自动填充 placeholder */
-  defaultFillPlaceholder: true,
-  /** 是否开启自动清空 */
-  defaultOpenAllowClear: true,
-  /** 是否自动为选择器挂载Popup容器 */
-  autoSetPopupContainer: true,
-  /** 是否支持自动转换日期选择器moment和string */
-  autoTransfromDatePicker: true,
-};
-```
-
 ## 配置说明
 
 > 我们将模型转为 Jsx 的过程中会做一些默认处理，减少配置，如下
 
-- 默认为 Input 设置最大长度 64
+- 默认为 Input 设置最大长度 64、且开启计数器
 - 默认输入框的 placeholder === 请输入 + label
 - 默认下拉选择的 placeholder === 请选择 + label
 - 默认输入框、选择框默认开启 allowClear
@@ -162,35 +144,47 @@ export const defaultFormConfig: FormConfigProps = {
 
 > 通常组件在接入到项目中，会再封装一层便于对组件的属性统一拦截等，组件库提供全局配置拦截方案，可以在不封装的前期下完成该操作 `全局配置具有最高的优先级`
 
-```html
-<script>
-  window['react-core-form-config'] = {
-    Antd: {
-      autoTrimInputSpaceOnBlur: true, // 输入框onBlur自动trim去除前后空格
+```ts
+import { setGlobalConfig } from 'react-core-form';
+
+setGlobalConfig({
+  Antd: {
+    defaultInputMaxLength: 100,
+  },
+  Form: {
+    layout: 'vertical',
+  }
+  Table: {
+    autoNo: true,
+  },
+  DrawerForm: {
+    drawerProps: {
+      maskClosable: false,
     },
-    Form: ({ schema }) => {
-      return {
-        schema: [
-          {
-            type: () => '--我是提前拦截下注入的--',
-          },
-          ...schema,
-        ],
-        formConfig: {
-          defaultInputMaxLength: 128,
-        },
-      };
-    },
-    Table: {
-      autoNo: true,
-    },
-    DrawerForm: {
-      drawerProps: {
-        maskClosable: false,
-      },
-    },
+  },
+});
+
+interface GlobalConfigProps {
+  Antd?: {
+    /** 默认输入框最大长度 */
+    defaultInputMaxLength: number;
+    /** 是否开启自动填充 placeholder */
+    defaultFillPlaceholder: boolean;
+    /** 是否开启自动清空 */
+    defaultOpenAllowClear: boolean;
+    /** 是否自动为选择器挂载Popup容器 */
+    autoSetPopupContainer: boolean;
+    /** 是否支持自动转换日期选择器moment和string */
+    autoTransfromDatePicker: boolean;
+    /** 输入框失去焦点自动清除前后空格 */
+    autoTrimInputSpaceOnBlur: boolean;
+    /** 默认展示输入框的计数器 */
+    defaultShowInputCount: boolean;
   };
-</script>
+  Form?: ((props) => CoreFormProps) | CoreFormProps;
+  DrawerForm?: ((props) => DrawerFormProps) | DrawerFormProps;
+  Table?: ((props) => TableProps) | TableProps;
+}
 ```
 
 ## 高级用法

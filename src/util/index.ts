@@ -120,13 +120,3 @@ export const cloneDeep = (source) => {
     }
   });
 };
-
-export const getGlobalConfigByName = (key, props = {}) => {
-  const config = window['react-core-form-config']?.[key];
-  const defaultProps = config
-    ? typeof config === 'function'
-      ? config(props)
-      : config
-    : {};
-  return cloneDeep(defaultProps);
-};

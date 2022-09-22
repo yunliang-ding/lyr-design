@@ -35,7 +35,6 @@ export default ({
   scrollToFirstError = true, // 默认开启滚动到第一个错误的位置
   layout = 'vertical', // 默认使用垂直布局
   readOnlyEmptyValueNode = '-',
-  formConfig = {},
   forceRender,
   name,
   ...rest
@@ -52,7 +51,7 @@ export default ({
       typeof schema === 'function'
         ? cloneDeep(schema(form))
         : cloneDeep(schema);
-    tranfromSchema(newSchema, name, column, formConfig); // 内部转换下
+    tranfromSchema(newSchema, name, column); // 内部转换下
     return newSchema;
   }, [schema]); // cloneDeep 避免被污染
   // 默认只读模式 保持行 10px 间隙
@@ -78,7 +77,6 @@ export default ({
     name,
     form,
     initialValues,
-    formConfig,
   });
   // 获取 formList api
   const actionRef = useRef({});
@@ -119,7 +117,6 @@ export default ({
     setSpin,
     forceRender,
     onChange,
-    formConfig,
   });
   /** render FieldSet children */
   const RenderFieldSet = ({ field }) => {
@@ -130,7 +127,7 @@ export default ({
         : field.props?.children;
     // 格式处理下
     if (typeof field.props?.children === 'function') {
-      tranfromSchema(childrenFields, name, field.props.column, formConfig);
+      tranfromSchema(childrenFields, name, field.props.column);
     }
     return childrenFields ? (
       <Grid
@@ -167,12 +164,7 @@ export default ({
               : field.props?.children;
           // 格式处理下
           if (typeof field.props?.children === 'function') {
-            tranfromSchema(
-              childrenFields,
-              name,
-              field.props.column,
-              formConfig,
-            );
+            tranfromSchema(childrenFields, name, field.props.column);
           }
           const FormItem = (
             <FieldSet

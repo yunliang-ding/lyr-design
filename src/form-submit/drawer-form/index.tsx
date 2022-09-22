@@ -1,9 +1,10 @@
 import { Drawer } from 'antd';
 import { useMemo, useState } from 'react';
-import { getGlobalConfigByName, uuid } from '@/util';
+import { uuid } from '@/util';
 import { Form } from '@/index';
 import { DrawerFormProps } from '../types';
 import Footer from '../footer';
+import { getGlobalConfigByName } from '@/config';
 import './index.less';
 
 export default (props: DrawerFormProps) => {
