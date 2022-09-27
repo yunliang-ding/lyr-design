@@ -366,24 +366,20 @@ import React from 'react';
 import { CreateModal } from 'react-core-form';
 import { Button, message, Switch } from 'antd';
 
-const myModal = CreateModal({
-  title: '自定义渲染',
-  initialValues: {
-    userName: '测试用户',
-    address: '测试地址',
-  },
-});
-
 export default (props) => {
   return (
     <Button
       type="primary"
       onClick={() => {
-        myModal.open({
+        CreateModal({
+          title: '自定义渲染',
+          confirmText: '确认',
+          onSubmit() {
+            message.success('确认完毕');
+          },
+        }).open({
           render: ({ value }) => {
-            return (
-              <h2>这个是详情页面可用自定义渲染-{JSON.stringify(value)}</h2>
-            );
+            return <h4>这个是详情页面可用自定义渲染</h4>;
           },
         });
       }}
