@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, Modal, Popconfirm } from 'antd';
 import { ProBtnProps } from './type';
 import { isEmpty, isObject } from '../util';
-import { CreateForm } from '..';
+import { CreateModal, CreateDrawer } from '..';
 
 // 私有变量只能 set、get
 export const authName = Symbol('');
@@ -29,10 +29,10 @@ const ProButton = ({
   const isPopConfirm = isObject(confirm) && confirm.type === 'pop';
   let label = props.children;
   if (isObject(drawerFormProps)) {
-    submitForm = CreateForm.Drawer(drawerFormProps as any);
+    submitForm = CreateDrawer(drawerFormProps as any);
     onClick = () => submitForm.open();
   } else if (isObject(modalFormProps)) {
-    submitForm = CreateForm.Modal(modalFormProps as any);
+    submitForm = CreateModal(modalFormProps as any);
     onClick = () => submitForm.open();
   }
   if (isObject(confirm)) {
@@ -66,12 +66,12 @@ const ProButton = ({
     if (typeof drawerFormProps === 'function') {
       onClick = WapperSpinOnClick(setLoading, async () => {
         const config = await drawerFormProps();
-        CreateForm.Drawer(config).open();
+        CreateDrawer(config).open();
       });
     } else if (typeof modalFormProps === 'function') {
       onClick = WapperSpinOnClick(setLoading, async () => {
         const config = await modalFormProps();
-        CreateForm.Modal(config).open();
+        CreateModal(config).open();
       });
     } else if (spin) {
       onClick = WapperSpinOnClick(setLoading, props.onClick, 500);

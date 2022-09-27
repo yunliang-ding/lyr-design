@@ -8,11 +8,11 @@ toc: menu
 
 - CardForm 默认展开式的卡片提交表单、在自动收集表单数据的基础上支持定义操作按钮和位置
 
-- ModalForm、DrawerForm 使用弹窗收集表单，内部包含收集校验、数据数据，通过 visible 控制显隐、不希望使用 visible 控制 可以使用 `CreateForm` [推荐]
+- CreateModal、CreateDrawer 使用 Api 形式打开弹出层、移除 jsx 模式。
 
-- 由于 Form 默认开启 scrollToFirstError、并且我们内部做了处理，自定义组件不需要绑定 id，只需要表单所在的容器设置了高度且开启 overflow 滑动
+- Form 默认开启 scrollToFirstError、并且我们内部做了处理，自定义组件不需要绑定 id，只需要表单所在的容器设置了高度且开启 overflow 滑动
 
-- 所有下拉容器 默认设置了 getPopupContainer 指向到父节点，滑动不会偏移位置。(可以设置 formConfig autoSetPopupContainer 属性取消该功能)。
+- 所有下拉容器 默认设置了 getPopupContainer 指向到父节点，滑动不会偏移位置
 
 </Alert>
 
@@ -226,13 +226,14 @@ export default () => {
 };
 ```
 
-## ModalForm 基本使用
+## CreateModal 基本使用
 
 ```tsx
 import React from 'react';
-import { ModalForm } from 'react-core-form';
+import { CreateModal } from 'react-core-form';
 import schema from './schema/form-submit/schema';
 import { Button, message, Switch } from 'antd';
+
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default (props) => {
   const onSubmit = async (values) => {
@@ -241,75 +242,62 @@ export default (props) => {
     if (res) {
       message.success('保存成功');
     }
-    setOpen(false);
   };
-  const [open, setOpen] = React.useState(false);
-  const [drag, setDrag] = React.useState(false);
   return (
-    <>
-      <Switch
-        checkedChildren="拖拽"
-        unCheckedChildren="拖拽"
-        onChange={setDrag}
-      />
-      <br />
-      <br />
-      <Button type="primary" onClick={setOpen.bind(null, true)}>
-        新增
-      </Button>
-      <ModalForm
-        title="新增用户"
-        drag={drag}
-        visible={open}
-        width={1000}
-        modalProps={{
-          bodyStyle: {
-            height: 500,
-            overflow: 'auto',
+    <Button
+      type="primary"
+      onClick={() => {
+        CreateModal({
+          title: '新增用户',
+          width: 1000,
+          modalProps: {
+            bodyStyle: {
+              height: 500,
+              overflow: 'auto',
+            },
           },
-        }}
-        onClose={setOpen.bind(null, false)}
-        onSubmit={onSubmit}
-        schema={schema}
-        column={2}
-      />
-    </>
+          onSubmit,
+          schema,
+          column: 2,
+        }).open();
+      }}
+    >
+      打开一个Modal
+    </Button>
   );
 };
 ```
 
-## DrawerForm 基本使用
+## CreateDrawer 基本使用
 
 ```tsx
 import React from 'react';
-import { DrawerForm } from 'react-core-form';
+import { CreateDrawer } from 'react-core-form';
 import schema from './schema/form-submit/schema';
 import { Button } from 'antd';
+
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default (props) => {
-  const [open, setOpen] = React.useState(false);
   const onSubmit = async (values) => {
     console.log('onSubmit ->', values);
     const res = await delay(1000);
     if (res) {
       message.success('保存成功');
     }
-    setOpen(false);
   };
   return (
-    <>
-      <Button type="primary" onClick={setOpen.bind(null, true)}>
-        新增
-      </Button>
-      <DrawerForm
-        title="新增用户"
-        visible={open}
-        width={500}
-        onClose={setOpen.bind(null, false)}
-        onSubmit={onSubmit}
-        schema={schema}
-      />
-    </>
+    <Button
+      type="primary"
+      onClick={() => {
+        CreateDrawer({
+          title: '新增用户',
+          onSubmit,
+          schema,
+        }).open();
+      }}
+    >
+      打开一个Drawer
+    </Button>
   );
 };
 ```
@@ -318,202 +306,90 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { DrawerForm, ModalForm } from 'react-core-form';
+import { CreateDrawer } from 'react-core-form';
 import schema from './schema/form-submit/schema';
-import { Button, message, Switch, Space } from 'antd';
+import { Button, Space } from 'antd';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
-
 export default (props) => {
-  const [opeModal, setOpenModal] = React.useState(false);
-  const [openDrawer, setOpenDrawer] = React.useState(false);
+  const onSubmit = async (values) => {
+    console.log('onSubmit ->', values);
+    const res = await delay(1000);
+    if (res) {
+      message.success('保存成功');
+    }
+  };
   return (
-    <>
-      <Button type="primary" onClick={setOpenModal.bind(null, true)}>
-        新增Modal
-      </Button>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <Button type="primary" onClick={setOpenDrawer.bind(null, true)}>
-        新增Drawer
-      </Button>
-      <ModalForm
-        title="新增用户"
-        visible={opeModal}
-        schema={schema}
-        column={2}
-        width={1000}
-        onClose={setOpenModal.bind(null, false)}
-        modalProps={{
-          bodyStyle: {
-            height: 500,
-            overflow: 'auto',
+    <Button
+      type="primary"
+      onClick={() => {
+        const myDrawer = CreateDrawer({
+          title: '新增用户',
+          schema,
+        });
+        myDrawer.open({
+          footerRender: (form) => {
+            return (
+              <Space>
+                <a>这个是一个描述信息</a>
+                <Button onClick={myDrawer.close}>取消</Button>
+                <Button
+                  type="primary"
+                  ghost
+                  onClick={async () => {
+                    const data = await form.submit();
+                    const res = await delay(1000);
+                    if (res) {
+                      message.success('保存成功');
+                    }
+                    myDrawer.close(); // 关闭
+                  }}
+                >
+                  提交
+                </Button>
+              </Space>
+            );
           },
-        }}
-        footerRender={(form) => {
-          return (
-            <Space>
-              <a>这个是一个描述信息</a>
-              <Button onClick={setOpenModal.bind(null, false)}>取消</Button>
-              <Button
-                type="primary"
-                ghost
-                onClick={async () => {
-                  const data = await form.submit();
-                  const res = await delay(1000);
-                  if (res) {
-                    message.success('保存成功');
-                  }
-                  setOpenModal(false);
-                }}
-              >
-                提交
-              </Button>
-            </Space>
-          );
-        }}
-      />
-      <DrawerForm
-        title="新增用户"
-        schema={schema}
-        visible={openDrawer}
-        onClose={setOpenDrawer.bind(null, false)}
-        footerRender={(form) => {
-          return (
-            <Space>
-              <a>这个是一个描述信息</a>
-              <Button onClick={setOpenDrawer.bind(null, false)}>取消</Button>
-              <Button
-                type="primary"
-                ghost
-                onClick={async () => {
-                  const data = await form.submit();
-                  const res = await delay(1000);
-                  if (res) {
-                    message.success('保存成功');
-                  }
-                  setOpenDrawer(false);
-                }}
-              >
-                提交
-              </Button>
-            </Space>
-          );
-        }}
-      />
-    </>
+        });
+      }}
+    >
+      自定义渲染Drawer底部按钮
+    </Button>
   );
 };
 ```
 
-## CreateForm 创建表单
+## CreateModal 自定义渲染
 
 ```tsx
 import React from 'react';
-import schema from './schema/form-submit/schema';
-import { CreateForm } from 'react-core-form';
-import { Space, Button, message } from 'antd';
+import { CreateModal } from 'react-core-form';
+import { Button, message, Switch } from 'antd';
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
-
-const modalForm = CreateForm.Modal({
-  title: '新增用户',
-  width: 1000,
-  column: 2,
-  schema,
-  modalProps: {
-    bodyStyle: {
-      height: 500,
-      overflow: 'auto',
-    },
-  },
-});
-
-const drawerForm = CreateForm.Drawer({
-  title: '新增用户',
-  width: 500,
-  schema,
-});
-
-const renderForm = CreateForm.Modal({
+const myModal = CreateModal({
   title: '自定义渲染',
   initialValues: {
-    userName: '张三',
-    address: 'xx省xx市',
+    userName: '测试用户',
+    address: '测试地址',
   },
 });
 
 export default (props) => {
-  const onSubmit = async (values) => {
-    const res = await delay(1000);
-    console.log('onSubmit ->', values);
-    if (res) {
-      message.success('保存成功');
-    } else {
-      return Promise.reject(); // 阻止关闭
-    }
-  };
   return (
-    <Space>
-      <Button
-        type="primary"
-        onClick={() => {
-          modalForm.open({
-            onSubmit,
-          });
-        }}
-      >
-        打开弹窗
-      </Button>
-      <Button
-        type="primary"
-        onClick={() => {
-          drawerForm.open({
-            onSubmit,
-          });
-        }}
-      >
-        打开抽屉
-      </Button>
-      <Button
-        type="primary"
-        onClick={() => {
-          renderForm.open({
-            onSubmit,
-            // 体现为一个自定义组件
-            render: ({ value = {}, onChange }) => {
-              return (
-                <div>
-                  姓名：
-                  <input
-                    value={value.userName}
-                    onChange={(e) => {
-                      onChange({
-                        ...value,
-                        userName: e.target.value,
-                      });
-                    }}
-                  />
-                  <br />
-                  <br />
-                  地址：
-                  <input
-                    value={value.address}
-                    onChange={(e) => {
-                      onChange({
-                        ...value,
-                        address: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-              );
-            },
-          });
-        }}
-      >
-        打开弹窗自定义渲染
-      </Button>
-    </Space>
+    <Button
+      type="primary"
+      onClick={() => {
+        myModal.open({
+          render: ({ value }) => {
+            return (
+              <h2>这个是详情页面可用自定义渲染-{JSON.stringify(value)}</h2>
+            );
+          },
+        });
+      }}
+    >
+      自定义渲染Modal
+    </Button>
   );
 };
 ```
@@ -522,22 +398,15 @@ export default (props) => {
 
 <API src="../../src/form-submit/card-form/index.tsx" hideTitle></API>
 
-## ModalForm 扩展属性
+## CreateModal 扩展属性
 
 <API src="../../src/form-submit/modal-form/index.tsx" hideTitle></API>
 
-## DrawerForm 扩展属性
+## CreateDrawer 扩展属性
 
 <API src="../../src/form-submit/drawer-form/index.tsx" hideTitle></API>
 
-## CreateForm Api
-
-| **属性名** | **描述**             | **类型**                                 | **默认值** |
-| ---------- | -------------------- | ---------------------------------------- | ---------- |
-| Modal      | 创建 ModalForm 实例  | `funtion(config: CreateModalFormProps)`  | `--`       |
-| Drawer     | 创建 DrawerForm 实例 | `funtion(config: CreateDrawerFormProps)` | `--`       |
-
-## CreateForm 实例 Api
+## CreateModal、CreateDrawer 实例 Api
 
 | **属性名** | **描述**                   | **类型**          | **默认值** |
 | ---------- | -------------------------- | ----------------- | ---------- |
