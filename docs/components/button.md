@@ -187,6 +187,38 @@ export default () => {
 };
 ```
 
+## 与 Tooltip 整合
+
+```tsx
+/**
+ * background: '#fff'
+ */
+import * as React from 'react';
+import { Button } from 'react-core-form';
+import { Space } from 'antd';
+
+export default () => {
+  return (
+    <Space>
+      <Button tooltip="我是提示文案" type="primary">
+        鼠标移入显示提示
+      </Button>
+      <Button tooltip="我是提示文案" type="link">
+        显示提示
+      </Button>
+      <Button
+        tooltip={{
+          title: '我是提示文案',
+          placement: 'right',
+        }}
+      >
+        鼠标移入显示提示
+      </Button>
+    </Space>
+  );
+};
+```
+
 ## 配置权限体系
 
 ```tsx
