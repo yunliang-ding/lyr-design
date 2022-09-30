@@ -1,3 +1,6 @@
+import { TooltipProps } from 'antd';
+import { ReactNode } from 'react';
+
 export interface ActionProps {
   /**
    * 文案
@@ -49,6 +52,8 @@ export interface ActionProps {
     title: string;
     content: string;
   };
+  /** hover提示信息 */
+  tooltip?: TooltipProps | ReactNode;
 }
 
 const Hello: React.FC<ActionProps> = () => null;

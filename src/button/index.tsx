@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Button, Modal, Popconfirm } from 'antd';
+import { isValidElement, useState } from 'react';
+import { Button, Modal, Popconfirm, Tooltip } from 'antd';
 import { ProBtnProps } from './type';
 import { isEmpty, isObject } from '../util';
 import { CreateModal, CreateDrawer } from '..';
@@ -20,6 +20,7 @@ const ProButton = ({
   drawerFormProps,
   modalFormProps,
   visible = true,
+  tooltip,
   validator,
   ...props
 }: ProBtnProps) => {
@@ -109,6 +110,15 @@ const ProButton = ({
         {vNode}
       </Popconfirm>
     );
+  }
+  if (tooltip) {
+    const tooltipProps =
+      typeof tooltip === 'object' && !isValidElement(tooltip)
+        ? tooltip
+        : {
+            title: tooltip,
+          };
+    vNode = <Tooltip {...tooltipProps}>{vNode}</Tooltip>;
   }
   return visible && vNode;
 };

@@ -1,8 +1,7 @@
-import {
-  CreateModalFormProps,
-  CreateDrawerFormProps,
-} from '../form-submit/create-form';
-import { ButtonProps, PopconfirmProps } from 'antd';
+import { CreateDrawerFormProps } from '../create/drawer';
+import { CreateModalFormProps } from '../create/modal';
+import { ButtonProps, PopconfirmProps, TooltipProps } from 'antd';
+import { ReactNode } from 'react';
 
 type Comfirm = PopconfirmProps & {
   type?: 'pop' | 'alert';
@@ -51,4 +50,6 @@ export interface ProBtnProps extends Omit<ButtonProps, 'onClick'> {
     | CreateDrawerFormProps
     | (() => Promise<CreateDrawerFormProps>);
   [key: string]: any;
+  /** hover提示文案 */
+  tooltip?: TooltipProps | ReactNode;
 }

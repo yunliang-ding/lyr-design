@@ -1,14 +1,12 @@
 import { SearchProps } from '../search/types';
-import { AlertProps, TableProps as AntdTableProps } from 'antd';
+import { AlertProps, TableProps as AntdTableProps, TooltipProps } from 'antd';
 import { ColumnType, TableRowSelection } from 'antd/es/table/interface';
 import { CSSProperties, ReactNode } from 'react';
 import { TableColumnType } from './type.column';
 import { TableInstance } from './table.instance';
 import { PaginationConfig } from './type.pagination';
-import {
-  CreateModalFormProps,
-  CreateDrawerFormProps,
-} from '../form-submit/create-form';
+import { CreateModalFormProps } from '../create/modal';
+import { CreateDrawerFormProps } from '../create/drawer';
 
 export interface ToolsProps {
   label?: string | ReactNode;
@@ -21,6 +19,7 @@ export interface ToolsProps {
   visible?: boolean | ((record?: any) => boolean);
   confirm?: object;
   onClick?: (table: TableInstance) => any;
+  tooltip?: TooltipProps | ReactNode;
   menu?: any;
   icon?: ReactNode;
   modalFormProps?:
