@@ -18,6 +18,8 @@ export { default as Grid } from './grid';
 export { default as Button } from './button';
 export { default as Form } from './form';
 export { default as CardForm } from './form-submit/card-form';
+export { default as AnchorCardForm } from './form-submit/anchor-card-form';
+export { default as StepForm } from './form-submit/step-form';
 export { default as CreateModal } from './create/modal';
 export { default as CreateDrawer } from './create/drawer';
 export { default as Search } from './search';
@@ -26,7 +28,6 @@ export { default as EditableTable } from './table-editable';
 export { default as TableList } from './table-list';
 export { default as DragList } from './drag-list';
 export { default as AnchorCard } from './anchor-card';
-export { default as AnchorCardForm } from './anchor-card-form';
 /** 类型 */
 export type { SchemaProps, FieldProps } from './form/type.item';
 export type { TableProps } from './table/types';

@@ -1,9 +1,9 @@
 /**
  * 电梯表单组件
  */
-import { CardFormProps } from '../form-submit/types';
-import { CardForm, AnchorCard, Form } from '../index';
-import { AnchorCardProps } from '../anchor-card';
+import { CardFormProps } from '../types';
+import { CardForm, AnchorCard, Form } from '../../index';
+import { AnchorCardProps } from '../../anchor-card';
 import './index.less';
 
 interface AnchorCardFormProps extends Omit<AnchorCardProps, 'tabs'> {

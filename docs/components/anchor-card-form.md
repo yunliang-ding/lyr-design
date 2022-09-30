@@ -1,5 +1,5 @@
 ---
-order: 15.5
+order: 4.3
 title: AnchorCardForm 电梯表单
 toc: menu
 ---
@@ -159,4 +159,4 @@ export default () => {
 
 ## API
 
-<API src="../../src/anchor-card-form/index.tsx" hideTitle></API>
+<API src="../../src/form-submit/anchor-card-form/index.tsx" hideTitle></API>
