@@ -21,6 +21,9 @@ const DrawerFormWapper = ({ containId, tag, ...props }) => {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     setVisible(true);
+    window.addEventListener('popstate', () => {
+      $('.core-form-create-drawer-wapper')?.remove();
+    });
   }, []);
   return (
     <DrawerForm
@@ -42,6 +45,7 @@ const DrawerFormWapper = ({ containId, tag, ...props }) => {
 const CreateDrawerForm = (props) => {
   const tag = document.createElement('div');
   tag.setAttribute('id', props.containId);
+  tag.setAttribute('class', 'core-form-create-drawer-wapper');
   const target = props.getPopupContainer?.() || $('body');
   target.appendChild(tag);
   ReactDOM.render(<DrawerFormWapper {...props} tag={tag} />, tag);

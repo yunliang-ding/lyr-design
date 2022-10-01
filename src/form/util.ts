@@ -269,26 +269,21 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
                   ? moment(values[endName])
                   : moment(values[endName], format);
             }
-            return [start, end];
+            return start || end ? [start, end] : undefined;
           };
         }
         if (!field.transform) {
-          // moment- > string
+          // moment to string
           field.transform = (values) => {
             const dateMoment = values[field.name];
-            return dateMoment
-              ? {
-                  [startName]: dateMoment?.[0]
-                    ? dateMoment[0].format(format)
-                    : undefined,
-                  [endName]: dateMoment?.[1]
-                    ? dateMoment[1].format(format)
-                    : undefined,
-                }
-              : {
-                  [startName]: undefined,
-                  [endName]: undefined,
-                };
+            return {
+              [startName]: dateMoment?.[0]
+                ? dateMoment[0].format(format)
+                : undefined,
+              [endName]: dateMoment?.[1]
+                ? dateMoment[1].format(format)
+                : undefined,
+            };
           };
         }
       }
