@@ -366,7 +366,7 @@ export default () => {
 };
 ```
 
-## 搭配 CreateForm 形成一套配置化 CRUD
+## 配置化 CRUD
 
 ```tsx
 /**
