@@ -13,7 +13,7 @@ for (let i = 1; i < 1001; i++) {
 }
 
 module.exports = {
-  '/api/demo/table/user': async (req: any, res: any) => {
+  '/react-core-form/table': async (req: any, res: any) => {
     await new Promise((r) => setTimeout(r, 500, true));
     const {
       query: { pageSize, pageNum },

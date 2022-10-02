@@ -1,11 +1,7 @@
-import mockServices from './mock';
+import axios from 'axios';
 
-export default {
-  get: async (path, params) => {
-    // 模拟等待800ms
-    await new Promise((res) => setTimeout(res, 1000));
-    return {
-      data: await mockServices[path](params),
-    };
-  },
-};
+const instance = axios.create({
+  baseURL: 'http://127.0.0.1:8360/server/online',
+});
+
+export default instance;

@@ -10,7 +10,7 @@ const tableSchema: TableProps = {
   request: async (params) => {
     const {
       data: { list, success, total },
-    }: any = await axios.get('/api/demo/table/user', {
+    }: any = await axios.get('/react-core-form/table', {
       params,
     });
     return {
