@@ -342,6 +342,7 @@ export default ({
           size={size}
           initialValues={params}
           onReset={onReset}
+          onSearch={onSearch}
           searchBtnRender={() => (
             <Button
               key="search"
