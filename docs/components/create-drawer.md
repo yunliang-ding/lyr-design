@@ -11,22 +11,17 @@ import React from 'react';
 import { Button, CreateDrawer } from 'react-core-form';
 import schema from './schema/form-submit/schema';
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default (props) => {
-  const onSubmit = async (values) => {
-    const res = await delay(1000);
-    if (res) {
-      alert(JSON.stringify(values));
-    }
-  };
   return (
     <Button
       type="primary"
       onClick={() => {
         CreateDrawer({
           title: '新增用户',
-          onSubmit,
           schema,
+          async onSubmit(values) {
+            alert(JSON.stringify(values));
+          },
         }).open();
       }}
     >
@@ -44,23 +39,16 @@ import { CreateDrawer } from 'react-core-form';
 import schema from './schema/form-submit/schema';
 import { Button, Space } from 'antd';
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
+const myDrawer = CreateDrawer({
+  title: '新增用户',
+  schema,
+});
+
 export default (props) => {
-  const onSubmit = async (values) => {
-    console.log('onSubmit ->', values);
-    const res = await delay(1000);
-    if (res) {
-      alert(JSON.stringify(values));
-    }
-  };
   return (
     <Button
       type="primary"
       onClick={() => {
-        const myDrawer = CreateDrawer({
-          title: '新增用户',
-          schema,
-        });
         myDrawer.open({
           footerRender: (form) => {
             return (
@@ -72,10 +60,7 @@ export default (props) => {
                   ghost
                   onClick={async () => {
                     const data = await form.submit();
-                    const res = await delay(1000);
-                    if (res) {
-                      message.success('保存成功');
-                    }
+                    alert(JSON.stringify(data));
                     myDrawer.close(); // 关闭
                   }}
                 >

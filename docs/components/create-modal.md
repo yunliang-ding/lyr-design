@@ -12,15 +12,7 @@ import { CreateModal } from 'react-core-form';
 import schema from './schema/form-submit/schema';
 import { Button, message, Switch } from 'antd';
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default (props) => {
-  const onSubmit = async (values) => {
-    console.log('onSubmit ->', values);
-    const res = await delay(1000);
-    if (res) {
-      message.success('保存成功');
-    }
-  };
   return (
     <Button
       type="primary"
@@ -34,9 +26,11 @@ export default (props) => {
               overflow: 'auto',
             },
           },
-          onSubmit,
           schema,
           column: 2,
+          async onSubmit(values) {
+            alert(JSON.stringify(values));
+          },
         }).open();
       }}
     >

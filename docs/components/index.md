@@ -59,15 +59,7 @@ npm install react-core-form --save
 
 </Alert>
 
-## 不足
-
-<Alert type="error">
-
-- 由于底层是基于 antd 的 Form，使得扩展性不足不能搭配其他组件库使用
-
-</Alert>
-
-## Form 内置组件
+## 内置表单组件
 
 ```tsx
 /**
@@ -192,7 +184,7 @@ interface GlobalConfigProps {
 - [如何支持定制化渲染逻辑？](/components/form-advance#使用自定义渲染)
 - [如何编写自定义组件？](/components/form-advance#使用自定义组件采用-widgets-实现)
 - [我的下拉选择数据源是通过接口获取的怎么在模型中配置？](/components/form-advance#使用异步的-options)
-- [弹出一个提交表单，不希望通过 visible 控制怎么实现？](/components/form-submit#createform-创建表单)
+- [弹出一个提交表单，不希望通过 visible 控制怎么实现？](/components/create-modal)
 
 ## Form 属性扩展
 
