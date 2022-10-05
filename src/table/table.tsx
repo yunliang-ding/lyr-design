@@ -358,7 +358,14 @@ export default ({
           form={form}
         />
       )}
-      <div className={`core-form-table core-form-table-${size}`} style={style}>
+      <div
+        className={
+          dataSource.length === 0
+            ? `core-form-table-empty core-form-table core-form-table-${size}`
+            : `core-form-table core-form-table-${size}`
+        }
+        style={style}
+      >
         <ToolBar
           title={title}
           size={size}
