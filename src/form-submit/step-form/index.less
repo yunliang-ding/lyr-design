@@ -1,12 +1,11 @@
-.core-form-step-form {
+.core-form-step-form,
+.core-form-tab-form {
   background: #fff;
   padding: 40px 24px;
   position: relative;
-
   &-body {
     padding: 40px 20px;
   }
-
   &-footer {
     position: absolute;
     width: 100%;
@@ -18,5 +17,25 @@
     padding: 0 24px;
     align-items: center;
     border-top: 1px solid #f5f5f5;
+  }
+}
+
+.core-form-tab-form {
+  padding: 0;
+  .core-form-step-form-body {
+    padding: 0 20px;
+    padding-bottom: 60px;
+  }
+  .core-form-step-form-header-tabs {
+    .ant-tabs-nav-list {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .ant-tabs-tab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
 }
