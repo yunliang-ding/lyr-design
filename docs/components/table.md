@@ -488,6 +488,21 @@ export default () => {
 };
 ```
 
+## 使用虚拟列表
+
+```tsx
+/**
+ * background: '#f6f7f9'
+ */
+import React from 'react';
+import { Table } from 'react-core-form';
+import tableSchema from './schema/form-table/schema4';
+
+export default () => {
+  return <Table {...tableSchema} />;
+};
+```
+
 ## Table 扩展属性
 
 <API src="../../src/table/index.tsx" hideTitle></API>

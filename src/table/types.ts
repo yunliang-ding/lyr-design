@@ -12,6 +12,7 @@ export interface ToolsProps {
   label?: string | ReactNode;
   key?: string;
   type?: string;
+  ghost?: boolean;
   btnType?: string;
   disabled?: boolean;
   auth?: any;
@@ -126,4 +127,6 @@ export interface TableProps
    */
   keepRowSelection?: boolean;
   rowSelection?: TableRowSelectionProps;
+  /** 开启虚拟列表 */
+  virtual?: boolean;
 }

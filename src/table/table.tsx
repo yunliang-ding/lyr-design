@@ -6,6 +6,7 @@ import { Form, Search, Table } from '@/index';
 import ToolBar from './toolbar';
 import getRowOperations from './row-operations';
 import { defaultPaginationConfig, updateLocalFilter } from '.';
+import VirtualTable from './virtual-table';
 import {
   DraggableBodyRow,
   DraggableContainer,
@@ -39,6 +40,7 @@ export default ({
   dragColumn = {},
   autoNo = false,
   keepRowSelection = true,
+  virtual = false,
   ...restProp
 }: TableProps) => {
   const [_columns, setColumns] = useState([]);
@@ -333,31 +335,68 @@ export default ({
       }
     />
   );
-  return (
-    <ConfigProvider locale={locale}>
-      {searchSchema && (
-        <Search
-          {...searchSchema}
-          /** 覆盖的配置 */
-          size={size}
-          initialValues={params}
-          onReset={onReset}
-          onSearch={onSearch}
-          searchBtnRender={() => (
-            <Button
-              key="search"
-              type="primary"
-              loading={loading}
-              onClick={() => {
-                onSearch({});
-              }}
-            >
-              查询
-            </Button>
-          )}
-          form={form}
-        />
+  // 查询条件区域
+  const searchDom = searchSchema && (
+    <Search
+      {...searchSchema}
+      /** 覆盖的配置 */
+      size={size}
+      initialValues={params}
+      onReset={onReset}
+      onSearch={onSearch}
+      searchBtnRender={() => (
+        <Button
+          key="search"
+          type="primary"
+          loading={loading}
+          onClick={() => {
+            onSearch({});
+          }}
+        >
+          查询
+        </Button>
       )}
+      form={form}
+    />
+  );
+  // 操作栏和提示区域
+  const toolBarAlertDom = (
+    <>
+      <ToolBar
+        title={title}
+        size={size}
+        onSizeChange={onSizeChange}
+        params={getParams()}
+        setColumns={setColumns}
+        columns={_columns}
+        tools={[
+          ...tools.filter((i) => {
+            try {
+              return typeof i.visible === 'function'
+                ? i.visible() !== false
+                : i.visible !== false;
+            } catch (error) {
+              console.log(error);
+              return false;
+            }
+          }),
+          ...defaultTools,
+        ]} // 提前过滤
+        onRefresh={query}
+        onSearch={onSearch}
+        filterIds={_filterIds}
+        onFilter={setFilterIds}
+        tableId={tableId}
+        tableInstance={table}
+      />
+      {alertConfig && alertProps.visible !== false && (
+        <Alert {...alertProps} style={{ marginBottom: 16, paddingLeft: 12 }} />
+      )}
+    </>
+  );
+  return virtual ? (
+    <ConfigProvider locale={locale}>
+      {searchDom}
       <div
         className={
           dataSource.length === 0
@@ -366,39 +405,29 @@ export default ({
         }
         style={style}
       >
-        <ToolBar
-          title={title}
-          size={size}
-          onSizeChange={onSizeChange}
-          params={getParams()}
-          setColumns={setColumns}
+        <VirtualTable
+          rowKey={rowKey}
+          dataSource={dataSource}
           columns={_columns}
-          tools={[
-            ...tools.filter((i) => {
-              try {
-                return typeof i.visible === 'function'
-                  ? i.visible() !== false
-                  : i.visible !== false;
-              } catch (error) {
-                console.log(error);
-                return false;
-              }
-            }),
-            ...defaultTools,
-          ]} // 提前过滤
-          onRefresh={query}
-          onSearch={onSearch}
-          filterIds={_filterIds}
-          onFilter={setFilterIds}
-          tableId={tableId}
-          tableInstance={table}
+          loading={loading}
+          pagination={false}
+          scroll={restProp.scroll || { y: 500 }}
+          toolBar={toolBarAlertDom}
         />
-        {alertConfig && alertProps.visible !== false && (
-          <Alert
-            {...alertProps}
-            style={{ marginBottom: 16, paddingLeft: 12 }}
-          />
-        )}
+      </div>
+    </ConfigProvider>
+  ) : (
+    <ConfigProvider locale={locale}>
+      {searchDom}
+      <div
+        className={
+          dataSource.length === 0
+            ? `core-form-table-empty core-form-table core-form-table-${size}`
+            : `core-form-table core-form-table-${size}`
+        }
+        style={style}
+      >
+        {toolBarAlertDom}
         {typeof tableRender === 'function'
           ? tableRender(tableDom, dataSource)
           : tableDom}
