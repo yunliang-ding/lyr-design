@@ -87,21 +87,24 @@ export default ({
           columnIndex: number;
           rowIndex: number;
           style: React.CSSProperties;
-        }) => (
-          <div
-            className={classNames('virtual-table-cell', {
-              'virtual-table-cell-last':
-                columnIndex === mergedColumns.length - 1,
-            })}
-            style={style}
-          >
-            {
-              (rawData[rowIndex] as any)[
-                (mergedColumns as any)[columnIndex].dataIndex
-              ]
-            }
-          </div>
-        )}
+        }) => {
+          const record = rawData[rowIndex];
+          const column = mergedColumns[columnIndex];
+          const value = record[column.dataIndex];
+          return (
+            <div
+              className={classNames('virtual-table-cell', {
+                'virtual-table-cell-last':
+                  columnIndex === mergedColumns.length - 1,
+              })}
+              style={style}
+            >
+              {typeof column.render === 'function'
+                ? column.render(value, record, rowIndex)
+                : value}
+            </div>
+          );
+        }}
       </Grid>
     );
   };
