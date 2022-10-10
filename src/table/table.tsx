@@ -65,12 +65,14 @@ export default ({
       const result = JSON.parse(localData);
       // 排序
       setColumns(
-        result.columnIds?.map((columnId) => {
-          return columns.find((item) => {
-            const key = item.dataIndex || item.key;
-            return key === columnId;
-          });
-        }),
+        result.columnIds
+          ?.map((columnId) => {
+            return columns.find((item) => {
+              const key = item.dataIndex || item.key;
+              return key === columnId;
+            });
+          })
+          .filter((i) => i),
       );
       // 过滤
       setFilterIds(result.filterIds);

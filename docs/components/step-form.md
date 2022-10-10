@@ -15,24 +15,24 @@ import { StepForm, Form } from 'react-core-form';
 import { Radio } from 'antd';
 
 export default () => {
-  const [mode, setMode] = React.useState('step');
+  const [type, setType] = React.useState('default');
   const [current, setCurrent] = React.useState(0);
   const [form] = Form.useForm();
   return (
     <div>
       <Radio.Group
         onChange={(v) => {
-          setMode(v.target.value);
+          setType(v.target.value);
         }}
-        defaultValue={'step'}
+        defaultValue="default"
         options={[
           {
-            label: '步骤条',
-            value: 'step',
+            label: '默认',
+            value: 'default',
           },
           {
-            label: '选项卡',
-            value: 'tab',
+            label: '导航卡',
+            value: 'navigation',
           },
         ]}
       />
@@ -40,7 +40,9 @@ export default () => {
       <StepForm
         current={current}
         form={form}
-        mode={mode}
+        stepProps={{
+          type,
+        }}
         onStepsClick={async (v) => {
           await form.submit(); // 表单校验
           setCurrent(v);
@@ -53,7 +55,6 @@ export default () => {
         steps={[
           {
             title: '第一步',
-            description: '第一步描述',
             column: 1,
             schema: [
               {
@@ -90,7 +91,6 @@ export default () => {
           },
           {
             title: '第二步',
-            description: '第二步描述',
             column: 2,
             schema: [
               {
@@ -127,7 +127,6 @@ export default () => {
           },
           {
             title: '第三步',
-            description: '第三步描述',
             column: 3,
             schema: [
               {

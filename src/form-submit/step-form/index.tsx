@@ -1,6 +1,6 @@
 import Form from '@/form';
-import { StepProps, Steps, Tabs } from 'antd';
-import { ReactNode, useLayoutEffect } from 'react';
+import { StepProps, Steps } from 'antd';
+import { ReactNode } from 'react';
 import { ActionProps } from '../type.action';
 import { CoreFormProps } from '../../form/type.form';
 import { SchemaProps } from '../../form/type.item';
@@ -13,11 +13,6 @@ export interface StepFormProps extends CoreFormProps {
   current?: number;
   /** 手动切换步骤 */
   onStepsClick?: (current) => void;
-  /**
-   * 展示模式
-   * @default step
-   */
-  mode?: 'step' | 'tab';
   /** 步骤属性 */
   stepProps?: StepProps;
   /** 配置每一步的表单项和操作按钮 */
@@ -32,7 +27,6 @@ export interface StepFormProps extends CoreFormProps {
 
 export default ({
   current = 0,
-  mode = 'step',
   onStepsClick = () => {},
   form = Form.useForm()[0],
   stepProps = {},
@@ -59,42 +53,16 @@ export default ({
       await action.onClick(data);
     }
   };
-  useLayoutEffect(() => {
-    if (mode === 'tab') {
-      document
-        .querySelectorAll(
-          `.core-form-${mode}-form .core-form-step-form-header-tabs .ant-tabs-tab`,
-        )
-        ?.forEach((node) => {
-          node.setAttribute('style', 'width: 33.3%');
-        });
-    }
-  }, [mode]);
   return (
-    <div className={`core-form-${mode}-form`}>
+    <div className={`core-form-step-form`}>
       <div className="core-form-step-form-header">
-        {mode === 'step' && (
-          <Steps {...stepProps} current={current} onChange={onStepsClick}>
-            {steps?.map((step) => {
-              return (
-                <Steps.Step title={step.title} description={step.description} />
-              );
-            })}
-          </Steps>
-        )}
-        {mode === 'tab' && (
-          <Tabs
-            activeKey={String(current)}
-            onChange={(v) => {
-              onStepsClick(Number(v));
-            }}
-            className="core-form-step-form-header-tabs"
-          >
-            {steps?.map((step, idx) => {
-              return <Tabs.TabPane key={idx} tab={step.title} />;
-            })}
-          </Tabs>
-        )}
+        <Steps {...stepProps} current={current} onChange={onStepsClick}>
+          {steps?.map((step) => {
+            return (
+              <Steps.Step title={step.title} description={step.description} />
+            );
+          })}
+        </Steps>
       </div>
       <div className="core-form-step-form-body">
         <Form
