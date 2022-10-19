@@ -2,14 +2,6 @@ import { TableProps } from 'react-core-form';
 
 const tableSchema: TableProps = {
   title: '用户列表',
-  virtual: true, // 开启虚拟滚动
-  alertConfig: () => {
-    return {
-      message: '总计: 1000',
-      type: 'info',
-      showIcon: true,
-    };
-  },
   request: async () => {
     await new Promise((res) => setTimeout(res, 1000));
     return {

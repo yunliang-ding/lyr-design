@@ -129,4 +129,6 @@ export interface TableProps
   rowSelection?: TableRowSelectionProps;
   /** 开启虚拟列表 */
   virtual?: boolean;
+  /** 下滑加载数据 */
+  loadMoreData?: Function;
 }

@@ -41,6 +41,7 @@ export default ({
   autoNo = false,
   keepRowSelection = true,
   virtual = false,
+  loadMoreData,
   ...restProp
 }: TableProps) => {
   const [_columns, setColumns] = useState([]);
@@ -415,6 +416,7 @@ export default ({
           pagination={false}
           scroll={restProp.scroll || { y: 500 }}
           toolBar={toolBarAlertDom}
+          loadMoreData={loadMoreData}
         />
       </div>
     </ConfigProvider>

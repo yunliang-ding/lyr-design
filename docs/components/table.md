@@ -499,7 +499,76 @@ import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema4';
 
 export default () => {
-  return <Table {...tableSchema} />;
+  return (
+    <Table
+      {...tableSchema}
+      virtual
+      alertConfig={() => {
+        return {
+          message: '总计: 1000',
+          type: 'info',
+          showIcon: true,
+        };
+      }}
+    />
+  );
+};
+```
+
+## 下滑加载数据
+
+```tsx
+/**
+ * background: '#f6f7f9'
+ */
+import React from 'react';
+import { Table } from 'react-core-form';
+import tableSchema from './schema/form-table/schema4';
+
+export default () => {
+  const loadMoreData = async (data) => {
+    if (data.length === 60) {
+      return false;
+    }
+    await new Promise((res) => setTimeout(res, 1000));
+    return new Array(20).fill({
+      code: 'code',
+      username: 'username',
+      sex: 'sex',
+      city: 'city',
+      sign: 'sign',
+      classify: 'classify',
+      score: 'score',
+      logins: 'logins',
+    });
+  };
+  return (
+    <Table
+      {...tableSchema}
+      virtual
+      scroll={{
+        y: 400,
+      }}
+      loadMoreData={loadMoreData}
+      request={async (params) => {
+        await new Promise((res) => setTimeout(res, 1000));
+        return {
+          total: 20,
+          success: true,
+          list: new Array(20).fill({
+            code: 'code',
+            username: 'username',
+            sex: 'sex',
+            city: 'city',
+            sign: 'sign',
+            classify: 'classify',
+            score: 'score',
+            logins: 'logins',
+          }),
+        };
+      }}
+    />
+  );
 };
 ```
 
