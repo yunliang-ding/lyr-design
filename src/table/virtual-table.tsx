@@ -94,7 +94,6 @@ export default ({
             scrollTop: number;
           }) => {
             onScroll({ scrollLeft });
-            onScroll({ scrollLeft });
             if (
               totalHeight - scrollTop === scroll.y &&
               loadOver === false &&
