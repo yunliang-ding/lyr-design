@@ -1,5 +1,5 @@
 import { Table, Form, Space, message } from 'antd';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { AsyncOptionsCache, EventEmit } from '@/util';
 import { tranfromSchema } from '@/form/util';
 import Item from '../form/item';
@@ -47,6 +47,8 @@ interface EditTableProps {
   maxLength?: number;
   /** 添加按钮的位置 */
   position?: 'top' | 'bottom';
+  actionRef?: any;
+  name?: string;
 }
 
 // TODO value 中不能混入index属性，否则和内置的index属性冲突、待优化
@@ -65,9 +67,16 @@ export default ({
   },
   maxLength = 999,
   position = 'bottom',
+  actionRef = useRef({}),
+  name,
   ...rest
 }: EditTableProps) => {
   const [form] = Form.useForm();
+  useEffect(() => {
+    actionRef.current[name] = {
+      ...form,
+    };
+  }, []);
   const event = useMemo(() => {
     return new EventEmit();
   }, []);

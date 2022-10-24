@@ -33,6 +33,7 @@ import FieldSet from './extension/fields-set';
 import RangeInput from './extension/input/range';
 import EditableTable from '@/table-editable';
 import TableList from '@/table-list';
+import { SubFormType } from '@/form/form';
 // 内置组件映射关系
 export const BuiltInWidgetMapping: any = {
   // Antd
@@ -88,7 +89,7 @@ export default (field: any, formInstance: any = {}, widgets = {}) => {
   }
   // 扩展属性
   const ExpProps: any = {};
-  if (['FormList', 'TableList'].includes(field.type)) {
+  if (SubFormType.includes(field.type)) {
     ExpProps.actionRef = field.actionRef;
     ExpProps.event = field.event;
     ExpProps.widgets = widgets;

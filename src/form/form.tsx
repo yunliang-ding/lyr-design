@@ -15,6 +15,7 @@ import './index.less';
 // column布局映射关系
 const labelColMap = [4, 6, 8, 10];
 const wrapperColMap = [20, 18, 16, 14];
+export const SubFormType = ['FormList', 'TableList', 'EditableTable'];
 export default ({
   schema = [],
   widgets = {}, // 注入自定义组件
@@ -209,11 +210,7 @@ export default ({
             field={field}
             key={field.name || field.key || index}
             readOnlyEmptyValueNode={readOnlyEmptyValueNode}
-            actionRef={
-              ['FormList', 'TableList'].includes(field.type)
-                ? actionRef
-                : undefined
-            }
+            actionRef={SubFormType.includes(field.type) ? actionRef : undefined}
           />
         );
       });
