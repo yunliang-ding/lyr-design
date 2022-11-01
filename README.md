@@ -1,4 +1,4 @@
-## 安装
+## 安装 1
 
 组件库本身依赖 ant design，使用需要同时安装 antd，在 src/global.less 中全量引入 antd less 文件
 
