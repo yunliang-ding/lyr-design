@@ -13,6 +13,8 @@ export interface TableInstance {
   setSelectRow: Function;
   /** 获取选中的行 */
   getSelectRow: Function;
+  /** 设置展开的行 */
+  setExpandedRowKeys: Function;
 }
 
 const Hello: React.FC<TableInstance> = () => null;

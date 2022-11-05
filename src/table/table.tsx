@@ -233,6 +233,8 @@ export default ({
   const onSizeChange = (s) => {
     setSize(s);
   };
+  // 展开的逻辑
+  const [expandedRowKeys, setExpandedRowKeys] = useState([]);
   /** 实例扩展方法 */
   useEffect(() => {
     Object.assign(table, {
@@ -242,11 +244,12 @@ export default ({
       onReset,
       onRefresh: query,
       setSelectRow: setInnerSelectedRowKeys,
+      setExpandedRowKeys,
       getSelectRow: () => {
         return innerSelectedRow;
       },
     });
-  }, [dataSource, innerSelectedRow]);
+  }, [dataSource, innerSelectedRow, expandedRowKeys]);
   // 扩展 columns
   let newColumns = lastColumns.filter(
     (item: any) => !_filterIds.includes(item.dataIndex),
@@ -286,6 +289,12 @@ export default ({
   const tableDom = (
     <AntdTable
       rowKey={rowKey}
+      expandable={{
+        expandedRowKeys,
+        onExpandedRowsChange: (expandedKeys) => {
+          setExpandedRowKeys([...expandedKeys]);
+        },
+      }}
       loading={loading}
       dataSource={dataSource}
       columns={newColumns}

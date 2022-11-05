@@ -8,7 +8,7 @@ export default defineConfig({
   metas: [
     {
       name: 'revised',
-      content: '0.0.12',
+      content: '0.0.18',
     },
     {
       name: 'keywords',
@@ -40,10 +40,6 @@ export default defineConfig({
   history: { type: 'hash' },
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
-    {
-      title: '表单设计器',
-      path: 'https://yunliang-ding.github.io/react-core-form-designer',
-    },
     {
       title: 'GitHub',
       path: 'https://github.com/yunliang-ding/react-core-form',

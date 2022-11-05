@@ -158,6 +158,7 @@ const schema: SchemaProps<{}>[] = [
     name: 'rangePicker1',
     nameAlise: ['startDate1', 'endDate1'],
     label: '区间选取独立',
+    required: true,
     props: {
       mode: 'split',
     },

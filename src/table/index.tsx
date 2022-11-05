@@ -45,6 +45,7 @@ CoreTable.useTable = () => {
       onRefresh: () => {},
       setSelectRow: () => [],
       getSelectRow: () => [],
+      setExpandedRowKeys: () => [],
     }).current,
   ];
 };
