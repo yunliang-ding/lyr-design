@@ -171,7 +171,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'react-core-form';
-import schema from './schema/form-table/schema2';
+import schema from './schema/form-table/schema';
 
 export default () => {
   return <Table autoNo {...schema} />;
@@ -188,7 +188,7 @@ export default () => {
 import React from 'react';
 import { Button, Input } from 'antd';
 import { Table } from 'react-core-form';
-import schema from './schema/form-table/schema2';
+import schema from './schema/form-table/schema';
 export default () => {
   return <Table {...schema} tableId="user-table-001" />;
 };

@@ -29,7 +29,7 @@ const schema: SchemaProps<{}>[] = [
   },
   {
     type: 'InputNumber',
-    name: 'inputNumber',
+    name: ['inputNumber', 'kkk'],
     label: '数字输入框',
     props: {
       min: 1,
@@ -40,6 +40,10 @@ const schema: SchemaProps<{}>[] = [
     type: 'Select',
     name: 'select',
     label: '下拉选',
+    effect: [['inputNumber', '0', 'kkk']],
+    visible(v) {
+      return v.inputNumber?.kkk > 50;
+    },
     props: {
       options: [
         { label: '选项1', value: 1 },
