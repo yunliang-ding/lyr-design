@@ -156,10 +156,10 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'react-core-form';
-import tableSchema from './schema/form-table/schema2';
+import tableSchema from './schema/form-table/schema';
 
 export default () => {
-  return <Table {...tableSchema} />;
+  return <Table {...tableSchema} resize bordered />;
 };
 ```
 

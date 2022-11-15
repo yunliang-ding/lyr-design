@@ -113,6 +113,8 @@ export interface TableProps
   tableId?: string;
   /** 是否开启拖拽 */
   drag?: boolean;
+  /** 是否开启调整宽度 */
+  resize?: boolean;
   /** 列信息 */
   dragColumn?: TableColumnType;
   /** 拖拽结束的钩子 */

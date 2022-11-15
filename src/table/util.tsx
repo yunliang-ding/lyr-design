@@ -13,6 +13,7 @@ export const transformColumns = (
   emptyNode: any,
   onCellWidthChange: Function,
   pagination,
+  resize = false,
 ) => {
   const newColumns = cloneDeep(columns)?.filter((i) => i.visible !== false); // 避免污染、过滤下
   if (Array.isArray(columns)) {
@@ -43,7 +44,7 @@ export const transformColumns = (
         );
       }
       // 实现拖拽功能
-      if (column.resize) {
+      if (resize) {
         // eslint-disable-next-line no-param-reassign
         column.title = (
           <AdjustWidth

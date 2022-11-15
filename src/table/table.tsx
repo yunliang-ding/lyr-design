@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { TableProps } from './types';
 import { transformColumns } from './util';
-import { ConfigProvider, Table as AntdTable, Button, Alert } from 'antd';
+import { Table as AntdTable, Button, Alert } from 'antd';
 import { Form, Search, Table } from '@/index';
 import ToolBar from './toolbar';
 import getRowOperations from './row-operations';
@@ -28,7 +28,6 @@ export default ({
   params = {},
   paginationConfig,
   searchSchema,
-  locale,
   alertConfig,
   rowSelection,
   tableRender,
@@ -39,6 +38,7 @@ export default ({
   onDragDone = () => {},
   dragColumn = {},
   autoNo = false,
+  resize = false,
   keepRowSelection = true,
   virtual = false,
   loadMoreData,
@@ -269,6 +269,7 @@ export default ({
     emptyNode,
     onCellWidthChange,
     paginationInfo.current,
+    resize,
   );
   // 开启 drag
   if (drag) {
@@ -407,7 +408,7 @@ export default ({
     </>
   );
   return virtual ? (
-    <ConfigProvider locale={locale}>
+    <>
       {searchDom}
       <div
         className={
@@ -428,9 +429,9 @@ export default ({
           loadMoreData={loadMoreData}
         />
       </div>
-    </ConfigProvider>
+    </>
   ) : (
-    <ConfigProvider locale={locale}>
+    <>
       {searchDom}
       <div
         className={
@@ -445,6 +446,6 @@ export default ({
           ? tableRender(tableDom, dataSource)
           : tableDom}
       </div>
-    </ConfigProvider>
+    </>
   );
 };

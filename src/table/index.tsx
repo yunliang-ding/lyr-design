@@ -6,6 +6,7 @@ import { TableInstance } from './table.instance';
 import zhCN from 'antd/lib/locale/zh_CN';
 import Table from './table';
 import { getGlobalConfigByName } from '@/config';
+import { ConfigProvider } from 'antd';
 
 const CoreTable = (props: TableProps) => {
   const globalConfig = getGlobalConfigByName('Table', props);
@@ -26,12 +27,14 @@ const CoreTable = (props: TableProps) => {
     ...rest
   } = Object.assign({}, props, globalConfig);
   return (
-    <Table
-      emptyNode={emptyNode}
-      locale={locale}
-      defaultTools={defaultTools}
-      {...rest}
-    />
+    <ConfigProvider locale={locale}>
+      <Table
+        emptyNode={emptyNode}
+        locale={locale}
+        defaultTools={defaultTools}
+        {...rest}
+      />
+    </ConfigProvider>
   );
 };
 
