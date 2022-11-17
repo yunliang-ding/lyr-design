@@ -14,7 +14,6 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-  "homepage": "https://yunliang-ding.github.io/react-core-form",
   "keywords": [
     "schema",
     "form",
