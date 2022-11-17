@@ -905,3 +905,64 @@ export default () => {
   );
 };
 ```
+
+## 自定义组件之前的通信
+
+```tsx
+/**
+ * title: 说明
+ * desc: 自定义组件通信，可以挂载到 form 实例
+ */
+import React from 'react';
+import { Form } from 'react-core-form';
+
+export default () => {
+  const [form] = Form.useForm();
+  return (
+    <Form
+      form={form}
+      schema={[
+        {
+          name: 'test',
+          label: '组件1',
+          type: ({ form }) => {
+            const [count, setCount] = React.useState(0);
+            React.useEffect(() => {
+              // 挂载
+              form.getCount = () => {
+                return count;
+              };
+            }, [count]);
+            return (
+              <div>
+                <input value={count} />
+                <button
+                  onClick={() => {
+                    setCount(count + 1);
+                  }}
+                >
+                  点击+1
+                </button>
+              </div>
+            );
+          },
+        },
+        {
+          label: '组件2',
+          type: ({ form }) => {
+            return (
+              <button
+                onClick={() => {
+                  alert(form.getCount());
+                }}
+              >
+                获取组件1的方法
+              </button>
+            );
+          },
+        },
+      ]}
+    />
+  );
+};
+```
