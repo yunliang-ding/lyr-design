@@ -55,9 +55,14 @@ export default ({
   const [dataSource, setDataSource] = useState([]);
   const [form] = Form.useForm();
   // 分页的配置
-  const [pagination, setPagination]: any = useState({
+  const combPagination = {
     ...defaultPaginationConfig,
     ...(paginationConfig || {}),
+  };
+  const [pagination, setPagination]: any = useState({
+    ...combPagination,
+    pageNum: params.pageNum || combPagination.pageNum,
+    pageSize: params.pageSize || combPagination.pageSize,
   });
   // 获取缓存的数据
   useEffect(() => {

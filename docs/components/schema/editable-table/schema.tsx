@@ -86,7 +86,7 @@ export default {
       dataIndex: 'age',
       width: 300,
       render(age, { sex }) {
-        return sex === 1 ? '-' : age; // 性别男才展示
+        return sex === 0 ? age : '-'; // 性别男才展示
       },
       fieldProps: {
         type: 'InputNumber',

@@ -62,6 +62,11 @@ export default () => {
         position={position}
         sortable={sortable}
         {...schema}
+        defaultAddValue={{
+          name: '默认',
+          sex: 0,
+          age: 18,
+        }}
       />
     </>
   );

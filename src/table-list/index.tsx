@@ -21,6 +21,7 @@ export default ({
   removeConfirm = false,
   actionRef = useRef({}),
   name,
+  defaultAddValue = {},
 }: TableListProps) => {
   const firstRef = useRef(true);
   const [form] = Form.useForm();
@@ -143,7 +144,11 @@ export default ({
           icon={<PlusOutlined />}
           disabled={value.length >= maxCount}
           onClick={() => {
-            value.push({});
+            value.push(
+              typeof defaultAddValue === 'function'
+                ? defaultAddValue()
+                : defaultAddValue,
+            );
             onChange?.([...value]);
           }}
         >

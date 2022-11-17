@@ -13,6 +13,7 @@ import {
   arrayMove,
 } from 'react-sortable-hoc';
 import './index.less';
+import { EditTableProps } from './type';
 
 const SortableItem = SortableElement((props) => <tr {...props} />);
 
@@ -24,32 +25,6 @@ const DragHandle = SortableHandle(() => (
     style={{ cursor: 'grab', color: '#999' }}
   />
 ));
-
-interface EditTableProps {
-  rowKey: string;
-  /** 列信息 */
-  columns: any;
-  /** 数据源 */
-  value?: any;
-  /** 数据即将改变 */
-  onBeforeChange?: (value, values) => Promise<any>;
-  /** 数据即将删除 */
-  onBeforeDelete?: (value) => Promise<any>;
-  /** 数据改变 */
-  onChange?: (value) => void;
-  /** 是否只读 */
-  readOnly?: boolean;
-  /** 是否支持排序 */
-  sortable?: boolean;
-  /** 底部按钮配置 */
-  creatorButtonProps: any;
-  /** 限制最大条数 */
-  maxLength?: number;
-  /** 添加按钮的位置 */
-  position?: 'top' | 'bottom';
-  actionRef?: any;
-  name?: string;
-}
 
 // TODO value 中不能混入index属性，否则和内置的index属性冲突、待优化
 
@@ -69,6 +44,7 @@ export default ({
   position = 'bottom',
   actionRef = useRef({}),
   name,
+  defaultAddValue = {},
   ...rest
 }: EditTableProps) => {
   const [form] = Form.useForm();
@@ -236,6 +212,9 @@ export default ({
   const add = () => {
     if (position === 'bottom') {
       dataSource.push({
+        ...(typeof defaultAddValue === 'function'
+          ? defaultAddValue()
+          : defaultAddValue),
         __isNew__: true, // 新增标识
         index: dataSource.length, // 下标标识
       });

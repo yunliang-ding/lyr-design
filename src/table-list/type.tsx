@@ -21,6 +21,8 @@ export interface TableListProps {
   showNo?: boolean;
   /** 是否开启删除确认 */
   removeConfirm?: boolean;
+  /** 每次添加的默认值配置 */
+  defaultAddValue?: (() => any) | any;
   name?: string;
   actionRef?: any;
 }

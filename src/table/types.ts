@@ -94,7 +94,7 @@ export interface TableProps
   /** 加载完毕回调 */
   onLoad?: (response: any) => void;
   /** 默认查询值 */
-  params?: object;
+  params?: any;
   /** 分页配置 */
   paginationConfig?: PaginationConfig;
   /** 查询框配置 */

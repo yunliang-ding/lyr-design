@@ -59,6 +59,13 @@ export default () => {
         removeConfirm={removeConfirm}
         value={value}
         onChange={onChange}
+        defaultAddValue={() => {
+          return {
+            name: '默认姓名',
+            sex: 0,
+            age: 18,
+          };
+        }}
       />
     </>
   );

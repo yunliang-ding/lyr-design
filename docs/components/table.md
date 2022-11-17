@@ -19,6 +19,62 @@ export default () => {
 };
 ```
 
+## 缓存查询条件
+
+```tsx
+/**
+ * background: '#f6f7f9'
+ * title: 说明
+ * description: 需要清空缓存可以在组件卸载的钩子去决定是否需要清空。
+ */
+import React from 'react';
+import { Table } from 'react-core-form';
+import tableSchema from './schema/form-table/schema';
+
+export default () => {
+  return (
+    <Table
+      {...tableSchema}
+      searchSchema={{
+        schema: [
+          {
+            type: 'Input',
+            name: 'name',
+            label: '用户',
+          },
+          {
+            type: 'Input',
+            name: 'no',
+            label: '编号',
+          },
+          {
+            type: 'Select',
+            name: 'sex',
+            label: '性别',
+            props: {
+              options: [
+                {
+                  label: '男',
+                  value: 1,
+                },
+                {
+                  label: '女',
+                  value: 2,
+                },
+              ],
+            },
+          },
+        ],
+      }}
+      params={window.cacheParams}
+      onQuery={(params) => {
+        window.cacheParams = params;
+      }}
+    />
+  );
+};
+```
+
 ## 使用 ellipsis 扩展、useThousandth 千分位、emptyNode 展示空数据
 
 ```tsx
