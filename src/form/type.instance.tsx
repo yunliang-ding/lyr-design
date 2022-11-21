@@ -1,4 +1,4 @@
-import { ActionProps } from '@/form-submit/type.action';
+import { ActionProps } from '../form-submit/type.action';
 import { FormListOperation } from 'antd/lib/form/FormList';
 import { SchemaProps } from './type.item';
 
