@@ -2,7 +2,10 @@
 title: react-core-form
 hero:
   title: react-core-form
+  desc: 中后台表单配置化解决方案
   actions:
+    - text: Playground
+      link: http://121.4.49.147:9000/react-playground
     - text: 开始使用
       link: /components
 features:

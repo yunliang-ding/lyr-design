@@ -35,7 +35,7 @@ npm install react-core-form --save
 
 <Alert>
 
-- `XRender` 以及 `Formily` 都是比较成熟的表单解决方案但是他们在 Schema 规范、以及上手需要一定的学习成本
+- [XRender](https://x-render.gitee.io/form-render) 以及 [Formily](https://v2.formilyjs.org/zh-CN/guide) 都是比较成熟的表单解决方案但是他们在 Schema 规范、以及上手需要一定的学习成本
 
 - 底层我们不能完全掌控，我们不能更好的从业务需求的角度去做扩展、加功能，Api 都是被第三方约束了
 

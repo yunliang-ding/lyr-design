@@ -41,6 +41,10 @@ export default defineConfig({
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
+      title: 'Playground',
+      path: 'http://121.4.49.147:9000/react-playground',
+    },
+    {
       title: 'GitHub',
       path: 'https://github.com/yunliang-ding/react-core-form',
     },

@@ -28,6 +28,8 @@ export { default as EditableTable } from './table-editable';
 export { default as TableList } from './table-list';
 export { default as DragList } from './drag-list';
 export { default as AnchorCard } from './anchor-card';
+export { default as ConsoleRender } from './console-render';
+
 /** 类型 */
 export type { SchemaProps, FieldProps } from './form/type.item';
 export type { TableProps } from './table/types';
