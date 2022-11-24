@@ -48,8 +48,13 @@ const DomRender = ({ values, log = console.log.bind(console) }) => {
   );
 };
 
+interface ResProps {
+  listener: Function;
+  clear: Function;
+}
+
 export default {
-  create: ({ target }: ConsoleRenderProps) => {
+  create: ({ target }: ConsoleRenderProps): ResProps => {
     const HistoryLog = [];
     const console_log_bind_001 = console.log.bind(console);
     const print = (value) => {
