@@ -17,9 +17,12 @@ import React from 'react';
 import { ConsoleRender } from 'react-core-form';
 
 export default () => {
+  const logInstance = ConsoleRender.create({
+    target: '#console-container',
+  });
   React.useEffect(() => {
     // 监听日志打印
-    ConsoleRender.create(document.querySelector('#console-container'));
+    logInstance.listener();
     console.log(100, 'test', new Date(), Object, () => {}, null, undefined);
     console.log(
       [1, 2, 3, 4],
@@ -28,6 +31,19 @@ export default () => {
       [100, 200],
     );
   }, []);
-  return <div id="console-container" />;
+  return (
+    <>
+      <button
+        onClick={() => {
+          logInstance.clear();
+        }}
+      >
+        清空日志
+      </button>
+      <br />
+      <br />
+      <div id="console-container" />
+    </>
+  );
 };
 ```

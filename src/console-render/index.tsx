@@ -4,6 +4,10 @@ import BasicRender from './render/basic';
 import ReactDom from 'react-dom';
 import './index.less';
 
+interface ConsoleRenderProps {
+  target: string;
+}
+
 export const getJSType = (obj: unknown): string => {
   const type = Object.prototype.toString.call(obj).slice(8, -1);
   return type.toLocaleLowerCase();
@@ -24,7 +28,7 @@ export const RenderChildren = ({ value, log }) => {
   return <VNode value={value} log={log} />;
 };
 
-const ConsoleRender = ({ values, log = console.log.bind(console) }) => {
+const DomRender = ({ values, log = console.log.bind(console) }) => {
   return (
     <div className="console-wrap">
       {values.map((value) => {
@@ -44,27 +48,35 @@ const ConsoleRender = ({ values, log = console.log.bind(console) }) => {
   );
 };
 
-ConsoleRender.create = (target) => {
-  const HistoryLog = [];
-  /** 修饰打印 */
-  const console_log_bind_001 = console.log.bind(console);
-  console.log = function (...p) {
-    console_log_bind_001(...p);
-    try {
-      print(p);
-    } catch (e) {
-      console_log_bind_001('err', e);
-    }
-  };
-  const print = (value) => {
-    HistoryLog.push(value); // 添加到队列
-    if (target) {
-      ReactDom.render(
-        <ConsoleRender values={HistoryLog} log={console_log_bind_001} />,
-        target,
-      );
-    }
-  };
+export default {
+  create: ({ target }: ConsoleRenderProps) => {
+    const HistoryLog = [];
+    const console_log_bind_001 = console.log.bind(console);
+    const print = (value) => {
+      HistoryLog.push(value); // 添加到队列
+      if (target) {
+        ReactDom.render(
+          <DomRender values={HistoryLog} log={console_log_bind_001} />,
+          document.querySelector(target),
+        );
+      }
+    };
+    return {
+      listener: () => {
+        /** 修饰打印 */
+        console.log = function (...p) {
+          console_log_bind_001(...p);
+          try {
+            print(p);
+          } catch (e) {
+            console_log_bind_001('err', e);
+          }
+        };
+      },
+      clear: () => {
+        HistoryLog.length = 0;
+        ReactDom.render(null, document.querySelector(target));
+      },
+    };
+  },
 };
-
-export default ConsoleRender;
