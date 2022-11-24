@@ -1,6 +1,7 @@
 import ObjectRender from './render/object';
 import ArrayRender from './render/array';
 import BasicRender from './render/basic';
+import ReactDom from 'react-dom';
 import './index.less';
 
 export const getJSType = (obj: unknown): string => {
@@ -23,7 +24,7 @@ export const RenderChildren = ({ value, log }) => {
   return <VNode value={value} log={log} />;
 };
 
-export default ({ values, log = console.log.bind(console) }) => {
+const ConsoleRender = ({ values, log = console.log.bind(console) }) => {
   return (
     <div className="console-wrap">
       {values.map((value) => {
@@ -42,3 +43,28 @@ export default ({ values, log = console.log.bind(console) }) => {
     </div>
   );
 };
+
+ConsoleRender.create = (target) => {
+  const HistoryLog = [];
+  /** 修饰打印 */
+  const console_log_bind_001 = console.log.bind(console);
+  console.log = function (...p) {
+    console_log_bind_001(...p);
+    try {
+      print(p);
+    } catch (e) {
+      console_log_bind_001('err', e);
+    }
+  };
+  const print = (value) => {
+    HistoryLog.push(value); // 添加到队列
+    if (target) {
+      ReactDom.render(
+        <ConsoleRender values={HistoryLog} log={console_log_bind_001} />,
+        target,
+      );
+    }
+  };
+};
+
+export default ConsoleRender;
