@@ -31,12 +31,12 @@ export const RenderChildren = ({ value, log }) => {
 const DomRender = ({ values, log = console.log.bind(console) }) => {
   return (
     <div className="console-wrap">
-      {values.map((value) => {
+      {values.map((value, index) => {
         return (
-          <div className="console-wrap-row">
-            {value.map((v) => {
+          <div className="console-wrap-row" key={`row-${index}`}>
+            {value.map((v, index) => {
               return (
-                <div className="console-wrap-row-col">
+                <div className="console-wrap-row-col" key={`col-${index}`}>
                   <RenderChildren value={v} log={log} />
                 </div>
               );
