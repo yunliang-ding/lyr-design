@@ -12,7 +12,11 @@ export interface TableColumnType extends ColumnType<any> {
       }
     | boolean;
   /** 支持复制 */
-  copyable?: boolean;
+  copyable?:
+    | boolean
+    | {
+        text: string | ((v, record, index) => string);
+      };
   /** 提示 */
   tip?: React.ReactNode;
   /** 是否展示 */

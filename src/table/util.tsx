@@ -127,7 +127,12 @@ export const transformColumns = (
               <Typography.Paragraph
                 copyable={
                   typeof column.copyable === 'object'
-                    ? column.copyable
+                    ? {
+                        text:
+                          typeof column.copyable.text === 'function'
+                            ? column.copyable.text(item, record, index)
+                            : column.copyable.text,
+                      }
                     : {
                         text: item,
                       }

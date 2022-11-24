@@ -36,13 +36,17 @@ const tableSchema: TableProps = {
       width: 100,
       fixed: 'left',
       link: true,
+      copyable: {
+        text: (v, record, index) => {
+          return JSON.stringify(record);
+        },
+      },
     },
     {
       title: '客户姓名',
       dataIndex: 'username',
       tip: '这里是客户姓名描述',
       copyable: true,
-      link: true,
       ellipsis: true,
       width: 150,
       onCell: () => {
@@ -79,9 +83,6 @@ const tableSchema: TableProps = {
       dataIndex: 'sign',
       width: 120,
       ellipsis: true,
-      render(sign) {
-        return sign;
-      },
     },
     {
       title: '职业',
