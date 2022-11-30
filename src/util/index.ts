@@ -88,21 +88,6 @@ export const queryFieldByName = (fields, fieldName) => {
   return _field_;
 };
 
-export const getUrlParams = (names?: string[]): { [key: string]: string } => {
-  const uri = new URL(location.href.replace('#', ''));
-  const res: { [key: string]: any } = {};
-  if (!names) {
-    uri.searchParams.forEach((value, key) => {
-      res[key] = value;
-    });
-  } else {
-    names.forEach((i) => {
-      res[i] = uri.searchParams.get(i);
-    });
-  }
-  return res;
-};
-
 export const getType = (obj: any): string => {
   const type = Object.prototype.toString.call(obj).slice(8, -1);
   return type.toLocaleLowerCase();

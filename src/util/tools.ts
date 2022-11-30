@@ -1,6 +1,7 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import BigNumber from 'bignumber.js';
 import { message } from 'antd';
+import { isEmpty, uuid } from '.';
 
 const calculate = (
   args: BigNumber.Value[],
@@ -28,21 +29,8 @@ export default {
     divided: (...args: BigNumber.Value[]) => calculate(args, 'dividedBy'),
   },
   /** 判断空 */
-  isEmpty: (param: any) => {
-    if (param === null || param === undefined) {
-      return true;
-    }
-    if (Array.isArray(param)) {
-      return param.length === 0;
-    }
-    if (typeof param === 'string') {
-      return param.trim() === '';
-    }
-    if (typeof param === 'object') {
-      return Object.keys(param).length === 0;
-    }
-    return false;
-  },
+  isEmpty,
+  uuid,
   /** 千分位，小数点2位 */
   NumberFormat: (
     number: any,
