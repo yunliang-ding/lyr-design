@@ -1,4 +1,4 @@
-import { SchemaProps } from 'react-core-form';
+import { SchemaProps, Tools } from 'react-core-form';
 
 const schema: SchemaProps[] = [
   {
@@ -17,6 +17,22 @@ const schema: SchemaProps[] = [
           value: 2,
         },
       ],
+    },
+  },
+  {
+    type: 'InputNumber',
+    label: '收入总和(元)',
+    name: 'totalAmount',
+    disabled: true,
+    extra: '子表单收入合计',
+    effect: [['contactList', 'index', 'amount']],
+    onEffect(name, { getFieldValue, setFieldsValue }) {
+      const contactList = getFieldValue('contactList');
+      setFieldsValue({
+        totalAmount: Tools.BigNumber.add(
+          ...contactList.filter((i) => !!i.amount).map((i) => i.amount),
+        ),
+      });
     },
   },
   {
@@ -44,6 +60,12 @@ const schema: SchemaProps[] = [
           type: 'Input',
           name: 'name',
           label: '姓名',
+          required: true,
+        },
+        {
+          type: 'InputNumber',
+          name: 'amount',
+          label: '收入(元)',
           required: true,
         },
         {

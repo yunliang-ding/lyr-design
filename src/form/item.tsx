@@ -77,12 +77,16 @@ export default ({
           touchEffect(field);
         } else if (
           _field?.effect?.some((item) => {
-            // 子表单
+            // effect 配置了二维数组
             if (Array.isArray(item)) {
-              // eslint-disable-next-line no-param-reassign
-              item[1] = _field.name[0]; // 更新index
+              if (Array.isArray(_field.name)) {
+                // 子表单依赖子表单
+                item[1] = _field.name[0]; // 更新index
+              } else {
+                // 主表单依赖子表单
+                item[1] = name.split(',')[1]; // 更新index
+              }
             }
-            // eslint-disable-next-line @iceworks/best-practices/recommend-polyfill
             return item.toString() === name.toString();
           })
         ) {
