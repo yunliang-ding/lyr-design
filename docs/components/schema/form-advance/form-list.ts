@@ -30,7 +30,7 @@ const schema: SchemaProps[] = [
       const contactList = getFieldValue('contactList');
       setFieldsValue({
         totalAmount: Tools.BigNumber.add(
-          ...contactList.filter((i) => !!i.amount).map((i) => i.amount),
+          ...contactList.filter((i) => !!i?.amount).map((i) => i?.amount),
         ),
       });
     },
