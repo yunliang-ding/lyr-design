@@ -52,7 +52,7 @@ const CreateModalForm = (props) => {
   return null;
 };
 
-export default (options: CreateModalFormProps) => {
+const ModalFormPopUp = (options: CreateModalFormProps) => {
   const containId = options.containId || `modalId_${uuid(6)}`;
   return {
     open: async (config?: CreateModalFormProps) => {
@@ -69,8 +69,11 @@ export default (options: CreateModalFormProps) => {
         },
       });
     },
-    close: () => {
-      close(containId); // 关闭
-    },
   };
 };
+
+ModalFormPopUp.close = (containId: string) => {
+  close(containId); // 关闭
+};
+
+export default ModalFormPopUp;

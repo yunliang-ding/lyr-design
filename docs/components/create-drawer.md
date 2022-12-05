@@ -39,17 +39,15 @@ import { CreateDrawer } from 'react-core-form';
 import schema from './schema/form-submit/schema';
 import { Button, Space } from 'antd';
 
-const myDrawer = CreateDrawer({
-  title: '新增用户',
-  schema,
-});
-
 export default (props) => {
   return (
     <Button
       type="primary"
       onClick={() => {
-        myDrawer.open({
+        CreateDrawer({
+          title: '新增用户',
+          schema,
+        }).open({
           footerRender: (form) => {
             return (
               <Space>

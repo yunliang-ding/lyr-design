@@ -29,8 +29,8 @@ export { default as TableList } from './table-list';
 export { default as DragList } from './drag-list';
 export { default as AnchorCard } from './anchor-card';
 export { default as ConsoleRender } from './console-render';
+export { default as CheckAppVersion } from './check-app-version';
 export { default as Tools } from './util/tools';
-
 /** 类型 */
 export type { SchemaProps, FieldProps } from './form/type.item';
 export type { TableProps } from './table/types';

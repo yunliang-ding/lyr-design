@@ -52,7 +52,7 @@ const CreateDrawerForm = (props) => {
   return null;
 };
 
-export default (options: CreateDrawerFormProps) => {
+const DrawerFormPopUp = (options: CreateDrawerFormProps) => {
   const containId = options.containId || `drawerId_${uuid(6)}`;
   return {
     open: (config?: CreateDrawerFormProps) => {
@@ -69,8 +69,10 @@ export default (options: CreateDrawerFormProps) => {
         },
       });
     },
-    close: async () => {
-      close(containId); // 关闭
-    },
   };
 };
+
+DrawerFormPopUp.close = (containId: string) => {
+  close(containId); // 关闭
+};
+export default DrawerFormPopUp;

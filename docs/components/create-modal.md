@@ -48,43 +48,43 @@ import { CreateModal } from 'react-core-form';
 import schema from './schema/form-submit/schema';
 import { Button, message, Switch } from 'antd';
 
-const userForm = CreateModal({
-  title: '新增用户',
-  width: 1000,
-  modalProps: {
-    bodyStyle: {
-      height: 500,
-      overflow: 'auto',
-    },
-  },
-  schema,
-  column: 2,
-  actions: [
-    {
-      label: '手动关闭',
-      onClick() {
-        userForm.close();
-      },
-    },
-    {
-      label: '手动提交',
-      spin: true,
-      type: 'primary',
-      async onClick(value) {
-        await new Promise((res) => setTimeout(res, 1000));
-        console.log(value);
-        message.error('接口异常');
-        return Promise.reject(); // 阻止关闭
-      },
-    },
-  ],
-});
 export default (props) => {
   return (
     <Button
       type="link"
       onClick={() => {
-        userForm.open();
+        CreateModal({
+          title: '新增用户',
+          width: 1000,
+          containId: 'self-modal',
+          modalProps: {
+            bodyStyle: {
+              height: 500,
+              overflow: 'auto',
+            },
+          },
+          schema,
+          column: 2,
+          actions: [
+            {
+              label: '手动关闭',
+              onClick() {
+                CreateModal.close('self-modal');
+              },
+            },
+            {
+              label: '手动提交',
+              spin: true,
+              type: 'primary',
+              async onClick(value) {
+                await new Promise((res) => setTimeout(res, 1000));
+                console.log(value);
+                message.error('接口异常');
+                return Promise.reject(); // 阻止关闭
+              },
+            },
+          ],
+        }).open();
       }}
     >
       手动打开Modal
