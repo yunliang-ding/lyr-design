@@ -33,7 +33,7 @@ export default ({
 }: CheckAppVersionProps) => {
   const run = () => {
     request().then((res) => {
-      if (res) {
+      if (res === true) {
         notification.info({
           key: 'app-version-notifi',
           message: '提示',
