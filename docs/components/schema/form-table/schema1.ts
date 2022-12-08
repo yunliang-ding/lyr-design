@@ -61,14 +61,15 @@ const tableSchema: TableProps = {
       title: '性别',
       dataIndex: 'sex',
       width: 150,
+      enums: ['男', '女'],
       filters: [
         {
           text: '男',
-          value: 1,
+          value: 0,
         },
         {
           text: '女',
-          value: 2,
+          value: 1,
         },
       ],
     },

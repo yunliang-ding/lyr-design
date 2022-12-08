@@ -1,9 +1,41 @@
 import { message } from 'antd';
 import axios from '../../../axios';
 import { TableProps } from 'react-core-form';
-import schema from '../form-submit/schema';
+import schema from './form.schema';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
+
+const user1Form = ({ onSearch, initialValues = { id: undefined } }) => {
+  return {
+    title: initialValues.id ? '编辑1' : '添加1',
+    schema,
+    initialValues,
+    modalProps: {
+      bodyStyle: {
+        height: 500,
+        overflow: 'auto',
+      },
+    },
+    async onSubmit() {
+      await delay(400);
+      message.success('保存成功');
+      onSearch?.();
+    },
+  };
+};
+
+const user2Form = ({ onSearch, initialValues = { id: undefined } }) => {
+  return {
+    title: initialValues.id ? '编辑2' : '添加2',
+    schema,
+    initialValues,
+    async onSubmit() {
+      await delay(400);
+      message.success('保存成功');
+      onSearch?.();
+    },
+  };
+};
 
 const tableSchema: TableProps = {
   rowKey: 'id',
@@ -27,35 +59,13 @@ const tableSchema: TableProps = {
     {
       label: '添加1',
       modalFormProps: ({ onSearch }) => {
-        return {
-          title: '新增用户2',
-          schema,
-          modalProps: {
-            bodyStyle: {
-              height: 500,
-              overflow: 'auto',
-            },
-          },
-          async onSubmit() {
-            await delay(400);
-            message.success('保存成功');
-            onSearch();
-          },
-        };
+        return user1Form({ onSearch });
       },
     },
     {
       label: '添加2',
       drawerFormProps: ({ onSearch }) => {
-        return {
-          title: '新增用户2',
-          schema,
-          async onSubmit() {
-            await delay(400);
-            message.success('保存成功');
-            onSearch();
-          },
-        };
+        return user2Form({ onSearch });
       },
     },
   ],
@@ -77,14 +87,15 @@ const tableSchema: TableProps = {
       title: '性别',
       dataIndex: 'sex',
       width: 150,
+      enums: ['男', '女'],
       filters: [
         {
           text: '男',
-          value: 1,
+          value: 0,
         },
         {
           text: '女',
-          value: 2,
+          value: 1,
         },
       ],
     },
@@ -129,37 +140,24 @@ const tableSchema: TableProps = {
         {
           label: '编辑1',
           modalFormProps: ({ onRefresh }) => {
-            return {
-              title: '新增用户2',
-              initialValues: record,
-              schema,
-              modalProps: {
-                bodyStyle: {
-                  height: 500,
-                  overflow: 'auto',
-                },
-              },
-              async onSubmit() {
-                await delay(400);
-                message.success('保存成功');
-                onRefresh();
-              },
-            };
+            return user1Form({ onSearch: onRefresh, initialValues: record });
           },
         },
         {
           label: '编辑2',
           drawerFormProps: ({ onRefresh }) => {
-            return {
-              title: '新增用户2',
-              initialValues: record,
-              schema,
-              async onSubmit() {
-                await delay(400);
-                message.success('保存成功');
-                onRefresh();
-              },
-            };
+            return user2Form({ onSearch: onRefresh, initialValues: record });
+          },
+        },
+        {
+          label: '删除',
+          confirm: {
+            content: '是否确定删除',
+          },
+          onClick: async ({ onSearch }) => {
+            await new Promise((res) => setTimeout(res, 1000));
+            message.success('已删除');
+            onSearch(); // 刷新
           },
         },
       ];

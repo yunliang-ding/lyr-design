@@ -43,6 +43,7 @@ const tableSchema: TableProps = {
       title: '性别',
       ellipsis: true,
       dataIndex: 'sex',
+      enums: ['男', '女'],
     },
     {
       title: '城市',

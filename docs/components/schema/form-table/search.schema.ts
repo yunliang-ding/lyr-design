@@ -21,23 +21,6 @@ export default {
       },
     },
     {
-      type: 'Select',
-      name: 'sex',
-      label: '性别',
-      props: {
-        options: [
-          {
-            label: '男',
-            value: 0,
-          },
-          {
-            label: '女',
-            value: 1,
-          },
-        ],
-      },
-    },
-    {
       type: 'DatePicker',
       name: 'date',
       label: '入职日期',

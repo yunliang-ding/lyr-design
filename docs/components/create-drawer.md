@@ -31,6 +31,84 @@ export default (props) => {
 };
 ```
 
+## 手动关闭和阻止关闭
+
+```tsx
+import React from 'react';
+import { CreateDrawer } from 'react-core-form';
+import schema from './schema/form-submit/schema';
+import { Button, message, Switch } from 'antd';
+
+export default (props) => {
+  return (
+    <Button
+      type="dashed"
+      onClick={() => {
+        CreateDrawer({
+          title: '新增用户',
+          width: 1000,
+          containId: 'self-drawer',
+          schema,
+          column: 2,
+          actions: [
+            {
+              label: '手动关闭',
+              onClick() {
+                CreateDrawer.close('self-drawer');
+              },
+            },
+            {
+              label: '手动提交',
+              spin: true,
+              type: 'primary',
+              async onClick(value) {
+                await new Promise((res) => setTimeout(res, 1000));
+                console.log(value);
+                message.error('接口异常');
+                return Promise.reject(); // 阻止关闭
+              },
+            },
+          ],
+        }).open();
+      }}
+    >
+      手动关闭和阻止关闭
+    </Button>
+  );
+};
+```
+
+## CreateDrawer 自定义渲染
+
+```tsx
+import React from 'react';
+import { CreateDrawer } from 'react-core-form';
+import { Button, message, Switch } from 'antd';
+
+export default (props) => {
+  return (
+    <Button
+      type="primary"
+      onClick={() => {
+        CreateDrawer({
+          title: '自定义渲染',
+          confirmText: '确认',
+          onSubmit() {
+            message.success('确认完毕');
+          },
+        }).open({
+          render: ({ value }) => {
+            return <h4>这个是详情页面可用自定义渲染</h4>;
+          },
+        });
+      }}
+    >
+      自定义渲染 Drawer
+    </Button>
+  );
+};
+```
+
 ## 自定义渲染底部按钮
 
 ```tsx
@@ -47,19 +125,26 @@ export default (props) => {
         CreateDrawer({
           title: '新增用户',
           schema,
+          containId: 'footer-render-drawer',
         }).open({
           footerRender: (form) => {
             return (
               <Space>
                 <a>这个是一个描述信息</a>
-                <Button onClick={myDrawer.close}>取消</Button>
+                <Button
+                  onClick={() => {
+                    CreateDrawer.close('footer-render-drawer');
+                  }}
+                >
+                  取消
+                </Button>
                 <Button
                   type="primary"
                   ghost
                   onClick={async () => {
                     const data = await form.submit();
                     alert(JSON.stringify(data));
-                    myDrawer.close(); // 关闭
+                    CreateDrawer.close('footer-render-drawer'); // 关闭
                   }}
                 >
                   提交

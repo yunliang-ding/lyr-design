@@ -51,7 +51,7 @@ import { Button, message, Switch } from 'antd';
 export default (props) => {
   return (
     <Button
-      type="link"
+      type="dashed"
       onClick={() => {
         CreateModal({
           title: '新增用户',
@@ -87,7 +87,7 @@ export default (props) => {
         }).open();
       }}
     >
-      手动打开Modal
+      手动关闭和阻止关闭
     </Button>
   );
 };
