@@ -77,14 +77,31 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { CardForm, Button } from 'react-core-form';
+import { Modal } from 'antd';
+import { Form, CardForm, Button } from 'react-core-form';
 import schema from './schema/editable-table/schema';
 
 export default () => {
+  const [form] = Form.useForm();
   const [readOnly, setReadOnly] = React.useState(false);
   const onSubmit = async (values) => {
-    alert(JSON.stringify(values));
+    if (form.formListInstance.relationList.editIndex !== -1) {
+      Modal.confirm({
+        title: '提示',
+        content: '客户联系人名单有未保存的数据，是否确认提交',
+        onOk: async () => {
+          await form.formListInstance.relationList.saveEdit(); // 手动保存正在编辑的行
+          console.log('values: ', values);
+        },
+      });
+    } else {
+      console.log('values: ', values);
+    }
   };
+  React.useEffect(() => {
+    // 默认第一行开启编辑态
+    form.formListInstance.relationList.setEditIndex(0);
+  }, []);
   return (
     <>
       <Button
@@ -95,6 +112,7 @@ export default () => {
       </Button>
       <CardForm
         title="新增客户"
+        form={form}
         readOnly={readOnly}
         initialValues={{
           userName: 'test-001',

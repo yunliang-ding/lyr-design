@@ -48,11 +48,6 @@ export default ({
   ...rest
 }: EditTableProps) => {
   const [form] = Form.useForm();
-  useEffect(() => {
-    actionRef.current[name] = {
-      ...form,
-    };
-  }, []);
   const event = useMemo(() => {
     return new EventEmit();
   }, []);
@@ -394,6 +389,17 @@ export default ({
       {creatorButtonProps.text}
     </Button>,
   ];
+  // 挂载API
+  useEffect(() => {
+    actionRef.current[name] = {
+      ...form,
+      editIndex,
+      setEditIndex,
+      saveEdit: async () => {
+        await saveByIndex(editIndex);
+      },
+    };
+  }, [editIndex]);
   return (
     <div className="core-form-editable-table">
       <Form
