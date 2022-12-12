@@ -641,6 +641,10 @@ export default () => {
 
 ## 使用 FormList 子表单联动
 
+- 主表单依赖子表单 => 主表单的收入总和是子表单每一项的收入相加
+- 子表单依赖主表单 => 子表单爱好的选项和主表单的联系人类型相关
+- 子表单依赖子表单 => 子表单项性别是男才有年龄的输入框，当姓名为空的时候收入项禁用
+
 ```tsx
 import React from 'react';
 import { Form, Button } from 'react-core-form';

@@ -67,6 +67,11 @@ const schema: SchemaProps[] = [
           name: 'amount',
           label: '收入(元)',
           required: true,
+          effect: [['contactList', 'index', 'name']],
+          disabled({ getFieldValue }) {
+            const name = getFieldValue('contactList')[this.name[0]]?.name;
+            return name === '' || name === undefined;
+          },
         },
         {
           type: 'AsyncCheckGroup',
