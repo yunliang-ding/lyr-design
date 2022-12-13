@@ -13,6 +13,7 @@ export { default as CheckGroup } from './widgets/antd/check-group';
 export { default as TreeSelect } from './widgets/antd/tree-select';
 export { default as Cascader } from './widgets/antd/cascader';
 export { default as Switch } from './widgets/antd/switch';
+export { default as BlockQuote } from './widgets/extension/block-quote';
 /** 扩展组件 */
 export { default as Grid } from './grid';
 export { default as Button } from './button';

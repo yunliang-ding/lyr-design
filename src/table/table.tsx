@@ -315,7 +315,7 @@ export default ({
           filters,
           sorter,
         });
-        updateLocalFilter(tableId, false, false, _pagination.pageSize);
+        updateLocalFilter(tableId, columns, filterIds, _pagination.pageSize);
       }}
       rowSelection={innerRowSelection}
       components={
