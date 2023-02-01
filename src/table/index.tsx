@@ -14,13 +14,13 @@ const CoreTable = (props: TableProps) => {
     emptyNode = '-',
     defaultTools = [
       {
+        type: 'FilterColumns',
+      },
+      {
         type: 'Refresh',
       },
       {
         type: 'AdjustSize',
-      },
-      {
-        type: 'FilterColumns',
       },
     ],
     locale = zhCN,
