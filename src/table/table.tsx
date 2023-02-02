@@ -47,7 +47,8 @@ export default ({
   const [_columns, setColumns] = useState([]);
   const [payload, setPayload] = useState({}); // 扩展参数
   useEffect(() => {
-    setColumns(columns);
+    // 过滤下不展示的字段
+    setColumns(columns.filter((i) => i.visible !== false));
   }, [columns]);
   const [_filterIds, setFilterIds] = useState(filterIds);
   const [refresh, setRefresh] = useState(0);
