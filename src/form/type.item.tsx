@@ -191,6 +191,11 @@ export interface ExtensionProps {
     | {
         text: ReactNode;
       };
+  /**
+   * 是否开异步启下拉选缓存
+   * @default   true
+   */
+  openOptionsCache?: boolean;
 }
 const Hello: React.FC<SchemaProps<{}>> = () => null;
 
