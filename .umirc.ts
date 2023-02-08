@@ -8,7 +8,7 @@ export default defineConfig({
   metas: [
     {
       name: 'revised',
-      content: '0.0.21',
+      content: '0.0.22',
     },
     {
       name: 'keywords',

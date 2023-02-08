@@ -28,26 +28,40 @@ const VNode = (text) => (
 
 export default ({
   time = 5,
-  request = async () => false,
+  remoteCdnUpdateTime,
   text = '系统检测有新版本更新，是否重新加载?',
+  placement = 'bottomRight',
 }: CheckAppVersionProps) => {
+  if (typeof remoteCdnUpdateTime !== 'function') {
+    return () => {};
+  }
+  // 当前时间
+  const localBuildTime = new Date().getTime();
+  // 判断逻辑
+  const diffTime = async () => {
+    const remoteBuildTime = await remoteCdnUpdateTime();
+    if (remoteBuildTime > localBuildTime) {
+      return true;
+    }
+    return false;
+  };
   const run = () => {
-    request().then((res) => {
-      if (res === true) {
+    diffTime().then((res) => {
+      if (res) {
         notification.info({
           key: 'app-version-notifi',
           message: '提示',
           duration: 6000,
           className: 'app-version-notifi',
           description: VNode(text),
-          placement: 'bottomRight',
+          placement,
         });
         window.clearInterval(timer);
       }
     });
   };
   run();
-  /** 开启轮训模式 */
+  // 轮循查询版本差异入口
   const timer = setInterval(() => {
     run();
   }, time * 1000);
