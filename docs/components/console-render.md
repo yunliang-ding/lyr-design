@@ -30,6 +30,7 @@ export default () => {
       { address: 'test', liked: [1, 2, 3] },
       [100, 200],
     );
+    return consoleInstance.destory;
   }, []);
   return (
     <>

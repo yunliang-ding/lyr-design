@@ -51,6 +51,7 @@ const DomRender = ({ values, log = console.log.bind(console) }) => {
 interface ResProps {
   listener: Function;
   clear: Function;
+  destory: Function;
 }
 
 export default {
@@ -67,6 +68,10 @@ export default {
       }
     };
     return {
+      destory: () => {
+        /** 还原 */
+        console.log = console_log_bind_001;
+      },
       listener: () => {
         /** 修饰打印 */
         console.log = function (...p) {

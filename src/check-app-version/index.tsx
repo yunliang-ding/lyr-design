@@ -31,6 +31,16 @@ export default ({
   remoteCdnUpdateTime,
   text = '系统检测有新版本更新，是否重新加载?',
   placement = 'bottomRight',
+  onMessage = () => {
+    notification.info({
+      key: 'app-version-notifi',
+      message: '提示',
+      duration: 6000,
+      className: 'app-version-notifi',
+      description: VNode(text),
+      placement,
+    });
+  },
 }: CheckAppVersionProps) => {
   if (typeof remoteCdnUpdateTime !== 'function') {
     return () => {};
@@ -45,27 +55,20 @@ export default ({
     }
     return false;
   };
+  let timer = null;
+  // 轮循查询版本差异入口
   const run = () => {
     diffTime().then((res) => {
       if (res) {
-        notification.info({
-          key: 'app-version-notifi',
-          message: '提示',
-          duration: 6000,
-          className: 'app-version-notifi',
-          description: VNode(text),
-          placement,
-        });
-        window.clearInterval(timer);
+        onMessage?.();
+        window.clearTimeout(timer);
+      } else {
+        timer = setTimeout(run, time * 1000);
       }
     });
   };
   run();
-  // 轮循查询版本差异入口
-  const timer = setInterval(() => {
-    run();
-  }, time * 1000);
   return () => {
-    window.clearInterval(timer);
+    window.clearTimeout(timer);
   };
 };

@@ -7,4 +7,6 @@ export default interface CheckAppVersionProps {
   remoteCdnUpdateTime: () => Promise<number>;
   /** 可选位置 */
   placement?: 'topRight' | 'bottomRight';
+  /** 展示提示 */
+  onMessage?: Function;
 }
