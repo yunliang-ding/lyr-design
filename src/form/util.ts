@@ -401,6 +401,12 @@ export const parseBeforeReceive = (
         parseValue,
       );
     }
+    if (
+      typeof field.visible === 'function' &&
+      field.visible(values) === false
+    ) {
+      return; // 过滤不展示的字段
+    }
     parseValue[field.name] =
       typeof field.beforeReceive === 'function'
         ? field.beforeReceive(values)

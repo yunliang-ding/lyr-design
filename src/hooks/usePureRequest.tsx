@@ -1,6 +1,5 @@
 import { cloneDeep } from 'lodash';
 import { useState, useRef } from 'react';
-
 /**
  * 提供 loading标识 + 时间戳校验
  */
@@ -27,7 +26,7 @@ export default (request) => {
       } else {
         formData.data = data;
       }
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         request({
           url,
           ...formData,
@@ -39,10 +38,8 @@ export default (request) => {
               resolve(res);
             }
           })
-          .catch(() => {
-            resolve({
-              success: false,
-            });
+          .catch((error) => {
+            reject(error);
           })
           .finally(() => {
             setLoading(false);
