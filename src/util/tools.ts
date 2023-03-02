@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js';
 import { message } from 'antd';
 import { isEmpty, uuid } from '.';
 import html2canvas from 'html2canvas';
+import { useReactToPrint as doPrintElement } from 'react-to-print';
 
 const calculate = (
   args: BigNumber.Value[],
@@ -114,19 +115,38 @@ export default {
       return '';
     }
   },
-  /** 打印元素快照 */
-  printImg: (element, filename: string) => {
-    return new Promise((res) => {
-      html2canvas(element, { useCORS: true }).then((canvas) => {
-        document.documentElement.classList.remove('html2canvas');
-        const a = document.createElement('a');
-        a.download = filename;
-        a.href = canvas.toDataURL();
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        res(true);
-      });
-    });
+  /** 获取元素快照 */
+  /** 获取元素快照 */
+  getElementSnapshot: (element) => {
+    return {
+      printImg: doPrintElement({
+        bodyClass: 'print-class',
+        content: () => document.querySelector(element),
+      }),
+      // 直接下载
+      downloadImg: (filename: string) =>
+        new Promise((res) => {
+          html2canvas(document.querySelector(element), { useCORS: true }).then(
+            (canvas) => {
+              document.documentElement.classList.remove('html2canvas');
+              const a = document.createElement('a');
+              a.download = filename;
+              a.href = canvas.toDataURL();
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              res(true);
+            },
+          );
+        }),
+      getDataURL: async () =>
+        new Promise((res) => {
+          html2canvas(document.querySelector(element), { useCORS: true }).then(
+            (canvas) => {
+              res(canvas.toDataURL());
+            },
+          );
+        }),
+    };
   },
 };
