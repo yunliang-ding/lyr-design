@@ -2,6 +2,7 @@
 import BigNumber from 'bignumber.js';
 import { message } from 'antd';
 import { isEmpty, uuid } from '.';
+import html2canvas from 'html2canvas';
 
 const calculate = (
   args: BigNumber.Value[],
@@ -112,5 +113,20 @@ export default {
       console.log(error);
       return '';
     }
+  },
+  /** 打印元素快照 */
+  printImg: (element, filename: string) => {
+    return new Promise((res) => {
+      html2canvas(element, { useCORS: true }).then((canvas) => {
+        document.documentElement.classList.remove('html2canvas');
+        const a = document.createElement('a');
+        a.download = filename;
+        a.href = canvas.toDataURL();
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        res(true);
+      });
+    });
   },
 };
