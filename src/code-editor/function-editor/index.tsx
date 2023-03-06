@@ -53,6 +53,7 @@ export default ({
   require,
   useEncrypt = false,
   debounceTime = 300,
+  ...rest
 }: FunctionEditorProps) => {
   const [errorInfo, setErrorInfo] = useState('');
   const [fullScreen, setFullScreen] = useState(false);
@@ -93,6 +94,7 @@ export default ({
         />
       </div>
       <MemoCode
+        {...rest}
         value={value}
         onChange={(v) => {
           valueRef.current = v; // 同步文本
@@ -119,13 +121,14 @@ const MemoCode = memo(
     require,
     debounceTime,
     useEncrypt,
+    ...rest
   }: any) => {
-    const codeRef: any = useRef({});
     return (
       <CodeEditor
         value={decrypt(value, false) || defaultCode}
-        codeRef={codeRef}
         minimapEnabled={false}
+        {...rest}
+        language="javascript"
         onChange={debounce(async (codeString) => {
           try {
             if (
