@@ -21,7 +21,6 @@ export default () => {
   return (
     <CodeEditor
       style={{ height: 400 }}
-      fontSize={12}
       value={`<!DOCTYPE html>
 <html>
   <head>
@@ -144,7 +143,6 @@ export default () => {
           name: 'html',
           props: {
             style: { height: 400 },
-            fontSize: 12,
             language: 'html',
             theme: 'vs-dark',
           },

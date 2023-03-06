@@ -4,6 +4,7 @@ import { message } from 'antd';
 import { isEmpty, uuid } from '.';
 import html2canvas from 'html2canvas';
 import { useReactToPrint as doPrintElement } from 'react-to-print';
+import { babelParse } from '../code-editor/tools';
 
 const calculate = (
   args: BigNumber.Value[],
@@ -116,7 +117,6 @@ export default {
     }
   },
   /** 获取元素快照 */
-  /** 获取元素快照 */
   getElementSnapshot: (element) => {
     return {
       printImg: doPrintElement({
@@ -149,4 +149,6 @@ export default {
         }),
     };
   },
+  /** 编译代码 */
+  babelParse,
 };

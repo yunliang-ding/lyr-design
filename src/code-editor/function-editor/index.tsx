@@ -2,15 +2,10 @@
 import CodeEditor, { CodeProps } from '../index';
 import { babelParse } from '../tools';
 import { debounce, isEmpty } from 'lodash';
-import { CSSProperties, memo, useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import './index.less';
 
 interface FunctionEditorProps extends CodeProps {
-  /**
-   * 配置解析前缀
-   * @default 不配置默认加上 export default 前缀
-   */
-  prefix?: string;
   /**
    * 默认代码段
    * @default () => {}
@@ -35,7 +30,6 @@ export default ({
   value,
   onChange = () => {},
   style = { height: 300, width: 360 },
-  prefix,
   defaultCode = '() => {}',
   noChangeClearCode = false,
   functionRef = useRef({}),
@@ -50,14 +44,12 @@ export default ({
       getModuleDefault: () => {
         return babelParse({
           code: valueRef.current,
-          prefix,
           require,
         });
       },
       getModule: () => {
         return babelParse({
           code: valueRef.current, // 解码
-          prefix,
           exportDefault: false,
           require,
         });
@@ -89,7 +81,6 @@ export default ({
           onChange(v);
         }}
         setErrorInfo={setErrorInfo}
-        prefix={prefix}
         defaultCode={defaultCode}
         noChangeClearCode={noChangeClearCode}
         require={require}
@@ -128,7 +119,6 @@ const MemoCode = memo(
             await new Promise((res) => setTimeout(res, 1000));
             babelParse({
               code: codeString,
-              prefix,
               require,
             });
             onChange(codeString);

@@ -1,14 +1,7 @@
 /* eslint-disable */
 import { isEmpty } from '@/util';
 import BabelCompile from './babel-compile';
-
-interface babelParseProps {
-  code: string;
-  prefix?: string;
-  dependencies?: any;
-  exportDefault?: any;
-  require?: any;
-}
+import { babelParseProps } from './type';
 /**
  * 解析
  */
