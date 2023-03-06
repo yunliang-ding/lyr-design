@@ -5,6 +5,18 @@ import { debounce, isEmpty } from 'lodash';
 import { memo, useEffect, useRef, useState } from 'react';
 import './index.less';
 
+/** 函数加盐 */
+export const encrypt = (str: string) => {
+  return `{{_#${str}_#}}`;
+};
+/** 函数去盐 */
+export const decrypt = (str: string, quotation = true) => {
+  if (quotation) {
+    return str?.replaceAll('"{{_#', '').replaceAll('_#}}"', '');
+  }
+  return str?.replaceAll('{{_#', '').replaceAll('_#}}', '');
+};
+
 interface FunctionEditorProps extends CodeProps {
   /**
    * 默认代码段
@@ -25,6 +37,11 @@ interface FunctionEditorProps extends CodeProps {
    * @default 300
    */
   debounceTime?: number;
+  /**
+   * 是否需要加盐
+   * @default false
+   */
+  useEncrypt?: boolean;
 }
 export default ({
   value,
@@ -34,6 +51,7 @@ export default ({
   noChangeClearCode = false,
   functionRef = useRef({}),
   require,
+  useEncrypt = false,
   debounceTime = 300,
 }: FunctionEditorProps) => {
   const [errorInfo, setErrorInfo] = useState('');
@@ -43,13 +61,13 @@ export default ({
     functionRef.current = {
       getModuleDefault: () => {
         return babelParse({
-          code: valueRef.current,
+          code: decrypt(valueRef.current, false), // 解码
           require,
         });
       },
       getModule: () => {
         return babelParse({
-          code: valueRef.current, // 解码
+          code: decrypt(valueRef.current, false), // 解码
           exportDefault: false,
           require,
         });
@@ -80,6 +98,7 @@ export default ({
           valueRef.current = v; // 同步文本
           onChange(v);
         }}
+        useEncrypt={useEncrypt}
         setErrorInfo={setErrorInfo}
         defaultCode={defaultCode}
         noChangeClearCode={noChangeClearCode}
@@ -99,11 +118,12 @@ const MemoCode = memo(
     noChangeClearCode,
     require,
     debounceTime,
+    useEncrypt,
   }: any) => {
     const codeRef: any = useRef({});
     return (
       <CodeEditor
-        value={value || defaultCode}
+        value={decrypt(value, false) || defaultCode}
         codeRef={codeRef}
         minimapEnabled={false}
         onChange={debounce(async (codeString) => {
@@ -120,7 +140,7 @@ const MemoCode = memo(
               code: codeString,
               require,
             });
-            onChange(codeString);
+            onChange(useEncrypt ? encrypt(codeString) : codeString);
             setErrorInfo('');
           } catch (error) {
             setErrorInfo(error.toString());
