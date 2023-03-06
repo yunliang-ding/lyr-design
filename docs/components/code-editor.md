@@ -14,9 +14,9 @@ toc: menu
 ## 依赖 cdn
 
 ```js
-https://g.alicdn.com/code/lib/babel-standalone/7.21.2/babel.min.js
-https://g.alicdn.com/code/lib/monaco-editor/0.36.0/min/vs/loader.min.js
-https://g.alicdn.com/code/lib/monaco-editor/0.36.0/min/vs/editor/editor.main.min.css
+https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js,
+https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js
+https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.1/min/vs/editor/editor.main.min.css
 ```
 
 ## 基本使用
