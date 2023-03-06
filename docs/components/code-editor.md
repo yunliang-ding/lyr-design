@@ -11,6 +11,14 @@ toc: menu
 
 </Alert>
 
+## 依赖 cdn
+
+```js
+https://g.alicdn.com/code/lib/babel-standalone/7.21.2/babel.min.js
+https://g.alicdn.com/code/lib/monaco-editor/0.36.0/min/vs/loader.min.js
+https://g.alicdn.com/code/lib/monaco-editor/0.36.0/min/vs/editor/editor.main.min.css
+```
+
 ## 基本使用
 
 ```tsx
@@ -380,7 +388,7 @@ export default () => {
       </Button>
       <br />
       <br />
-      <div style={{ width: '100%', display: 'flex', gap: 10 }}>
+      <div style={{ width: '100%', display: 'flex' }}>
         <CodeEditor
           mode="function"
           style={{ width: '50%', height: 300 }}
@@ -391,7 +399,7 @@ export default () => {
         />
         <div
           id="__result__"
-          style={{ width: '50%', height: 300, border: '1px solid #f2f2f2' }}
+          style={{ width: '50%', height: 300, border: '1px solid #ddd' }}
         />
       </div>
     </>
@@ -403,6 +411,6 @@ export default () => {
 
 <API src="../../src/code-editor/index.tsx" hideTitle></API>
 
-## FunctionEditor
+## FunctionEditor API
 
 <API src="../../src/code-editor/function-editor/index.tsx" hideTitle></API>
