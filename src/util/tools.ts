@@ -5,6 +5,7 @@ import { isEmpty, uuid } from '.';
 import html2canvas from 'html2canvas';
 import { useReactToPrint as doPrintElement } from 'react-to-print';
 import { babelParse } from '../code-editor/tools';
+import { decrypt, encrypt } from '@/code-editor/function-editor';
 
 const calculate = (
   args: BigNumber.Value[],
@@ -151,4 +152,6 @@ export default {
   },
   /** 编译代码 */
   babelParse,
+  encrypt,
+  decrypt,
 };
