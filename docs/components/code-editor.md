@@ -361,6 +361,7 @@ export const add = () => {
  * background: '#fff'
  */
 import React from 'react';
+import ReactDom from 'react-dom';
 import { Button } from 'antd';
 import axios from 'axios';
 import { CodeEditor } from 'react-core-form';
@@ -369,8 +370,11 @@ export default () => {
   const functionRef = React.useRef({});
   const runApi = async () => {
     const fns = functionRef.current.getModuleDefault();
-    console.log(fns);
+    ReactDom.render(fns(), document.querySelector('#__result__'));
   };
+  React.useEffect(() => {
+    runApi();
+  }, []);
   return (
     <>
       <Button type="primary" onClick={runApi}>
@@ -378,14 +382,20 @@ export default () => {
       </Button>
       <br />
       <br />
-      <CodeEditor
-        mode="function"
-        style={{ width: '100%', height: 300 }}
-        functionRef={functionRef}
-        value={`export default () => {
+      <div style={{ width: '100%', display: 'flex', gap: 10 }}>
+        <CodeEditor
+          mode="function"
+          style={{ width: '50%', height: 300 }}
+          functionRef={functionRef}
+          value={`export default () => {
   return <div>hello world</div>
 };`}
-      />
+        />
+        <div
+          id="__result__"
+          style={{ width: '50%', height: 300, border: '1px solid #f2f2f2' }}
+        />
+      </div>
     </>
   );
 };
