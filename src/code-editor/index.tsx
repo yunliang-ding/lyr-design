@@ -20,10 +20,34 @@ export interface CodeProps {
   onChange?: Function;
   /** ctrl + s 钩子 */
   onSave?: Function;
-  /** code 实例引用 */
+  /** monaco 实例引用 */
   codeRef?: any;
   /** 使用 json 模式，或者 函数模式 */
   mode?: 'json' | 'function';
+  /** function 实例引用 */
+  functionRef?: any;
+  /**
+   * 默认代码段
+   * @default () => {}
+   */
+  defaultCode?: string;
+  /**
+   * 没有改变代码自动设置为 undefined
+   * @default false
+   */
+  noChangeClearCode?: boolean;
+  /** 配置第三方依赖 */
+  require?: any;
+  /**
+   * 设置防抖时间(ms)
+   * @default 300
+   */
+  debounceTime?: number;
+  /**
+   * 是否需要加盐
+   * @default false
+   */
+  useEncrypt?: boolean;
 }
 /**
  * 编辑器
@@ -81,6 +105,7 @@ export default ({ mode, ...props }: CodeProps) => {
           },
         );
         // onChange
+        console.log(codeInstance);
         codeInstance.onDidChangeModelContent((e) => {
           const code = codeInstance.getValue();
           if (!e.isFlush) {

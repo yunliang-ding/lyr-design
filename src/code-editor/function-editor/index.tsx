@@ -17,32 +17,6 @@ export const decrypt = (str: string, quotation = true) => {
   return str?.replaceAll('{{_#', '').replaceAll('_#}}', '');
 };
 
-interface FunctionEditorProps extends CodeProps {
-  /**
-   * 默认代码段
-   * @default () => {}
-   */
-  defaultCode?: string;
-  /**
-   * 没有改变代码自动设置为 undefined
-   * @default false
-   */
-  noChangeClearCode?: boolean;
-  /** ref 引用 */
-  functionRef?: any;
-  /** 配置第三方依赖 */
-  require?: any;
-  /**
-   * 设置防抖时间(ms)
-   * @default 300
-   */
-  debounceTime?: number;
-  /**
-   * 是否需要加盐
-   * @default false
-   */
-  useEncrypt?: boolean;
-}
 export default ({
   value,
   onChange = () => {},
@@ -54,7 +28,7 @@ export default ({
   useEncrypt = false,
   debounceTime = 300,
   ...rest
-}: FunctionEditorProps) => {
+}: CodeProps) => {
   const [errorInfo, setErrorInfo] = useState('');
   const [fullScreen, setFullScreen] = useState(false);
   const valueRef = useRef(value);
