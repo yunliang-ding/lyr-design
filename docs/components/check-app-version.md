@@ -1,5 +1,5 @@
 ---
-order: 22
+order: 16
 title: CheckAppVersion 更新版本
 toc: menu
 ---

@@ -33,6 +33,7 @@ import FieldSet from './extension/fields-set';
 import RangeInput from './extension/input/range';
 import EditableTable from '@/table-editable';
 import TableList from '@/table-list';
+import CodeEditor from '@/code-editor';
 import { SubFormType } from '@/form/form';
 // 内置组件映射关系
 export const BuiltInWidgetMapping: any = {
@@ -71,6 +72,7 @@ export const BuiltInWidgetMapping: any = {
   RangeInput,
   EditableTable,
   TableList,
+  CodeEditor,
 };
 export const Error = ({ widget }: any) => {
   return <span style={{ color: 'red' }}>Error: widget类型({widget})未知</span>;

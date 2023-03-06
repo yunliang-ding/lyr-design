@@ -1,5 +1,5 @@
 ---
-order: 21
+order: 17
 title: ConsoleRender 渲染打印
 toc: menu
 ---
