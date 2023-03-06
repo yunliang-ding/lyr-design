@@ -7,6 +7,18 @@ nav:
   order: 1
 ---
 
+<div style="display:flex;align-items:center;margin-bottom:24px">
+  <span style="font-size:30px;font-weight:600;display:inline-block;">react-core-form</span>
+</div>
+<p style="display:flex;justify-content:space-between;width:220px">
+  <a href="https://web.npm.alibaba-inc.com/package/react-core-form">
+    <img alt="npm" src="https://web.npm.alibaba-inc.com/badge/v/react-core-form.svg">
+  </a>
+  <a href="https://web.npm.alibaba-inc.com/package/react-core-form">
+    <img alt="NPM downloads" src="https://web.npm.alibaba-inc.com/badge/d/react-core-form.svg">
+  </a>
+</p>
+
 ## 设计初衷
 
 <Alert>

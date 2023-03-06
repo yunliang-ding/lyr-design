@@ -4,11 +4,6 @@ import { context, Link, NavLink } from 'dumi/theme';
 import LocaleSelect from './LocaleSelect';
 import './Navbar.less';
 
-export const getMetaContentByName = (name) => {
-  const el: any = document.querySelector(`meta[name=${name}`);
-  return el?.content;
-};
-
 interface INavbarProps {
   location: any;
   navPrefix?: React.ReactNode;
@@ -47,9 +42,6 @@ const Navbar: FC<INavbarProps> = ({
         data-plaintext={logo === false || undefined}
       >
         {title}
-        <sup style={{ color: '#666', fontSize: 13, marginLeft: 8 }}>
-          {getMetaContentByName('revised')}
-        </sup>
       </Link>
       <nav>
         {navPrefix}
