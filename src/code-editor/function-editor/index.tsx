@@ -95,7 +95,6 @@ const MemoCode = memo(
     value,
     onChange,
     setErrorInfo,
-    prefix,
     defaultCode,
     noChangeClearCode,
     require,
