@@ -1,4 +1,4 @@
-import CodeEditor, { CodeProps } from '../index';
+import { CodeEditor, CodeProps } from '../index';
 import { debounce } from 'lodash';
 import { memo, useState } from 'react';
 import './index.less';

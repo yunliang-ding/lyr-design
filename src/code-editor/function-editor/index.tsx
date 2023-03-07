@@ -1,5 +1,5 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
-import CodeEditor, { CodeProps } from '../index';
+import { CodeEditor, CodeProps } from '../index';
 import { babelParse } from '../tools';
 import { debounce, isEmpty } from 'lodash';
 import { memo, useEffect, useRef, useState } from 'react';

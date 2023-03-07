@@ -50,25 +50,18 @@ export interface CodeProps {
 /**
  * 编辑器
  */
-export default ({ mode, ...props }: CodeProps) => {
-  const {
-    id = `code-container-${uuid(8)}`,
-    value = '',
-    onChange = () => {},
-    onSave = () => {},
-    style = {},
-    language = 'javascript',
-    theme = 'vs-dark',
-    codeRef = useRef<any>({}),
-    minimapEnabled = true,
-    ...rest
-  } = props;
-  if (mode === 'json') {
-    return <JsonEditor {...props} />;
-  }
-  if (mode === 'function') {
-    return <FunctionEditor {...props} />;
-  }
+export const CodeEditor = ({
+  id = `code-container-${uuid(8)}`,
+  value = '',
+  onChange = () => {},
+  onSave = () => {},
+  style = {},
+  language = 'javascript',
+  theme = 'vs-dark',
+  codeRef = useRef<any>({}),
+  minimapEnabled = true,
+  ...rest
+}: CodeProps) => {
   // 加载资源
   useEffect(() => {
     const _require: any = window.require;
@@ -114,4 +107,14 @@ export default ({ mode, ...props }: CodeProps) => {
     }
   }, []);
   return <div id={id} className="app-code-editor" style={style} />;
+};
+
+export default ({ mode, ...props }: CodeProps) => {
+  if (mode === 'json') {
+    return <JsonEditor {...props} />;
+  }
+  if (mode === 'function') {
+    return <FunctionEditor {...props} />;
+  }
+  return <CodeEditor {...props} />;
 };
