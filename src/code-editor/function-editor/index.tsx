@@ -23,7 +23,7 @@ export default ({
   style = { height: 300, width: 360 },
   defaultCode = '() => {}',
   noChangeClearCode = false,
-  functionRef = useRef({}),
+  codeRef = useRef({}),
   require,
   useEncrypt = false,
   debounceTime = 300,
@@ -33,7 +33,7 @@ export default ({
   const [fullScreen, setFullScreen] = useState(false);
   const valueRef = useRef(value);
   useEffect(() => {
-    functionRef.current = {
+    Object.assign(codeRef.current, {
       getModuleDefault: () => {
         return babelParse({
           code: decrypt(valueRef.current, false), // 解码
@@ -47,7 +47,7 @@ export default ({
           require,
         });
       },
-    };
+    });
   }, []);
   return (
     <div
@@ -70,6 +70,7 @@ export default ({
       <MemoCode
         {...rest}
         value={value}
+        codeRef={codeRef}
         onChange={(v) => {
           valueRef.current = v; // 同步文本
           onChange(v);
@@ -95,6 +96,7 @@ const MemoCode = memo(
     require,
     debounceTime,
     useEncrypt,
+    codeRef,
     ...rest
   }: any) => {
     return (
@@ -103,6 +105,7 @@ const MemoCode = memo(
         minimapEnabled={false}
         {...rest}
         language="javascript"
+        codeRef={codeRef}
         onChange={debounce(async (codeString) => {
           try {
             if (

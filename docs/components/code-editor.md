@@ -211,9 +211,9 @@ import { Button } from 'antd';
 import { CodeEditor } from 'react-core-form';
 
 export default () => {
-  const functionRef = React.useRef({});
+  const codeRef = React.useRef({});
   const runApi = async () => {
-    const fn = functionRef.current.getModuleDefault();
+    const fn = codeRef.current.getModuleDefault();
     await fn();
   };
   return (
@@ -225,7 +225,7 @@ export default () => {
       <br />
       <CodeEditor
         mode="function"
-        functionRef={functionRef}
+        codeRef={codeRef}
         style={{ width: '100%', height: 300 }}
         value={`export default async () => {
   console.log('导出默认函数')
@@ -247,9 +247,9 @@ import { Button } from 'antd';
 import { CodeEditor } from 'react-core-form';
 
 export default () => {
-  const functionRef = React.useRef({});
+  const codeRef = React.useRef({});
   const runApi = async () => {
-    const obj = functionRef.current.getModuleDefault();
+    const obj = codeRef.current.getModuleDefault();
     console.log(obj);
   };
   return (
@@ -260,7 +260,7 @@ export default () => {
       <br />
       <br />
       <CodeEditor
-        functionRef={functionRef}
+        codeRef={codeRef}
         mode="function"
         style={{ width: '100%', height: 300 }}
         value={`export default {
@@ -285,9 +285,9 @@ import { Button } from 'antd';
 import { CodeEditor } from 'react-core-form';
 
 export default () => {
-  const functionRef = React.useRef({});
+  const codeRef = React.useRef({});
   const runApi = async () => {
-    const obj = functionRef.current.getModule();
+    const obj = codeRef.current.getModule();
     console.log(obj);
   };
   return (
@@ -299,7 +299,7 @@ export default () => {
       <br />
       <CodeEditor
         mode="function"
-        functionRef={functionRef}
+        codeRef={codeRef}
         style={{ width: '100%', height: 300 }}
         value={`export const user1 = {
   name: 'Test1',
@@ -327,9 +327,9 @@ import axios from 'axios';
 import { CodeEditor } from 'react-core-form';
 
 export default () => {
-  const functionRef = React.useRef({});
+  const codeRef = React.useRef({});
   const runApi = async () => {
-    const fns = functionRef.current.getModule();
+    const fns = codeRef.current.getModule();
     console.log(fns);
   };
   return (
@@ -342,7 +342,7 @@ export default () => {
       <CodeEditor
         mode="function"
         style={{ width: '100%', height: 300 }}
-        functionRef={functionRef}
+        codeRef={codeRef}
         require={{
           request: axios,
         }}
@@ -373,9 +373,9 @@ import axios from 'axios';
 import { CodeEditor } from 'react-core-form';
 
 export default () => {
-  const functionRef = React.useRef({});
+  const codeRef = React.useRef({});
   const runApi = async () => {
-    const fns = functionRef.current.getModuleDefault();
+    const fns = codeRef.current.getModuleDefault();
     ReactDom.render(fns(), document.querySelector('#__result__'));
   };
   React.useEffect(() => {
@@ -392,7 +392,7 @@ export default () => {
         <CodeEditor
           mode="function"
           style={{ width: '50%', height: 300 }}
-          functionRef={functionRef}
+          codeRef={codeRef}
           value={`export default () => {
   return <div>hello world</div>
 };`}
@@ -410,7 +410,3 @@ export default () => {
 ## API
 
 <API src="../../src/code-editor/index.tsx" hideTitle></API>
-
-## FunctionEditor API
-
-<API src="../../src/code-editor/function-editor/index.tsx" hideTitle></API>

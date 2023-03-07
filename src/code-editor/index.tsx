@@ -20,12 +20,10 @@ export interface CodeProps {
   onChange?: Function;
   /** ctrl + s 钩子 */
   onSave?: Function;
-  /** monaco 实例引用 */
+  /** CodeEditor 实例引用 */
   codeRef?: any;
   /** 使用 json 模式，或者 函数模式 */
   mode?: 'json' | 'function';
-  /** function 实例引用 */
-  functionRef?: any;
   /**
    * 默认代码段
    * @default () => {}
@@ -73,7 +71,7 @@ export default ({ mode, ...props }: CodeProps) => {
   }
   // 加载资源
   useEffect(() => {
-    const _require: any = (window as any).require;
+    const _require: any = window.require;
     if (_require) {
       _require.config({
         paths: {
@@ -81,7 +79,7 @@ export default ({ mode, ...props }: CodeProps) => {
         },
       });
       _require(['vs/editor/editor.main'], () => {
-        const _code: any = (window as any).monaco;
+        const _code: any = window.monaco;
         const codeInstance = _code.editor.create(document.getElementById(id), {
           language,
           selectOnLineNumbers: true,
@@ -105,14 +103,13 @@ export default ({ mode, ...props }: CodeProps) => {
           },
         );
         // onChange
-        console.log(codeInstance);
         codeInstance.onDidChangeModelContent((e) => {
           const code = codeInstance.getValue();
           if (!e.isFlush) {
             onChange(code);
           }
         });
-        codeRef.current = codeInstance; // 挂到ref
+        Object.assign(codeRef.current, codeInstance); // 挂到ref
       });
     }
   }, []);
