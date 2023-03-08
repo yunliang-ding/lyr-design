@@ -26,8 +26,16 @@ import React from 'react';
 import { CodeEditor } from 'react-core-form';
 
 export default () => {
+  const codeRef = React.useRef({});
+  React.useEffect(() => {
+    // monacoInstance 需要异步获取
+    codeRef.current.getMonacoInstance().then((res) => {
+      console.log(res);
+    });
+  }, []);
   return (
     <CodeEditor
+      codeRef={codeRef}
       style={{ height: 400 }}
       value={`<!DOCTYPE html>
 <html>

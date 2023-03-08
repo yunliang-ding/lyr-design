@@ -6,14 +6,25 @@ import './index.less';
 
 export interface CodeProps {
   id?: string;
-  /** 语言设置 */
+  /**
+   * 语言设置
+   * @default javascript
+   */
   language?: string;
-  /** 默认值 */
-  value: string;
-  /** 主题 */
+  /**
+   * 默认值
+   */
+  value?: string;
+  /**
+   * 主题
+   * @default vs-dark
+   */
   theme?: 'vs-dark' | 'vs';
-  /** 是否展示小地图 */
-  minimapEnabled?: Boolean;
+  /**
+   * 是否展示小地图
+   * @default true
+   */
+  minimapEnabled?: boolean;
   /** 容器样式 */
   style?: CSSProperties;
   /** onChange 钩子 */
@@ -63,7 +74,7 @@ export const CodeEditor = ({
   ...rest
 }: CodeProps) => {
   // 加载资源
-  useEffect(() => {
+  const initialLoad = async () => {
     const _require: any = window.require;
     if (_require) {
       _require.config({
@@ -71,41 +82,59 @@ export const CodeEditor = ({
           vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs',
         },
       });
-      _require(['vs/editor/editor.main'], () => {
-        const _code: any = window.monaco;
-        const codeInstance = _code.editor.create(document.getElementById(id), {
-          language,
-          selectOnLineNumbers: true,
-          automaticLayout: true,
-          tabSize: 2,
-          fontSize: 14,
-          theme,
-          fontWeight: '400',
-          minimap: {
-            enabled: minimapEnabled,
-          },
-          value,
-          ...rest,
-        });
-        // ctrl + s 执行 onSave
-        codeInstance.addCommand(
-          _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
-          () => {
+      return new Promise((res) => {
+        _require(['vs/editor/editor.main'], () => {
+          const _code: any = window.monaco;
+          const codeInstance = _code.editor.create(
+            document.getElementById(id),
+            {
+              language,
+              selectOnLineNumbers: true,
+              automaticLayout: true,
+              tabSize: 2,
+              fontSize: 14,
+              theme,
+              fontWeight: '400',
+              minimap: {
+                enabled: minimapEnabled,
+              },
+              value,
+              ...rest,
+            },
+          );
+          // ctrl + s 执行 onSave
+          codeInstance.addCommand(
+            _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
+            () => {
+              const code = codeInstance.getValue();
+              onSave(code);
+            },
+          );
+          // onChange
+          codeInstance.onDidChangeModelContent((e) => {
             const code = codeInstance.getValue();
-            onSave(code);
-          },
-        );
-        // onChange
-        codeInstance.onDidChangeModelContent((e) => {
-          const code = codeInstance.getValue();
-          if (!e.isFlush) {
-            onChange(code);
-          }
+            if (!e.isFlush) {
+              onChange(code);
+            }
+          });
+          res(codeInstance);
         });
-        Object.assign(codeRef.current, codeInstance); // 挂到ref
       });
     }
+  };
+  useEffect(() => {
+    const monacoInstance = initialLoad();
+    // 挂到ref
+    codeRef.current.getMonacoInstance = async () => {
+      return monacoInstance;
+    };
   }, []);
+  // 更新值
+  useEffect(() => {
+    codeRef.current.getMonacoInstance().then((instance) => {
+      instance.setValue(value);
+    });
+  }, [value]);
   return <div id={id} className="app-code-editor" style={style} />;
 };
 
