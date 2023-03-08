@@ -2,7 +2,7 @@
 import { CodeEditor, CodeProps } from '../index';
 import { babelParse } from '../tools';
 import { debounce, isEmpty } from 'lodash';
-import { memo, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './index.less';
 
 /** 函数加盐 */
@@ -67,39 +67,6 @@ export default ({
           }}
         />
       </div>
-      <MemoCode
-        {...rest}
-        value={value}
-        codeRef={codeRef}
-        onChange={(v) => {
-          valueRef.current = v; // 同步文本
-          onChange(v);
-        }}
-        useEncrypt={useEncrypt}
-        setErrorInfo={setErrorInfo}
-        defaultCode={defaultCode}
-        noChangeClearCode={noChangeClearCode}
-        require={require}
-        debounceTime={debounceTime}
-      />
-    </div>
-  );
-};
-
-const MemoCode = memo(
-  ({
-    value,
-    onChange,
-    setErrorInfo,
-    defaultCode,
-    noChangeClearCode,
-    require,
-    debounceTime,
-    useEncrypt,
-    codeRef,
-    ...rest
-  }: any) => {
-    return (
       <CodeEditor
         value={decrypt(value, false) || defaultCode}
         minimapEnabled={false}
@@ -121,15 +88,13 @@ const MemoCode = memo(
               require,
             });
             onChange(useEncrypt ? encrypt(codeString) : codeString);
+            valueRef.current = codeString; // 同步文本
             setErrorInfo('');
           } catch (error) {
             setErrorInfo(error.toString());
           }
         }, debounceTime)}
       />
-    );
-  },
-  () => {
-    return true;
-  },
-);
+    </div>
+  );
+};

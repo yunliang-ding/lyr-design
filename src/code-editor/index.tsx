@@ -1,5 +1,5 @@
 import { uuid } from '@/util';
-import { useEffect, useRef, CSSProperties } from 'react';
+import { useEffect, useRef, CSSProperties, memo } from 'react';
 import FunctionEditor from './function-editor';
 import JsonEditor from './json-editor';
 import './index.less';
@@ -61,82 +61,85 @@ export interface CodeProps {
 /**
  * 编辑器
  */
-export const CodeEditor = ({
-  id = `code-container-${uuid(8)}`,
-  value = '',
-  onChange = () => {},
-  onSave = () => {},
-  style = {},
-  language = 'javascript',
-  theme = 'vs-dark',
-  codeRef = useRef<any>({}),
-  minimapEnabled = true,
-  ...rest
-}: CodeProps) => {
-  // 加载资源
-  const initialLoad = async () => {
-    const _require: any = window.require;
-    if (_require) {
-      _require.config({
-        paths: {
-          vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs',
-        },
-      });
-      return new Promise((res) => {
-        _require(['vs/editor/editor.main'], () => {
-          const _code: any = window.monaco;
-          const codeInstance = _code.editor.create(
-            document.getElementById(id),
-            {
-              language,
-              selectOnLineNumbers: true,
-              automaticLayout: true,
-              tabSize: 2,
-              fontSize: 14,
-              theme,
-              fontWeight: '400',
-              minimap: {
-                enabled: minimapEnabled,
-              },
-              value,
-              ...rest,
-            },
-          );
-          // ctrl + s 执行 onSave
-          codeInstance.addCommand(
-            _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
-            () => {
-              const code = codeInstance.getValue();
-              onSave(code);
-            },
-          );
-          // onChange
-          codeInstance.onDidChangeModelContent((e) => {
-            const code = codeInstance.getValue();
-            if (!e.isFlush) {
-              onChange(code);
-            }
-          });
-          res(codeInstance);
+export const CodeEditor = memo(
+  ({
+    id = `code-container-${uuid(8)}`,
+    value = '',
+    onChange = () => {},
+    onSave = () => {},
+    style = {},
+    language = 'javascript',
+    theme = 'vs-dark',
+    codeRef = useRef<any>({}),
+    minimapEnabled = true,
+    ...rest
+  }: CodeProps) => {
+    // 加载资源
+    const initialLoad = async () => {
+      const _require: any = window.require;
+      if (_require) {
+        _require.config({
+          paths: {
+            vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs',
+          },
         });
-      });
-    }
-  };
-  useEffect(() => {
-    const monacoInstance = initialLoad();
-    // 挂到ref
-    codeRef.current.getMonacoInstance = async () => {
-      return monacoInstance;
+        return new Promise((res) => {
+          _require(['vs/editor/editor.main'], () => {
+            const _code: any = window.monaco;
+            const codeInstance = _code.editor.create(
+              document.getElementById(id),
+              {
+                language,
+                selectOnLineNumbers: true,
+                automaticLayout: true,
+                tabSize: 2,
+                fontSize: 14,
+                theme,
+                fontWeight: '400',
+                minimap: {
+                  enabled: minimapEnabled,
+                },
+                value,
+                ...rest,
+              },
+            );
+            // ctrl + s 执行 onSave
+            codeInstance.addCommand(
+              _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
+              () => {
+                const code = codeInstance.getValue();
+                onSave(code);
+              },
+            );
+            // onChange
+            codeInstance.onDidChangeModelContent((e) => {
+              const code = codeInstance.getValue();
+              if (!e.isFlush) {
+                onChange(code);
+              }
+            });
+            res(codeInstance);
+          });
+        });
+      }
     };
-  }, []);
-  // 更新值
-  useEffect(() => {
-    codeRef.current.getMonacoInstance().then((instance) => {
-      instance.setValue(value);
-    });
-  }, [value]);
-  return <div id={id} className="app-code-editor" style={style} />;
-};
+    useEffect(() => {
+      const monacoInstance = initialLoad();
+      // 挂到ref
+      codeRef.current.getMonacoInstance = async () => {
+        return monacoInstance;
+      };
+    }, []);
+    // 更新值
+    useEffect(() => {
+      codeRef.current.getMonacoInstance().then((instance) => {
+        instance.setValue(value);
+      });
+    }, [value]);
+    return <div id={id} className="app-code-editor" style={style} />;
+  },
+  () => true,
+);
 
 export default ({ mode, ...props }: CodeProps) => {
   if (mode === 'json') {
