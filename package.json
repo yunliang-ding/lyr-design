@@ -1,6 +1,6 @@
 {
   "name": "react-core-form",
-  "description": "基于数据模型快速搭建表单",
+  "description": "基于数据模型快速搭建表单(私有)",
   "author": "yunliang-ding",
   "version": "0.0.24",
   "scripts": {
