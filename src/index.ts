@@ -32,7 +32,8 @@ export { default as AnchorCard } from './anchor-card';
 export { default as ConsoleRender } from './console-render';
 export { default as CheckAppVersion } from './check-app-version';
 export { default as CodeEditor } from './code-editor';
-export { default as Tools } from './util/tools';
+export { default as Tools } from './tools';
+export { default as OssFileUpload } from './oss-file-upload';
 /** 类型 */
 export type { SchemaProps, FieldProps } from './form/type.item';
 export type { TableProps } from './table/types';

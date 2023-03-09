@@ -1,0 +1,68 @@
+.react-core-form-oss-upload {
+  .ant-upload-list-item-list-type-picture-card {
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+  }
+  .oss-file-item-render {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+    position: relative;
+    height: 32px;
+    &:hover {
+      transition: 0.3s;
+      background-color: #f5f5f5;
+    }
+    .ant-upload-list-item {
+      margin-top: 0;
+    }
+    .oss-file-item-render-action {
+      display: none;
+      transition: 0.3s;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+    }
+    &:hover {
+      .oss-file-item-render-action {
+        display: block;
+        transition: 0.3s;
+      }
+    }
+    .ant-upload-list-item-name {
+      pointer-events: none; // 阻止默认下载
+    }
+    .ant-upload-list-item-card-actions {
+      display: none; // 阻止默认删除
+    }
+  }
+  .ant-upload-list-picture-card-container {
+    width: fit-content;
+    position: relative;
+  }
+  .picture-card-image {
+    .ant-image {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      .ant-image-img {
+        height: 100px;
+        width: auto;
+      }
+    }
+    &:hover {
+      .oss-file-item-render-action {
+        display: block;
+        transition: 0.3s;
+      }
+    }
+    .oss-file-item-render-action {
+      display: none;
+      transition: 0.3s;
+      top: 4px;
+      right: 4px;
+    }
+  }
+}

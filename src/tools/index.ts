@@ -1,7 +1,7 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import BigNumber from 'bignumber.js';
 import { message } from 'antd';
-import { isEmpty, uuid } from '.';
+import { isEmpty, uuid } from '../util';
 import html2canvas from 'html2canvas';
 import { useReactToPrint as doPrintElement } from 'react-to-print';
 import { babelParse } from '../code-editor/tools';
@@ -154,4 +154,13 @@ export default {
   babelParse,
   encrypt,
   decrypt,
+  /** oss 相关 */
+  createOssInstance: () => {
+    return new window.OSS({
+      accessKeyId: 'LTAI5t7TYiMPLj5VUPUYDL12',
+      accessKeySecret: '6YyrMAtoqRKbttGvAOJMF6DZttNWc7',
+      bucket: 'react-core-form',
+      region: 'oss-cn-beijing',
+    });
+  },
 };
