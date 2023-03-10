@@ -75,7 +75,7 @@ npm install react-core-form --save
 
 ```tsx
 /**
- * title: 所有 antd 组件 扩展了 readOnly 属性
+ * title: 所有组件 扩展了 readOnly, disabled 属性
  */
 import * as React from 'react';
 import { Grid } from 'react-core-form';
@@ -123,6 +123,8 @@ export default () => {
         'FieldSet 父子级区块',
         'UploadImage 扩展图片上传',
         'RangeInput 数字范围输入框',
+        'OssFileUpload 文件上传',
+        'CodeEditor 代码编辑器',
       ].map((item) => {
         return <Button key={item}>{item}</Button>;
       })}

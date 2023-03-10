@@ -6,7 +6,7 @@ toc: menu
 
 <Alert>
 
-- 基于 antd Upload 二次封装
+- 基于 antd Upload 二次封装 内置 Oss 上传逻辑
 
 </Alert>
 
@@ -27,10 +27,98 @@ export default () => {
   return (
     <OssFileUpload
       value={value}
+      maxCount={5}
       onChange={(v) => {
         setValue(v);
         console.log(v);
       }}
+    />
+  );
+};
+```
+
+## 上传图片
+
+```tsx
+import React from 'react';
+import { OssFileUpload } from 'react-core-form';
+
+export default () => {
+  const [value, setValue] = React.useState([]);
+  return (
+    <OssFileUpload
+      value={value}
+      listType="picture-card"
+      onChange={(v) => {
+        setValue(v);
+        console.log(v);
+      }}
+    />
+  );
+};
+```
+
+## 上传视频
+
+```tsx
+import React from 'react';
+import { OssFileUpload } from 'react-core-form';
+
+export default () => {
+  const [value, setValue] = React.useState([]);
+  return (
+    <OssFileUpload
+      value={value}
+      listType="picture-card"
+      accept=".mp4"
+      onChange={(v) => {
+        setValue(v);
+        console.log(v);
+      }}
+    />
+  );
+};
+```
+
+## 搭配 Form 表单
+
+```tsx
+import React from 'react';
+import { CardForm } from 'react-core-form';
+
+export default () => {
+  return (
+    <CardForm
+      title="信息采集"
+      schema={[
+        {
+          type: 'OssFileUpload',
+          label: '用户文件',
+          name: 'file',
+          required: true,
+          props: {
+            maxCount: 2,
+          },
+        },
+        {
+          type: 'OssFileUpload',
+          label: '用户头像',
+          name: 'photo',
+          props: {
+            listType: 'picture-card',
+          },
+        },
+        {
+          type: 'OssFileUpload',
+          label: '用户视频',
+          name: 'video',
+          props: {
+            listType: 'picture-card',
+            accept: '.mp4',
+            maxCount: 2,
+          },
+        },
+      ]}
     />
   );
 };

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable no-nested-ternary */
-import { useState } from 'react';
-import { Upload, message, Button, Image } from 'antd';
+import { useEffect, useState } from 'react';
+import { Upload, message, Button, Image, Spin, Progress } from 'antd';
 import { OssFileUploadProps } from './type';
 import Tools from '../tools';
-import './index.less';
 import { uuid } from '@/util';
+import './index.less';
 
 export default ({
   text = '上传文件',
@@ -18,12 +18,19 @@ export default ({
   limitSize = 1 * 1024, // 默认最大1G
   value = [],
   readOnly = false,
-  disabled = false,
   onChange,
   ...rest
 }: OssFileUploadProps) => {
   // 加载中
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    // 重制进度条
+    if (loading === false) {
+      setPercent(0);
+    }
+  }, [loading]);
+  // 进度条
+  const [percent, setPercent] = useState(0);
   // 上传前: 检查格式和大小
   const beforeUpload = (file: any) => {
     try {
@@ -64,7 +71,7 @@ export default ({
   };
   // 自定义上传
   const multiPartUpload = async (options: any) => {
-    const { file, onProgress } = options;
+    const { file } = options;
     const ossClient = Tools.createOssInstance();
     try {
       setLoading(true);
@@ -72,11 +79,8 @@ export default ({
         const {
           res: { requestUrls, status },
         } = await ossClient.multipartUpload(`assets/${file.name}`, file, {
-          progress: (p: number, checkpoint) => {
-            onProgress(
-              { percent: parseInt(String(p * 100), 10) },
-              checkpoint?.file,
-            );
+          progress: (p: number) => {
+            setPercent(parseInt(String(p * 100), 10));
           },
         });
         if (status === 200) {
@@ -101,9 +105,16 @@ export default ({
   // 文案
   const uploadButton =
     listType === 'picture-card' ? (
-      <div>
-        {loading ? '上传中...' : <i className="iconfont spicon-add" />}
-        <div style={{ marginTop: 8 }}>{text}</div>
+      <div className="react-core-form-oss-upload-button">
+        <Spin spinning={loading}>
+          <i className="iconfont spicon-add" />
+          <div style={{ marginTop: 8 }}>{text}</div>
+        </Spin>
+        {loading && (
+          <div className="react-core-form-oss-upload-button-percent">
+            <Progress percent={percent} size="small" />
+          </div>
+        )}
       </div>
     ) : (
       <div>
@@ -124,11 +135,11 @@ export default ({
             <RenderItemNode
               {...{
                 onRemove,
-                disabled,
                 accept,
                 listType,
                 file,
                 originNode,
+                readOnly,
               }}
             />
           );
@@ -144,7 +155,7 @@ export default ({
 /** 自定义渲染 */
 const RenderItemNode = ({
   onRemove,
-  disabled,
+  readOnly,
   accept,
   listType,
   file,
@@ -165,7 +176,7 @@ const RenderItemNode = ({
       ) : (
         <Image width={100} src={file.url} />
       )}
-      {!disabled && (
+      {!readOnly && (
         <a
           className="oss-file-item-render-action"
           style={{
@@ -193,7 +204,7 @@ const RenderItemNode = ({
         {originNode}
       </div>
       <div>
-        {!disabled && (
+        {!readOnly && (
           <a
             className="oss-file-item-render-action"
             onClick={() => {

@@ -4,6 +4,18 @@ title: babelParse 转译代码片段
 toc: menu
 ---
 
+<Alert>
+
+- 基于 babel-standalone 编译 es6 代码片段
+
+</Alert>
+
+## 依赖 cdn
+
+```js
+https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js,
+```
+
 ## 基本使用
 
 ```tsx

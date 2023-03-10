@@ -14,7 +14,7 @@ toc: menu
 ## 依赖 cdn
 
 ```js
-https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js,
+https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js // 仅函数模式需要引入
 https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js
 https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.1/min/vs/editor/editor.main.min.css
 ```
