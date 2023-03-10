@@ -53,30 +53,6 @@ CoreTable.useTable = () => {
   ];
 };
 
-/** 本地缓存 */
-export const updateLocalFilter = (tableId, columns?, filterIds?, pageSize?) => {
-  if (tableId) {
-    const localData = JSON.parse(localStorage.getItem(`table_${tableId}`));
-    if (localData) {
-      columns =
-        columns ||
-        localData.columnIds.map((dataIndex) => {
-          return { dataIndex };
-        });
-      filterIds = filterIds || localData.filterIds;
-      pageSize = pageSize || localData.pageSize;
-    }
-    localStorage.setItem(
-      `table_${tableId}`,
-      JSON.stringify({
-        columnIds: columns.map((i) => i.dataIndex || i.key),
-        filterIds,
-        pageSize,
-      }),
-    );
-  }
-};
-
 // 分页的默认配置
 export const defaultPaginationConfig: PaginationConfig = {
   pageNum: 1,

@@ -5,7 +5,7 @@ import { Table as AntdTable, Button, Alert } from 'antd';
 import { Form, Search, Table } from '@/index';
 import ToolBar from './toolbar';
 import getRowOperations from './row-operations';
-import { defaultPaginationConfig, updateLocalFilter } from '.';
+import { defaultPaginationConfig } from '.';
 import VirtualTable from './virtual-table';
 import {
   DraggableBodyRow,
@@ -44,12 +44,10 @@ export default ({
   loadMoreData,
   ...restProp
 }: TableProps) => {
-  const [_columns, setColumns] = useState([]);
   const [payload, setPayload] = useState({}); // 扩展参数
-  useEffect(() => {
-    // 过滤下不展示的字段
-    setColumns(columns.filter((i) => i.visible !== false));
-  }, [columns]);
+  const [_columns, setColumns] = useState(
+    columns.filter((i) => i.visible !== false),
+  );
   const [_filterIds, setFilterIds] = useState(filterIds);
   const [refresh, setRefresh] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -65,28 +63,6 @@ export default ({
     pageNum: params.pageNum || combPagination.pageNum,
     pageSize: params.pageSize || combPagination.pageSize,
   });
-  // 获取缓存的数据
-  useEffect(() => {
-    const localData = localStorage.getItem(`table_${tableId}`);
-    if (tableId && localData) {
-      const result = JSON.parse(localData);
-      // 排序
-      setColumns(
-        result.columnIds
-          ?.map((columnId) => {
-            return columns.find((item) => {
-              const key = item.dataIndex || item.key;
-              return key === columnId;
-            });
-          })
-          .filter((i) => i),
-      );
-      // 过滤
-      setFilterIds(result.filterIds);
-      // 设置页码
-      pagination.pageSize = result.pageSize || pagination.pageSize;
-    }
-  }, []);
   // 缓存分页序号存储
   const paginationInfo = useRef({
     pageSize: pagination.pageSize,
@@ -313,7 +289,6 @@ export default ({
           filters,
           sorter,
         });
-        updateLocalFilter(tableId, columns, filterIds, _pagination.pageSize);
       }}
       rowSelection={innerRowSelection}
       components={

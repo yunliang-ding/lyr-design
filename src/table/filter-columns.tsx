@@ -1,7 +1,6 @@
 import { Checkbox, Menu, Dropdown, Button, Tooltip } from 'antd';
 import { useMemo } from 'react';
 import { DragList } from '@/index';
-import { updateLocalFilter } from '.';
 
 export default ({
   filterIds = [],
@@ -31,9 +30,6 @@ export default ({
                     filterIds.push(column.dataIndex);
                   }
                   onOk([...filterIds]);
-                  if (tableId) {
-                    updateLocalFilter(tableId, columns, filterIds);
-                  }
                 }}
               >
                 {column.title}
@@ -53,9 +49,6 @@ export default ({
             onChange={(list) => {
               const _columns = list.map((i) => i.value);
               setColumns(_columns);
-              if (tableId) {
-                updateLocalFilter(tableId, _columns, filterIds);
-              }
             }}
             list={columnList}
           />

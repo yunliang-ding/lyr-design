@@ -234,22 +234,6 @@ export default () => {
 };
 ```
 
-## Table 设置 tableId 属性 支持 本地持久化表格过滤状态
-
-```tsx
-/**
- * background: '#f6f7f9'
- * desc: 表格字段有变更需要更新tableId，不然会被缓存数据干扰
- */
-import React from 'react';
-import { Button, Input } from 'antd';
-import { Table } from 'react-core-form';
-import schema from './schema/form-table/schema';
-export default () => {
-  return <Table {...schema} tableId="user-table-001" />;
-};
-```
-
 ## 使用 alertConfig 配置提示信息
 
 ```tsx
