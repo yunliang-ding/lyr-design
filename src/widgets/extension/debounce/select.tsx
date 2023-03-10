@@ -57,6 +57,10 @@ export default ({
         setLoading(false);
       } else {
         fetchOptions(value, props.form).then((newOptions: any) => {
+          // 第一次同步一下
+          if (isEmpty(optionsCacheRef.current)) {
+            optionsCacheRef.current = newOptions;
+          }
           // 解决请求竞争问题
           if (fetchId !== fetchRef.current) {
             return;
