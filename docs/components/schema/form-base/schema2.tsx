@@ -228,19 +228,11 @@ const schema: SchemaProps[] = [
           },
         },
         {
-          type: 'UploadImage',
-          name: 'upload',
+          type: 'OssFileUpload',
+          name: 'file',
           label: '上传图片',
           props: {
-            name: 'file',
-            text: '点击上传',
-            children: '上传文件',
-            maxCount: 2,
-            limitSize: 2,
-            action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-            headers: {
-              authorization: 'authorization-text',
-            },
+            listType: 'picture-card',
           },
         },
       ],

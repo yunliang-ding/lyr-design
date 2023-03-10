@@ -63,7 +63,6 @@ export interface SchemaProps<T = FieldProps>
     | 'FormList'
     | 'BlockQuote'
     | 'FieldSet'
-    | 'UploadImage'
     | 'EditableTable'
     | String
     | Function;
@@ -151,7 +150,6 @@ export interface ExtensionProps {
     CoreFormInstance: CoreFormInstance,
   ) => Promise<React.ReactNode> | React.ReactNode;
   spin?: boolean;
-  // UploadImage
   limitSize?: number;
   text?: string;
   // AsyncCascader

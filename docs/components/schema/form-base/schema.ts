@@ -193,18 +193,11 @@ const schema: SchemaProps<{}>[] = [
     label: '多文本',
   },
   {
-    type: 'UploadImage',
-    name: 'upload',
+    type: 'OssFileUpload',
+    name: 'file',
     label: '上传图片',
     props: {
-      name: 'file',
-      text: '点击上传',
-      maxCount: 1,
-      limitSize: 2,
-      action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-      headers: {
-        authorization: 'authorization-text',
-      },
+      listType: 'picture-card',
     },
   },
 ];

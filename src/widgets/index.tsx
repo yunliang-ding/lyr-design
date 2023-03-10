@@ -19,7 +19,6 @@ import Upload from './antd/upload';
 import Switch from './antd/switch';
 /** 扩展组件 */
 import Render from './extension/render';
-import UploadImage from './extension/upload-image';
 import AsyncRender from './extension/async/render';
 import AsyncSelect from './extension/async/select';
 import AsyncTreeSelect from './extension/async/tree-select';
@@ -69,7 +68,6 @@ export const BuiltInWidgetMapping: any = {
   FormList,
   BlockQuote,
   FieldSet,
-  UploadImage,
   RangeInput,
   EditableTable,
   TableList,

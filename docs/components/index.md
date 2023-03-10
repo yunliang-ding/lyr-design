@@ -121,7 +121,6 @@ export default () => {
         'FormList 子表单',
         'BlockQuote 平级区块',
         'FieldSet 父子级区块',
-        'UploadImage 扩展图片上传',
         'RangeInput 数字范围输入框',
         'OssFileUpload 文件上传',
         'CodeEditor 代码编辑器',
