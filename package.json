@@ -2,7 +2,7 @@
   "name": "react-core-form",
   "description": "基于数据模型快速搭建表单(私有)",
   "author": "yunliang-ding",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -33,7 +33,6 @@
     ]
   },
   "dependencies": {
-    "@iceworks/spec": "^1.4.2",
     "lodash": "4.17.21",
     "moment": "2.24.0",
     "classnames": "^2.2.6",
@@ -52,6 +51,7 @@
     "antd": ">=4.22.0"
   },
   "devDependencies": {
+    "@iceworks/spec": "^1.4.2",
     "@babel/runtime": "7.16.0",
     "@types/lodash": "4.14.168",
     "@umijs/test": "^3.0.5",
