@@ -4,12 +4,18 @@ import { Spin, Empty } from 'antd';
 import debounce from 'lodash/debounce';
 import Select from '@/widgets/antd/select';
 import { useEffect, useState, useRef, useMemo } from 'react';
-import { AsyncOptionsCache } from '@/util';
+import { AsyncOptionsCache, isEmpty } from '@/util';
 
-export default ({ fetchOptions, debounceTimeout = 800, ...props }: any) => {
+export default ({
+  fetchOptions,
+  debounceTimeout = 800,
+  onChange,
+  ...props
+}: any) => {
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
   const fetchRef = useRef(0);
+  const optionsCacheRef: any = useRef(); // 缓存上一份数据源，解决用户不选择的问题
   const init = async () => {
     try {
       setLoading(true);
@@ -44,20 +50,35 @@ export default ({ fetchOptions, debounceTimeout = 800, ...props }: any) => {
       const fetchId = fetchRef.current;
       setOptions([]);
       setLoading(true);
-      fetchOptions(value, props.form).then((newOptions: any) => {
-        if (fetchId !== fetchRef.current) {
-          return;
-        }
-        AsyncOptionsCache[props.id] = newOptions; // 缓存一下
-        setOptions(newOptions);
+      // 没有选择的时候 将 options 自动回退到上一次
+      if (isEmpty(value) && optionsCacheRef.current) {
+        AsyncOptionsCache[props.id] = optionsCacheRef.current; // 缓存一下
+        setOptions(optionsCacheRef.current);
         setLoading(false);
-      });
+      } else {
+        fetchOptions(value, props.form).then((newOptions: any) => {
+          // 解决请求竞争问题
+          if (fetchId !== fetchRef.current) {
+            return;
+          }
+          AsyncOptionsCache[props.id] = newOptions; // 缓存一下
+          setOptions(newOptions);
+          setLoading(false);
+        });
+      }
     };
     return debounce(loadOptions, debounceTimeout);
   }, [fetchOptions, debounceTimeout]);
   return (
     <Select
       {...props}
+      onChange={(v) => {
+        if (v) {
+          // 当用户选中了开始缓存一份数据源
+          optionsCacheRef.current = options;
+        }
+        onChange(v);
+      }}
       filterOption={false}
       loading={loading}
       value={loading ? [] : props.value}

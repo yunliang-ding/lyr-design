@@ -1,6 +1,6 @@
 import { Tag } from 'antd';
 import React from 'react';
-import { SchemaProps } from 'react-core-form';
+import { SchemaProps, Tools } from 'react-core-form';
 
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 const schema: SchemaProps[] = [
@@ -13,10 +13,13 @@ const schema: SchemaProps[] = [
       fetchOptions: async (search: string, form) => {
         // 远程接口调用
         console.log(search, form);
+        if (Tools.isEmpty(search)) {
+          return [];
+        }
         await sleep(1000);
-        return [1, 2, 3].map((item) => {
+        return [Tools.uuid(4), Tools.uuid(4), Tools.uuid(4)].map((item) => {
           return {
-            label: search + item + '级别',
+            label: [item, '级别'].join('-'),
             value: item,
           };
         });

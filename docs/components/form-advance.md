@@ -176,7 +176,6 @@ export default () => {
         schema={schema}
         column={2}
         initialValues={{
-          level: 1,
           classify: [1, 2, 3, 0],
           liked: [1, 2],
           sex: 1,
