@@ -154,13 +154,17 @@ export default {
   babelParse,
   encrypt,
   decrypt,
-  /** oss 相关 */
-  createOssInstance: () => {
-    return new window.OSS({
-      accessKeyId: 'LTAI5t7TYiMPLj5VUPUYDL12',
-      accessKeySecret: '6YyrMAtoqRKbttGvAOJMF6DZttNWc7',
+  /** 获取 oss 实例 相关 */
+  createOssInstance: (
+    options = {
       bucket: 'react-core-form',
       region: 'oss-cn-beijing',
+    },
+  ) => {
+    return new window.OSS({
+      ...options,
+      accessKeyId: 'LTAI5t7TYiMPLj5VUPUYDL12',
+      accessKeySecret: '6YyrMAtoqRKbttGvAOJMF6DZttNWc7',
     });
   },
 };
