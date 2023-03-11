@@ -1,4 +1,5 @@
-import { SchemaProps, Tools } from 'react-core-form';
+import { SchemaProps } from 'react-core-form';
+import { BigNumber } from 'react-core-form-tools';
 
 const schema: SchemaProps[] = [
   {
@@ -29,7 +30,7 @@ const schema: SchemaProps[] = [
     onEffect(name, { getFieldValue, setFieldsValue }) {
       const contactList = getFieldValue('contactList');
       setFieldsValue({
-        totalAmount: Tools.BigNumber.add(
+        totalAmount: BigNumber.add(
           ...contactList.filter((i) => !!i?.amount).map((i) => i?.amount),
         ),
       });

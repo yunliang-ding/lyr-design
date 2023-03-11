@@ -23,10 +23,9 @@ https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js,
  * background: '#fff'
  */
 import React from 'react';
-import { Form, Tools } from 'react-core-form';
+import { Form, babelParse } from 'react-core-form';
 
 export default () => {
-  const { babelParse } = Tools;
   return (
     <Form
       {...babelParse({
@@ -91,7 +90,6 @@ export default () => {
   ],
 };
 `,
-        prefix: '',
       })}
     />
   );
@@ -105,7 +103,7 @@ export default () => {
  * background: '#fff'
  */
 import React from 'react';
-import { Form, Tools } from 'react-core-form';
+import { Form, babelParse } from 'react-core-form';
 
 const renderProps = {
   label: '自定义渲染、点击查看',
@@ -115,7 +113,6 @@ const renderProps = {
 };
 
 export default () => {
-  const { babelParse } = Tools;
   return (
     <Form
       {...babelParse({
@@ -131,7 +128,6 @@ export default {
   ],
 };
 `,
-        prefix: '',
         require: {
           renderProps,
         },

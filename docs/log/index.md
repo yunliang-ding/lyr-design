@@ -7,11 +7,14 @@ nav:
   order: 6
 ---
 
+### 0.0.28 (2023-03-11)
+
+- 部分工具方法迁移到 react-core-form-tools
+
 ### 0.0.22 (2023-03-06)
 
 - 新增 CheckAppVersion
 - 新增 CodeEditor
-- 新增 tools 模块
 
 ### 0.0.21 (2022-11-24)
 
