@@ -19,6 +19,23 @@ const calculate = (
       .toString(),
   );
 };
+const encode = (str): string => {
+  try {
+    return btoa(encodeURIComponent(str));
+  } catch (error) {
+    console.log(error);
+    return '';
+  }
+};
+
+const decode = (str): string => {
+  try {
+    return decodeURIComponent(atob(str));
+  } catch (error) {
+    console.log(error);
+    return '';
+  }
+};
 
 export default {
   /** 浮点数运算 */
@@ -101,22 +118,8 @@ export default {
       }
     }
   },
-  encode: (str): string => {
-    try {
-      return btoa(encodeURIComponent(str));
-    } catch (error) {
-      console.log(error);
-      return '';
-    }
-  },
-  decode: (str): string => {
-    try {
-      return decodeURIComponent(atob(str));
-    } catch (error) {
-      console.log(error);
-      return '';
-    }
-  },
+  encode,
+  decode,
   /** 获取元素快照 */
   getElementSnapshot: (element) => {
     return {
@@ -163,8 +166,8 @@ export default {
   ) => {
     return new window.OSS({
       ...options,
-      accessKeyId: 'LTAI5t7TYiMPLj5VUPUYDL12',
-      accessKeySecret: '6YyrMAtoqRKbttGvAOJMF6DZttNWc7',
+      accessKeyId: decode('TFRBSTV0N1RZaU1QTGo1VlVQVVlETDEy'),
+      accessKeySecret: decode('Nll5ck1BdG9xUktidHRHdkFPSk1GNkRadHROV2M3'),
     });
   },
 };
