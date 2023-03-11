@@ -1,21 +1,9 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import { CodeEditor, CodeProps } from '../index';
-import { babelParse } from '../tools';
 import { debounce, isEmpty } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
+import { babelParse, decrypt, encrypt } from '../../index';
 import './index.less';
-
-/** 函数加盐 */
-export const encrypt = (str: string) => {
-  return `{{_#${str}_#}}`;
-};
-/** 函数去盐 */
-export const decrypt = (str: string, quotation = true) => {
-  if (quotation) {
-    return str?.replaceAll('"{{_#', '').replaceAll('_#}}"', '');
-  }
-  return str?.replaceAll('{{_#', '').replaceAll('_#}}', '');
-};
 
 export default ({
   value,

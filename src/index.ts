@@ -29,11 +29,20 @@ export { default as EditableTable } from './table-editable';
 export { default as TableList } from './table-list';
 export { default as DragList } from './drag-list';
 export { default as AnchorCard } from './anchor-card';
-export { default as ConsoleRender } from './console-render';
-export { default as CheckAppVersion } from './check-app-version';
 export { default as CodeEditor } from './code-editor';
-export { default as Tools } from './tools';
 export { default as OssFileUpload } from './oss-file-upload';
+/** 扩展方法 */
+export { default as babelParse } from './code-editor/tools';
+export const encrypt = (str: string) => {
+  return `{{_#${str}_#}}`;
+};
+export const decrypt = (str: string, quotation = true) => {
+  if (quotation) {
+    return str?.replaceAll('"{{_#', '').replaceAll('_#}}"', '');
+  }
+  return str?.replaceAll('{{_#', '').replaceAll('_#}}', '');
+};
+export { default as createOssInstance } from './oss-file-upload/util';
 /** 类型 */
 export type { SchemaProps, FieldProps } from './form/type.item';
 export type { TableProps } from './table/types';

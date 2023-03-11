@@ -5,7 +5,7 @@ import { babelParseProps } from './type';
 /**
  * 解析
  */
-export const babelParse = ({
+export default ({
   code = '',
   // 默认依赖 react、antd
   dependencies = {

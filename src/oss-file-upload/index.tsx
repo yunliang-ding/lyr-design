@@ -2,10 +2,11 @@
 /* eslint-disable no-console */
 /* eslint-disable no-nested-ternary */
 import { useEffect, useState } from 'react';
+import { downloadFile } from 'react-core-form-tools';
 import { Upload, message, Button, Image, Spin, Progress } from 'antd';
 import { OssFileUploadProps } from './type';
-import Tools from '../tools';
 import { uuid } from '@/util';
+import { createOssInstance } from '..';
 import './index.less';
 
 export default ({
@@ -67,7 +68,7 @@ export default ({
   // 自定义上传
   const multiPartUpload = async (options: any) => {
     const { file } = options;
-    const ossClient = Tools.createOssInstance();
+    const ossClient = createOssInstance();
     try {
       setLoading(true);
       try {
@@ -197,7 +198,7 @@ const RenderItemNode = ({
         style={{ width: 'calc(100% - 60px)' }}
         title={file.name}
         onClick={() => {
-          Tools.downloadFile(file.url, file.name);
+          downloadFile(file.url, file.name);
         }}
       >
         {originNode}
