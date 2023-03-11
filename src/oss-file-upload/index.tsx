@@ -64,11 +64,6 @@ export default ({
     // 同步表单数据
     onChange(value.filter(({ uid }: any) => uid !== file.uid));
   };
-  /** 文件上传 */
-  const onFileChange = (file: any) => {
-    const _value = [file, ...value];
-    onChange(_value); // 同步表单数据
-  };
   // 自定义上传
   const multiPartUpload = async (options: any) => {
     const { file } = options;
@@ -85,13 +80,17 @@ export default ({
         });
         if (status === 200) {
           const url = requestUrls?.[0];
-          onFileChange({
-            uid: uuid(10),
-            name: file.name,
-            url: url.includes('?')
-              ? url.substring(0, url.lastIndexOf('?'))
-              : url,
-          });
+          // 同步表单数据
+          onChange([
+            {
+              uid: uuid(10),
+              name: file.name,
+              url: url.includes('?')
+                ? url.substring(0, url.lastIndexOf('?'))
+                : url,
+            },
+            ...value,
+          ]);
         }
       } catch (error) {
         console.log(error);
