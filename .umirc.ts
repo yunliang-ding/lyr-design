@@ -51,6 +51,10 @@ export default defineConfig({
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
+      title: '工具集',
+      path: 'http://121.4.49.147:9000/react-core-form-tools',
+    },
+    {
       title: 'Playground',
       path: 'http://121.4.49.147:9000/react-playground',
     },
