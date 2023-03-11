@@ -8,5 +8,9 @@ export default {
     type: 'rollup',
     minify: true,
   },
+  // umd: {
+  //   name: 'ReactCoreForm',
+  //   minFile: true,
+  // },
   // extractCSS: true,
 };
