@@ -12,7 +12,7 @@ nav:
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
   <a href="https://npmmirror.com/package/react-core-form">
-    <img alt="npm" src="https://npmmirror.com/badge/v/react-core-form.svg">
+    <img alt="npm" src="https://badgen.net/badge/taonpm/0.0.28/grey">
   </a>
   <a href="https://npmmirror.com/package/react-core-form">
     <img alt="NPM downloads" src="https://npmmirror.com/badge/d/react-core-form.svg">
