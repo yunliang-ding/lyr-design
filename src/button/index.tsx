@@ -15,7 +15,6 @@ const ProButton = ({
   spin,
   confirm,
   auth,
-  btnType,
   onBeforeClick,
   drawerFormProps,
   modalFormProps,
