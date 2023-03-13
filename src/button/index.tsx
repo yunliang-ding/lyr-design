@@ -111,7 +111,7 @@ const ProButton = ({
     );
   }
   if (tooltip) {
-    const tooltipProps =
+    const tooltipProps: any =
       typeof tooltip === 'object' && !isValidElement(tooltip)
         ? tooltip
         : {

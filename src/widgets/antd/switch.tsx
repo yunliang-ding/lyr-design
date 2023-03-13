@@ -1,5 +1,10 @@
 import { Switch } from 'antd';
 
-export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
-  return <Switch {...props} disabled={props.disabled || props.readOnly} />;
+export default ({ readOnlyEmptyValueNode = '-', readOnly, ...props }) => {
+  if (readOnly) {
+    return props.checked
+      ? props.checkedChildren || '开启'
+      : props.unCheckedChildren || '关闭';
+  }
+  return <Switch {...props} disabled={props.disabled} />;
 };
