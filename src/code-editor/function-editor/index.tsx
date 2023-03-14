@@ -2,7 +2,7 @@
 import { CodeEditor, CodeProps } from '../index';
 import { debounce, isEmpty } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
-import { babelParse, decrypt, encrypt } from '../../index';
+import { babelParse, babelParseCode, decrypt, encrypt } from '../../index';
 import './index.less';
 
 export default ({
@@ -32,6 +32,12 @@ export default ({
         return babelParse({
           code: decrypt(valueRef.current, false), // 解码
           exportDefault: false,
+          require,
+        });
+      },
+      getEs5Code: () => {
+        return babelParseCode({
+          code: valueRef.current,
           require,
         });
       },

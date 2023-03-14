@@ -59,5 +59,29 @@ class BabelCompile {
     }
     return res;
   };
+  getES5Code = (code: string): any => {
+    const { transform } = (window as any).Babel;
+    try {
+      const es5 = transform(code, {
+        presets: ['env', 'react'],
+      }).code;
+      const transfromCode = transform(
+        `(require) => {
+          ${es5};
+        }`,
+        {
+          presets: ['env', 'react'],
+        },
+      ).code;
+      // 在解析的es5中 注入 return 用 safeEval 执行
+      const parseCode = transfromCode
+        .replace('"use strict";\n\n(', '"use strict";\n\n return (')
+        .replace("'use strict';\n\n(", "'use strict';\n\n return (");
+      return parseCode;
+    } catch (error) {
+      console.log('catch transform error:', error);
+      throw error;
+    }
+  };
 }
 export default BabelCompile;

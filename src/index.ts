@@ -33,6 +33,7 @@ export { default as CodeEditor } from './code-editor';
 export { default as OssFileUpload } from './oss-file-upload';
 /** 扩展方法 */
 export { default as babelParse } from './code-editor/tools';
+export { default as babelParseCode } from './code-editor/tools/parse';
 export const encrypt = (str: string) => {
   return `{{_#${str}_#}}`;
 };
