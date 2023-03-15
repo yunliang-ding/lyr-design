@@ -368,6 +368,61 @@ export const add = () => {
 };
 ```
 
+## 代码在线转译
+
+```jsx
+import React from 'react';
+import { Row, Col, Button } from 'antd';
+import { CodeEditor } from 'react-core-form';
+
+export default () => {
+  const codeRef1 = React.useRef({});
+  const codeRef2 = React.useRef({});
+  const runApi = async () => {
+    (await codeRef2.current.getMonacoInstance()).setValue(
+      codeRef1.current.getEs5Code(),
+    );
+  };
+  React.useEffect(() => {
+    runApi();
+  }, []);
+  return (
+    <>
+      <Button type="primary" onClick={runApi}>
+        运行
+      </Button>
+      <br />
+      <br />
+      <Row>
+        <div id="test-demo" style={{ display: 'none' }} />
+        <Col span={12}>
+          <CodeEditor
+            mode="function"
+            codeRef={codeRef1}
+            style={{ width: '100%', height: 500 }}
+            value={`import ReactDom from 'react-dom'
+import { Button } from 'antd';
+
+const App = () => {
+  return <Button>hello</Button>
+};
+ReactDom.render(<App />, document.getElementById('test-demo'))
+`}
+          />
+        </Col>
+        <Col span={12}>
+          <CodeEditor
+            readOnly
+            codeRef={codeRef2}
+            style={{ width: '100%', height: 500 }}
+          />
+        </Col>
+      </Row>
+    </>
+  );
+};
+```
+
 ## 一分钟搭建 PlayGround
 
 ```tsx
@@ -411,56 +466,6 @@ export default () => {
         />
       </div>
     </>
-  );
-};
-```
-
-## 代码在线转译
-
-```jsx
-import React from 'react';
-import { Row, Col } from 'antd';
-import { CodeEditor } from 'react-core-form';
-
-export default () => {
-  const codeRef1 = React.useRef({});
-  const codeRef2 = React.useRef({});
-  const runApi = async () => {
-    (await codeRef2.current.getMonacoInstance()).setValue(
-      codeRef1.current.getEs5Code(),
-    );
-  };
-  React.useEffect(() => {
-    runApi();
-  }, []);
-  return (
-    <Row>
-      <div id="test-demo" style={{ display: 'none' }} />
-      <Col span={12}>
-        <CodeEditor
-          mode="function"
-          codeRef={codeRef1}
-          onChange={runApi}
-          debounceTime={0}
-          style={{ width: '100%', height: 500 }}
-          value={`import ReactDom from 'react-dom'
-import { Button } from 'antd';
-
-const App = () => {
-  return <Button>hello</Button>
-};
-ReactDom.render(<App />, document.getElementById('test-demo'))
-`}
-        />
-      </Col>
-      <Col span={12}>
-        <CodeEditor
-          readOnly
-          codeRef={codeRef2}
-          style={{ width: '100%', height: 500 }}
-        />
-      </Col>
-    </Row>
   );
 };
 ```
