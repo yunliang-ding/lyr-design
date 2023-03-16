@@ -1,0 +1,111 @@
+.react-core-form-suspend-wrap {
+  position: fixed;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  border-radius: 4px;
+  z-index: 9999;
+  top: 30%;
+  right: 0;
+  box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.067);
+  transform: translate(100%, -50%);
+  transition: all 0.3s;
+  &.left {
+    left: 0;
+    right: unset;
+    transform: translate(-100%, -50%);
+    .suspend-close {
+      right: unset;
+      left: 100%;
+      box-shadow: 3px 0 4px rgba(0, 0, 0, 0.067);
+      border-radius: 0 6px 6px 0;
+      &::before {
+        transform: translate(-50%, calc(-50% - var(--arrow-width)))
+          rotate(45deg);
+      }
+      &::after {
+        transform: translate(-50%, calc(-50% + var(--arrow-width)))
+          rotate(-45deg);
+      }
+    }
+  }
+  .suspend-title {
+    white-space: nowrap;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #454d64;
+    &:empty {
+      display: none;
+    }
+  }
+  .suspend-close {
+    background-color: #fff;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    box-shadow: -3px 0 4px rgba(0, 0, 0, 0.067);
+    cursor: pointer;
+    height: 60px;
+    justify-content: center;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    --arrow-width: 4px;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 2px;
+      left: 50%;
+      top: 50%;
+      border-radius: 2px;
+      transform: translate(-50%, calc(-50% - var(--arrow-width))) rotate(-45deg);
+      background: rgb(139, 142, 152);
+      transition: all 0.3s;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 2px;
+      left: 50%;
+      top: 50%;
+      border-radius: 2px;
+      transform: translate(-50%, calc(-50% + var(--arrow-width))) rotate(45deg);
+      background: rgb(139, 142, 152);
+      transition: all 0.3s;
+    }
+  }
+  .suspend-content > :not(:first-child) {
+    margin-top: 12px;
+  }
+  &.show {
+    transform: translate(0, -50%);
+    &.left {
+      .suspend-close {
+        &::before {
+          transform: translate(-50%, calc(-50% - var(--arrow-width)))
+            rotate(-45deg);
+        }
+        &::after {
+          transform: translate(-50%, calc(-50% + var(--arrow-width)))
+            rotate(45deg);
+        }
+      }
+    }
+    .suspend-title {
+      display: block;
+    }
+    .suspend-close {
+      &::before {
+        transform: translate(-50%, calc(-50% - var(--arrow-width)))
+          rotate(45deg);
+      }
+      &::after {
+        transform: translate(-50%, calc(-50% + var(--arrow-width)))
+          rotate(-45deg);
+      }
+    }
+  }
+}

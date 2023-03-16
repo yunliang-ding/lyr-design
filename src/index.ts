@@ -31,6 +31,7 @@ export { default as DragList } from './drag-list';
 export { default as AnchorCard } from './anchor-card';
 export { default as CodeEditor } from './code-editor';
 export { default as OssFileUpload } from './oss-file-upload';
+export { default as SuspendBar } from './suspend-bar';
 /** 扩展方法 */
 export { default as babelParse } from './code-editor/tools';
 export { default as babelParseCode } from './code-editor/tools/parse';
