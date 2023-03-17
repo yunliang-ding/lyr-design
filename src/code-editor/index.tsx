@@ -3,6 +3,7 @@ import { useEffect, useRef, CSSProperties, memo } from 'react';
 import FunctionEditor from './function-editor';
 import JsonEditor from './json-editor';
 import './index.less';
+import Diff from './diff';
 
 export interface CodeProps {
   id?: string;
@@ -147,6 +148,9 @@ export default ({ mode, ...props }: CodeProps) => {
   }
   if (mode === 'function') {
     return <FunctionEditor {...props} />;
+  }
+  if (mode === 'diff') {
+    return <Diff {...props} />;
   }
   return <CodeEditor {...props} />;
 };

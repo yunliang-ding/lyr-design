@@ -10,7 +10,7 @@ toc: menu
 import React from 'react';
 import { CreateModal } from 'react-core-form';
 import schema from './schema/form-submit/schema';
-import { Button, message, Switch } from 'antd';
+import { Button } from 'antd';
 
 export default (props) => {
   return (
@@ -46,7 +46,7 @@ export default (props) => {
 import React from 'react';
 import { CreateModal } from 'react-core-form';
 import schema from './schema/form-submit/schema';
-import { Button, message, Switch } from 'antd';
+import { Button, message } from 'antd';
 
 export default (props) => {
   return (
@@ -98,7 +98,7 @@ export default (props) => {
 ```tsx
 import React from 'react';
 import { CreateModal } from 'react-core-form';
-import { Button, message, Switch } from 'antd';
+import { Button, message } from 'antd';
 
 export default (props) => {
   return (

@@ -89,6 +89,28 @@ export default () => {
 };
 ```
 
+## 改动对比
+
+```jsx
+import React from 'react';
+import { CodeEditor } from 'react-core-form';
+
+export default () => {
+  return (
+    <CodeEditor
+      mode="diff"
+      style={{ width: '100%', height: 500 }}
+      originalValue={`import ReactDom from 'react-dom'
+import { Button } from 'Antd';
+`}
+      value={`import { Button } from 'antd';
+import ReactDom from 'react-dom'
+`}
+    />
+  );
+};
+```
+
 ## 配合 Form 表单使用
 
 ```tsx
