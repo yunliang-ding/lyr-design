@@ -20,12 +20,10 @@
       box-shadow: 3px 0 4px rgba(0, 0, 0, 0.067);
       border-radius: 0 6px 6px 0;
       &::before {
-        transform: translate(-50%, calc(-50% - var(--arrow-width)))
-          rotate(45deg);
+        transform: translate(-50%, calc(-50% - 4px)) rotate(45deg);
       }
       &::after {
-        transform: translate(-50%, calc(-50% + var(--arrow-width)))
-          rotate(-45deg);
+        transform: translate(-50%, calc(-50% + 4px)) rotate(-45deg);
       }
     }
   }
@@ -51,7 +49,6 @@
     top: 50%;
     transform: translateY(-50%);
     width: 24px;
-    --arrow-width: 4px;
     &::before {
       content: '';
       position: absolute;
@@ -60,7 +57,7 @@
       left: 50%;
       top: 50%;
       border-radius: 2px;
-      transform: translate(-50%, calc(-50% - var(--arrow-width))) rotate(-45deg);
+      transform: translate(-50%, calc(-50% - 4px)) rotate(-45deg);
       background: rgb(139, 142, 152);
       transition: all 0.3s;
     }
@@ -72,7 +69,7 @@
       left: 50%;
       top: 50%;
       border-radius: 2px;
-      transform: translate(-50%, calc(-50% + var(--arrow-width))) rotate(45deg);
+      transform: translate(-50%, calc(-50% + 4px)) rotate(45deg);
       background: rgb(139, 142, 152);
       transition: all 0.3s;
     }
@@ -85,12 +82,10 @@
     &.left {
       .suspend-close {
         &::before {
-          transform: translate(-50%, calc(-50% - var(--arrow-width)))
-            rotate(-45deg);
+          transform: translate(-50%, calc(-50% - 4px)) rotate(-45deg);
         }
         &::after {
-          transform: translate(-50%, calc(-50% + var(--arrow-width)))
-            rotate(45deg);
+          transform: translate(-50%, calc(-50% + 4px)) rotate(45deg);
         }
       }
     }
@@ -99,12 +94,10 @@
     }
     .suspend-close {
       &::before {
-        transform: translate(-50%, calc(-50% - var(--arrow-width)))
-          rotate(45deg);
+        transform: translate(-50%, calc(-50% - 4px)) rotate(45deg);
       }
       &::after {
-        transform: translate(-50%, calc(-50% + var(--arrow-width)))
-          rotate(-45deg);
+        transform: translate(-50%, calc(-50% + 4px)) rotate(-45deg);
       }
     }
   }
