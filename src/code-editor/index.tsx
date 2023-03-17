@@ -2,8 +2,9 @@ import { uuid } from '@/util';
 import { useEffect, useRef, CSSProperties, memo } from 'react';
 import FunctionEditor from './function-editor';
 import JsonEditor from './json-editor';
-import './index.less';
 import Diff from './diff';
+import LessEditor from './less-editor';
+import './index.less';
 
 export interface CodeProps {
   id?: string;
@@ -34,8 +35,8 @@ export interface CodeProps {
   onSave?: Function;
   /** CodeEditor 实例引用 */
   codeRef?: any;
-  /** 使用 json 模式，或者 函数模式 */
-  mode?: 'json' | 'function';
+  /** 模式 */
+  mode?: 'json' | 'function' | 'less' | 'diff';
   /**
    * 默认代码段
    * @default () => {}
@@ -148,6 +149,9 @@ export default ({ mode, ...props }: CodeProps) => {
   }
   if (mode === 'function') {
     return <FunctionEditor {...props} />;
+  }
+  if (mode === 'less') {
+    return <LessEditor {...props} />;
   }
   if (mode === 'diff') {
     return <Diff {...props} />;

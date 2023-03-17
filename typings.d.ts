@@ -5,4 +5,5 @@ declare interface Window {
   require?: any;
   monaco?: any;
   OSS?: any;
+  less?: any;
 }

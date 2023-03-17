@@ -44,6 +44,7 @@ export default defineConfig({
     },
   ],
   scripts: [
+    'https://cdn.bootcdn.net/ajax/libs/less.js/4.1.3/less.min.js',
     'https://cdn.bootcdn.net/ajax/libs/ali-oss/6.17.1/aliyun-oss-sdk.min.js',
     'https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js',
     'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js',

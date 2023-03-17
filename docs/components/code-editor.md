@@ -14,7 +14,8 @@ toc: menu
 ## 依赖 cdn
 
 ```js
-https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js // 仅函数模式需要引入
+https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js // 仅 function 模式需要引入
+https://cdn.bootcdn.net/ajax/libs/less.js/4.1.3/less.min.js // 仅 less 模式需要引入
 https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js
 https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.1/min/vs/editor/editor.main.min.css
 ```
@@ -390,7 +391,7 @@ export const add = () => {
 };
 ```
 
-## 代码在线转译
+## Es6 => Es5
 
 ```jsx
 import React from 'react';
@@ -436,6 +437,65 @@ ReactDom.render(<App />, document.getElementById('test-demo'))
           <CodeEditor
             readOnly
             codeRef={codeRef2}
+            style={{ width: '100%', height: 500 }}
+          />
+        </Col>
+      </Row>
+    </>
+  );
+};
+```
+
+## less => css
+
+```jsx
+import React from 'react';
+import { Row, Col, Button } from 'antd';
+import { CodeEditor } from 'react-core-form';
+
+export default () => {
+  const codeRef1 = React.useRef({});
+  const codeRef2 = React.useRef({});
+  const runApi = async () => {
+    (await codeRef2.current.getMonacoInstance()).setValue(
+      await codeRef1.current.getCssCode(),
+    );
+  };
+  React.useEffect(() => {
+    runApi();
+  }, []);
+  return (
+    <>
+      <Button type="primary" onClick={runApi}>
+        运行
+      </Button>
+      <br />
+      <br />
+      <Row>
+        <div id="test-demo" style={{ display: 'none' }} />
+        <Col span={12}>
+          <CodeEditor
+            mode="less"
+            codeRef={codeRef1}
+            style={{ width: '100%', height: 500 }}
+            value={`.app{
+  .header{
+    .title{
+      font-size: 12px;
+    }
+  }
+  .body{
+    font-size: 12px;
+  }
+}
+            `}
+          />
+        </Col>
+        <Col span={12}>
+          <CodeEditor
+            readOnly
+            codeRef={codeRef2}
+            language="css"
             style={{ width: '100%', height: 500 }}
           />
         </Col>
