@@ -1,5 +1,6 @@
 import { Spin } from 'antd';
 import { CSSProperties } from 'react';
+import { uuid } from 'react-core-form-tools';
 import ReactDOM from 'react-dom';
 import './index.less';
 
@@ -26,6 +27,9 @@ const CreateSpin = ({
   style,
   mode,
 }: CreateSpinProps) => {
+  if ($(`#${containId}`)) {
+    return;
+  }
   const tag = document.createElement('div');
   tag.setAttribute('id', containId);
   tag.style.width = '100%';
@@ -42,7 +46,7 @@ const CreateSpin = ({
 export default (props = {}) => {
   const {
     getContainer = () => document.querySelector('body'),
-    containId = 'spinid_20230318',
+    containId = `create-spin-root-${uuid(5)}`,
     style = {},
     mode = 'loading',
   }: CreateSpinProps = props;

@@ -1,29 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import { cloneDeepWith } from 'lodash';
+import { isEmpty as _isEmpty, uuid as _uuid } from 'react-core-form-tools';
 
-/** 判断空 */
-export const isEmpty = (param: any) => {
-  if (param === null || param === undefined) {
-    return true;
-  }
-  if (Array.isArray(param)) {
-    return param.length === 0;
-  }
-  if (typeof param === 'string') {
-    return param.trim() === '';
-  }
-  if (typeof param === 'object') {
-    return Object.keys(param).length === 0;
-  }
-  return false;
-};
-/**
- * 简易uuid
- */
-export const uuid = (size: number) => {
-  return Math.random().toString().substr(2, size);
-};
+export const isEmpty = _isEmpty;
+export const uuid = _uuid;
 /**
  * 简易发布订阅
  */
@@ -65,11 +46,9 @@ export class EventEmit {
  * 设置异步加载Select的options缓存
  */
 export const AsyncOptionsCache: any = {};
-
 /**
  * 递归查找指定name的field
  */
-
 let _field_ = {};
 export const queryFieldByName = (fields, fieldName) => {
   for (let i = 0; i < fields.length; i++) {
