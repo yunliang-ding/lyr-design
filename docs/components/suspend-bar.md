@@ -30,3 +30,7 @@ export default () => {
   );
 };
 ```
+
+## Api
+
+<API src="../../src/suspend-bar/index.tsx" hideTitle></API>
