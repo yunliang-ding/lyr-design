@@ -1,6 +1,6 @@
 ---
-order: 18
-title: CodeEditor 编辑器
+order: 1
+title: CodeEditor 核心编辑器
 toc: menu
 ---
 
@@ -554,4 +554,4 @@ export default () => {
 
 ## API
 
-<API src="../../src/code-editor/index.tsx" hideTitle></API>
+<API src="../../src/code-space/code-editor/index.tsx" hideTitle></API>

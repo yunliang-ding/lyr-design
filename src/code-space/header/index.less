@@ -1,0 +1,41 @@
+.common-sider-header {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ccc;
+  background-color: #252526;
+  font-size: 12px;
+  position: relative;
+  &-title {
+    width: calc(~'100% - 44px');
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 20px;
+  }
+  &-action {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    .codicon {
+      cursor: pointer;
+      color: #ddd;
+      width: 24px;
+      height: 24px;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+      border-radius: 4px;
+      &:hover {
+        transition: 0.3s;
+        background-color: #333;
+      }
+    }
+  }
+}

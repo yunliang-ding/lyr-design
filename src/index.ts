@@ -30,12 +30,14 @@ export { default as EditableTable } from './table-editable';
 export { default as TableList } from './table-list';
 export { default as DragList } from './drag-list';
 export { default as AnchorCard } from './anchor-card';
-export { default as CodeEditor } from './code-editor';
 export { default as OssFileUpload } from './oss-file-upload';
 export { default as SuspendBar } from './suspend-bar';
+/** 代码编辑器相关 */
+export { default as CodeEditor } from './code-space/code-editor';
+export { default as FileExplorer } from './code-space/file-explorer';
+export { default as babelParse } from './code-space/code-editor/tools';
+export { default as babelParseCode } from './code-space/code-editor/tools/parse';
 /** 扩展方法 */
-export { default as babelParse } from './code-editor/tools';
-export { default as babelParseCode } from './code-editor/tools/parse';
 export const encrypt = (str: string) => {
   return `{{_#${str}_#}}`;
 };

@@ -1,0 +1,2686 @@
+@font-face {
+  src: url('./seti.woff') format('woff');
+  font-family: 'seti';
+  font-weight: normal;
+  font-style: normal;
+}
+
+.show-file-icons .file-icon::before,
+.show-file-icons .folder-icon::before,
+.show-file-icons .rootfolder-icon::before {
+  font-family: 'seti';
+  font-size: 150%;
+  font-style: normal;
+}
+
+.show-file-icons .file-icon::before {
+  color: #d4d7d6;
+  content: '\E023';
+  background-image: unset;
+}
+
+.show-file-icons .bat-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E0A1';
+  background-image: unset;
+}
+
+.show-file-icons .clojure-lang-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E013';
+  background-image: unset;
+}
+
+.show-file-icons .coffeescript-lang-file-icon.file-icon::before,
+.show-file-icons .litcoffee-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E016';
+  background-image: unset;
+}
+
+.show-file-icons .jsonc-lang-file-icon.file-icon::before,
+.show-file-icons .json-lang-file-icon.file-icon::before,
+.show-file-icons .cson-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E055';
+  background-image: unset;
+}
+
+.show-file-icons .c-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E00C';
+  background-image: unset;
+}
+
+.show-file-icons .cpp-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E01A';
+  background-image: unset;
+}
+
+.show-file-icons .cuda-cpp-lang-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E01F';
+  background-image: unset;
+}
+
+.show-file-icons .csharp-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E00B';
+  background-image: unset;
+}
+
+.show-file-icons .css-lang-file-icon.file-icon::before,
+.show-file-icons .postcss-lang-file-icon.file-icon::before,
+.show-file-icons .css\.map-ext-file-icon.map-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .sss-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E01D';
+  background-image: unset;
+}
+
+.show-file-icons .dart-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E021';
+  background-image: unset;
+}
+
+.show-file-icons .dockerfile-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E025';
+  background-image: unset;
+}
+
+.show-file-icons .ignore-lang-file-icon.file-icon::before,
+.show-file-icons .gitconfig-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .gitkeep-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .gitattributes-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .gitmodules-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #41535b;
+  content: '\E034';
+  background-image: unset;
+}
+
+.show-file-icons .fsharp-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E02E';
+  background-image: unset;
+}
+
+.show-file-icons .go-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E03A';
+  background-image: unset;
+}
+
+.show-file-icons .groovy-lang-file-icon.file-icon::before,
+.show-file-icons .gsp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E03D';
+  background-image: unset;
+}
+
+.show-file-icons .handlebars-lang-file-icon.file-icon::before,
+.show-file-icons .mustache-lang-file-icon.file-icon::before,
+.show-file-icons .mustache-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .stache-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E063';
+  background-image: unset;
+}
+
+.show-file-icons .html-lang-file-icon.file-icon::before,
+.show-file-icons .django-html-lang-file-icon.file-icon::before,
+.show-file-icons .component-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E048';
+  background-image: unset;
+}
+
+.show-file-icons .properties-lang-file-icon.file-icon::before,
+.show-file-icons .java-lang-file-icon.file-icon::before,
+.show-file-icons .class-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .classpath-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E050';
+  background-image: unset;
+}
+
+.show-file-icons .javascriptreact-lang-file-icon.file-icon::before,
+.show-file-icons .cjsx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E07D';
+  background-image: unset;
+}
+
+.show-file-icons .javascript-lang-file-icon.file-icon::before,
+.show-file-icons .js\.map-ext-file-icon.map-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .es-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .es5-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .es7-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E051';
+  background-image: unset;
+}
+
+.show-file-icons .julia-lang-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E056';
+  background-image: unset;
+}
+
+.show-file-icons .tex-lang-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E094';
+  background-image: unset;
+}
+
+.show-file-icons .latex-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E094';
+  background-image: unset;
+}
+
+.show-file-icons .less-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E059';
+  background-image: unset;
+}
+
+.show-file-icons .lua-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E05E';
+  background-image: unset;
+}
+
+.show-file-icons .makefile-lang-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E05F';
+  background-image: unset;
+}
+
+.show-file-icons .markdown-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E060';
+  background-image: unset;
+}
+
+.show-file-icons .objective-c-lang-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E00C';
+  background-image: unset;
+}
+
+.show-file-icons .objective-cpp-lang-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E01A';
+  background-image: unset;
+}
+
+.show-file-icons .perl-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E06E';
+  background-image: unset;
+}
+
+.show-file-icons .php-lang-file-icon.file-icon::before,
+.show-file-icons .php\.inc-ext-file-icon.inc-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E070';
+  background-image: unset;
+}
+
+.show-file-icons .powershell-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E074';
+  background-image: unset;
+}
+
+.show-file-icons .jade-lang-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E078';
+  background-image: unset;
+}
+
+.show-file-icons .python-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E07B';
+  background-image: unset;
+}
+
+.show-file-icons .r-lang-file-icon.file-icon::before,
+.show-file-icons .r-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .rmd-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E001';
+  background-image: unset;
+}
+
+.show-file-icons .razor-lang-file-icon.file-icon::before,
+.show-file-icons .aspx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E048';
+  background-image: unset;
+}
+
+.show-file-icons .ruby-lang-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E081';
+  background-image: unset;
+}
+
+.show-file-icons .rust-lang-file-icon.file-icon::before {
+  color: #6d8086;
+  content: '\E082';
+  background-image: unset;
+}
+
+.show-file-icons .scss-lang-file-icon.file-icon::before,
+.show-file-icons .sass-lang-file-icon.file-icon::before,
+.show-file-icons .sass-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .sass-lint\.yml-name-file-icon.name-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #f55385;
+  content: '\E084';
+  background-image: unset;
+}
+
+.show-file-icons .search-result-lang-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E015';
+  background-image: unset;
+}
+
+.show-file-icons .shellscript-lang-file-icon.file-icon::before,
+.show-file-icons .fish-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E089';
+  background-image: unset;
+}
+
+.show-file-icons .sql-lang-file-icon.file-icon::before {
+  color: #f55385;
+  content: '\E022';
+  background-image: unset;
+}
+
+.show-file-icons .swift-lang-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E092';
+  background-image: unset;
+}
+
+.show-file-icons .typescript-lang-file-icon.file-icon::before,
+.show-file-icons .typescriptreact-lang-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E099';
+  background-image: unset;
+}
+
+.show-file-icons .xml-lang-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E0A4';
+  background-image: unset;
+}
+
+.show-file-icons .dockercompose-lang-file-icon.file-icon::before {
+  color: #f55385;
+  content: '\E025';
+  background-image: unset;
+}
+
+.show-file-icons .yaml-lang-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E0A6';
+  background-image: unset;
+}
+
+.show-file-icons .argdown-lang-file-icon.file-icon::before,
+.show-file-icons .argdown-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .ad-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E003';
+  background-image: unset;
+}
+
+.show-file-icons .bicep-lang-file-icon.file-icon::before,
+.show-file-icons .bicep-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E008';
+  background-image: unset;
+}
+
+.show-file-icons .elixir-lang-file-icon.file-icon::before,
+.show-file-icons .ex-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E028';
+  background-image: unset;
+}
+
+.show-file-icons .elm-lang-file-icon.file-icon::before,
+.show-file-icons .elm-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E02A';
+  background-image: unset;
+}
+
+.show-file-icons .erb-lang-file-icon.file-icon::before,
+.show-file-icons .erb-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .erb\.html-ext-file-icon.html-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .html\.erb-ext-file-icon.erb-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E049';
+  background-image: unset;
+}
+
+.show-file-icons .github-issues-lang-file-icon.file-icon::before,
+.show-file-icons .github-issues-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #d4d7d6;
+  content: '\E037';
+  background-image: unset;
+}
+
+.show-file-icons .gradle-lang-file-icon.file-icon::before,
+.show-file-icons .gradle-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E03C';
+  background-image: unset;
+}
+
+.show-file-icons .godot-lang-file-icon.file-icon::before,
+.show-file-icons .gd-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E03B';
+  background-image: unset;
+}
+
+.show-file-icons .haml-lang-file-icon.file-icon::before,
+.show-file-icons .haml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E042';
+  background-image: unset;
+}
+
+.show-file-icons .haskell-lang-file-icon.file-icon::before,
+.show-file-icons .hs-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .lhs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E044';
+  background-image: unset;
+}
+
+.show-file-icons .haxe-lang-file-icon.file-icon::before,
+.show-file-icons .hx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E045';
+  background-image: unset;
+}
+
+.show-file-icons .jinja-lang-file-icon.file-icon::before,
+.show-file-icons .jinja-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .jinja2-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E053';
+  background-image: unset;
+}
+
+.show-file-icons .kotlin-lang-file-icon.file-icon::before,
+.show-file-icons .kt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .kts-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E058';
+  background-image: unset;
+}
+
+.show-file-icons .nunjucks-lang-file-icon.file-icon::before,
+.show-file-icons .njk-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .nunjucks-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .nunjs-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .nunj-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .njs-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .nj-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E069';
+  background-image: unset;
+}
+
+.show-file-icons .ocaml-lang-file-icon.file-icon::before,
+.show-file-icons .ml-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .mli-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .cmx-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .cmxa-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E06A';
+  background-image: unset;
+}
+
+.show-file-icons .rescript-lang-file-icon.file-icon::before,
+.show-file-icons .res-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E07F';
+  background-image: unset;
+}
+
+.show-file-icons .stylus-lang-file-icon.file-icon::before,
+.show-file-icons .styl-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E08E';
+  background-image: unset;
+}
+
+.show-file-icons .terraform-lang-file-icon.file-icon::before,
+.show-file-icons .tf-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .tf\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .tfvars-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E093';
+  background-image: unset;
+}
+
+.show-file-icons .todo-lang-file-icon.file-icon::before,
+.show-file-icons .todo-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .todo\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .todo\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before {
+  content: '\E096';
+  background-image: unset;
+}
+
+.show-file-icons .vala-lang-file-icon.file-icon::before,
+.show-file-icons .vala-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .vapi-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #6d8086;
+  content: '\E09A';
+  background-image: unset;
+}
+
+.show-file-icons .vue-lang-file-icon.file-icon::before,
+.show-file-icons .vue-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E09C';
+  background-image: unset;
+}
+
+.show-file-icons .bsl-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E00A';
+  background-image: unset;
+}
+
+.show-file-icons .mdo-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E062';
+  background-image: unset;
+}
+
+.show-file-icons .cls-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .apex-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E083';
+  background-image: unset;
+}
+
+.show-file-icons .asm-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .s-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E004';
+  background-image: unset;
+}
+
+.show-file-icons .bzl-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .bazel-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .build-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .workspace-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .bazelignore-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .bazelversion-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .build-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .build\.bazel-name-file-icon.name-file-icon.bazel-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .workspace-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .workspace\.bazel-name-file-icon.name-file-icon.bazel-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E007';
+  background-image: unset;
+}
+
+.show-file-icons .h-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E00C';
+  background-image: unset;
+}
+
+.show-file-icons .ascx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E048';
+  background-image: unset;
+}
+
+.show-file-icons .asax-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .master-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E048';
+  background-image: unset;
+}
+
+.show-file-icons .hh-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .hpp-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .hxx-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .h\+\+-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E01A';
+  background-image: unset;
+}
+
+.show-file-icons .edn-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E013';
+  background-image: unset;
+}
+
+.show-file-icons .cfc-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .cfm-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E018';
+  background-image: unset;
+}
+
+.show-file-icons .config-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .cfg-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .conf-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .toml-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .direnv-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .env-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .static-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .editorconfig-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .slugignore-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .htaccess-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .mime\.types-name-file-icon.name-file-icon.types-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #6d8086;
+  content: '\E019';
+  background-image: unset;
+}
+
+.show-file-icons .cr-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #d4d7d6;
+  content: '\E01B';
+  background-image: unset;
+}
+
+.show-file-icons .ecr-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .slang-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #d4d7d6;
+  content: '\E01C';
+  background-image: unset;
+}
+
+.show-file-icons .csv-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E01E';
+  background-image: unset;
+}
+
+.show-file-icons .xls-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .xlsx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E0A3';
+  background-image: unset;
+}
+
+.show-file-icons .cuh-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .hu-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E01F';
+  background-image: unset;
+}
+
+.show-file-icons .cake-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E00D';
+  background-image: unset;
+}
+
+.show-file-icons .ctp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E00E';
+  background-image: unset;
+}
+
+.show-file-icons .d-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E020';
+  background-image: unset;
+}
+
+.show-file-icons .doc-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .docx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E0A2';
+  background-image: unset;
+}
+
+.show-file-icons .ejs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E027';
+  background-image: unset;
+}
+
+.show-file-icons .exs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E029';
+  background-image: unset;
+}
+
+.show-file-icons .ico-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E02F';
+  background-image: unset;
+}
+
+.show-file-icons .slide-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .article-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E039';
+  background-image: unset;
+}
+
+.show-file-icons .godot-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E03B';
+  background-image: unset;
+}
+
+.show-file-icons .tres-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E03B';
+  background-image: unset;
+}
+
+.show-file-icons .tscn-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E03B';
+  background-image: unset;
+}
+
+.show-file-icons .gql-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .graphql-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .graphqls-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #f55385;
+  content: '\E03E';
+  background-image: unset;
+}
+
+.show-file-icons .hack-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E041';
+  background-image: unset;
+}
+
+.show-file-icons .hxs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E045';
+  background-image: unset;
+}
+
+.show-file-icons .hxp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E045';
+  background-image: unset;
+}
+
+.show-file-icons .hxml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E045';
+  background-image: unset;
+}
+
+.show-file-icons .jade-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E04F';
+  background-image: unset;
+}
+
+.show-file-icons .spec\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .test\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E051';
+  background-image: unset;
+}
+
+.show-file-icons .liquid-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E05B';
+  background-image: unset;
+}
+
+.show-file-icons .ls-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E05C';
+  background-image: unset;
+}
+
+.show-file-icons .nim-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .nims-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E065';
+  background-image: unset;
+}
+
+.show-file-icons .ipynb-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E066';
+  background-image: unset;
+}
+
+.show-file-icons .npm-debug\.log-ext-file-icon.log-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #41535b;
+  content: '\E067';
+  background-image: unset;
+}
+
+.show-file-icons .npmignore-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .npmrc-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E067';
+  background-image: unset;
+}
+
+.show-file-icons .odata-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E06B';
+  background-image: unset;
+}
+
+.show-file-icons .pipeline-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E071';
+  background-image: unset;
+}
+
+.show-file-icons .pddl-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E06C';
+  background-image: unset;
+}
+
+.show-file-icons .plan-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E072';
+  background-image: unset;
+}
+
+.show-file-icons .happenings-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E043';
+  background-image: unset;
+}
+
+.show-file-icons .prisma-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E075';
+  background-image: unset;
+}
+
+.show-file-icons .pp-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .epp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E079';
+  background-image: unset;
+}
+
+.show-file-icons .purs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #d4d7d6;
+  content: '\E07A';
+  background-image: unset;
+}
+
+.show-file-icons .spec\.jsx-ext-file-icon.jsx-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .test\.jsx-ext-file-icon.jsx-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .spec\.tsx-ext-file-icon.tsx-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .test\.tsx-ext-file-icon.tsx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E07D';
+  background-image: unset;
+}
+
+.show-file-icons .re-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E07E';
+  background-image: unset;
+}
+
+.show-file-icons .resi-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #f55385;
+  content: '\E07F';
+  background-image: unset;
+}
+
+.show-file-icons .springbeans-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E08C';
+  background-image: unset;
+}
+
+.show-file-icons .slim-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E08A';
+  background-image: unset;
+}
+
+.show-file-icons .smarty\.tpl-ext-file-icon.tpl-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .tpl-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E08B';
+  background-image: unset;
+}
+
+.show-file-icons .sbt-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E085';
+  background-image: unset;
+}
+
+.show-file-icons .scala-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E086';
+  background-image: unset;
+}
+
+.show-file-icons .sol-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E02D';
+  background-image: unset;
+}
+
+.show-file-icons .svelte-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E090';
+  background-image: unset;
+}
+
+.show-file-icons .soql-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E022';
+  background-image: unset;
+}
+
+.show-file-icons .dtx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E094';
+  background-image: unset;
+}
+
+.show-file-icons .ins-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #d4d7d6;
+  content: '\E094';
+  background-image: unset;
+}
+
+.show-file-icons .twig-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E098';
+  background-image: unset;
+}
+
+.show-file-icons .spec\.ts-ext-file-icon.ts-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .test\.ts-ext-file-icon.ts-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E099';
+  background-image: unset;
+}
+
+.show-file-icons .wasm-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E09D';
+  background-image: unset;
+}
+
+.show-file-icons .wat-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E09E';
+  background-image: unset;
+}
+
+.show-file-icons .pro-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E077';
+  background-image: unset;
+}
+
+.show-file-icons .zig-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E0A7';
+  background-image: unset;
+}
+
+.show-file-icons .jar-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E0A8';
+  background-image: unset;
+}
+
+.show-file-icons .zip-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #6d8086;
+  content: '\E0A8';
+  background-image: unset;
+}
+
+.show-file-icons .wgt-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E0A0';
+  background-image: unset;
+}
+
+.show-file-icons .ai-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E04B';
+  background-image: unset;
+}
+
+.show-file-icons .psd-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E06F';
+  background-image: unset;
+}
+
+.show-file-icons .pdf-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E06D';
+  background-image: unset;
+}
+
+.show-file-icons .eot-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .ttf-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .woff-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .woff2-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E033';
+  background-image: unset;
+}
+
+.show-file-icons .avif-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .gif-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .jpg-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .jpeg-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .png-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .pxm-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .svgx-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .tiff-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E04C';
+  background-image: unset;
+}
+
+.show-file-icons .svg-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E091';
+  background-image: unset;
+}
+
+.show-file-icons .sublime-project-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .sublime-workspace-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E08F';
+  background-image: unset;
+}
+
+.show-file-icons .mov-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .ogv-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webm-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .avi-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .mpg-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .mp4-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #f55385;
+  content: '\E09B';
+  background-image: unset;
+}
+
+.show-file-icons .mp3-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .ogg-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .wav-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .flac-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E005';
+  background-image: unset;
+}
+
+.show-file-icons .\33 ds-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .\33 dm-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .stl-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .obj-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .dae-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E091';
+  background-image: unset;
+}
+
+.show-file-icons .babelrc-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .babelrc\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .babelrc\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .babel\.config\.js-name-file-icon.name-file-icon.config\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .babel\.config\.json-name-file-icon.name-file-icon.config\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .babel\.config\.cjs-name-file-icon.name-file-icon.config\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E006';
+  background-image: unset;
+}
+
+.show-file-icons .bazelrc-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #4d5a5e;
+  content: '\E007';
+  background-image: unset;
+}
+
+.show-file-icons .bowerrc-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .bower\.json-name-file-icon.name-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E009';
+  background-image: unset;
+}
+
+.show-file-icons .dockerignore-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #4d5a5e;
+  content: '\E025';
+  background-image: unset;
+}
+
+.show-file-icons .codeclimate\.yml-ext-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E014';
+  background-image: unset;
+}
+
+.show-file-icons .eslintrc-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .eslintrc\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .eslintrc\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .eslintrc\.yaml-ext-file-icon.yaml-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .eslintrc\.yml-ext-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .eslintrc\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E02C';
+  background-image: unset;
+}
+
+.show-file-icons .eslintignore-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #4d5a5e;
+  content: '\E02C';
+  background-image: unset;
+}
+
+.show-file-icons .firebaserc-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .firebase\.json-name-file-icon.name-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E030';
+  background-image: unset;
+}
+
+.show-file-icons .gitlab-ci\.yml-ext-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E038';
+  background-image: unset;
+}
+
+.show-file-icons .jshintrc-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .jscsrc-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E051';
+  background-image: unset;
+}
+
+.show-file-icons .stylelintrc-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .stylelintrc\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .stylelintrc\.yaml-ext-file-icon.yaml-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .stylelintrc\.yml-ext-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .stylelintrc\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .stylelint\.config\.js-name-file-icon.name-file-icon.config\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .stylelint\.config\.cjs-name-file-icon.name-file-icon.config\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #d4d7d6;
+  content: '\E08D';
+  background-image: unset;
+}
+
+.show-file-icons .stylelintignore-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #4d5a5e;
+  content: '\E08D';
+  background-image: unset;
+}
+
+.show-file-icons .tmp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #6d8086;
+  content: '\E012';
+  background-image: unset;
+}
+
+.show-file-icons .key-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .cert-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .cer-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .crt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .pem-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E05D';
+  background-image: unset;
+}
+
+.show-file-icons .ds_store-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #41535b;
+  content: '\E04A';
+  background-image: unset;
+}
+
+.show-file-icons .mix-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E047';
+  background-image: unset;
+}
+
+.show-file-icons .karma\.conf\.js-name-file-icon.name-file-icon.conf\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .karma\.conf\.coffee-name-file-icon.name-file-icon.conf\.coffee-ext-file-icon.coffee-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E057';
+  background-image: unset;
+}
+
+.show-file-icons .readme\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .readme\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .readme-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E04D';
+  background-image: unset;
+}
+
+.show-file-icons .changelog\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .changelog\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .changelog-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .changes\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .changes\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .changes-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .version\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .version\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .version-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E012';
+  background-image: unset;
+}
+
+.show-file-icons .mvnw-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E061';
+  background-image: unset;
+}
+
+.show-file-icons .tsconfig\.json-name-file-icon.name-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E097';
+  background-image: unset;
+}
+
+.show-file-icons .swagger\.json-name-file-icon.name-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .swagger\.yml-name-file-icon.name-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .swagger\.yaml-name-file-icon.name-file-icon.yaml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E055';
+  background-image: unset;
+}
+
+.show-file-icons .jenkinsfile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E052';
+  background-image: unset;
+}
+
+.show-file-icons .docker-healthcheck-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #8dc149;
+  content: '\E025';
+  background-image: unset;
+}
+
+.show-file-icons .geckodriver-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E031';
+  background-image: unset;
+}
+
+.show-file-icons .gruntfile\.js-name-file-icon.name-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .gruntfile\.babel\.js-name-file-icon.name-file-icon.babel\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .gruntfile\.coffee-name-file-icon.name-file-icon.coffee-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E03F';
+  background-image: unset;
+}
+
+.show-file-icons .gulpfile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .gulpfile\.js-name-file-icon.name-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E040';
+  background-image: unset;
+}
+
+.show-file-icons .ionic\.config\.json-name-file-icon.name-file-icon.config\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .ionic\.project-name-file-icon.name-file-icon.project-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E04E';
+  background-image: unset;
+}
+
+.show-file-icons .platformio\.ini-name-file-icon.name-file-icon.ini-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E073';
+  background-image: unset;
+}
+
+.show-file-icons .rollup\.config\.js-name-file-icon.name-file-icon.config\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E080';
+  background-image: unset;
+}
+
+.show-file-icons .yarn\.clean-name-file-icon.name-file-icon.clean-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .yarn\.lock-name-file-icon.name-file-icon.lock-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E0A5';
+  background-image: unset;
+}
+
+.show-file-icons .webpack\.config\.js-name-file-icon.name-file-icon.config\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webpack\.config\.cjs-name-file-icon.name-file-icon.config\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webpack\.config\.build\.js-name-file-icon.name-file-icon.config\.build\.js-ext-file-icon.build\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webpack\.config\.build\.cjs-name-file-icon.name-file-icon.config\.build\.cjs-ext-file-icon.build\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webpack\.common\.js-name-file-icon.name-file-icon.common\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webpack\.common\.cjs-name-file-icon.name-file-icon.common\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webpack\.dev\.js-name-file-icon.name-file-icon.dev\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webpack\.dev\.cjs-name-file-icon.name-file-icon.dev\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webpack\.prod\.js-name-file-icon.name-file-icon.prod\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .webpack\.prod\.cjs-name-file-icon.name-file-icon.prod\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E09F';
+  background-image: unset;
+}
+
+.show-file-icons .license-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .licence-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .license\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .licence\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .license\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .licence\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .copying-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .copying\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .copying\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cbcb41;
+  content: '\E05A';
+  background-image: unset;
+}
+
+.show-file-icons .compiling-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .compiling\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .compiling\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #e37933;
+  content: '\E05A';
+  background-image: unset;
+}
+
+.show-file-icons .contributing-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .contributing\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.show-file-icons .contributing\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc3e44;
+  content: '\E05A';
+  background-image: unset;
+}
+
+.show-file-icons .qmakefile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E05F';
+  background-image: unset;
+}
+
+.show-file-icons .omakefile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #6d8086;
+  content: '\E05F';
+  background-image: unset;
+}
+
+.show-file-icons .cmakelists\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #519aba;
+  content: '\E05F';
+  background-image: unset;
+}
+
+.show-file-icons .procfile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #a074c4;
+  content: '\E046';
+  background-image: unset;
+}
+
+.show-file-icons .npm-debug\.log-name-file-icon.name-file-icon.log-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #41535b;
+  content: '\E068';
+  background-image: unset;
+}
+
+.vs .show-file-icons .file-icon::before {
+  color: #bfc2c1;
+  content: '\E023';
+  background-image: unset;
+}
+
+.vs .show-file-icons .bat-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E0A1';
+  background-image: unset;
+}
+
+.vs .show-file-icons .clojure-lang-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E013';
+  background-image: unset;
+}
+
+.vs .show-file-icons .coffeescript-lang-file-icon.file-icon::before,
+.vs .show-file-icons .litcoffee-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E016';
+  background-image: unset;
+}
+
+.vs .show-file-icons .jsonc-lang-file-icon.file-icon::before,
+.vs .show-file-icons .json-lang-file-icon.file-icon::before,
+.vs .show-file-icons .cson-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E055';
+  background-image: unset;
+}
+
+.vs .show-file-icons .c-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E00C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .cpp-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E01A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .cuda-cpp-lang-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E01F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .csharp-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E00B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .css-lang-file-icon.file-icon::before,
+.vs .show-file-icons .postcss-lang-file-icon.file-icon::before,
+.vs .show-file-icons .css\.map-ext-file-icon.map-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .sss-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E01D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .dart-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E021';
+  background-image: unset;
+}
+
+.vs .show-file-icons .dockerfile-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E025';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ignore-lang-file-icon.file-icon::before,
+.vs .show-file-icons .gitconfig-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .gitkeep-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .gitattributes-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .gitmodules-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #3b4b52;
+  content: '\E034';
+  background-image: unset;
+}
+
+.vs .show-file-icons .fsharp-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E02E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .go-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E03A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .groovy-lang-file-icon.file-icon::before,
+.vs .show-file-icons .gsp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E03D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .handlebars-lang-file-icon.file-icon::before,
+.vs .show-file-icons .mustache-lang-file-icon.file-icon::before,
+.vs .show-file-icons .mustache-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .stache-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E063';
+  background-image: unset;
+}
+
+.vs .show-file-icons .html-lang-file-icon.file-icon::before,
+.vs .show-file-icons .django-html-lang-file-icon.file-icon::before,
+.vs .show-file-icons .component-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E048';
+  background-image: unset;
+}
+
+.vs .show-file-icons .properties-lang-file-icon.file-icon::before,
+.vs .show-file-icons .java-lang-file-icon.file-icon::before,
+.vs .show-file-icons .class-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .classpath-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E050';
+  background-image: unset;
+}
+
+.vs .show-file-icons .javascriptreact-lang-file-icon.file-icon::before,
+.vs .show-file-icons .cjsx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E07D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .javascript-lang-file-icon.file-icon::before,
+.vs .show-file-icons .js\.map-ext-file-icon.map-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .es-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .es5-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .es7-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E051';
+  background-image: unset;
+}
+
+.vs .show-file-icons .julia-lang-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E056';
+  background-image: unset;
+}
+
+.vs .show-file-icons .tex-lang-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E094';
+  background-image: unset;
+}
+
+.vs .show-file-icons .latex-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E094';
+  background-image: unset;
+}
+
+.vs .show-file-icons .less-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E059';
+  background-image: unset;
+}
+
+.vs .show-file-icons .lua-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E05E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .makefile-lang-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E05F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .markdown-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E060';
+  background-image: unset;
+}
+
+.vs .show-file-icons .objective-c-lang-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E00C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .objective-cpp-lang-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E01A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .perl-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E06E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .php-lang-file-icon.file-icon::before,
+.vs .show-file-icons .php\.inc-ext-file-icon.inc-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E070';
+  background-image: unset;
+}
+
+.vs .show-file-icons .powershell-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E074';
+  background-image: unset;
+}
+
+.vs .show-file-icons .jade-lang-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E078';
+  background-image: unset;
+}
+
+.vs .show-file-icons .python-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E07B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .r-lang-file-icon.file-icon::before,
+.vs .show-file-icons .r-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .rmd-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E001';
+  background-image: unset;
+}
+
+.vs .show-file-icons .razor-lang-file-icon.file-icon::before,
+.vs .show-file-icons .aspx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E048';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ruby-lang-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E081';
+  background-image: unset;
+}
+
+.vs .show-file-icons .rust-lang-file-icon.file-icon::before {
+  color: #627379;
+  content: '\E082';
+  background-image: unset;
+}
+
+.vs .show-file-icons .scss-lang-file-icon.file-icon::before,
+.vs .show-file-icons .sass-lang-file-icon.file-icon::before,
+.vs .show-file-icons .sass-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .sass-lint\.yml-name-file-icon.name-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #dd4b78;
+  content: '\E084';
+  background-image: unset;
+}
+
+.vs .show-file-icons .search-result-lang-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E015';
+  background-image: unset;
+}
+
+.vs .show-file-icons .shellscript-lang-file-icon.file-icon::before,
+.vs .show-file-icons .fish-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E089';
+  background-image: unset;
+}
+
+.vs .show-file-icons .sql-lang-file-icon.file-icon::before {
+  color: #dd4b78;
+  content: '\E022';
+  background-image: unset;
+}
+
+.vs .show-file-icons .swift-lang-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E092';
+  background-image: unset;
+}
+
+.vs .show-file-icons .typescript-lang-file-icon.file-icon::before,
+.vs .show-file-icons .typescriptreact-lang-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E099';
+  background-image: unset;
+}
+
+.vs .show-file-icons .xml-lang-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E0A4';
+  background-image: unset;
+}
+
+.vs .show-file-icons .dockercompose-lang-file-icon.file-icon::before {
+  color: #dd4b78;
+  content: '\E025';
+  background-image: unset;
+}
+
+.vs .show-file-icons .yaml-lang-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E0A6';
+  background-image: unset;
+}
+
+.vs .show-file-icons .argdown-lang-file-icon.file-icon::before,
+.vs .show-file-icons .argdown-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .ad-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E003';
+  background-image: unset;
+}
+
+.vs .show-file-icons .bicep-lang-file-icon.file-icon::before,
+.vs .show-file-icons .bicep-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E008';
+  background-image: unset;
+}
+
+.vs .show-file-icons .elixir-lang-file-icon.file-icon::before,
+.vs .show-file-icons .ex-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E028';
+  background-image: unset;
+}
+
+.vs .show-file-icons .elm-lang-file-icon.file-icon::before,
+.vs .show-file-icons .elm-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E02A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .erb-lang-file-icon.file-icon::before,
+.vs .show-file-icons .erb-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .erb\.html-ext-file-icon.html-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .html\.erb-ext-file-icon.erb-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E049';
+  background-image: unset;
+}
+
+.vs .show-file-icons .github-issues-lang-file-icon.file-icon::before,
+.vs .show-file-icons .github-issues-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #bfc2c1;
+  content: '\E037';
+  background-image: unset;
+}
+
+.vs .show-file-icons .gradle-lang-file-icon.file-icon::before,
+.vs .show-file-icons .gradle-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E03C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .godot-lang-file-icon.file-icon::before,
+.vs .show-file-icons .gd-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E03B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .haml-lang-file-icon.file-icon::before,
+.vs .show-file-icons .haml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E042';
+  background-image: unset;
+}
+
+.vs .show-file-icons .haskell-lang-file-icon.file-icon::before,
+.vs .show-file-icons .hs-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .lhs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E044';
+  background-image: unset;
+}
+
+.vs .show-file-icons .haxe-lang-file-icon.file-icon::before,
+.vs .show-file-icons .hx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E045';
+  background-image: unset;
+}
+
+.vs .show-file-icons .jinja-lang-file-icon.file-icon::before,
+.vs .show-file-icons .jinja-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .jinja2-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E053';
+  background-image: unset;
+}
+
+.vs .show-file-icons .kotlin-lang-file-icon.file-icon::before,
+.vs .show-file-icons .kt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .kts-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E058';
+  background-image: unset;
+}
+
+.vs .show-file-icons .nunjucks-lang-file-icon.file-icon::before,
+.vs .show-file-icons .njk-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .nunjucks-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .nunjs-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .nunj-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .njs-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .nj-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E069';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ocaml-lang-file-icon.file-icon::before,
+.vs .show-file-icons .ml-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .mli-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .cmx-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .cmxa-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E06A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .rescript-lang-file-icon.file-icon::before,
+.vs .show-file-icons .res-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E07F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .stylus-lang-file-icon.file-icon::before,
+.vs .show-file-icons .styl-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E08E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .terraform-lang-file-icon.file-icon::before,
+.vs .show-file-icons .tf-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .tf\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .tfvars-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E093';
+  background-image: unset;
+}
+
+.vs .show-file-icons .vala-lang-file-icon.file-icon::before,
+.vs .show-file-icons .vala-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .vapi-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #627379;
+  content: '\E09A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .vue-lang-file-icon.file-icon::before,
+.vs .show-file-icons .vue-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E09C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .bsl-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E00A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .mdo-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E062';
+  background-image: unset;
+}
+
+.vs .show-file-icons .cls-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .apex-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E083';
+  background-image: unset;
+}
+
+.vs .show-file-icons .asm-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .s-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E004';
+  background-image: unset;
+}
+
+.vs .show-file-icons .bzl-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .bazel-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .build-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .workspace-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .bazelignore-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .bazelversion-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .build-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .build\.bazel-name-file-icon.name-file-icon.bazel-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .workspace-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .workspace\.bazel-name-file-icon.name-file-icon.bazel-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E007';
+  background-image: unset;
+}
+
+.vs .show-file-icons .h-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E00C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ascx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E048';
+  background-image: unset;
+}
+
+.vs .show-file-icons .asax-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .master-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E048';
+  background-image: unset;
+}
+
+.vs .show-file-icons .hh-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .hpp-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .hxx-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .h\+\+-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E01A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .edn-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E013';
+  background-image: unset;
+}
+
+.vs .show-file-icons .cfc-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .cfm-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E018';
+  background-image: unset;
+}
+
+.vs .show-file-icons .config-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .cfg-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .conf-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .toml-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .direnv-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .env-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .static-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .editorconfig-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .slugignore-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .htaccess-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .mime\.types-name-file-icon.name-file-icon.types-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #627379;
+  content: '\E019';
+  background-image: unset;
+}
+
+.vs .show-file-icons .cr-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #bfc2c1;
+  content: '\E01B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ecr-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .slang-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #bfc2c1;
+  content: '\E01C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .csv-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E01E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .xls-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .xlsx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E0A3';
+  background-image: unset;
+}
+
+.vs .show-file-icons .cuh-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .hu-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E01F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .cake-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E00D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ctp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E00E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .d-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E020';
+  background-image: unset;
+}
+
+.vs .show-file-icons .doc-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .docx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E0A2';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ejs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E027';
+  background-image: unset;
+}
+
+.vs .show-file-icons .exs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E029';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ico-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E02F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .slide-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .article-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E039';
+  background-image: unset;
+}
+
+.vs .show-file-icons .godot-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E03B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .tres-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E03B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .tscn-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E03B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .gql-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .graphql-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .graphqls-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #dd4b78;
+  content: '\E03E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .hack-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E041';
+  background-image: unset;
+}
+
+.vs .show-file-icons .hxs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E045';
+  background-image: unset;
+}
+
+.vs .show-file-icons .hxp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E045';
+  background-image: unset;
+}
+
+.vs .show-file-icons .hxml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E045';
+  background-image: unset;
+}
+
+.vs .show-file-icons .jade-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E04F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .spec\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .test\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E051';
+  background-image: unset;
+}
+
+.vs .show-file-icons .liquid-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E05B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ls-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E05C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .nim-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .nims-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E065';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ipynb-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E066';
+  background-image: unset;
+}
+
+.vs .show-file-icons .npm-debug\.log-ext-file-icon.log-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #3b4b52;
+  content: '\E067';
+  background-image: unset;
+}
+
+.vs .show-file-icons .npmignore-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .npmrc-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E067';
+  background-image: unset;
+}
+
+.vs .show-file-icons .odata-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E06B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .pipeline-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E071';
+  background-image: unset;
+}
+
+.vs .show-file-icons .pddl-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E06C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .plan-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E072';
+  background-image: unset;
+}
+
+.vs .show-file-icons .happenings-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E043';
+  background-image: unset;
+}
+
+.vs .show-file-icons .prisma-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E075';
+  background-image: unset;
+}
+
+.vs .show-file-icons .pp-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .epp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E079';
+  background-image: unset;
+}
+
+.vs .show-file-icons .purs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #bfc2c1;
+  content: '\E07A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .spec\.jsx-ext-file-icon.jsx-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .test\.jsx-ext-file-icon.jsx-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .spec\.tsx-ext-file-icon.tsx-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .test\.tsx-ext-file-icon.tsx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E07D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .re-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E07E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .resi-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #dd4b78;
+  content: '\E07F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .springbeans-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E08C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .slim-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E08A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .smarty\.tpl-ext-file-icon.tpl-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .tpl-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E08B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .sbt-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E085';
+  background-image: unset;
+}
+
+.vs .show-file-icons .scala-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E086';
+  background-image: unset;
+}
+
+.vs .show-file-icons .sol-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E02D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .svelte-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E090';
+  background-image: unset;
+}
+
+.vs .show-file-icons .soql-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E022';
+  background-image: unset;
+}
+
+.vs .show-file-icons .dtx-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E094';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ins-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #bfc2c1;
+  content: '\E094';
+  background-image: unset;
+}
+
+.vs .show-file-icons .twig-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E098';
+  background-image: unset;
+}
+
+.vs .show-file-icons .spec\.ts-ext-file-icon.ts-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .test\.ts-ext-file-icon.ts-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E099';
+  background-image: unset;
+}
+
+.vs .show-file-icons .wasm-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E09D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .wat-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E09E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .pro-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E077';
+  background-image: unset;
+}
+
+.vs .show-file-icons .zig-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E0A7';
+  background-image: unset;
+}
+
+.vs .show-file-icons .jar-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E0A8';
+  background-image: unset;
+}
+
+.vs .show-file-icons .zip-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #627379;
+  content: '\E0A8';
+  background-image: unset;
+}
+
+.vs .show-file-icons .wgt-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E0A0';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ai-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E04B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .psd-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E06F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .pdf-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E06D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .eot-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .ttf-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .woff-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .woff2-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E033';
+  background-image: unset;
+}
+
+.vs .show-file-icons .avif-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .gif-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .jpg-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .jpeg-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .png-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .pxm-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .svgx-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .tiff-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E04C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .svg-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E091';
+  background-image: unset;
+}
+
+.vs .show-file-icons .sublime-project-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .sublime-workspace-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E08F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .mov-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .ogv-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webm-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .avi-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .mpg-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .mp4-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #dd4b78;
+  content: '\E09B';
+  background-image: unset;
+}
+
+.vs .show-file-icons .mp3-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .ogg-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .wav-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .flac-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E005';
+  background-image: unset;
+}
+
+.vs .show-file-icons .\33 ds-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .\33 dm-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .stl-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .obj-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .dae-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E091';
+  background-image: unset;
+}
+
+.vs .show-file-icons .babelrc-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .babelrc\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .babelrc\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .babel\.config\.js-name-file-icon.name-file-icon.config\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .babel\.config\.json-name-file-icon.name-file-icon.config\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .babel\.config\.cjs-name-file-icon.name-file-icon.config\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E006';
+  background-image: unset;
+}
+
+.vs .show-file-icons .bazelrc-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #455155;
+  content: '\E007';
+  background-image: unset;
+}
+
+.vs .show-file-icons .bowerrc-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .bower\.json-name-file-icon.name-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E009';
+  background-image: unset;
+}
+
+.vs .show-file-icons .dockerignore-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #455155;
+  content: '\E025';
+  background-image: unset;
+}
+
+.vs .show-file-icons .codeclimate\.yml-ext-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E014';
+  background-image: unset;
+}
+
+.vs .show-file-icons .eslintrc-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .eslintrc\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .eslintrc\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .eslintrc\.yaml-ext-file-icon.yaml-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .eslintrc\.yml-ext-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .eslintrc\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E02C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .eslintignore-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #455155;
+  content: '\E02C';
+  background-image: unset;
+}
+
+.vs .show-file-icons .firebaserc-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .firebase\.json-name-file-icon.name-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E030';
+  background-image: unset;
+}
+
+.vs .show-file-icons .gitlab-ci\.yml-ext-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E038';
+  background-image: unset;
+}
+
+.vs .show-file-icons .jshintrc-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .jscsrc-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E051';
+  background-image: unset;
+}
+
+.vs .show-file-icons .stylelintrc-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .stylelintrc\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .stylelintrc\.yaml-ext-file-icon.yaml-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .stylelintrc\.yml-ext-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .stylelintrc\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .stylelint\.config\.js-name-file-icon.name-file-icon.config\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .stylelint\.config\.cjs-name-file-icon.name-file-icon.config\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #bfc2c1;
+  content: '\E08D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .stylelintignore-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #455155;
+  content: '\E08D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .tmp-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #627379;
+  content: '\E012';
+  background-image: unset;
+}
+
+.vs .show-file-icons .key-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .cert-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .cer-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .crt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .pem-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E05D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ds_store-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #3b4b52;
+  content: '\E04A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .mix-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E047';
+  background-image: unset;
+}
+
+.vs .show-file-icons .karma\.conf\.js-name-file-icon.name-file-icon.conf\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .karma\.conf\.coffee-name-file-icon.name-file-icon.conf\.coffee-ext-file-icon.coffee-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E057';
+  background-image: unset;
+}
+
+.vs .show-file-icons .readme\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .readme\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .readme-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E04D';
+  background-image: unset;
+}
+
+.vs .show-file-icons .changelog\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .changelog\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .changelog-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .changes\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .changes\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .changes-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .version\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .version\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .version-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E012';
+  background-image: unset;
+}
+
+.vs .show-file-icons .mvnw-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E061';
+  background-image: unset;
+}
+
+.vs .show-file-icons .tsconfig\.json-name-file-icon.name-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E097';
+  background-image: unset;
+}
+
+.vs .show-file-icons .swagger\.json-name-file-icon.name-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .swagger\.yml-name-file-icon.name-file-icon.yml-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .swagger\.yaml-name-file-icon.name-file-icon.yaml-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E055';
+  background-image: unset;
+}
+
+.vs .show-file-icons .jenkinsfile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E052';
+  background-image: unset;
+}
+
+.vs .show-file-icons .docker-healthcheck-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #7fae42;
+  content: '\E025';
+  background-image: unset;
+}
+
+.vs .show-file-icons .geckodriver-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E031';
+  background-image: unset;
+}
+
+.vs .show-file-icons .gruntfile\.js-name-file-icon.name-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .gruntfile\.babel\.js-name-file-icon.name-file-icon.babel\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .gruntfile\.coffee-name-file-icon.name-file-icon.coffee-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E03F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .gulpfile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .gulpfile\.js-name-file-icon.name-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E040';
+  background-image: unset;
+}
+
+.vs .show-file-icons .ionic\.config\.json-name-file-icon.name-file-icon.config\.json-ext-file-icon.json-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .ionic\.project-name-file-icon.name-file-icon.project-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E04E';
+  background-image: unset;
+}
+
+.vs .show-file-icons .platformio\.ini-name-file-icon.name-file-icon.ini-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E073';
+  background-image: unset;
+}
+
+.vs .show-file-icons .rollup\.config\.js-name-file-icon.name-file-icon.config\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E080';
+  background-image: unset;
+}
+
+.vs .show-file-icons .yarn\.clean-name-file-icon.name-file-icon.clean-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .yarn\.lock-name-file-icon.name-file-icon.lock-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E0A5';
+  background-image: unset;
+}
+
+.vs .show-file-icons .webpack\.config\.js-name-file-icon.name-file-icon.config\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webpack\.config\.cjs-name-file-icon.name-file-icon.config\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webpack\.config\.build\.js-name-file-icon.name-file-icon.config\.build\.js-ext-file-icon.build\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webpack\.config\.build\.cjs-name-file-icon.name-file-icon.config\.build\.cjs-ext-file-icon.build\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webpack\.common\.js-name-file-icon.name-file-icon.common\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webpack\.common\.cjs-name-file-icon.name-file-icon.common\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webpack\.dev\.js-name-file-icon.name-file-icon.dev\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webpack\.dev\.cjs-name-file-icon.name-file-icon.dev\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webpack\.prod\.js-name-file-icon.name-file-icon.prod\.js-ext-file-icon.js-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .webpack\.prod\.cjs-name-file-icon.name-file-icon.prod\.cjs-ext-file-icon.cjs-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E09F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .license-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .licence-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .license\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .licence\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .license\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .licence\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .copying-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .copying\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .copying\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b7b73b;
+  content: '\E05A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .compiling-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .compiling\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .compiling\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #cc6d2e;
+  content: '\E05A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .contributing-name-file-icon.name-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .contributing\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before,
+.vs .show-file-icons .contributing\.md-name-file-icon.name-file-icon.md-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #b8383d;
+  content: '\E05A';
+  background-image: unset;
+}
+
+.vs .show-file-icons .qmakefile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E05F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .omakefile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #627379;
+  content: '\E05F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .cmakelists\.txt-name-file-icon.name-file-icon.txt-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #498ba7;
+  content: '\E05F';
+  background-image: unset;
+}
+
+.vs .show-file-icons .procfile-name-file-icon.name-file-icon.ext-file-icon.file-icon::before {
+  color: #9068b0;
+  content: '\E046';
+  background-image: unset;
+}
+
+.vs .show-file-icons .npm-debug\.log-name-file-icon.name-file-icon.log-ext-file-icon.ext-file-icon.file-icon::before {
+  color: #3b4b52;
+  content: '\E068';
+  background-image: unset;
+}

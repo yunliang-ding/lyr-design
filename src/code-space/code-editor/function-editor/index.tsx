@@ -2,7 +2,7 @@
 import { CodeEditor, CodeProps } from '../index';
 import { debounce, isEmpty } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
-import { babelParse, babelParseCode, decrypt, encrypt } from '../../index';
+import { babelParse, babelParseCode, decrypt, encrypt } from '../../../index';
 import './index.less';
 
 export default ({

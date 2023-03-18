@@ -40,7 +40,8 @@
     "rc-resize-observer": "1.2.0",
     "react-sortable-hoc": "2.0.0",
     "react-draggable": "4.4.5",
-    "react-core-form-tools": ">=0.0.2"
+    "react-core-form-tools": ">=0.0.2",
+    "react-contexify": "5.0.0"
   },
   "peerDependencies": {
     "antd": "4.21.4",

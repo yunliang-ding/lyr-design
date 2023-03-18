@@ -1,5 +1,5 @@
 ---
-order: 19
+order: 10
 title: babelParse 转译代码片段
 toc: menu
 ---
@@ -139,4 +139,4 @@ export default {
 
 ## API
 
-<API src="../../src/code-editor/tools/type.tsx" hideTitle></API>
+<API src="../../src/code-space/code-editor/tools/type.tsx" hideTitle></API>

@@ -8,7 +8,6 @@ import FieldSet from '@/widgets/extension/fields-set';
 import { CoreFormProps } from './type.form';
 import CoreForm from './index';
 import { parseBeforeReceive, tranfromSchema } from './util';
-import zhCN from 'antd/lib/locale/zh_CN';
 import { expansionInstanceMethod } from './tool';
 import './index.less';
 
@@ -31,7 +30,7 @@ export default ({
   /** form-props */
   initialValues = {},
   onValuesChange = () => {},
-  locale = zhCN,
+  locale,
   getScrollContainer, // 设置滚动容器
   scrollToFirstError = true, // 默认开启滚动到第一个错误的位置
   layout = 'vertical', // 默认使用垂直布局

@@ -1,0 +1,44 @@
+[
+  {
+    "path": "/User/project/src",
+    "type": "directory",
+    "name": "src",
+    "size": 200,
+    "status": "nomal",
+    "children": [
+      {
+        "path": "/User/project/src/index.ts",
+        "type": "file",
+        "extension": ".ts",
+        "name": "index.ts",
+        "status": "nomal",
+        "size": 102,
+        "notSave": false,
+        "children": [],
+        "content": ""
+      }
+    ]
+  },
+  {
+    "path": "/User/project/config.json",
+    "type": "file",
+    "extension": ".json",
+    "name": "config.json",
+    "size": 102,
+    "notSave": false,
+    "status": "nomal",
+    "children": [],
+    "content": ""
+  },
+  {
+    "path": "/User/project/app.tsx",
+    "type": "file",
+    "extension": ".tsx",
+    "name": "app.tsx",
+    "status": "nomal",
+    "size": 102,
+    "notSave": false,
+    "children": [],
+    "content": ""
+  }
+]

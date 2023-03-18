@@ -3,7 +3,6 @@ import { useRef } from 'react';
 import { TableProps } from './types';
 import { PaginationConfig } from './type.pagination';
 import { TableInstance } from './table.instance';
-import zhCN from 'antd/lib/locale/zh_CN';
 import Table from './table';
 import { getGlobalConfigByName } from '@/config';
 import { ConfigProvider } from 'antd';
@@ -23,7 +22,7 @@ const CoreTable = (props: TableProps) => {
         type: 'AdjustSize',
       },
     ],
-    locale = zhCN,
+    locale,
     ...rest
   } = Object.assign({}, props, globalConfig);
   return (

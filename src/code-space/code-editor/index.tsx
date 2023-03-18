@@ -59,6 +59,7 @@ export interface CodeProps {
    * @default false
    */
   useEncrypt?: boolean;
+  originalValue?: string;
 }
 /**
  * 编辑器

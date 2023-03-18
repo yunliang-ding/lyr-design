@@ -32,7 +32,7 @@ import FieldSet from './extension/fields-set';
 import RangeInput from './extension/input/range';
 import EditableTable from '@/table-editable';
 import TableList from '@/table-list';
-import CodeEditor from '@/code-editor';
+import CodeEditor from '@/code-space/code-editor';
 import OssFileUpload from '@/oss-file-upload';
 import { SubFormType } from '@/form/form';
 // 内置组件映射关系
