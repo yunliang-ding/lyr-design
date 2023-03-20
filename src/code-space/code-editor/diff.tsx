@@ -22,7 +22,7 @@ export default ({
     if (_require) {
       _require.config({
         paths: {
-          vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs',
+          vs: 'https://g.alicdn.com/code/lib/monaco-editor/0.36.0/min/vs',
         },
       });
       return new Promise(() => {

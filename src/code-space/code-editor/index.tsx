@@ -31,8 +31,6 @@ export interface CodeProps {
   style?: CSSProperties;
   /** onChange 钩子 */
   onChange?: Function;
-  /** ctrl + s 钩子 */
-  onSave?: Function;
   /** CodeEditor 实例引用 */
   codeRef?: any;
   /** 模式 */
@@ -66,10 +64,9 @@ export interface CodeProps {
  */
 export const CodeEditor = memo(
   ({
-    id = `code-container-${uuid(8)}`,
+    id = `monaco_${uuid(8)}`,
     value = '',
     onChange = () => {},
-    onSave = () => {},
     style = {},
     language = 'javascript',
     theme = 'vs-dark',
@@ -83,7 +80,7 @@ export const CodeEditor = memo(
       if (_require) {
         _require.config({
           paths: {
-            vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs',
+            vs: 'https://g.alicdn.com/code/lib/monaco-editor/0.36.0/min/vs',
           },
         });
         return new Promise((res) => {
@@ -106,14 +103,6 @@ export const CodeEditor = memo(
                 ...rest,
               },
             );
-            // ctrl + s 执行 onSave
-            codeInstance.addCommand(
-              _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
-              () => {
-                const code = codeInstance.getValue();
-                onSave(code);
-              },
-            );
             // onChange
             codeInstance.onDidChangeModelContent((e) => {
               const code = codeInstance.getValue();
@@ -128,6 +117,10 @@ export const CodeEditor = memo(
     };
     useEffect(() => {
       const monacoInstance = initialLoad();
+      //  同步 window
+      monacoInstance.then((res) => {
+        window[id] = res;
+      });
       // 挂到ref
       codeRef.current.getMonacoInstance = async () => {
         return monacoInstance;

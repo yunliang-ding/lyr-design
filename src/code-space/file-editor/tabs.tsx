@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
-import { iconMapping } from '@/icon-mapping';
-import { FileProps } from '@/file-explorer/types';
+import { iconMapping } from '../icon-mapping';
+import { FileProps } from '../file-explorer/types';
 
 const prefix = 'ide-editor-file-editor-header';
 

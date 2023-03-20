@@ -81,9 +81,6 @@ export default () => {
       onChange={(v) => {
         console.log(v);
       }}
-      onSave={(v) => {
-        console.log(v);
-      }}
       language="html"
     />
   );

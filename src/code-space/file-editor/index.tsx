@@ -65,7 +65,7 @@ export default ({
       spin.open();
       try {
         const file = files.find((i) => i.path === selectedKey);
-        const content = window[`ide-editor-${selectedKey}`]?.getValue?.();
+        const content = window[`monaco_${selectedKey}`]?.getValue?.();
         await onSave(content); // 等待外面，通过之后再更新状态
         file.content = content;
         file.notSave = false;
@@ -156,6 +156,7 @@ export default ({
             tabs={files}
             selectedKey={selectedKey}
             onClick={(file) => {
+              console.log(file);
               setSelectedKey(file.path);
               onClick(file);
             }}
@@ -183,6 +184,7 @@ export default ({
                     file.render(file)
                   ) : (
                     <CodeEditor
+                      id={`monaco_${file.path}`}
                       codeRef={codeRef}
                       mode={file.showDiff ? 'diff' : undefined}
                       language={
