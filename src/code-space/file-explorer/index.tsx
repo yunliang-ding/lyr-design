@@ -64,7 +64,7 @@ export default ({
   const contexifyMenus = menus || [
     {
       key: 'new folder',
-      label: 'New Folder',
+      label: '新建文件夹',
       hidden: ({ props }) => props.type === 'file',
       onClick({ props }) {
         createFile(props, 'directory');
@@ -72,7 +72,7 @@ export default ({
     },
     {
       key: 'new file',
-      label: 'New File',
+      label: '新建文件',
       hidden: ({ props }) => props.type === 'file',
       onClick({ props }) {
         createFile(props, 'file');
@@ -80,14 +80,14 @@ export default ({
     },
     {
       key: 'rename',
-      label: 'Rename',
+      label: '重命名',
       onClick({ props }) {
         renameFile(props);
       },
     },
     {
       key: 'delete',
-      label: 'Delete',
+      label: '删除',
       onClick({ props }) {
         deleteFile(props);
       },
@@ -256,26 +256,26 @@ export default ({
           actions={[
             {
               icon: 'codicon codicon-new-file',
-              title: 'New File',
+              title: '新建文件',
               onClick: () => {
                 createFile(null);
               },
             },
             {
               icon: 'codicon codicon-new-file',
-              title: 'New Folder',
+              title: '新建文件夹',
               onClick: () => {
                 createFile(null, 'directory');
               },
             },
             {
               icon: 'codicon codicon-refresh',
-              title: 'Refresh Explorer',
+              title: '刷新列表',
               onClick: onRefresh,
             },
             {
               icon: 'codicon codicon-collapse-all',
-              title: 'Collapse Folders in Explorer',
+              title: '收起目录',
               onClick: onUnFold,
             },
           ]}

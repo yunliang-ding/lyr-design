@@ -8,7 +8,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { FileExplorer } from 'react-core-form';
+import { FileExplorer, Button } from 'react-core-form';
 import files from './files.json';
 import filesGit from './files-git.json';
 
@@ -17,21 +17,21 @@ export default () => {
   const [treeData, setTreeData] = React.useState(files);
   return (
     <>
-      <button
+      <Button
         onClick={() => {
           setTreeData(files);
         }}
       >
         普通展示
-      </button>
-      &nbsp;
-      <button
+      </Button>
+      &nbsp;&nbsp;
+      <Button
         onClick={() => {
           setTreeData(filesGit);
         }}
       >
         文件打git标记
-      </button>
+      </Button>
       <br />
       <br />
       <FileExplorer

@@ -47,7 +47,9 @@ export default (props) => {
           position: 'relative',
           background: '#f2f2f2',
         }}
-      />
+      >
+        在容器中打开
+      </div>
     </>
   );
 };

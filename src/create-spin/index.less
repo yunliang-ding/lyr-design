@@ -5,6 +5,7 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+    background: #33333340;
   }
 }
 .create-spin-vscode {
@@ -16,32 +17,6 @@
   animation: vscode 2s linear infinite;
   z-index: 99999;
 }
-.create-spin-loading {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #2196f3;
-  position: absolute;
-  top: 30px;
-  animation: loading 2s linear infinite;
-  z-index: 99999;
-}
-
-@keyframes loading {
-  0% {
-    left: 0;
-    width: 20px;
-  }
-  50% {
-    left: 50%;
-    width: 40px;
-  }
-  100% {
-    left: calc(100% - 14px);
-    width: 15px;
-  }
-}
-
 @keyframes vscode {
   0% {
     left: 0;
