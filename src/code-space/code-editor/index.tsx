@@ -31,6 +31,8 @@ export interface CodeProps {
   style?: CSSProperties;
   /** onChange 钩子 */
   onChange?: Function;
+  /** ctrl + s 钩子 */
+  onSave?: Function;
   /** CodeEditor 实例引用 */
   codeRef?: any;
   /** 模式 */
@@ -68,6 +70,7 @@ export const CodeEditor = memo(
     value = '',
     onChange = () => {},
     style = {},
+    onSave = () => {},
     language = 'javascript',
     theme = 'vs-dark',
     codeRef = useRef<any>({}),
@@ -101,6 +104,14 @@ export const CodeEditor = memo(
                 },
                 value,
                 ...rest,
+              },
+            );
+            // ctrl + s 执行 onSave
+            codeInstance.addCommand(
+              _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
+              () => {
+                const code = codeInstance.getValue();
+                onSave(code);
               },
             );
             // onChange
