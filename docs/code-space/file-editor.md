@@ -48,7 +48,7 @@ export default () => {
         console.log('onChange', code, notSaveCount);
       }}
       onSave={async (code) => {
-        await new Promise((res) => setTimeout(res, 1000));
+        await new Promise((res) => setTimeout(res, 3000));
         console.log('onSave', code);
       }}
     />

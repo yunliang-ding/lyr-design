@@ -42,8 +42,9 @@ export default ({
   const domKey = useMemo(() => `class-${uuid(12)}`, []);
   const spin = CreateSpin({
     getContainer: () => document.querySelector(`.${domKey}`),
+    mode: 'vscode',
     style: {
-      top: 0,
+      top: 35,
     },
   });
   const [reload, setReload] = useState(Math.random());

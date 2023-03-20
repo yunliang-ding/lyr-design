@@ -79,7 +79,10 @@ export default () => {
 </html>
 `}
       onChange={(v) => {
-        console.log(v);
+        console.log('onChange', v);
+      }}
+      onSave={(v) => {
+        console.log('onSave', v);
       }}
       language="html"
     />

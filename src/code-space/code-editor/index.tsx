@@ -70,7 +70,7 @@ export const CodeEditor = memo(
     value = '',
     onChange = () => {},
     style = {},
-    onSave = () => {},
+    onSave,
     language = 'javascript',
     theme = 'vs-dark',
     codeRef = useRef<any>({}),
@@ -106,14 +106,16 @@ export const CodeEditor = memo(
                 ...rest,
               },
             );
-            // ctrl + s 执行 onSave
-            codeInstance.addCommand(
-              _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
-              () => {
-                const code = codeInstance.getValue();
-                onSave(code);
-              },
-            );
+            if (typeof onSave === 'function') {
+              // ctrl + s 执行 onSave
+              codeInstance.addCommand(
+                _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
+                () => {
+                  const code = codeInstance.getValue();
+                  onSave(code);
+                },
+              );
+            }
             // onChange
             codeInstance.onDidChangeModelContent((e) => {
               const code = codeInstance.getValue();
