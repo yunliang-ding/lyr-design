@@ -1,3 +1,4 @@
+import { TooltipProps } from 'antd';
 import { ColumnType } from 'antd/es/table/interface';
 
 interface AnyObjet {
@@ -42,6 +43,8 @@ export interface TableColumnType extends ColumnType<any> {
   columnType?: 'columnNo';
   /** 日期格式化 */
   dateFormat?: string;
+  /** tooltipProps */
+  tooltipProps?: TooltipProps;
 }
 
 const Hello: React.FC<TableColumnType> = () => null;

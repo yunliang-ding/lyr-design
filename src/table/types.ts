@@ -5,8 +5,8 @@ import { CSSProperties, ReactNode } from 'react';
 import { TableColumnType } from './type.column';
 import { TableInstance } from './table.instance';
 import { PaginationConfig } from './type.pagination';
-import { CreateModalFormProps } from '../create/modal';
-import { CreateDrawerFormProps } from '../create/drawer';
+import { CreateModalFormProps } from '../create-modal';
+import { CreateDrawerFormProps } from '../create-drawer';
 
 export interface ToolsProps {
   label?: string | ReactNode;

@@ -142,12 +142,13 @@ export const CodeEditor = memo(
     // 更新值
     useEffect(() => {
       codeRef.current.getMonacoInstance().then((instance) => {
-        instance.setValue(value);
+        if (!instance.hasTextFocus()) {
+          instance.setValue(value);
+        }
       });
     }, [value]);
     return <div id={id} className="app-code-editor" style={style} />;
   },
-  () => true,
 );
 
 export default ({ mode, ...props }: CodeProps) => {

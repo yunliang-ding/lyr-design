@@ -114,7 +114,7 @@ export const transformColumns = (
         // ellipsis 扩展
         if (column.ellipsis) {
           vNode = (
-            <Tooltip placement="topLeft" title={vNode}>
+            <Tooltip placement="topLeft" title={vNode} {...column.tooltipProps}>
               {vNode}
             </Tooltip>
           );
