@@ -17,7 +17,7 @@ export default ({
           const { css } = await window.less.render(valueRef.current);
           return css;
         }
-        console.warn('请引入less.js后使用');
+        console.error('请引入less.js后使用');
         return '';
       },
     });

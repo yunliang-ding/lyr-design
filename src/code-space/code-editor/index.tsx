@@ -88,8 +88,8 @@ export const CodeEditor = memo(
         });
         return new Promise((res) => {
           _require(['vs/editor/editor.main'], () => {
-            const _code: any = window.monaco;
-            const codeInstance = _code.editor.create(
+            const monaco: any = window.monaco;
+            const codeInstance = monaco.editor.create(
               document.getElementById(id),
               {
                 language,
@@ -106,10 +106,20 @@ export const CodeEditor = memo(
                 ...rest,
               },
             );
+            // monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+            //   target: monaco.languages.typescript.ScriptTarget.ESNext,
+            //   allowNonTsExtensions: true,
+            //   allowSyntheticDefaultImports: true,
+            //   esModuleInterop: true,
+            //   jsx: monaco.languages.typescript.JsxEmit.React,
+            //   moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+            //   module: monaco.languages.typescript.ModuleKind.CommonJS,
+            //   noEmit: true,
+            // });
             if (typeof onSave === 'function') {
               // ctrl + s 执行 onSave
               codeInstance.addCommand(
-                _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
+                monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS,
                 () => {
                   const code = codeInstance.getValue();
                   onSave(code);

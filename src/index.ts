@@ -36,6 +36,8 @@ export { default as SuspendBar } from './suspend-bar';
 export { default as CodeEditor } from './code-space/code-editor';
 export { default as FileExplorer } from './code-space/file-explorer';
 export { default as FileEditor } from './code-space/file-editor';
+export { default as GitManager } from './code-space/git-manager';
+export { default as FileSearch } from './code-space/file-search';
 export { default as babelParse } from './code-space/code-editor/tools';
 export { default as babelParseCode } from './code-space/code-editor/tools/parse';
 /** 扩展方法 */

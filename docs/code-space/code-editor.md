@@ -81,9 +81,10 @@ export default () => {
       onChange={(v) => {
         console.log('onChange', v);
       }}
-      onSave={(v) => {
-        console.log('onSave', v);
-      }}
+      // 仅存在一个编辑器的时候可用，多个存在会有问题
+      // onSave={(v) => {
+      //   console.log('onSave', v);
+      // }}
       language="html"
     />
   );
