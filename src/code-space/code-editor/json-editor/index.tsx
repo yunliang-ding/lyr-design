@@ -13,6 +13,9 @@ export default ({
   const [errorInfo, setErrorInfo] = useState('');
   const valueRef = useRef(JSON.stringify(value, null, 2));
   useEffect(() => {
+    valueRef.current = JSON.stringify(value, null, 2);
+  }, [value]);
+  useEffect(() => {
     Object.assign(codeRef.current, {
       getJson2Object: () => {
         return JSON.parse(valueRef.current.replaceAll?.('\n', ''));

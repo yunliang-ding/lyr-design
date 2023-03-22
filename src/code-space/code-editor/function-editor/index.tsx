@@ -21,6 +21,9 @@ export default ({
   const [fullScreen, setFullScreen] = useState(false);
   const valueRef = useRef(value);
   useEffect(() => {
+    valueRef.current = value;
+  }, [value]);
+  useEffect(() => {
     Object.assign(codeRef.current, {
       getModuleDefault: () => {
         return babelParse({

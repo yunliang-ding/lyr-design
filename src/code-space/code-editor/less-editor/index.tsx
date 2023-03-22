@@ -11,6 +11,9 @@ export default ({
 }: CodeProps) => {
   const valueRef = useRef(value);
   useEffect(() => {
+    valueRef.current = value;
+  }, [value]);
+  useEffect(() => {
     Object.assign(codeRef.current, {
       getCssCode: async () => {
         if (window.less) {
