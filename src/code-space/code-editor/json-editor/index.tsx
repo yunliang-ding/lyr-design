@@ -5,7 +5,7 @@ import './index.less';
 
 export default ({
   value,
-  onChange,
+  onChange = () => {},
   style = { height: 300 },
   ...rest
 }: CodeProps) => {
