@@ -20,12 +20,13 @@ export default ({
     try {
       setLoading(true);
       if (typeof fetchOptions === 'function') {
-        if (AsyncOptionsCache[props.id]) {
-          return setOptions(await AsyncOptionsCache[props.id]);
+        if (!AsyncOptionsCache[props.id]) {
+          // 这初始缓存的Value是一定是Promise，具体原因参看文档Form高级用法(设置异步的Options)
+          AsyncOptionsCache[props.id] = fetchOptions('', props.form);
         }
-        // 这初始缓存的Value是一定是Promise，具体原因参看文档Form高级用法(设置异步的Options)
-        AsyncOptionsCache[props.id] = fetchOptions('', props.form);
-        setOptions(await AsyncOptionsCache[props.id]);
+        const _options = await AsyncOptionsCache[props.id];
+        optionsCacheRef.current = _options; // 第一次同步 optionsCacheRef
+        setOptions(_options);
       } else {
         console.warn(`${props.name} 设置的fetchOptions不是一个function`);
       }
