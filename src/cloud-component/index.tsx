@@ -2,12 +2,10 @@
  * 自定义扩展业务组件
  */
 import React from 'react';
-import { Button, CreateSpin } from 'react-core-form';
-import Empty from 'antd/es/empty';
+import { babelParse, Button, CreateSpin } from 'react-core-form';
 import Menus from './menus';
 import Tabs from './tabs';
 import Main from './main';
-import 'antd/es/empty/style/index.less';
 import './index.less';
 
 const { open, close } = CreateSpin({
@@ -20,7 +18,10 @@ const { open, close } = CreateSpin({
   mode: 'vscode',
 });
 
-export default ({ onSave = async (p) => {}, initialComponent = [] }) => {
+const CloudComponent = ({
+  onSave = async (code) => {},
+  initialComponent = [],
+}) => {
   const [component, setComponent]: any = React.useState(initialComponent);
   const runApi = async () => {
     const current = component.find((i) => i.selected);
@@ -73,3 +74,17 @@ export default ({ onSave = async (p) => {}, initialComponent = [] }) => {
     </div>
   );
 };
+
+const parseCodeToReactComponent = (codes: any[]) => {
+  const components = {};
+  codes.forEach((code) => {
+    components[code.componentName] = babelParse({
+      code: code.react,
+    });
+  });
+  return components;
+};
+
+CloudComponent.parseCodeToReactComponent = parseCodeToReactComponent;
+
+export default CloudComponent;

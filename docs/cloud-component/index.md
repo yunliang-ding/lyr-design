@@ -19,9 +19,40 @@ import './index.less';
 export default () => {
   return (
     <CloudComponent
-      onSave={(code, component) => {
-        console.log(code, component);
+      onSave={(code) => {
+        message.success('组件保存成功，打开控制台查看打印信息');
+        console.log(code, CloudComponent.parseCodeToReactComponent(code));
       }}
+      initialComponent={[
+        {
+          componentName: 'App1',
+          react: `export default (props) => {
+  return <div className='App1'>
+    {props.name}
+  </div>
+}`,
+          less: `.App1{
+  color: red
+}`,
+          props: {
+            name: 'App1',
+          },
+        },
+        {
+          componentName: 'App2',
+          react: `export default (props) => {
+  return <div className='App2'>
+    {props.name}
+  </div>
+}`,
+          less: `.App2{
+  color: red
+}`,
+          props: {
+            name: 'App2',
+          },
+        },
+      ]}
     />
   );
 };
