@@ -26,10 +26,14 @@ export default () => {
       initialComponent={[
         {
           componentName: 'App1',
-          react: `export default (props) => {
-  return <div className='App1'>
+          open: true,
+          selected: true,
+          react: `import { Button } from 'antd';
+
+export default (props) => {
+  return <Button className='App1'>
     {props.name}
-  </div>
+  </Button>
 }`,
           less: `.App1{
   color: red
@@ -40,10 +44,13 @@ export default () => {
         },
         {
           componentName: 'App2',
-          react: `export default (props) => {
-  return <div className='App2'>
+          open: true,
+          react: `import { Button } from 'antd';
+          
+export default (props) => {
+  return <Button className='App2'>
     {props.name}
-  </div>
+  </Button>
 }`,
           less: `.App2{
   color: red
