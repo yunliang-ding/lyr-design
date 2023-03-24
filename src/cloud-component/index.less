@@ -24,7 +24,7 @@
         height: 22px;
         display: flex;
         align-items: center;
-        padding: 0 20px;
+        padding: 0 10px;
         font-size: 12px;
         color: #ccc;
         cursor: pointer;
@@ -43,15 +43,11 @@
     width: calc(100% - 200px);
     background-color: #1e1e1e;
     position: relative;
-    .ant-empty {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      .ant-empty-description {
-        color: #fff;
-      }
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     &-header {
       height: 40px;

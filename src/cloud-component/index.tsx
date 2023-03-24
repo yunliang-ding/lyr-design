@@ -31,7 +31,10 @@ export default ({ onSave = async (p) => {}, initialComponent = [] }) => {
       <Menus component={component} setComponent={setComponent} />
       <div className="cloud-component-right">
         {component.filter((i) => i.open).length === 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="暂无数据" />
+          <img
+            style={{ width: 300 }}
+            src="https://img.alicdn.com/imgextra/i1/O1CN01ypboF828fH2ScXohX_!!6000000007959-55-tps-40-40.svg"
+          />
         ) : (
           <>
             <div className="cloud-component-right-header">

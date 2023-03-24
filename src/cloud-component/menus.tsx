@@ -81,7 +81,8 @@ export default ({ component, setComponent }) => {
                     style={{
                       background: '#333',
                       border: 'none',
-                      width: '100%',
+                      width: 'calc(100% + 30px)',
+                      height: 18,
                       outline: '1px solid #1890ff',
                       color: '#fff',
                     }}
