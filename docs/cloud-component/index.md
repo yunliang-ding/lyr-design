@@ -2,15 +2,11 @@
 order: 24
 title: CloudComponent 云组件
 toc: menu
+sidemenu: false
+nav:
+  title: 云组件
+  order: 3
 ---
-
-<Alert>
-
-- 云组件相关概念设计
-
-</Alert>
-
-## 基本使用
 
 ```tsx
 /**
@@ -18,6 +14,7 @@ toc: menu
  */
 import React from 'react';
 import { CloudComponent } from 'react-core-form';
+import './index.less';
 
 export default () => {
   return (
