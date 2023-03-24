@@ -1,4 +1,4 @@
-import { Button } from 'react-core-form';
+import { Button } from '../index';
 import { isEmpty } from 'react-core-form-tools';
 
 const reactStr = `import { Button } from 'antd';

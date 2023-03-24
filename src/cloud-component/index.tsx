@@ -2,7 +2,7 @@
  * 自定义扩展业务组件
  */
 import React from 'react';
-import { babelParse, Button, CreateSpin } from 'react-core-form';
+import { babelParse, Button, CreateSpin } from '../index';
 import Menus from './menus';
 import Tabs from './tabs';
 import Main from './main';

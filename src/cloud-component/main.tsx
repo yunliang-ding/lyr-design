@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { CodeEditor } from 'react-core-form';
-import { useEffect } from 'react';
+import { CodeEditor } from '../index';
 import { uuid } from 'react-core-form-tools';
 
 export default ({ item }) => {
@@ -9,7 +8,7 @@ export default ({ item }) => {
   const codeRef1: any = React.useRef({});
   const codeRef2: any = React.useRef({});
   const codeRef3: any = React.useRef({});
-  useEffect(() => {
+  React.useEffect(() => {
     item.runApi = async () => {
       const VDom = codeRef1.current.getModuleDefault(); // 得到组件
       const css = await codeRef2.current.getCssCode(); // 添加组件的style
