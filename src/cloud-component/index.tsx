@@ -92,9 +92,9 @@ const CloudComponent = ({
   );
 };
 
-const parseCodeToReactComponent = (codes: any[]) => {
+const parseCodeToReactComponent = (codes: any[], less = window.less) => {
   const components = {};
-  codes.forEach((code) => {
+  codes.forEach(async (code) => {
     components[code.componentName] = babelParse({
       require: {
         injectStyle,
@@ -102,7 +102,9 @@ const parseCodeToReactComponent = (codes: any[]) => {
       code: `
       ${code.react} \n;
       // 这里开始注入css样式
-      require('injectStyle')('${code.componentName}', \`${code.less}\`);
+      require('injectStyle')('${code.componentName}', \`${await less.render(
+        code.less,
+      ).css}\`);
 `,
     });
   });

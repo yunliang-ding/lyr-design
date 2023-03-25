@@ -1,33 +1,39 @@
 import { Button } from '../index';
-import { isEmpty } from 'react-core-form-tools';
+import { isEmpty, uuid } from 'react-core-form-tools';
 
 const reactStr = `import { Button } from 'antd';
    
  export default (props) => {
-   return <div className="{componentName}">
-     <Button type='primary'>{componentName}</Button>
-   </div>
- }
+  return <div className="{componentName}">
+    <Button type='primary'>{componentName}</Button>
+  </div>
+}
  `;
 
 const lessStr = `.{componentName}{
-   button{
-     font-size: 12px;
-   }
- }`;
+  button{
+    font-size: 12px;
+  }
+}`;
 
 export default ({ component, setComponent }) => {
-  const addComponent = (componentName, item, index) => {
+  const addComponent = (componentName: string, item, index) => {
     if (!isEmpty(componentName)) {
       item.componentName = componentName;
+      const _name = `${componentName.toLowerCase()}-${uuid(6)}`;
       delete item.state;
-      (item.react = reactStr.replaceAll('{componentName}', componentName)),
-        (item.less = lessStr.replaceAll('{componentName}', componentName)),
-        setComponent([...component]);
+      item.react = reactStr.replaceAll('{componentName}', _name);
+      item.less = lessStr.replaceAll('{componentName}', _name);
+      // 自动选中到新增的这条
+      component.forEach((i) => {
+        i.selected = false;
+      });
+      item.selected = true;
+      item.open = true;
     } else {
       component.splice(index, 1);
-      setComponent([...component]);
     }
+    setComponent([...component]);
   };
 
   return (

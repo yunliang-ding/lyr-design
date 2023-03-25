@@ -30,14 +30,17 @@ export default () => {
           open: true,
           selected: true,
           react: `import { Button } from 'antd';
-
+   
 export default (props) => {
-  return <Button className='App1'>
-    {props.name}
-  </Button>
-}`,
+  return <div className="App1">
+    <Button type='primary'>{props.name}</Button>
+  </div>
+}
+ `,
           less: `.App1{
-  color: red
+  button{
+    font-size: 12px;
+  }
 }`,
           props: {
             name: 'App1',
@@ -47,14 +50,17 @@ export default (props) => {
           componentName: 'App2',
           open: true,
           react: `import { Button } from 'antd';
-          
+   
 export default (props) => {
-  return <Button className='App2'>
-    {props.name}
-  </Button>
-}`,
+  return <div className="App2">
+    <Button type='primary'>{props.name}</Button>
+  </div>
+}
+ `,
           less: `.App2{
-  color: red
+  button{
+    font-size: 12px;
+  }
 }`,
           props: {
             name: 'App2',
