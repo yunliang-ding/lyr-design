@@ -3,6 +3,18 @@ import ReactDOM from 'react-dom';
 import { CodeEditor } from '../index';
 import { uuid } from 'react-core-form-tools';
 
+export const injectStyle = (id, html) => {
+  const styleTag = document.querySelector(`style[id=${id}]`);
+  if (styleTag) {
+    styleTag.innerHTML = html;
+  } else {
+    const style = document.createElement('style');
+    style.id = id;
+    style.innerHTML = html;
+    document.querySelector('head')?.appendChild(style);
+  }
+};
+
 export default ({ item }) => {
   const previewId = React.useMemo(() => `preview-${uuid(6)}`, []);
   const codeRef1: any = React.useRef({});
@@ -12,9 +24,7 @@ export default ({ item }) => {
     item.runApi = async () => {
       const VDom = codeRef1.current.getModuleDefault(); // 得到组件
       const css = await codeRef2.current.getCssCode(); // 添加组件的style
-      const style = document.createElement('style');
-      style.innerHTML = css;
-      document.querySelector('head')?.appendChild(style);
+      injectStyle(item.componentName, css);
       const props = codeRef3.current.getJson2Object(); // 注入props
       try {
         ReactDOM.render(

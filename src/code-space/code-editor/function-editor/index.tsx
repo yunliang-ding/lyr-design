@@ -79,7 +79,6 @@ export default ({
               setErrorInfo('');
               return onChange(undefined);
             }
-            await new Promise((res) => setTimeout(res, 1000));
             babelParse({
               code: codeString,
               require,

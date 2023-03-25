@@ -5,7 +5,7 @@ import React from 'react';
 import { babelParse, Button, CreateSpin } from '../index';
 import Menus from './menus';
 import Tabs from './tabs';
-import Main from './main';
+import Main, { injectStyle } from './main';
 import './index.less';
 
 const { open, close } = CreateSpin({
@@ -27,6 +27,23 @@ const CloudComponent = ({
     const current = component.find((i) => i.selected);
     current?.runApi();
   };
+  // Ctrl + S
+  const keyboardEvent = async (e) => {
+    if (
+      (e.key === 's' || e.key === 'S') &&
+      (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)
+    ) {
+      e.preventDefault();
+      runApi();
+    }
+  };
+  React.useEffect(() => {
+    runApi(); // 默认执行一次预览
+    window.addEventListener('keydown', keyboardEvent);
+    return () => {
+      window.removeEventListener('keydown', keyboardEvent);
+    };
+  }, [component]);
   return (
     <div className="cloud-component">
       <Menus component={component} setComponent={setComponent} />
@@ -79,7 +96,14 @@ const parseCodeToReactComponent = (codes: any[]) => {
   const components = {};
   codes.forEach((code) => {
     components[code.componentName] = babelParse({
-      code: code.react,
+      require: {
+        injectStyle,
+      },
+      code: `
+      ${code.react} \n;
+      // 这里开始注入css样式
+      require('injectStyle')('${code.componentName}', \`${code.less}\`);
+`,
     });
   });
   return components;

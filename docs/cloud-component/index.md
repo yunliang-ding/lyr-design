@@ -14,6 +14,7 @@ nav:
  */
 import React from 'react';
 import { CloudComponent } from 'react-core-form';
+import { message } from 'antd';
 import './index.less';
 
 export default () => {
