@@ -5,6 +5,7 @@ import './index.less';
 import { uuid } from 'react-core-form-tools';
 
 const $: any = document.querySelector.bind(document);
+const layerId = 'suspend-bar-0328';
 
 type Props = {
   children?: React.ReactNode;
@@ -46,6 +47,9 @@ const SuspendBar = ({
 
 export default (props) => {
   useEffect(() => {
+    if ($(`#${layerId}`)) {
+      $(`#${layerId}`).remove();
+    }
     const tag = document.createElement('div');
     tag.setAttribute('id', `suspend-bar-${uuid(6)}`);
     const target = $('body');
