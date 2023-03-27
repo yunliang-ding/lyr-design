@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import './index.less';
+import { uuid } from 'react-core-form-tools';
+
+const $: any = document.querySelector.bind(document);
 
 type Props = {
   children?: React.ReactNode;
@@ -14,7 +18,7 @@ type Props = {
   placement?: string;
 };
 
-export default ({
+const SuspendBar = ({
   children,
   title,
   show = true,
@@ -38,4 +42,15 @@ export default ({
       <div className="suspend-content">{children}</div>
     </div>
   );
+};
+
+export default (props) => {
+  useEffect(() => {
+    const tag = document.createElement('div');
+    tag.setAttribute('id', `suspend-bar-${uuid(6)}`);
+    const target = $('body');
+    target.appendChild(tag);
+    ReactDOM.render(<SuspendBar {...props} />, tag);
+  }, []);
+  return null;
 };
