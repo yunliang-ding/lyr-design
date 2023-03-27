@@ -1,5 +1,6 @@
 import { Button } from '../index';
 import { isEmpty, uuid } from 'react-core-form-tools';
+import { useState } from 'react';
 
 const reactStr = `import { Button } from 'antd';
    
@@ -17,6 +18,23 @@ const lessStr = `.{componentName}{
 }`;
 
 export default ({ component, setComponent }) => {
+  const [err, setErr] = useState('');
+  const rule = ({ target }) => {
+    const { value } = target;
+    if (/\s+/.test(value)) {
+      setErr('文件名称不能包含空格');
+    } else if (/[\u4E00-\u9FA5]/.test(value)) {
+      setErr('文件名称不能有中文');
+    } else if (/^\d+$/.test(value)) {
+      setErr('文件名称不能以数字开头');
+    } else if (
+      component.some((comp) => comp.componentName === value && !isEmpty(value))
+    ) {
+      setErr('文件已存在');
+    } else {
+      setErr('');
+    }
+  };
   const addComponent = (componentName: string, item, index) => {
     if (!isEmpty(componentName)) {
       item.componentName = componentName;
@@ -43,6 +61,9 @@ export default ({ component, setComponent }) => {
           size="small"
           type="primary"
           onClick={() => {
+            if (component.some((i) => i.state === 'edit')) {
+              return;
+            }
             component.push({
               componentName: '',
               state: 'edit',
@@ -68,31 +89,40 @@ export default ({ component, setComponent }) => {
               <span style={{ marginRight: 4, display: 'flex' }}>
                 <i className="iconfont spicon-React" />
               </span>
-              <span>
+              <span
+                style={{ position: 'relative' }}
+                className={err ? 'error-span' : ''}
+              >
                 {item.state === 'edit' ? (
-                  <input
-                    onBlur={(e) => {
-                      addComponent(e.target.value, item, index);
-                    }}
-                    onKeyDown={(e: any) => {
-                      if (e.key === 'Enter') {
-                        addComponent(e.target.value, item, index);
-                      }
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                    autoFocus
-                    defaultValue={item.componentName}
-                    style={{
-                      background: '#333',
-                      border: 'none',
-                      width: 'calc(100% + 30px)',
-                      height: 18,
-                      outline: '1px solid #1890ff',
-                      color: '#fff',
-                    }}
-                  />
+                  <>
+                    <input
+                      onBlur={(e) => {
+                        !err && addComponent(e.target.value, item, index);
+                      }}
+                      onChange={rule}
+                      onKeyDown={(e: any) => {
+                        if (e.key === 'Enter') {
+                          !err && addComponent(e.target.value, item, index);
+                        }
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      autoFocus
+                      defaultValue={item.componentName}
+                      style={{
+                        background: '#333',
+                        border: 'none',
+                        width: 'calc(100% + 30px)',
+                        height: 18,
+                        outline: '1px solid #1890ff',
+                        color: '#fff',
+                      }}
+                    />
+                    <div className="cloud-component-left-body-input-error">
+                      {err}
+                    </div>
+                  </>
                 ) : (
                   <div
                     style={{ width: 180 }}
