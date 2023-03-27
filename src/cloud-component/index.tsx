@@ -148,9 +148,9 @@ const CloudComponent = ({
   );
 };
 
-const parseCodeToReactComponent = (codes: any[], less = window.less) => {
+const parseCodeToReactComponent = (codes: any[], less) => {
   const components = {};
-  codes.forEach(async (code) => {
+  codes.forEach((code) => {
     components[code.componentName] = babelParse({
       require: {
         injectStyle,
@@ -158,9 +158,7 @@ const parseCodeToReactComponent = (codes: any[], less = window.less) => {
       code: `
       ${code.react} \n;
       // 这里开始注入css样式
-      require('injectStyle')('${code.componentName}', \`${
-        (await less.render(code.less)).css
-      }\`);
+      require('injectStyle')('${code.componentName}', \`${code.less}\`, ${less});
 `,
     });
   });

@@ -3,14 +3,19 @@ import ReactDOM from 'react-dom';
 import { CodeEditor } from '../index';
 import { uuid } from 'react-core-form-tools';
 
-export const injectStyle = (id, html) => {
+export const injectStyle = async (
+  id: string,
+  lessCode: string,
+  less = window.less,
+) => {
+  const { css } = await less.render(lessCode);
   const styleTag = document.querySelector(`style[id=${id}]`);
   if (styleTag) {
-    styleTag.innerHTML = html;
+    styleTag.innerHTML = css;
   } else {
     const style = document.createElement('style');
     style.id = id;
-    style.innerHTML = html;
+    style.innerHTML = css;
     document.querySelector('head')?.appendChild(style);
   }
 };
@@ -23,8 +28,7 @@ export default ({ item }) => {
   React.useEffect(() => {
     item.runApi = async () => {
       const VDom = codeRef1.current.getModuleDefault(); // 得到组件
-      const css = await codeRef2.current.getCssCode(); // 添加组件的style
-      injectStyle(item.componentName, css);
+      injectStyle(item.componentName, item.less); // 添加组件的style
       const props = codeRef3.current.getJson2Object(); // 注入props
       try {
         ReactDOM.render(
