@@ -1,7 +1,7 @@
 /**
  * 自定义扩展业务组件
  */
-import React from 'react';
+import React, { useRef } from 'react';
 import { babelParse, Button, CreateSpin } from '../index';
 import Menus from './menus';
 import Tabs from './tabs';
@@ -21,9 +21,11 @@ const { open, close } = CreateSpin({
 });
 
 const CloudComponent = ({
-  onSave = async (code) => {},
+  onSave = async (code, codes) => {},
   initialComponent = [],
+  require = {},
 }) => {
+  const currentRef = useRef({});
   const [component, setComponent]: any = React.useState(initialComponent);
   const runApi = async () => {
     const current = component.find((i) => i.selected);
@@ -41,6 +43,7 @@ const CloudComponent = ({
   };
   React.useEffect(() => {
     runApi(); // 默认执行一次预览
+    currentRef.current = component.find((i) => i.selected); // 更新选中节点
     window.addEventListener('keydown', keyboardEvent);
     return () => {
       window.removeEventListener('keydown', keyboardEvent);
@@ -53,6 +56,7 @@ const CloudComponent = ({
         {component.filter((i) => i.open).length === 0 ? (
           <img
             style={{ width: 300 }}
+            className="cloud-component-right-empty"
             src="https://img.alicdn.com/imgextra/i1/O1CN01ypboF828fH2ScXohX_!!6000000007959-55-tps-40-40.svg"
           />
         ) : (
@@ -67,7 +71,7 @@ const CloudComponent = ({
                   onClick={async () => {
                     open();
                     await new Promise((res) => setTimeout(res, 500));
-                    await onSave(component);
+                    await onSave(currentRef.current, component);
                     close();
                   }}
                 >
@@ -139,7 +143,15 @@ const CloudComponent = ({
               </div>
             </div>
             {component.map((item) => {
-              return item.open && <Main item={item} key={item.componentName} />;
+              return (
+                item.open && (
+                  <Main
+                    item={item}
+                    key={item.componentName}
+                    require={require}
+                  />
+                )
+              );
             })}
           </>
         )}

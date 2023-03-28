@@ -20,7 +20,7 @@ export const injectStyle = async (
   }
 };
 
-export default ({ item }) => {
+export default ({ item, require }) => {
   const previewId = React.useMemo(() => `preview-${uuid(6)}`, []);
   const codeRef1: any = React.useRef({});
   const codeRef2: any = React.useRef({});
@@ -54,6 +54,7 @@ export default ({ item }) => {
       <div className="cloud-component-right-body-react">
         <CodeEditor
           mode="function"
+          require={require}
           codeRef={codeRef1}
           value={item.react}
           onChange={(code) => {
