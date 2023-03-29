@@ -22,7 +22,7 @@ export default defineConfig({
   theme: {
     '@primary-background-color': '#f0f6ff',
     '@text-color': '#6a6a6a',
-    '@font-size-base': '13px',
+    '@font-size-base': '12px',
     '@font-size-small': '12px',
     '@primary-color': '#2f54eb',
   },

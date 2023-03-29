@@ -8,6 +8,7 @@ import Tabs from './tabs';
 import Main, { injectStyle } from './main';
 import { downloadFile } from 'react-core-form-tools';
 import { message, Upload } from 'antd';
+import ReactDOM from 'react-dom';
 import './index.less';
 
 const { open, close } = CreateSpin({
@@ -21,10 +22,14 @@ const { open, close } = CreateSpin({
 });
 
 const CloudComponent = ({
-  onSave = async (code, codes) => {},
-  initialComponent = [],
+  componentRef = useRef({}),
   require = {},
-}) => {
+  onSave = async () => {},
+  onChange = () => {},
+  onAdd = async (code) => {},
+  initialComponent = [],
+  extra = [],
+}: any) => {
   const currentRef = useRef({});
   const [component, setComponent]: any = React.useState(initialComponent);
   const runApi = async () => {
@@ -44,6 +49,15 @@ const CloudComponent = ({
   React.useEffect(() => {
     runApi(); // 默认执行一次预览
     currentRef.current = component.find((i) => i.selected); // 更新选中节点
+    // 添加api
+    componentRef.current = {
+      openSpin: open,
+      closeSpin: close,
+      component,
+      setComponent,
+      code: currentRef.current,
+    };
+    onChange();
     window.addEventListener('keydown', keyboardEvent);
     return () => {
       window.removeEventListener('keydown', keyboardEvent);
@@ -51,7 +65,13 @@ const CloudComponent = ({
   }, [component]);
   return (
     <div className="cloud-component">
-      <Menus component={component} setComponent={setComponent} />
+      <Menus
+        component={component}
+        setComponent={setComponent}
+        onAdd={onAdd}
+        close={close}
+        open={open}
+      />
       <div className="cloud-component-right">
         {component.filter((i) => i.open).length === 0 ? (
           <img
@@ -140,6 +160,7 @@ const CloudComponent = ({
                     导入
                   </Button>
                 </Upload>
+                {extra}
               </div>
             </div>
             {component.map((item) => {
@@ -160,9 +181,15 @@ const CloudComponent = ({
   );
 };
 
-const parseCodeToReactComponent = (codes: any[], less) => {
+CloudComponent.parse = (
+  params = {
+    codes: [],
+    less: window.less,
+    require: {},
+  },
+) => {
   const components = {};
-  codes.forEach((code) => {
+  params.codes.forEach((code) => {
     components[code.componentName] = babelParse({
       require: {
         injectStyle,
@@ -170,13 +197,16 @@ const parseCodeToReactComponent = (codes: any[], less) => {
       code: `
       ${code.react} \n;
       // 这里开始注入css样式
-      require('injectStyle')('${code.componentName}', \`${code.less}\`, ${less});
+      require('injectStyle')('${code.componentName}', \`${code.less}\`, ${params.less});
 `,
     });
   });
   return components;
 };
 
-CloudComponent.parseCodeToReactComponent = parseCodeToReactComponent;
+/** 组件渲染 */
+CloudComponent.render = (Comp, root) => {
+  ReactDOM.render(Comp, root);
+};
 
 export default CloudComponent;

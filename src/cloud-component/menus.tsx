@@ -17,7 +17,7 @@ const lessStr = `.{componentName}{
   }
 }`;
 
-export default ({ component, setComponent }) => {
+export default ({ component, setComponent, onAdd, close, open }) => {
   const [err, setErr] = useState('');
   const rule = ({ target }) => {
     const { value } = target;
@@ -35,7 +35,7 @@ export default ({ component, setComponent }) => {
       setErr('');
     }
   };
-  const addComponent = (componentName: string, item, index) => {
+  const addComponent = async (componentName: string, item, index) => {
     if (!isEmpty(componentName)) {
       item.componentName = componentName;
       const _name = `${componentName.toLowerCase()}-${uuid(6)}`;
@@ -48,6 +48,14 @@ export default ({ component, setComponent }) => {
       });
       item.selected = true;
       item.open = true;
+      open();
+      try {
+        item.id = await onAdd(item); // 获取id
+      } catch (error) {
+        console.log(error);
+      } finally {
+        close();
+      }
     } else {
       component.splice(index, 1);
     }
