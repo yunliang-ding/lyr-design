@@ -1,8 +1,6 @@
-@code-height: 100vh;
-
 .cloud-component {
   display: flex;
-  height: @code-height;
+  height: 100vh;
   width: 100%;
   .spicon-React {
     color: #1890ff;
@@ -17,7 +15,7 @@
       justify-content: center;
     }
     &-body {
-      height: calc(@code-height - 40px);
+      height: calc(100vh - 40px);
       overflow: auto;
       &-item,
       &-item-selected {
@@ -74,7 +72,7 @@
       flex-wrap: wrap;
       width: 100%;
       gap: 0;
-      height: calc(@code-height - 39px);
+      height: calc(100vh - 39px);
       background-color: #1e1e1e;
       &-react,
       &-props {

@@ -182,7 +182,7 @@ const CloudComponent = ({
 };
 
 CloudComponent.parse = (
-  params = {
+  params: any = {
     codes: [],
     less: window.less,
     require: {},
@@ -192,6 +192,7 @@ CloudComponent.parse = (
   params.codes.forEach((code) => {
     components[code.componentName] = babelParse({
       require: {
+        ...require,
         injectStyle,
       },
       code: `
