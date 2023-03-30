@@ -6,7 +6,7 @@ const reactStr = `import { Button } from 'antd';
    
  export default (props) => {
   return <div className="{componentName}">
-    <Button type='primary'>{componentName}</Button>
+    <Button type='primary'>{props.name}</Button>
   </div>
 }
  `;
@@ -38,10 +38,12 @@ export default ({ component, setComponent, onAdd, close, open }) => {
   const addComponent = async (componentName: string, item, index) => {
     if (!isEmpty(componentName)) {
       item.componentName = componentName;
-      const _name = `${componentName.toLowerCase()}-${uuid(6)}`;
       delete item.state;
-      item.react = reactStr.replaceAll('{componentName}', _name);
-      item.less = lessStr.replaceAll('{componentName}', _name);
+      item.react = reactStr.replaceAll('{componentName}', componentName);
+      item.less = lessStr.replaceAll('{componentName}', componentName);
+      item.props = {
+        name: componentName,
+      };
       // 自动选中到新增的这条
       component.forEach((i) => {
         i.selected = false;

@@ -21,6 +21,23 @@ const { open, close } = CreateSpin({
   mode: 'vscode',
 });
 
+export interface CloudComponentProps {
+  /** 实例引用 */
+  componentRef?: any;
+  /** 配置依赖 */
+  require?: any;
+  /** ctrl + s 钩子 */
+  onSave?: any;
+  /** onChange */
+  onChange?: any;
+  /** 新增钩子 */
+  onAdd?: Function;
+  /** 默认值 */
+  initialComponent?: any[];
+  /** 配置额外操作 */
+  extra?: any[];
+}
+
 const CloudComponent = ({
   componentRef = useRef({}),
   require = {},
@@ -29,7 +46,7 @@ const CloudComponent = ({
   onAdd = async (code) => {},
   initialComponent = [],
   extra = [],
-}: any) => {
+}: CloudComponentProps) => {
   const currentRef = useRef({});
   const [component, setComponent]: any = React.useState(initialComponent);
   // 保存
@@ -80,7 +97,7 @@ const CloudComponent = ({
       <div className="cloud-component-right">
         {component.filter((i) => i.open).length === 0 ? (
           <img
-            style={{ width: 300 }}
+            style={{ width: 200 }}
             className="cloud-component-right-empty"
             src="https://img.alicdn.com/imgextra/i1/O1CN01ypboF828fH2ScXohX_!!6000000007959-55-tps-40-40.svg"
           />
