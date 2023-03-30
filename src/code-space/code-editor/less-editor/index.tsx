@@ -29,6 +29,7 @@ export default ({
     <CodeEditor
       minimapEnabled={false}
       {...rest}
+      codeRef={codeRef}
       value={value}
       language="less"
       onChange={debounce((code: string) => {

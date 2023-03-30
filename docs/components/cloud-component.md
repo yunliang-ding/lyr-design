@@ -20,12 +20,11 @@ export default () => {
   return (
     <CloudComponent
       onAdd={async (code) => {
-        console.log(code);
         await new Promise((res) => setTimeout(res, 1000));
         return Math.random();
       }}
-      onSave={async (codes, code) => {
-        console.log(codes, code);
+      onSave={async (code) => {
+        console.log(code);
       }}
     />
   );

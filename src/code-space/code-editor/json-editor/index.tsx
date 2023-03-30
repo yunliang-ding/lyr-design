@@ -28,6 +28,7 @@ export default ({
       <CodeEditor
         minimapEnabled={false}
         {...rest}
+        codeRef={codeRef}
         value={JSON.stringify(value, null, 2)}
         language="json"
         onChange={debounce((code: string) => {

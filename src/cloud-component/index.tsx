@@ -41,20 +41,19 @@ export interface CloudComponentProps {
 const CloudComponent = ({
   componentRef = useRef({}),
   require = {},
-  onSave = async () => {},
-  onChange = () => {},
+  onSave = async (code) => {},
   onAdd = async (code) => {},
+  onChange = () => {},
   initialComponent = [],
   extra = [],
 }: CloudComponentProps) => {
-  const currentRef = useRef({});
   const [component, setComponent]: any = React.useState(initialComponent);
   // 保存
   const save = async () => {
     open();
     try {
       await new Promise((res) => setTimeout(res, 500));
-      await onSave(currentRef.current, component);
+      await onSave(component.find((i) => i.selected));
     } finally {
       close();
     }
@@ -70,14 +69,13 @@ const CloudComponent = ({
     }
   };
   React.useEffect(() => {
-    currentRef.current = component.find((i) => i.selected); // 更新选中节点
-    // 添加api
+    // 更新 ref Api
     componentRef.current = {
       openSpin: open,
       closeSpin: close,
       component,
       setComponent,
-      code: currentRef.current,
+      code: component.find((i) => i.selected),
     };
     onChange();
     window.addEventListener('keydown', keyboardEvent);
@@ -146,7 +144,6 @@ const CloudComponent = ({
                                 );
                               })
                             ) {
-                              console.log(jsonItem);
                               component.push(jsonItem);
                             }
                           });

@@ -1,10 +1,10 @@
 import { Button } from '../index';
-import { isEmpty, uuid } from 'react-core-form-tools';
+import { isEmpty } from 'react-core-form-tools';
 import { useState } from 'react';
 
 const reactStr = `import { Button } from 'antd';
    
- export default (props) => {
+export default (props) => {
   return <div className="{componentName}">
     <Button type='primary'>{props.name}</Button>
   </div>
@@ -47,6 +47,7 @@ export default ({ component, setComponent, onAdd, close, open }) => {
       // 自动选中到新增的这条
       component.forEach((i) => {
         i.selected = false;
+        i.open = false; // 兼容bug, 改成单开模式
       });
       item.selected = true;
       item.open = true;
@@ -138,13 +139,13 @@ export default ({ component, setComponent, onAdd, close, open }) => {
                     style={{ width: 180 }}
                     onClick={async () => {
                       setComponent(
-                        component.map((comp) => {
+                        component.map((i: any) => {
                           return {
-                            ...comp,
-                            open:
-                              comp.open ||
-                              comp.componentName === item.componentName,
-                            selected: comp.componentName === item.componentName,
+                            ...i,
+                            open: i.componentName === item.componentName, // 兼容bug, 改成单开模式
+                            // i.open ||
+                            // i.componentName === item.componentName,
+                            selected: i.componentName === item.componentName,
                           };
                         }),
                       );

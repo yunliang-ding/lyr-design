@@ -106,16 +106,6 @@ export const CodeEditor = memo(
                 ...rest,
               },
             );
-            // monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-            //   target: monaco.languages.typescript.ScriptTarget.ESNext,
-            //   allowNonTsExtensions: true,
-            //   allowSyntheticDefaultImports: true,
-            //   esModuleInterop: true,
-            //   jsx: monaco.languages.typescript.JsxEmit.React,
-            //   moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-            //   module: monaco.languages.typescript.ModuleKind.CommonJS,
-            //   noEmit: true,
-            // });
             if (typeof onSave === 'function') {
               // ctrl + s 执行 onSave
               codeInstance.addCommand(
