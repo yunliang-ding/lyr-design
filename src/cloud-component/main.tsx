@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { CodeEditor } from '../index';
+import { babelParse, CodeEditor } from '../index';
 import { uuid } from 'react-core-form-tools';
 
 export const injectStyle = async (
@@ -25,24 +25,28 @@ export default ({ item, require }) => {
   const codeRef1: any = React.useRef({});
   const codeRef2: any = React.useRef({});
   const codeRef3: any = React.useRef({});
-  React.useEffect(() => {
-    item.runApi = async () => {
-      const VDom = codeRef1.current.getModuleDefault(); // 得到组件
-      injectStyle(item.componentName, item.less); // 添加组件的style
-      const props = codeRef3.current.getJson2Object(); // 注入props
-      try {
-        ReactDOM.render(
-          <VDom {...props} />,
-          document.querySelector(`#${previewId}`),
-        ); // 预览
-      } catch (error) {
-        // 错误信息展示
-        ReactDOM.render(
-          <pre style={{ color: 'red' }}>{error.toString()}</pre>,
-          document.querySelector('.cloud-component-right-body-preview'),
-        );
-      }
-    };
+  const runApi = async () => {
+    const VDom = babelParse({
+      code: item.react,
+      require,
+    }); // 得到组件
+    injectStyle(item.componentName, item.less); // 添加组件的style
+    const props = codeRef3.current.getJson2Object(); // 注入props
+    try {
+      ReactDOM.render(
+        <VDom {...props} />,
+        document.querySelector(`#${previewId}`),
+      ); // 预览
+    } catch (error) {
+      // 错误信息展示
+      ReactDOM.render(
+        <pre style={{ color: 'red' }}>{error.toString()}</pre>,
+        document.querySelector('.cloud-component-right-body-preview'),
+      );
+    }
+  };
+  useEffect(() => {
+    runApi();
   }, []);
   return (
     <div
@@ -59,6 +63,7 @@ export default ({ item, require }) => {
           value={item.react}
           onChange={(code) => {
             item.react = code;
+            runApi();
           }}
         />
       </div>
@@ -70,6 +75,7 @@ export default ({ item, require }) => {
           codeRef={codeRef2}
           onChange={(code) => {
             item.less = code;
+            runApi();
           }}
         />
       </div>
@@ -80,6 +86,7 @@ export default ({ item, require }) => {
           codeRef={codeRef3}
           onChange={() => {
             item.props = codeRef3.current.getJson2Object();
+            runApi();
           }}
         />
       </div>

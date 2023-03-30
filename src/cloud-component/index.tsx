@@ -32,9 +32,15 @@ const CloudComponent = ({
 }: any) => {
   const currentRef = useRef({});
   const [component, setComponent]: any = React.useState(initialComponent);
-  const runApi = async () => {
-    const current = component.find((i) => i.selected);
-    current?.runApi?.();
+  // 保存
+  const save = async () => {
+    open();
+    try {
+      await new Promise((res) => setTimeout(res, 500));
+      await onSave(currentRef.current, component);
+    } finally {
+      close();
+    }
   };
   // Ctrl + S
   const keyboardEvent = async (e) => {
@@ -43,11 +49,10 @@ const CloudComponent = ({
       (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)
     ) {
       e.preventDefault();
-      runApi();
+      save();
     }
   };
   React.useEffect(() => {
-    runApi(); // 默认执行一次预览
     currentRef.current = component.find((i) => i.selected); // 更新选中节点
     // 添加api
     componentRef.current = {
@@ -84,22 +89,6 @@ const CloudComponent = ({
             <div className="cloud-component-right-header">
               <Tabs component={component} setComponent={setComponent} />
               <div style={{ display: 'flex', gap: 10 }}>
-                <Button
-                  spin
-                  type="primary"
-                  size="small"
-                  onClick={async () => {
-                    open();
-                    await new Promise((res) => setTimeout(res, 500));
-                    await onSave(currentRef.current, component);
-                    close();
-                  }}
-                >
-                  保存
-                </Button>
-                <Button spin type="primary" size="small" onClick={runApi}>
-                  预览
-                </Button>
                 <Button
                   spin
                   type="primary"
