@@ -192,7 +192,7 @@ CloudComponent.parse = (
   params.codes.forEach((code) => {
     components[code.componentName] = babelParse({
       require: {
-        ...require,
+        ...params.require,
         injectStyle,
       },
       code: `
