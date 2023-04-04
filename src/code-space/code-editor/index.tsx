@@ -4,6 +4,7 @@ import FunctionEditor from './function-editor';
 import JsonEditor from './json-editor';
 import Diff from './diff';
 import LessEditor from './less-editor';
+import { textMateService } from './syntaxHighlighter';
 import './index.less';
 
 export interface CodeProps {
@@ -78,6 +79,7 @@ export const CodeEditor = memo(
     ...rest
   }: CodeProps) => {
     // 加载资源
+    const oldDecorationsRef = useRef({});
     const initialLoad = async () => {
       const _require: any = window.require;
       if (_require) {
@@ -119,6 +121,12 @@ export const CodeEditor = memo(
             // onChange
             codeInstance.onDidChangeModelContent((e) => {
               const code = codeInstance.getValue();
+              if (['javascript', 'typescript'].includes(language)) {
+                oldDecorationsRef.current = codeInstance.deltaDecorations(
+                  oldDecorationsRef.current,
+                  textMateService(code),
+                );
+              }
               if (!e.isFlush) {
                 onChange(code);
               }
