@@ -19,6 +19,18 @@ import './index.less';
 export default () => {
   return (
     <CloudComponent
+      initialDependencies={[
+        {
+          name: 'html2canvas',
+          version: '1.4.1',
+          path: 'https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.js',
+        },
+        {
+          name: 'axios',
+          version: '1.3.5',
+          path: 'https://unpkg.com/axios@1.3.5/dist/axios.min.js',
+        },
+      ]}
       onAdd={async (code) => {
         await new Promise((res) => setTimeout(res, 1000));
         return Math.random();

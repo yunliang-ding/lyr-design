@@ -20,6 +20,22 @@ export const injectStyle = async (
   }
 };
 
+export const injectScript = async (src: string, name) => {
+  return new Promise((res) => {
+    if (document.querySelector(`script[class=${name}]`)) {
+      res(true); // 存在直接返回
+    } else {
+      const script = document.createElement('script');
+      script.src = src;
+      script.className = name;
+      document.querySelector('head')?.appendChild(script);
+      script.onload = () => {
+        res(true);
+      };
+    }
+  });
+};
+
 export default ({ item, require }) => {
   const previewId = React.useMemo(() => `preview-${uuid(6)}`, []);
   const codeRef1: any = React.useRef({});

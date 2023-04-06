@@ -1,4 +1,6 @@
+/* eslint-disable no-bitwise */
 import { useEffect } from 'react';
+import loader from '@monaco-editor/loader';
 import './index.less';
 
 export interface MonacoDiffProps {
@@ -16,51 +18,41 @@ export default ({
   style = {},
   ...rest
 }: any) => {
-  // 加载资源
-  const initialLoad = async () => {
-    const _require: any = window.require;
-    if (_require) {
-      _require.config({
-        paths: {
-          vs: 'https://g.alicdn.com/code/lib/monaco-editor/0.36.0/min/vs',
-        },
-      });
-      return new Promise(() => {
-        _require(['vs/editor/editor.main'], () => {
-          const diffEditor = window.monaco.editor.createDiffEditor(
-            document.getElementById(id),
-            {
-              theme: 'vs-dark',
-              selectOnLineNumbers: true,
-              automaticLayout: true,
-              readOnly: true,
-              renderSideBySide: true,
-              fontSize: 14,
-              fontWeight: '500',
-              minimap: {
-                enabled: false,
-              },
-              ...rest,
-            },
-          );
-          const originalModel = window.monaco.editor.createModel(
-            originalValue,
-            language,
-          );
-          const modifiedModal = window.monaco.editor.createModel(
-            value,
-            language,
-          );
-          diffEditor.setModel({
-            original: originalModel,
-            modified: modifiedModal,
-          });
-        });
-      });
-    }
-  };
   useEffect(() => {
-    initialLoad();
+    // 配置资源CDN
+    loader.config({
+      paths: {
+        vs: rest.cdnPath,
+      },
+    });
+    loader.init().then((monaco) => {
+      const diffEditor = monaco.editor.createDiffEditor(
+        document.getElementById(id),
+        {
+          theme: 'vs-dark',
+          selectOnLineNumbers: true,
+          automaticLayout: true,
+          readOnly: true,
+          renderSideBySide: true,
+          scrollBeyondLastLine: false,
+          fontSize: 14,
+          fontWeight: '500',
+          minimap: {
+            enabled: false,
+          },
+          ...rest,
+        },
+      );
+      const originalModel = window.monaco.editor.createModel(
+        originalValue,
+        language,
+      );
+      const modifiedModal = window.monaco.editor.createModel(value, language);
+      diffEditor.setModel({
+        original: originalModel,
+        modified: modifiedModal,
+      });
+    });
   }, []);
   return <div id={id} style={style} className="app-code-editor-diff" />;
 };

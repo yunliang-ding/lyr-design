@@ -1,6 +1,7 @@
 import { Button } from '../index';
 import { isEmpty } from 'react-core-form-tools';
 import { useState } from 'react';
+import Dependencies from './dependencies';
 
 const reactStr = `import { Button } from 'antd';
    
@@ -17,7 +18,16 @@ const lessStr = `.{componentName}{
   }
 }`;
 
-export default ({ component, setComponent, onAdd, close, open }) => {
+export default ({
+  component,
+  setComponent,
+  onAdd,
+  close,
+  open,
+  dependencies,
+  setDependencies,
+  openDependencies,
+}) => {
   const [err, setErr] = useState('');
   const rule = ({ target }) => {
     const { value } = target;
@@ -68,9 +78,10 @@ export default ({ component, setComponent, onAdd, close, open }) => {
   return (
     <div className="cloud-component-left">
       <div className="cloud-component-left-header">
-        <Button
-          size="small"
-          type="primary"
+        <span>组件列表</span>
+        <i
+          className="iconfont spicon-add"
+          title="新增云组件"
           onClick={() => {
             if (component.some((i) => i.state === 'edit')) {
               return;
@@ -82,9 +93,7 @@ export default ({ component, setComponent, onAdd, close, open }) => {
             });
             setComponent([...component]);
           }}
-        >
-          新增云组件
-        </Button>
+        />
       </div>
       <div className="cloud-component-left-body">
         {component.map((item, index) => {
@@ -130,9 +139,11 @@ export default ({ component, setComponent, onAdd, close, open }) => {
                         color: '#fff',
                       }}
                     />
-                    <div className="cloud-component-left-body-input-error">
-                      {err}
-                    </div>
+                    {item.state === 'edit' && (
+                      <div className="cloud-component-left-body-input-error">
+                        {err}
+                      </div>
+                    )}
                   </>
                 ) : (
                   <div
@@ -158,6 +169,14 @@ export default ({ component, setComponent, onAdd, close, open }) => {
             </div>
           );
         })}
+      </div>
+      <div className="cloud-component-left-footer">
+        {openDependencies && (
+          <Dependencies
+            dependencies={dependencies}
+            setDependencies={setDependencies}
+          />
+        )}
       </div>
     </div>
   );

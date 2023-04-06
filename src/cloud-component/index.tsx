@@ -1,11 +1,11 @@
 /**
  * 自定义扩展业务组件
  */
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { babelParse, Button, CreateSpin } from '../index';
 import Menus from './menus';
 import Tabs from './tabs';
-import Main, { injectStyle } from './main';
+import Main, { injectScript, injectStyle } from './main';
 import { downloadFile } from 'react-core-form-tools';
 import { message, Upload } from 'antd';
 import ReactDOM from 'react-dom';
@@ -36,6 +36,9 @@ export interface CloudComponentProps {
   initialComponent?: any[];
   /** 配置额外操作 */
   extra?: any[];
+  openDependencies?: boolean;
+  /** 外部依赖 */
+  initialDependencies?: any;
 }
 
 const CloudComponent = ({
@@ -46,8 +49,32 @@ const CloudComponent = ({
   onChange = () => {},
   initialComponent = [],
   extra = [],
+  openDependencies = true,
+  initialDependencies = [],
 }: CloudComponentProps) => {
   const [component, setComponent]: any = React.useState(initialComponent);
+  const [_require, setRequire]: any = React.useState(require);
+  const [dependencies, setDependencies]: any =
+    React.useState(initialDependencies);
+  const updateDepReq = async (dep) => {
+    const _dep = {};
+    for (let i = 0; i < dep.length; i++) {
+      const item = dep[i];
+      if (item.path) {
+        await injectScript(item.path, item.name);
+        _dep[item.name] = window[item.name];
+      }
+    }
+    // 更新依赖
+    setRequire({
+      ...require,
+      ..._dep,
+    });
+  };
+  // 加载依赖
+  useEffect(() => {
+    updateDepReq(dependencies);
+  }, [dependencies]);
   // 保存
   const save = async () => {
     open();
@@ -91,6 +118,9 @@ const CloudComponent = ({
         onAdd={onAdd}
         close={close}
         open={open}
+        dependencies={dependencies}
+        setDependencies={setDependencies}
+        openDependencies={openDependencies}
       />
       <div className="cloud-component-right">
         {component.filter((i) => i.open).length === 0 ? (

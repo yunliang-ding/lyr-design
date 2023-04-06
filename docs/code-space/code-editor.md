@@ -7,6 +7,7 @@ toc: menu
 <Alert>
 
 - 基于 monaco-editor 二次封装
+- 使用 @monaco-editor/loader 优化加载
 - 更多用法 参考 [monaco](https://microsoft.github.io/monaco-editor/playground.html)
 
 </Alert>
@@ -16,8 +17,6 @@ toc: menu
 ```js
 https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js // 仅 function 模式需要引入
 https://cdn.bootcdn.net/ajax/libs/less.js/4.1.3/less.min.js // 仅 less 模式需要引入
-https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js
-https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.1/min/vs/editor/editor.main.min.css
 ```
 
 ## 基本使用
