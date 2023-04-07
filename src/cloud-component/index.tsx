@@ -5,11 +5,15 @@ import React, { useEffect, useRef } from 'react';
 import { babelParse, Button, CreateSpin } from '../index';
 import Menus from './menus';
 import Tabs from './tabs';
-import Main, { injectScript, injectStyle } from './main';
+import Main, { injectStyle } from './main';
 import { downloadFile } from 'react-core-form-tools';
 import { message, Upload } from 'antd';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
+import { Interpreter } from 'eval5';
 import './index.less';
+
+const interpreter = new Interpreter(window);
 
 const { open, close } = CreateSpin({
   getContainer: () => {
@@ -39,6 +43,7 @@ export interface CloudComponentProps {
   openDependencies?: boolean;
   /** 外部依赖 */
   initialDependencies?: any;
+  onLog?: Function; // 加载日志
 }
 
 const CloudComponent = ({
@@ -51,6 +56,7 @@ const CloudComponent = ({
   extra = [],
   openDependencies = true,
   initialDependencies = [],
+  onLog = () => {},
 }: CloudComponentProps) => {
   const [component, setComponent]: any = React.useState(initialComponent);
   const [_require, setRequire]: any = React.useState(require);
@@ -61,10 +67,19 @@ const CloudComponent = ({
     for (let i = 0; i < dep.length; i++) {
       const item = dep[i];
       if (item.path) {
-        await injectScript(item.path, item.name);
-        _dep[item.name] = window[item.name];
+        // 拉取脚本
+        const { data } = await axios.get(item.path);
+        // 使用 eval5 加载脚本
+        try {
+          await interpreter.evaluate(data);
+          _dep[item.name] = window[item.name]; // TODO
+          onLog(`${item.path} 资源解析成功..`);
+        } catch (error) {
+          onLog(`${item.path} 资源解析失败..`);
+        }
       }
     }
+    onLog('加载完毕');
     // 更新依赖
     setRequire({
       ...require,
@@ -201,8 +216,11 @@ const CloudComponent = ({
                 item.open && (
                   <Main
                     item={item}
-                    key={item.componentName}
-                    require={require}
+                    key={[
+                      item.componentName,
+                      ...Object.keys(_require),
+                    ].toString()}
+                    require={_require}
                   />
                 )
               );

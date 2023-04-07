@@ -133,7 +133,7 @@ export default ({
                       style={{
                         background: '#333',
                         border: 'none',
-                        width: 'calc(100% + 30px)',
+                        width: 'calc(100% + 28px)',
                         height: 18,
                         outline: '1px solid #1890ff',
                         color: '#fff',

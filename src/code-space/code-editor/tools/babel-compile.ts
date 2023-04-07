@@ -1,3 +1,5 @@
+import { Interpreter } from 'eval5';
+
 /* eslint-disable */
 const antd = require('antd');
 const react = require('react');
@@ -29,7 +31,9 @@ class BabelCompile {
       exports: {},
     };
     try {
-      eval(this.getES5Code(code))(this.require, this.exports);
+      // 采用 eval5 的包
+      const interpreter = new Interpreter(window);
+      interpreter.evaluate(this.getES5Code(code))(this.require, this.exports);
       res.exports = this.exports;
     } catch (error) {
       console.log('catch transform error:', error);

@@ -1,10 +1,12 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import { isEmpty } from '@/util';
+import { Spin } from 'antd';
 import { useState } from 'react';
 import { copyToClipBoard } from 'react-core-form-tools';
 
 export default ({ dependencies, setDependencies }) => {
   const [err, setErr] = useState('');
+  const [spin, setSpin] = useState(false);
   const rule = ({ target }) => {
     const { value } = target;
     if (/\s+/.test(value)) {
@@ -23,8 +25,10 @@ export default ({ dependencies, setDependencies }) => {
   };
   const addDependencies = async (name, item, index) => {
     if (!isEmpty(name)) {
+      setSpin(true);
       // 请求资源确认存在并查询到最新的版本
       const { url, status } = await fetch(`https://unpkg.com/${name}`);
+      setSpin(false);
       if (status === 404) {
         return setErr('资源不存在');
       }
@@ -63,30 +67,34 @@ export default ({ dependencies, setDependencies }) => {
               title={item.path}
             >
               {item.edit ? (
-                <input
-                  onBlur={(e) => {
-                    !err && addDependencies(e.target.value, item, index);
-                  }}
-                  onChange={rule}
-                  onKeyDown={(e: any) => {
-                    if (e.key === 'Enter') {
+                <>
+                  <input
+                    onBlur={(e) => {
                       !err && addDependencies(e.target.value, item, index);
-                    }
-                  }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                  autoFocus
-                  defaultValue={item.componentName}
-                  style={{
-                    background: '#333',
-                    border: 'none',
-                    width: 'calc(100% + 30px)',
-                    height: 18,
-                    outline: '1px solid #1890ff',
-                    color: '#fff',
-                  }}
-                />
+                    }}
+                    onChange={rule}
+                    onKeyDown={(e: any) => {
+                      if (e.key === 'Enter') {
+                        !err && addDependencies(e.target.value, item, index);
+                      }
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                    autoFocus
+                    defaultValue={item.componentName}
+                    style={{
+                      background: '#333',
+                      border: 'none',
+                      width: 'calc(100% + 30px)',
+                      height: 18,
+                      outline: '1px solid #1890ff',
+                      color: '#fff',
+                      marginRight: 10,
+                    }}
+                  />
+                  <Spin spinning={spin} size="small" />
+                </>
               ) : (
                 <>
                   <span>
@@ -101,7 +109,7 @@ export default ({ dependencies, setDependencies }) => {
                       }}
                     >
                       <i
-                        className="iconfont spicon-icon_file"
+                        className="iconfont spicon-copy"
                         style={{ fontSize: 12, color: '#1890ff' }}
                       />
                     </span>
