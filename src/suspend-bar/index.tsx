@@ -5,20 +5,34 @@ import './index.less';
 import { uuid } from 'react-core-form-tools';
 
 const $: any = document.querySelector.bind(document);
-const layerId = 'suspend-bar-0328';
 
 export type SuspendBarProps = {
   children?: React.ReactNode;
-  /** title*/
+  /** 标题 */
   title?: string;
-  /** 是否显示*/
+  /**
+   * 是否默认弹出
+   * @default true
+   */
   show: boolean;
-  /** 顶部距离*/
+  /**
+   * 顶部距离
+   * @default 50%
+   */
   top?: string;
-  /** 挂载方位*/
-  placement?: string;
+  /**
+   * 是否左边打开
+   * @default right
+   */
+  placement?: 'left' | 'right';
+  /** 样式 */
   bodyStyle?: CSSProperties;
+  /** 挂载方位 */
   getContainer?: Function;
+  /**
+   * 是否一直保留
+   * @default false
+   */
   keep?: boolean;
 };
 
