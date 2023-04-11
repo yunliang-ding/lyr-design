@@ -52,7 +52,7 @@ export default defineConfig({
     },
     {
       title: 'Playground',
-      path: 'http://121.4.49.147:9000/react-playground',
+      path: 'http://121.4.49.147:9000/code-playground',
     },
     {
       title: 'GitHub',
