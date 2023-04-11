@@ -118,6 +118,32 @@ export const CodeEditor = memo(
           },
         );
       }
+      // Format With Prettier
+      if (
+        (window as any).prettier &&
+        ['javascript', 'typescript'].includes(language)
+      ) {
+        codeInstance.addAction({
+          id: 'MyPrettierFormat',
+          label: 'Format With Prettier',
+          contextMenuGroupId: 'navigation',
+          contextMenuOrder: 8,
+          run: () => {
+            codeInstance.setValue(
+              (window as any).prettier.format(
+                codeInstance
+                  .getValue()
+                  .replaceAll('\\n', '\n')
+                  .replaceAll('\\', ''),
+                {
+                  parser: 'typescript',
+                  plugins: (window as any).prettierPlugins,
+                },
+              ),
+            );
+          },
+        });
+      }
       // onChange
       codeInstance.onDidChangeModelContent((e) => {
         const code = codeInstance.getValue();
