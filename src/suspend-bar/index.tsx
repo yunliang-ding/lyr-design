@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import './index.less';
@@ -7,7 +7,7 @@ import { uuid } from 'react-core-form-tools';
 const $: any = document.querySelector.bind(document);
 const layerId = 'suspend-bar-0328';
 
-type Props = {
+export type SuspendBarProps = {
   children?: React.ReactNode;
   /** title*/
   title?: string;
@@ -17,15 +17,19 @@ type Props = {
   top?: string;
   /** 挂载方位*/
   placement?: string;
+  bodyStyle?: CSSProperties;
+  getContainer?: Function;
+  keep?: boolean;
 };
 
-const SuspendBar = ({
+const SuspendBarWapper = ({
   children,
   title,
   show = true,
   top,
   placement = 'right',
-}: Props) => {
+  bodyStyle = {},
+}: SuspendBarProps) => {
   const [visible, setVisible] = useState(show);
   return (
     <div
@@ -40,21 +44,28 @@ const SuspendBar = ({
     >
       <div className="suspend-close" onClick={() => setVisible(!visible)} />
       <div className="suspend-title">{title}</div>
-      <div className="suspend-content">{children}</div>
+      <div className="suspend-content" style={bodyStyle}>
+        {children}
+      </div>
     </div>
   );
 };
 
-export default (props) => {
+export default ({
+  keep = false,
+  getContainer = () => $('body'),
+  ...props
+}: SuspendBarProps) => {
+  const layerId = useMemo(() => `suspend-${uuid(6)}`, []);
   useEffect(() => {
-    if ($(`#${layerId}`)) {
-      $(`#${layerId}`).remove();
-    }
     const tag = document.createElement('div');
-    tag.setAttribute('id', `suspend-bar-${uuid(6)}`);
-    const target = $('body');
+    tag.setAttribute('id', layerId);
+    const target = getContainer();
     target.appendChild(tag);
-    ReactDOM.render(<SuspendBar {...props} />, tag);
+    ReactDOM.render(<SuspendBarWapper {...props} />, tag);
+    return () => {
+      !keep && $(`#${layerId}`)?.remove();
+    };
   }, []);
   return null;
 };
