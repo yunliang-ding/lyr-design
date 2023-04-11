@@ -6,4 +6,7 @@ declare interface Window {
   monaco?: any;
   OSS?: any;
   less?: any;
+  prettier?: any;
+  prettierPlugins?: any;
+  define?: any;
 }
