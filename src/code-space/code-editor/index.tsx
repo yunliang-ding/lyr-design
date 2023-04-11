@@ -126,18 +126,22 @@ export const CodeEditor = memo(
           contextMenuGroupId: 'navigation',
           contextMenuOrder: 8,
           run: (editor) => {
-            const code = window.prettier.format(
-              codeInstance
-                .getValue()
-                .replaceAll('\\n', '\n')
-                .replaceAll('\\', ''),
-              {
-                parser: 'typescript',
-                plugins: window.prettierPlugins,
-              },
-            );
-            editor.setValue(code);
-            onChange?.(code);
+            try {
+              const code = window.prettier.format(
+                codeInstance
+                  .getValue()
+                  .replaceAll('\\n', '\n')
+                  .replaceAll('\\', ''),
+                {
+                  parser: 'typescript',
+                  plugins: window.prettierPlugins,
+                },
+              );
+              editor.setValue(code);
+              onChange?.(code);
+            } catch (error) {
+              console.log('Format With Prettier Error', error);
+            }
           },
         });
       }
