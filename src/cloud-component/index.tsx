@@ -189,6 +189,7 @@ const CloudComponent = ({
                                 );
                               })
                             ) {
+                              onAdd(jsonItem);
                               component.push(jsonItem);
                             }
                           });
