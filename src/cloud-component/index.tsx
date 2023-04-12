@@ -44,6 +44,8 @@ export interface CloudComponentProps {
   /** 外部依赖 */
   initialDependencies?: any;
   onLog?: Function; // 加载日志
+  /** 自定义预览 */
+  previewRender?: any;
 }
 
 const CloudComponent = ({
@@ -57,6 +59,7 @@ const CloudComponent = ({
   openDependencies = true,
   initialDependencies = [],
   onLog = () => {},
+  previewRender,
 }: CloudComponentProps) => {
   const [component, setComponent]: any = React.useState(initialComponent);
   const [_require, setRequire]: any = React.useState(require);
@@ -222,6 +225,7 @@ const CloudComponent = ({
                       ...Object.keys(_require),
                     ].toString()}
                     require={_require}
+                    previewRender={previewRender}
                   />
                 )
               );

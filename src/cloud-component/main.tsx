@@ -36,29 +36,31 @@ export const injectScript = async (src: string, name) => {
   });
 };
 
-export default ({ item, require }) => {
+export default ({ item, require, previewRender }) => {
   const previewId = React.useMemo(() => `preview-${uuid(6)}`, []);
   const codeRef1: any = React.useRef({});
   const codeRef2: any = React.useRef({});
   const codeRef3: any = React.useRef({});
   const runApi = async () => {
-    const VDom = babelParse({
-      code: item.react,
-      require,
-    }); // 得到组件
-    injectStyle(item.componentName, item.less); // 添加组件的style
-    const props = codeRef3.current.getJson2Object(); // 注入props
-    try {
-      ReactDOM.render(
-        <VDom {...props} />,
-        document.querySelector(`#${previewId}`),
-      ); // 预览
-    } catch (error) {
-      // 错误信息展示
-      ReactDOM.render(
-        <pre style={{ color: 'red' }}>{error.toString()}</pre>,
-        document.querySelector('.cloud-component-right-body-preview'),
-      );
+    if (typeof previewRender !== 'function') {
+      try {
+        injectStyle(item.componentName, item.less); // 添加组件的style
+        const props = codeRef3.current.getJson2Object(); // 注入props
+        const VDom = babelParse({
+          code: item.react,
+          require,
+        }); // 得到组件
+        ReactDOM.render(
+          <VDom {...props} />,
+          document.querySelector(`#${previewId}`),
+        ); // 预览
+      } catch (error) {
+        // 错误信息展示
+        ReactDOM.render(
+          <pre style={{ color: 'red' }}>{error.toString()}</pre>,
+          document.querySelector(`#${previewId}`),
+        );
+      }
     }
   };
   useEffect(() => {
@@ -83,7 +85,11 @@ export default ({ item, require }) => {
           }}
         />
       </div>
-      <div className="cloud-component-right-body-preview" id={previewId} />
+      {typeof previewRender === 'function' ? (
+        previewRender(item)
+      ) : (
+        <div className="cloud-component-right-body-preview" id={previewId} />
+      )}
       <div className="cloud-component-right-body-less">
         <CodeEditor
           mode="less"

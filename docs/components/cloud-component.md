@@ -38,6 +38,14 @@ export default () => {
       onSave={async (code) => {
         console.log(code);
       }}
+      // previewRender={(item) => {
+      //   return <div style={{ width: '50%', height: '50%'}} >
+      //     <iframe
+      //       style={{ width: '100%', height: '100%', border: 'none' }}
+      //       src={}
+      //     />
+      //   </div>
+      // }}
     />
   );
 };
