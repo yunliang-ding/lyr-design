@@ -10,17 +10,16 @@
   }
   &-left {
     width: 200px;
-    background: #222;
+    background: #232323;
     &-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 26px;
-      background-color: #1e1e1e;
+      height: 40px;
       font-size: 12px;
       color: #ccc;
       padding: 0 12px;
-      padding-right: 0px;
+      padding-right: 4px;
       .iconfont {
         cursor: pointer;
         width: 20px;
@@ -38,7 +37,7 @@
       }
     }
     &-body {
-      height: calc(@code-height - 226px);
+      height: calc(@code-height - 240px);
       overflow: auto;
       overflow-x: hidden;
       &-item,
@@ -46,7 +45,7 @@
         height: 22px;
         display: flex;
         align-items: center;
-        padding: 0 12px;
+        padding: 0 10px;
         font-size: 12px;
         color: #ccc;
         position: relative;
@@ -76,7 +75,7 @@
       flex-direction: column;
       justify-content: center;
       &-content {
-        height: 174px;
+        height: 160px;
         overflow: auto;
         padding-top: 4px;
         &-item {
@@ -88,6 +87,13 @@
           align-items: center;
           justify-content: space-between;
           color: #aaa;
+          span {
+            width: 120px;
+            overflow: hidden;
+            display: inline-block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
           select {
             background: #333;
             border: none;

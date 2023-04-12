@@ -4,27 +4,27 @@ import { Spin } from 'antd';
 import { useState } from 'react';
 import { copyToClipBoard } from 'react-core-form-tools';
 
-export default ({ dependencies, setDependencies }) => {
+export default ({ dependencies, setDependencies, onAddDep }) => {
   const [err, setErr] = useState('');
   const [spin, setSpin] = useState(false);
   const rule = ({ target }) => {
     const { value } = target;
-    if (/\s+/.test(value)) {
-      setErr('文件名称不能包含空格');
-    } else if (/[\u4E00-\u9FA5]/.test(value)) {
-      setErr('文件名称不能有中文');
-    } else if (/^\d+$/.test(value)) {
-      setErr('文件名称不能以数字开头');
+    if (isEmpty(value)) {
+      return setErr('');
+    }
+    if (!/^[A-Za-z0-9-:]+$/.test(value)) {
+      setErr('包名仅能用字母或数字或-符号');
     } else if (
       dependencies.some((dep) => dep.name === value && !isEmpty(value))
     ) {
-      setErr('文件已存在');
+      setErr('已存在');
     } else {
       setErr('');
     }
   };
-  const addDependencies = async (name, item, index) => {
-    if (!isEmpty(name)) {
+  const addDependencies = async (pkgName, item, index) => {
+    if (!isEmpty(pkgName)) {
+      const [name, alise] = pkgName.split(':'); // 分割出来
       setSpin(true);
       // 请求资源确认存在并查询到最新的版本
       const { url, status } = await fetch(`https://unpkg.com/${name}`);
@@ -36,9 +36,17 @@ export default ({ dependencies, setDependencies }) => {
         item.version = keyword.substring(keyword.lastIndexOf('@') + 1);
         return undefined;
       });
+      item.alise = alise || name;
       item.name = name;
       item.path = url;
-      delete item.edit;
+      const data = await onAddDep(item);
+      setSpin(false);
+      if (data?.id) {
+        Object.assign(item, data);
+        delete item.edit;
+      } else {
+        return setErr('添加依赖失败');
+      }
     } else {
       dependencies.splice(index, 1);
     }

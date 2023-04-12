@@ -1,7 +1,7 @@
 /**
  * 自定义扩展业务组件
  */
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { babelParse, Button, CreateSpin } from '../index';
 import Menus from './menus';
 import Tabs from './tabs';
@@ -44,6 +44,8 @@ export interface CloudComponentProps {
   /** 外部依赖 */
   initialDependencies?: any;
   onLog?: Function; // 加载日志
+  /** 新增依赖 */
+  onAddDep?: Function;
   /** 自定义预览 */
   previewRender?: any;
 }
@@ -53,6 +55,7 @@ const CloudComponent = ({
   require = {},
   onSave = async (code) => {},
   onAdd = async (code) => {},
+  onAddDep = async (code) => {},
   onChange = () => {},
   initialComponent = [],
   extra = [],
@@ -61,10 +64,9 @@ const CloudComponent = ({
   onLog = () => {},
   previewRender,
 }: CloudComponentProps) => {
-  const [component, setComponent]: any = React.useState(initialComponent);
-  const [_require, setRequire]: any = React.useState(require);
-  const [dependencies, setDependencies]: any =
-    React.useState(initialDependencies);
+  const [component, setComponent]: any = useState(initialComponent);
+  const [_require, setRequire]: any = useState(require);
+  const [dependencies, setDependencies]: any = useState(initialDependencies);
   const updateDepReq = async (dep) => {
     const _dep = {};
     for (let i = 0; i < dep.length; i++) {
@@ -75,7 +77,7 @@ const CloudComponent = ({
         // 使用 eval5 加载脚本
         try {
           await interpreter.evaluate(data);
-          _dep[item.name] = window[item.name]; // TODO
+          _dep[item.name] = window[item.alise]; // TODO
           onLog(`${item.path} 资源解析成功..`);
         } catch (error) {
           onLog(`${item.path} 资源解析失败..`);
@@ -113,7 +115,7 @@ const CloudComponent = ({
       save();
     }
   };
-  React.useEffect(() => {
+  useEffect(() => {
     // 更新 ref Api
     componentRef.current = {
       openSpin: open,
@@ -138,6 +140,7 @@ const CloudComponent = ({
         open={open}
         dependencies={dependencies}
         setDependencies={setDependencies}
+        onAddDep={onAddDep}
         openDependencies={openDependencies}
       />
       <div className="cloud-component-right">

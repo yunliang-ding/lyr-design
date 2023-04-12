@@ -1,8 +1,8 @@
 import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import './index.less';
 import { uuid } from 'react-core-form-tools';
+import './index.less';
 
 const $: any = document.querySelector.bind(document);
 
