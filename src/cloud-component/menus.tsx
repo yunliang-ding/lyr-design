@@ -1,4 +1,4 @@
-import { Button } from '../index';
+import { Icon } from '../index';
 import { isEmpty } from 'react-core-form-tools';
 import { useState } from 'react';
 import Dependencies from './dependencies';
@@ -80,8 +80,8 @@ export default ({
     <div className="cloud-component-left">
       <div className="cloud-component-left-header">
         <span>组件列表</span>
-        <i
-          className="iconfont spicon-add"
+        <Icon
+          type="add"
           title="新增云组件"
           onClick={() => {
             if (component.some((i) => i.state === 'edit')) {
@@ -108,7 +108,7 @@ export default ({
               }
             >
               <span style={{ marginRight: 4, display: 'flex' }}>
-                <i className="iconfont spicon-React" />
+                <Icon type="react" color="#1890ff" />
               </span>
               <span
                 style={{ position: 'relative' }}

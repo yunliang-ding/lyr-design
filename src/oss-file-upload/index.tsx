@@ -6,7 +6,7 @@ import { downloadFile } from 'react-core-form-tools';
 import { Upload, message, Button, Image, Spin, Progress } from 'antd';
 import { OssFileUploadProps } from './type';
 import { uuid } from '@/util';
-import { createOssInstance } from '..';
+import { createOssInstance, Icon } from '..';
 import './index.less';
 
 export default ({
@@ -107,7 +107,7 @@ export default ({
     listType === 'picture-card' ? (
       <div className="react-core-form-oss-upload-button">
         <Spin spinning={loading}>
-          <i className="iconfont spicon-add" />
+          <Icon type="add" />
           <div style={{ marginTop: 8 }}>{text}</div>
         </Spin>
         {loading && (
@@ -188,7 +188,7 @@ const RenderItemNode = ({
             onRemove(file);
           }}
         >
-          <i className="iconfont spicon-guanbi" />
+          <Icon type="close" />
         </a>
       )}
     </div>
@@ -211,7 +211,7 @@ const RenderItemNode = ({
               onRemove(file);
             }}
           >
-            <i className="iconfont spicon-guanbi" />
+            <Icon type="close" />
           </a>
         )}
       </div>

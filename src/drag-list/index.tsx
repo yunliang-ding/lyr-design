@@ -6,11 +6,10 @@ import {
   arrayMove,
 } from 'react-sortable-hoc';
 import { Space } from 'antd';
+import { Icon } from '..';
 import './index.less';
 
-const DragHandle = SortableHandle(() => (
-  <i className="iconfont spicon-drag2 core-form-drag-list-item-icon" />
-));
+const DragHandle = SortableHandle(() => <Icon type="drag2" />);
 
 const SortContainer = SortableContainer((props: any) => (
   <div className="core-form-drag-list" {...props} />

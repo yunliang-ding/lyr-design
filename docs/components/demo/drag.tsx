@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from 'react-core-form';
 
 const dragContainer: any = {
   position: 'relative',
@@ -53,11 +54,11 @@ export default ({ field, dom, selected = false }) => {
       {selected && (
         <>
           <div style={dragContainerDarg}>
-            <i className="iconfont spicon-drag" />
+            <Icon type="drag" color="#ffffff" />
           </div>
           <div style={dragContainerTools}>
-            <i className="iconfont spicon-delete" />
-            <i className="iconfont spicon-copy" />
+            <Icon type="delete" color="#ffffff" />
+            <Icon type="copy" color="#ffffff" />
           </div>
         </>
       )}

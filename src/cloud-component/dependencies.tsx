@@ -1,4 +1,5 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
+import Icon from '@/icon';
 import { isEmpty } from '@/util';
 import { Spin } from 'antd';
 import { useState } from 'react';
@@ -56,8 +57,8 @@ export default ({ dependencies, setDependencies, onAddDep }) => {
     <>
       <div className="cloud-component-left-header">
         <span>配置外部依赖</span>
-        <i
-          className="iconfont spicon-add"
+        <Icon
+          type="add"
           onClick={() => {
             dependencies.push({
               edit: true,
@@ -105,26 +106,20 @@ export default ({ dependencies, setDependencies, onAddDep }) => {
                 </>
               ) : (
                 <>
-                  <span>
-                    {item.name}
-                    &nbsp;&nbsp;
-                    <span
-                      style={{ cursor: 'pointer' }}
-                      onClick={() => {
-                        copyToClipBoard(
-                          `import ${item.name} from '${item.name}'; \n`,
-                        );
-                      }}
-                    >
-                      <i
-                        className="iconfont spicon-copy"
-                        style={{ fontSize: 12, color: '#1890ff' }}
-                      />
-                    </span>
-                  </span>
+                  <span className="dep-label">{item.name}</span>
                   <select>
                     <option>{item.version}</option>
                   </select>
+                  <Icon
+                    type="copy"
+                    size={12}
+                    color="#1890ff"
+                    onClick={() => {
+                      copyToClipBoard(
+                        `import ${item.name} from '${item.name}'; \n`,
+                      );
+                    }}
+                  />
                 </>
               )}
               {item.edit && (

@@ -1,3 +1,5 @@
+import { Icon } from '..';
+
 export default ({ component, setComponent }) => {
   return (
     <div className="cloud-component-tabs">
@@ -22,7 +24,7 @@ export default ({ component, setComponent }) => {
               }
               key={item.componentName}
             >
-              <i className="iconfont spicon-React" />
+              <Icon type="react" color="#1890ff" />
               {item.componentName}
               <span
                 className="close-icon"
@@ -40,7 +42,7 @@ export default ({ component, setComponent }) => {
                   setComponent([...component]);
                 }}
               >
-                <i className="iconfont spicon-guanbi" />
+                <Icon type="close" />
               </span>
             </div>
           )

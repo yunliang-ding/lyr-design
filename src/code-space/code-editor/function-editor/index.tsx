@@ -2,7 +2,13 @@
 import { CodeEditor, CodeProps } from '../index';
 import { debounce, isEmpty } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
-import { babelParse, babelParseCode, decrypt, encrypt } from '../../../index';
+import {
+  babelParse,
+  babelParseCode,
+  decrypt,
+  encrypt,
+  Icon,
+} from '../../../index';
 import './index.less';
 
 export default ({
@@ -53,12 +59,9 @@ export default ({
     >
       {errorInfo && <div className="function_data_error_info">{errorInfo}</div>}
       <div className="function_data_box_full_screen">
-        <i
-          className={
-            fullScreen
-              ? 'iconfont spicon-fullscreen-exit'
-              : 'iconfont spicon-fullscreen'
-          }
+        <Icon
+          size={20}
+          type={fullScreen ? 'fullScreenExit' : 'fullScreen'}
           onClick={() => {
             setFullScreen(!fullScreen);
           }}
