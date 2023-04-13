@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import classNames from 'classnames';
-import { Form, Button } from '@/index';
+import { Form, Button, Icon } from '@/index';
 import { SearchProps } from './types';
 import { cloneDeep } from '@/util';
 import './index.less';
@@ -63,11 +63,7 @@ export default ({
     return (
       <>
         {more ? '收起' : '展开'}
-        <i
-          className={
-            more ? 'expand iconfont spicon-zhankai' : 'iconfont spicon-zhankai'
-          }
-        />
+        <Icon type={more ? 'expand' : 'expand'} />
       </>
     );
   }, [more]);
