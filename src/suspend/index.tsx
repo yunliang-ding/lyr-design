@@ -6,10 +6,9 @@ import './index.less';
 
 const $: any = document.querySelector.bind(document);
 
-export type SuspendBarProps = {
+export interface SuspendProps {
+  /** 容器内容 */
   content?: React.ReactNode;
-  /** 标题 */
-  title?: string;
   /**
    * 是否默认弹出
    * @default true
@@ -26,12 +25,6 @@ export type SuspendBarProps = {
    */
   placement?: 'left' | 'right';
   /** 样式 */
-  headerStyle?: CSSProperties;
-  /** 样式 */
-  bodyStyle?: CSSProperties;
-  /** 样式 */
-  footerStyle?: CSSProperties;
-  /** 样式 */
   closeStyle?: CSSProperties;
   /** 挂载方位 */
   getContainer?: Function;
@@ -40,26 +33,21 @@ export type SuspendBarProps = {
    * @default false
    */
   keep?: boolean;
-  suspendBarRef?: any;
-  footer?: any;
-};
+  /** 实例引用 */
+  suspendRef?: any;
+}
 
-const SuspendBar: any = ({
+const Suspend: any = ({
   content,
-  title,
   show = true,
   top = '50%',
   placement = 'right',
-  headerStyle = {},
-  bodyStyle = {},
-  footerStyle = {},
   closeStyle = {},
-  suspendBarRef,
-  footer = false,
-}: SuspendBarProps) => {
+  suspendRef,
+}: SuspendProps) => {
   const [visible, setVisible] = useState(show);
   useEffect(() => {
-    suspendBarRef.current.setVisible = setVisible;
+    suspendRef.current.setVisible = setVisible;
   }, []);
   return (
     <div
@@ -77,28 +65,18 @@ const SuspendBar: any = ({
         style={closeStyle}
         onClick={() => setVisible(!visible)}
       />
-      <div className="suspend-header" style={headerStyle}>
-        {title}
-      </div>
-      <div className="suspend-body" style={bodyStyle}>
-        {content}
-      </div>
-      {footer && (
-        <div className="suspend-footer" style={footerStyle}>
-          {footer}
-        </div>
-      )}
+      {content}
     </div>
   );
 };
 
-SuspendBar.create = (config: any = {}) => {
+Suspend.create = (config: any = {}) => {
   const { id, getContainer = () => $('body') } = config;
-  const suspendBarRef: any = useRef({});
+  const suspendRef: any = useRef({});
   const layerId = id || useMemo(() => `suspend-${uuid(6)}`, []);
   return {
     // 打开
-    open: (props: SuspendBarProps) => {
+    open: (props: SuspendProps) => {
       if ($(`#${layerId}`)) {
         $(`#${layerId}`)?.remove();
       }
@@ -106,10 +84,7 @@ SuspendBar.create = (config: any = {}) => {
       tag.setAttribute('id', layerId);
       const target = getContainer();
       target.appendChild(tag);
-      ReactDOM.render(
-        <SuspendBar {...props} suspendBarRef={suspendBarRef} />,
-        tag,
-      );
+      ReactDOM.render(<Suspend {...props} suspendRef={suspendRef} />, tag);
     },
     // 关闭
     close: () => {
@@ -117,13 +92,13 @@ SuspendBar.create = (config: any = {}) => {
     },
     // 展开
     show() {
-      suspendBarRef.current.setVisible(true);
+      suspendRef.current.setVisible(true);
     },
     // 收起
     hide() {
-      suspendBarRef.current.setVisible(false);
+      suspendRef.current.setVisible(false);
     },
   };
 };
 
-export default SuspendBar;
+export default Suspend;

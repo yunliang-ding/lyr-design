@@ -9,7 +9,8 @@
   box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.067);
   transform: translate(100%, -50%);
   transition: all 0.3s;
-
+  min-width: 100px;
+  min-height: 100px;
   &.left {
     left: 0;
     right: unset;
@@ -26,31 +27,6 @@
         transform: translate(-50%, calc(-50% + 4px)) rotate(-45deg);
       }
     }
-  }
-  .suspend-header {
-    white-space: nowrap;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-    font-size: 16px;
-    color: #454d64;
-    &:empty {
-      display: none;
-    }
-  }
-  .suspend-body {
-    padding: 12px;
-    width: 100px;
-  }
-  .suspend-footer {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 12px;
-    padding: 0 12px;
-    height: 64px;
-    border-top: 1px solid #eee;
   }
   .suspend-close {
     background-color: #fff;

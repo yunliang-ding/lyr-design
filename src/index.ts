@@ -32,7 +32,7 @@ export { default as TableList } from './table-list';
 export { default as DragList } from './drag-list';
 export { default as AnchorCard } from './anchor-card';
 export { default as OssFileUpload } from './oss-file-upload';
-export { default as SuspendBar } from './suspend-bar';
+export { default as Suspend } from './suspend';
 export { default as CloudComponent } from './cloud-component';
 /** 代码编辑器相关 */
 export { default as CodeEditor } from './code-space/code-editor';
