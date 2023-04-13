@@ -31,6 +31,8 @@ export type SuspendBarProps = {
   bodyStyle?: CSSProperties;
   /** 样式 */
   footerStyle?: CSSProperties;
+  /** 样式 */
+  closeStyle?: CSSProperties;
   /** 挂载方位 */
   getContainer?: Function;
   /**
@@ -51,6 +53,7 @@ const SuspendBar: any = ({
   headerStyle = {},
   bodyStyle = {},
   footerStyle = {},
+  closeStyle = {},
   suspendBarRef,
   footer = false,
 }: SuspendBarProps) => {
@@ -69,7 +72,11 @@ const SuspendBar: any = ({
       )}
       style={{ top }}
     >
-      <div className="suspend-close" onClick={() => setVisible(!visible)} />
+      <div
+        className="suspend-close"
+        style={closeStyle}
+        onClick={() => setVisible(!visible)}
+      />
       <div className="suspend-header" style={headerStyle}>
         {title}
       </div>
