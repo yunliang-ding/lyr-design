@@ -4,6 +4,10 @@ title: FileExplorer 文件目录
 toc: menu
 ---
 
+```js
+https://yun-static.cdn.bcebos.com/file-icon.css // 文件图标库
+```
+
 ## 基本使用
 
 ```tsx

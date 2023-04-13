@@ -17,6 +17,7 @@ export { default as BlockQuote } from './widgets/extension/block-quote';
 /** 扩展组件 */
 export { default as Grid } from './grid';
 export { default as Button } from './button';
+export { default as Icon } from './icons';
 export { default as Form } from './form';
 export { default as CardForm } from './form-submit/card-form';
 export { default as AnchorCardForm } from './form-submit/anchor-card-form';
