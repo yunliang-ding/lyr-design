@@ -1,5 +1,5 @@
-import { CreateDrawerFormProps } from '../create/drawer';
-import { CreateModalFormProps } from '../create/modal';
+import { CreateDrawerFormProps } from '../create-drawer';
+import { CreateModalFormProps } from '../create-modal';
 import { ButtonProps, PopconfirmProps, TooltipProps } from 'antd';
 import { ReactNode } from 'react';
 

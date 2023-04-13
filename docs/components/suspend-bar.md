@@ -40,9 +40,16 @@ export default () => {
             placement: 'left',
             show: true,
             top: '50%',
+            closeStyle: {
+              top: 120,
+            },
+            headerStyle: {
+              height: 56,
+              borderBottom: '1px solid #eee',
+            },
             bodyStyle: {
               width: 500,
-              height: 'calc(100vh - 88px)',
+              height: 'calc(100vh - 120px)',
               overflow: 'auto',
               gap: 10,
             },
@@ -81,8 +88,4 @@ export default () => {
 
 ## Api
 
-<API src="../../src/suspend-bar/index.tsx" hideTitle></API>
-
-```
-
-```
+<API src="../../src/suspend-bar/type.tsx" hideTitle></API>
