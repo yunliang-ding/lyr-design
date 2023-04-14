@@ -3,8 +3,7 @@ import { useEffect, useState, useMemo, useRef } from 'react';
 import { AsyncOptionsCache, EventEmit } from '@/util';
 import { tranfromSchema } from '@/form/util';
 import Item from '../form/item';
-import { Button } from '../index';
-import { PlusOutlined } from '@ant-design/icons';
+import { Button, Icon } from '../index';
 import AsyncWapper from './async-wapper';
 import {
   SortableContainer,
@@ -20,10 +19,7 @@ const SortableItem = SortableElement((props) => <tr {...props} />);
 const SortableBody = SortableContainer((props) => <tbody {...props} />);
 
 const DragHandle = SortableHandle(() => (
-  <i
-    className="iconfont spicon-drag2"
-    style={{ cursor: 'grab', color: '#999' }}
-  />
+  <Icon type="drag2" color="#999" style={{ cursor: 'grab', top: 2 }} />
 ));
 
 // TODO value 中不能混入index属性，否则和内置的index属性冲突、待优化
@@ -375,7 +371,7 @@ export default ({
       style={creatorButtonProps.style}
       visible={!readOnly}
       disabled={dataSource.length >= maxLength}
-      icon={<PlusOutlined />}
+      icon={<Icon type="add" size={14} style={{ top: 3 }} theme="primary" />}
       className={
         dataSource.length >= maxLength
           ? 'editable-table-footer-btn-disabled'

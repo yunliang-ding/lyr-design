@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Icon } from '..';
 
 export default ({ render, params, asyncOptions }) => {
   const [spin, setSpin] = useState(true);
@@ -11,7 +12,7 @@ export default ({ render, params, asyncOptions }) => {
     init();
   }, []);
   if (spin) {
-    return <i className="iconfont spicon-loading" />;
+    return <Icon type="loading" theme="primary" />;
   }
   return render.apply(null, [...params, options]) || '-';
 };

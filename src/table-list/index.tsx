@@ -4,8 +4,7 @@ import { Table, Form, Space } from 'antd';
 import { useEffect, useMemo, useRef } from 'react';
 import { TableListProps } from './type';
 import { EventEmit } from '@/util';
-import { Button } from '..';
-import { PlusOutlined } from '@ant-design/icons';
+import { Button, Icon } from '..';
 import { tranfromInnerValues, beforeReceiveInnerValues } from './util';
 import './index.less';
 
@@ -141,7 +140,9 @@ export default ({
         <Button
           type="dashed"
           visible={readOnly !== true}
-          icon={<PlusOutlined />}
+          icon={
+            <Icon type="add" size={14} style={{ top: 3 }} theme="primary" />
+          }
           disabled={value.length >= maxCount}
           onClick={() => {
             value.push(

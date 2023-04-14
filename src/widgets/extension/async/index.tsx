@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Spin, Empty } from 'antd';
 import { AsyncOptionsCache } from '@/util';
+import Icon from '@/icon';
 
 export default (Component: any) =>
   ({ emptyDescription, openOptionsCache = true, ...props }: any) => {
@@ -54,7 +55,7 @@ export default (Component: any) =>
         options={options}
       />
     ) : loading ? (
-      <i className="iconfont spicon-loading" />
+      <Icon type="loading" theme="primary" />
     ) : options?.length > 0 ? (
       <Component {...props} options={options} />
     ) : (

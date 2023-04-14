@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Menu, Dropdown, Typography } from 'antd';
-import { Button } from '@/index';
+import { Button, Icon } from '@/index';
 
 export default ({ rowOperations = {}, tableInstance }: any) => {
   if (typeof rowOperations.menus !== 'function') {
@@ -99,9 +99,11 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
                     onClick={(e) => e.preventDefault()}
                   >
                     更多
-                    <i
-                      className="iconfont spicon-zhankai"
-                      style={{ fontSize: 14, marginLeft: 6 }}
+                    <Icon
+                      type="expand"
+                      size={14}
+                      theme="primary"
+                      style={{ marginLeft: 6, top: 2 }}
                     />
                   </a>
                 </Dropdown>

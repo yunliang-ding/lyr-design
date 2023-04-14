@@ -1,6 +1,6 @@
 import FilterColumns from './filter-columns';
 import { Space, Dropdown, Menu, Tooltip } from 'antd';
-import { Button } from '@/index';
+import { Button, Icon } from '@/index';
 
 export default ({
   title = '',
@@ -50,7 +50,7 @@ export default ({
             <Button
               {...btnProps}
               type="default"
-              icon={<i className="iconfont spicon-shuaxin" />}
+              icon={<Icon type="refresh" style={{ top: 3 }} />}
             />
           </Tooltip>
         );
@@ -80,9 +80,10 @@ export default ({
                 {...btnProps}
                 type="default"
                 icon={
-                  <i
-                    className="iconfont spicon-da-xiao"
-                    style={{ fontSize: size === 'small' ? 10 : 14 }}
+                  <Icon
+                    type="size"
+                    size={size === 'small' ? 10 : 14}
+                    style={{ top: 3 }}
                   />
                 }
               />
@@ -132,10 +133,7 @@ export default ({
               style={{ display: 'flex', alignItems: 'center' }}
             >
               {tool.label}
-              <i
-                className="iconfont spicon-zhankai"
-                style={{ fontSize: 12, marginLeft: 4 }}
-              />
+              <Icon type="expand" style={{ top: 2, marginLeft: 4 }} size={14} />
             </Button>
           </Dropdown>
         ) : null;

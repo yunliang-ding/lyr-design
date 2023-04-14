@@ -1,4 +1,3 @@
-import { MenuOutlined } from '@ant-design/icons';
 import type { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
 import {
   SortableContainer,
@@ -6,9 +5,15 @@ import {
   SortableHandle,
   arrayMove,
 } from 'react-sortable-hoc';
+import { Icon } from '..';
 
 export const DragHandle = SortableHandle(() => (
-  <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />
+  <Icon
+    type="drag3"
+    color="#999"
+    size={14}
+    style={{ cursor: 'grab', top: 3 }}
+  />
 ));
 
 export const SortableItem = SortableElement(

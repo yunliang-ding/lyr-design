@@ -2,6 +2,7 @@
 import Cascader from '@/widgets/antd/cascader';
 import { useState, useEffect } from 'react';
 import { AsyncOptionsCache } from '@/util';
+import Icon from '@/icon';
 
 const AsyncCascader = (props: any) => {
   const { initOptions = () => {} } = props;
@@ -55,7 +56,7 @@ const AsyncCascader = (props: any) => {
     }
   });
   return loading ? (
-    <i className="iconfont spicon-loading" />
+    <Icon type="loading" theme="primary" />
   ) : (
     <Cascader {..._props} options={options} loadData={loadData} />
   );

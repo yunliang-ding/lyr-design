@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Icon from '@/icon';
 import { useEffect, useState, useMemo } from 'react';
 
 export default (props: any): any => {
@@ -19,7 +20,7 @@ export default (props: any): any => {
     init();
   }, []);
   const Spin = useMemo(() => {
-    return props.spin ? <i className="iconfont spicon-loading" /> : <div />;
+    return props.spin ? <Icon type="loading" theme="primary" /> : <div />;
   }, []);
   return loading ? Spin : vnode || null;
 };

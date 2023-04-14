@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Spin, Empty } from 'antd';
 import TreeSelect from '@/widgets/antd/tree-select';
 import { AsyncOptionsCache } from '@/util';
+import Icon from '@/icon';
 
 const AsyncTreeSelect = (props: any) => {
   const [options, setOptions] = useState([]);
@@ -36,7 +37,7 @@ const AsyncTreeSelect = (props: any) => {
     };
   }, []);
   return loading ? (
-    <i className="iconfont spicon-loading" />
+    <Icon type="loading" theme="primary" />
   ) : (
     <TreeSelect
       {...props}

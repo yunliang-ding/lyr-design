@@ -114,6 +114,7 @@ export default ({ dependencies, setDependencies, onAddDep }) => {
                     type="copy"
                     size={12}
                     color="#1890ff"
+                    style={{ marginLeft: 6, top: 1 }}
                     onClick={() => {
                       copyToClipBoard(
                         `import ${item.name} from '${item.name}'; \n`,

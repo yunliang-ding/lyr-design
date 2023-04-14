@@ -1,6 +1,6 @@
 import { Checkbox, Menu, Dropdown, Button, Tooltip } from 'antd';
 import { useMemo } from 'react';
-import { DragList } from '@/index';
+import { DragList, Icon } from '@/index';
 
 export default ({
   filterIds = [],
@@ -62,7 +62,7 @@ export default ({
         <Button
           type="default"
           size={size}
-          icon={<i className="iconfont spicon-shezhi" />}
+          icon={<Icon type="setting" style={{ top: 3 }} />}
           onClick={(e) => e.preventDefault()}
         />
       </Tooltip>

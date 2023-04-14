@@ -7,6 +7,7 @@ import { getType, isEmpty, cloneDeep } from '@/util';
 import { Fragment } from 'react';
 import { TableColumnType } from './type.column';
 import moment from 'moment';
+import { Icon } from '..';
 
 export const transformColumns = (
   columns: TableColumnType[],
@@ -34,12 +35,7 @@ export const transformColumns = (
         column.title = (
           <Space>
             {column.title}
-            <Tooltip placement="top" title={column.tip}>
-              <i
-                className="iconfont spicon-yiwen"
-                style={{ color: '#999', fontSize: 15 }}
-              />
-            </Tooltip>
+            <Icon type="question" color="#999" title={column.tip} />
           </Space>
         );
       }
