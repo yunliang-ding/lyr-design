@@ -63,7 +63,12 @@ export default ({
     return (
       <>
         {more ? '收起' : '展开'}
-        <Icon type={more ? 'expand' : 'expand'} />
+        <Icon
+          type="expand"
+          style={{ top: 2, marginLeft: 4 }}
+          size={14}
+          primary
+        />
       </>
     );
   }, [more]);

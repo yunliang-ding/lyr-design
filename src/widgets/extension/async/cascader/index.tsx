@@ -56,7 +56,7 @@ const AsyncCascader = (props: any) => {
     }
   });
   return loading ? (
-    <Icon type="loading" theme="primary" />
+    <Icon type="loading" primary spin />
   ) : (
     <Cascader {..._props} options={options} loadData={loadData} />
   );

@@ -20,7 +20,7 @@ export interface SuspendProps {
    */
   top?: string;
   /**
-   * 是否左边打开
+   * 位置
    * @default right
    */
   placement?: 'left' | 'right';

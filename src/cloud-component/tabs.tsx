@@ -42,7 +42,7 @@ export default ({ component, setComponent }) => {
                   setComponent([...component]);
                 }}
               >
-                <Icon type="close" />
+                <Icon type="close" hover />
               </span>
             </div>
           )

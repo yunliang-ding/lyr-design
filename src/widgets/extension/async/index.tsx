@@ -55,7 +55,7 @@ export default (Component: any) =>
         options={options}
       />
     ) : loading ? (
-      <Icon type="loading" theme="primary" />
+      <Icon type="loading" primary spin />
     ) : options?.length > 0 ? (
       <Component {...props} options={options} />
     ) : (

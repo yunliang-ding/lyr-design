@@ -20,7 +20,7 @@ export default (props: any): any => {
     init();
   }, []);
   const Spin = useMemo(() => {
-    return props.spin ? <Icon type="loading" theme="primary" /> : <div />;
+    return props.spin ? <Icon type="loading" primary spin /> : <div />;
   }, []);
   return loading ? Spin : vnode || null;
 };

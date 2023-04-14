@@ -82,6 +82,7 @@ export default ({
         <span>组件列表</span>
         <Icon
           type="add"
+          hover
           title="新增云组件"
           onClick={() => {
             if (component.some((i) => i.state === 'edit')) {

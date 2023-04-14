@@ -37,7 +37,7 @@ const AsyncTreeSelect = (props: any) => {
     };
   }, []);
   return loading ? (
-    <Icon type="loading" theme="primary" />
+    <Icon type="loading" primary spin />
   ) : (
     <TreeSelect
       {...props}

@@ -12,7 +12,7 @@ export default ({ render, params, asyncOptions }) => {
     init();
   }, []);
   if (spin) {
-    return <Icon type="loading" theme="primary" />;
+    return <Icon type="loading" primary spin />;
   }
   return render.apply(null, [...params, options]) || '-';
 };

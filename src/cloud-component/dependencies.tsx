@@ -59,6 +59,7 @@ export default ({ dependencies, setDependencies, onAddDep }) => {
         <span>配置外部依赖</span>
         <Icon
           type="add"
+          hover
           onClick={() => {
             dependencies.push({
               edit: true,
