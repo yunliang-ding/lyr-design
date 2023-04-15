@@ -18,27 +18,7 @@ import { Space } from 'antd';
 export default () => {
   return (
     <Space>
-      {[
-        'react',
-        'drag',
-        'drag3',
-        'delete',
-        'copy',
-        'add',
-        'fullScreen',
-        'fullScreenExit',
-        'arrow',
-        'loading',
-        'close',
-        'expand',
-        'setting',
-        'more',
-        'run',
-        'drag2',
-        'refresh',
-        'size',
-        'question',
-      ].map((icon) => {
+      {Icon.getIcons().map((icon) => {
         return (
           <Icon
             type={icon}
