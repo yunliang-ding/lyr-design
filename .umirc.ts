@@ -48,9 +48,9 @@ export default defineConfig({
     'https://g.alicdn.com/code/lib/less.js/4.1.3/less.js',
     'https://g.alicdn.com/code/lib/ali-oss/6.13.0/aliyun-oss-sdk.min.js',
     'https://g.alicdn.com/code/lib/babel-standalone/7.21.2/babel.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/prism.min.js',
     'https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js',
     'https://g.alicdn.com/code/lib/prettier/2.0.3/parser-typescript.min.js',
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/prism.min.js',
   ],
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
