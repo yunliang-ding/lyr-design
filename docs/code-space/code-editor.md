@@ -19,6 +19,7 @@ https://g.alicdn.com/code/lib/babel-standalone/7.21.3/babel.min.js // 仅 functi
 https://g.alicdn.com/code/lib/less.js/4.1.3/less.js // 仅 less 模式需要引入
 https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js, // Format With Prettier
 https://g.alicdn.com/code/lib/prettier/2.0.3/parser-typescript.min.js,
+https://react-core-form.oss-cn-beijing.aliyuncs.com/prism.min.js', // vs 自定义主题色
 ```
 
 ## 基本使用
