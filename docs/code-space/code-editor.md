@@ -15,8 +15,8 @@ toc: menu
 ## 依赖 cdn
 
 ```js
-https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js // 仅 function 模式需要引入
-https://cdn.bootcdn.net/ajax/libs/less.js/4.1.3/less.min.js // 仅 less 模式需要引入
+https://g.alicdn.com/code/lib/babel-standalone/7.21.3/babel.min.js // 仅 function 模式需要引入
+https://g.alicdn.com/code/lib/less.js/4.1.3/less.js // 仅 less 模式需要引入
 https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js, // Format With Prettier
 https://g.alicdn.com/code/lib/prettier/2.0.3/parser-typescript.min.js,
 ```

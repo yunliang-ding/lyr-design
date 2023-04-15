@@ -13,7 +13,7 @@ toc: menu
 ## 依赖 cdn
 
 ```js
-https://cdn.bootcdn.net/ajax/libs/ali-oss/6.17.1/aliyun-oss-sdk.min.js
+https://g.alicdn.com/code/lib/ali-oss/6.13.0/aliyun-oss-sdk.min.js
 ```
 
 ## 基本使用

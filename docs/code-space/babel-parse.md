@@ -13,7 +13,7 @@ toc: menu
 ## 依赖 cdn
 
 ```js
-https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js,
+https://g.alicdn.com/code/lib/babel-standalone/7.21.3/babel.min.js,
 ```
 
 ## 基本使用
