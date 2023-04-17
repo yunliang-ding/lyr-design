@@ -8,7 +8,6 @@ import { copyToClipBoard } from 'react-core-form-tools';
 /** 选取指定的版本 */
 const getPkgVersinByName = async (name: string) => {
   try {
-    const tempIframe = document.createElement('iframe');
     const res = await fetch(`https://unpkg.com/${name}/`);
     const srcdoc = await res.text();
     if (srcdoc) {
