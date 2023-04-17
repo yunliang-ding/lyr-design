@@ -2,10 +2,54 @@
 import Icon from '@/icon';
 import { isEmpty } from '@/util';
 import { Spin } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { copyToClipBoard } from 'react-core-form-tools';
 
-export default ({ dependencies, setDependencies, onAddDep }) => {
+/** 选取指定的版本 */
+const getPkgVersinByName = async (name: string) => {
+  try {
+    const tempIframe = document.createElement('iframe');
+    const res = await fetch(`https://unpkg.com/${name}/`);
+    const srcdoc = await res.text();
+    if (srcdoc) {
+      const startIndex = srcdoc.indexOf('window.__DATA__ = {"');
+      const endIndex = srcdoc.indexOf('</script></head>');
+      const jsonObj = srcdoc
+        .substring(startIndex, endIndex)
+        .replace('window.__DATA__ = ', '');
+      return JSON.parse(jsonObj);
+    }
+    return [];
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const PkgOptions = ({ updateDepVersion, pkg }) => {
+  const [spin, setSpin] = useState(true);
+  const [options, setOptions] = useState([]);
+  useEffect(() => {
+    getPkgVersinByName(pkg.name).then((res) => {
+      setOptions(res.availableVersions);
+      setSpin(false);
+    });
+  }, []);
+  return spin ? null : (
+    <select
+      value={pkg.version}
+      style={{ width: 50 }}
+      onChange={async (e) => {
+        await updateDepVersion(e.target.value, pkg);
+      }}
+    >
+      {options.map((i) => {
+        return <option key={i}>{i}</option>;
+      })}
+    </select>
+  );
+};
+
+export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
   const [err, setErr] = useState('');
   const [spin, setSpin] = useState(false);
   const rule = ({ target }) => {
@@ -52,6 +96,14 @@ export default ({ dependencies, setDependencies, onAddDep }) => {
       dependencies.splice(index, 1);
     }
     setDependencies([...dependencies]);
+  };
+  const updateDepVersion = async (version, item) => {
+    if (await onUpdateDep(version)) {
+      const { url } = await fetch(`https://unpkg.com/${item.name}@${version}`);
+      item.version = version;
+      item.path = url;
+      setDependencies([...dependencies]);
+    }
   };
   return (
     <>
@@ -108,9 +160,7 @@ export default ({ dependencies, setDependencies, onAddDep }) => {
               ) : (
                 <>
                   <span className="dep-label">{item.name}</span>
-                  <select>
-                    <option>{item.version}</option>
-                  </select>
+                  <PkgOptions pkg={item} updateDepVersion={updateDepVersion} />
                   <Icon
                     type="copy"
                     size={12}

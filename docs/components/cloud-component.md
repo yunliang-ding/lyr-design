@@ -39,12 +39,25 @@ export default () => {
           path: 'https://unpkg.com/jquery@3.6.4/dist/jquery.js',
         },
       ]}
+      onLog={(msg) => {
+        console.log('加载日志:', msg);
+      }}
       onAdd={async (code) => {
         await new Promise((res) => setTimeout(res, 1000));
         return Math.random();
       }}
       onSave={async (code) => {
         console.log(code);
+      }}
+      onAddDep={async () => {
+        await new Promise((res) => setTimeout(res, 1000));
+        return {
+          id: Math.random(),
+        };
+      }}
+      onUpdateDep={async () => {
+        await new Promise((res) => setTimeout(res, 1000));
+        return true;
       }}
       // previewRender={(item) => {
       //   return <div style={{ width: '50%', height: '50%'}} >

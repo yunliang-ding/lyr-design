@@ -258,14 +258,14 @@ export default ({
               icon: 'codicon codicon-new-file',
               title: '新建文件',
               onClick: () => {
-                createFile(null);
+                createFile();
               },
             },
             {
               icon: 'codicon codicon-new-file',
               title: '新建文件夹',
               onClick: () => {
-                createFile(null, 'directory');
+                createFile(undefined, 'directory');
               },
             },
             {

@@ -28,6 +28,7 @@ export default ({
   setDependencies,
   openDependencies,
   onAddDep,
+  onUpdateDep,
 }) => {
   const [err, setErr] = useState('');
   const rule = ({ target }) => {
@@ -178,6 +179,7 @@ export default ({
             dependencies={dependencies}
             setDependencies={setDependencies}
             onAddDep={onAddDep}
+            onUpdateDep={onUpdateDep}
           />
         )}
       </div>

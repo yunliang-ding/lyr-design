@@ -46,6 +46,8 @@ export interface CloudComponentProps {
   onLog?: Function; // 加载日志
   /** 新增依赖 */
   onAddDep?: Function;
+  /** 更新依赖 */
+  onUpdateDep?: Function;
   /** 自定义预览 */
   previewRender?: any;
 }
@@ -56,6 +58,7 @@ const CloudComponent = ({
   onSave = async (code) => {},
   onAdd = async (code) => {},
   onAddDep = async (code) => {},
+  onUpdateDep = async (version) => {},
   onChange = () => {},
   initialComponent = [],
   extra = [],
@@ -71,13 +74,19 @@ const CloudComponent = ({
     const _dep = {};
     for (let i = 0; i < dep.length; i++) {
       const item = dep[i];
-      if (item.path) {
+      const cache = window[`${item.name}_${item.version}`.replaceAll('.', '_')];
+      if (cache) {
+        _dep[item.name] = cache;
+      } else if (item.path) {
         // 拉取脚本
+        onLog(`${item.name} 资源解析中..`);
         const { data } = await axios.get(item.path);
         // 使用 eval5 加载脚本
         try {
           await interpreter.evaluate(data);
-          _dep[item.name] = window[item.alise]; // TODO
+          _dep[item.name] = window[item.alise];
+          window[`${item.name}_${item.version}`.replaceAll('.', '_')] =
+            window[item.alise]; // 版本标记一下，下次不用加载
           onLog(`${item.path} 资源解析成功..`);
         } catch (error) {
           onLog(`${item.path} 资源解析失败..`);
@@ -142,6 +151,7 @@ const CloudComponent = ({
         setDependencies={setDependencies}
         onAddDep={onAddDep}
         openDependencies={openDependencies}
+        onUpdateDep={onUpdateDep}
       />
       <div className="cloud-component-right">
         {component.filter((i) => i.open).length === 0 ? (
