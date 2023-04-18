@@ -97,7 +97,12 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
     setDependencies([...dependencies]);
   };
   const updateDepVersion = async (version, item) => {
-    if (await onUpdateDep(version)) {
+    if (
+      await onUpdateDep({
+        ...item,
+        version,
+      })
+    ) {
       const { url } = await fetch(`https://unpkg.com/${item.name}@${version}`);
       item.version = version;
       item.path = url;

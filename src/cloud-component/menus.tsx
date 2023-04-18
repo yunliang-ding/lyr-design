@@ -50,7 +50,6 @@ export default ({
   const addComponent = async (componentName: string, item, index) => {
     if (!isEmpty(componentName)) {
       item.componentName = componentName;
-      delete item.state;
       item.react = reactStr.replaceAll('{componentName}', componentName);
       item.less = lessStr.replaceAll('{componentName}', componentName);
       item.props = {
@@ -66,6 +65,10 @@ export default ({
       open();
       try {
         item.id = await onAdd(item); // 获取id
+        if (item.id === undefined) {
+          return setErr('文件保存失败');
+        }
+        delete item.state;
       } catch (error) {
         console.log(error);
       } finally {
