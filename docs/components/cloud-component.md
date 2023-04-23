@@ -46,8 +46,8 @@ export default () => {
         await new Promise((res) => setTimeout(res, 1000));
         return Math.random();
       }}
-      onSave={async (code) => {
-        console.log(code);
+      onSave={async (code, require) => {
+        console.log(code, require);
       }}
       onAddDep={async () => {
         await new Promise((res) => setTimeout(res, 1000));

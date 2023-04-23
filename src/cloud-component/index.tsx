@@ -109,7 +109,10 @@ const CloudComponent = ({
     open();
     try {
       await new Promise((res) => setTimeout(res, 500));
-      await onSave(component.find((i) => i.selected));
+      await onSave(
+        component.find((i) => i.selected),
+        _require,
+      );
     } finally {
       close();
     }
@@ -138,7 +141,7 @@ const CloudComponent = ({
     return () => {
       window.removeEventListener('keydown', keyboardEvent);
     };
-  }, [component]);
+  }, [component, _require]);
   return (
     <div className="cloud-component">
       <Menus
