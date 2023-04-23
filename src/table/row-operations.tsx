@@ -102,7 +102,7 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
                     <Icon
                       type="expand"
                       size={14}
-                      theme="primary"
+                      primary
                       style={{ marginLeft: 6, top: 2 }}
                     />
                   </a>

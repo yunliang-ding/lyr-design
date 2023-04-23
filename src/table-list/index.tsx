@@ -140,9 +140,7 @@ export default ({
         <Button
           type="dashed"
           visible={readOnly !== true}
-          icon={
-            <Icon type="add" size={14} style={{ top: 3 }} theme="primary" />
-          }
+          icon={<Icon type="add" size={14} style={{ top: 3 }} primary />}
           disabled={value.length >= maxCount}
           onClick={() => {
             value.push(

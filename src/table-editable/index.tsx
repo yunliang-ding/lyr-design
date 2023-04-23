@@ -371,7 +371,7 @@ export default ({
       style={creatorButtonProps.style}
       visible={!readOnly}
       disabled={dataSource.length >= maxLength}
-      icon={<Icon type="add" size={14} style={{ top: 3 }} theme="primary" />}
+      icon={<Icon type="add" size={14} style={{ top: 3 }} primary />}
       className={
         dataSource.length >= maxLength
           ? 'editable-table-footer-btn-disabled'
