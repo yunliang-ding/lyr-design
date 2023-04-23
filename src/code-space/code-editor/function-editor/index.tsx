@@ -82,12 +82,12 @@ export default ({
               setErrorInfo('');
               return onChange(undefined);
             }
+            onChange(useEncrypt ? encrypt(codeString) : codeString);
+            valueRef.current = codeString; // 同步文本
             babelParse({
               code: codeString,
               require,
             });
-            onChange(useEncrypt ? encrypt(codeString) : codeString);
-            valueRef.current = codeString; // 同步文本
             setErrorInfo('');
           } catch (error) {
             setErrorInfo(error.toString());
