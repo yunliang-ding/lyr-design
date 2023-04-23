@@ -149,6 +149,32 @@ export default ({
     }
     fristRender.current = false;
   }, [files, selectedKey]);
+  // // 创建模型
+  // useEffect(() => {
+  //   files.forEach((file) =>
+  //     window.monaco.editor.createModel(
+  //       file.path,
+  //       {
+  //         '.less': 'less',
+  //         '.css': 'css',
+  //         '.json': 'json',
+  //         '.md': 'markdown',
+  //         '.js': 'javascript',
+  //         '.jsx': 'javascript',
+  //         '.ts': 'typescript',
+  //         '.tsx': 'typescript',
+  //       }[file.extension] || 'javascript',
+  //       new window.monaco.Uri().with({ path: file.path }),
+  //     ),
+  //   );
+  // }, []);
+  // /** 打开指定的文件模型 */
+  // const openFile = (path) => {
+  //   const model = window.monaco.editor
+  //     .getModels()
+  //     .find((model) => model.uri.path === path);
+  //     window.monaco.setModel(model);
+  // };
   return (
     <div style={style} className={`${prefixCls} show-file-icons ${domKey}`}>
       {files.length > 0 ? (

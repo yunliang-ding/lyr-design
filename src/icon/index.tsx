@@ -23,7 +23,8 @@ export interface IconProps {
     | 'drag2'
     | 'refresh'
     | 'size'
-    | 'question';
+    | 'question'
+    | 'separator';
   /**
    * 大小设置
    * @default 16

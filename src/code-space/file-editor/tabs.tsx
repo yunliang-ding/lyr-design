@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 import { iconMapping } from '../icon-mapping';
 import { FileProps } from '../file-explorer/types';
+import Icon from '@/icon';
 
 const prefix = 'ide-editor-file-editor-header';
 
@@ -89,7 +90,7 @@ export default ({
             return (
               <div className={`${prefix}-breadcrumbs-dir`} key={i}>
                 {i}
-                <i className="codicon codicon-breadcrumb-separator" />
+                <Icon type="separator" color="#aaa" />
               </div>
             );
           })}
