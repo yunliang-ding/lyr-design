@@ -21,9 +21,11 @@ export default () => {
     <CloudComponent
       initialDependencies={[
         {
-          name: 'axios',
+          name: 'uuid',
           type: 'javascript',
-          content: 'console.log(12)',
+          content: `window.uuid = (size) => {
+  return Math.random().toString().substr(2, size);
+}`,
         },
         {
           name: 'style',
@@ -34,6 +36,22 @@ export default () => {
           name: 'tools',
           type: 'react',
           content: 'export default () => {}',
+        },
+      ]}
+      initialComponent={[
+        {
+          componentName: 'Demo',
+          react: `import uuid from 'uuid';
+
+export default () => {
+  return uuid(10)
+}`,
+          less: `.demo{
+  color: #666
+}`,
+          props: {},
+          open: true,
+          selected: true,
         },
       ]}
       onLog={(msg) => {

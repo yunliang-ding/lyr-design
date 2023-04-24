@@ -3,7 +3,7 @@
  */
 import ReactDOM from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
-import { babelParse, Button, CreateSpin } from '../index';
+import { babelParse, babelParseCode, Button, CreateSpin } from '../index';
 import Menus from './menus';
 import Tabs from './tabs';
 import Main, { injectStyle } from './main';
@@ -74,7 +74,11 @@ const CloudComponent = ({
       if (item.content) {
         // 使用 eval5 加载脚本
         try {
-          await interpreter.evaluate(dep.content);
+          await interpreter.evaluate(
+            babelParseCode({
+              code: item.content,
+            }),
+          )();
           _dep[item.name] = window[item.name];
           onLog(`${item.name} 资源解析成功..`);
         } catch (error) {
