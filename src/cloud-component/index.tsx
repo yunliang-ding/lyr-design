@@ -1,6 +1,7 @@
 /**
  * 自定义扩展业务组件
  */
+import ReactDOM from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
 import { babelParse, Button, CreateSpin } from '../index';
 import Menus from './menus';
@@ -8,8 +9,6 @@ import Tabs from './tabs';
 import Main, { injectStyle } from './main';
 import { downloadFile } from 'react-core-form-tools';
 import { message, Upload } from 'antd';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
 import { Interpreter } from 'eval5';
 import './index.less';
 
@@ -40,7 +39,6 @@ export interface CloudComponentProps {
   initialComponent?: any[];
   /** 配置额外操作 */
   extra?: any[];
-  openDependencies?: boolean;
   /** 外部依赖 */
   initialDependencies?: any;
   onLog?: Function; // 加载日志
@@ -62,7 +60,6 @@ const CloudComponent = ({
   onChange = () => {},
   initialComponent = [],
   extra = [],
-  openDependencies = true,
   initialDependencies = [],
   onLog = () => {},
   previewRender,
@@ -74,19 +71,11 @@ const CloudComponent = ({
     const _dep = {};
     for (let i = 0; i < dep.length; i++) {
       const item = dep[i];
-      const cache = window[`${item.name}_${item.version}`.replaceAll('.', '_')];
-      if (cache) {
-        _dep[item.name] = cache;
-      } else if (item.path) {
-        // 拉取脚本
-        onLog(`${item.name} 资源解析中..`);
-        const { data } = await axios.get(item.path);
+      if (item.path) {
         // 使用 eval5 加载脚本
         try {
-          await interpreter.evaluate(data);
-          _dep[item.name] = window[item.alise];
-          window[`${item.name}_${item.version}`.replaceAll('.', '_')] =
-            window[item.alise]; // 版本标记一下，下次不用加载
+          await interpreter.evaluate(dep.content);
+          _dep[item.name] = window[item.name];
           onLog(`${item.path} 资源解析成功..`);
         } catch (error) {
           onLog(`${item.path} 资源解析失败..`);
@@ -153,7 +142,6 @@ const CloudComponent = ({
         dependencies={dependencies}
         setDependencies={setDependencies}
         onAddDep={onAddDep}
-        openDependencies={openDependencies}
         onUpdateDep={onUpdateDep}
       />
       <div className="cloud-component-right">

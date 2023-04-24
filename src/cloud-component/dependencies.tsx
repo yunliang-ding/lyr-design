@@ -1,191 +1,171 @@
-/* eslint-disable @iceworks/best-practices/recommend-polyfill */
-import Icon from '@/icon';
-import { isEmpty } from '@/util';
-import { Spin } from 'antd';
-import { useEffect, useState } from 'react';
-import { copyToClipBoard } from 'react-core-form-tools';
+/** 资源包 */
+import { message } from 'antd';
+import { CreateModal, Icon, SchemaProps } from '..';
 
-/** 选取指定的版本 */
-const getPkgVersinByName = async (name: string) => {
-  try {
-    const res = await fetch(`https://unpkg.com/${name}/`);
-    const srcdoc = await res.text();
-    if (srcdoc) {
-      const startIndex = srcdoc.indexOf('window.__DATA__ = {"');
-      const endIndex = srcdoc.indexOf('</script></head>');
-      const jsonObj = srcdoc
-        .substring(startIndex, endIndex)
-        .replace('window.__DATA__ = ', '');
-      return JSON.parse(jsonObj);
-    }
-    return [];
-  } catch (error) {
-    console.log(error);
-  }
-};
+const schema = [
+  {
+    type: 'Input',
+    name: 'name',
+    label: '资源名称',
+    extra: '如果资源是umd包，请确保资源名称和window挂在的属性一致',
+    required: true,
+    rules: [
+      {
+        pattern: /^[A-Za-z0-9]+$/,
+        message: '资源名称仅能用大小写字母或数字',
+      },
+    ],
+    props: {
+      autoComplete: 'off',
+    },
+  },
+  {
+    type: 'RadioGroup',
+    name: 'type',
+    label: '类型',
+    props: {
+      options: [
+        {
+          label: 'Css',
+          value: 'css',
+        },
+        {
+          label: 'Javascript',
+          value: 'javascript',
+        },
+        {
+          label: 'React',
+          value: 'react',
+        },
+      ],
+    },
+  },
+  {
+    type: 'CodeEditor',
+    name: 'content',
+    label: '脚本内容',
+    required: true,
+    effect: ['type'],
+    onEffect: (e, form) => {
+      console.log(form.getFieldValue('type'));
+      form.setSchemaByName('content', {
+        props: {
+          language: {
+            css: 'css',
+            javascript: 'javascript',
+            react: 'javascript',
+          }[form.getFieldValue('type')],
+        } as any,
+      });
+    },
+    props: {
+      style: {
+        width: '100%',
+        height: 300,
+      },
+      minimapEnabled: false,
+    },
+  },
+] as SchemaProps[];
 
-const PkgOptions = ({ updateDepVersion, pkg }) => {
-  const [spin, setSpin] = useState(true);
-  const [options, setOptions] = useState([]);
-  useEffect(() => {
-    getPkgVersinByName(pkg.name).then((res) => {
-      setOptions(res.availableVersions);
-      setSpin(false);
-    });
-  }, []);
-  return spin ? null : (
-    <select
-      value={pkg.version}
-      style={{ width: 50 }}
-      onChange={async (e) => {
-        await updateDepVersion(e.target.value, pkg);
-      }}
-    >
-      {options.map((i) => {
-        return <option key={i}>{i}</option>;
-      })}
-    </select>
-  );
-};
+const AssetsModal = CreateModal({
+  title: '新增脚本',
+  schema,
+  width: 800,
+  autoComplete: 'off',
+  getPopupContainer: () => {
+    return document.querySelector('.cloud-component-assets');
+  },
+  initialValues: {
+    type: 'javascript',
+  },
+  modalProps: {
+    bodyStyle: {
+      background: '#1e1e1e',
+      paddingBottom: 0,
+      paddingTop: 16,
+    },
+  },
+});
 
 export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
-  const [err, setErr] = useState('');
-  const [spin, setSpin] = useState(false);
-  const rule = ({ target }) => {
-    const { value } = target;
-    if (isEmpty(value)) {
-      return setErr('');
-    }
-    if (!/^[A-Za-z0-9-:]+$/.test(value)) {
-      setErr('包名仅能用字母或数字或-符号');
-    } else if (
-      dependencies.some((dep) => dep.name === value && !isEmpty(value))
-    ) {
-      setErr('已存在');
-    } else {
-      setErr('');
-    }
-  };
-  const addDependencies = async (pkgName, item, index) => {
-    if (!isEmpty(pkgName)) {
-      const [name, alise] = pkgName.split(':'); // 分割出来
-      setSpin(true);
-      // 请求资源确认存在并查询到最新的版本
-      const { url, status } = await fetch(`https://unpkg.com/${name}`);
-      setSpin(false);
-      if (status === 404) {
-        return setErr('资源不存在');
-      }
-      url.replace(new RegExp(`${name}@[0-9+.]+`, 'g'), (keyword) => {
-        item.version = keyword.substring(keyword.lastIndexOf('@') + 1);
-        return undefined;
-      });
-      item.alise = alise || name;
-      item.name = name;
-      item.path = url;
-      const data = await onAddDep(item);
-      setSpin(false);
-      if (data?.id) {
-        Object.assign(item, data);
-        delete item.edit;
-      } else {
-        return setErr('添加依赖失败');
-      }
-    } else {
-      dependencies.splice(index, 1);
-    }
-    setDependencies([...dependencies]);
-  };
-  const updateDepVersion = async (version, item) => {
-    const { url } = await fetch(`https://unpkg.com/${item.name}@${version}`);
-    item.version = version;
-    item.path = url;
-    if (
-      await onUpdateDep({
-        ...item,
-        version,
-      })
-    ) {
-      setDependencies([...dependencies]);
-    }
-  };
   return (
     <>
       <div className="cloud-component-left-header">
-        <span>配置外部依赖</span>
+        <span>配置依赖脚本</span>
         <Icon
           type="add"
           hover
           onClick={() => {
-            dependencies.push({
-              edit: true,
+            AssetsModal.open({
+              onSubmit: async (values) => {
+                const res = await onAddDep(values);
+                if (res?.id) {
+                  dependencies.push({
+                    ...res,
+                    ...values,
+                  });
+                  setDependencies([...dependencies]);
+                } else {
+                  message.error('新增脚本失败');
+                  return Promise.reject();
+                }
+              },
             });
-            setDependencies([...dependencies]);
           }}
         />
       </div>
-      <div className="cloud-component-left-footer-content">
-        {dependencies.map((item: any, index) => {
-          return (
-            <div
-              className="cloud-component-left-footer-content-item"
-              key={item.name}
-              title={item.path}
-            >
-              {item.edit ? (
-                <>
-                  <input
-                    onBlur={(e) => {
-                      !err && addDependencies(e.target.value, item, index);
-                    }}
-                    onChange={rule}
-                    onKeyDown={(e: any) => {
-                      if (e.key === 'Enter') {
-                        !err && addDependencies(e.target.value, item, index);
+      <div className="cloud-component-assets">
+        <div className="cloud-component-assets-files">
+          {dependencies.map((item) => {
+            return (
+              <div
+                key={item.name}
+                className="cloud-component-assets-files-file"
+                onClick={() => {
+                  AssetsModal.open({
+                    title: `更新脚本《${item.name}》`,
+                    initialValues: {
+                      ...item,
+                    },
+                    onSubmit: async (values) => {
+                      const res = await onUpdateDep({
+                        ...item,
+                        ...values,
+                      });
+                      if (res) {
+                        Object.assign(item, values);
+                        setDependencies([...dependencies]);
+                      } else {
+                        message.error('更新脚本失败');
+                        return Promise.reject();
                       }
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                    autoFocus
-                    defaultValue={item.componentName}
-                    style={{
-                      background: '#333',
-                      border: 'none',
-                      width: 'calc(100% + 30px)',
-                      height: 18,
-                      outline: '1px solid #1890ff',
-                      color: '#fff',
-                      marginRight: 10,
-                    }}
-                  />
-                  <Spin spinning={spin} size="small" />
-                </>
-              ) : (
-                <>
-                  <span className="dep-label">{item.name}</span>
-                  <PkgOptions pkg={item} updateDepVersion={updateDepVersion} />
-                  <Icon
-                    type="copy"
-                    size={12}
-                    color="#1890ff"
-                    style={{ marginLeft: 6, top: 1 }}
-                    onClick={() => {
-                      copyToClipBoard(
-                        `import ${item.name} from '${item.name}'; \n`,
-                      );
-                    }}
-                  />
-                </>
-              )}
-              {item.edit && (
-                <div className="cloud-component-left-body-input-error">
-                  {err}
-                </div>
-              )}
-            </div>
-          );
-        })}
+                    },
+                  });
+                }}
+              >
+                <Icon
+                  size={14}
+                  type={
+                    {
+                      css: 'file-css',
+                      javascript: 'file-javascript',
+                      react: 'react',
+                    }[item.type] as any
+                  }
+                  color={
+                    {
+                      css: '#1296db',
+                      javascript: '#f4ea2a',
+                      react: '#1890ff',
+                    }[item.type] as any
+                  }
+                />
+                <span style={{ color: '#ddd' }}>{item.name}</span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );

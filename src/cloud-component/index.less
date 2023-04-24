@@ -51,41 +51,6 @@
         padding: 0 4px;
       }
     }
-    &-footer {
-      height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      &-content {
-        height: 160px;
-        overflow: auto;
-        padding-top: 4px;
-        &-item {
-          position: relative;
-          font-size: 12px;
-          padding: 0px 12px;
-          height: 22px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          color: #aaa;
-          .dep-label {
-            width: 120px;
-            overflow: hidden;
-            display: inline-block;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-          }
-          select {
-            background: #333;
-            border: none;
-            border-radius: 4px;
-            outline: none;
-            font-size: 12px;
-          }
-        }
-      }
-    }
   }
   &-right {
     width: calc(100% - 200px);
@@ -169,6 +134,57 @@
       background-color: #1e1e1e;
       .close-icon {
         visibility: visible;
+      }
+    }
+  }
+  &-assets {
+    overflow: auto;
+    height: 160px;
+    .ant-input-show-count-suffix,
+    .ant-modal-title,
+    .ant-form-item-label label,
+    .anticon-close,
+    .anticon-close-circle {
+      color: #ccc !important;
+    }
+    .ant-form-item-extra {
+      color: #666;
+    }
+    .ant-btn-default {
+      background: #1e1e1e;
+      color: #fff;
+      border-color: #333;
+    }
+    .ant-modal-header,
+    .ant-modal-footer {
+      background-color: #1e1e1e;
+      border-radius: 0;
+      border-width: 0;
+      color: #ccc;
+    }
+    .ant-input-affix-wrapper {
+      background: #222 !important;
+      border: none !important;
+      outline: none;
+      color: #ddd !important;
+      .ant-input {
+        background-color: #222 !important;
+        color: #ddd !important;
+      }
+    }
+    &-files {
+      &-file {
+        height: 22px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          background: #2b3740;
+          transition: 0.3s;
+        }
       }
     }
   }

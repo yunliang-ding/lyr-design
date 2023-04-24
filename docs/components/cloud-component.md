@@ -21,22 +21,19 @@ export default () => {
     <CloudComponent
       initialDependencies={[
         {
-          name: 'html2canvas',
-          alise: 'html2canvas',
-          version: '1.4.1',
-          path: 'https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.js',
-        },
-        {
           name: 'axios',
-          alise: 'html2canvas',
-          version: '1.3.5',
-          path: 'https://unpkg.com/axios@1.3.5/dist/axios.min.js',
+          type: 'javascript',
+          content: 'console.log(12)',
         },
         {
-          name: 'jquery',
-          alise: 'jQuery',
-          version: '3.6.4',
-          path: 'https://unpkg.com/jquery@3.6.4/dist/jquery.js',
+          name: 'style',
+          type: 'css',
+          content: '.app{}',
+        },
+        {
+          name: 'tools',
+          type: 'react',
+          content: 'export default () => {}',
         },
       ]}
       onLog={(msg) => {

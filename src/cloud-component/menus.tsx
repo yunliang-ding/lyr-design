@@ -26,7 +26,6 @@ export default ({
   open,
   dependencies,
   setDependencies,
-  openDependencies,
   onAddDep,
   onUpdateDep,
 }) => {
@@ -177,14 +176,12 @@ export default ({
         })}
       </div>
       <div className="cloud-component-left-footer">
-        {openDependencies && (
-          <Dependencies
-            dependencies={dependencies}
-            setDependencies={setDependencies}
-            onAddDep={onAddDep}
-            onUpdateDep={onUpdateDep}
-          />
-        )}
+        <Dependencies
+          dependencies={dependencies}
+          setDependencies={setDependencies}
+          onAddDep={onAddDep}
+          onUpdateDep={onUpdateDep}
+        />
       </div>
     </div>
   );
