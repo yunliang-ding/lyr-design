@@ -8,7 +8,7 @@ const schema = [
     type: 'Input',
     name: 'name',
     label: '资源名称',
-    extra: '如果资源是umd包，请确保资源名称和window挂在的属性一致',
+    extra: '如果资源是umd包，请确保资源名称和window挂载的属性一致',
     required: true,
     rules: [
       {
@@ -18,6 +18,7 @@ const schema = [
     ],
     props: {
       autoComplete: 'off',
+      autoFocus: true,
     },
   },
   {
@@ -86,6 +87,9 @@ const initModel = {
 export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
   const [form] = Form.useForm();
   const [model, setModel]: any = useState(initModel);
+  const onClose = () => {
+    setModel(initModel);
+  };
   return (
     <>
       <div className="cloud-component-left-header">
@@ -133,6 +137,7 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
                       if (res) {
                         Object.assign(item, values);
                         setDependencies([...dependencies]);
+                        onClose();
                       } else {
                         message.error('更新脚本失败');
                         return Promise.reject();
@@ -164,12 +169,7 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
           })}
         </div>
         {model.visible && (
-          <div
-            className="cloud-component-assets-mask"
-            onClick={() => {
-              setModel(initModel);
-            }}
-          />
+          <div className="cloud-component-assets-mask" onClick={onClose} />
         )}
         <div
           className="cloud-component-assets-form"
@@ -185,6 +185,7 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
                     ...values,
                   });
                   setDependencies([...dependencies]);
+                  onClose();
                 } else {
                   message.error('新增脚本失败');
                   return Promise.reject();
@@ -194,9 +195,7 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
               form,
               schema,
               cancelText: '关闭',
-              onClear: () => {
-                setModel(initModel);
-              },
+              onClear: onClose,
             }}
           />
         </div>

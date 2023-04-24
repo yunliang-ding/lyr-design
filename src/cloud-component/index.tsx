@@ -71,7 +71,7 @@ const CloudComponent = ({
     const _dep = {};
     for (let i = 0; i < dep.length; i++) {
       const item = dep[i];
-      if (item.content) {
+      if (item.content && item.type === 'javascript') {
         // 使用 eval5 加载脚本
         try {
           await interpreter.evaluate(
