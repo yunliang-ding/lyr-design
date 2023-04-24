@@ -45,7 +45,7 @@ const schema = [
   {
     type: 'CodeEditor',
     name: 'content',
-    label: '脚本内容',
+    label: '脚本内容 (上限30kb)',
     required: true,
     effect: ['type'],
     onEffect: (e, form) => {
@@ -89,6 +89,11 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
   const [model, setModel]: any = useState(initModel);
   const onClose = () => {
     setModel(initModel);
+    form.setFieldsValue({
+      name: undefined,
+      content: undefined,
+      type: 'javascript',
+    });
   };
   return (
     <>
