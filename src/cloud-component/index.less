@@ -140,6 +140,36 @@
   &-assets {
     overflow: auto;
     height: 160px;
+    &-mask {
+      width: 100vw;
+      height: 100vh;
+      background: #18181861;
+      left: 0;
+      top: 0;
+      position: fixed;
+      z-index: 999;
+    }
+    &-form {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      z-index: 9999;
+      width: 60%;
+      box-shadow: 0px 5px 4px 4px rgb(24 24 24);
+      .ant-card-bordered {
+        border: none;
+        background-color: #1e1e1e;
+        .ant-card-head {
+          background: #1e1e1e;
+          color: #fff;
+        }
+        .ant-card-actions {
+          background: #1e1e1e;
+          border-top: 0;
+        }
+      }
+    }
     .ant-input-show-count-suffix,
     .ant-modal-title,
     .ant-form-item-label label,
@@ -154,13 +184,6 @@
       background: #1e1e1e;
       color: #fff;
       border-color: #333;
-    }
-    .ant-modal-header,
-    .ant-modal-footer {
-      background-color: #1e1e1e;
-      border-radius: 0;
-      border-width: 0;
-      color: #ccc;
     }
     .ant-input-affix-wrapper {
       background: #222 !important;

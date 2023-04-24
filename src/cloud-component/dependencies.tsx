@@ -1,6 +1,7 @@
 /** 资源包 */
 import { message } from 'antd';
-import { CreateModal, Icon, SchemaProps } from '..';
+import { useState } from 'react';
+import { CardForm, Form, Icon, SchemaProps } from '..';
 
 const schema = [
   {
@@ -47,7 +48,6 @@ const schema = [
     required: true,
     effect: ['type'],
     onEffect: (e, form) => {
-      console.log(form.getFieldValue('type'));
       form.setSchemaByName('content', {
         props: {
           language: {
@@ -68,27 +68,24 @@ const schema = [
   },
 ] as SchemaProps[];
 
-const AssetsModal = CreateModal({
+const initModel = {
+  visible: false,
   title: '新增脚本',
-  schema,
-  width: 800,
-  autoComplete: 'off',
-  getPopupContainer: () => {
-    return document.querySelector('.cloud-component-assets');
-  },
-  initialValues: {
-    type: 'javascript',
-  },
-  modalProps: {
+  cardProps: {
     bodyStyle: {
       background: '#1e1e1e',
       paddingBottom: 0,
       paddingTop: 16,
     },
   },
-});
+  initialValues: {
+    type: 'javascript',
+  },
+};
 
 export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
+  const [form] = Form.useForm();
+  const [model, setModel]: any = useState(initModel);
   return (
     <>
       <div className="cloud-component-left-header">
@@ -97,20 +94,9 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
           type="add"
           hover
           onClick={() => {
-            AssetsModal.open({
-              onSubmit: async (values) => {
-                const res = await onAddDep(values);
-                if (res?.id) {
-                  dependencies.push({
-                    ...res,
-                    ...values,
-                  });
-                  setDependencies([...dependencies]);
-                } else {
-                  message.error('新增脚本失败');
-                  return Promise.reject();
-                }
-              },
+            setModel({
+              ...model,
+              visible: true,
             });
           }}
         />
@@ -123,11 +109,22 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
                 key={item.name}
                 className="cloud-component-assets-files-file"
                 onClick={() => {
-                  AssetsModal.open({
+                  form.setFieldsValue({
+                    ...item,
+                  });
+                  form.setSchemaByName('content', {
+                    props: {
+                      language: {
+                        css: 'css',
+                        javascript: 'javascript',
+                        react: 'javascript',
+                      }[item.type],
+                    } as any,
+                  });
+                  setModel({
+                    ...model,
+                    visible: true,
                     title: `更新脚本《${item.name}》`,
-                    initialValues: {
-                      ...item,
-                    },
                     onSubmit: async (values) => {
                       const res = await onUpdateDep({
                         ...item,
@@ -165,6 +162,43 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
               </div>
             );
           })}
+        </div>
+        {model.visible && (
+          <div
+            className="cloud-component-assets-mask"
+            onClick={() => {
+              setModel(initModel);
+            }}
+          />
+        )}
+        <div
+          className="cloud-component-assets-form"
+          style={{ display: model.visible ? 'flex' : 'none' }}
+        >
+          <CardForm
+            {...{
+              onSubmit: async (values) => {
+                const res = await onAddDep(values);
+                if (res?.id) {
+                  dependencies.push({
+                    ...res,
+                    ...values,
+                  });
+                  setDependencies([...dependencies]);
+                } else {
+                  message.error('新增脚本失败');
+                  return Promise.reject();
+                }
+              },
+              ...model,
+              form,
+              schema,
+              cancelText: '关闭',
+              onClear: () => {
+                setModel(initModel);
+              },
+            }}
+          />
         </div>
       </div>
     </>
