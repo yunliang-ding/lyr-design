@@ -71,14 +71,14 @@ const CloudComponent = ({
     const _dep = {};
     for (let i = 0; i < dep.length; i++) {
       const item = dep[i];
-      if (item.path) {
+      if (item.content) {
         // 使用 eval5 加载脚本
         try {
           await interpreter.evaluate(dep.content);
           _dep[item.name] = window[item.name];
-          onLog(`${item.path} 资源解析成功..`);
+          onLog(`${item.name} 资源解析成功..`);
         } catch (error) {
-          onLog(`${item.path} 资源解析失败..`);
+          onLog(`${item.name} 资源解析失败..`);
         }
       }
     }
