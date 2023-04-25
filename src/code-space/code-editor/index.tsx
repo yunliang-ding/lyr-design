@@ -73,6 +73,7 @@ export interface CodeProps {
    * @default https://g.alicdn.com/code/lib/monaco-editor/0.36.0/min/vs
    */
   cdnPath?: string;
+  /** 加载完毕钩子 */
   onLoad?: Function;
 }
 /**

@@ -1,5 +1,4 @@
 /** 资源包 */
-import { message } from 'antd';
 import { useState } from 'react';
 import { CardForm, Form, Icon, SchemaProps } from '..';
 
@@ -144,7 +143,6 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
                         setDependencies([...dependencies]);
                         onClose();
                       } else {
-                        message.error('更新脚本失败');
                         return Promise.reject();
                       }
                     },
@@ -192,7 +190,6 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
                   setDependencies([...dependencies]);
                   onClose();
                 } else {
-                  message.error('新增脚本失败');
                   return Promise.reject();
                 }
               },
