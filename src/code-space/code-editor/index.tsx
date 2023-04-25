@@ -73,6 +73,7 @@ export interface CodeProps {
    * @default https://g.alicdn.com/code/lib/monaco-editor/0.36.0/min/vs
    */
   cdnPath?: string;
+  onLoad?: Function;
 }
 /**
  * 编辑器
@@ -89,6 +90,7 @@ export const CodeEditor = memo(
     codeRef = useRef<any>({}),
     minimapEnabled = true,
     cdnPath = 'https://g.alicdn.com/code/lib/monaco-editor/0.36.1/min/vs', // '/monaco/min/vs',
+    onLoad = () => {},
     ...rest
   }: CodeProps) => {
     const oldDecorationsRef = useRef({});
@@ -189,6 +191,7 @@ export const CodeEditor = memo(
       codeRef.current.getMonacoInstance = async () => {
         return monacoInstance;
       };
+      onLoad(codeRef.current); // 吐出 editor
     }, []);
     // 更新值
     useEffect(() => {

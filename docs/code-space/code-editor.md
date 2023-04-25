@@ -187,6 +187,9 @@ export default () => {
             style: { height: 400 },
             language: 'html',
             theme: 'vs-dark',
+            onLoad: async ({ getMonacoInstance }) => {
+              console.log('getMonacoInstance', await getMonacoInstance());
+            },
           },
         },
       ]}
