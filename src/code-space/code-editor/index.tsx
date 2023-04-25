@@ -187,11 +187,12 @@ export const CodeEditor = memo(
       monacoInstance.then((res) => {
         window[id] = res;
       });
-      // 挂到ref
+      // 挂到 ref
       codeRef.current.getMonacoInstance = async () => {
         return monacoInstance;
       };
-      onLoad(codeRef.current); // 吐出 editor
+      // 吐出 ref
+      onLoad(codeRef.current);
     }, []);
     // 更新值
     useEffect(() => {
