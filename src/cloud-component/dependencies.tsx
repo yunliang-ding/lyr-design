@@ -27,8 +27,8 @@ const schema = [
     props: {
       options: [
         {
-          label: 'Css',
-          value: 'css',
+          label: 'Less',
+          value: 'less',
         },
         {
           label: 'Javascript',
@@ -51,7 +51,7 @@ const schema = [
       form.setSchemaByName('content', {
         props: {
           language: {
-            css: 'css',
+            less: 'less',
             javascript: 'javascript',
             react: 'javascript',
           }[form.getFieldValue('type')],
@@ -123,7 +123,7 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
                   form.setSchemaByName('content', {
                     props: {
                       language: {
-                        css: 'css',
+                        less: 'less',
                         javascript: 'javascript',
                         react: 'javascript',
                       }[item.type],
@@ -153,14 +153,14 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
                   size={14}
                   type={
                     {
-                      css: 'file-css',
+                      less: 'file-css',
                       javascript: 'file-javascript',
                       react: 'react',
                     }[item.type] as any
                   }
                   color={
                     {
-                      css: '#1296db',
+                      less: '#1296db',
                       javascript: '#f4ea2a',
                       react: '#1890ff',
                     }[item.type] as any

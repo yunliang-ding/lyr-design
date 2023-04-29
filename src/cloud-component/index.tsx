@@ -71,17 +71,30 @@ const CloudComponent = ({
     const _dep = {};
     for (let i = 0; i < dep.length; i++) {
       const item = dep[i];
-      if (item.content && item.type === 'javascript') {
+      if (item.content) {
         // 使用 eval5 加载脚本
         try {
-          await interpreter.evaluate(
-            babelParseCode({
+          if (item.type === 'javascript') {
+            onLog(`加载资源: ${item.name}`);
+            await interpreter.evaluate(
+              babelParseCode({
+                code: item.content,
+              }),
+            )();
+            _dep[item.name] = window[item.name];
+          } else if (item.type === 'react') {
+            _dep[item.name] = babelParse({
               code: item.content,
-            }),
-          )();
-          _dep[item.name] = window[item.name];
+            });
+          } else if (item.type === 'less' && window.less) {
+            const { css } = await window.less.render?.(item.content); // 要添加的 CSS 字符串
+            const sheet = new CSSStyleSheet(); // 创建一个 CSSStyleSheet 对象
+            sheet.insertRule(css, 0); // 将 CSS 规则插入到 CSS 样式表中，位置为第一个
+            document.adoptedStyleSheets = [sheet];
+          }
           onLog(`${item.name} 资源解析成功..`);
         } catch (error) {
+          console.log(error);
           onLog(`${item.name} 资源解析失败..`);
         }
       }

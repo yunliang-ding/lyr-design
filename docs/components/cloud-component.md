@@ -29,22 +29,31 @@ export default () => {
         },
         {
           name: 'style',
-          type: 'css',
-          content: '.app{}',
+          type: 'less',
+          content: `body{
+  div{
+    font-size: 12px;
+  }
+}`,
         },
         {
           name: 'tools',
           type: 'react',
-          content: 'export default () => {}',
+          content: `export default {
+  sum: (a, b) => {
+    return a + b
+  }
+}`,
         },
       ]}
       initialComponent={[
         {
           componentName: 'Demo',
           react: `import uuid from 'uuid';
+import tools from 'tools';
 
 export default () => {
-  return uuid(10)
+  return [uuid(10), tools.sum(11, 22)].join(',')
 }`,
           less: `.demo{
   color: #666
