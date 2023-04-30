@@ -32,7 +32,7 @@ export default () => {
           type: 'less',
           content: `body{
   div{
-    font-size: 12px;
+    box-sizing: border-box;
   }
 }`,
         },

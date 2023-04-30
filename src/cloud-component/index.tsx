@@ -74,8 +74,8 @@ const CloudComponent = ({
       if (item.content) {
         // 使用 eval5 加载脚本
         try {
+          onLog(`加载资源: ${item.name}`);
           if (item.type === 'javascript') {
-            onLog(`加载资源: ${item.name}`);
             await interpreter.evaluate(
               babelParseCode({
                 code: item.content,
