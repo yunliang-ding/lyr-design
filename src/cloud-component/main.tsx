@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { babelParse, CodeEditor } from '../index';
 import { uuid } from 'react-core-form-tools';
@@ -37,6 +37,11 @@ export const injectScript = async (src: string, name) => {
 };
 
 export default ({ item, require, previewRender }) => {
+  // 处理在原生事件中获取不到 state 问题
+  const requireRef = useRef(require);
+  useEffect(() => {
+    requireRef.current = require;
+  }, [require]);
   const previewId = React.useMemo(() => `preview-${uuid(6)}`, []);
   const codeRef1: any = React.useRef({});
   const codeRef2: any = React.useRef({});
@@ -48,7 +53,7 @@ export default ({ item, require, previewRender }) => {
         const props = codeRef3.current.getJson2Object(); // 注入props
         const VDom = babelParse({
           code: item.react,
-          require,
+          require: requireRef.current,
         }); // 得到组件
         ReactDOM.render(
           <VDom {...props} />,
