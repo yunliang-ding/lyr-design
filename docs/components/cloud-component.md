@@ -61,7 +61,6 @@ export default () => {
           props: {},
           open: true,
           selected: true,
-          selectedTab: 'index.js',
         },
       ]}
       onLog={(msg) => {

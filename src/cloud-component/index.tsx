@@ -64,9 +64,10 @@ const CloudComponent = ({
   onLog = () => {},
   previewRender,
 }: CloudComponentProps) => {
+  const [selectedTab, setSelectedTab]: any = useState('index.js'); // 默认选中index.js
   const [component, setComponent]: any = useState(initialComponent);
-  const [_require, setRequire]: any = useState(require);
   const [dependencies, setDependencies]: any = useState(initialDependencies);
+  const [_require, setRequire]: any = useState(require);
   const updateDepReq = async (dep) => {
     const _dep = {};
     for (let i = 0; i < dep.length; i++) {
@@ -171,7 +172,12 @@ const CloudComponent = ({
         ) : (
           <>
             <div className="cloud-component-right-header">
-              <Tabs component={component} setComponent={setComponent} />
+              <Tabs
+                component={component}
+                setComponent={setComponent}
+                selectedTab={selectedTab}
+                setSelectedTab={setSelectedTab}
+              />
               <div style={{ display: 'flex', gap: 10 }}>
                 <Button
                   spin
@@ -241,6 +247,7 @@ const CloudComponent = ({
                 item.open && (
                   <Main
                     item={item}
+                    selectedTab={selectedTab}
                     key={[
                       item.componentName,
                       ...Object.keys(_require),

@@ -1,6 +1,6 @@
 import { Icon } from '..';
 
-export default ({ component, setComponent }) => {
+export default ({ component, setComponent, selectedTab, setSelectedTab }) => {
   return (
     <div className="cloud-component-tabs">
       {component.map((item) => {
@@ -26,18 +26,10 @@ export default ({ component, setComponent }) => {
             return (
               <div
                 onClick={() => {
-                  setComponent(
-                    component.map((comp) => {
-                      return {
-                        ...comp,
-                        selected: comp.componentName === item.componentName,
-                        selectedTab: file.name,
-                      };
-                    }),
-                  );
+                  setSelectedTab(file.name);
                 }}
                 className={
-                  item.selectedTab === file.name
+                  selectedTab === file.name
                     ? 'cloud-component-tabs-item-selected'
                     : 'cloud-component-tabs-item'
                 }

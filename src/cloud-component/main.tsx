@@ -36,7 +36,7 @@ export const injectScript = async (src: string, name) => {
   });
 };
 
-export default ({ item, require, previewRender }) => {
+export default ({ selectedTab, item, require, previewRender }) => {
   // 处理在原生事件中获取不到 state 问题
   const requireRef = useRef(require);
   useEffect(() => {
@@ -79,7 +79,7 @@ export default ({ item, require, previewRender }) => {
       }}
     >
       <div
-        style={{ display: item.selectedTab === 'index.js' ? 'block' : 'none' }}
+        style={{ display: selectedTab === 'index.js' ? 'block' : 'none' }}
         className="cloud-component-right-body-react"
       >
         <CodeEditor
@@ -88,7 +88,9 @@ export default ({ item, require, previewRender }) => {
           codeRef={codeRef1}
           value={item.react}
           onChange={(code) => {
+            console.log(item);
             item.react = code;
+            console.log(item);
             runApi();
           }}
         />
@@ -96,7 +98,7 @@ export default ({ item, require, previewRender }) => {
 
       <div
         style={{
-          display: item.selectedTab === 'index.less' ? 'block' : 'none',
+          display: selectedTab === 'index.less' ? 'block' : 'none',
         }}
         className="cloud-component-right-body-less"
       >
@@ -112,7 +114,7 @@ export default ({ item, require, previewRender }) => {
       </div>
       <div
         style={{
-          display: item.selectedTab === 'props.json' ? 'block' : 'none',
+          display: selectedTab === 'props.json' ? 'block' : 'none',
         }}
         className="cloud-component-right-body-props"
       >
