@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Dependencies from './dependencies';
 
 const reactStr = `import { Button } from 'antd';
-   
+
 export default (props) => {
   return <div className="{componentName}">
     <Button type='primary'>{props.name}</Button>
