@@ -1,11 +1,11 @@
 import { Interpreter } from 'eval5';
+import * as AntdIcons from '@ant-design/icons';
 
 /* eslint-disable */
 const antd = require('antd');
 const react = require('react');
 const ReactDOM = require('react-dom');
 const axios = require('axios');
-const moment = require('moment');
 
 class BabelCompile {
   scope: any = {};
@@ -14,9 +14,9 @@ class BabelCompile {
     this.scope = {
       react,
       'react-dom': ReactDOM,
-      moment,
-      axios,
       antd,
+      '@ant-design/icons': AntdIcons,
+      axios,
       ...scope,
     };
   }
