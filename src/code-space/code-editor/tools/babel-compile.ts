@@ -1,5 +1,4 @@
 import { Interpreter } from 'eval5';
-import * as AntdIcons from '@ant-design/icons';
 
 /* eslint-disable */
 const antd = require('antd');
@@ -15,7 +14,6 @@ class BabelCompile {
       react,
       'react-dom': ReactDOM,
       antd,
-      '@ant-design/icons': AntdIcons,
       axios,
       ...scope,
     };
