@@ -67,6 +67,7 @@ export default ({
         if (item.id === undefined) {
           return setErr('文件保存失败');
         }
+        item.selectedTab = 'index.js'; // 默认选中 js
         delete item.state;
       } catch (error) {
         console.log(error);

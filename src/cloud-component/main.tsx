@@ -78,7 +78,10 @@ export default ({ item, require, previewRender }) => {
         display: item.selected ? 'flex' : 'none',
       }}
     >
-      <div className="cloud-component-right-body-react">
+      <div
+        style={{ display: item.selectedTab === 'index.js' ? 'block' : 'none' }}
+        className="cloud-component-right-body-react"
+      >
         <CodeEditor
           mode="function"
           require={require}
@@ -90,12 +93,13 @@ export default ({ item, require, previewRender }) => {
           }}
         />
       </div>
-      {typeof previewRender === 'function' ? (
-        previewRender(item)
-      ) : (
-        <div className="cloud-component-right-body-preview" id={previewId} />
-      )}
-      <div className="cloud-component-right-body-less">
+
+      <div
+        style={{
+          display: item.selectedTab === 'index.less' ? 'block' : 'none',
+        }}
+        className="cloud-component-right-body-less"
+      >
         <CodeEditor
           mode="less"
           value={item.less}
@@ -106,7 +110,12 @@ export default ({ item, require, previewRender }) => {
           }}
         />
       </div>
-      <div className="cloud-component-right-body-props">
+      <div
+        style={{
+          display: item.selectedTab === 'props.json' ? 'block' : 'none',
+        }}
+        className="cloud-component-right-body-props"
+      >
         <CodeEditor
           mode="json"
           value={item.props}
@@ -117,6 +126,11 @@ export default ({ item, require, previewRender }) => {
           }}
         />
       </div>
+      {typeof previewRender === 'function' ? (
+        previewRender(item)
+      ) : (
+        <div className="cloud-component-right-body-preview" id={previewId} />
+      )}
     </div>
   );
 };
