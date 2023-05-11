@@ -64,7 +64,12 @@ const CloudComponent = ({
   onLog = () => {},
   previewRender,
 }: CloudComponentProps) => {
+  const currentRef: any = useRef({});
   const [selectedTab, setSelectedTab]: any = useState('index.js'); // 默认选中index.js
+  // 存储选中的tab
+  useEffect(() => {
+    currentRef.current.selectedTab = selectedTab;
+  }, [selectedTab]);
   const [component, setComponent]: any = useState(initialComponent);
   const [dependencies, setDependencies]: any = useState(initialDependencies);
   const [_require, setRequire]: any = useState(require);
@@ -142,6 +147,7 @@ const CloudComponent = ({
       component,
       setComponent,
       code: component.find((i) => i.selected),
+      tabs: currentRef.current,
     };
     onChange();
     window.addEventListener('keydown', keyboardEvent);
