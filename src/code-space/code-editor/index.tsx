@@ -151,7 +151,10 @@ export const CodeEditor = memo(
       // onChange
       codeInstance.onDidChangeModelContent((e) => {
         const code = codeInstance.getValue();
-        if (['javascript', 'typescript'].includes(language)) {
+        if (
+          ['javascript', 'typescript'].includes(language) &&
+          (window as any).Prism
+        ) {
           oldDecorationsRef.current = codeInstance.deltaDecorations(
             oldDecorationsRef.current,
             textMateService(code),
