@@ -69,6 +69,11 @@ const schema: SchemaProps[] = [
           label: '收入(元)',
           required: true,
           effect: [['contactList', 'index', 'name']],
+          onEffect(name, { setSchemaByName }) {
+            setSchemaByName(['contactList', this.name[0], 'amount'].join('_'), {
+              label: '动态修改',
+            });
+          },
           disabled({ getFieldValue }) {
             const name = getFieldValue('contactList')[this.name[0]]?.name;
             return name === '' || name === undefined;

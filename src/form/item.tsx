@@ -28,10 +28,6 @@ export default ({
   emptyCellNode = null,
 }: any) => {
   const [innerField, setInnerField] = useState(field);
-  // field 变化同步更新 innerField
-  useEffect(() => {
-    setInnerField(field);
-  }, [field]);
   const _field = useMemo(() => {
     return cloneDeep(innerField);
   }, [innerField]); // cloneDeep 避免被污染
@@ -46,9 +42,9 @@ export default ({
   // 执行副作用逻辑
   const touchEffect = useCallback((item: any, triggerField?: string) => {
     const name = Array.isArray(item.name)
-      ? `_${item.name.join('_')}` // 添加前缀_
-      : item.name; // 兼容下子表单
-    delete AsyncOptionsCache[`${form.name}_${formListName}${name}`]; // 清除异步缓存器中的数据
+      ? [formListName, ...item.name].filter((name) => name !== '').join('_') // 兼容下子表单
+      : item.name;
+    delete AsyncOptionsCache[`${form.name}_${name}`]; // 清除异步缓存器中的数据
     // 处理渲染顺序问题，避免多级联动出现问题
     setTimeout(() => {
       setReload(Math.random()); // 组件重新卸载，构建
@@ -66,7 +62,9 @@ export default ({
     let unsubscribe = () => {};
     // 所有子组件都会订阅
     unsubscribe = event.subscribe(
-      _field?.name,
+      Array.isArray(_field.name)
+        ? [formListName, ..._field.name].filter((name) => name !== '').join('_') // 兼容下子表单
+        : _field.name,
       ({ name }: any, newField, customizer = () => {}) => {
         // 更新field
         if (!isEmpty(newField)) {
