@@ -88,9 +88,7 @@ export default ({ selectedTab, item, require, previewRender }) => {
           codeRef={codeRef1}
           value={item.react}
           onChange={(code) => {
-            console.log(item);
             item.react = code;
-            console.log(item);
             runApi();
           }}
         />
