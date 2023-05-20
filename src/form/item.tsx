@@ -28,6 +28,12 @@ export default ({
   emptyCellNode = null,
 }: any) => {
   const [innerField, setInnerField] = useState(field);
+  // 暂时忽略 FormList 的 fields 改变
+  useEffect(() => {
+    if (!formListName) {
+      setInnerField(field);
+    }
+  }, [field]);
   const _field = useMemo(() => {
     return cloneDeep(innerField);
   }, [innerField]); // cloneDeep 避免被污染
