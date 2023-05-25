@@ -19,7 +19,7 @@ const SortableItem = SortableElement((props) => <tr {...props} />);
 const SortableBody = SortableContainer((props) => <tbody {...props} />);
 
 const DragHandle = SortableHandle(() => (
-  <Icon type="drag2" color="#999" style={{ cursor: 'grab', top: 2 }} />
+  <Icon type="drag3" color="#999" style={{ cursor: 'grab', top: 2 }} />
 ));
 
 // TODO value 中不能混入index属性，否则和内置的index属性冲突、待优化

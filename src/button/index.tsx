@@ -3,7 +3,6 @@ import { Button, Modal, Popconfirm, Tooltip } from 'antd';
 import { ProBtnProps } from './type';
 import { isEmpty, isObject } from '../util';
 import { CreateModal, CreateDrawer } from '..';
-
 // 私有变量只能 set、get
 export const authName = Symbol('');
 /**
