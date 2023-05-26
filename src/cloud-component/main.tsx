@@ -9,12 +9,12 @@ export const injectStyle = async (
   less = window.less,
 ) => {
   const { css } = await less.render(lessCode);
-  const styleTag = document.querySelector(`style[id=${id}]`);
+  const styleTag = document.querySelector(`style[id=_${id}]`);
   if (styleTag) {
     styleTag.innerHTML = css;
   } else {
     const style = document.createElement('style');
-    style.id = id;
+    style.id = `_${id}`;
     style.innerHTML = css;
     document.querySelector('head')?.appendChild(style);
   }
@@ -22,12 +22,12 @@ export const injectStyle = async (
 
 export const injectScript = async (src: string, name) => {
   return new Promise((res) => {
-    if (document.querySelector(`script[class=${name}]`)) {
+    if (document.querySelector(`script[class=_${name}]`)) {
       res(true); // 存在直接返回
     } else {
       const script = document.createElement('script');
       script.src = src;
-      script.className = name;
+      script.className = `_${name}`;
       document.querySelector('head')?.appendChild(script);
       script.onload = () => {
         res(true);
