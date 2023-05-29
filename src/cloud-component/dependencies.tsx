@@ -42,11 +42,31 @@ const schema = [
     },
   },
   {
+    type: 'RadioGroup',
+    label: '上传格式',
+    name: 'codeWay',
+    props: {
+      options: [
+        {
+          label: '代码编写',
+          value: 1,
+        },
+        {
+          label: '文件上传',
+          value: 2,
+        },
+      ],
+    },
+  },
+  {
     type: 'CodeEditor',
     name: 'content',
-    label: '脚本内容 (上限30kb)',
+    label: '编写脚本',
     required: true,
-    effect: ['type'],
+    effect: ['type', 'codeWay'],
+    visible({ codeWay }) {
+      return codeWay === 1;
+    },
     onEffect: (e, form) => {
       form.setSchemaByName('content', {
         props: {
@@ -66,6 +86,20 @@ const schema = [
       minimapEnabled: false,
     },
   },
+  {
+    type: 'OssFileUpload',
+    name: 'ossPath',
+    label: '上传脚本',
+    required: true,
+    effect: ['codeWay'],
+    visible({ codeWay }) {
+      return codeWay === 2;
+    },
+    props: {
+      maxCount: 1,
+      accept: '.js',
+    },
+  },
 ] as SchemaProps[];
 
 const initModel = {
@@ -80,6 +114,7 @@ const initModel = {
   },
   initialValues: {
     type: 'javascript',
+    codeWay: 1,
   },
 };
 
@@ -92,6 +127,7 @@ export default ({ dependencies, setDependencies, onAddDep, onUpdateDep }) => {
       name: undefined,
       content: undefined,
       type: 'javascript',
+      codeWay: 1,
     });
   };
   return (

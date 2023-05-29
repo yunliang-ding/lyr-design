@@ -64,6 +64,9 @@ export interface SchemaProps<T = FieldProps>
     | 'BlockQuote'
     | 'FieldSet'
     | 'EditableTable'
+    | 'OssFileUpload'
+    | 'CodeEditor'
+    | 'TableList'
     | String
     | Function;
   column?: number;
