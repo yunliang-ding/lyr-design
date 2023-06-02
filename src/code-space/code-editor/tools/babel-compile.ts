@@ -1,18 +1,18 @@
+import * as antd from 'antd/es/index.js';
+import moment from 'moment';
+import axios from 'axios';
+import react from 'react';
+import ReactDOM from 'react-dom';
 import { Interpreter } from 'eval5';
-
-/* eslint-disable */
-const antd = require('antd');
-const react = require('react');
-const ReactDOM = require('react-dom');
-const axios = require('axios');
 
 class BabelCompile {
   scope: any = {};
   exports = {};
   constructor(scope = {}) {
     this.scope = {
-      react,
       'react-dom': ReactDOM,
+      react,
+      moment,
       antd,
       axios,
       ...scope,
