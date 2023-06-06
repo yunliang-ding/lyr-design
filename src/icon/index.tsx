@@ -25,8 +25,9 @@ export interface IconProps {
     | 'size'
     | 'question'
     | 'separator'
+    | 'file-css'
     | 'file-javascript'
-    | 'file-css';
+    | 'file-markdown';
   /**
    * 大小设置
    * @default 16

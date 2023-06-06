@@ -3,13 +3,13 @@
  */
 import ReactDOM from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
-import { babelParse, babelParseCode, Button, CreateSpin } from '../index';
-import Menus from './menus';
-import Tabs from './tabs';
-import Main, { injectStyle } from './main';
-import { downloadFile } from 'react-core-form-tools';
-import { message, Upload } from 'antd';
+import { babelParse, babelParseCode, CreateSpin } from '../index';
 import { Interpreter } from 'eval5';
+import Main, { injectStyle } from './main';
+import Menus from './menus';
+import ReactMarkDown from 'react-markdown';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { materialLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import './index.less';
 
 const interpreter = new Interpreter(window);
@@ -177,82 +177,15 @@ const CloudComponent = ({
           />
         ) : (
           <>
-            <div className="cloud-component-right-header">
-              <Tabs
-                component={component}
-                setComponent={setComponent}
-                selectedTab={selectedTab}
-                setSelectedTab={setSelectedTab}
-              />
-              <div style={{ display: 'flex', gap: 10 }}>
-                <Button
-                  spin
-                  type="primary"
-                  size="small"
-                  onClick={async () => {
-                    const url = URL.createObjectURL(
-                      new Blob(JSON.stringify(component, null, 2).split('')),
-                    );
-                    await downloadFile(
-                      url,
-                      `${new Date().toLocaleTimeString()}.json`,
-                    );
-                  }}
-                >
-                  导出
-                </Button>
-                <Upload
-                  accept=".json"
-                  itemRender={() => null}
-                  onChange={async ({ file }) => {
-                    if (file.status === 'done') {
-                      open();
-                      await new Promise((res) => setTimeout(res, 1000));
-                      try {
-                        const jsonArr = JSON.parse(
-                          await file.originFileObj.text(),
-                        );
-                        if (Array.isArray(jsonArr)) {
-                          // 去重
-                          jsonArr.forEach((jsonItem) => {
-                            // 剔除部分属性
-                            delete jsonItem.open;
-                            delete jsonItem.selected;
-                            if (
-                              !component.some((comp) => {
-                                return (
-                                  comp.componentName === jsonItem.componentName
-                                );
-                              })
-                            ) {
-                              onAdd(jsonItem);
-                              component.push(jsonItem);
-                            }
-                          });
-                          setComponent([...component]);
-                        } else {
-                          message.warning('导入失败');
-                        }
-                      } catch (err) {
-                        message.warning(err);
-                      } finally {
-                        close();
-                      }
-                    }
-                  }}
-                >
-                  <Button type="primary" size="small">
-                    导入
-                  </Button>
-                </Upload>
-                {extra}
-              </div>
-            </div>
             {component.map((item) => {
               return (
                 item.open && (
                   <Main
                     item={item}
+                    onAdd={onAdd}
+                    component={component}
+                    setComponent={setComponent}
+                    setSelectedTab={setSelectedTab}
                     selectedTab={selectedTab}
                     key={[
                       item.componentName,
@@ -271,28 +204,55 @@ const CloudComponent = ({
   );
 };
 
-CloudComponent.parse = (
-  params: any = {
-    codes: [],
-    less: window.less,
-    require: {},
-  },
-) => {
-  const components = {};
-  params.codes.forEach((code) => {
-    components[code.componentName] = babelParse({
-      require: {
-        ...params.require,
-        injectStyle,
-      },
-      code: `
-      ${code.react} \n;
-      // 这里开始注入css样式
-      require('injectStyle')('${code.componentName}', \`${code.less}\`, ${params.less});
-`,
-    });
+/** 解析 React */
+
+CloudComponent.parseReact = ({
+  componentName,
+  react = 'export default () => null',
+  less = '{}',
+  require = {},
+}) => {
+  return babelParse({
+    require: {
+      ...require,
+      injectStyle,
+    },
+    code: `${react} \n;
+    // 这里开始注入css样式
+    require('injectStyle')('${componentName}', \`${less}\`);`,
   });
-  return components;
+};
+
+/** 解析 markdown */
+CloudComponent.parseMarkdown = async (code: string) => {
+  return () => {
+    return (
+      <ReactMarkDown
+        components={{
+          code({ node, inline, className, children, ...props }) {
+            const match = /language-(\w+)/.exec(className || '');
+            return !inline && match ? (
+              <SyntaxHighlighter
+                style={materialLight}
+                showLineNumbers={true}
+                language={match[1]}
+                PreTag="div"
+                {...props}
+              >
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            );
+          },
+        }}
+      >
+        {code}
+      </ReactMarkDown>
+    );
+  };
 };
 
 /** 组件渲染 */

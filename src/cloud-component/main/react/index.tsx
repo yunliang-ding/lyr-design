@@ -1,42 +1,10 @@
-import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { babelParse, CodeEditor } from '../index';
 import { uuid } from 'react-core-form-tools';
+import React, { useEffect, useRef } from 'react';
+import { CloudComponent, CodeEditor } from '../../../index';
+import Tabs from './tabs';
 
-export const injectStyle = async (
-  id: string,
-  lessCode: string,
-  less = window.less,
-) => {
-  const { css } = await less.render(lessCode);
-  const styleTag = document.querySelector(`style[id=_${id}]`);
-  if (styleTag) {
-    styleTag.innerHTML = css;
-  } else {
-    const style = document.createElement('style');
-    style.id = `_${id}`;
-    style.innerHTML = css;
-    document.querySelector('head')?.appendChild(style);
-  }
-};
-
-export const injectScript = async (src: string, name) => {
-  return new Promise((res) => {
-    if (document.querySelector(`script[class=_${name}]`)) {
-      res(true); // 存在直接返回
-    } else {
-      const script = document.createElement('script');
-      script.src = src;
-      script.className = `_${name}`;
-      document.querySelector('head')?.appendChild(script);
-      script.onload = () => {
-        res(true);
-      };
-    }
-  });
-};
-
-export default ({ selectedTab, item, require, previewRender }) => {
+const Container = ({ selectedTab, item, require, previewRender }) => {
   // 处理在原生事件中获取不到 state 问题
   const requireRef = useRef(require);
   useEffect(() => {
@@ -49,14 +17,16 @@ export default ({ selectedTab, item, require, previewRender }) => {
   const runApi = async () => {
     if (typeof previewRender !== 'function') {
       try {
-        injectStyle(item.componentName, item.less); // 添加组件的style
-        const props = codeRef3.current.getJson2Object(); // 注入props
-        const VDom = babelParse({
-          code: item.react,
+        // 得到React组件
+        const VDom = await CloudComponent.parseReact({
+          react: item.react,
+          less: item.less,
           require: requireRef.current,
-        }); // 得到组件
+          componentName: item.componentName,
+        });
         ReactDOM.render(
-          <VDom {...props} />,
+          // 注入props
+          <VDom {...codeRef3.current.getJson2Object()} />,
           document.querySelector(`#${previewId}`),
         ); // 预览
       } catch (error) {
@@ -132,5 +102,14 @@ export default ({ selectedTab, item, require, previewRender }) => {
         <div className="cloud-component-right-body-preview" id={previewId} />
       )}
     </div>
+  );
+};
+
+export default (props) => {
+  return (
+    <>
+      <Tabs {...props} />
+      <Container {...props} />
+    </>
   );
 };

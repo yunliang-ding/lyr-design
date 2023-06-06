@@ -2,6 +2,7 @@ import { Icon } from '../index';
 import { isEmpty } from 'react-core-form-tools';
 import { useState } from 'react';
 import Dependencies from './dependencies';
+import { IconRender } from './main';
 
 const reactStr = `import { Button } from 'antd';
 
@@ -12,10 +13,18 @@ export default (props) => {
 }
  `;
 
+const markdownStr = `# 标题
+
+## 小标题
+
+- 描述1
+- 描述2
+- 描述3
+
+`;
+
 const lessStr = `.{componentName}{
-  button{
-    font-size: 12px;
-  }
+  padding: 10px;
 }`;
 
 export default ({
@@ -49,7 +58,11 @@ export default ({
   const addComponent = async (componentName: string, item, index) => {
     if (!isEmpty(componentName)) {
       item.componentName = componentName;
-      item.react = reactStr.replaceAll('{componentName}', componentName);
+      if (componentName.endsWith('md')) {
+        item.react = markdownStr;
+      } else {
+        item.react = reactStr.replaceAll('{componentName}', componentName);
+      }
       item.less = lessStr.replaceAll('{componentName}', componentName);
       item.props = {
         name: componentName,
@@ -113,7 +126,10 @@ export default ({
               }
             >
               <span style={{ marginRight: 4, display: 'flex' }}>
-                <Icon type="react" color="#1890ff" />
+                <IconRender
+                  componentName={item.componentName}
+                  color="#1890ff"
+                />
               </span>
               <span
                 style={{ position: 'relative' }}
