@@ -3,13 +3,15 @@
  */
 import ReactDOM from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
-import { babelParse, babelParseCode, CreateSpin } from '../index';
+import {
+  MarkdownViewer,
+  babelParse,
+  babelParseCode,
+  CreateSpin,
+} from '../index';
 import { Interpreter } from 'eval5';
 import Main, { injectStyle } from './main';
 import Menus from './menus';
-import ReactMarkDown from 'react-markdown';
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { materialLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import './index.less';
 
 const interpreter = new Interpreter(window);
@@ -182,6 +184,7 @@ const CloudComponent = ({
                 item.open && (
                   <Main
                     item={item}
+                    extra={extra}
                     onAdd={onAdd}
                     component={component}
                     setComponent={setComponent}
@@ -218,40 +221,15 @@ CloudComponent.parseReact = ({
       injectStyle,
     },
     code: `${react} \n;
-    // 这里开始注入css样式
-    require('injectStyle')('${componentName}', \`${less}\`);`,
+     // 这里开始注入css样式
+     require('injectStyle')('${componentName}', \`${less}\`);`,
   });
 };
 
 /** 解析 markdown */
 CloudComponent.parseMarkdown = async (code: string) => {
   return () => {
-    return (
-      <ReactMarkDown
-        components={{
-          code({ node, inline, className, children, ...props }) {
-            const match = /language-(\w+)/.exec(className || '');
-            return !inline && match ? (
-              <SyntaxHighlighter
-                style={materialLight}
-                showLineNumbers={true}
-                language={match[1]}
-                PreTag="div"
-                {...props}
-              >
-                {String(children).replace(/\n$/, '')}
-              </SyntaxHighlighter>
-            ) : (
-              <code className={className} {...props}>
-                {children}
-              </code>
-            );
-          },
-        }}
-      >
-        {code}
-      </ReactMarkDown>
-    );
+    return <MarkdownViewer code={code} />;
   };
 };
 

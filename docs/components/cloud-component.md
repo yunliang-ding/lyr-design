@@ -62,6 +62,29 @@ export default () => {
           open: true,
           selected: true,
         },
+        {
+          componentName: 'README.md',
+          react: `
+# 一级标题
+
+## 二级标题
+
+1. 描述1
+2. 描述1
+3. 描述1
+
+### 代码块
+
+\`\`\`\jsx
+import React from 'react';
+
+export default () => {
+  return <div>react</div>
+}
+\`\`\`
+        
+`,
+        },
       ]}
       onLog={(msg) => {
         console.log('加载日志:', msg);
