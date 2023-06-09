@@ -18,7 +18,7 @@ SyntaxHighlighter.registerLanguage('ts', ts);
 SyntaxHighlighter.registerLanguage('typescript', ts);
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 
-interface MarkDownViewerProps {
+export interface MarkDownViewerProps {
   /** 文件内容 */
   content: string;
   /**

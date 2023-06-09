@@ -9,7 +9,9 @@ const Container = ({ item, previewRender }) => {
   const codeRef1: any = React.useRef({});
   const runApi = async () => {
     if (typeof previewRender !== 'function') {
-      const VDom: any = await CloudComponent.parseMarkdown(item.react);
+      const VDom: any = await CloudComponent.parseMarkdown({
+        content: item.react,
+      });
       ReactDOM.render(<VDom />, document.querySelector(`#${previewId}`)); // 预览
     }
   };

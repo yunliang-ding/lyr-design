@@ -12,6 +12,7 @@ import {
 import { Interpreter } from 'eval5';
 import Main, { injectStyle } from './main';
 import Menus from './menus';
+import { MarkDownViewerProps } from '../markdown-viewer';
 import './index.less';
 
 const interpreter = new Interpreter(window);
@@ -227,9 +228,9 @@ CloudComponent.parseReact = ({
 };
 
 /** 解析 markdown */
-CloudComponent.parseMarkdown = async (code: string) => {
+CloudComponent.parseMarkdown = async (props: MarkDownViewerProps) => {
   return () => {
-    return <MarkdownViewer code={code} />;
+    return <MarkdownViewer {...props} />;
   };
 };
 
