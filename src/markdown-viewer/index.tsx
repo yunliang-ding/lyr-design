@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReactMarkDown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';
 import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
@@ -39,6 +40,7 @@ export default ({ content, codeTheme = 'dark' }: MarkDownViewerProps) => {
   return spin ? null : (
     <div className="rcf-markdown">
       <ReactMarkDown
+        remarkPlugins={[remarkGfm]}
         components={{
           h1({ children }) {
             return <h1 className="rcf-markdown-h1">{children}</h1>;
@@ -81,6 +83,9 @@ export default ({ content, codeTheme = 'dark' }: MarkDownViewerProps) => {
                 {children}
               </code>
             );
+          },
+          table({ children }) {
+            return <table className="rcf-markdown-table">{children}</table>;
           },
         }}
       >

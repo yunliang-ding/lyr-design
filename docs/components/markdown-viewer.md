@@ -13,9 +13,6 @@ toc: menu
 ## 基本使用
 
 ```tsx
-/**
- * background: '#f6f7f9'
- */
 import React from 'react';
 import { MarkdownViewer } from 'react-core-form';
 
@@ -37,13 +34,15 @@ export default () => {
 
 ## 二级标题
 
-**描述**
+### 三级标题
 
-> 区块描述
+> 区块信息
+
+**重点描述信息**
 
 1. 描述1
-2. 描述1
-3. 描述1
+2. 描述2
+3. 描述3
 
 ### 代码块
 
@@ -54,6 +53,14 @@ export default () => {
   return <div className='app'>react</div>
 }
 \`\`\`
+
+### 数据表格
+
+|学号|姓名|年龄|地址|
+|----|----|----|----|
+|1|\`\`\`张三\`\`\`|20|地址地址地址|
+|2|李四|18|地址地址地址|
+|3|王五|23|地址地址地址|
 
 `}
       />
