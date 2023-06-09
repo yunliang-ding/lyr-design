@@ -1,28 +1,55 @@
-.markdown-code {
-  position: relative;
-  padding-top: 40px !important;
-  border-radius: 6px !important;
-  &:not(pre) > code[class*='language-'],
-  pre[class*='language-'] {
-    background-color: #1e1e1e !important;
+.rcf-markdown {
+  &-code {
+    position: relative;
+    padding-top: 40px !important;
+    border-radius: 6px !important;
+    &:not(pre) > code[class*='language-'],
+    pre[class*='language-']::selection,
+    pre[class*='language-'] ::selection,
+    code[class*='language-']::selection,
+    code[class*='language-'] ::selection {
+      text-shadow: none;
+      background: #46515f;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: 12px;
+      z-index: 1;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fc625d;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+    }
   }
-  pre[class*='language-']::selection,
-  pre[class*='language-'] ::selection,
-  code[class*='language-']::selection,
-  code[class*='language-'] ::selection {
-    text-shadow: none;
-    background: #46515f;
+  &-strong {
+    padding: 1px;
+    color: #ee3f4d;
+    font-weight: 600;
+    font-size: 16px;
   }
-  &::after {
-    content: '';
-    position: absolute;
-    top: 9px;
-    left: 12px;
-    z-index: 1;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #fc625d;
-    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  &-ul {
+    list-style-type: disc;
+    padding-left: 15px;
+  }
+  &-ol {
+    list-style-type: disc;
+    padding-left: 15px;
+  }
+  &-li {
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  &-blockquote {
+    padding: 6px 16px;
+    color: #555;
+    border-left: 4px solid #ef7060;
+    background: #fff9f9;
+    font-size: 1rem;
+    p {
+      margin: 0;
+    }
   }
 }

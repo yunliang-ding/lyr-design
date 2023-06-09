@@ -20,12 +20,26 @@ import React from 'react';
 import { MarkdownViewer } from 'react-core-form';
 
 export default () => {
+  const [codeTheme, setCodeTheme] = React.useState('dark');
   return (
-    <MarkdownViewer
-      code={`
+    <div>
+      <button
+        onClick={() => {
+          setCodeTheme(codeTheme === 'dark' ? 'light' : 'dark');
+        }}
+      >
+        切换代码主题
+      </button>
+      <MarkdownViewer
+        codeTheme={codeTheme}
+        content={`
 # 一级标题
 
 ## 二级标题
+
+**描述**
+
+> 区块描述
 
 1. 描述1
 2. 描述1
@@ -37,12 +51,17 @@ export default () => {
 import React from 'react';
 
 export default () => {
-  return <div>react</div>
+  return <div className='app'>react</div>
 }
 \`\`\`
 
 `}
-    />
+      />
+    </div>
   );
 };
 ```
+
+## API
+
+<API src="../../src/markdown-viewer/index.tsx" hideTitle></API>
