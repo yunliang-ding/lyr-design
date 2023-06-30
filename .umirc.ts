@@ -19,6 +19,23 @@ export default defineConfig({
       content: '低代码相关组件',
     },
   ],
+  styles: [
+    `
+    .__dumi-default-menu-list
+      > li
+      > a {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .__dumi-default-menu-list
+      > a
+      > span {
+        font-size: 13px;
+      }
+  `,
+  ],
   theme: {
     '@primary-background-color': '#f0f6ff',
     '@text-color': '#6a6a6a',
@@ -59,8 +76,8 @@ export default defineConfig({
       path: 'http://121.4.49.147:9000/react-core-form-tools',
     },
     {
-      title: 'Playground',
-      path: 'http://121.4.49.147:9000/code-playground',
+      title: '表单设计器',
+      path: 'http://121.4.49.147:9000/react-core-form-designer',
     },
     {
       title: 'GitHub',
