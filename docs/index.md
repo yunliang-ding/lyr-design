@@ -5,7 +5,7 @@ hero:
   desc: 中后台表单配置化解决方案
   actions:
     - text: 表单设计器
-      link: http://121.4.49.147:9000/react-core-form-designer
+      link: http://server.yunliang.cloud/website/react-core-form-designer
     - text: 开始使用
       link: /components
 features:

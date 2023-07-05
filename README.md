@@ -175,4 +175,4 @@ export default () => {
 
 ## 更多功能
 
-[点击跳转文档](http://121.4.49.147:9000/react-core-form)
+[点击跳转文档](http://server.yunliang.cloud/website/react-core-form)
