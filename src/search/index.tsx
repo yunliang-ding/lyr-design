@@ -95,7 +95,7 @@ export default ({
         search();
       };
       // 解决粘贴 自带空格的问题
-      if (field.props.onPaste === undefined) {
+      if (field.props.onPaste === undefined && field.type === 'Input') {
         field.props.onPaste = (e) => {
           // eslint-disable-next-line prefer-destructuring
           const target = e.target;
