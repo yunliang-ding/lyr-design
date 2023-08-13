@@ -59,6 +59,6 @@ export interface FormRefInstance extends Omit<MutableRefObject<{}>, 'current'> {
   current: CoreFormInstance;
 }
 
-const Hello: React.FC<CoreFormInstance> = () => null;
+const Hello: React.FC<CoreFormProps> = () => null;
 
 export default Hello;
