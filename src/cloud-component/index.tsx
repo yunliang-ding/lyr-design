@@ -3,16 +3,12 @@
  */
 import ReactDOM from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
-import {
-  MarkdownViewer,
-  babelParse,
-  babelParseCode,
-  CreateSpin,
-} from '../index';
+import { MarkdownViewer, CreateSpin } from '../index';
 import { Interpreter } from 'eval5';
 import Main, { injectStyle } from './main';
 import Menus from './menus';
 import { MarkDownViewerProps } from '../markdown-viewer';
+import { babelParse, babelParseCode } from 'react-core-form-tools';
 import './index.less';
 
 const interpreter = new Interpreter(window);

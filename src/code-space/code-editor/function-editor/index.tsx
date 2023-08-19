@@ -2,13 +2,8 @@
 import { CodeEditor, CodeProps } from '../index';
 import { debounce, isEmpty } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
-import {
-  babelParse,
-  babelParseCode,
-  decrypt,
-  encrypt,
-  Icon,
-} from '../../../index';
+import { decrypt, encrypt, Icon } from '../../../index';
+import { babelParse, babelParseCode } from 'react-core-form-tools';
 import './index.less';
 
 export default ({
