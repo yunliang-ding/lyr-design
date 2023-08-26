@@ -55,6 +55,7 @@ export default defineConfig({
     ],
   ],
   history: { type: 'hash' },
+  hash: false,
   links: [
     {
       href: 'https://yun-static.cdn.bcebos.com/file-icon.css',
