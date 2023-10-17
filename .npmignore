@@ -11,5 +11,7 @@
 /.eslintrc.js                                       
 /.fatherrc.ts                                       
 /.prettierignore                                    
-/.prettierrc                                        
-/.umirc.ts 
+/.prettierrc     
+/.umirc.ts
+tsconfig.json
+typings.d.ts

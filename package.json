@@ -41,7 +41,7 @@
     "rc-resize-observer": "1.2.0",
     "react-sortable-hoc": "2.0.0",
     "react-draggable": "4.4.5",
-    "react-core-form-tools": "0.0.6",
+    "react-core-form-tools": "0.0.7",
     "react-contexify": "5.0.0",
     "@monaco-editor/loader": "^1.3.3",
     "eval5": "1.4.7",
