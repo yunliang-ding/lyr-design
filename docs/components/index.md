@@ -12,10 +12,10 @@ nav:
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
   <a href="https://npmmirror.com/package/react-core-form">
-    <img alt="npm" src="http://dev-ops.yunliang.cloud/npm/version?package=react-core-form">
+    <img alt="npm" src="http://dev-ops.yunliang.cloud:7201/npm/version?package=react-core-form">
   </a>
   <a href="https://npmmirror.com/package/react-core-form">
-    <img alt="NPM downloads" src="http://dev-ops.yunliang.cloud/npm/downloads?package=react-core-form">
+    <img alt="NPM downloads" src="http://dev-ops.yunliang.cloud:7201/npm/downloads?package=react-core-form">
   </a>
 </p>
 
