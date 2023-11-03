@@ -81,6 +81,10 @@ export default defineConfig({
       path: 'http://dev-ops.yunliang.cloud/website/react-core-form-designer',
     },
     {
+      title: '代码编辑器',
+      path: 'http://dev-ops.yunliang.cloud/website/react-core-form-code-editor',
+    },
+    {
       title: 'GitHub',
       path: 'https://github.com/yunliang-ding/react-core-form',
     },

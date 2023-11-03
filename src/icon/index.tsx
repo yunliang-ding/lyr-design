@@ -4,30 +4,7 @@ import classNames from 'classnames';
 import './index.less';
 
 export interface IconProps {
-  type:
-    | 'react'
-    | 'drag'
-    | 'drag3'
-    | 'delete'
-    | 'copy'
-    | 'add'
-    | 'fullScreen'
-    | 'fullScreenExit'
-    | 'arrow'
-    | 'loading'
-    | 'close'
-    | 'expand'
-    | 'setting'
-    | 'more'
-    | 'run'
-    | 'drag2'
-    | 'refresh'
-    | 'size'
-    | 'question'
-    | 'separator'
-    | 'file-css'
-    | 'file-javascript'
-    | 'file-markdown';
+  type: keyof typeof mapping;
   /**
    * 大小设置
    * @default 16

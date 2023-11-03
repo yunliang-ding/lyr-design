@@ -48,7 +48,7 @@ export default ({
   // 执行副作用逻辑
   const touchEffect = useCallback((item: any, triggerField?: string) => {
     const name = Array.isArray(item.name)
-      ? [formListName, ...item.name].filter((name) => name !== '').join('_') // 兼容下子表单
+      ? [formListName, ...item.name].filter((n) => n !== '').join('_') // 兼容下子表单
       : item.name;
     delete AsyncOptionsCache[`${form.name}_${name}`]; // 清除异步缓存器中的数据
     // 处理渲染顺序问题，避免多级联动出现问题

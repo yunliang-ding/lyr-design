@@ -54,7 +54,7 @@ export default ({
     }
   };
   return (
-    <div className={`core-form-step-form`}>
+    <div className="core-form-step-form">
       <div className="core-form-step-form-header">
         <Steps {...stepProps} current={current} onChange={onStepsClick}>
           {steps?.map((step) => {

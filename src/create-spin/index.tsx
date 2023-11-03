@@ -39,7 +39,6 @@ const CreateSpin = ({
   tag.className = 'create-spin';
   getContainer()?.appendChild(tag);
   ReactDOM.render(<SpinComponent style={style} mode={mode} />, tag);
-  return null;
 };
 
 /** 返回具体的函数 */

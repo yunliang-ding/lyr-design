@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -26,13 +27,6 @@ export interface SuspendProps {
   placement?: 'left' | 'right';
   /** 样式 */
   closeStyle?: CSSProperties;
-  /** 挂载方位 */
-  getContainer?: Function;
-  /**
-   * 是否一直保留
-   * @default false
-   */
-  keep?: boolean;
   /** 实例引用 */
   suspendRef?: any;
 }

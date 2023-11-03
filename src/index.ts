@@ -34,23 +34,7 @@ export { default as AnchorCard } from './anchor-card';
 export { default as OssFileUpload } from './oss-file-upload';
 export { default as Suspend } from './suspend';
 export { default as MarkdownViewer } from './markdown-viewer';
-export { default as CloudComponent } from './cloud-component';
-/** 代码编辑器相关 */
-export { default as CodeEditor } from './code-space/code-editor';
-export { default as FileExplorer } from './code-space/file-explorer';
-export { default as FileEditor } from './code-space/file-editor';
-export { default as GitManager } from './code-space/git-manager';
-export { default as FileSearch } from './code-space/file-search';
-/** 扩展方法 */
-export const encrypt = (str: string) => {
-  return `{{_#${str}_#}}`;
-};
-export const decrypt = (str: string, quotation = true) => {
-  if (quotation) {
-    return str?.replaceAll('"{{_#', '').replaceAll('_#}}"', '');
-  }
-  return str?.replaceAll('{{_#', '').replaceAll('_#}}', '');
-};
+export { default as AppLayout } from './app-layout';
 export { default as createOssInstance } from './oss-file-upload/util';
 /** 类型 */
 export type { SchemaProps, FieldProps } from './form/type.item';

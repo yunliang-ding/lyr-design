@@ -1,0 +1,243 @@
+.app-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /** 模式一 */
+  &-left {
+    width: 208px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+    position: relative;
+    z-index: 999;
+    transition: 0.3s;
+    &-logo {
+      padding: 8px 10px !important;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      a {
+        display: flex;
+        align-items: center;
+        height: 80%;
+        gap: 10px;
+        h1 {
+          font-size: 16px;
+          font-weight: bold;
+          color: #222 !important;
+          margin: 0;
+          white-space: nowrap;
+        }
+      }
+    }
+    &-menu {
+      height: calc(100% - 48px);
+      overflow: auto;
+      transition: 0.3s;
+      .ant-menu-title-content {
+        font-weight: bold;
+      }
+    }
+  }
+  &-right {
+    width: calc(100% - 208px);
+    transition: 0.3s;
+    &-header {
+      height: 48px;
+      width: 100%;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0px 2px 4px rgba(0, 21, 41, 0.08);
+      z-index: 999;
+      position: relative;
+    }
+  }
+  /** 模式二 */
+  &-header {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    box-shadow: 0px 2px 4px rgba(0, 21, 41, 0.08);
+    z-index: 999;
+    position: relative;
+    &-logo {
+      padding: 8px 10px !important;
+      width: 208px;
+      a {
+        display: flex;
+        align-items: center;
+        height: 80%;
+        gap: 10px;
+        h1 {
+          font-size: 16px;
+          font-weight: bold;
+          color: #222 !important;
+          margin: 0;
+          white-space: nowrap;
+        }
+      }
+    }
+    &-menu {
+      width: calc(100% - 508px);
+      overflow: auto;
+      transition: 0.3s;
+      .ant-menu-horizontal {
+        line-height: 50px;
+      }
+      .ant-menu-title-content {
+        font-weight: bold;
+      }
+    }
+    &-right {
+      width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      padding: 0 18px;
+    }
+  }
+  &-body {
+    display: flex;
+    height: calc(100% - 48px);
+    &-sider {
+      box-shadow: 1px 5px 8px 0 rgba(29, 35, 41, 0.05);
+      position: relative;
+      z-index: 998;
+      transition: 0.3s;
+      background-color: #fff;
+      &-menu {
+        width: 208px;
+        height: calc(100% - 44px);
+        overflow: auto;
+        .ant-menu-item {
+          font-weight: bold;
+        }
+      }
+      &-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 44px;
+      }
+    }
+    &-main {
+      width: calc(100% - 208px);
+      height: 100%;
+      overflow: auto;
+      background-color: #f0f2f5;
+    }
+  }
+  /** 公共主体模块 */
+  .app-layout-right-body {
+    position: absolute;
+    left: 208px;
+    width: calc(100% - 208px);
+    top: 48px;
+    overflow: auto;
+    height: calc(100% - 48px);
+    &-compact-content {
+      height: calc(100% - 44px);
+      width: 100%;
+      overflow: auto;
+      background-color: #f0f2f5;
+      .ant-page-header {
+        padding: 0;
+        .ant-page-header-heading {
+          padding: 0 20px;
+          height: 52px;
+          background-color: #fff;
+          .ant-page-header-heading-extra {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+          }
+        }
+        .ant-page-header-content {
+          padding: 16px;
+        }
+      }
+    }
+    &-content {
+      height: calc(100% - 44px);
+      overflow: auto;
+      background-color: #f0f2f5;
+      .ant-page-header {
+        padding: 0;
+      }
+      .ant-breadcrumb {
+        padding: 6px 20px;
+        padding-top: 10px;
+        background: #fff;
+      }
+      .ant-page-header-heading {
+        margin: 0;
+        padding: 0 20px;
+        padding-bottom: 8px;
+        background: #fff;
+      }
+      .ant-page-header-content {
+        padding: 16px;
+      }
+    }
+    &-footer {
+      height: 44px;
+      width: 100%;
+      box-shadow: 0px 0px 4px rgba(0, 21, 41, 0.08);
+      position: relative;
+      z-index: 997;
+      background-color: #fff;
+    }
+  }
+  .ant-menu.ant-menu-inline-collapsed {
+    width: 48px;
+  }
+  .ant-breadcrumb {
+    span {
+      font-weight: bold;
+    }
+  }
+}
+
+.app-layout-compact {
+  flex-direction: row;
+}
+.app-layout-collapsed {
+  .app-layout-left,
+  .app-layout-body-sider-menu,
+  .app-layout-body-sider {
+    width: 48px;
+    transition: 0.3s;
+  }
+  .app-layout-header-logo {
+    width: 48px;
+  }
+  .app-layout-header-menu {
+    width: calc(100% - 348px);
+  }
+  .app-layout-right {
+    width: calc(100% - 48px);
+  }
+  .app-layout-right-body {
+    width: calc(100% - 48px);
+    left: 48px;
+    transition: 0.3s;
+  }
+}
+.app-layout-dark {
+  .app-layout-left-menu,
+  .app-layout-body-sider-menu,
+  .app-layout-body-sider-footer,
+  .app-layout-left-logo,
+  .app-layout-header-logo {
+    background-color: #001629;
+    transition: 0.3s;
+    h1 {
+      color: #fff !important;
+    }
+  }
+}
