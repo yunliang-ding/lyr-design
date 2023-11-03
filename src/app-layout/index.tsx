@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import WaterMark from './watermark';
 import Breadcrumb from './breadcrumb';
 import { getBreadcrumbByMenus } from './util';
-import './index.less';
 import { Icon } from '..';
+import './index.less';
 
 export default ({
   pathname = '/',
@@ -152,6 +152,7 @@ export default ({
                   <Icon
                     type="collapsed"
                     primary
+                    size={24}
                     onClick={() => {
                       onCollapse(!collapsed);
                     }}
@@ -222,6 +223,7 @@ export default ({
                   <Icon
                     type="collapsed"
                     primary
+                    size={24}
                     onClick={() => {
                       onCollapse(!collapsed);
                     }}
@@ -249,8 +251,8 @@ export default ({
           </div>
           <div className="app-layout-right-body-footer">{footerRender()}</div>
         </div>
+        {waterMarkProps && <WaterMark {...waterMarkProps} />}
       </div>
-      {waterMarkProps && <WaterMark {...waterMarkProps} />}
     </>
   );
 };
