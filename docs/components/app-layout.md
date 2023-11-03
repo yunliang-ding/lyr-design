@@ -66,6 +66,7 @@ export default () => {
           setBreadcrumb(currentBreadcrumb);
         },
       }}
+      footerRender={() => <div>这个是底部的说明</div>}
       rightContentRender={() => {
         return (
           <div className="app-right-header">
