@@ -13,12 +13,11 @@ toc: menu
 ## 基本使用
 
 ```tsx
-/**
- * background: '#f6f7f9'
- */
 import React from 'react';
 import { AppLayout } from 'react-core-form';
+import { Space, Avatar, Dropdown, Menu } from 'antd';
 import menus from './schema/app-layout/schema';
+import './index.less';
 
 export default () => {
   // 接入项目的时候，使用 AppLayout 内置的 listenHashChange 可监听 hash
@@ -29,47 +28,14 @@ export default () => {
   //   });
   //   return removeListener;
   // }, []);
-  const [pathname, setPathName] = useState('');
-  const [compact, setCompact] = useState(true);
-  const [dark, setDark] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
-  const [breadcrumb, setBreadcrumb] = useState({
+  const [pathname, setPathName] = React.useState('/workbench/my');
+  const [compact, setCompact] = React.useState(true);
+  const [dark, setDark] = React.useState(false);
+  const [collapsed, setCollapsed] = React.useState(false);
+  const [breadcrumb, setBreadcrumb] = React.useState({
     title: '工作台',
     breadcrumb: ['工作台', '我的工作台'],
   });
-  const RightHeader = () => {
-    return (
-      <div className="app-right-header">
-        <Space>
-          <span
-            onClick={() => {
-              setDark(!dark);
-            }}
-          >
-            切换主题
-          </span>
-          <span
-            onClick={() => {
-              setDark(!compact);
-            }}
-          >
-            切换模式
-          </span>
-          <Avatar size={32} src={'https://v2.ice.work/img/logo.png'} />
-          <Dropdown
-            placement="bottom"
-            overlay={
-              <Menu>
-                <Menu.Item>退出登录</Menu.Item>
-              </Menu>
-            }
-          >
-            测试用户-123
-          </Dropdown>
-        </Space>
-      </div>
-    );
-  };
   return (
     <AppLayout
       // layoutRef={layoutRef}
@@ -100,7 +66,39 @@ export default () => {
           setBreadcrumb(currentBreadcrumb);
         },
       }}
-      rightContentRender={RightHeader}
+      rightContentRender={() => {
+        return (
+          <div className="app-right-header">
+            <Space>
+              <a
+                onClick={() => {
+                  setDark(!dark);
+                }}
+              >
+                切换主题
+              </a>
+              <a
+                onClick={() => {
+                  setCompact(!compact);
+                }}
+              >
+                切换模式
+              </a>
+              <Avatar size={32} src={'https://v2.ice.work/img/logo.png'} />
+              <Dropdown
+                placement="bottom"
+                overlay={
+                  <Menu>
+                    <Menu.Item>退出登录</Menu.Item>
+                  </Menu>
+                }
+              >
+                <a>测试用户-123</a>
+              </Dropdown>
+            </Space>
+          </div>
+        );
+      }}
     >
       内容区域
     </AppLayout>
