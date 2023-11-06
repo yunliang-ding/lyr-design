@@ -64,7 +64,9 @@ const Icon = ({
     >
       {mapping[type]?.({
         size,
-        color,
+        style: {
+          fill: color,
+        },
       })}
     </span>
   );

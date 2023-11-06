@@ -34,6 +34,7 @@ export default ({
   children = null,
 }: LayoutProps) => {
   const classNames: string[] = ['app-layout'];
+  const openKeyRef: any = useRef([]); // 临时保存的容器
   const [selectedKey, setSelectedKey] = useState('');
   /** horizontal 模式的一级菜单 */
   const [topKey, setTopKey] = useState('');
@@ -155,6 +156,14 @@ export default ({
                     size={24}
                     onClick={() => {
                       onCollapse(!collapsed);
+                      // 保存 openKeys
+                      if (!collapsed) {
+                        console.log('openKeys', openKeys);
+                        openKeyRef.current = openKeys;
+                      } else {
+                        setOpenKeys(openKeyRef.current);
+                        openKeyRef.current = [];
+                      }
                     }}
                     style={{
                       display: 'flex',
