@@ -33,7 +33,7 @@ export default () => {
   const [dark, setDark] = React.useState(false);
   const [collapsed, setCollapsed] = React.useState(false);
   const [breadcrumb, setBreadcrumb] = React.useState({
-    title: '工作台',
+    title: '我的工作台',
     breadcrumb: ['工作台', '我的工作台'],
   });
   return (
