@@ -1,5 +1,5 @@
 import { MutableRefObject, ReactNode } from 'react';
-import type { PageHeaderProps, MenuProps } from 'antd';
+import type { PageHeaderProps, MenuProps, TabsProps } from 'antd';
 
 export default interface ProLayout {
   /** 当前路径 */
@@ -23,7 +23,9 @@ export default interface ProLayout {
   /** 水印配置 */
   waterMarkProps?: any;
   /** 页面头属性 */
-  pageHeaderProps?: PageHeaderProps;
+  pageHeaderProps?: PageHeaderProps & {
+    tabsProps?: TabsProps;
+  };
   /** 顶部右侧渲染 */
   rightContentRender: () => ReactNode;
   /** 底部渲染 */

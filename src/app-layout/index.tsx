@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import LayoutProps from './type';
-import { Menu, PageHeader } from 'antd';
+import { Menu, PageHeader, Tabs } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import WaterMark from './watermark';
 import Breadcrumb from './breadcrumb';
@@ -100,7 +100,21 @@ export default ({
   const Children = (
     <PageHeader
       {...pageHeaderProps}
-      title={pageHeaderProps.title || <div />}
+      className={
+        pageHeaderProps.tabsProps?.items
+          ? 'app-breadcrumb-title-hash-tabs'
+          : 'app-breadcrumb-title-no-tabs'
+      }
+      title={
+        (
+          <>
+            <div className="app-breadcrumb-title">{pageHeaderProps.title}</div>
+            {Array.isArray(pageHeaderProps.tabsProps?.items) && (
+              <Tabs {...pageHeaderProps.tabsProps} />
+            )}
+          </>
+        ) || <div />
+      }
       breadcrumbRender={() => {
         if (compact) {
           return <div />;

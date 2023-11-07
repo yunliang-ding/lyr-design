@@ -14,7 +14,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { AppLayout } from 'react-core-form';
+import { AppLayout, Button } from 'react-core-form';
 import { Space, Avatar, Dropdown, Menu } from 'antd';
 import menus from './schema/app-layout/schema';
 import './index.less';
@@ -63,7 +63,22 @@ export default () => {
         onClick: ({ key, currentBreadcrumb }) => {
           // location.hash = key // 接入项目的时候，只需要这行代码，改变 hash 即可
           setPathName(key);
-          setBreadcrumb(currentBreadcrumb);
+          setBreadcrumb({
+            ...currentBreadcrumb,
+            // 扩展操作按钮
+            extra: <Button type="primary">添加</Button>,
+            // 扩展选项卡
+            tabsProps: {
+              defaultActiveKey: 2,
+              items: [
+                { key: 1, label: '选项1' },
+                { key: 2, label: '选项2' },
+              ],
+              onChange(e) {
+                console.log(e);
+              },
+            },
+          });
         },
       }}
       footerRender={() => <div>这个是底部的说明</div>}
