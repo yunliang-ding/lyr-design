@@ -75,7 +75,7 @@ export interface SchemaProps<T = FieldProps>
     },
   ) => React.ReactNode;
   /** 设置副作用，当设置的字段发生变化时，会自动触发渲染 */
-  effect?: Array<string | string[]>;
+  effect?: string[];
   /** 副作用变化时 自动重置字段 */
   effectClearField?: boolean;
   /** 副作用执行的钩子 */

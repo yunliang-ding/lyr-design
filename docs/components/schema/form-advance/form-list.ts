@@ -26,14 +26,17 @@ const schema: SchemaProps[] = [
     name: 'totalAmount',
     disabled: true,
     extra: '子表单收入合计',
-    effect: [['contactList', 'index', 'amount']],
+    effect: ['contactList.{{index}}.amount', 'contactList'],
     onEffect(name, { getFieldValue, setFieldsValue }) {
       const contactList = getFieldValue('contactList');
-      setFieldsValue({
-        totalAmount: BigNumber.add(
-          ...contactList.filter((i) => !!i?.amount).map((i) => i?.amount),
-        ),
-      });
+      const amount = contactList
+        .filter((i) => !!i?.amount)
+        .map((i) => i?.amount);
+      if (Array.isArray(amount) && amount.length > 0) {
+        setFieldsValue({
+          totalAmount: BigNumber.add(...amount),
+        });
+      }
     },
   },
   {
@@ -68,14 +71,18 @@ const schema: SchemaProps[] = [
           name: 'amount',
           label: '收入(元)',
           required: true,
-          effect: [['contactList', 'index', 'name']],
+          effect: ['contactList.{{index}}.name'],
           onEffect(name, { setSchemaByName }) {
-            setSchemaByName(['contactList', this.name[0], 'amount'].join('_'), {
-              label: '动态修改',
-            });
+            setSchemaByName(
+              ['contactList', this.name.split('.')[1], 'amount'].join('.'),
+              {
+                label: '收入(元)-动态修改',
+              },
+            );
           },
           disabled({ getFieldValue }) {
-            const name = getFieldValue('contactList')[this.name[0]]?.name;
+            const name =
+              getFieldValue('contactList')[this.name.split('.')[1]]?.name;
             return name === '' || name === undefined;
           },
         },
@@ -86,6 +93,7 @@ const schema: SchemaProps[] = [
           required: true,
           tooltip: '和联系人类型关联',
           effect: ['userType'],
+          effectClearField: true,
           props: {
             options: async ({ getFieldValue }) => {
               return [
@@ -133,9 +141,9 @@ const schema: SchemaProps[] = [
           name: 'age',
           label: '年龄',
           required: true,
-          effect: [['contactList', 'index', 'sex']],
+          effect: ['contactList.{{index}}.sex'],
           visible({ contactList }) {
-            return contactList[this.name[0]]?.sex === 1;
+            return contactList[this.name.split('.')[1]]?.sex === 1;
           },
         },
       ],

@@ -21,7 +21,6 @@ export default ({
   readOnlyEmptyValueNode = '-',
   actionRef,
   emptyCellNode = null,
-  formName,
 }: any) => {
   const [innerField, setInnerField] = useState(field);
   // 暂时忽略 FormList 的 fields 改变
@@ -43,10 +42,7 @@ export default ({
   const [reload, setReload] = useState(Math.random()); // 组件刷新
   // 执行副作用逻辑
   const touchEffect = useCallback((item: any, triggerField?: string) => {
-    const name = Array.isArray(item.name)
-      ? [formListName, ...item.name].filter((n) => n !== '').join('_') // 兼容下子表单
-      : item.name;
-    delete AsyncOptionsCache[`${form.name}_${name}`]; // 清除异步缓存器中的数据
+    delete AsyncOptionsCache[`${form.name}_${item.name}`]; // 清除异步缓存器中的数据
     // 处理渲染顺序问题，避免多级联动出现问题
     setTimeout(() => {
       setReload(Math.random()); // 组件重新卸载，构建
@@ -58,16 +54,13 @@ export default ({
       });
     }
     _field.onEffect?.(triggerField, form);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     let unsubscribe = () => {};
     // 所有子组件都会订阅
     unsubscribe = event.subscribe(
-      Array.isArray(_field.name)
-        ? [formListName, ..._field.name].filter((name) => name !== '').join('_') // 兼容下子表单
-        : _field.name,
-      ({ name }: any, newField, customizer = () => {}) => {
+      _field.name,
+      ({ name }: { name: string }, newField, customizer = () => {}) => {
         // 更新field
         if (!isEmpty(newField)) {
           return mergeField(newField, customizer);
@@ -76,18 +69,14 @@ export default ({
         if (name === NOTICESELF) {
           touchEffect(field);
         } else if (
-          _field?.effect?.some((item) => {
-            // effect 配置了二维数组
-            if (Array.isArray(item)) {
-              if (Array.isArray(_field.name)) {
-                // 子表单依赖子表单
-                item[1] = _field.name[0]; // 更新index
-              } else {
-                // 主表单依赖子表单
-                item[1] = name.split(',')[1]; // 更新index
-              }
+          _field?.effect?.some((eft: string) => {
+            if (eft.includes('{{index}}')) {
+              // 如果没有_field.index表示主表单依赖了子表单
+              const index =
+                _field.index === undefined ? name.split('.')[1] : _field.index;
+              return eft.replace('{{index}}', index) === name.toString();
             }
-            return item.toString() === name.toString();
+            return eft === name;
           })
         ) {
           // 执行副作用
@@ -130,7 +119,7 @@ export default ({
           readOnlyEmptyValueNode,
           actionRef,
           ...cloneField,
-          id: [formName, pureFields.name].join('_'),
+          id: [form.name, pureFields.name].join('_'),
         },
         form,
         widgets,

@@ -1,5 +1,5 @@
 import Grid from '@/grid';
-import { Fragment, useRef } from 'react';
+import { useRef } from 'react';
 import { Form, Button, Empty, Message } from '@arco-design/web-react';
 import Item from '@/form/item';
 import './index.less';
@@ -29,13 +29,13 @@ export default ({
   const notOperation = !operation || readOnly || disabled; // 不可操作的标识
   return (
     <Form.List field={name}>
-      {(f, { add, remove }) => {
+      {(fields, { add, remove }) => {
         actionRef.current[name] = {
           add: async (...p) => {
             if (notOperation) {
               return Message.info('不可操作');
             }
-            if (f?.length === maxCount) {
+            if (fields?.length === maxCount) {
               return Message.info(`最多只能添加${maxCount}条`);
             }
             add(...p);
@@ -44,7 +44,7 @@ export default ({
             if (notOperation) {
               return Message.info('不可操作');
             }
-            if (leastOne && f.length === 1) {
+            if (leastOne && fields.length === 1) {
               return Message.info('至少保留一条');
             }
             remove(idx);
@@ -52,9 +52,9 @@ export default ({
         };
         return (
           <>
-            {f.map((item: any, index, { length }) => {
+            {fields.map((item: any, index, { length }) => {
               return (
-                <Fragment key={item.key || item.name}>
+                <div>
                   <div className="core-form-list-block">
                     <span className="form-list-block-label">
                       {label}
@@ -66,7 +66,9 @@ export default ({
                         disabled={
                           (leastOne && index === 0 && length === 1) || disabled
                         }
-                        onClick={() => remove(item.name)}
+                        onClick={() => {
+                          remove(index);
+                        }}
                       >
                         删除
                       </Button>
@@ -75,7 +77,8 @@ export default ({
                   <Grid {...grid}>
                     {schema?.map((field: any) => {
                       const _field = { ...field }; // 浅拷贝一下
-                      _field.name = [item.name, _field.name];
+                      _field.index = index; // 保存下标
+                      _field.name = [name, index, _field.name].join('.');
                       return (
                         <Item
                           readOnly={readOnly}
@@ -86,21 +89,22 @@ export default ({
                           initialValues={form.initialValues}
                           field={_field}
                           formListName={name} // 子表单的名字
-                          fieldKey={[item.fieldKey, _field.name]}
-                          key={_field.name || _field.key}
+                          fieldKey={_field.name}
+                          key={_field.name}
                         />
                       );
                     })}
                   </Grid>
-                </Fragment>
+                </div>
               );
             })}
-            {notOperation && f.length === 0 && <Empty />}
+            {notOperation && fields.length === 0 && <Empty />}
             {!notOperation && (
               <Form.Item>
                 <Button
                   type="dashed"
-                  disabled={f.length === maxCount || disabled}
+                  long
+                  disabled={fields.length === maxCount || disabled}
                   onClick={() => add()}
                 >
                   添加

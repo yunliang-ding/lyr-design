@@ -8,7 +8,7 @@ export const uuid = _uuid;
 /**
  * 简易发布订阅
  */
-export const NOTICESELF = Symbol(''); // 唯一标识，通知自己重新渲染
+export const NOTICESELF: any = Symbol(''); // 唯一标识，通知自己重新渲染
 export class EventEmit {
   listeners: any = [];
   // 指定某一个field更新

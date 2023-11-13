@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { useRef, useMemo, useCallback, useState } from 'react';
 import { ConfigProvider, Empty, Form, Spin } from '@arco-design/web-react';
-import { cloneDeep, EventEmit, queryFieldByName } from '@/util';
+import { cloneDeep, EventEmit } from '@/util';
 import Item from './item';
 import FieldSet from '@/widgets/extension/fields-set';
 import { CoreFormProps } from './type.form';
@@ -77,18 +77,13 @@ export default ({
   // 值改变 setFieldsValue不会触发该方法
   const onChange = (value: any, values: any) => {
     const key = Object.keys(value)[0];
-    const field: any = queryFieldByName(cloneSchema, key); // 查找指定的field
-    const fieldValue = value[key];
-    if (field.type === 'FormList' && Array.isArray(fieldValue)) {
+    const index = key.split('.')[1];
+    const isFormList = typeof index === 'number';
+    if (isFormList) {
       // 兼容 FormList
-      const index = fieldValue.findIndex((i) => typeof i === 'object');
-      if (index > -1) {
-        const innerName = Object.keys(fieldValue[index])[0];
-        // 组装 FormList 指定项的改表字段 name
-        event.publish({
-          name: [key, index, innerName].join(','),
-        });
-      }
+      event.publish({
+        name: key,
+      });
     } else {
       // 发布通知
       event.publish({
@@ -198,7 +193,6 @@ export default ({
             readOnly={readOnly}
             onChange={onChange}
             form={form}
-            formName={name}
             widgets={widgets}
             initialValues={initialValues}
             field={field}
