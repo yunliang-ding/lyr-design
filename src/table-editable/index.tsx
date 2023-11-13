@@ -1,4 +1,4 @@
-import { Table, Form, Space, message } from 'antd';
+import { Table, Form, Space, Message } from '@arco-design/web-react';
 import { useEffect, useState, useMemo, useRef } from 'react';
 import { AsyncOptionsCache, EventEmit } from '@/util';
 import { tranfromSchema } from '@/form/util';
@@ -136,7 +136,7 @@ export default ({
   // 更新
   const saveByIndex = async (index: number) => {
     // 获取表单的指，同步到dataSource
-    const values = await form.validateFields();
+    const values = await form.validate();
     try {
       // 确认的钩子
       await onBeforeChange?.(
@@ -158,7 +158,7 @@ export default ({
         }),
       );
     } catch (error) {
-      message.warning(error);
+      Message.warning(error);
     }
   };
   // 按照指定下标删除行
@@ -195,7 +195,7 @@ export default ({
           }),
         );
       } catch (error) {
-        message.warning(error);
+        Message.warning(error);
       }
     }
   };
@@ -230,7 +230,7 @@ export default ({
   ) =>
     new Promise((res) => {
       if (editIndex !== -1 && editIndex !== index) {
-        return message.warn('有未保存的数据，请先保存!');
+        return Message.warning('有未保存的数据，请先保存!');
       }
       res(true);
     });
@@ -268,7 +268,7 @@ export default ({
   // 渲染体
   const renderDom = [
     <Table
-      dataSource={dataSource}
+      data={dataSource}
       key="table"
       pagination={false}
       columns={[
@@ -290,7 +290,7 @@ export default ({
                 return (
                   <Space>
                     <Button
-                      type="link"
+                      type="text"
                       spin={editIndex === index}
                       style={{ margin: 0, padding: 0 }}
                       onClick={async () => {
@@ -310,7 +310,7 @@ export default ({
                         type: 'pop',
                       }}
                       spin
-                      type="link"
+                      type="text"
                       style={{ margin: 0, padding: 0 }}
                       onClick={async () => {
                         await deleteByIndex(index);

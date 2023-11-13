@@ -29,7 +29,7 @@ const schema: SchemaProps<{}>[] = [
   },
   {
     type: 'InputNumber',
-    name: ['inputNumber', 'kkk'],
+    name: 'inputNumber',
     label: '数字输入框',
     props: {
       min: 1,
@@ -40,10 +40,6 @@ const schema: SchemaProps<{}>[] = [
     type: 'Select',
     name: 'select',
     label: '下拉选',
-    effect: [['inputNumber', '0', 'kkk']],
-    visible(v) {
-      return v.inputNumber?.kkk > 50;
-    },
     props: {
       options: [
         { label: '选项1', value: 1 },
@@ -158,16 +154,6 @@ const schema: SchemaProps<{}>[] = [
   },
   {
     type: 'RangePicker',
-    name: 'rangePicker1',
-    nameAlise: ['startDate1', 'endDate1'],
-    label: '区间选取独立',
-    required: true,
-    props: {
-      mode: 'split',
-    },
-  },
-  {
-    type: 'RangePicker',
     name: 'rangePicker',
     nameAlise: ['startDate', 'endDate'],
     label: '区间选取',
@@ -183,7 +169,7 @@ const schema: SchemaProps<{}>[] = [
     nameAlise: ['startTime', 'endTime'],
     label: '时间区间',
     props: {
-      splitLabel: ' 至 ',
+      splitLabel: '至',
     },
   },
   {

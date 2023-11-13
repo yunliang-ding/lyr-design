@@ -1,4 +1,4 @@
-import { UploadProps } from 'antd';
+import { UploadProps } from '@arco-design/web-react';
 
 export interface OssFileUploadProps extends UploadProps {
   /** 按钮文字 */

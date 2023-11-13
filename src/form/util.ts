@@ -96,7 +96,6 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
     defaultOpenAllowClear = true,
     defaultFillPlaceholder = true,
     defaultShowInputCount = true,
-    autoSetPopupContainer = true,
     autoTransfromDatePicker = true,
   } = getGlobalConfigByName('Antd');
   /** 开始扩展 */
@@ -154,18 +153,6 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
       if (!['RangePicker', 'TimeRange'].includes(field.type)) {
         field.props.placeholder =
           field.props.placeholder || `请选择${field.label || ''}`; // 默认提示
-      }
-      if (autoSetPopupContainer) {
-        // 生成挂载容器标识
-        field.popupid = `${name}_${popupName}`;
-        // 挂载到指定的popupid
-        if (typeof field.props.getPopupContainer !== 'function') {
-          field.props.getPopupContainer = () => {
-            return document.querySelector(
-              `[popupid=${field.popupid}] .ant-form-item-control`,
-            );
-          };
-        }
       }
     }
     // 配置了showSearch的查询框默认开启模糊匹配

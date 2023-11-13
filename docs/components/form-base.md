@@ -33,18 +33,22 @@ export default () => {
 import React, { useState } from 'react';
 import { Form } from 'react-core-form';
 import schema from './schema/form-base/schema';
-import { Select } from 'antd';
+import { Select } from '@arco-design/web-react';
+
 export default () => {
   const [column, setColumn] = useState(2);
   return (
     <div>
       <Select
         value={column}
+        style={{ width: 100 }}
         options={[1, 2, 3].map((i) => {
           return { label: i + '列', value: i };
         })}
         onChange={setColumn}
       />
+      <br />
+      <br />
       <Form
         layout="horizontal"
         column={column}
@@ -64,6 +68,7 @@ export default () => {
 import React from 'react';
 import { Form } from 'react-core-form';
 import schema from './schema/form-base/schema1';
+
 export default () => {
   return (
     <Form
@@ -88,6 +93,7 @@ export default () => {
 import React from 'react';
 import { Button, Form } from 'react-core-form';
 import schema from './schema/form-base/schema2';
+
 export default () => {
   const [form] = Form.useForm();
   return (
@@ -162,7 +168,7 @@ export default () => {
 import React from 'react';
 import { Form, Button } from 'react-core-form';
 import schema from './schema/form-base/schema';
-import { Switch } from 'antd';
+import { Switch } from '@arco-design/web-react';
 
 export default () => {
   const [disabled, setDisabled] = React.useState(false);
@@ -235,6 +241,7 @@ export default () => {
 import React, { useState } from 'react';
 import { Form } from 'react-core-form';
 import schema from './schema/form-base/schema3';
+
 export default () => {
   return <Form schema={schema} column={3} />;
 };
@@ -245,6 +252,7 @@ export default () => {
 ```tsx
 import React from 'react';
 import { Form } from 'react-core-form';
+
 export default () => {
   return (
     <Form
@@ -255,7 +263,7 @@ export default () => {
       schema={[
         {
           type: 'CheckGroup',
-          name: 'likes',
+          field: 'likes',
           label: '个人爱好',
           props: {
             showCheckAll: true,
@@ -269,7 +277,7 @@ export default () => {
         },
         {
           type: 'CheckGroup',
-          name: 'ranges',
+          field: 'ranges',
           label: '管理范围',
           props: {
             showCheckAll: {

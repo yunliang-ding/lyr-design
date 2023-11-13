@@ -15,8 +15,6 @@ interface GlobalConfigProps {
     defaultFillPlaceholder?: boolean;
     /** 是否开启自动清空 */
     defaultOpenAllowClear?: boolean;
-    /** 是否自动为选择器挂载Popup容器 */
-    autoSetPopupContainer?: boolean;
     /** 是否支持自动转换日期选择器moment和string */
     autoTransfromDatePicker?: boolean;
     /** 输入框失去焦点自动清除前后空格 */

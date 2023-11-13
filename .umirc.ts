@@ -36,23 +36,7 @@ export default defineConfig({
       }
   `,
   ],
-  // theme: {
-  //   '@primary-background-color': '#f0f6ff',
-  //   '@text-color': '#6a6a6a',
-  //   '@font-size-base': '12px',
-  //   '@font-size-small': '12px',
-  //   '@primary-color': '#2f54eb',
-  // },
   extraBabelPlugins: [
-    // [
-    //   'import',
-    //   {
-    //     libraryName: 'antd',
-    //     libraryDirectory: 'lib',
-    //     style: true,
-    //   },
-    //   'antd',
-    // ],
     [
       'import',
       {
@@ -65,19 +49,8 @@ export default defineConfig({
   ],
   history: { type: 'hash' },
   hash: false,
-  links: [
-    {
-      href: 'https://yun-static.cdn.bcebos.com/file-icon.css',
-      rel: 'stylesheet',
-    },
-  ],
   scripts: [
-    'https://g.alicdn.com/code/lib/less.js/4.1.3/less.js',
     'https://g.alicdn.com/code/lib/ali-oss/6.13.0/aliyun-oss-sdk.min.js',
-    'https://g.alicdn.com/code/lib/babel-standalone/7.21.2/babel.min.js',
-    'https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js',
-    'https://g.alicdn.com/code/lib/prettier/2.0.3/parser-typescript.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/prism.min.js',
   ],
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置

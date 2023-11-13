@@ -34,8 +34,9 @@ import EditableTable from '@/table-editable';
 import TableList from '@/table-list';
 import OssFileUpload from '@/oss-file-upload';
 import { SubFormType } from '@/form/form';
+import { ReactNode } from 'react';
 // 内置组件映射关系
-export const BuiltInWidgetMapping: any = {
+export const BuiltInWidgetMapping = {
   // Antd
   AutoComplete,
   Input,
@@ -106,3 +107,10 @@ export default (field: any, formInstance: any = {}, widgets = {}) => {
     />
   );
 };
+
+export interface ExtendInputProps {
+  readOnlyEmptyValueNode?: ReactNode;
+  fieldNames?: any;
+  readOnly?: boolean;
+  splitLabel?: string;
+}

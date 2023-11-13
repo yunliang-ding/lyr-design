@@ -126,6 +126,7 @@ export default ({
   const FormItem = (
     <Form.Item
       {...pureFields}
+      field={pureFields.name} // 采用name
       key={reload}
       itemID={itemID}
       // 只读模式不需要rules

@@ -1,6 +1,6 @@
 import Item from '@/form/item';
 import { tranfromSchema } from '@/form/util';
-import { Table, Form, Space } from 'antd';
+import { Table, Form, Space } from '@arco-design/web-react';
 import { useEffect, useMemo, useRef } from 'react';
 import { TableListProps } from './type';
 import { EventEmit } from '@/util';
@@ -82,7 +82,7 @@ export default ({
       <Table
         rowKey={rowKey}
         pagination={false}
-        dataSource={value}
+        data={value}
         columns={[
           {
             title: '序号',
@@ -104,7 +104,7 @@ export default ({
               return (
                 <Space>
                   <Button
-                    type="link"
+                    type="text"
                     disabled={leastOne && value.length === 1}
                     confirm={
                       removeConfirm
@@ -122,7 +122,7 @@ export default ({
                     删除
                   </Button>
                   <Button
-                    type="link"
+                    type="text"
                     onClick={() => {
                       value.splice(index, 0, value[index]);
                       onChange?.([...value]);

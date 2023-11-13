@@ -1,4 +1,4 @@
-import { FormProps } from 'antd';
+import { FormProps } from '@arco-design/web-react';
 import { MutableRefObject, ReactNode } from 'react';
 import { CoreFormInstance } from './type.instance';
 import { SchemaProps } from './type.item';

@@ -3,7 +3,14 @@
 /* eslint-disable no-nested-ternary */
 import { useEffect, useState } from 'react';
 import { downloadFile } from 'react-core-form-tools';
-import { Upload, message, Button, Image, Spin, Progress } from 'antd';
+import {
+  Upload,
+  Message,
+  Button,
+  Image,
+  Spin,
+  Progress,
+} from '@arco-design/web-react';
 import { OssFileUploadProps } from './type';
 import { uuid } from '@/util';
 import { createOssInstance, Icon } from '..';
@@ -40,19 +47,20 @@ export default ({
       const ext: string = file.name.substring(file.name.lastIndexOf('.'));
       // 转小写再判断
       if (
+        typeof accept === 'string' &&
         !accept
           .split(',')
           .map((item: string) => item.toLowerCase())
           .includes(ext.toLowerCase())
       ) {
-        message.error(`${file.name} 文件格式不在${accept}中`);
-        return Upload.LIST_IGNORE;
+        Message.error(`${file.name} 文件格式不在${accept}中`);
+        return false;
       }
       const { size } = file;
       const isLtSize = size / 1024 / 1024 <= limitSize;
       if (!isLtSize) {
-        message.error(`文件大小不允许超过${limitSize}M`);
-        return Upload.LIST_IGNORE;
+        Message.error(`文件大小不允许超过${limitSize}M`);
+        return false;
       }
       return isLtSize;
     } catch (error) {
@@ -106,7 +114,7 @@ export default ({
   const uploadButton =
     listType === 'picture-card' ? (
       <div className="react-core-form-oss-upload-button">
-        <Spin spinning={loading}>
+        <Spin loading={loading}>
           <Icon type="add" />
           <div style={{ marginTop: 8 }}>{text}</div>
         </Spin>
@@ -124,13 +132,13 @@ export default ({
   return (
     <div className="react-core-form-oss-upload">
       <Upload
-        maxCount={maxCount}
+        limit={maxCount}
         accept={accept}
         listType={listType}
         fileList={value}
         beforeUpload={beforeUpload}
         customRequest={multiPartUpload}
-        itemRender={(originNode, file: any) => {
+        renderUploadItem={(originNode, file: any) => {
           return (
             <RenderItemNode
               {...{

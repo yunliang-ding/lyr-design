@@ -1,5 +1,4 @@
 import { ActionProps } from '../form-submit/type.action';
-import { FormListOperation } from 'antd/lib/form/FormList';
 import { SchemaProps } from './type.item';
 
 export interface CoreFormInstance {
@@ -30,7 +29,7 @@ export interface CoreFormInstance {
   submit: () => any;
   /** 获取FormList api */
   formListInstance?: {
-    [key: string]: FormListOperation;
+    [key: string]: any;
   };
   /** 控制表单是否加载中 */
   setFormLoading: (state: boolean) => void;

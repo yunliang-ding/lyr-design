@@ -5,7 +5,6 @@ import {
   SelectProps,
   SwitchProps,
   RateProps,
-  SliderSingleProps,
   RadioProps,
   RadioGroupProps,
   DatePickerProps,
@@ -15,60 +14,38 @@ import {
   TreeSelectProps,
   UploadProps,
   FormItemProps,
-} from 'antd';
-import {
-  TextAreaProps,
-  PasswordProps,
-  SearchProps,
-  GroupProps,
-} from 'antd/es/input';
+} from '@arco-design/web-react';
 import { ReactNode } from 'react';
 import { CoreFormInstance } from './type.instance';
+import { BuiltInWidgetMapping } from '../widgets';
 
-export interface AsyncSelectProps extends Omit<SelectProps<any>, 'options'> {
+export interface AsyncSelectProps extends Omit<SelectProps, 'options'> {
   options?: any[] | ((form: CoreFormInstance) => any);
 }
 
+export type FieldProps =
+  | InputProps
+  | InputNumberProps
+  | AutoCompleteProps
+  | UploadProps
+  | SwitchProps
+  | RateProps
+  | AsyncSelectProps
+  | RadioProps
+  | RadioGroupProps
+  | CheckboxProps
+  | DatePickerProps
+  | TimePickerProps
+  | TimeRangePickerProps
+  | TreeSelectProps
+  | ExtensionProps;
+
 /** SchemaProps */
 export interface SchemaProps<T = FieldProps>
-  extends Omit<FormItemProps, 'required'> {
+  extends Omit<FormItemProps, 'required' | 'disabled'> {
   key?: string | number;
-  type?:
-    | 'AutoComplete'
-    | 'Input'
-    | 'InputNumber'
-    | 'Rate'
-    | 'Slider'
-    | 'TextArea'
-    | 'Password'
-    | 'Select'
-    | 'RadioGroup'
-    | 'CheckGroup'
-    | 'DatePicker'
-    | 'TimePicker'
-    | 'TimeRange'
-    | 'RangePicker'
-    | 'TreeSelect'
-    | 'Cascader'
-    | 'Upload'
-    | 'Switch'
-    | 'AsyncSelect'
-    | 'AsyncTreeSelect'
-    | 'DebounceSelect'
-    | 'AsyncCascader'
-    | 'AsyncCheckGroup'
-    | 'AsyncRadioGroup'
-    | 'Render'
-    | 'AsyncRender'
-    | 'FormList'
-    | 'BlockQuote'
-    | 'FieldSet'
-    | 'EditableTable'
-    | 'OssFileUpload'
-    | 'CodeEditor'
-    | 'TableList'
-    | String
-    | Function;
+  type?: keyof typeof BuiltInWidgetMapping | Function;
+  name: string;
   column?: number;
   /** 配置是否展示 */
   visible?: (values: any) => boolean;
@@ -122,28 +99,6 @@ export interface SchemaProps<T = FieldProps>
   /** 表单项属性设置 */
   props?: FieldProps | T;
 }
-
-export type FieldProps =
-  | InputProps
-  | PasswordProps
-  | SearchProps
-  | GroupProps
-  | TextAreaProps
-  | InputNumberProps
-  | AutoCompleteProps
-  | UploadProps
-  | SwitchProps
-  | RateProps
-  | SliderSingleProps
-  | AsyncSelectProps
-  | RadioProps
-  | RadioGroupProps
-  | CheckboxProps
-  | DatePickerProps
-  | TimePickerProps
-  | TimeRangePickerProps
-  | TreeSelectProps<any>
-  | ExtensionProps;
 
 /** 添加扩展属性 */
 export interface ExtensionProps {
