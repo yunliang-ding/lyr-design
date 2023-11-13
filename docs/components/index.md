@@ -33,14 +33,14 @@ nav:
 
 ## 安装
 
-> 组件库本身依赖 ant design，使用需要同时安装 antd，在 src/global.less 中全量引入 antd less 文件
+> 组件库本身依赖 arco.design，使用需要同时安装 arco.design
 
 ```shell
 npm install react-core-form --save
 ```
 
 ```less
-@import '~antd/dist/antd.less';
+@import '@arco-design/web-react/dist/css/arco.css';
 ```
 
 ## 为什么不是 XRender、Formily
@@ -51,7 +51,7 @@ npm install react-core-form --save
 
 - 底层我们不能完全掌控，我们不能更好的从业务需求的角度去做扩展、加功能，Api 都是被第三方约束了
 
-- 我们定义的数据模型更加的直观，只要掌握 antd4 表单使用可立即上手，底层也是我们自己掌控
+- 我们定义的数据模型更加的直观，只要掌握 arco.design 表单使用可立即上手，底层也是我们自己掌控
 
 - 最重要的一点，我们会结合自身的业务场景去做扩展，会内置更多符合业务的通用组件
 
@@ -61,7 +61,7 @@ npm install react-core-form --save
 
 <Alert type="success">
 
-- Form 我们基于 Antd4 的表单进行扩展、增强，编写好配置即可完成复杂的渲染和交互逻辑
+- Form 我们基于 arco.design 的表单进行扩展、增强，编写好配置即可完成复杂的渲染和交互逻辑
 
 - 我们扩展多种异步选择器的 `widgets`，可以满足大部分的查询场景用少量代码即可实现[ 点击查看](/components/form-advance#使用异步的-options)
 
@@ -78,30 +78,30 @@ npm install react-core-form --save
  * title: 所有组件 扩展了 readOnly, disabled 属性
  */
 import * as React from 'react';
-import { Grid } from 'react-core-form';
-import { Button } from 'antd';
+import { Button, Grid } from 'react-core-form';
+
 export default () => {
   return (
     <Grid>
       {[
-        'Input(antd)',
-        'AutoComplete(antd)',
-        'InputNumber(antd)',
-        'Rate(antd)',
-        'Slider(antd)',
-        'TextArea(antd)',
-        'Password(antd)',
-        'Select(antd)',
-        'RadioGroup(antd)',
-        'CheckGroup(antd)',
-        'DatePicker(antd)',
-        'TimePicker(antd)',
-        'TimeRange(antd)',
-        'RangePicker(antd)',
-        'TreeSelect(antd)',
-        'Cascader(antd)',
-        'Upload(antd)',
-        'Switch(antd)',
+        'Input',
+        'AutoComplete',
+        'InputNumber',
+        'Rate',
+        'Slider',
+        'TextArea',
+        'Password',
+        'Select',
+        'RadioGroup',
+        'CheckGroup',
+        'DatePicker',
+        'TimePicker',
+        'TimeRange',
+        'RangePicker',
+        'TreeSelect',
+        'Cascader',
+        'Upload',
+        'Switch',
       ].map((item) => {
         return (
           <Button key={item} type="dashed">
@@ -123,7 +123,7 @@ export default () => {
         'FieldSet 父子级区块',
         'RangeInput 数字范围输入框',
         'OssFileUpload 文件上传',
-        'CodeEditor 代码编辑器',
+        'AppLayout 中后台布局方案',
       ].map((item) => {
         return <Button key={item}>{item}</Button>;
       })}
@@ -152,7 +152,7 @@ export default () => {
 import { setGlobalConfig } from 'react-core-form';
 
 setGlobalConfig({
-  Antd: {
+  Arco: {
     defaultInputMaxLength: 100,
   },
   Form: {
@@ -169,7 +169,7 @@ setGlobalConfig({
 });
 
 interface GlobalConfigProps {
-  Antd?: {
+  Arco?: {
     /** 默认输入框最大长度 */
     defaultInputMaxLength: number;
     /** 是否开启自动填充 placeholder */

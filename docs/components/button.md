@@ -59,8 +59,8 @@ export default () => {
   return (
     <>
       <Switch
-        checkedChildren="alert"
-        unCheckedChildren="pop"
+        checkedText="alert"
+        uncheckedText="pop"
         onChange={(v) => {
           setType(v ? 'alert' : 'pop');
         }}
@@ -72,8 +72,6 @@ export default () => {
         confirm={{
           title: '提示',
           content: '是否确认发布?',
-          okText: '确认',
-          cancelText: '取消',
           type,
         }}
         onClick={submit}
@@ -121,7 +119,7 @@ export default () => {
       <Button
         type="primary"
         onBeforeClick={async () => {
-          await form.validateFields();
+          await form.validate();
         }}
         confirm={
           {
