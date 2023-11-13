@@ -12,15 +12,15 @@ export default ({ showCheckAll, ...props }) => {
     setIndeterminate(!!list.length && list.length < props.options.length);
     setCheckAll(list.length === props.options.length);
     // 通知外面
-    props.onChange(list);
+    props.onChange?.(list);
   };
-  const onCheckAllChange = (e) => {
+  const onCheckAllChange = (checked) => {
     setIndeterminate(false);
-    setCheckAll(e.target.checked);
-    if (e.target.checked) {
-      props.onChange(props.options.map((i) => i.value)); // 全部选择
+    setCheckAll(checked);
+    if (checked) {
+      props.onChange?.(props.options.map((i) => i.value)); // 全部选择
     } else {
-      props.onChange([]); // 全部清空
+      props.onChange?.([]); // 全部清空
     }
   };
   return (

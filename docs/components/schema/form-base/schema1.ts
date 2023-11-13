@@ -78,10 +78,9 @@ const schema: SchemaProps[] = [
     type: 'Switch',
     name: 'switch',
     label: '开关切换',
-    valuePropName: 'checked',
     props: {
-      checkedChildren: '开启',
-      unCheckedChildren: '关闭',
+      checkedText: '开启',
+      uncheckedText: '关闭',
     },
   },
   {
@@ -143,8 +142,8 @@ const schema: SchemaProps[] = [
   {
     type: 'BlockQuote',
     props: {
-      label: '日期相关',
-      subLabel: '扩展表单',
+      title: '日期相关',
+      subTitle: '扩展表单',
     },
   },
   {

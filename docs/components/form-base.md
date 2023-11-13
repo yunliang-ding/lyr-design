@@ -176,14 +176,14 @@ export default () => {
   return (
     <>
       <Switch
-        checkedChildren="disabled"
-        unCheckedChildren="disabled"
+        checkedText="disabled"
+        uncheckedText="disabled"
         onChange={setDisabled}
       />
       &nbsp; &nbsp;
       <Switch
-        checkedChildren="readOnly"
-        unCheckedChildren="readOnly"
+        checkedText="readOnly"
+        uncheckedText="readOnly"
         onChange={setReadOnly}
       />
       <br />
@@ -263,7 +263,7 @@ export default () => {
       schema={[
         {
           type: 'CheckGroup',
-          field: 'likes',
+          name: 'likes',
           label: '个人爱好',
           props: {
             showCheckAll: true,
@@ -277,7 +277,7 @@ export default () => {
         },
         {
           type: 'CheckGroup',
-          field: 'ranges',
+          name: 'ranges',
           label: '管理范围',
           props: {
             showCheckAll: {

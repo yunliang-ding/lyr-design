@@ -1,4 +1,5 @@
-import { Cascader } from '@arco-design/web-react';
+import { Cascader, CascaderProps } from '@arco-design/web-react';
+import { ExtendInputProps } from '..';
 
 const queryLoop = (
   data, // 数据源
@@ -23,9 +24,13 @@ const queryLoop = (
   });
 };
 
-export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
+export default ({
+  readOnlyEmptyValueNode = '-',
+  readOnly,
+  ...props
+}: CascaderProps & ExtendInputProps) => {
   // 渲染只读视图
-  if (props.readOnly) {
+  if (readOnly) {
     // 解析options得到label
     // TODO 仅支持单选
     const labels = [];

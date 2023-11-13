@@ -74,8 +74,8 @@ const schema: SchemaProps<{}>[] = [
     name: 'switch',
     label: '开关切换',
     props: {
-      checkedChildren: '开启',
-      unCheckedChildren: '关闭',
+      checkedText: '开启',
+      uncheckedText: '关闭',
     },
   },
   {

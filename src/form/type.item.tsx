@@ -127,7 +127,6 @@ export interface ExtensionProps {
   // BlockQuote
   title?: string | React.ReactNode;
   subTitle?: string | React.ReactNode;
-  subLabel?: string | React.ReactNode;
   // TextArea
   showCount?: boolean;
   // FieldSet
