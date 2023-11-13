@@ -6,7 +6,7 @@ import Item from './item';
 import FieldSet from '@/widgets/extension/fields-set';
 import { CoreFormProps } from './type.form';
 import CoreForm from './index';
-import { parseBeforeReceive, tranfromSchema } from './util';
+import { tranfromSchema } from './util';
 import { expansionInstanceMethod } from './tool';
 import { Grid } from '..';
 import './index.less';
@@ -40,7 +40,7 @@ export default ({
   ...rest
 }: CoreFormProps) => {
   const [spin, setSpin] = useState(false);
-  const [antdForm]: any = Form.useForm();
+  const [acroForm]: any = Form.useForm();
   // 一个表单对应一个发布订阅
   const event = useMemo(() => {
     return new EventEmit();
@@ -72,12 +72,6 @@ export default ({
     rest.wrapperCol ?? layout === 'vertical'
       ? { span: 24 }
       : { span: wrapperColMap[column - 1] };
-  // 处理下接受之前的转换
-  const _initialValues = parseBeforeReceive({ ...initialValues }, cloneSchema, {
-    name,
-    form,
-    initialValues,
-  });
   // 获取 formList api
   const actionRef = useRef({});
   // 值改变 setFieldsValue不会触发该方法
@@ -106,9 +100,9 @@ export default ({
   /** 实例扩展方法 */
   expansionInstanceMethod({
     form,
-    antdForm,
+    acroForm,
     name,
-    initialValues: _initialValues,
+    initialValues,
     cloneSchema,
     event,
     scrollToFirstError,
@@ -175,7 +169,7 @@ export default ({
               extra={field.props?.extra}
               subTitle={field.props?.subTitle}
               form={form}
-              initialValues={_initialValues}
+              initialValues={initialValues}
               effect={field.effect}
               visible={field.visible}
               event={event}
@@ -204,8 +198,9 @@ export default ({
             readOnly={readOnly}
             onChange={onChange}
             form={form}
+            formName={name}
             widgets={widgets}
-            initialValues={_initialValues}
+            initialValues={initialValues}
             field={field}
             key={field.name || field.key || index}
             readOnlyEmptyValueNode={readOnlyEmptyValueNode}
@@ -232,9 +227,9 @@ export default ({
           labelCol={labelCol}
           wrapperCol={wrapperCol}
           className={_className.join(' ')}
-          form={antdForm}
+          form={acroForm}
           name={name}
-          initialValues={_initialValues}
+          initialValues={initialValues}
           onValuesChange={onChange}
           {...rest}
         >

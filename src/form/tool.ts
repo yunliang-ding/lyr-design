@@ -1,11 +1,11 @@
 /* eslint-disable no-await-in-loop */
 import { AsyncOptionsCache } from '@/util';
 import { cloneDeep } from 'lodash';
-import { getCombination, parseBeforeReceive, scrollToElement } from './util';
+import { scrollToElement } from './util';
 
 export const expansionInstanceMethod = ({
   form,
-  antdForm,
+  acroForm,
   name,
   initialValues,
   cloneSchema,
@@ -18,32 +18,13 @@ export const expansionInstanceMethod = ({
   onChange,
 }) => {
   Object.assign(form, {
-    ...antdForm,
+    ...acroForm,
     initialValues, // 默认值
     name,
-    /** 新增getValues、处理字段转换字段等问题 */
-    getValues: () => {
-      const values = antdForm.getFieldsValue();
-      return getCombination({ ...values }, cloneSchema, {
-        name,
-        form,
-        initialValues,
-      });
-    },
-    /** 新增setValues、处理beforeReceive等逻辑 */
-    setValues: (data: any) => {
-      const values = parseBeforeReceive(data, cloneSchema, {
-        name,
-        form,
-        initialValues,
-      });
-      antdForm.setFieldsValue(values);
-    },
-
     /** 新增submit、负责处理规则校验、字段转换等问题 */
     submit: async () => {
       try {
-        const values = await antdForm.validateFields(); // 校验
+        const values = await acroForm.validate(); // 校验
         const arr = Object.keys(actionRef.current);
         for (let i = 0; i < arr.length; i++) {
           const key = arr[i];
@@ -51,18 +32,14 @@ export const expansionInstanceMethod = ({
             await actionRef.current[key].validateFields(); // TableList 子表单校验
           }
         }
-        return getCombination({ ...values }, cloneSchema, {
-          name,
-          form,
-          initialValues,
-        });
+        return values;
       } catch (errorInfo) {
         // 开启自动定位到第一个校验异常的位置
         if (scrollToFirstError) {
           // dom .ant-form-item-has-error 渲染有延迟
           setTimeout(() => {
             const el = getScrollContainer?.();
-            scrollToElement(el, el?.querySelector('.ant-form-item-has-error'));
+            scrollToElement(el, el?.querySelector('.acro-form-item-has-error'));
           }, 50);
         }
         // eslint-disable-next-line no-console
@@ -85,6 +62,7 @@ export const expansionInstanceMethod = ({
     },
     /** 获取指定field的异步加载options */
     getFieldOption: async (fieldName: string) => {
+      console.log(AsyncOptionsCache, `${name}_${fieldName}`);
       if (!(await AsyncOptionsCache[`${name}_${fieldName}`])) {
         await new Promise((res) => setTimeout(res, 100, true)); // 没有找到先等待0.1秒让组件effect执行请求发出去
       }

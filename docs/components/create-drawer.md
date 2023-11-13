@@ -139,8 +139,7 @@ export default (props) => {
                   取消
                 </Button>
                 <Button
-                  type="primary"
-                  ghost
+                  type="outline"
                   onClick={async () => {
                     const data = await form.submit();
                     alert(JSON.stringify(data));

@@ -42,7 +42,7 @@ export default ({
       clearValue[key] = undefined;
     });
     // resetField会导致Item卸载，例如会触发AsyncSelect再次发送请求
-    form.setValues({
+    form.setFieldsValue({
       ...clearValue,
       ...(clearInitialValuesOnReset ? {} : rest.initialValues || {}), // 是否保留默认值选项
     });
@@ -143,7 +143,7 @@ export default ({
     })
   ) {
     tools.push({
-      type: 'link',
+      type: 'text',
       key: 'more',
       label: moreLabel,
       onClick: () => {

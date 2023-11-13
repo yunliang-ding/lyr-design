@@ -12,7 +12,6 @@ export interface ToolsProps {
   label?: string | ReactNode;
   key?: string;
   type?: string;
-  ghost?: boolean;
   btnType?: string;
   disabled?: boolean;
   auth?: any;

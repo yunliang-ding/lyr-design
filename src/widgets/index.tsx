@@ -102,6 +102,7 @@ export default (field: any, formInstance: any = {}, widgets = {}) => {
       disabled={field.disabled}
       readOnly={field.readOnly}
       readOnlyEmptyValueNode={field.readOnlyEmptyValueNode}
+      id={field.id}
       {...ExpProps}
       {...field.props}
     />

@@ -1,7 +1,7 @@
 import { Select, SelectProps } from '@arco-design/web-react';
 import { ExtendInputProps } from '..';
 
-export default ({
+const WidgetSelect = ({
   readOnlyEmptyValueNode = '-',
   fieldNames = { value: 'value', label: 'label' },
   readOnly,
@@ -23,6 +23,9 @@ export default ({
       </span>
     );
   }
-  console.log(props);
   return <Select {...props} />;
 };
+
+WidgetSelect.displayName = 'Select';
+
+export default WidgetSelect;

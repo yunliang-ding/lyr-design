@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
-import { Spin, Empty } from 'antd';
+import { Spin, Empty } from '@arco-design/web-react';
 import debounce from 'lodash/debounce';
 import Select from '@/widgets/arco-design/select';
 import { useEffect, useState, useRef, useMemo } from 'react';
@@ -88,13 +88,7 @@ export default ({
       loading={loading}
       value={loading ? [] : props.value}
       onSearch={debounceFetcher}
-      notFoundContent={
-        loading ? (
-          <Spin size="small" />
-        ) : (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-        )
-      }
+      notFoundContent={loading ? <Spin /> : <Empty />}
       options={options}
       showSearch
     />

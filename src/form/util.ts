@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { getGlobalConfigByName } from '@/config';
 import moment from 'moment';
-import { CoreFormInstance } from './type.instance';
+import { uuid } from 'react-core-form-tools';
 
 // 表单项是否弹出层
 export const isPopupContainer = (type: string) => {
@@ -101,6 +101,10 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
   /** 开始扩展 */
   schema?.forEach((field: any) => {
     // 兼容下
+    if (field.name === undefined) {
+      field.name = field.key || uuid(8);
+    }
+    // 兼容下
     if (field.props === undefined) {
       field.props = {};
     }
@@ -133,9 +137,9 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
       if (
         defaultShowInputCount &&
         field.type === 'Input' &&
-        field.props.showCount === undefined
+        field.props.showWordLimit === undefined
       ) {
-        field.props.showCount = true;
+        field.props.showWordLimit = true;
       }
     }
     // 处理popup类挂载容器
@@ -296,111 +300,4 @@ export const isFieldSet = (field) => {
     (Array.isArray(field.props?.children) ||
       typeof field.props?.children === 'function')
   );
-};
-
-/** 处理transform */
-export const getCombination = (
-  values: any,
-  formSchema,
-  options: {
-    name: string;
-    form: CoreFormInstance;
-    initialValues: object;
-  },
-  combination = {},
-) => {
-  formSchema?.forEach((field: any) => {
-    // 这里过滤下不展示、或者没有定义name的字段
-    if (
-      field.visible?.({
-        ...options.initialValues, // 保留默认值
-        ...options.form.getFieldsValue(), // 当前表单值
-        ...combination, // FieldSet兼容
-      }) === false ||
-      field.name === undefined
-    ) {
-      return;
-    }
-    if (isFieldSet(field) && field.name) {
-      // 递归处理下
-      const childrenFields =
-        typeof field.props?.children === 'function'
-          ? field.props?.children(options.form)
-          : field.props?.children;
-      // 格式处理下
-      if (typeof field.props?.children === 'function') {
-        tranfromSchema(childrenFields, options.name, field.props.column);
-      }
-      combination[field.name] = {}; // 创建容器
-      // 递归处理下
-      return getCombination(
-        values,
-        childrenFields,
-        options,
-        combination[field.name],
-      );
-    }
-    Object.assign(
-      combination,
-      typeof field.transform === 'function'
-        ? field.transform({ ...values, ...combination })
-        : {
-            [field.name]: values[field.name],
-          },
-    );
-    delete values[field.name]; // remove
-  });
-  return { ...values, ...combination };
-};
-
-/** 处理 beforeReceive */
-export const parseBeforeReceive = (
-  values: any,
-  formSchema,
-  options: {
-    name: string;
-    form: CoreFormInstance;
-    initialValues: object;
-  },
-  parseValue = {},
-) => {
-  formSchema?.forEach((field: any) => {
-    if (isFieldSet(field) && field.name) {
-      // 递归处理下
-      const childrenFields =
-        typeof field.props?.children === 'function'
-          ? field.props?.children(
-              {
-                ...options.form,
-                initialValues: options.initialValues,
-              },
-              true,
-            )
-          : field.props?.children;
-      // 格式处理下
-      if (typeof field.props?.children === 'function') {
-        tranfromSchema(childrenFields, options.name, field.props.column);
-      }
-      return parseBeforeReceive(
-        values[field.name] || {},
-        childrenFields,
-        options,
-        parseValue,
-      );
-    }
-    if (
-      typeof field.visible === 'function' &&
-      field.visible(values) === false
-    ) {
-      return; // 过滤不展示的字段
-    }
-    parseValue[field.name] =
-      typeof field.beforeReceive === 'function'
-        ? field.beforeReceive(values)
-        : values[field.name];
-  });
-  return {
-    ...values,
-    ...parseValue,
-  };
 };

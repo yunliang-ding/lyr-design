@@ -2,10 +2,6 @@ import { ActionProps } from '../form-submit/type.action';
 import { SchemaProps } from './type.item';
 
 export interface CoreFormInstance {
-  /** getFieldsValue 基础上执行配置的 transform，返回数据 */
-  getValues: () => any;
-  /** setFieldsValue 基础上执行配置的 beforeReceive，设置数据 */
-  setValues: (data) => void;
   /** 设置新的默认值、之后Form会重新渲染 */
   setInitialValues: (value: any) => void;
   /** 手动清空所有值，不会还原到默认值 */

@@ -59,10 +59,6 @@ export interface SchemaProps<T = FieldProps>
    * @default          false
    */
   expand?: boolean;
-  /** 会在initialValues拦截处理下 */
-  beforeReceive?: (initialValues: any) => any;
-  /** 会在submit提交拦截处理下 */
-  transform?: (values: any) => object;
   /**
    * 查询表单 改变是否触发查询
    * @default          false
@@ -128,7 +124,7 @@ export interface ExtensionProps {
   title?: string | React.ReactNode;
   subTitle?: string | React.ReactNode;
   // TextArea
-  showCount?: boolean;
+  showWordLimit?: boolean;
   // FieldSet
   column?: number;
   children?: SchemaProps[];

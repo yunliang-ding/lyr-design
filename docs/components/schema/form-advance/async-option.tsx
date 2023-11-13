@@ -46,30 +46,26 @@ const schema: SchemaProps[] = [
     props: {
       mode: 'multiple',
       showSearch: true,
-      fieldNames: {
-        label: 'name',
-        value: 'id',
-      },
-      maxTagCount: 'responsive',
+      maxTagCount: 2,
       options: async (form) => {
         console.log('classify ->', form); // 可以拿到表单实例
         await sleep(500);
         return [
           {
-            name: '前端',
-            id: 0,
+            label: '前端',
+            value: 0,
           },
           {
-            name: '后端',
-            id: 1,
+            label: '后端',
+            value: 1,
           },
           {
-            name: '产品经理',
-            id: 2,
+            label: '产品经理',
+            value: 2,
           },
           {
-            name: '项目经理',
-            id: 3,
+            label: '项目经理',
+            value: 3,
           },
         ];
       },
@@ -218,16 +214,14 @@ const schema: SchemaProps[] = [
   {
     type: 'AsyncRender',
     label: '已选择性别',
-    key: 'render',
     effect: ['sex'],
     props: {
       spin: true, // 开启loading
-      async render({ getFieldOption, getFieldsValue, initialValues }) {
-        const { sex } = getFieldsValue(true) || initialValues;
+      async render({ getFieldOption, getFieldValue }) {
         const options = await getFieldOption('sex');
         return (
           <Tag color="processing">
-            {options.find((i) => i.value === sex)?.label}
+            {options.find((i) => i.value === getFieldValue('sex'))?.label}
           </Tag>
         );
       },
@@ -240,6 +234,7 @@ const schema: SchemaProps[] = [
     props: {
       options: async () => {
         await sleep(2000);
+        return [];
       },
     },
   },

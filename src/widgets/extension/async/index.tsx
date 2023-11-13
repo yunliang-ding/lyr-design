@@ -17,7 +17,8 @@ export default (Component: any) =>
           if (AsyncOptionsCache[props.id] && openOptionsCache) {
             return setOptions(await AsyncOptionsCache[props.id]);
           }
-          AsyncOptionsCache[props.id] = props.options(props.form); // 这初始缓存的Value是一定是Promise，具体原因参看文档Form高级用法(设置异步的Options)
+          // 这初始缓存的Value是一定是Promise，具体原因参看文档Form高级用法(设置异步的Options)
+          AsyncOptionsCache[props.id] = props.options(props.form);
           setOptions(await AsyncOptionsCache[props.id]);
         } else {
           console.warn(`${props.name} 设置的options不是一个function`);

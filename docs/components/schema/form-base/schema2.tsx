@@ -11,10 +11,10 @@ const schema: SchemaProps[] = [
       column: 3, // 子元素3等份排
       subTitle: '这个是一个描述信息...',
       extra: [
-        <Button type="primary" ghost key="operation">
+        <Button type="outline" key="operation">
           操作区域
         </Button>,
-        <Button type="primary" ghost key="more">
+        <Button type="outline" key="more">
           更多操作
         </Button>,
       ],

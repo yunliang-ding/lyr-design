@@ -53,10 +53,8 @@ const CoreForm = (props: CoreFormProps) => {
 };
 CoreForm.useForm = () => {
   const ref: FormRefInstance = React.useRef({
-    getValues: () => {},
-    setValues: (data) => {},
-    setInitialValues: (data) => {},
     clearValues: () => {},
+    setInitialValues: (data) => {},
     setSchemaByName: (name, newField: SchemaProps, customizer?) => {},
     getSchemaByName: (name) => {},
     touchSchemaRender: (names: string[]) => {},

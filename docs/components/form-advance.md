@@ -13,6 +13,7 @@ toc: menu
  */
 import React from 'react';
 import { Form, Button } from 'react-core-form';
+
 export default () => {
   const [form] = Form.useForm();
   const submit = async () => {
@@ -49,46 +50,7 @@ export default () => {
 };
 ```
 
-## 使用 beforeReceive 接受前的转换处理
-
-```tsx
-/**
- * title: 说明
- * desc: beforeReceive仅仅是在初次渲染时执行、normalize是在更新的时候转换
- */
-import React from 'react';
-import { Form } from 'react-core-form';
-
-export default () => {
-  return (
-    <Form
-      schema={[
-        {
-          type: 'Select',
-          name: 'likes',
-          label: '用户角色',
-          props: {
-            mode: 'multiple',
-            options: [
-              { label: '浏览者', value: '1' },
-              { label: '开发者', value: '2' },
-              { label: '管理员', value: '3' },
-            ],
-          },
-          beforeReceive: ({ likes }) => {
-            return likes?.split(',');
-          },
-        },
-      ]}
-      initialValues={{
-        likes: '1,2',
-      }}
-    />
-  );
-};
-```
-
-## 使用 transform 处理数据
+## 使用 normalize/formatter 处理数据
 
 ```tsx
 /**
@@ -97,7 +59,7 @@ export default () => {
  */
 import React from 'react';
 import { Form, Button } from 'react-core-form';
-import moment from 'moment';
+
 export default () => {
   const [form] = Form.useForm();
   const submit = async () => {
@@ -108,11 +70,20 @@ export default () => {
     <>
       <Form
         form={form}
+        initialValues={{
+          likes: '1,2',
+        }}
         schema={[
           {
             type: 'Select',
             name: 'likes',
             label: '用户角色',
+            normalize: (likes) => {
+              return likes.join(',');
+            },
+            formatter: (likes) => {
+              return likes?.split(',');
+            },
             props: {
               mode: 'multiple',
               options: [
@@ -120,11 +91,6 @@ export default () => {
                 { label: '开发者', value: '2' },
                 { label: '管理员', value: '3' },
               ],
-            },
-            transform: ({ likes }) => {
-              return {
-                likes: likes?.join(','),
-              };
             },
           },
         ]}
@@ -147,6 +113,7 @@ export default () => {
 import React from 'react';
 import { Form, Button } from 'react-core-form';
 import schema from './schema/form-advance/async-option';
+
 export default () => {
   const [fresh, setFresh] = React.useState(false);
   const [readOnly, setReadOnly] = React.useState(false);
@@ -291,6 +258,7 @@ export default () => {
           name: 'age',
           label: '年龄',
           effect: ['sex'], // 配置副作用
+          // effectClearField: true, // 清空
           visible: ({ sex }) => {
             return sex === 1;
           },
@@ -354,8 +322,7 @@ export default () => {
   return (
     <>
       <Button
-        type="primary"
-        ghost
+        type="outline"
         onClick={() => {
           setReload(Math.random());
         }}
@@ -455,15 +422,15 @@ export default () => {
  */
 import React from 'react';
 import { Form } from 'react-core-form';
-import { Switch } from 'antd';
+import { Switch } from '@arco-design/web-react';
 
 export default () => {
   const [form] = Form.useForm();
   return (
     <>
       <Switch
-        checkedChildren="男"
-        unCheckedChildren="女"
+        checkedText="男"
+        uncheckedText="女"
         onChange={(e) => {
           form.setFieldsValue({
             sex: e ? 1 : 2,
@@ -551,7 +518,7 @@ export default () => {
  */
 import React from 'react';
 import { Form } from 'react-core-form';
-import { Switch } from 'antd';
+import { Switch } from '@arco-design/web-react';
 import schema from './schema/advance/schema5';
 
 export default () => {
@@ -559,8 +526,8 @@ export default () => {
   return (
     <>
       <Switch
-        checkedChildren="男"
-        unCheckedChildren="女"
+        checkedText="男"
+        uncheckedText="女"
         onChange={(e) => {
           form.setFieldsValueTouchOnValuesChange({
             sex: e ? 1 : 2,
@@ -648,6 +615,7 @@ export default () => {
 import React from 'react';
 import { Form, Button } from 'react-core-form';
 import schema from './schema/form-advance/form-list';
+
 export default () => {
   const [form] = Form.useForm();
   const [readOnly, setReadOnly] = React.useState(false);
@@ -712,6 +680,7 @@ export default () => {
 };
 ```
 
+<!--
 ## 使用 itemRender 扩展渲染
 
 ```tsx
@@ -968,4 +937,4 @@ export default () => {
     />
   );
 };
-```
+``` -->
