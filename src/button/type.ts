@@ -1,7 +1,11 @@
+import { ReactNode } from 'react';
 import { CreateDrawerFormProps } from '../create-drawer';
 import { CreateModalFormProps } from '../create-modal';
-import { ButtonProps, PopconfirmProps, TooltipProps } from 'antd';
-import { ReactNode } from 'react';
+import {
+  ButtonProps,
+  PopconfirmProps,
+  TooltipProps,
+} from '@arco-design/web-react';
 
 type Comfirm = PopconfirmProps & {
   type?: 'pop' | 'alert';
@@ -14,7 +18,7 @@ export interface BtnProps extends ButtonProps {
 
 export interface ProBtnProps extends Omit<ButtonProps, 'onClick'> {
   /**
-   * 点击是否有loading
+   * 是否按照点击事件自动加载loading
    * @default false
    */
   spin?: boolean;

@@ -1,5 +1,5 @@
 import { isValidElement, useState } from 'react';
-import { Button, Modal, Popconfirm, Tooltip } from 'antd';
+import { Button, Popconfirm, Modal, Tooltip } from '@arco-design/web-react';
 import { ProBtnProps } from './type';
 import { isEmpty, isObject } from '../util';
 import { CreateModal, CreateDrawer } from '..';
@@ -49,11 +49,11 @@ const ProButton = ({
             cancelText: '取消',
             title: '提示',
             ...confirm,
-            type: undefined, // 移除警告
+            type: undefined,
             async onOk() {
               await confirmClick();
             },
-          })
+          } as any)
         : await confirmClick();
     };
     // 设置按钮loading
@@ -114,7 +114,7 @@ const ProButton = ({
       typeof tooltip === 'object' && !isValidElement(tooltip)
         ? tooltip
         : {
-            title: tooltip,
+            content: tooltip,
           };
     vNode = <Tooltip {...tooltipProps}>{vNode}</Tooltip>;
   }

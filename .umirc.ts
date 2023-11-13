@@ -36,22 +36,31 @@ export default defineConfig({
       }
   `,
   ],
-  theme: {
-    '@primary-background-color': '#f0f6ff',
-    '@text-color': '#6a6a6a',
-    '@font-size-base': '12px',
-    '@font-size-small': '12px',
-    '@primary-color': '#2f54eb',
-  },
+  // theme: {
+  //   '@primary-background-color': '#f0f6ff',
+  //   '@text-color': '#6a6a6a',
+  //   '@font-size-base': '12px',
+  //   '@font-size-small': '12px',
+  //   '@primary-color': '#2f54eb',
+  // },
   extraBabelPlugins: [
+    // [
+    //   'import',
+    //   {
+    //     libraryName: 'antd',
+    //     libraryDirectory: 'lib',
+    //     style: true,
+    //   },
+    //   'antd',
+    // ],
     [
       'import',
       {
-        libraryName: 'antd',
-        libraryDirectory: 'lib',
-        style: true,
+        libraryName: '@arco-design/web-react',
+        libraryDirectory: 'es',
+        camel2DashComponentName: false,
+        style: true, // 样式按需加载
       },
-      'antd',
     ],
   ],
   history: { type: 'hash' },

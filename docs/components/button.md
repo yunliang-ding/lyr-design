@@ -4,9 +4,14 @@ title: Button 扩展
 toc: menu
 ---
 
+## arco.design 的 Button 基础上扩展了如下
+
 <Alert>
 
-- 在 antd 的 Button 基础上添加了 loading、防止重复点击、及二次确认、角色权限等扩展
+- 自动 loading
+- 二次确认
+- 继承弹框、抽屉
+- 权限控制
 
 </Alert>
 
@@ -18,6 +23,7 @@ toc: menu
  */
 import * as React from 'react';
 import { Button } from 'react-core-form';
+
 export default () => {
   const submit = async () => {
     return new Promise((res) => setTimeout(res, 1000));
@@ -37,14 +43,15 @@ export default () => {
  * background: '#fff'
  */
 import * as React from 'react';
-import { message } from 'antd';
-import { Button, Switch } from 'react-core-form';
+import { Message, Switch } from '@arco-design/web-react';
+import { Button } from 'react-core-form';
+
 export default () => {
   const [type, setType] = React.useState('pop');
   const submit = async () => {
     return new Promise((res) => {
       setTimeout(() => {
-        message.success('发布成功！');
+        Message.success('发布成功！');
         res();
       }, 1000);
     });
@@ -62,7 +69,6 @@ export default () => {
       <br />
       <Button
         type="primary"
-        key={type}
         confirm={{
           title: type === 'alert' ? '提示下' : '是否确认发布?',
           content: '是否确认发布?',
@@ -86,14 +92,14 @@ export default () => {
  * background: '#fff'
  */
 import * as React from 'react';
-import { message } from 'antd';
+import { Message } from '@arco-design/web-react';
 import { Button, Form } from 'react-core-form';
 export default () => {
   const [form] = Form.useForm();
   const submit = async () => {
     return new Promise((res) => {
       setTimeout(() => {
-        message.success('发布成功！');
+        Message.success('发布成功！');
         res();
       }, 1000);
     });
@@ -139,15 +145,16 @@ export default () => {
  * background: '#fff'
  */
 import * as React from 'react';
-import { message, Space } from 'antd';
+import { Message, Space } from '@arco-design/web-react';
 import { Button, Form } from 'react-core-form';
 import schema from './schema/form-submit/schema';
+
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 
 export default () => {
   const onSubmit = async (values) => {
     await delay(400);
-    message.success('保存成功');
+    Message.success('保存成功');
     // return Promise.reject(); // 阻止关闭
   };
   return (
@@ -195,7 +202,7 @@ export default () => {
  */
 import * as React from 'react';
 import { Button } from 'react-core-form';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 
 export default () => {
   return (
@@ -203,13 +210,13 @@ export default () => {
       <Button tooltip="我是提示文案" type="primary">
         鼠标移入显示提示
       </Button>
-      <Button tooltip="我是提示文案" type="link">
+      <Button tooltip="我是提示文案" type="text">
         显示提示
       </Button>
       <Button
         tooltip={{
-          title: '我是提示文案',
-          placement: 'right',
+          content: '我是提示文案',
+          position: 'right',
         }}
       >
         鼠标移入显示提示
@@ -229,7 +236,7 @@ export default () => {
  */
 import * as React from 'react';
 import { Button } from 'react-core-form';
-import { Tag } from 'antd';
+import { Tag } from '@arco-design/web-react';
 
 // 代表当前用户配置了若干个按钮权限
 Button.setAuth({
@@ -255,7 +262,7 @@ export default () => {
       <br />
       <br />
       {Button.hasAuth('user-management-delete') ? (
-        <Tag color="success">您具有删除用户的权限</Tag>
+        <Tag color="green">您具有删除用户的权限</Tag>
       ) : (
         <Tag color="red">您暂无删除用户的权限</Tag>
       )}
@@ -271,7 +278,7 @@ export default () => {
       <br />
       <br />
       {Button.hasAuth('application-management-delete') ? (
-        <Tag color="success">您具有删除应用的权限</Tag>
+        <Tag color="green">您具有删除应用的权限</Tag>
       ) : (
         <Tag color="red">您暂无删除应用的权限</Tag>
       )}

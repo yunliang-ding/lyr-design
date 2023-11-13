@@ -42,17 +42,20 @@
     "react-sortable-hoc": "2.0.0",
     "react-draggable": "4.4.5",
     "react-core-form-tools": "0.0.7",
+    "react-core-form-store": "0.0.1",
     "react-contexify": "5.0.0",
     "react-syntax-highlighter": "15.5.0",
     "react-markdown": "8.0.7",
     "remark-gfm": "3.0.1"
   },
   "peerDependencies": {
+    "@arco-design/web-react": "2.55.2",
     "antd": "4.24.10",
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0"
   },
   "devDependencies": {
+    "@arco-design/web-react": "2.55.2",
     "antd": "4.24.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
