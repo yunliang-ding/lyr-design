@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import Cascader from '@/widgets/antd/cascader';
+import Cascader from '@/widgets/arco-design/cascader';
 import { useState, useEffect } from 'react';
 import { AsyncOptionsCache } from '@/util';
 import Icon from '@/icon';

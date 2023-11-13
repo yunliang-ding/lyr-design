@@ -1,4 +1,4 @@
-import { Checkbox, Space } from 'antd';
+import { Checkbox, Space } from '@arco-design/web-react';
 import { useState } from 'react';
 
 export default ({ showCheckAll, ...props }) => {

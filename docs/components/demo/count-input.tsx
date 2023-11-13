@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'react-core-form';
+import { Input } from '@arco-design/web-react';
 /**
  * 计数器输入框
  */

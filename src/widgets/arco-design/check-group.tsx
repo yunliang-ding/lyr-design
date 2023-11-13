@@ -1,4 +1,4 @@
-import { Checkbox } from 'antd';
+import { Checkbox } from '@arco-design/web-react';
 import CheckGroupAll from './check-group-all';
 
 export default ({

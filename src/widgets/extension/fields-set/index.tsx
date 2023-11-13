@@ -1,11 +1,11 @@
 import { NOTICESELF } from '@/util';
-import { Empty, Space } from 'antd';
+import { Empty, Space } from '@arco-design/web-react';
 import { useEffect, useState } from 'react';
 import './index.less';
 
 export default ({
   style = {},
-  children = <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />,
+  children = <Empty />,
   label = '',
   subTitle = '',
   event,

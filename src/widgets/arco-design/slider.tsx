@@ -1,4 +1,4 @@
-import { Slider } from 'antd';
+import { Slider } from '@arco-design/web-react';
 
 export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
   // 渲染只读视图

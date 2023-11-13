@@ -1,4 +1,4 @@
-import { Select } from 'antd';
+import { Select } from '@arco-design/web-react';
 
 const _Select = ({
   readOnlyEmptyValueNode = '-',

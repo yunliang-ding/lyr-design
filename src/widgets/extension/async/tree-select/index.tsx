@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import { useEffect, useState } from 'react';
 import { Spin, Empty } from 'antd';
-import TreeSelect from '@/widgets/antd/tree-select';
+import TreeSelect from '@/widgets/arco-design/tree-select';
 import { AsyncOptionsCache } from '@/util';
 import Icon from '@/icon';
 

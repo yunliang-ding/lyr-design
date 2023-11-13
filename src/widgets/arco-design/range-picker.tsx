@@ -1,4 +1,4 @@
-import { DatePicker, Space } from 'antd';
+import { DatePicker, Space } from '@arco-design/web-react';
 import moment from 'moment';
 import './range-picker.less';
 /**

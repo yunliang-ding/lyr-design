@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { useRef, useMemo, useCallback, useState } from 'react';
-import { ConfigProvider, Empty, Form, Spin } from 'antd';
-import { Grid } from '../index';
+import { ConfigProvider, Empty, Form, Spin } from '@arco-design/web-react';
 import { cloneDeep, EventEmit, queryFieldByName } from '@/util';
 import Item from './item';
 import FieldSet from '@/widgets/extension/fields-set';
@@ -9,6 +8,7 @@ import { CoreFormProps } from './type.form';
 import CoreForm from './index';
 import { parseBeforeReceive, tranfromSchema } from './util';
 import { expansionInstanceMethod } from './tool';
+import { Grid } from '..';
 import './index.less';
 
 // column布局映射关系
@@ -137,7 +137,7 @@ export default ({
         <RenderSchema itemSchema={childrenFields || []} />
       </Grid>
     ) : (
-      <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+      <Empty />
     );
   };
   /** render field */
@@ -226,7 +226,7 @@ export default ({
   }
   return (
     <ConfigProvider locale={locale}>
-      <Spin spinning={spin} wrapperClassName="core-form-spin">
+      <Spin loading={spin}>
         <Form
           layout={layout}
           labelCol={labelCol}

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { Space } from 'antd';
-import InputNumber from '../../antd/input-number';
-import Input from '../../antd/input';
+import InputNumber from '../../arco-design/input-number';
+import Input from '../../arco-design/input';
+import { Space } from '@arco-design/web-react';
 import './index.less';
 
 export default ({
@@ -34,7 +34,7 @@ export default ({
         value={value?.[0]}
         onChange={(e) => {
           const v = typeof e === 'object' ? e.target.value : e;
-          onChange([v, value?.[1]]);
+          onChange?.([v, value?.[1]]);
         }}
         onBlur={(e) => {
           if (mode === 'InputNumber') {
@@ -51,7 +51,7 @@ export default ({
         value={value?.[1]}
         onChange={(e) => {
           const v = typeof e === 'object' ? e.target.value : e;
-          onChange([value?.[0], v]);
+          onChange?.([value?.[0], v]);
         }}
         onBlur={(e) => {
           if (mode === 'InputNumber') {

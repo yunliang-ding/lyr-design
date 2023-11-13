@@ -1,3 +1,4 @@
+/* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   cloneDeep,
@@ -9,7 +10,7 @@ import {
 import CreateWidget from '@/widgets';
 import mergeWith from 'lodash/mergeWith';
 import AsyncRender from '@/widgets/extension/async/render';
-import { Form } from 'antd';
+import { Form } from '@arco-design/web-react';
 import { beforeFieldRender } from './util';
 
 export default ({

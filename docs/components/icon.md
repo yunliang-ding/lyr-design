@@ -13,7 +13,7 @@ toc: menu
 import * as React from 'react';
 import { copyToClipBoard } from 'react-core-form-tools';
 import { Icon } from 'react-core-form';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 
 export default () => {
   return (
@@ -43,7 +43,7 @@ export default () => {
 import * as React from 'react';
 import { copyToClipBoard } from 'react-core-form-tools';
 import { Icon } from 'react-core-form';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 
 export default () => {
   return (
@@ -74,7 +74,7 @@ export default () => {
 import * as React from 'react';
 import { copyToClipBoard } from 'react-core-form-tools';
 import { Icon } from 'react-core-form';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 
 export default () => {
   return (
@@ -105,7 +105,7 @@ export default () => {
 import * as React from 'react';
 import { copyToClipBoard } from 'react-core-form-tools';
 import { Icon } from 'react-core-form';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 
 export default () => {
   return (

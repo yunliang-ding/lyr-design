@@ -1,5 +1,5 @@
 import { getGlobalConfigByName } from '@/config';
-import { Input } from 'antd';
+import { Input } from '@arco-design/web-react';
 
 const _Input_ = ({ readOnlyEmptyValueNode = '-', ...props }) => {
   // 渲染只读视图

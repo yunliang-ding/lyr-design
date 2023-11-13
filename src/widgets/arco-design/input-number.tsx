@@ -1,4 +1,4 @@
-import { InputNumber } from 'antd';
+import { InputNumber } from '@arco-design/web-react';
 
 export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
   // 渲染只读视图

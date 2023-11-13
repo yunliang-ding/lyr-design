@@ -1,4 +1,4 @@
-import { TimePicker } from 'antd';
+import { TimePicker } from '@arco-design/web-react';
 import moment from 'moment';
 
 export default ({ readOnlyEmptyValueNode = '-', ...props }) => {

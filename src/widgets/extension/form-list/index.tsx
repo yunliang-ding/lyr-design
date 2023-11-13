@@ -1,6 +1,6 @@
 import Grid from '@/grid';
 import { Fragment, useRef } from 'react';
-import { Form, Button, Empty, message } from 'antd';
+import { Form, Button, Empty, Message } from '@arco-design/web-react';
 import Item from '@/form/item';
 import './index.less';
 
@@ -28,24 +28,24 @@ export default ({
   // 是否可以操作
   const notOperation = !operation || readOnly || disabled; // 不可操作的标识
   return (
-    <Form.List name={name}>
+    <Form.List field={name}>
       {(f, { add, remove }) => {
         actionRef.current[name] = {
           add: async (...p) => {
             if (notOperation) {
-              return message.info('不可操作');
+              return Message.info('不可操作');
             }
             if (f?.length === maxCount) {
-              return message.info(`最多只能添加${maxCount}条`);
+              return Message.info(`最多只能添加${maxCount}条`);
             }
             add(...p);
           },
           remove: async (idx = 0) => {
             if (notOperation) {
-              return message.info('不可操作');
+              return Message.info('不可操作');
             }
             if (leastOne && f.length === 1) {
-              return message.info('至少保留一条');
+              return Message.info('至少保留一条');
             }
             remove(idx);
           },
@@ -62,7 +62,7 @@ export default ({
                     </span>
                     {!notOperation && (
                       <Button
-                        type="link"
+                        type="text"
                         disabled={
                           (leastOne && index === 0 && length === 1) || disabled
                         }
@@ -95,16 +95,13 @@ export default ({
                 </Fragment>
               );
             })}
-            {notOperation && f.length === 0 && (
-              <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-            )}
+            {notOperation && f.length === 0 && <Empty />}
             {!notOperation && (
               <Form.Item>
                 <Button
                   type="dashed"
                   disabled={f.length === maxCount || disabled}
                   onClick={() => add()}
-                  block
                 >
                   添加
                 </Button>

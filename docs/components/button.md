@@ -70,7 +70,7 @@ export default () => {
       <Button
         type="primary"
         confirm={{
-          title: type === 'alert' ? '提示下' : '是否确认发布?',
+          title: '提示',
           content: '是否确认发布?',
           okText: '确认',
           cancelText: '取消',

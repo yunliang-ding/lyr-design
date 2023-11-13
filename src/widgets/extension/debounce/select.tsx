@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import { Spin, Empty } from 'antd';
 import debounce from 'lodash/debounce';
-import Select from '@/widgets/antd/select';
+import Select from '@/widgets/arco-design/select';
 import { useEffect, useState, useRef, useMemo } from 'react';
 import { AsyncOptionsCache, isEmpty } from '@/util';
 

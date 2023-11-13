@@ -1,4 +1,4 @@
-import { Radio } from 'antd';
+import { Radio } from '@arco-design/web-react';
 
 export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
   // 渲染只读视图

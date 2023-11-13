@@ -1,4 +1,4 @@
-import { DatePicker } from 'antd';
+import { DatePicker } from '@arco-design/web-react';
 import moment from 'moment';
 
 export default ({ readOnlyEmptyValueNode = '-', ...props }) => {

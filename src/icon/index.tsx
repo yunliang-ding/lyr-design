@@ -50,7 +50,7 @@ const Icon = ({
   primary,
 }: IconProps) => {
   if (primary) {
-    color = 'var(--antd-wave-shadow-color)';
+    color = 'rgb(var(--primary-6))';
   }
   return (
     <span

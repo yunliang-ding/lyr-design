@@ -1,4 +1,4 @@
-import { Switch } from 'antd';
+import { Switch } from '@arco-design/web-react';
 
 export default ({ readOnlyEmptyValueNode = '-', readOnly, ...props }) => {
   if (readOnly) {

@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 import { useEffect, useState } from 'react';
-import { Spin, Empty } from 'antd';
+import { Spin, Empty } from '@arco-design/web-react';
 import { AsyncOptionsCache } from '@/util';
 import Icon from '@/icon';
 
@@ -43,14 +43,7 @@ export default (Component: any) =>
         loading={loading}
         value={loading ? [] : props.value}
         notFoundContent={
-          loading ? (
-            <Spin size="small" />
-          ) : (
-            <Empty
-              image={Empty.PRESENTED_IMAGE_SIMPLE}
-              description={props.emptyDescription}
-            />
-          )
+          loading ? <Spin /> : <Empty description={props.emptyDescription} />
         }
         options={options}
       />
@@ -59,11 +52,6 @@ export default (Component: any) =>
     ) : options?.length > 0 ? (
       <Component {...props} options={options} />
     ) : (
-      !props.readOnly && (
-        <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-          description={props.emptyDescription}
-        />
-      )
+      !props.readOnly && <Empty description={props.emptyDescription} />
     );
   };

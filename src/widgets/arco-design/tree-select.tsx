@@ -1,4 +1,4 @@
-import { TreeSelect } from 'antd';
+import { TreeSelect } from '@arco-design/web-react';
 
 const queryLoop = (
   data,
