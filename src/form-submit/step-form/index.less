@@ -3,7 +3,7 @@
   padding: 24px;
   position: relative;
 
-  .ant-steps-navigation {
+  .arco-steps-navigation {
     padding-top: 0;
   }
 
@@ -22,5 +22,26 @@
     padding: 0 24px;
     align-items: center;
     border-top: 1px solid #f5f5f5;
+  }
+}
+
+.arco-modal-body {
+  .core-form-step-form {
+    padding: 16px 12px;
+    height: 100%;
+    box-sizing: border-box;
+    &-header {
+      height: 60px;
+      padding: 0;
+    }
+    &-body {
+      padding: 0;
+      height: calc(100% - 120px);
+      overflow: auto;
+    }
+    &-footer {
+      padding: 0 12px;
+      height: 60px;
+    }
   }
 }

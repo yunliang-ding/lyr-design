@@ -8,8 +8,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { CreateSpin } from 'react-core-form';
-import { Button } from 'antd';
+import { Button, CreateSpin } from 'react-core-form';
 
 export default (props) => {
   const { open, close } = CreateSpin({
@@ -59,8 +58,7 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { CreateSpin } from 'react-core-form';
-import { Button } from 'antd';
+import { Button, CreateSpin } from 'react-core-form';
 
 export default (props) => {
   const { open, close } = CreateSpin({

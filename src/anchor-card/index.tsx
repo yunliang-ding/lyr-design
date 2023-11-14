@@ -1,4 +1,4 @@
-import { Row, Col, Card, CardProps } from 'antd';
+import { Card, CardProps, Grid } from '@arco-design/web-react';
 import { useState, ReactNode, useEffect } from 'react';
 import { getElementTop, getLinkTabs } from './util';
 import './index.less';
@@ -81,8 +81,13 @@ export default ({
   };
   // 左侧锚点模块的高度
   return (
-    <Row className="anchor-card-content" wrap={false}>
-      <Col flex="160px" className="anchor-card-left" style={{ top: fixedTop }}>
+    <Grid.Row className="anchor-card-content">
+      <Grid.Col
+        span={6}
+        flex="160px"
+        className="anchor-card-left"
+        style={{ top: fixedTop }}
+      >
         {tabs.map((item) => {
           return (
             <div
@@ -98,8 +103,8 @@ export default ({
             </div>
           );
         })}
-      </Col>
-      <Col className="anchor-card-right">
+      </Grid.Col>
+      <Grid.Col span={18} className="anchor-card-right">
         {children ||
           tabs.map((item) => {
             return (
@@ -117,7 +122,7 @@ export default ({
               </Card>
             );
           })}
-      </Col>
-    </Row>
+      </Grid.Col>
+    </Grid.Row>
   );
 };

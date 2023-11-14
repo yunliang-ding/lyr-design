@@ -12,7 +12,7 @@ toc: menu
  */
 import React from 'react';
 import { StepForm, Form } from 'react-core-form';
-import { Radio } from 'antd';
+import { Radio } from '@arco-design/web-react';
 
 export default () => {
   const [type, setType] = React.useState('default');
@@ -22,7 +22,7 @@ export default () => {
     <div>
       <Radio.Group
         onChange={(v) => {
-          setType(v.target.value);
+          setType(v);
         }}
         defaultValue="default"
         options={[
@@ -32,7 +32,7 @@ export default () => {
           },
           {
             label: '导航卡',
-            value: 'navigation',
+            value: 'arrow',
           },
         ]}
       />
@@ -42,6 +42,7 @@ export default () => {
         form={form}
         stepProps={{
           type,
+          size: 'small',
         }}
         onStepsClick={async (v) => {
           await form.submit(); // 表单校验
@@ -161,7 +162,7 @@ export default () => {
                 type: 'primary',
                 async onClick() {
                   await new Promise((res) => setTimeout(res, 1000));
-                  alert(JSON.stringify(form.getValues()));
+                  alert(JSON.stringify(form.getFieldsValue(true)));
                 },
               },
             ],
@@ -179,18 +180,13 @@ export default () => {
 import React from 'react';
 import { CreateModal, Form, Button, StepForm } from 'react-core-form';
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
-
 const stepModal = CreateModal({
   title: '新增用户',
-  width: 1000,
-  footer: false, // 不需要底部按钮
-  modalProps: {
-    bodyStyle: {
-      padding: 0,
-    },
+  bodyStyle: {
+    height: 320,
+    padding: 0,
   },
-  column: 2,
+  footer: false, // 不需要底部按钮
 });
 
 export default (props) => {
@@ -323,7 +319,7 @@ export default (props) => {
                         type: 'primary',
                         async onClick() {
                           await new Promise((res) => setTimeout(res, 1000));
-                          alert(JSON.stringify(form.getValues()));
+                          alert(JSON.stringify(form.getFieldsValue(true)));
                           stepModal.close();
                         },
                       },

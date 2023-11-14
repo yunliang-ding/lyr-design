@@ -15,7 +15,9 @@ export default ({
   actionAlign = 'end',
   className,
   visible = false,
-  height = 500,
+  bodyStyle = {
+    height: 500,
+  },
   onClose = () => {},
   onSubmit = () => {},
   footer = true,
@@ -117,7 +119,7 @@ export default ({
     title
   );
   /** 控制底部按钮渲染 */
-  let footerNode: any = false;
+  let footerNode: any = null;
   if (typeof footerRender === 'function') {
     footerNode = footerRender(form);
   } else if (footer) {
@@ -154,7 +156,7 @@ export default ({
       }
       footer={footerNode}
     >
-      <div className="arco-modal-body" style={{ height }}>
+      <div className="arco-modal-body" style={bodyStyle}>
         {typeof render === 'function' ? (
           render({
             value,

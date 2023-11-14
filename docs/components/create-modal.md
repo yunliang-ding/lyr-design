@@ -103,7 +103,9 @@ export default (props) => {
         CreateModal({
           title: '自定义渲染',
           confirmText: '确认',
-          height: 200,
+          bodyStyle: {
+            height: 200,
+          },
           onSubmit() {
             Message.success('确认完毕');
           },

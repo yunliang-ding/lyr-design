@@ -1,4 +1,4 @@
-import { Spin } from 'antd';
+import { Spin } from '@arco-design/web-react';
 import { CSSProperties } from 'react';
 import { uuid } from 'react-core-form-tools';
 import ReactDOM from 'react-dom';
@@ -15,7 +15,7 @@ export interface CreateSpinProps {
 
 const SpinComponent = ({ style, mode }) => {
   return mode === 'loading' ? (
-    <Spin spinning />
+    <Spin loading />
   ) : (
     <div className="create-spin-vscode" style={style} />
   );

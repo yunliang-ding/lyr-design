@@ -1,5 +1,5 @@
 import Form from '@/form';
-import { StepProps, Steps } from 'antd';
+import { StepProps, Steps } from '@arco-design/web-react';
 import { ReactNode } from 'react';
 import { ActionProps } from '../type.action';
 import { CoreFormProps } from '../../form/type.form';
@@ -46,7 +46,7 @@ export default ({
   /** actionClick */
   const actionClick = async (action) => {
     if (typeof action.onClick === 'function') {
-      let data = form.getValues();
+      let data = form.getFieldsValue(true);
       if (action.validator) {
         data = await validatorForm();
       }

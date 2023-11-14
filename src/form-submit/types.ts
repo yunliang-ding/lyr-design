@@ -1,11 +1,9 @@
 import { CoreFormProps } from '../form/type.form';
 import { CardProps, DrawerProps, ModalProps } from '@arco-design/web-react';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { ActionProps } from './type.action';
 
 interface FormSubmitProps extends CoreFormProps {
-  /** 表单高度 */
-  height?: number | string;
   footer?: boolean;
   /** 定义操作按钮 */
   actions?: ActionProps[];
@@ -56,6 +54,8 @@ export interface DrawerFormProps extends FormSubmitProps {
 }
 
 export interface ModalFormProps extends FormSubmitProps {
+  /** 内容样式 */
+  bodyStyle?: CSSProperties;
   /** Modal属性设置 */
   modalProps?: ModalProps;
   /**
