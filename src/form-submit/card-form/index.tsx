@@ -1,4 +1,4 @@
-import { Card } from 'antd';
+import { Card } from '@arco-design/web-react';
 import { Form } from '@/index';
 import { useMemo } from 'react';
 import { uuid } from '@/util';
@@ -51,7 +51,7 @@ export default ({
   /** actionClick */
   const actionClick = async (action) => {
     if (typeof action.onClick === 'function') {
-      let data: any = form.getValues();
+      let data: any = form.getFieldsValue(true);
       if (action.validator) {
         data = await validatorForm();
       }
@@ -80,7 +80,7 @@ export default ({
           form={form}
           {...rest}
           getScrollContainer={() =>
-            document.querySelector(`.card-${id} .ant-card-body`)
+            document.querySelector(`.card-${id} .arco-card-body`)
           }
         />
       </Card>

@@ -13,7 +13,8 @@ toc: menu
 import React from 'react';
 import { CardForm, Form } from 'react-core-form';
 import schema from './schema/form-submit/schema';
-import { message } from 'antd';
+import { Message } from '@arco-design/web-react';
+
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default () => {
   const [form] = Form.useForm();
@@ -21,7 +22,7 @@ export default () => {
     const res = await delay(1000);
     console.log('onSubmit ->', values);
     if (res) {
-      message.success('保存成功');
+      Message.success('保存成功');
     }
   };
   return (
@@ -51,7 +52,8 @@ export default () => {
 import React from 'react';
 import { CardForm } from 'react-core-form';
 import schema from './schema/form-submit/schema';
-import { message, Switch, Button, Space } from 'antd';
+import { Message, Button, Space } from '@arco-design/web-react';
+
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default () => {
   const [actionAlign, setActionAlign] = React.useState('end');
@@ -59,7 +61,7 @@ export default () => {
     const res = await delay(1000);
     console.log('onSubmit ->', values);
     if (res) {
-      message.success('保存成功');
+      Message.success('保存成功');
     }
   };
 
@@ -100,7 +102,8 @@ export default () => {
 import React from 'react';
 import { CardForm, Form } from 'react-core-form';
 import schema from './schema/form-submit/schema';
-import { message, Switch } from 'antd';
+import { Message, Switch } from '@arco-design/web-react';
+
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default () => {
   const [form] = Form.useForm();
@@ -108,7 +111,7 @@ export default () => {
     console.log('onSubmit ->', values);
     const res = await delay(1000);
     if (res) {
-      message.success('保存成功');
+      Message.success('保存成功');
     }
   };
   const onReset = (values) => {
@@ -164,24 +167,25 @@ export default () => {
   return (
     <>
       <Switch
-        checkedChildren="加载状态"
-        unCheckedChildren="加载状态"
+        checkedText="加载状态"
+        uncheckedText="加载状态"
         onChange={(v) => {
           form.setFormLoading(v);
+          form.setFooterDisabled(v);
         }}
       />
       &nbsp;&nbsp;
       <Switch
-        checkedChildren="按钮禁用"
-        unCheckedChildren="按钮禁用"
+        checkedText="按钮禁用"
+        uncheckedText="按钮禁用"
         onChange={(v) => {
           form.setFooterDisabled(v);
         }}
       />
       &nbsp;&nbsp;
       <Switch
-        checkedChildren="按钮切换"
-        unCheckedChildren="按钮切换"
+        checkedText="按钮切换"
+        uncheckedText="按钮切换"
         onChange={(v) => {
           if (v) {
             form.setFooterActions(actions2);

@@ -1,11 +1,11 @@
-import { Modal } from 'antd';
+import { Modal } from '@arco-design/web-react';
 import { useMemo, useRef, useState } from 'react';
 import { uuid } from '@/util';
 import { Form } from '@/index';
 import { ModalFormProps } from '../types';
-import Footer from '../footer';
 import type { DraggableData, DraggableEvent } from 'react-draggable';
 import Draggable from 'react-draggable';
+import Footer from '../footer';
 import './index.less';
 
 export default ({
@@ -14,8 +14,8 @@ export default ({
   title,
   actionAlign = 'end',
   className,
-  width = 500,
   visible = false,
+  height = 500,
   onClose = () => {},
   onSubmit = () => {},
   footer = true,
@@ -62,7 +62,7 @@ export default ({
       if (typeof render === 'function') {
         data = value;
       } else {
-        data = form.getValues();
+        data = form.getFieldsValue();
         if (action.validator) {
           data = await validatorForm();
         }
@@ -134,10 +134,11 @@ export default ({
     <Modal
       {...modalProps}
       className={_className.join(' ')}
-      width={width}
       visible={visible}
       title={renderTitle}
-      onCancel={onClose}
+      onCancel={() => {
+        onClose();
+      }}
       modalRender={
         drag
           ? (modal) => (
@@ -153,20 +154,22 @@ export default ({
       }
       footer={footerNode}
     >
-      {typeof render === 'function' ? (
-        render({
-          value,
-          onChange,
-        })
-      ) : (
-        <Form
-          form={form}
-          {...rest}
-          getScrollContainer={() =>
-            document.querySelector(`.modal-${id} .ant-modal-body`)
-          }
-        />
-      )}
+      <div className="arco-modal-body" style={{ height }}>
+        {typeof render === 'function' ? (
+          render({
+            value,
+            onChange,
+          })
+        ) : (
+          <Form
+            form={form}
+            {...rest}
+            getScrollContainer={() =>
+              document.querySelector(`.modal-${id} .arco-modal-body`)
+            }
+          />
+        )}
+      </div>
     </Modal>
   );
 };

@@ -1,4 +1,4 @@
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 import { useEffect, useState } from 'react';
 import { Button } from '../index';
 

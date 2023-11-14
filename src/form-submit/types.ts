@@ -1,11 +1,11 @@
 import { CoreFormProps } from '../form/type.form';
-import { CardProps, DrawerProps, ModalProps } from 'antd';
+import { CardProps, DrawerProps, ModalProps } from '@arco-design/web-react';
 import { ReactNode } from 'react';
 import { ActionProps } from './type.action';
 
 interface FormSubmitProps extends CoreFormProps {
-  /** 表单宽度 */
-  width?: number | string;
+  /** 表单高度 */
+  height?: number | string;
   footer?: boolean;
   /** 定义操作按钮 */
   actions?: ActionProps[];
@@ -15,7 +15,7 @@ interface FormSubmitProps extends CoreFormProps {
    */
   actionAlign?: 'start' | 'center' | 'end';
   /** 取消事件 */
-  onClose?: (e: any) => void;
+  onClose?: (e?: any) => void;
   /** 提交事件 */
   onSubmit?: (values: any) => void;
   /**

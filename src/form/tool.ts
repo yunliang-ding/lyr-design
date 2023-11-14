@@ -39,7 +39,7 @@ export const expansionInstanceMethod = ({
           // dom .ant-form-item-has-error 渲染有延迟
           setTimeout(() => {
             const el = getScrollContainer?.();
-            scrollToElement(el, el?.querySelector('.acro-form-item-has-error'));
+            scrollToElement(el, el?.querySelector('.arco-form-item-error'));
           }, 50);
         }
         // eslint-disable-next-line no-console

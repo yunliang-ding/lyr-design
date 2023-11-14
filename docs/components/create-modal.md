@@ -8,9 +8,8 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { CreateModal } from 'react-core-form';
+import { CreateModal, Button } from 'react-core-form';
 import schema from './schema/form-submit/schema';
-import { Button } from 'antd';
 
 export default (props) => {
   return (
@@ -19,11 +18,9 @@ export default (props) => {
       onClick={() => {
         CreateModal({
           title: '新增用户',
-          width: 1000,
           modalProps: {
-            bodyStyle: {
-              height: 500,
-              overflow: 'auto',
+            style: {
+              width: 800,
             },
           },
           schema,
@@ -44,9 +41,9 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { CreateModal } from 'react-core-form';
+import { CreateModal, Button } from 'react-core-form';
 import schema from './schema/form-submit/schema';
-import { Button, message } from 'antd';
+import { Message } from '@arco-design/web-react';
 
 export default (props) => {
   return (
@@ -55,12 +52,10 @@ export default (props) => {
       onClick={() => {
         CreateModal({
           title: '新增用户',
-          width: 1000,
           containId: 'self-modal',
           modalProps: {
-            bodyStyle: {
-              height: 500,
-              overflow: 'auto',
+            style: {
+              width: 800,
             },
           },
           schema,
@@ -79,7 +74,7 @@ export default (props) => {
               async onClick(value) {
                 await new Promise((res) => setTimeout(res, 1000));
                 console.log(value);
-                message.error('接口异常');
+                Message.error('接口异常');
                 return Promise.reject(); // 阻止关闭
               },
             },
@@ -97,8 +92,8 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { CreateModal } from 'react-core-form';
-import { Button, message } from 'antd';
+import { CreateModal, Button } from 'react-core-form';
+import { Message } from '@arco-design/web-react';
 
 export default (props) => {
   return (
@@ -109,7 +104,7 @@ export default (props) => {
           title: '自定义渲染',
           confirmText: '确认',
           onSubmit() {
-            message.success('确认完毕');
+            Message.success('确认完毕');
           },
         }).open({
           render: ({ value }) => {
