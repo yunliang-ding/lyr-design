@@ -1,12 +1,41 @@
 /* eslint-disable max-len */
 import LayoutProps from './type';
-import { Menu, PageHeader, Tabs } from 'antd';
+import { Menu, PageHeader, Space } from '@arco-design/web-react';
 import { useEffect, useRef, useState } from 'react';
 import WaterMark from './watermark';
 import Breadcrumb from './breadcrumb';
 import { getBreadcrumbByMenus } from './util';
 import { Icon } from '..';
 import './index.less';
+
+export const RenderMenus = (
+  menus = [],
+  showIcon = false,
+  collapsed = false,
+) => {
+  return menus.map((item) => {
+    return item.children ? (
+      <Menu.SubMenu
+        key={item.path}
+        title={
+          <Space>
+            {item.icon}
+            {!collapsed && item.label}
+          </Space>
+        }
+      >
+        {RenderMenus(item.children)}
+      </Menu.SubMenu>
+    ) : (
+      <Menu.Item key={item.path}>
+        <Space>
+          {showIcon && item.icon}
+          {!collapsed && item.label}
+        </Space>
+      </Menu.Item>
+    );
+  });
+};
 
 export default ({
   pathname = '/',
@@ -15,7 +44,9 @@ export default ({
   dark = false,
   collapsed = false,
   onCollapse = () => {},
-  menu = {},
+  menu = {
+    items: [],
+  },
   waterMarkProps,
   pageHeaderProps = {},
   title = '默认应用标题',
@@ -40,12 +71,12 @@ export default ({
   const [topKey, setTopKey] = useState('');
   const [openKeys, setOpenKeys] = useState(['']);
   /** 扩展菜单点击 */
-  const menuClick = (info) => {
+  const menuClick = (path: string) => {
     menu.onClick?.({
-      ...info,
+      path,
       currentBreadcrumb: getBreadcrumbByMenus(
         menu.items,
-        info.key.split('/').filter(Boolean),
+        path.split('/').filter(Boolean),
       ),
     } as any);
   };
@@ -100,27 +131,10 @@ export default ({
   const Children = (
     <PageHeader
       {...pageHeaderProps}
-      className={
-        pageHeaderProps.tabsProps?.items
-          ? 'app-breadcrumb-title-hash-tabs'
-          : 'app-breadcrumb-title-no-tabs'
+      style={{ background: 'var(--color-bg-2)' }}
+      breadcrumb={
+        compact ? <div /> : ({ routes: pageHeaderProps.breadcrumb } as any)
       }
-      title={
-        (
-          <>
-            <div className="app-breadcrumb-title">{pageHeaderProps.title}</div>
-            {Array.isArray(pageHeaderProps.tabsProps?.items) && (
-              <Tabs {...pageHeaderProps.tabsProps} />
-            )}
-          </>
-        ) || <div />
-      }
-      breadcrumbRender={() => {
-        if (compact) {
-          return <div />;
-        }
-        return <Breadcrumb breadcrumb={pageHeaderProps.breadcrumb} />;
-      }}
     >
       {children}
     </PageHeader>
@@ -139,18 +153,15 @@ export default ({
               </div>
               <div className="app-layout-left-menu">
                 <Menu
-                  {...menu}
-                  onClick={menuClick}
-                  inlineIndent={16}
-                  mode="inline"
+                  style={{ width: 208 }}
+                  onClickMenuItem={menuClick}
                   selectedKeys={[selectedKey]}
-                  openKeys={openKeys}
-                  onOpenChange={(v) => {
-                    setOpenKeys(v);
-                  }}
-                  inlineCollapsed={collapsed}
+                  // openKeys={openKeys}
+                  collapse={collapsed}
                   theme={dark ? 'dark' : 'light'}
-                />
+                >
+                  {RenderMenus(menu.items, false, collapsed)}
+                </Menu>
               </div>
             </div>
             <div className="app-layout-right">
@@ -167,6 +178,7 @@ export default ({
                   <Icon
                     type="collapsed"
                     primary
+                    hover
                     size={24}
                     onClick={() => {
                       onCollapse(!collapsed);
@@ -194,7 +206,13 @@ export default ({
         ) : (
           <>
             <div className="app-layout-header">
-              <div className="app-layout-header-logo">
+              <div
+                className={
+                  compact
+                    ? 'app-layout-header-logo app-layout-header-logo-compact'
+                    : 'app-layout-header-logo'
+                }
+              >
                 <a>
                   {logo}
                   <h1>{title}</h1>
@@ -202,19 +220,21 @@ export default ({
               </div>
               <div className="app-layout-header-menu">
                 <Menu
-                  {...menu}
-                  onClick={menuClick}
-                  // 这里只渲染一级菜单
-                  items={menu.items?.map((item: any) => {
-                    return {
-                      ...item,
-                      children: undefined,
-                    };
-                  })}
                   mode="horizontal"
-                  multiple={false}
+                  onClickMenuItem={menuClick}
                   selectedKeys={[topKey]}
-                />
+                  theme={dark ? 'dark' : 'light'}
+                >
+                  {RenderMenus(
+                    menu.items?.map((item: any) => {
+                      return {
+                        ...item,
+                        children: undefined,
+                      };
+                    }),
+                    false,
+                  )}
+                </Menu>
               </div>
               <div className="app-layout-header-right">
                 {rightContentRender()}
@@ -225,22 +245,18 @@ export default ({
                 <div className="app-layout-body-sider-menu">
                   {/* 这里渲染当前一级菜单下面的子菜单 */}
                   <Menu
-                    {...menu}
-                    onClick={menuClick}
-                    items={
-                      (menu.items?.find((item) => item?.key === topKey) as any)
-                        ?.children
-                    }
-                    inlineIndent={16}
-                    mode="inline"
+                    onClickMenuItem={menuClick}
                     selectedKeys={[selectedKey]}
-                    openKeys={openKeys}
-                    onOpenChange={(v) => {
-                      setOpenKeys(v);
-                    }}
-                    inlineCollapsed={collapsed}
+                    collapse={collapsed}
                     theme={dark ? 'dark' : 'light'}
-                  />
+                  >
+                    {RenderMenus(
+                      (menu.items?.find((item) => item?.key === topKey) as any)
+                        ?.children,
+                      true,
+                      collapsed,
+                    )}
+                  </Menu>
                 </div>
                 <div className="app-layout-body-sider-footer">
                   <Icon

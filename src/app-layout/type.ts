@@ -1,5 +1,5 @@
 import { MutableRefObject, ReactNode } from 'react';
-import type { PageHeaderProps, MenuProps, TabsProps } from 'antd';
+import type { PageHeaderProps, MenuProps } from '@arco-design/web-react';
 
 export default interface ProLayout {
   /** 当前路径 */
@@ -13,7 +13,13 @@ export default interface ProLayout {
   /** 是否黑色主题 */
   dark?: boolean;
   /** 菜单属性 */
-  menu: MenuProps;
+  menu: MenuProps & {
+    items: {
+      key: string;
+      title: ReactNode;
+    }[];
+    onClick?: Function;
+  };
   /** 应用标题 */
   title?: ReactNode;
   /** 渲染logo */
@@ -23,9 +29,7 @@ export default interface ProLayout {
   /** 水印配置 */
   waterMarkProps?: any;
   /** 页面头属性 */
-  pageHeaderProps?: PageHeaderProps & {
-    tabsProps?: TabsProps;
-  };
+  pageHeaderProps?: PageHeaderProps;
   /** 顶部右侧渲染 */
   rightContentRender: () => ReactNode;
   /** 底部渲染 */

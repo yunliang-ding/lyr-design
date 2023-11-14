@@ -4,17 +4,20 @@ export const getBreadcrumbByMenus = (
 ) => {
   let target = '';
   let children: any = menus;
-  const breadcrumb: string[] = [];
+  const breadcrumb: any[] = [];
   path.forEach((p) => {
     target += `/${p}`;
     const item = children.find((i) => i.path === target);
     if (item) {
-      breadcrumb.push(item.label);
+      breadcrumb.push({
+        path: item.path,
+        breadcrumbName: item.label,
+      });
       children = item.children;
     }
   });
   return {
-    title: breadcrumb[breadcrumb.length - 1],
+    title: breadcrumb[breadcrumb.length - 1].breadcrumbName,
     breadcrumb,
   };
 };

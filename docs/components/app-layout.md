@@ -15,7 +15,8 @@ toc: menu
 ```tsx
 import React from 'react';
 import { AppLayout, Button } from 'react-core-form';
-import { Space, Avatar, Dropdown, Menu } from 'antd';
+import { Space, Avatar, Dropdown, Menu } from '@arco-design/web-react';
+import { IconUser } from '@arco-design/web-react/icon';
 import menus from './schema/app-layout/schema';
 import './index.less';
 
@@ -32,9 +33,18 @@ export default () => {
   const [compact, setCompact] = React.useState(true);
   const [dark, setDark] = React.useState(false);
   const [collapsed, setCollapsed] = React.useState(false);
-  const [breadcrumb, setBreadcrumb] = React.useState({
+  const [pageHeaderProps, setPageHeaderProps] = React.useState({
     title: '我的工作台',
-    breadcrumb: ['工作台', '我的工作台'],
+    breadcrumb: [
+      {
+        path: '/workbench',
+        breadcrumbName: '工作台',
+      },
+      {
+        path: '/workbench/my',
+        breadcrumbName: '我的工作台',
+      },
+    ],
   });
   return (
     <AppLayout
@@ -47,7 +57,7 @@ export default () => {
       onCollapse={setCollapsed}
       dark={dark}
       pathname={pathname}
-      pageHeaderProps={breadcrumb}
+      pageHeaderProps={pageHeaderProps}
       logo={
         <img
           src="https://v2.ice.work/img/logo.png"
@@ -60,24 +70,13 @@ export default () => {
       title="中后台通用模版"
       menu={{
         items: menus,
-        onClick: ({ key, currentBreadcrumb }) => {
-          // location.hash = key // 接入项目的时候，只需要这行代码，改变 hash 即可
-          setPathName(key);
-          setBreadcrumb({
+        onClick: ({ path, currentBreadcrumb }) => {
+          // location.hash = path // 接入项目的时候，只需要这行代码，改变 hash 即可
+          setPathName(path);
+          setPageHeaderProps({
             ...currentBreadcrumb,
             // 扩展操作按钮
             extra: <Button type="primary">添加</Button>,
-            // 扩展选项卡
-            tabsProps: {
-              defaultActiveKey: 2,
-              items: [
-                { key: 1, label: '选项1' },
-                { key: 2, label: '选项2' },
-              ],
-              onChange(e) {
-                console.log(e);
-              },
-            },
           });
         },
       }}
@@ -100,10 +99,12 @@ export default () => {
               >
                 切换模式
               </a>
-              <Avatar size={32} src={'https://v2.ice.work/img/logo.png'} />
+              <Avatar style={{ backgroundColor: '#3370ff' }}>
+                <IconUser />
+              </Avatar>
               <Dropdown
                 placement="bottom"
-                overlay={
+                droplist={
                   <Menu>
                     <Menu.Item>退出登录</Menu.Item>
                   </Menu>
@@ -124,4 +125,4 @@ export default () => {
 
 ## API
 
-<API src="../../src/app-layout/index.tsx" hideTitle></API>
+<!-- <API src="../../src/app-layout/index.tsx" hideTitle></API> -->

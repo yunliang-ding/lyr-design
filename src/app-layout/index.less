@@ -4,6 +4,18 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  div {
+    box-sizing: border-box;
+  }
+  .arco-page-header-content {
+    background-color: #f0f2f5;
+  }
+  .arco-page-header-head-wrapper {
+    padding-left: 16px;
+  }
+  .arco-menu-horizontal .arco-menu-inner {
+    padding: 14px 0;
+  }
   /** 模式一 */
   &-left {
     width: 208px;
@@ -14,10 +26,10 @@
     z-index: 999;
     transition: 0.3s;
     &-logo {
-      padding: 8px 10px !important;
-      height: 48px;
       display: flex;
       align-items: center;
+      justify-content: center;
+      height: 58px;
       a {
         display: flex;
         align-items: center;
@@ -33,10 +45,10 @@
       }
     }
     &-menu {
-      height: calc(100% - 48px);
+      height: calc(100% - 58px);
       overflow: auto;
       transition: 0.3s;
-      .ant-menu-title-content {
+      .arco-space-item {
         font-weight: bold;
       }
     }
@@ -45,7 +57,7 @@
     width: calc(100% - 208px);
     transition: 0.3s;
     &-header {
-      height: 48px;
+      height: 58px;
       width: 100%;
       padding: 0 18px;
       display: flex;
@@ -60,12 +72,15 @@
   &-header {
     display: flex;
     align-items: center;
-    height: 48px;
+    height: 58px;
     box-shadow: 0px 2px 4px rgba(0, 21, 41, 0.08);
     z-index: 999;
     position: relative;
     &-logo {
-      padding: 8px 10px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 58px;
       width: 208px;
       a {
         display: flex;
@@ -82,19 +97,15 @@
       }
     }
     &-menu {
-      width: calc(100% - 508px);
+      width: calc(100% - 608px);
       overflow: auto;
       transition: 0.3s;
-      .ant-menu-horizontal {
-        line-height: 50px;
-        background-color: transparent;
-      }
-      .ant-menu-title-content {
+      .arco-space-item {
         font-weight: bold;
       }
     }
     &-right {
-      width: 300px;
+      width: 400px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -104,7 +115,7 @@
   }
   &-body {
     display: flex;
-    height: calc(100% - 48px);
+    height: calc(100% - 58px);
     &-sider {
       box-shadow: 1px 5px 8px 0 rgba(29, 35, 41, 0.05);
       position: relative;
@@ -115,7 +126,7 @@
         width: 208px;
         height: calc(100% - 44px);
         overflow: auto;
-        .ant-menu-item {
+        .arco-space-item {
           font-weight: bold;
         }
       }
@@ -139,9 +150,9 @@
     position: absolute;
     left: 208px;
     width: calc(100% - 208px);
-    top: 48px;
+    top: 58px;
     overflow: auto;
-    height: calc(100% - 48px);
+    height: calc(100% - 58px);
     .app-breadcrumb-title-no-tabs {
       .app-breadcrumb-title {
         height: 52px;
@@ -153,17 +164,8 @@
       .app-breadcrumb-title {
         padding-top: 10px;
       }
-      .ant-page-header-heading {
-        padding-bottom: 0;
-        .ant-tabs-nav {
-          margin-bottom: 0;
-          &::before {
-            border: none;
-          }
-        }
-      }
     }
-    .ant-page-header-heading-extra {
+    .arco-page-header-heading-extra {
       display: flex;
       gap: 10px;
       align-items: center;
@@ -173,14 +175,14 @@
       width: 100%;
       overflow: auto;
       background-color: #f0f2f5;
-      .ant-page-header {
+      .arco-page-header {
         padding: 0;
-        .ant-page-header-heading {
+        .arco-page-header-heading {
           padding: 0 20px;
           height: fit-content;
           background-color: #fff;
-          .ant-page-header-heading-title {
-            .ant-tabs-nav {
+          .arco-page-header-heading-title {
+            .arco-tabs-nav {
               margin: 0;
               &::before {
                 border: none;
@@ -188,7 +190,7 @@
             }
           }
         }
-        .ant-page-header-content {
+        .arco-page-header-content {
           padding: 16px;
         }
       }
@@ -197,21 +199,21 @@
       height: calc(100% - 44px);
       overflow: auto;
       background-color: #f0f2f5;
-      .ant-page-header {
+      .arco-page-header {
         padding: 0;
       }
-      .ant-breadcrumb {
-        padding: 6px 20px;
+      .arco-breadcrumb {
+        padding: 6px 0px;
         padding-top: 10px;
         background: #fff;
       }
-      .ant-page-header-heading {
+      .arco-page-header-heading {
         margin: 0;
         padding: 0 20px;
         padding-bottom: 8px;
         background: #fff;
       }
-      .ant-page-header-content {
+      .arco-page-header-content {
         padding: 16px;
       }
     }
@@ -227,20 +229,29 @@
       padding: 0 10px;
     }
   }
-  .ant-menu.ant-menu-inline-collapsed {
-    width: 48px;
+  .arco-menu.arco-menu-inline-collapsed {
+    width: 58px;
   }
-  .ant-breadcrumb {
+  .arco-breadcrumb {
     span {
       font-weight: bold;
     }
   }
 }
-.ant-page-header-heading-left {
+.arco-page-header-heading-left {
   margin: 0px;
 }
 .app-layout-compact {
   flex-direction: row;
+  .arco-breadcrumb + .arco-page-header-head {
+    margin-top: 0;
+    padding-top: 12px;
+  }
+  .arco-page-header-head-wrapper {
+    .arco-breadcrumb {
+      display: none;
+    }
+  }
 }
 .app-layout-collapsed {
   .app-layout-left,
@@ -249,7 +260,7 @@
     width: 48px;
     transition: 0.3s;
   }
-  .app-layout-header-logo {
+  .app-layout-header-logo-compact {
     width: 48px;
   }
   .app-layout-header-menu {
@@ -270,7 +281,7 @@
   .app-layout-body-sider-footer,
   .app-layout-left-logo,
   .app-layout-header-logo {
-    background-color: #001629;
+    background-color: #232324;
     transition: 0.3s;
     h1 {
       color: #fff !important;
