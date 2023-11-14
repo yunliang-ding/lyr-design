@@ -1,37 +1,29 @@
-import { Drawer } from 'antd';
+import { Drawer } from '@arco-design/web-react';
 import { useMemo, useState } from 'react';
 import { uuid } from '@/util';
 import { Form } from '@/index';
 import { DrawerFormProps } from '../types';
 import Footer from '../footer';
-import { getGlobalConfigByName } from '@/config';
 import './index.less';
 
-export default (props: DrawerFormProps) => {
-  const globalConfig = getGlobalConfigByName('DrawerForm', props);
-  const {
-    drawerProps = {},
-    form = Form.useForm()[0],
-    title,
-    actionAlign = 'end',
-    className,
-    width = 500,
-    visible = false,
-    onClose = () => {},
-    onSubmit = () => {},
-    footer = true,
-    cancelText = '关闭',
-    confirmText = '保存',
-    actions,
-    render,
-    footerRender,
-    ...rest
-  } = Object.assign({}, props, globalConfig, {
-    drawerProps: {
-      ...props.drawerProps, // 传入
-      ...globalConfig.drawerProps, // 全局配置
-    },
-  });
+export default ({
+  width = 500,
+  drawerProps = {},
+  form = Form.useForm()[0],
+  title,
+  actionAlign = 'end',
+  className,
+  visible = false,
+  onClose = () => {},
+  onSubmit = () => {},
+  footer = true,
+  cancelText = '关闭',
+  confirmText = '保存',
+  actions,
+  render,
+  footerRender,
+  ...rest
+}: DrawerFormProps) => {
   const [value, onChange] = useState(rest.initialValues);
   const _actions = actions || [
     {
@@ -67,7 +59,7 @@ export default (props: DrawerFormProps) => {
       if (typeof render === 'function') {
         data = value;
       } else {
-        data = form.getValues();
+        data = form.getFieldsValue(true);
         if (action.validator) {
           data = await validatorForm();
         }
@@ -96,11 +88,14 @@ export default (props: DrawerFormProps) => {
   return (
     <Drawer
       {...drawerProps}
+      style={{
+        ...drawerProps.style,
+        width,
+      }}
       className={_className.join(' ')}
-      width={width}
       title={title}
       visible={visible}
-      onClose={onClose}
+      onCancel={onClose}
       footer={footerNode}
     >
       {typeof render === 'function' ? (
@@ -113,7 +108,7 @@ export default (props: DrawerFormProps) => {
           form={form}
           {...rest}
           getScrollContainer={() =>
-            document.querySelector(`.drawer-${id} .ant-drawer-body`)
+            document.querySelector(`.drawer-${id} .arco-drawer-content`)
           }
         />
       )}

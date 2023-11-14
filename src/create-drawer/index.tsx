@@ -1,61 +1,58 @@
 import ReactDOM from 'react-dom';
 import DrawerForm from '@/form-submit/drawer-form';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { DrawerFormProps } from '../index';
+import { useStore } from 'react-core-form-store';
 import { uuid } from '@/util';
+import store from './store';
 
-const $: any = document.querySelector.bind(document);
-
-export interface CreateDrawerFormProps extends DrawerFormProps {
-  getPopupContainer?: () => HTMLElement | null;
-  containId?: string;
-}
-
-const close = (containId) => {
+const close = (containId: string) => {
+  store.visible = false;
   setTimeout(() => {
     $(`#${containId}`)?.remove();
   }, 500);
 };
 
-const DrawerFormWapper = ({ containId, tag, ...props }) => {
-  const [visible, setVisible] = useState(false);
+const $: any = document.querySelector.bind(document);
+
+export const DrawerFormWapper = ({
+  tag,
+  containId,
+  drawerProps = {},
+  ...props
+}) => {
+  const { visible } = useStore(store);
   useEffect(() => {
-    setVisible(true);
-    window.addEventListener('popstate', () => {
-      $('.core-form-create-drawer-wapper')?.remove();
-    });
+    store.visible = true;
   }, []);
   return (
     <DrawerForm
       {...props}
       visible={visible}
+      drawerProps={
+        {
+          ...drawerProps,
+          id: containId,
+        } as any
+      }
       onClose={() => {
         props.onClose?.();
-        setVisible(false);
         close(containId);
-      }}
-      drawerProps={{
-        ...(props.drawerProps || {}),
-        getContainer: () => tag,
       }}
     />
   );
 };
 
-const CreateDrawerForm = (props) => {
+export const CreateDrawerForm = (props) => {
   const tag = document.createElement('div');
-  tag.setAttribute('id', props.containId);
-  tag.setAttribute('class', 'core-form-create-drawer-wapper');
-  const target = props.getPopupContainer?.() || $('body');
-  target.appendChild(tag);
+  $('body').appendChild(tag);
   ReactDOM.render(<DrawerFormWapper {...props} tag={tag} />, tag);
-  return null;
 };
 
-const DrawerFormPopUp = (options: CreateDrawerFormProps) => {
-  const containId = options.containId || `drawerId_${uuid(6)}`;
+export default (options: DrawerFormProps) => {
+  const containId = `drawerId_${uuid(6)}`;
   return {
-    open: (config?: CreateDrawerFormProps) => {
+    open: (config?: DrawerFormProps) => {
       const props: any = {
         ...options,
         ...config,
@@ -65,15 +62,12 @@ const DrawerFormPopUp = (options: CreateDrawerFormProps) => {
         containId,
         onSubmit: async (data) => {
           await props.onSubmit?.(data);
-          close(containId); // 关闭
+          close(containId);
         },
       });
     },
+    close() {
+      close(containId);
+    },
   };
 };
-
-DrawerFormPopUp.close = (containId: string) => {
-  close(containId); // 关闭
-};
-
-export default DrawerFormPopUp;

@@ -1,29 +1,24 @@
 import ReactDOM from 'react-dom';
 import ModalForm from '@/form-submit/modal-form';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ModalFormProps } from '../index';
 import { uuid } from '@/util';
+import store from './store';
+import { useStore } from 'react-core-form-store';
 
 const $: any = document.querySelector.bind(document);
 
-export interface CreateModalFormProps extends ModalFormProps {
-  getPopupContainer?: () => HTMLElement | null;
-  containId?: string;
-}
-
-const close = (containId) => {
+const close = (containId: string) => {
+  store.visible = false;
   setTimeout(() => {
-    $(`#${containId}`)?.remove();
+    $(`#${containId}`)?.parentNode?.remove();
   }, 500);
 };
 
 const ModalFormWapper = ({ containId, tag, ...props }) => {
-  const [visible, setVisible] = useState(false);
+  const { visible } = useStore(store);
   useEffect(() => {
-    setVisible(true);
-    window.addEventListener('popstate', () => {
-      $('.core-form-create-modal-wapper')?.remove();
-    });
+    store.visible = true;
   }, []);
   return (
     <ModalForm
@@ -31,12 +26,11 @@ const ModalFormWapper = ({ containId, tag, ...props }) => {
       visible={visible}
       onClose={() => {
         props.onClose?.();
-        setVisible(false);
         close(containId);
       }}
       modalProps={{
         ...(props.modalProps || {}),
-        getContainer: () => tag,
+        id: containId,
       }}
     />
   );
@@ -44,18 +38,14 @@ const ModalFormWapper = ({ containId, tag, ...props }) => {
 
 const CreateModalForm = (props) => {
   const tag = document.createElement('div');
-  tag.setAttribute('id', props.containId);
-  tag.setAttribute('class', 'core-form-create-modal-wapper');
-  const target = props.getPopupContainer?.() || $('body');
-  target.appendChild(tag);
+  $('body').appendChild(tag);
   ReactDOM.render(<ModalFormWapper {...props} tag={tag} />, tag);
-  return null;
 };
 
-const ModalFormPopUp = (options: CreateModalFormProps) => {
-  const containId = options.containId || `modalId_${uuid(6)}`;
+export default (options: ModalFormProps) => {
+  const containId = `modalId_${uuid(6)}`;
   return {
-    open: async (config?: CreateModalFormProps) => {
+    open: async (config?: ModalFormProps) => {
       const props: any = {
         ...options,
         ...config,
@@ -69,11 +59,8 @@ const ModalFormPopUp = (options: CreateModalFormProps) => {
         },
       });
     },
+    close() {
+      close(containId);
+    },
   };
 };
-
-ModalFormPopUp.close = (containId: string) => {
-  close(containId); // 关闭
-};
-
-export default ModalFormPopUp;

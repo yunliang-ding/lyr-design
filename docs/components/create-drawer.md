@@ -35,26 +35,25 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { CreateDrawer } from 'react-core-form';
+import { Button, CreateDrawer } from 'react-core-form';
+import { Message } from '@arco-design/web-react';
 import schema from './schema/form-submit/schema';
-import { Button, message } from 'antd';
 
 export default (props) => {
   return (
     <Button
       type="dashed"
       onClick={() => {
-        CreateDrawer({
+        const drawer = CreateDrawer({
           title: '新增用户',
           width: 1000,
-          containId: 'self-drawer',
           schema,
           column: 2,
           actions: [
             {
               label: '手动关闭',
               onClick() {
-                CreateDrawer.close('self-drawer');
+                drawer.close();
               },
             },
             {
@@ -64,12 +63,13 @@ export default (props) => {
               async onClick(value) {
                 await new Promise((res) => setTimeout(res, 1000));
                 console.log(value);
-                message.error('接口异常');
+                Message.error('接口异常');
                 return Promise.reject(); // 阻止关闭
               },
             },
           ],
-        }).open();
+        });
+        drawer.open();
       }}
     >
       手动关闭和阻止关闭
@@ -82,8 +82,8 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { CreateDrawer } from 'react-core-form';
-import { Button, message } from 'antd';
+import { Button, CreateDrawer } from 'react-core-form';
+import { Message } from '@arco-design/web-react';
 
 export default (props) => {
   return (
@@ -113,9 +113,9 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { CreateDrawer } from 'react-core-form';
+import { CreateDrawer, Button } from 'react-core-form';
 import schema from './schema/form-submit/schema';
-import { Button, Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 
 export default (props) => {
   return (

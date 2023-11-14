@@ -50,9 +50,8 @@ export default (props) => {
     <Button
       type="dashed"
       onClick={() => {
-        CreateModal({
+        const modal = CreateModal({
           title: '新增用户',
-          containId: 'self-modal',
           modalProps: {
             style: {
               width: 800,
@@ -64,7 +63,7 @@ export default (props) => {
             {
               label: '手动关闭',
               onClick() {
-                CreateModal.close('self-modal');
+                modal.close();
               },
             },
             {
@@ -79,7 +78,8 @@ export default (props) => {
               },
             },
           ],
-        }).open();
+        });
+        modal.open();
       }}
     >
       手动关闭和阻止关闭
@@ -103,6 +103,7 @@ export default (props) => {
         CreateModal({
           title: '自定义渲染',
           confirmText: '确认',
+          height: 200,
           onSubmit() {
             Message.success('确认完毕');
           },

@@ -21,11 +21,11 @@ nav:
 
 <Alert>
 
-- 解决组件之间多层级属性传递问题
+- 解决组件之间多层级属性传递问题、 支持 友好的 Ts 类型定义
 
-- 底层使用 Proxy 拦截了属性的修改，基于 use-sync-external-store 做了简单的封装
+- 使用 Proxy 拦截了属性的修改，基于 use-sync-external-store 做了简单的封装
 
-- 支持 Ts 类型定义
+- 由于底层基于 Proxy 的特性，在一定程度上可以不被 hooks 规则约束（即支持在任务场景中修改状态）
 
 </Alert>
 

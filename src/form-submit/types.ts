@@ -51,6 +51,8 @@ export interface DrawerFormProps extends FormSubmitProps {
    * @default false
    */
   visible?: boolean;
+  /** 宽度 */
+  width?: number;
 }
 
 export interface ModalFormProps extends FormSubmitProps {
