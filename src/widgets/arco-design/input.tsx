@@ -1,4 +1,4 @@
-import { getGlobalConfigByName } from '@/config';
+import { getGlobalConfig } from '@/config';
 import { Input } from '@arco-design/web-react';
 
 const _Input_ = ({ readOnlyEmptyValueNode = '-', ...props }) => {
@@ -10,7 +10,7 @@ const _Input_ = ({ readOnlyEmptyValueNode = '-', ...props }) => {
       </span>
     );
   }
-  const { autoTrimInputSpaceOnBlur } = getGlobalConfigByName('Antd', {});
+  const { autoTrimInputSpaceOnBlur } = getGlobalConfig();
   return (
     <Input
       onBlur={(e) => {

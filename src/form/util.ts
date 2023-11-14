@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-param-reassign */
-import { getGlobalConfigByName } from '@/config';
+import { getGlobalConfig } from '@/config';
 import moment from 'moment';
 import { uuid } from 'react-core-form-tools';
 
@@ -90,14 +91,14 @@ export const beforeFieldRender = (field: any, form: any) => {
 
 /** 前置格式转化下、默认处理一些逻辑 */
 export const tranfromSchema = (schema: any[], name: string, column = 1) => {
-  // 读取全局Antd配置
+  // 读取全局配置
   const {
-    defaultInputMaxLength = 64,
-    defaultOpenAllowClear = true,
-    defaultFillPlaceholder = true,
-    defaultShowInputCount = true,
-    autoTransfromDatePicker = true,
-  } = getGlobalConfigByName('Antd');
+    defaultInputMaxLength,
+    defaultOpenAllowClear,
+    defaultFillPlaceholder,
+    defaultShowInputCount,
+    autoTransfromDatePicker,
+  } = getGlobalConfig();
   /** 开始扩展 */
   schema?.forEach((field: any) => {
     // 兼容下
@@ -165,9 +166,9 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
       field.props.showSearch &&
       typeof field.props.filterOption === 'undefined'
     ) {
-      field.props.filterOption = (key, option: any) => {
-        const labelAlise = field.props.fieldNames?.label || 'label'; // 获取别名
-        return option[labelAlise]?.indexOf(key) >= 0;
+      field.props.filterOption = (inputValue: string, option) => {
+        // 不做大小写兼容
+        return option.props.children.includes(inputValue);
       };
     }
     // 简化 BlockQuote 写法、不用写span和key

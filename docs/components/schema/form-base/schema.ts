@@ -41,6 +41,7 @@ const schema: SchemaProps<{}>[] = [
     name: 'select',
     label: '下拉选',
     props: {
+      showSearch: true,
       options: [
         { label: '选项1', value: 1 },
         { label: '选项2', value: 2 },

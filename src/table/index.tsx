@@ -4,11 +4,9 @@ import { TableProps } from './types';
 import { PaginationConfig } from './type.pagination';
 import { TableInstance } from './table.instance';
 import Table from './table';
-import { getGlobalConfigByName } from '@/config';
 import { ConfigProvider } from 'antd';
 
 const CoreTable = (props: TableProps) => {
-  const globalConfig = getGlobalConfigByName('Table', props);
   const {
     emptyNode = '-',
     defaultTools = [
@@ -24,7 +22,7 @@ const CoreTable = (props: TableProps) => {
     ],
     locale,
     ...rest
-  } = Object.assign({}, props, globalConfig);
+  } = props;
   return (
     <ConfigProvider locale={locale}>
       <Table

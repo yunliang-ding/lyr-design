@@ -139,55 +139,37 @@ export default () => {
 - Input 开启计数器，最大长度 `64`
 - 输入框 placeholder `请输入${label}`，下拉框 placeholder `请选择${label}`
 - 输入框、选择框开启 `allowClear`
-- FormItem required: true 等于 rules:[{required: true, message: `${label}不能为空`}]，如果配置了 ules 且没有设置必填则会在 rules 里面插入该规则
-- 下拉容器组件设置 getPopupContainer 指向到父节点
+- FormItem required: true 等于 rules:[{required: true, message: `${label}不能为空`}]
 - 下拉选配置了 showSearch 可实现模糊查询的功能不需要设置 filterOption
 - 对于时间日期选择器，会自动进行 moment 和 string 的转化
 
-## 全局配置拦截
-
-> 通常组件在接入到项目中，会再封装一层便于对组件的属性统一拦截等，组件库提供全局配置拦截方案，可以在不封装的前期下完成该操作 `全局配置具有最高的优先级`
+## 全局通用配置
 
 ```ts
 import { setGlobalConfig } from 'react-core-form';
 
 setGlobalConfig({
-  Arco: {
-    defaultInputMaxLength: 100,
-  },
-  Form: {
-    layout: 'vertical',
-  }
-  Table: {
-    autoNo: true,
-  },
-  DrawerForm: {
-    drawerProps: {
-      maskClosable: false,
-    },
-  },
+  defaultInputMaxLength: 100,
+  defaultOpenAllowClear: true,
+  defaultFillPlaceholder: true,
+  defaultShowInputCount: true,
+  autoTransfromDatePicker: true,
+  autoTrimInputSpaceOnBlur: true,
 });
 
 interface GlobalConfigProps {
-  Arco?: {
-    /** 默认输入框最大长度 */
-    defaultInputMaxLength: number;
-    /** 是否开启自动填充 placeholder */
-    defaultFillPlaceholder: boolean;
-    /** 是否开启自动清空 */
-    defaultOpenAllowClear: boolean;
-    /** 是否自动为选择器挂载Popup容器 */
-    autoSetPopupContainer: boolean;
-    /** 是否支持自动转换日期选择器moment和string */
-    autoTransfromDatePicker: boolean;
-    /** 输入框失去焦点自动清除前后空格 */
-    autoTrimInputSpaceOnBlur: boolean;
-    /** 默认展示输入框的计数器 */
-    defaultShowInputCount: boolean;
-  };
-  Form?: ((props) => CoreFormProps) | CoreFormProps;
-  DrawerForm?: ((props) => DrawerFormProps) | DrawerFormProps;
-  Table?: ((props) => TableProps) | TableProps;
+  /** 默认输入框最大长度 */
+  defaultInputMaxLength: number;
+  /** 是否开启自动填充 placeholder */
+  defaultFillPlaceholder: boolean;
+  /** 是否开启自动清空 */
+  defaultOpenAllowClear: boolean;
+  /** 是否支持自动转换日期选择器moment和string */
+  autoTransfromDatePicker: boolean;
+  /** 输入框失去焦点自动清除前后空格 */
+  autoTrimInputSpaceOnBlur: boolean;
+  /** 默认展示输入框的计数器 */
+  defaultShowInputCount: boolean;
 }
 ```
 

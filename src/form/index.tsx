@@ -5,16 +5,10 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { CoreFormProps, FormRefInstance } from './type.form';
 import { SchemaProps } from './type.item';
 import { AsyncOptionsCache, uuid } from '@/util';
-import { getGlobalConfigByName } from '@/config';
 
 /** 组件入口 */
 const CoreForm = (props: CoreFormProps) => {
-  const globalConfig = getGlobalConfigByName('Form', props);
-  const {
-    form = CoreForm.useForm()[0],
-    onMount = () => {},
-    ...rest
-  } = Object.assign({}, props, globalConfig);
+  const { form = CoreForm.useForm()[0], onMount = () => {}, ...rest } = props;
   const [reload, setReload] = useState(Math.random());
   const [initialValues, setInitialValues] = useState(rest.initialValues);
   const forceRender = (values) => {
