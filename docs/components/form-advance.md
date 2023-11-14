@@ -680,13 +680,13 @@ export default () => {
 };
 ```
 
-<!--
 ## 使用 itemRender 扩展渲染
 
 ```tsx
 import React from 'react';
 import { Form } from 'react-core-form';
 import DragContainer from './demo/drag';
+
 export default () => {
   return (
     <Form
@@ -723,11 +723,28 @@ export default () => {
  */
 import React from 'react';
 import { Form, Button } from 'react-core-form';
-import { Alert } from 'antd';
+import { Alert } from '@arco-design/web-react';
+
 export default () => {
   return (
     <Form
       schema={[
+        {
+          type: 'Render',
+          key: 'render',
+          label: '自定义渲染',
+          effect: ['input', 'select'],
+          props: {
+            render({ getFieldValue }) {
+              return (
+                <Alert
+                  content={getFieldValue('input') || 'Info Text'}
+                  type={getFieldValue('select') || 'info'}
+                />
+              );
+            },
+          },
+        },
         {
           type: 'Input',
           label: '描述信息',
@@ -744,22 +761,6 @@ export default () => {
                 value: label,
               };
             }),
-          },
-        },
-        {
-          type: 'Render',
-          key: 'render',
-          label: '自定义渲染',
-          effect: ['input', 'select'],
-          props: {
-            render({ getFieldValue }) {
-              return (
-                <Alert
-                  message={getFieldValue('input') || 'Info Text'}
-                  type={getFieldValue('select') || 'info'}
-                />
-              );
-            },
           },
         },
       ]}
@@ -795,13 +796,9 @@ const schema: SchemaProps<{
  * desc: 自定义组件约定，当定义了name属性的FormItem回默认注入2个属性给children，value代表默认值，onChange用于表单收集值，同时会获取Form配置的readOnly属性负责渲染详情视图，建议我们在编写自定义组件的时候，按照业务场景添加详情视图。
  */
 import React from 'react';
-import { Form, Button, Input } from 'react-core-form';
-const UrlInput = ({ readOnly, value, ...rest }) => {
-  if (readOnly) return <div>{`https://${value || ''}.com`}</div>;
-  return (
-    <Input addonBefore="https://" addonAfter=".com" value={value} {...rest} />
-  );
-};
+import { Form, Button } from 'react-core-form';
+import { Input } from '@arco-design/web-react';
+
 export default () => {
   const [form] = Form.useForm();
   const [readOnly, setReadOnly] = React.useState(false);
@@ -821,7 +818,18 @@ export default () => {
         readOnly={readOnly}
         schema={[
           {
-            type: UrlInput,
+            type: ({ readOnly, value, ...rest }) => {
+              if (readOnly) return <div>{`https://${value || ''}.com`}</div>;
+              return (
+                <Input
+                  addBefore="https://"
+                  addAfter=".com"
+                  placeholder="请输入"
+                  value={value}
+                  {...rest}
+                />
+              );
+            },
             name: 'url',
             label: '输入网址',
             required: true,
@@ -887,6 +895,7 @@ export default () => {
  */
 import React from 'react';
 import { Form } from 'react-core-form';
+import { Input, Button } from '@arco-design/web-react';
 
 export default () => {
   const [form] = Form.useForm();
@@ -907,14 +916,16 @@ export default () => {
             }, [count]);
             return (
               <div>
-                <input value={count} />
-                <button
+                <Input value={count} style={{ width: 80 }} />
+                <br />
+                <br />
+                <Button
                   onClick={() => {
                     setCount(count + 1);
                   }}
                 >
                   点击+1
-                </button>
+                </Button>
               </div>
             );
           },
@@ -923,13 +934,13 @@ export default () => {
           label: '组件2',
           type: ({ form }) => {
             return (
-              <button
+              <Button
                 onClick={() => {
                   alert(form.getCount());
                 }}
               >
                 获取组件1的方法
-              </button>
+              </Button>
             );
           },
         },
@@ -937,4 +948,4 @@ export default () => {
     />
   );
 };
-``` -->
+```

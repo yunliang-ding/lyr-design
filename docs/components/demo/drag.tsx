@@ -3,14 +3,14 @@ import { Icon } from 'react-core-form';
 
 const dragContainer: any = {
   position: 'relative',
-  border: '2px solid var(--antd-wave-shadow-color)',
+  border: '2px solid rgb(var(--primary-6))',
   padding: '20px 10px',
 };
 const dragContainerDargKey: any = {
   position: 'absolute',
   top: 2,
   right: 4,
-  color: 'var(--antd-wave-shadow-color)',
+  color: 'rgb(var(--primary-6))',
   fontSize: 12,
 };
 const dragContainerDarg: any = {
@@ -22,7 +22,7 @@ const dragContainerDarg: any = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  background: 'var(--antd-wave-shadow-color)',
+  background: 'rgb(var(--primary-6))',
   color: '#fff',
   cursor: 'pointer',
 };
@@ -35,7 +35,7 @@ const dragContainerTools: any = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-around',
-  background: 'var(--antd-wave-shadow-color)',
+  background: 'rgb(var(--primary-6))',
   color: '#fff',
   cursor: 'pointer',
   borderTopLeftRadius: '8px',
