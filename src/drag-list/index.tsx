@@ -5,7 +5,7 @@ import {
   SortableHandle,
   arrayMove,
 } from 'react-sortable-hoc';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 import { Icon } from '..';
 import './index.less';
 

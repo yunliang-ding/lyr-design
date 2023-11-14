@@ -8,7 +8,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 import { Suspend, Button } from 'react-core-form';
 
 export default () => {
