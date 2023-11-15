@@ -30,11 +30,6 @@ export default {
       name: 'age',
       label: '用户年纪',
       expand: true,
-      transform({ age }) {
-        return {
-          userAge: age,
-        };
-      },
     },
     {
       type: 'Input',

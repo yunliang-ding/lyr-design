@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-param-reassign */
 import { getGlobalConfig } from '@/config';
-import moment from 'moment';
 import { uuid } from 'react-core-form-tools';
 
 // 表单项是否弹出层
@@ -27,12 +26,10 @@ export const isExpansionItemProps = {
   __parentKey__: '',
   props: '',
   visible: '',
-  transform: '',
   effect: '',
   onEffect: '',
   effectClearField: '',
   type: '',
-  beforeReceive: '',
   span: '',
   expand: '',
   autoSearch: '',
@@ -40,7 +37,6 @@ export const isExpansionItemProps = {
   required: '',
   readOnly: '',
   disabled: '',
-  nameAlise: '',
   actionRef: '',
 };
 
@@ -84,7 +80,6 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
     defaultOpenAllowClear,
     defaultFillPlaceholder,
     defaultShowInputCount,
-    autoTransfromDatePicker,
   } = getGlobalConfig();
   /** 开始扩展 */
   schema?.forEach((field: any) => {
@@ -131,11 +126,6 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
     }
     // 处理popup类挂载容器
     if (isPopupContainer(field.type)) {
-      let popupName = field.name;
-      if (Array.isArray(popupName)) {
-        // 处理FormList属性名是数组的问题
-        popupName = popupName.join('_');
-      }
       if (defaultOpenAllowClear) {
         field.props.allowClear =
           field.props.allowClear === undefined ? true : field.props.allowClear;
@@ -168,102 +158,6 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
         ...style,
         gridColumnStart: `span ${field.span}`,
       };
-    }
-    // RangeInput 默认处理
-    if (field.type === 'RangeInput') {
-      // 没有配置 nameAlise 不做处理
-      if (!Array.isArray(field.nameAlise)) {
-        return;
-      }
-      const start = field.nameAlise?.[0];
-      const end = field.nameAlise?.[1];
-      if (!field.beforeReceive) {
-        field.beforeReceive = (values) => {
-          return (values[start] || values[end]) && [values[start], values[end]];
-        };
-      }
-      if (!field.transform) {
-        field.transform = (values) => {
-          const nowValue = values[field.name];
-          return {
-            [start]: nowValue?.[0],
-            [end]: nowValue?.[1],
-          };
-        };
-      }
-    }
-    if (autoTransfromDatePicker) {
-      // 日期格式转换默认帮处理下
-      if (['DatePicker', 'TimePicker'].includes(field.type)) {
-        const format =
-          field.props.format ||
-          (field.type === 'DatePicker' ? 'YYYY-MM-DD' : 'hh:mm:ss');
-        if (!field.beforeReceive) {
-          // string | number -> moment
-          field.beforeReceive = (values) => {
-            return (
-              values[field.name] &&
-              (typeof values[field.name] === 'number'
-                ? moment(values[field.name])
-                : moment(values[field.name], format))
-            );
-          };
-        }
-        if (!field.transform) {
-          // moment- > string
-          field.transform = (values) => {
-            const dateMoment = values[field.name];
-            return {
-              [field.name]: dateMoment?.format(format),
-            };
-          };
-        }
-      }
-      // 日期区间格式转换默认帮处理下
-      if (['RangePicker', 'TimeRange'].includes(field.type)) {
-        // 没有配置nameAlise不做处理
-        if (!Array.isArray(field.nameAlise)) {
-          return;
-        }
-        const format =
-          field.props.format ||
-          (field.type === 'RangePicker' ? 'YYYY-MM-DD' : 'hh:mm:ss');
-        const startName = field.nameAlise?.[0];
-        const endName = field.nameAlise?.[1];
-        if (!field.beforeReceive) {
-          field.beforeReceive = (values) => {
-            let start;
-            let end;
-            if (values[startName]) {
-              start =
-                typeof values[startName] === 'number'
-                  ? moment(values[startName])
-                  : moment(values[startName], format);
-            }
-            if (values[endName]) {
-              end =
-                typeof values[endName] === 'number'
-                  ? moment(values[endName])
-                  : moment(values[endName], format);
-            }
-            return start || end ? [start, end] : undefined;
-          };
-        }
-        if (!field.transform) {
-          // moment to string
-          field.transform = (values) => {
-            const dateMoment = values[field.name];
-            return {
-              [startName]: dateMoment?.[0]
-                ? dateMoment[0].format(format)
-                : undefined,
-              [endName]: dateMoment?.[1]
-                ? dateMoment[1].format(format)
-                : undefined,
-            };
-          };
-        }
-      }
     }
   });
 };

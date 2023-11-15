@@ -156,7 +156,6 @@ const schema: SchemaProps<{}>[] = [
   {
     type: 'RangePicker',
     name: 'rangePicker',
-    nameAlise: ['startDate', 'endDate'],
     label: '区间选取',
   },
   {
@@ -167,7 +166,6 @@ const schema: SchemaProps<{}>[] = [
   {
     type: 'TimeRange',
     name: 'timeRange',
-    nameAlise: ['startTime', 'endTime'],
     label: '时间区间',
     props: {
       splitLabel: '至',

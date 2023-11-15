@@ -253,7 +253,6 @@ const schema: SchemaProps[] = [
           type: 'RangePicker',
           name: 'rangePicker',
           label: '区间选取',
-          nameAlise: ['rangePickerStart', 'rangePickerEnd'],
         },
         {
           type: 'TimePicker',
@@ -264,7 +263,6 @@ const schema: SchemaProps[] = [
           type: 'TimeRange',
           name: 'timeRange',
           label: '时间区间',
-          nameAlise: ['timeRangeStart', 'timeRangeEnd'],
         },
       ],
     },
