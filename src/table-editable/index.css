@@ -1,0 +1,30 @@
+.core-form-editable-table .core-form-editable-table-field {
+  margin: 0;
+  height: 20.5px;
+  position: relative;
+  top: -4px;
+}
+.core-form-editable-table .core-form-editable-table-field .ant-form-item-label,
+.core-form-editable-table .core-form-editable-table-field .ant-form-item-explain-error {
+  display: none;
+}
+.core-form-editable-table .ant-table-cell {
+  padding: 8px 8px;
+}
+.core-form-editable-table .editable-table-footer-btn,
+.core-form-editable-table .editable-table-footer-btn-disabled {
+  width: 100%;
+  margin: 12px 0;
+  color: rgb(var(--primary-6));
+}
+.core-form-editable-table .editable-table-footer-btn-disabled {
+  color: rgba(0, 0, 0, 0.251) !important;
+}
+.row-dragging td {
+  padding: 8px;
+}
+.row-dragging {
+  background: #fafafa;
+  border: 1px dashed rgb(var(--primary-6));
+  z-index: 9999;
+}

@@ -4,6 +4,7 @@ import { TableProps } from './types';
 import { PaginationConfig } from './type.pagination';
 import { TableInstance } from './table.instance';
 import Table from './table';
+import './index.css';
 
 const CoreTable = (props: TableProps) => {
   const {

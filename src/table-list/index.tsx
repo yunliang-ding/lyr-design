@@ -6,7 +6,7 @@ import { TableListProps } from './type';
 import { EventEmit } from '@/util';
 import { Button, Icon } from '..';
 import { tranfromInnerValues, beforeReceiveInnerValues } from './util';
-import './index.less';
+import './index.css';
 
 export default ({
   maxCount = 999,

@@ -1,4 +1,4 @@
-import './index.less';
+import './index.css';
 
 export default ({ title, subTitle, style = {} }: any) => {
   return (

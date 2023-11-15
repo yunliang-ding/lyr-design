@@ -11,7 +11,6 @@ import {
   DraggableContainer,
   DragHandle,
 } from './drag-columns';
-import './index.less';
 
 export default ({
   rowKey = 'id',

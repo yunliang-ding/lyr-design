@@ -1,7 +1,7 @@
 import { Card, CardProps, Grid } from '@arco-design/web-react';
 import { useState, ReactNode, useEffect } from 'react';
 import { getElementTop, getLinkTabs } from './util';
-import './index.less';
+import './index.css';
 
 export interface AnchorCardProps {
   list: {

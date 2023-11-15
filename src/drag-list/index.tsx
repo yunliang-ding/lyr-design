@@ -7,7 +7,7 @@ import {
 } from 'react-sortable-hoc';
 import { Space } from '@arco-design/web-react';
 import { Icon } from '..';
-import './index.less';
+import './index.css';
 
 const DragHandle = SortableHandle(() => <Icon type="drag2" />);
 

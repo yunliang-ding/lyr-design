@@ -6,11 +6,11 @@
   padding: 0 10px;
   font-size: 14px;
   font-weight: bold;
-  .core-form-block-quote-sub {
-    margin-left: 10px;
-    font-size: 12px;
-    .ant-btn {
-      font-size: 12px;
-    }
-  }
+}
+.core-form-block-quote .core-form-block-quote-sub {
+  margin-left: 10px;
+  font-size: 12px;
+}
+.core-form-block-quote .core-form-block-quote-sub .ant-btn {
+  font-size: 12px;
 }

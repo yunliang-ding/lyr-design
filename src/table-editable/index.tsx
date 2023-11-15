@@ -11,7 +11,7 @@ import {
   SortableHandle,
   arrayMove,
 } from 'react-sortable-hoc';
-import './index.less';
+import './index.css';
 import { EditTableProps } from './type';
 
 const SortableItem = SortableElement((props) => <tr {...props} />);

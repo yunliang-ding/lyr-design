@@ -1,0 +1,103 @@
+.core-form-table {
+  margin-bottom: 16px;
+  padding: 0 18px;
+  padding-bottom: 16px;
+  background-color: var(--color-bg-1);
+}
+.core-form-table a {
+  color: rgb(var(--primary-6));
+  cursor: pointer;
+}
+.core-form-table .arco-typography-operation-copy {
+  color: rgb(var(--primary-6));
+  cursor: pointer;
+}
+.core-form-table .arco-table-pagination {
+  background: var(--color-bg-1);
+  margin: 0 !important;
+  height: 53px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+}
+.core-form-table .td-row-operation-area .arco-btn {
+  padding-left: 0;
+}
+.core-form-table .react-resizable {
+  position: relative;
+}
+.core-form-table .react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-sizing: border-box;
+  background-position: bottom right;
+  padding: 0 3px 3px 0;
+}
+.core-form-table .react-resizable-handle {
+  height: 100%;
+  width: 20px;
+  right: -24px;
+  cursor: col-resize;
+  z-index: 9999;
+}
+.core-form-table .table-form-header {
+  z-index: 2;
+  padding: 16px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--color-bg-1);
+  color: var(--color-neutral-10);
+}
+.core-form-table .table-form-header .table-form-header-left {
+  border-left: 3px solid rgb(var(--primary-6));
+  padding-left: 10px;
+  font-weight: 600;
+}
+.core-form-table .table-form-header .table-form-header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.core-form-row-menu .arco-dropdown-menu-item {
+  padding: 0;
+}
+.core-form-row-menu .arco-dropdown-menu-item .arco-btn {
+  height: 36px;
+  padding: 0 20px;
+}
+.table-filter-columns .arco-menu-root {
+  box-shadow: 0 2px 8px var(--color-bg-5) !important;
+}
+.table-column-drag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.table-filter-columns .arco-menu-item-selected {
+  background: transparent !important;
+}
+.core-table-row-dragging {
+  width: fit-content !important;
+  border: 1px solid var(--color-border-1);
+}
+.core-table-row-dragging .arco-table-cell {
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: #fafafa;
+  height: 45px;
+  padding: 4px 16px;
+}
+.core-form-table-empty .arco-table-cell {
+  border: 0 !important;
+}
+.core-form-table-empty .arco-table-expanded-row-fixed {
+  margin: 0 !important;
+}
