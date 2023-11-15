@@ -95,7 +95,7 @@ export default ({
       const response = await restProp.request(rest, filters, sorter);
       const { success, list, total } = response;
       onLoad(response); // 通知外面请求完毕
-      // 如果 list 不是数组，按照报错处理（否则antd会直接页面白屏）
+      // 如果 list 不是数组，按照报错处理
       if (!success || !Array.isArray(list)) {
         pagination.total = 0; // total重制为0
         setDataSource([]); // 清空数据源

@@ -37,7 +37,7 @@ import { SubFormType } from '@/form/form';
 import { ReactNode } from 'react';
 // 内置组件映射关系
 export const BuiltInWidgetMapping = {
-  // Antd
+  // ui
   AutoComplete,
   Input,
   InputNumber,
@@ -73,9 +73,11 @@ export const BuiltInWidgetMapping = {
   TableList,
   OssFileUpload,
 };
+
 export const Error = ({ widget }: any) => {
   return <span style={{ color: 'red' }}>Error: widget类型({widget})未知</span>;
 };
+
 export default (field: any, formInstance: any = {}, widgets = {}) => {
   let Component: any = null;
   if (typeof field.type === 'function') {

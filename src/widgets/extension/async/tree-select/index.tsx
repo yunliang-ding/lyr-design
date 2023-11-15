@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 import { useEffect, useState } from 'react';
-import { Spin, Empty } from 'antd';
-import TreeSelect from '@/widgets/arco-design/tree-select';
+import { TreeSelect, Spin, Empty } from '@arco-design/web-react';
 import { AsyncOptionsCache } from '@/util';
 import { IconLoading } from '@arco-design/web-react/icon';
 
-const AsyncTreeSelect = (props: any) => {
+export default (props: any) => {
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
   const init = async () => {
@@ -42,17 +41,9 @@ const AsyncTreeSelect = (props: any) => {
     <TreeSelect
       {...props}
       value={loading ? [] : props.value}
-      notFoundContent={
-        loading ? (
-          <Spin size="small" />
-        ) : (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-        )
-      }
+      notFoundContent={loading ? <Spin /> : <Empty />}
       options={undefined}
       treeData={options}
     />
   );
 };
-AsyncTreeSelect.displayName = 'AsyncTreeSelect';
-export default AsyncTreeSelect;

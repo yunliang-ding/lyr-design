@@ -1,10 +1,9 @@
-import { TooltipProps } from '@arco-design/web-react';
-import { ColumnType } from 'antd/es/table/interface';
+import { TooltipProps, TableColumnProps } from '@arco-design/web-react';
 
 interface AnyObjet {
   [key: string]: any;
 }
-export interface TableColumnType extends ColumnType<any> {
+export interface TableColumnType extends TableColumnProps<any> {
   /** 千分位展示金额 */
   useThousandth?:
     | {
