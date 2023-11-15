@@ -1,5 +1,11 @@
-import { Rate } from '@arco-design/web-react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Rate, RateProps } from '@arco-design/web-react';
+import { ExtendInputProps } from '..';
 
-export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
-  return <Rate {...props} disabled={props.disabled || props.readOnly} />;
+export default ({
+  readOnlyEmptyValueNode = '-',
+  readOnly,
+  ...props
+}: RateProps & ExtendInputProps) => {
+  return <Rate {...props} disabled={props.disabled || readOnly} />;
 };

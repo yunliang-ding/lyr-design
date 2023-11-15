@@ -18,7 +18,7 @@ const WidgetSelect = ({
         })
         .map((i: any) => i[fieldNames.label]) || [];
     return (
-      <span className="ant-select-readonly">
+      <span className="arco-select-readonly">
         {labels.join('、') || readOnlyEmptyValueNode}
       </span>
     );

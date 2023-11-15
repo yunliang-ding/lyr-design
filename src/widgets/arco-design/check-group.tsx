@@ -1,13 +1,15 @@
-import { Checkbox } from '@arco-design/web-react';
+import { Checkbox, CheckboxGroupProps } from '@arco-design/web-react';
+import { ExtendInputProps } from '..';
 import CheckGroupAll from './check-group-all';
 
 export default ({
   readOnlyEmptyValueNode = '-',
   showCheckAll = false,
+  readOnly,
   ...props
-}) => {
+}: CheckboxGroupProps<any> & ExtendInputProps) => {
   // 渲染只读视图
-  if (props.readOnly) {
+  if (readOnly) {
     // 解析options得到labels
     const labels: any =
       props?.options
@@ -16,7 +18,7 @@ export default ({
         })
         .map((i: any) => i.label) || [];
     return (
-      <span className="ant-checkbox-readonly">
+      <span className="arco-checkbox-readonly">
         {labels.join('、') || readOnlyEmptyValueNode}
       </span>
     );

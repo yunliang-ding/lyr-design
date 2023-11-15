@@ -10,7 +10,7 @@ export default ({
   if (readOnly) {
     // 渲染只读视图
     return (
-      <span className="ant-range-picker-readonly">
+      <span className="arco-range-picker-readonly">
         {props.value?.join(splitLabel) || readOnlyEmptyValueNode}
       </span>
     );

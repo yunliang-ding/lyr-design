@@ -49,7 +49,7 @@ export default ({
             };
           })}
         getContainer={() =>
-          document.querySelector(`.${className} .ant-card-body`)
+          document.querySelector(`.${className} .arco-card-body`)
         }
         {...rest}
       >

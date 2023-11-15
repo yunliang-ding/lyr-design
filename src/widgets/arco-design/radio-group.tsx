@@ -1,14 +1,19 @@
-import { Radio } from '@arco-design/web-react';
+import { Radio, RadioGroupProps } from '@arco-design/web-react';
+import { ExtendInputProps } from '..';
 
-export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
+export default ({
+  readOnlyEmptyValueNode = '-',
+  readOnly,
+  ...props
+}: RadioGroupProps & ExtendInputProps) => {
   // 渲染只读视图
-  if (props.readOnly) {
+  if (readOnly) {
     // 解析options得到label
     const option: any = props?.options?.find(
       (i: any) => i.value === props.value,
     );
     return (
-      <span className="ant-radio-readonly">
+      <span className="arco-radio-readonly">
         {option?.label || readOnlyEmptyValueNode}
       </span>
     );

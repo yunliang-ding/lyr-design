@@ -1,9 +1,14 @@
-import { DatePicker } from '@arco-design/web-react';
+import { DatePicker, DatePickerProps } from '@arco-design/web-react';
+import { ExtendInputProps } from '..';
 
-export default ({ readOnly, readOnlyEmptyValueNode = '-', ...props }) => {
+export default ({
+  readOnly,
+  readOnlyEmptyValueNode = '-',
+  ...props
+}: DatePickerProps & ExtendInputProps) => {
   if (readOnly) {
     return (
-      <span className="ant-date-picker-readonly">
+      <span className="arco-date-picker-readonly">
         {props.value || readOnlyEmptyValueNode}
       </span>
     );

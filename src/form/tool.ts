@@ -36,7 +36,6 @@ export const expansionInstanceMethod = ({
       } catch (errorInfo) {
         // 开启自动定位到第一个校验异常的位置
         if (scrollToFirstError) {
-          // dom .ant-form-item-has-error 渲染有延迟
           setTimeout(() => {
             const el = getScrollContainer?.();
             scrollToElement(el, el?.querySelector('.arco-form-item-error'));

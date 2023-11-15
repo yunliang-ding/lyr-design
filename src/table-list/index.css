@@ -1,7 +1,7 @@
-.core-form-table-list .ant-table-tbody .ant-table-cell {
+.core-form-table-list .arco-table-tbody .arco-table-cell {
   padding: 8px 10px !important;
 }
-.core-form-table-list .ant-form-item {
+.core-form-table-list .arco-form-item {
   margin-bottom: 0;
 }
 .core-form-table-list .table-list-required::before {
@@ -27,6 +27,6 @@
 .core-form-table-list .core-form-table-list-footer button:disabled {
   color: rgba(0, 0, 0, 0.251) !important;
 }
-.core-form-table-list .ant-form-item-explain-connected {
+.core-form-table-list .arco-form-item-explain-connected {
   display: none;
 }

@@ -9,11 +9,11 @@ import { CSSProperties, ReactNode } from 'react';
 import { TableColumnType } from './type.column';
 import { TableInstance } from './table.instance';
 import { PaginationConfig } from './type.pagination';
-import { ModalFormProps, DrawerFormProps } from '..';
 import {
   ColumnProps,
   RowSelectionProps,
 } from '@arco-design/web-react/es/Table';
+import { ModalFormProps, DrawerFormProps } from '../form-submit/types';
 
 export interface ToolsProps {
   label?: string | ReactNode;

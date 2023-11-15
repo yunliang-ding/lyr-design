@@ -1,11 +1,16 @@
 import { getGlobalConfig } from '@/config';
-import { Input } from '@arco-design/web-react';
+import { Input, InputProps } from '@arco-design/web-react';
+import { ExtendInputProps } from '..';
 
-const _Input_ = ({ readOnlyEmptyValueNode = '-', ...props }) => {
+export default ({
+  readOnlyEmptyValueNode = '-',
+  readOnly,
+  ...props
+}: InputProps & ExtendInputProps) => {
   // 渲染只读视图
-  if (props.readOnly) {
+  if (readOnly) {
     return (
-      <span className="ant-input-readonly">
+      <span className="arco-input-readonly">
         {props.value || readOnlyEmptyValueNode}
       </span>
     );
@@ -15,12 +20,10 @@ const _Input_ = ({ readOnlyEmptyValueNode = '-', ...props }) => {
     <Input
       onBlur={(e) => {
         if (autoTrimInputSpaceOnBlur) {
-          props.onChange(e.target.value?.trim?.());
+          props.onChange(e.target.value?.trim?.(), '');
         }
       }}
       {...props}
     />
   );
 };
-_Input_.displayName = 'Input';
-export default _Input_;

@@ -1,4 +1,5 @@
-import { TreeSelect } from '@arco-design/web-react';
+import { TreeSelect, TreeSelectProps } from '@arco-design/web-react';
+import { ExtendInputProps } from '..';
 
 const queryLoop = (
   data,
@@ -19,15 +20,19 @@ const queryLoop = (
   });
 };
 
-export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
+export default ({
+  readOnlyEmptyValueNode = '-',
+  readOnly,
+  ...props
+}: TreeSelectProps & ExtendInputProps) => {
   // 渲染只读视图
-  if (props.readOnly) {
+  if (readOnly) {
     // 解析options得到label
     // TODO 仅支持单选
     const labels: any = []; // 设置为引用类型
     queryLoop(props?.treeData, props.value, props.fieldNames, labels);
     return (
-      <span className="ant-tree-select-readonly">
+      <span className="arco-tree-select-readonly">
         {labels.join('、') || readOnlyEmptyValueNode}
       </span>
     );

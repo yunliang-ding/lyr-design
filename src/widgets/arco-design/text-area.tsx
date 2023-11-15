@@ -1,10 +1,15 @@
-import { Input } from '@arco-design/web-react';
+import { Input, TextAreaProps } from '@arco-design/web-react';
+import { ExtendInputProps } from '..';
 
-export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
+export default ({
+  readOnly,
+  readOnlyEmptyValueNode = '-',
+  ...props
+}: TextAreaProps & ExtendInputProps) => {
   // 渲染只读视图
-  if (props.readOnly) {
+  if (readOnly) {
     return (
-      <span className="ant-text-area-readonly">
+      <span className="arco-text-area-readonly">
         {props.value || readOnlyEmptyValueNode}
       </span>
     );

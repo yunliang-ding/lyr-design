@@ -36,7 +36,7 @@ export default ({
     const labels = [];
     queryLoop(props?.options, props.value, props.fieldNames, labels);
     return (
-      <span className="ant-cascader-readonly">
+      <span className="arco-cascader-readonly">
         {labels.join('/') || readOnlyEmptyValueNode}
       </span>
     );
