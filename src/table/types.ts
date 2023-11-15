@@ -106,7 +106,7 @@ export interface TableProps extends Omit<ArcoTableProps, 'title' | 'columns'> {
   /** 提示信息 */
   alertConfig?:
     | TableAlertProps
-    | ((selectedRowKeys, selectedRows, onCleanSelected) => TableAlertProps);
+    | ((selectedRowKeys, selectedRows, setSelectedRowKeys) => TableAlertProps);
   /** 自定义渲染表格函数 */
   tableRender?: (dom, dataSource) => ReactNode;
   /** Table api 的引用，便于自定义触发 */

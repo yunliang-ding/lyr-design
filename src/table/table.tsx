@@ -162,7 +162,7 @@ export default ({
   ) {
     innerRowSelection = {
       ...rowSelection,
-      onChange: () => {}, // 已在上面通知
+      onChange: () => {}, // 已在 154 通知
       selectedRowKeys: innerSelectedRowKeys,
       onSelectAll: (selected, currentSelectedRows) => {
         currentSelectedRows = currentSelectedRows.filter(
@@ -183,7 +183,7 @@ export default ({
         }
         setInnerSelectedRow([..._selectedRows]);
       },
-      onSelect: (record, selected) => {
+      onSelect: (selected, record) => {
         let currentSelectedRows = [...innerSelectedRow];
         if (selected) {
           // 添加这个ID

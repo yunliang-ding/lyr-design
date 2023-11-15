@@ -35,6 +35,8 @@ interface FormSubmitProps extends CoreFormProps {
 }
 
 export interface CardFormProps extends FormSubmitProps {
+  /** 宽度 */
+  width?: number | string;
   /** Card属性设置 */
   cardProps?: CardProps;
   /** 清空表单 */
@@ -50,7 +52,7 @@ export interface DrawerFormProps extends FormSubmitProps {
    */
   visible?: boolean;
   /** 宽度 */
-  width?: number;
+  width?: number | string;
 }
 
 export interface ModalFormProps extends FormSubmitProps {

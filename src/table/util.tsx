@@ -7,7 +7,7 @@ import AdjustWidth from './adjust-width';
 import { getType, isEmpty, cloneDeep } from '@/util';
 import { Fragment } from 'react';
 import { TableColumnType } from './type.column';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Icon } from '..';
 
 export const transformColumns = (
@@ -89,7 +89,7 @@ export const transformColumns = (
         }
         // 日期格式化
         if (column.dateFormat && vNode) {
-          vNode = moment(vNode).format(column.dateFormat);
+          vNode = dayjs(vNode).format(column.dateFormat);
           if (vNode === 'Invalid date') {
             vNode = '-';
           }

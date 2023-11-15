@@ -61,7 +61,6 @@ export default () => {
 };
 ```
 
-<!--
 ## 配置 drag 属性，支持可拖动
 
 ```tsx
@@ -72,6 +71,7 @@ export default () => {
 import React from 'react';
 import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema1';
+
 export default () => {
   return (
     <Table
@@ -83,7 +83,7 @@ export default () => {
     />
   );
 };
-``` -->
+```
 
 ## 使用 enums 配置 列枚举映射关系
 
@@ -243,7 +243,7 @@ export default () => {
       alertConfig={(selectedRowKeys, selectedRows, setSelectedRows) => {
         return {
           visible: selectedRowKeys.length > 0, // 控制展示
-          message: (
+          content: (
             <Space size={24}>
               <span>已选 {selectedRowKeys.length} 项</span>
               <span>{`分数总计: ${selectedRows.reduce(

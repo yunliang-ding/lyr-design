@@ -1,15 +1,16 @@
 import { TimePicker } from '@arco-design/web-react';
-import moment from 'moment';
 
-export default ({ readOnlyEmptyValueNode = '-', ...props }) => {
-  if (props.readOnly) {
+export default ({
+  readOnly,
+  splitLabel = '~',
+  readOnlyEmptyValueNode = '-',
+  ...props
+}) => {
+  if (readOnly) {
     // 渲染只读视图
-    const labels = props.value?.map((item: any) => {
-      return moment.isMoment(item) ? moment(item).format('HH:mm:ss') : item;
-    });
     return (
       <span className="ant-time-range-picker-readonly">
-        {labels?.join(props.splitLabel || ' ~ ') || readOnlyEmptyValueNode}
+        {props.value?.join(splitLabel) || readOnlyEmptyValueNode}
       </span>
     );
   }
