@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Menu, Dropdown, Typography } from '@arco-design/web-react';
-import { Button, Icon } from '@/index';
+import { Button } from '@/index';
+import { IconDown } from '@arco-design/web-react/icon';
 
 export default ({ rowOperations = {}, tableInstance }: any) => {
   if (typeof rowOperations.menus !== 'function') {
@@ -98,12 +99,7 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
                     style={{ paddingLeft: 2 }}
                   >
                     更多
-                    <Icon
-                      type="expand"
-                      size={14}
-                      primary
-                      style={{ marginLeft: 6, top: 2 }}
-                    />
+                    <IconDown />
                   </a>
                 </Dropdown>
               )}

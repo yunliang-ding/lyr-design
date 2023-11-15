@@ -6,7 +6,8 @@ import {
   Tooltip,
   Divider,
 } from '@arco-design/web-react';
-import { Button, Icon } from '@/index';
+import { Button } from '@/index';
+import { IconDown, IconRefresh } from '@arco-design/web-react/icon';
 
 export default ({
   title = '',
@@ -52,47 +53,8 @@ export default ({
       case 'Refresh':
         return (
           <Tooltip position="top" content="刷新" key={tool.type}>
-            <Button
-              {...btnProps}
-              type="default"
-              icon={<Icon type="refresh" style={{ top: 3 }} />}
-            />
+            <Button {...btnProps} type="default" icon={<IconRefresh />} />
           </Tooltip>
-        );
-      case 'AdjustSize':
-        return (
-          <Dropdown
-            disabled={tool.disabled}
-            key={tool.type}
-            droplist={
-              <Menu
-                style={{ width: 80 }}
-                selectedKeys={size}
-                onClickMenuItem={(key) => {
-                  onSizeChange(key);
-                }}
-              >
-                <Menu.Item key="default">默认</Menu.Item>
-                <Menu.Item key="middle">中等</Menu.Item>
-                <Menu.Item key="small">紧凑</Menu.Item>
-              </Menu>
-            }
-            trigger={['click']}
-          >
-            <Tooltip position="top" content="密度">
-              <Button
-                {...btnProps}
-                type="default"
-                icon={
-                  <Icon
-                    type="size"
-                    size={size === 'small' ? 10 : 14}
-                    style={{ top: 3 }}
-                  />
-                }
-              />
-            </Tooltip>
-          </Dropdown>
         );
       case 'FilterColumns':
         return (
@@ -139,7 +101,7 @@ export default ({
               style={{ display: 'flex', alignItems: 'center' }}
             >
               {tool.label}
-              <Icon type="expand" style={{ top: 2, marginLeft: 4 }} size={14} />
+              <IconDown />
             </Button>
           </Dropdown>
         ) : null;

@@ -6,10 +6,10 @@ import {
   arrayMove,
 } from 'react-sortable-hoc';
 import { Space } from '@arco-design/web-react';
-import { Icon } from '..';
+import { IconDragDotVertical } from '@arco-design/web-react/icon';
 import './index.css';
 
-const DragHandle = SortableHandle(() => <Icon type="drag2" />);
+const DragHandle = SortableHandle(() => <IconDragDotVertical />);
 
 const SortContainer = SortableContainer((props: any) => (
   <div className="core-form-drag-list" {...props} />

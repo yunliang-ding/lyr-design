@@ -8,7 +8,7 @@ import { getType, isEmpty, cloneDeep } from '@/util';
 import { Fragment } from 'react';
 import { TableColumnType } from './type.column';
 import dayjs from 'dayjs';
-import { Icon } from '..';
+import { IconQuestionCircle } from '@arco-design/web-react/icon';
 
 export const transformColumns = (
   columns: TableColumnType[],
@@ -36,7 +36,7 @@ export const transformColumns = (
         column.title = (
           <Space>
             {column.title}
-            <Icon type="question" color="#999" title={column.tip} />
+            <IconQuestionCircle />
           </Space>
         );
       }

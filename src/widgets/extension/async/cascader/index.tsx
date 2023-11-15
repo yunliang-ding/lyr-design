@@ -2,7 +2,7 @@
 import Cascader from '@/widgets/arco-design/cascader';
 import { useState, useEffect } from 'react';
 import { AsyncOptionsCache } from '@/util';
-import Icon from '@/icon';
+import { IconLoading } from '@arco-design/web-react/icon';
 
 const AsyncCascader = (props: any) => {
   const { initOptions = () => {} } = props;
@@ -56,7 +56,7 @@ const AsyncCascader = (props: any) => {
     }
   });
   return loading ? (
-    <Icon type="loading" primary spin />
+    <IconLoading spin />
   ) : (
     <Cascader {..._props} options={options} loadData={loadData} />
   );

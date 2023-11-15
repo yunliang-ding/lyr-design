@@ -13,7 +13,8 @@ import {
 } from '@arco-design/web-react';
 import { OssFileUploadProps } from './type';
 import { uuid } from '@/util';
-import { createOssInstance, Icon } from '..';
+import { createOssInstance } from '..';
+import { IconClose, IconPlus } from '@arco-design/web-react/icon';
 import './index.less';
 
 export default ({
@@ -115,7 +116,7 @@ export default ({
     listType === 'picture-card' ? (
       <div className="react-core-form-oss-upload-button">
         <Spin loading={loading}>
-          <Icon type="add" />
+          <IconPlus />
           <div style={{ marginTop: 8 }}>{text}</div>
         </Spin>
         {loading && (
@@ -196,7 +197,7 @@ const RenderItemNode = ({
             onRemove(file);
           }}
         >
-          <Icon type="close" />
+          <IconClose />
         </a>
       )}
     </div>
@@ -219,7 +220,7 @@ const RenderItemNode = ({
               onRemove(file);
             }}
           >
-            <Icon type="close" />
+            <IconClose />
           </a>
         )}
       </div>

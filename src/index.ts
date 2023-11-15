@@ -1,7 +1,6 @@
 export { default as BlockQuote } from './widgets/extension/block-quote';
 export { default as Grid } from './grid';
 export { default as Button } from './button';
-export { default as Icon } from './icon';
 export { default as Form } from './form';
 export { default as CardForm } from './form-submit/card-form';
 export { default as AnchorCardForm } from './form-submit/anchor-card-form';

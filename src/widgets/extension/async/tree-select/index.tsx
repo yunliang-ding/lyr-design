@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Spin, Empty } from 'antd';
 import TreeSelect from '@/widgets/arco-design/tree-select';
 import { AsyncOptionsCache } from '@/util';
-import Icon from '@/icon';
+import { IconLoading } from '@arco-design/web-react/icon';
 
 const AsyncTreeSelect = (props: any) => {
   const [options, setOptions] = useState([]);
@@ -37,7 +37,7 @@ const AsyncTreeSelect = (props: any) => {
     };
   }, []);
   return loading ? (
-    <Icon type="loading" primary spin />
+    <IconLoading spin />
   ) : (
     <TreeSelect
       {...props}

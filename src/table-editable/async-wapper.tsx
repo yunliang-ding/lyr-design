@@ -1,5 +1,5 @@
+import { IconLoading } from '@arco-design/web-react/icon';
 import { useEffect, useState } from 'react';
-import { Icon } from '..';
 
 export default ({ render, params, asyncOptions }) => {
   const [spin, setSpin] = useState(true);
@@ -12,7 +12,7 @@ export default ({ render, params, asyncOptions }) => {
     init();
   }, []);
   if (spin) {
-    return <Icon type="loading" primary spin />;
+    return <IconLoading spin />;
   }
   return render.apply(null, [...params, options]) || '-';
 };

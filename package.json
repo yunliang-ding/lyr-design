@@ -48,10 +48,9 @@
     "remark-gfm": "3.0.1"
   },
   "peerDependencies": {
-    "@arco-design/web-react": "2.55.2",
-    "antd": "4.24.10",
     "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react-dom": ">=16.9.0",
+    "@arco-design/web-react": "2.55.2"
   },
   "devDependencies": {
     "@arco-design/web-react": "2.55.2",

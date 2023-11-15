@@ -3,7 +3,7 @@ import { useEffect, useState, useMemo, useRef } from 'react';
 import { AsyncOptionsCache, EventEmit } from '@/util';
 import { tranfromSchema } from '@/form/util';
 import Item from '../form/item';
-import { Button, Icon } from '../index';
+import { Button } from '../index';
 import AsyncWapper from './async-wapper';
 import {
   SortableContainer,
@@ -13,14 +13,13 @@ import {
 } from 'react-sortable-hoc';
 import './index.css';
 import { EditTableProps } from './type';
+import { IconDragArrow, IconPlus } from '@arco-design/web-react/icon';
 
 const SortableItem = SortableElement((props) => <tr {...props} />);
 
 const SortableBody = SortableContainer((props) => <tbody {...props} />);
 
-const DragHandle = SortableHandle(() => (
-  <Icon type="drag3" color="#999" style={{ cursor: 'grab', top: 2 }} />
-));
+const DragHandle = SortableHandle(() => <IconDragArrow />);
 
 // TODO value 中不能混入index属性，否则和内置的index属性冲突、待优化
 
@@ -371,7 +370,7 @@ export default ({
       style={creatorButtonProps.style}
       visible={!readOnly}
       disabled={dataSource.length >= maxLength}
-      icon={<Icon type="add" size={14} style={{ top: 3 }} primary />}
+      icon={<IconPlus />}
       className={
         dataSource.length >= maxLength
           ? 'editable-table-footer-btn-disabled'

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Icon from '@/icon';
+import { IconLoading } from '@arco-design/web-react/icon';
 import { useEffect, useState, useMemo } from 'react';
 
 export default (props: any): any => {
@@ -20,7 +20,7 @@ export default (props: any): any => {
     init();
   }, []);
   const Spin = useMemo(() => {
-    return props.spin ? <Icon type="loading" primary spin /> : <div />;
+    return props.spin ? <IconLoading spin /> : <div />;
   }, []);
   return loading ? Spin : vnode || null;
 };

@@ -4,8 +4,9 @@ import { Table, Form, Space } from '@arco-design/web-react';
 import { useEffect, useMemo, useRef } from 'react';
 import { TableListProps } from './type';
 import { EventEmit } from '@/util';
-import { Button, Icon } from '..';
+import { Button } from '..';
 import { tranfromInnerValues, beforeReceiveInnerValues } from './util';
+import { IconPlus } from '@arco-design/web-react/icon';
 import './index.css';
 
 export default ({
@@ -140,7 +141,7 @@ export default ({
         <Button
           type="dashed"
           visible={readOnly !== true}
-          icon={<Icon type="add" size={14} style={{ top: 3 }} primary />}
+          icon={<IconPlus />}
           disabled={value.length >= maxCount}
           onClick={() => {
             value.push(

@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import WaterMark from './watermark';
 import Breadcrumb from './breadcrumb';
 import { getBreadcrumbByMenus } from './util';
-import { Icon } from '..';
+import { IconUnorderedList } from '@arco-design/web-react/icon';
 import './index.less';
 
 export const RenderMenus = (
@@ -175,11 +175,7 @@ export default ({
                     height: '100%',
                   }}
                 >
-                  <Icon
-                    type="collapsed"
-                    primary
-                    hover
-                    size={24}
+                  <IconUnorderedList
                     onClick={() => {
                       onCollapse(!collapsed);
                       // 保存 openKeys
@@ -259,10 +255,7 @@ export default ({
                   </Menu>
                 </div>
                 <div className="app-layout-body-sider-footer">
-                  <Icon
-                    type="collapsed"
-                    primary
-                    size={24}
+                  <IconUnorderedList
                     onClick={() => {
                       onCollapse(!collapsed);
                     }}

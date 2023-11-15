@@ -6,11 +6,7 @@ import { Form, Search, Table } from '@/index';
 import ToolBar from './toolbar';
 import getRowOperations from './row-operations';
 import { defaultPaginationConfig } from '.';
-import {
-  DraggableBodyRow,
-  DraggableContainer,
-  DragHandle,
-} from './drag-columns';
+import { DraggableRow, DraggableContainer, DragHandle } from './drag-columns';
 
 export default ({
   rowKey = 'id',
@@ -28,13 +24,11 @@ export default ({
   searchSchema,
   alertConfig,
   rowSelection,
-  tableRender,
   table = Table.useTable()[0],
   tableId,
   drag = false,
   style = {},
   onDragDone = () => {},
-  dragColumn = {},
   autoNo = false,
   resize = false,
   keepRowSelection = true,
@@ -245,26 +239,12 @@ export default ({
     paginationInfo.current,
     resize,
   );
-  // 开启 drag
-  if (drag) {
-    newColumns = [
-      {
-        title: '排序',
-        dataIndex: '__sort__',
-        width: 60,
-        fixed: 'left',
-        className: 'drag-visible',
-        render: () => <DragHandle />,
-        ...dragColumn,
-      },
-      ...newColumns,
-    ];
-  }
   /** 主体渲染Dom */
   const tableDom = (
     <ArcoTable
       rowKey={rowKey}
       loading={loading}
+      className="arco-drag-table-container-2"
       data={dataSource}
       columns={newColumns}
       expandedRowKeys={expandedRowKeys}
@@ -287,21 +267,53 @@ export default ({
       components={
         drag
           ? {
+              header: {
+                operations: ({ selectionNode, expandNode }) => [
+                  {
+                    node: <th />,
+                    width: 40,
+                  },
+                  {
+                    name: 'expandNode',
+                    node: expandNode,
+                  },
+                  {
+                    name: 'selectionNode',
+                    node: selectionNode,
+                  },
+                ],
+              },
               body: {
-                wrapper: (props) => {
-                  return (
-                    <DraggableContainer
-                      {...props}
-                      dataSource={dataSource}
-                      setDataSource={setDataSource}
-                      onDragDone={onDragDone}
-                    />
-                  );
-                },
+                operations: ({ selectionNode, expandNode }) => [
+                  {
+                    node: (
+                      <td>
+                        <div className="arco-table-cell">
+                          <DragHandle />
+                        </div>
+                      </td>
+                    ),
+                    width: 40,
+                  },
+                  {
+                    name: 'expandNode',
+                    node: expandNode,
+                  },
+                  {
+                    name: 'selectionNode',
+                    node: selectionNode,
+                  },
+                ],
+                tbody: (props) => (
+                  <DraggableContainer
+                    {...props}
+                    dataSource={dataSource}
+                    setDataSource={setDataSource}
+                    onDragDone={onDragDone}
+                  />
+                ),
                 row: (props) => {
-                  return (
-                    <DraggableBodyRow {...props} dataSource={dataSource} />
-                  );
+                  return <DraggableRow {...props} dataSource={dataSource} />;
                 },
               },
             }
@@ -390,9 +402,7 @@ export default ({
         style={style}
       >
         {toolBarAlertDom}
-        {typeof tableRender === 'function'
-          ? tableRender(tableDom, dataSource)
-          : tableDom}
+        {tableDom}
       </div>
     </>
   );

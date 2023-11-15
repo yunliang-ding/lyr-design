@@ -19,33 +19,6 @@ export default () => {
 };
 ```
 
-## 缓存查询条件
-
-```tsx
-/**
- * background: '#f6f7f9'
- * title: 说明
- * description: 需要清空缓存可以在组件卸载的钩子去决定是否需要清空。
- */
-import React from 'react';
-import { Table } from 'react-core-form';
-import tableSchema from './schema/form-table/schema';
-import searchSchema from './schema/form-table/search.schema';
-
-export default () => {
-  return (
-    <Table
-      {...tableSchema}
-      searchSchema={searchSchema}
-      params={window.cacheParams}
-      onQuery={(params) => {
-        window.cacheParams = params;
-      }}
-    />
-  );
-};
-```
-
 ## 使用 ellipsis 扩展、useThousandth 千分位、emptyNode 展示空数据
 
 ```tsx
@@ -58,30 +31,6 @@ import tableSchema from './schema/form-table/schema1';
 
 export default () => {
   return <Table {...tableSchema} />;
-};
-```
-
-## 配置 drag 属性，支持可拖动
-
-```tsx
-/**
- * background: '#f6f7f9'
- * title: 约定数据源选项包含 index 属性，做为唯一序号
- */
-import React from 'react';
-import { Table } from 'react-core-form';
-import tableSchema from './schema/form-table/schema1';
-
-export default () => {
-  return (
-    <Table
-      {...tableSchema}
-      drag
-      onDragDone={(result) => {
-        console.log('onDragDone: ', result);
-      }}
-    />
-  );
 };
 ```
 
@@ -207,6 +156,30 @@ export default () => {
 };
 ```
 
+## 配置 drag 属性，支持可拖动
+
+```tsx
+/**
+ * background: '#f6f7f9'
+ * title: 约定数据源选项包含 index 属性，做为唯一序号
+ */
+import React from 'react';
+import { Table } from 'react-core-form';
+import tableSchema from './schema/form-table/schema';
+
+export default () => {
+  return (
+    <Table
+      {...tableSchema}
+      drag
+      onDragDone={(result) => {
+        console.log('onDragDone: ', result);
+      }}
+    />
+  );
+};
+```
+
 ## 使用 alertConfig 配置提示信息
 
 ```tsx
@@ -276,7 +249,6 @@ export default () => {
 };
 ```
 
-<!--
 ## 使用 filterIds 配置不展示字段
 
 ```tsx
@@ -285,7 +257,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'react-core-form';
-import tableSchema from './schema/form-table/schema1';
+import tableSchema from './schema/form-table/schema';
 
 export default () => {
   return <Table {...tableSchema} filterIds={['sex', 'city', 'sign']} />;
@@ -301,7 +273,7 @@ export default () => {
 import React from 'react';
 import { Table } from 'react-core-form';
 import { Input } from '@arco-design/web-react';
-import tableSchema from './schema/form-table/schema1';
+import tableSchema from './schema/form-table/schema';
 
 export default () => {
   return (
@@ -346,9 +318,7 @@ export default () => {
     <Table
       {...tableSchema}
       paginationConfig={{
-        pageSize: 5,
-        size: 'small',
-        pageSizeOptions: [5, 10, 20],
+        sizeCanChange: true,
         showTotal: (total: number) => `总计 ${total} 条数据`,
       }}
     />
@@ -380,6 +350,33 @@ export default () => {
 };
 ```
 
+## 缓存查询条件
+
+```tsx
+/**
+ * background: '#f6f7f9'
+ * title: 说明
+ * description: 需要清空缓存可以在组件卸载的钩子去决定是否需要清空。
+ */
+import React from 'react';
+import { Table } from 'react-core-form';
+import tableSchema from './schema/form-table/schema';
+import searchSchema from './schema/form-table/search.schema';
+
+export default () => {
+  return (
+    <Table
+      {...tableSchema}
+      searchSchema={searchSchema}
+      params={window.cacheParams}
+      onQuery={(params) => {
+        window.cacheParams = params;
+      }}
+    />
+  );
+};
+```
+
 ## 配置化 CRUD
 
 ```tsx
@@ -399,104 +396,6 @@ export default () => {
       }}
       {...tableSchema}
       searchSchema={searchSchema}
-    />
-  );
-};
-```
-
-## 使用 tableRender 自定义渲染
-
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
-import { Table } from 'react-core-form';
-import tableSchema from './schema/form-table/schema';
-import { Space, Descriptions, Card, Menu } from '@arco-design/web-react';
-
-export default () => {
-  const [key, setKey] = React.useState('1');
-  const [table] = Table.useTable();
-  return (
-    <Table
-      {...tableSchema}
-      table={table}
-      tableRender={(dom, dataSource) => {
-        return (
-          <Space direction="vertical" style={{ width: '100%' }}>
-            <Card>
-              <Descriptions size="small" column={3}>
-                <Descriptions.Item label="Row">
-                  {dataSource.length}
-                </Descriptions.Item>
-                <Descriptions.Item label="Created">Lili Qu</Descriptions.Item>
-                <Descriptions.Item label="Association">
-                  <a>421421</a>
-                </Descriptions.Item>
-                <Descriptions.Item label="Creation Time">
-                  2017-01-10
-                </Descriptions.Item>
-                <Descriptions.Item label="Effective Time">
-                  2017-10-10
-                </Descriptions.Item>
-              </Descriptions>
-            </Card>
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'space-between',
-              }}
-            >
-              <div
-                style={{
-                  width: 256,
-                  border: '1px solid #f0f0f0',
-                }}
-              >
-                <Menu
-                  onSelect={(e) => setKey(e.key as string)}
-                  onClick={(e) => {
-                    table.onSearch({
-                      menuKey: e.key,
-                    });
-                  }}
-                  style={{ width: 256 }}
-                  defaultSelectedKeys={['1']}
-                  defaultOpenKeys={['sub1']}
-                  mode="inline"
-                >
-                  <Menu.SubMenu
-                    key="sub1"
-                    title={
-                      <span>
-                        <span>Navigation One</span>
-                      </span>
-                    }
-                  >
-                    <Menu.ItemGroup key="g1" title="Item 1">
-                      <Menu.Item key="1">Option 1</Menu.Item>
-                      <Menu.Item key="2">Option 2</Menu.Item>
-                    </Menu.ItemGroup>
-                    <Menu.ItemGroup key="g2" title="Item 2">
-                      <Menu.Item key="3">Option 3</Menu.Item>
-                      <Menu.Item key="4">Option 4</Menu.Item>
-                    </Menu.ItemGroup>
-                  </Menu.SubMenu>
-                </Menu>
-              </div>
-              <div
-                style={{
-                  width: 'calc(100% - 266px)',
-                }}
-              >
-                {dom}
-              </div>
-            </div>
-          </Space>
-        );
-      }}
     />
   );
 };
@@ -557,7 +456,7 @@ export default () => {
     />
   );
 };
-``` -->
+```
 
 ## Table 扩展属性
 

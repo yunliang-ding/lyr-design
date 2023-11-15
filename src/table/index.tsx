@@ -16,9 +16,6 @@ const CoreTable = (props: TableProps) => {
       {
         type: 'Refresh',
       },
-      {
-        type: 'AdjustSize',
-      },
     ],
     locale,
     ...rest

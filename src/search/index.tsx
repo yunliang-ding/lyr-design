@@ -1,8 +1,9 @@
 import { useState, useMemo, useEffect } from 'react';
 import classNames from 'classnames';
-import { Form, Button, Icon } from '@/index';
+import { Form, Button } from '@/index';
 import { SearchProps } from './types';
 import { cloneDeep } from '@/util';
+import { IconUp, IconDown } from '@arco-design/web-react/icon';
 import './index.less';
 
 export default ({
@@ -62,13 +63,8 @@ export default ({
   const moreLabel = useMemo(() => {
     return (
       <>
-        {more ? '收起' : '展开'}
-        <Icon
-          type="expand"
-          style={{ top: 2, marginLeft: 4 }}
-          size={14}
-          primary
-        />
+        <span style={{ marginRight: 2 }}>{more ? '收起' : '展开'}</span>
+        {more ? <IconUp /> : <IconDown />}
       </>
     );
   }, [more]);

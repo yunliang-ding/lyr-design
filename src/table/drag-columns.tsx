@@ -1,29 +1,43 @@
-import type { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
+/* eslint-disable prefer-template */
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+import type { SortEnd } from 'react-sortable-hoc';
+import { IconDragDotVertical } from '@arco-design/web-react/icon';
 import {
   SortableContainer,
   SortableElement,
   SortableHandle,
-  arrayMove,
 } from 'react-sortable-hoc';
-import { Icon } from '..';
+
+export const arrayMoveMutate = (array, from, to) => {
+  const startIndex = to < 0 ? array.length + to : to;
+
+  if (startIndex >= 0 && startIndex < array.length) {
+    const item = array.splice(from, 1)[0];
+    array.splice(startIndex, 0, item);
+  }
+};
+
+export const arrayMove = (array, from, to) => {
+  array = [...array];
+  arrayMoveMutate(array, from, to);
+  return array;
+};
 
 export const DragHandle = SortableHandle(() => (
-  <Icon
-    type="drag3"
-    color="#999"
-    size={14}
-    style={{ cursor: 'grab', top: 3 }}
+  <IconDragDotVertical
+    style={{
+      cursor: 'move',
+      color: '#555',
+    }}
   />
 ));
+export const SortableWrapper = SortableContainer((props) => {
+  return <tbody {...props} />;
+});
 
-export const SortableItem = SortableElement(
-  (props: React.HTMLAttributes<HTMLTableRowElement>) => <tr {...props} />,
-);
-export const SortableBody = SortableContainer(
-  (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
-    <tbody {...props} />
-  ),
-);
+export const SortableItem = SortableElement((props) => {
+  return <tr {...props} />;
+});
 
 export const onSortEnd = ({
   setDataSource,
@@ -48,18 +62,9 @@ export const onSortEnd = ({
   }
 };
 
-export const DraggableContainer = (
-  props:
-    | SortableContainerProps & {
-        dataSource: [];
-        setDataSource: any;
-        onDragDone: any;
-        children: any;
-      },
-) => (
-  <SortableBody
+export const DraggableContainer = (props) => (
+  <SortableWrapper
     useDragHandle
-    disableAutoscroll
     helperClass="core-table-row-dragging"
     onSortEnd={(e) => {
       props.onDragDone(
@@ -74,14 +79,7 @@ export const DraggableContainer = (
   />
 );
 
-export const DraggableBodyRow: React.FC<any> = ({
-  className,
-  style,
-  dataSource,
-  ...restProps
-}) => {
-  const index = dataSource.findIndex(
-    (x) => x.index === restProps['data-row-key'],
-  );
-  return <SortableItem index={index} {...restProps} />;
+export const DraggableRow = (props) => {
+  const { record, index, ...rest } = props;
+  return <SortableItem index={index} {...rest} />;
 };

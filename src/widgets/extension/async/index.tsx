@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Spin, Empty } from '@arco-design/web-react';
 import { AsyncOptionsCache } from '@/util';
-import Icon from '@/icon';
+import { IconLoading } from '@arco-design/web-react/icon';
 
 export default (Component: any) =>
   ({ emptyDescription, openOptionsCache = true, ...props }: any) => {
@@ -49,7 +49,7 @@ export default (Component: any) =>
         options={options}
       />
     ) : loading ? (
-      <Icon type="loading" primary spin />
+      <IconLoading spin />
     ) : options?.length > 0 ? (
       <Component {...props} options={options} />
     ) : (

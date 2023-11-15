@@ -1,5 +1,9 @@
 import React from 'react';
-import { Icon } from 'react-core-form';
+import {
+  IconDragArrow,
+  IconDelete,
+  IconCopy,
+} from '@arco-design/web-react/icon';
 
 const dragContainer: any = {
   position: 'relative',
@@ -54,11 +58,11 @@ export default ({ field, dom, selected = false }) => {
       {selected && (
         <>
           <div style={dragContainerDarg}>
-            <Icon type="drag" color="#ffffff" />
+            <IconDragArrow />
           </div>
           <div style={dragContainerTools}>
-            <Icon type="delete" color="#ffffff" />
-            <Icon type="copy" color="#ffffff" />
+            <IconDelete />
+            <IconCopy />
           </div>
         </>
       )}

@@ -74,13 +74,10 @@ export interface TableProps extends Omit<ArcoTableProps, 'title' | 'columns'> {
    * 默认工具栏配置
    * @default [
     {
-      type: 'Refresh'
-    },
-    {
-      type: 'AdjustSize'
-    },
-    {
       type: 'FilterColumns'
+    },
+    {
+      type: 'Refresh'
     },
   ]
    */
@@ -107,8 +104,6 @@ export interface TableProps extends Omit<ArcoTableProps, 'title' | 'columns'> {
   alertConfig?:
     | TableAlertProps
     | ((selectedRowKeys, selectedRows, setSelectedRowKeys) => TableAlertProps);
-  /** 自定义渲染表格函数 */
-  tableRender?: (dom, dataSource) => ReactNode;
   /** Table api 的引用，便于自定义触发 */
   table?: TableInstance;
   /** 唯一标识 */
@@ -117,8 +112,6 @@ export interface TableProps extends Omit<ArcoTableProps, 'title' | 'columns'> {
   drag?: boolean;
   /** 是否开启调整宽度 */
   resize?: boolean;
-  /** 列信息 */
-  dragColumn?: TableColumnType;
   /** 拖拽结束的钩子 */
   onDragDone?: (data) => any;
   /** 开启自增序号 */
@@ -131,8 +124,6 @@ export interface TableProps extends Omit<ArcoTableProps, 'title' | 'columns'> {
    */
   keepRowSelection?: boolean;
   rowSelection?: TableRowSelectionProps;
-  /** 开启虚拟列表 */
-  virtual?: boolean;
   /** 下滑加载数据 */
   loadMoreData?: Function;
 }

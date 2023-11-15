@@ -6,7 +6,8 @@ import {
   Tooltip,
 } from '@arco-design/web-react';
 import { useMemo } from 'react';
-import { DragList, Icon } from '@/index';
+import { DragList } from '@/index';
+import { IconSettings } from '@arco-design/web-react/icon';
 
 export default ({
   filterIds = [],
@@ -65,7 +66,7 @@ export default ({
         <Button
           type="default"
           size={size}
-          icon={<Icon type="setting" style={{ top: 3 }} />}
+          icon={<IconSettings />}
           onClick={(e) => e.preventDefault()}
         />
       </Tooltip>
