@@ -188,7 +188,6 @@ export default ({
         return (
           <Item
             event={event}
-            className={field.className || ''}
             disabled={disabled || field?.props?.disabled}
             readOnly={readOnly}
             onChange={onChange}

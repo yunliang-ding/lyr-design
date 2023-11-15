@@ -88,8 +88,6 @@ export interface SchemaProps<T = FieldProps>
   readOnly?: ((form: CoreFormInstance) => boolean) | boolean;
   /** 是否禁用 */
   disabled?: ((form: CoreFormInstance) => boolean) | boolean;
-  /** 标签宽度 */
-  labelWidth?: number;
   /** 别名常用于 日期范围等设置，内部自动转换 */
   nameAlise?: string[];
   /** 表单项属性设置 */

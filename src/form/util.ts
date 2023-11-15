@@ -40,7 +40,6 @@ export const isExpansionItemProps = {
   required: '',
   readOnly: '',
   disabled: '',
-  labelWidth: '',
   nameAlise: '',
   actionRef: '',
 };
@@ -60,19 +59,7 @@ export const beforeFieldRender = (field: any, form: any) => {
   // 必填逻辑处理
   if (field.required === true) {
     field.rules = Array.isArray(field.rules) ? field.rules : [];
-    if (field.type === 'RangePicker' && field.props?.mode === 'split') {
-      field.rules.push({ required: true, message: '' });
-      field.rules.push({
-        validator: (_, value: any) => {
-          if (value?.length && value[0] && value[1]) {
-            return Promise.resolve();
-          }
-          return Promise.reject(
-            new Error(`${field.label || ''}起始和结束都不能为空`),
-          );
-        },
-      });
-    } else if (field.rules.every((i) => i.required !== true)) {
+    if (field.rules.every((i) => i.required !== true)) {
       field.rules.push({
         required: true,
         message: `${field.label || ''}不能为空`,

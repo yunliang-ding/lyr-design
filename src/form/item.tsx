@@ -14,8 +14,6 @@ export default ({
   disabled,
   readOnly,
   event,
-  className = field?.className || '',
-  fieldKey,
   widgets = {},
   formListName = '', // 子表单名字
   readOnlyEmptyValueNode = '-',
@@ -95,21 +93,10 @@ export default ({
     <Form.Item
       {...pureFields}
       field={pureFields.name} // 采用name
-      key={reload}
       // 只读模式不需要rules
       rules={readOnly ? undefined : pureFields.rules}
-      className={className}
       data-expand={cloneField.expand}
-      fieldKey={fieldKey}
-      label={
-        cloneField.labelWidth ? (
-          <span style={{ width: cloneField.labelWidth }}>
-            {pureFields.label}
-          </span>
-        ) : (
-          pureFields.label
-        )
-      }
+      key={reload}
     >
       {CreateWidget(
         {

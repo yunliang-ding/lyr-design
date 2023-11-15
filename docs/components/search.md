@@ -20,6 +20,7 @@ toc: menu
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema';
+
 export default () => {
   return (
     <Search
@@ -35,7 +36,7 @@ export default () => {
 };
 ```
 
-## 使用 labelWidth 设置文本宽度使之对齐
+## 设置文本宽度
 
 ```tsx
 /**
@@ -44,6 +45,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema1';
+
 export default () => {
   return (
     <Search
@@ -68,6 +70,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema';
+
 export default () => {
   return (
     <Search
@@ -93,6 +96,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema';
+
 export default () => {
   return (
     <Search
@@ -118,8 +122,9 @@ export default () => {
  */
 import React from 'react';
 import { Search, Form, Button } from 'react-core-form';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 import schema from './schema/form-search/schema';
+
 export default () => {
   const [form] = Form.useForm();
   return (
@@ -160,6 +165,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema';
+
 export default () => {
   return (
     <Search
@@ -182,6 +188,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema2';
+
 export default () => {
   return (
     <Search
@@ -203,6 +210,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema3';
+
 export default () => {
   return (
     <Search
@@ -225,6 +233,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema3';
+
 export default () => {
   return (
     <Search
@@ -248,6 +257,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema3';
+
 export default () => {
   return (
     <Search
@@ -274,6 +284,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema3';
+
 export default () => {
   return (
     <Search
@@ -296,6 +307,7 @@ export default () => {
 import * as React from 'react';
 import { Search } from 'react-core-form';
 import schema from './schema/form-search/schema4';
+
 export default () => {
   return (
     <Search

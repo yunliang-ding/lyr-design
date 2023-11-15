@@ -99,9 +99,6 @@ export default () => {
               >
                 切换模式
               </a>
-              <Avatar style={{ backgroundColor: '#3370ff' }}>
-                <IconUser />
-              </Avatar>
               <Dropdown
                 placement="bottom"
                 droplist={
@@ -110,8 +107,11 @@ export default () => {
                   </Menu>
                 }
               >
-                <a>测试用户-123</a>
+                <a>Admin</a>
               </Dropdown>
+              <Avatar style={{ backgroundColor: '#3370ff' }}>
+                <IconUser />
+              </Avatar>
             </Space>
           </div>
         );

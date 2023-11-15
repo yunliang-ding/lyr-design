@@ -7,6 +7,11 @@ const schema: SchemaProps[] = [
     label: '资产类别',
     autoSearch: true, // 修改直接查询
     tooltip: '修改立即查询',
+    labelCol: {
+      style: {
+        width: 100,
+      },
+    },
     props: {
       options: [
         {
