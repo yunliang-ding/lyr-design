@@ -4,7 +4,7 @@ import { Table, Form, Space } from '@arco-design/web-react';
 import { useEffect, useMemo, useRef } from 'react';
 import { TableListProps } from './type';
 import { EventEmit } from '@/util';
-import { Button } from '..';
+import Button from '@/button';
 import { tranfromInnerValues, beforeReceiveInnerValues } from './util';
 import { IconPlus } from '@arco-design/web-react/icon';
 import './index.css';

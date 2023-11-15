@@ -3,7 +3,7 @@ import { useEffect, useState, useMemo, useRef } from 'react';
 import { AsyncOptionsCache, EventEmit } from '@/util';
 import { tranfromSchema } from '@/form/util';
 import Item from '../form/item';
-import { Button } from '../index';
+import Button from '@/button';
 import AsyncWapper from './async-wapper';
 import {
   SortableContainer,
@@ -11,9 +11,9 @@ import {
   SortableHandle,
   arrayMove,
 } from 'react-sortable-hoc';
-import './index.css';
 import { EditTableProps } from './type';
 import { IconDragArrow, IconPlus } from '@arco-design/web-react/icon';
+import './index.css';
 
 const SortableItem = SortableElement((props) => <tr {...props} />);
 

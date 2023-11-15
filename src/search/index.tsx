@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import classNames from 'classnames';
-import { Form, Button } from '@/index';
+import Form from '@/form';
+import Button from '@/button';
 import { SearchProps } from './types';
 import { cloneDeep } from '@/util';
 import { IconUp, IconDown } from '@arco-design/web-react/icon';

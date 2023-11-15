@@ -6,7 +6,7 @@ import {
   Tooltip,
 } from '@arco-design/web-react';
 import { useMemo } from 'react';
-import { DragList } from '@/index';
+import DragList from '@/drag-list';
 import { IconSettings } from '@arco-design/web-react/icon';
 
 export default ({

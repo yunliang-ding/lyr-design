@@ -1,6 +1,6 @@
 import { Space } from '@arco-design/web-react';
 import { useEffect, useState } from 'react';
-import { Button } from '../index';
+import Button from '@/button';
 
 export default ({ actions = [], actionClick, validatorForm, form }) => {
   const [disabled, setDisabled]: any = useState(false); // 设置底部按钮禁用

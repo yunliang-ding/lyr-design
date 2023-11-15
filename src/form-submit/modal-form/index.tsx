@@ -1,7 +1,7 @@
 import { Modal } from '@arco-design/web-react';
 import { useMemo, useRef, useState } from 'react';
 import { uuid } from '@/util';
-import { Form } from '@/index';
+import Form from '@/form';
 import { ModalFormProps } from '../types';
 import type { DraggableData, DraggableEvent } from 'react-draggable';
 import Draggable from 'react-draggable';

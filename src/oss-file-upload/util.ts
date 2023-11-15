@@ -1,4 +1,5 @@
 import { decode } from 'react-core-form-tools';
+
 export default (
   options = {
     bucket: 'react-core-form',

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Menu, Dropdown, Typography } from '@arco-design/web-react';
-import { Button } from '@/index';
+import Button from '@/button';
 import { IconDown } from '@arco-design/web-react/icon';
 
 export default ({ rowOperations = {}, tableInstance }: any) => {

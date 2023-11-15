@@ -2,7 +2,9 @@
  * 电梯表单组件
  */
 import { CardFormProps } from '../types';
-import { CardForm, AnchorCard, Form } from '../../index';
+import CardForm from '@/form-submit/card-form';
+import AnchorCard from '@/anchor-card';
+import Form from '@/form';
 import { AnchorCardProps } from '../../anchor-card';
 import './index.less';
 

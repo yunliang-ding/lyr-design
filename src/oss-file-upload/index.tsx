@@ -13,8 +13,8 @@ import {
 } from '@arco-design/web-react';
 import { OssFileUploadProps } from './type';
 import { uuid } from '@/util';
-import { createOssInstance } from '..';
 import { IconClose, IconPlus } from '@arco-design/web-react/icon';
+import createOssInstance from './util';
 import './index.less';
 
 export default ({

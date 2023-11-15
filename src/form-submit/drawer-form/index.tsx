@@ -1,7 +1,7 @@
 import { Drawer } from '@arco-design/web-react';
 import { useMemo, useState } from 'react';
 import { uuid } from '@/util';
-import { Form } from '@/index';
+import Form from '@/form';
 import { DrawerFormProps } from '../types';
 import Footer from '../footer';
 import './index.less';
