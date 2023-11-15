@@ -228,7 +228,7 @@ export default ({
                         children: undefined,
                       };
                     }),
-                    false,
+                    true,
                   )}
                 </Menu>
               </div>

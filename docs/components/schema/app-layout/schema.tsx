@@ -1,17 +1,17 @@
 import React from 'react';
 import {
-  WindowsOutlined,
-  SlackOutlined,
-  TeamOutlined,
-  UserOutlined,
-  ClusterOutlined,
-  CreditCardOutlined,
-} from '@ant-design/icons';
+  IconApps,
+  IconCommon,
+  IconLanguage,
+  IconUser,
+  IconThunderbolt,
+  IconSkin,
+} from '@arco-design/web-react/icon';
 
 export default [
   {
     id: 39,
-    icon: <WindowsOutlined rev={undefined} />,
+    icon: <IconApps />,
     name: '工作台',
     order: 1,
     path: '/workbench',
@@ -19,7 +19,7 @@ export default [
     children: [
       {
         id: 40,
-        icon: <SlackOutlined rev={undefined} />,
+        icon: <IconCommon />,
         name: '我的工作台',
         order: null,
         path: '/workbench/my',
@@ -33,7 +33,7 @@ export default [
   },
   {
     id: 35,
-    icon: <TeamOutlined rev={undefined} />,
+    icon: <IconLanguage />,
     name: '用户管理',
     order: 5,
     path: '/user',
@@ -41,7 +41,7 @@ export default [
     children: [
       {
         id: 36,
-        icon: <UserOutlined rev={undefined} />,
+        icon: <IconUser />,
         name: '用户列表',
         order: null,
         path: '/user/list',
@@ -55,7 +55,7 @@ export default [
   },
   {
     id: 32,
-    icon: <ClusterOutlined rev={undefined} />,
+    icon: <IconThunderbolt />,
     name: '字典管理',
     order: 10,
     path: '/dict',
@@ -63,7 +63,7 @@ export default [
     children: [
       {
         id: 33,
-        icon: <CreditCardOutlined rev={undefined} />,
+        icon: <IconSkin />,
         name: '字典列表',
         order: null,
         path: '/dict/list',
