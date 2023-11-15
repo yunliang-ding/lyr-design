@@ -6,7 +6,7 @@ export default {
     {
       type: 'Select',
       name: 'level',
-      label: '级别',
+      label: '用户级别',
       props: {
         options: [
           {
@@ -28,7 +28,7 @@ export default {
     {
       type: 'InputNumber',
       name: 'age',
-      label: '年纪',
+      label: '用户年纪',
       expand: true,
       transform({ age }) {
         return {
@@ -39,7 +39,7 @@ export default {
     {
       type: 'Input',
       name: 'address',
-      label: '地址',
+      label: '用户地址',
       expand: true,
     },
   ] as SchemaProps,

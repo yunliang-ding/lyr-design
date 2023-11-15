@@ -1,12 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
 import { TableProps } from './types';
 import { transformColumns } from './util';
-import { Table as AntdTable, Button, Alert } from 'antd';
+import { Table as ArcoTable, Button, Alert } from '@arco-design/web-react';
 import { Form, Search, Table } from '@/index';
 import ToolBar from './toolbar';
 import getRowOperations from './row-operations';
 import { defaultPaginationConfig } from '.';
-import VirtualTable from './virtual-table';
 import {
   DraggableBodyRow,
   DraggableContainer,
@@ -40,7 +39,6 @@ export default ({
   autoNo = false,
   resize = false,
   keepRowSelection = true,
-  virtual = false,
   loadMoreData,
   ...restProp
 }: TableProps) => {
@@ -50,7 +48,7 @@ export default ({
   );
   const [_filterIds, setFilterIds] = useState(filterIds);
   const [refresh, setRefresh] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading]: any = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [form] = Form.useForm();
   // 分页的配置
@@ -85,7 +83,7 @@ export default ({
   // 获取当前查询条件
   const getParams = () => {
     return {
-      ...form.getValues(),
+      ...form.getFieldsValue(),
       ...payload,
       pageSize: pagination.pageSize,
       pageNum: pagination.pageNum,
@@ -153,9 +151,7 @@ export default ({
       (row) => row[rowKey as string],
     );
     setInnerSelectedRowKeys(_innerSelectedRowKeys);
-    rowSelection?.onChange?.(_innerSelectedRowKeys, innerSelectedRow, {
-      type: 'all',
-    });
+    rowSelection?.onChange?.(_innerSelectedRowKeys, innerSelectedRow);
   }, [innerSelectedRow]);
   /** 真正传递给Table的 */
   let innerRowSelection = rowSelection;
@@ -208,7 +204,7 @@ export default ({
       ? alertConfig(innerSelectedRowKeys, innerSelectedRow, setInnerSelectedRow)
       : alertConfig;
   // 调整表格尺寸
-  const [size, setSize]: any = useState(restProp.size || 'middle');
+  const [size, setSize]: any = useState(restProp.size || 'default');
   const onSizeChange = (s) => {
     setSize(s);
   };
@@ -267,17 +263,15 @@ export default ({
   }
   /** 主体渲染Dom */
   const tableDom = (
-    <AntdTable
+    <ArcoTable
       rowKey={rowKey}
-      expandable={{
-        expandedRowKeys,
-        onExpandedRowsChange: (expandedKeys) => {
-          setExpandedRowKeys([...expandedKeys]);
-        },
-      }}
       loading={loading}
-      dataSource={dataSource}
+      data={dataSource}
       columns={newColumns}
+      expandedRowKeys={expandedRowKeys}
+      onExpandedRowsChange={(expandedKeys) => {
+        setExpandedRowKeys([...expandedKeys]);
+      }}
       onChange={(_pagination, filters, sorter) => {
         if (typeof pagination.onChange === 'function') {
           pagination.onChange(_pagination, filters, sorter);
@@ -385,30 +379,7 @@ export default ({
       )}
     </>
   );
-  return virtual ? (
-    <>
-      {searchDom}
-      <div
-        className={
-          dataSource.length === 0
-            ? `core-form-table-empty core-form-table core-form-table-${size}`
-            : `core-form-table core-form-table-${size}`
-        }
-        style={style}
-      >
-        <VirtualTable
-          rowKey={rowKey}
-          dataSource={dataSource}
-          columns={_columns}
-          loading={loading}
-          pagination={false}
-          scroll={restProp.scroll || { y: 500 }}
-          toolBar={toolBarAlertDom}
-          loadMoreData={loadMoreData}
-        />
-      </div>
-    </>
-  ) : (
+  return (
     <>
       {searchDom}
       <div

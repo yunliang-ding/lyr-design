@@ -2,39 +2,73 @@
   margin-bottom: 16px;
   padding: 0 18px;
   padding-bottom: 16px;
-  background-color: #fff;
-  .virtual-table-cell {
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    height: 42px !important;
+  background-color: var(--color-bg-1);
+  a {
+    color: rgb(var(--primary-6));
+    cursor: pointer;
   }
-  .virtual-grid-over {
-    width: 100%;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
+  .arco-typography-operation-copy {
+    color: rgb(var(--primary-6));
+    cursor: pointer;
   }
-  .virtual-grid-spin {
-    width: 100%;
-    position: absolute;
-    bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .ant-pagination {
-    background: #fff;
+  .arco-table-pagination {
+    background: var(--color-bg-1);
     margin: 0 !important;
     height: 53px;
     display: flex;
     align-items: flex-end;
     padding: 0;
   }
+  .td-row-operation-area {
+    .arco-btn {
+      padding-left: 0;
+    }
+  }
+  /** resizable */
+  .react-resizable {
+    position: relative;
+  }
+  .react-resizable-handle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    box-sizing: border-box;
+    background-position: bottom right;
+    padding: 0 3px 3px 0;
+  }
+  .react-resizable-handle {
+    height: 100%;
+    width: 20px;
+    right: -24px;
+    cursor: col-resize;
+    z-index: 9999;
+  }
+  // .virtual-table-cell {
+  //   align-items: center;
+  //   padding: 10px;
+  //   border-bottom: 1px solid #eee;
+  //   height: 42px !important;
+  // }
+  // .virtual-grid-over {
+  //   width: 100%;
+  //   height: 32px;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   font-size: 12px;
+  // }
+  // .virtual-grid-spin {
+  //   width: 100%;
+  //   position: absolute;
+  //   bottom: 10px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  //   gap: 8px;
+  // }
   .table-form-header {
     z-index: 2;
     padding: 16px 0px;
@@ -42,8 +76,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    background: #fff;
-    color: #111;
+    background: var(--color-bg-1);
+    color: var(--color-neutral-10);
     .table-form-header-left {
       border-left: 3px solid rgb(var(--primary-6));
       padding-left: 10px;
@@ -53,88 +87,21 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      .ant-btn {
-        font-size: 12px;
-      }
-    }
-  }
-  .ant-table-wrapper {
-    border-bottom: 0;
-    .ant-table-content {
-      overflow: auto;
-    }
-    .ant-table-thead > tr > th {
-      background-color: #fafafa;
-    }
-  }
-  .ant-table-column-sorters {
-    padding-left: 0;
-  }
-  .td-row-operation-area {
-    .ant-dropdown-link {
-      padding: 0 8px;
-    }
-    .ant-btn-link:last-child {
-      &:after {
-        content: none;
-      }
-    }
-    .ant-btn-link:first-child {
-      padding-left: 0;
-    }
-    .ant-btn-link {
-      padding: 0 8px;
-      &:after {
-        content: ' ';
-        height: 14px;
-        width: 1px;
-        background: #e9e9e9;
-        position: absolute;
-        right: 0;
-        top: 8px;
-      }
-    }
-  }
-}
-.core-form-table-default {
-  .ant-table-wrapper {
-    .ant-table-thead > tr > th,
-    .ant-table-tbody > tr > td {
-      padding: 0px 12px;
-      height: 54px;
-    }
-  }
-}
-.core-form-table-middle {
-  .ant-table-wrapper {
-    .ant-table-thead > tr > th,
-    .ant-table-tbody > tr > td {
-      padding: 0px 12px;
-      height: 47px;
-    }
-  }
-}
-.core-form-table-small {
-  .ant-table-wrapper {
-    .ant-table-thead > tr > th,
-    .ant-table-tbody > tr > td {
-      padding: 0px 12px;
-      height: 40px;
     }
   }
 }
 .core-form-row-menu {
-  .ant-dropdown-menu-item {
+  .arco-dropdown-menu-item {
     padding: 0;
-    .ant-btn {
+    .arco-btn {
       height: 36px;
       padding: 0 20px;
     }
   }
 }
 .table-filter-columns {
-  .ant-menu-root {
-    box-shadow: 0 2px 8px #dfe1e2 !important;
+  .arco-menu-root {
+    box-shadow: 0 2px 8px var(--color-bg-5) !important;
   }
 }
 .table-column-drag {
@@ -144,14 +111,14 @@
   height: 100%;
 }
 .table-filter-columns {
-  .ant-menu-item-selected {
+  .arco-menu-item-selected {
     background: transparent !important;
   }
 }
 .core-table-row-dragging {
   width: fit-content !important;
-  border: 1px solid #ccc;
-  .ant-table-cell {
+  border: 1px solid var(--color-border-1);
+  .arco-table-cell {
     max-width: 200px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -162,34 +129,10 @@
   }
 }
 .core-form-table-empty {
-  .ant-table-cell {
+  .arco-table-cell {
     border: 0 !important;
   }
-  .ant-table-expanded-row-fixed {
+  .arco-table-expanded-row-fixed {
     margin: 0 !important;
   }
-  .ant-table-pagination {
-    border-top: 1px solid #f2f2f2;
-  }
-}
-/** resizable */
-.react-resizable {
-  position: relative;
-}
-.react-resizable-handle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-  box-sizing: border-box;
-  background-position: bottom right;
-  padding: 0 3px 3px 0;
-}
-.react-resizable-handle {
-  height: 100%;
-  width: 20px;
-  right: -24px;
-  cursor: col-resize;
-  z-index: 9999;
 }

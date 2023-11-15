@@ -1,4 +1,10 @@
-import { Checkbox, Menu, Dropdown, Button, Tooltip } from 'antd';
+import {
+  Checkbox,
+  Menu,
+  Dropdown,
+  Button,
+  Tooltip,
+} from '@arco-design/web-react';
 import { useMemo } from 'react';
 import { DragList, Icon } from '@/index';
 
@@ -8,7 +14,6 @@ export default ({
   onOk = Function,
   setColumns,
   size,
-  tableId,
 }: any) => {
   const columnList = useMemo(
     () =>
@@ -42,8 +47,7 @@ export default ({
   );
   return (
     <Dropdown
-      arrow
-      overlay={
+      droplist={
         <Menu style={{ height: 220, overflow: 'auto' }}>
           <DragList
             onChange={(list) => {
@@ -54,11 +58,10 @@ export default ({
           />
         </Menu>
       }
-      placement="bottomCenter"
+      position="bottom"
       trigger={['click']}
-      overlayClassName="table-filter-columns"
     >
-      <Tooltip placement="topLeft" title={'列设置'}>
+      <Tooltip position="top" content="列设置">
         <Button
           type="default"
           size={size}

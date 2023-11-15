@@ -30,42 +30,13 @@ export default () => {
 import React from 'react';
 import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema';
+import searchSchema from './schema/form-table/search.schema';
 
 export default () => {
   return (
     <Table
       {...tableSchema}
-      searchSchema={{
-        schema: [
-          {
-            type: 'Input',
-            name: 'name',
-            label: '用户',
-          },
-          {
-            type: 'Input',
-            name: 'no',
-            label: '编号',
-          },
-          {
-            type: 'Select',
-            name: 'sex',
-            label: '性别',
-            props: {
-              options: [
-                {
-                  label: '男',
-                  value: 1,
-                },
-                {
-                  label: '女',
-                  value: 2,
-                },
-              ],
-            },
-          },
-        ],
-      }}
+      searchSchema={searchSchema}
       params={window.cacheParams}
       onQuery={(params) => {
         window.cacheParams = params;
@@ -84,11 +55,13 @@ export default () => {
 import React from 'react';
 import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema1';
+
 export default () => {
   return <Table {...tableSchema} />;
 };
 ```
 
+<!--
 ## 配置 drag 属性，支持可拖动
 
 ```tsx
@@ -110,7 +83,7 @@ export default () => {
     />
   );
 };
-```
+``` -->
 
 ## 使用 enums 配置 列枚举映射关系
 
@@ -215,7 +188,7 @@ import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema';
 
 export default () => {
-  return <Table {...tableSchema} resize bordered />;
+  return <Table {...tableSchema} resize borderCell />;
 };
 ```
 
@@ -243,7 +216,7 @@ export default () => {
 import React from 'react';
 import { Table, Button } from 'react-core-form';
 import tableSchema from './schema/form-table/schema';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 
 export default () => {
   return (
@@ -303,6 +276,7 @@ export default () => {
 };
 ```
 
+<!--
 ## 使用 filterIds 配置不展示字段
 
 ```tsx
@@ -326,7 +300,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'react-core-form';
-import { Input } from 'antd';
+import { Input } from '@arco-design/web-react';
 import tableSchema from './schema/form-table/schema1';
 
 export default () => {
@@ -439,7 +413,7 @@ export default () => {
 import React from 'react';
 import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema';
-import { Space, Descriptions, Card, Menu } from 'antd';
+import { Space, Descriptions, Card, Menu } from '@arco-design/web-react';
 
 export default () => {
   const [key, setKey] = React.useState('1');
@@ -528,33 +502,6 @@ export default () => {
 };
 ```
 
-## 使用虚拟列表
-
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
-import { Table } from 'react-core-form';
-import tableSchema from './schema/form-table/schema4';
-
-export default () => {
-  return (
-    <Table
-      {...tableSchema}
-      virtual
-      alertConfig={() => {
-        return {
-          message: '总计: 1000',
-          type: 'info',
-          showIcon: true,
-        };
-      }}
-    />
-  );
-};
-```
-
 ## 下滑加载数据
 
 ```tsx
@@ -610,7 +557,7 @@ export default () => {
     />
   );
 };
-```
+``` -->
 
 ## Table 扩展属性
 

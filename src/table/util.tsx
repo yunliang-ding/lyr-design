@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-param-reassign */
 // 转换处理
-import { Tooltip, Typography, Space } from 'antd';
+import { Tooltip, Typography, Space } from '@arco-design/web-react';
 import AdjustWidth from './adjust-width';
 import { getType, isEmpty, cloneDeep } from '@/util';
 import { Fragment } from 'react';
@@ -110,7 +111,7 @@ export const transformColumns = (
         // ellipsis 扩展
         if (column.ellipsis) {
           vNode = (
-            <Tooltip placement="topLeft" title={vNode} {...column.tooltipProps}>
+            <Tooltip position="top" content={vNode} {...column.tooltipProps}>
               {vNode}
             </Tooltip>
           );

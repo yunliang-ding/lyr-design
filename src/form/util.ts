@@ -119,8 +119,7 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
         }
       }
       if (defaultFillPlaceholder) {
-        field.props.placeholder =
-          field.props.placeholder || `请输入${field.label || ''}`;
+        field.props.placeholder = field.props.placeholder || '请输入';
       }
       if (
         defaultShowInputCount &&
@@ -143,8 +142,7 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
       }
       // 区间查询不需要设置
       if (!['RangePicker', 'TimeRange'].includes(field.type)) {
-        field.props.placeholder =
-          field.props.placeholder || `请选择${field.label || ''}`; // 默认提示
+        field.props.placeholder = field.props.placeholder || '请选择'; // 默认提示
       }
     }
     // 配置了showSearch的查询框默认开启模糊匹配

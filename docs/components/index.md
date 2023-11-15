@@ -8,7 +8,7 @@ nav:
 ---
 
 <div style="display:flex;align-items:center;margin-bottom:24px">
-  <span style="font-size:30px;font-weight:600;display:inline-block;">react-core-form</span>
+  <span style="font-size:30px;font-weight:600;display:inline-block;">react-core-form 2.x</span>
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
   <a href="https://npmmirror.com/package/react-core-form">
@@ -137,13 +137,13 @@ export default () => {
 > 我们将模型转为 Jsx 的过程中会做一些默认处理，减少配置，如下
 
 - Input 开启计数器，最大长度 `64`
-- 输入框 placeholder `请输入${label}`，下拉框 placeholder `请选择${label}`
+- 输入框 placeholder `请输入`，下拉框 placeholder `请选择`
 - 输入框、选择框开启 `allowClear`
 - FormItem required: true 等于 rules:[{required: true, message: `${label}不能为空`}]
 - 下拉选配置了 showSearch 可实现模糊查询的功能不需要设置 filterOption
 - 对于时间日期选择器，会自动进行 moment 和 string 的转化
 
-## 全局通用配置
+## 修改配置
 
 ```ts
 import { setGlobalConfig } from 'react-core-form';

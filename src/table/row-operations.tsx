@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Menu, Dropdown, Typography } from 'antd';
+import { Menu, Dropdown, Typography } from '@arco-design/web-react';
 import { Button, Icon } from '@/index';
 
 export default ({ rowOperations = {}, tableInstance }: any) => {
@@ -17,7 +17,7 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
     }
     return (
       <Button
-        type="link"
+        type="text"
         {...menu}
         onClick={async () => {
           if (menu.disabled) {
@@ -89,14 +89,13 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
               })}
               {menus.length > rowOperationsMore && (
                 <Dropdown
-                  arrow
-                  overlay={
+                  droplist={
                     <Menu className="core-form-row-menu">{menuItems}</Menu>
                   }
                 >
                   <a
-                    className="ant-dropdown-link"
                     onClick={(e) => e.preventDefault()}
+                    style={{ paddingLeft: 2 }}
                   >
                     更多
                     <Icon

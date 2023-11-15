@@ -1,5 +1,11 @@
 import FilterColumns from './filter-columns';
-import { Space, Dropdown, Menu, Tooltip } from 'antd';
+import {
+  Space,
+  Dropdown,
+  Menu,
+  Tooltip,
+  Divider,
+} from '@arco-design/web-react';
 import { Button, Icon } from '@/index';
 
 export default ({
@@ -16,7 +22,6 @@ export default ({
   tableId,
   tableInstance,
 }: any) => {
-  // toolClick
   const handelClick = async (tool: any) => {
     if (tool.disabled) {
       return;
@@ -46,7 +51,7 @@ export default ({
     switch (tool.type) {
       case 'Refresh':
         return (
-          <Tooltip placement="topLeft" title="刷新" key={tool.type}>
+          <Tooltip position="top" content="刷新" key={tool.type}>
             <Button
               {...btnProps}
               type="default"
@@ -59,12 +64,11 @@ export default ({
           <Dropdown
             disabled={tool.disabled}
             key={tool.type}
-            arrow
-            overlay={
+            droplist={
               <Menu
                 style={{ width: 80 }}
                 selectedKeys={size}
-                onClick={({ key }) => {
+                onClickMenuItem={(key) => {
                   onSizeChange(key);
                 }}
               >
@@ -75,7 +79,7 @@ export default ({
             }
             trigger={['click']}
           >
-            <Tooltip placement="topLeft" title="密度">
+            <Tooltip position="top" content="密度">
               <Button
                 {...btnProps}
                 type="default"
@@ -111,7 +115,7 @@ export default ({
           <Dropdown
             disabled={tool.disabled}
             key={tool.type}
-            overlay={
+            droplist={
               <Menu
                 onClick={(item) => {
                   handelClick(item);
@@ -119,7 +123,9 @@ export default ({
               >
                 {tool.menu?.map((item: any, index: number) => {
                   if (item.type === 'Divider') {
-                    return <Menu.Divider key={item.key || index} />;
+                    return (
+                      <Divider key={item.key || index} style={{ margin: 0 }} />
+                    );
                   }
                   return <Menu.Item key={item.key}>{item.label}</Menu.Item>;
                 })}

@@ -1,12 +1,19 @@
+/* eslint-disable import/no-cycle */
 import { SearchProps } from '../search/types';
-import { AlertProps, TableProps as AntdTableProps, TooltipProps } from 'antd';
-import { ColumnType, TableRowSelection } from 'antd/es/table/interface';
+import {
+  AlertProps,
+  TableProps as ArcoTableProps,
+  TooltipProps,
+} from '@arco-design/web-react';
 import { CSSProperties, ReactNode } from 'react';
 import { TableColumnType } from './type.column';
 import { TableInstance } from './table.instance';
 import { PaginationConfig } from './type.pagination';
-import { CreateModalFormProps } from '../create-modal';
-import { CreateDrawerFormProps } from '../create-drawer';
+import { ModalFormProps, DrawerFormProps } from '..';
+import {
+  ColumnProps,
+  RowSelectionProps,
+} from '@arco-design/web-react/es/Table';
 
 export interface ToolsProps {
   label?: string | ReactNode;
@@ -23,35 +30,31 @@ export interface ToolsProps {
   menu?: any;
   icon?: ReactNode;
   modalFormProps?:
-    | CreateModalFormProps
-    | ((
-        table: TableInstance,
-      ) => CreateModalFormProps | Promise<CreateModalFormProps>);
+    | ModalFormProps
+    | ((table: TableInstance) => ModalFormProps | Promise<ModalFormProps>);
   drawerFormProps?:
-    | CreateDrawerFormProps
-    | ((
-        table: TableInstance,
-      ) => CreateDrawerFormProps | Promise<CreateDrawerFormProps>);
+    | DrawerFormProps
+    | ((table: TableInstance) => DrawerFormProps | Promise<DrawerFormProps>);
 }
 
-export interface RowOperationsTypes extends ColumnType<any> {
-  showMore?: number;
-  menus: (record) => ToolsProps[];
+export interface RowOperationsTypes extends ColumnProps<any> {
   /** 是否展示 */
   visible?: boolean;
-  dataIndex?: string;
+  /** 展示更多 */
+  showMore?: number;
+  /** 配置按钮 */
+  menus: (record) => ToolsProps[];
 }
 
 interface TableAlertProps extends AlertProps {
   visible?: boolean;
 }
 
-export interface TableRowSelectionProps extends TableRowSelection<any> {
+export interface TableRowSelectionProps extends RowSelectionProps<any> {
   defaultSelectedRows?: [];
 }
 
-export interface TableProps
-  extends Omit<AntdTableProps<any>, 'title' | 'columns'> {
+export interface TableProps extends Omit<ArcoTableProps, 'title' | 'columns'> {
   /** 表格标题 */
   title?: ReactNode;
   columns: TableColumnType[];

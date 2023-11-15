@@ -1,4 +1,4 @@
-import { TooltipProps } from 'antd';
+import { TooltipProps } from '@arco-design/web-react';
 import { ColumnType } from 'antd/es/table/interface';
 
 interface AnyObjet {

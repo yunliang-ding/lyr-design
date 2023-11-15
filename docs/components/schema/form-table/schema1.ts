@@ -105,7 +105,7 @@ const tableSchema: TableProps = {
   ],
   rowOperations: {
     title: '操作',
-    width: 220,
+    width: 260,
     showMore: 2,
     fixed: 'right',
     menus(record) {

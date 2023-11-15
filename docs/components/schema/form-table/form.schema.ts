@@ -1,9 +1,9 @@
-import { SchemaProps } from '../../../../dist';
+import { SchemaProps } from 'react-core-form';
 
 export default [
   {
     type: 'Input',
-    label: '客户姓名',
+    label: '姓名',
     name: 'username',
   },
   {

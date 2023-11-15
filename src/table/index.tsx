@@ -4,7 +4,6 @@ import { TableProps } from './types';
 import { PaginationConfig } from './type.pagination';
 import { TableInstance } from './table.instance';
 import Table from './table';
-import { ConfigProvider } from 'antd';
 
 const CoreTable = (props: TableProps) => {
   const {
@@ -24,14 +23,12 @@ const CoreTable = (props: TableProps) => {
     ...rest
   } = props;
   return (
-    <ConfigProvider locale={locale}>
-      <Table
-        emptyNode={emptyNode}
-        locale={locale}
-        defaultTools={defaultTools}
-        {...rest}
-      />
-    </ConfigProvider>
+    <Table
+      emptyNode={emptyNode}
+      locale={locale}
+      defaultTools={defaultTools}
+      {...rest}
+    />
   );
 };
 

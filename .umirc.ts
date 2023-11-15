@@ -2,7 +2,7 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   mode: 'site',
-  title: 'react-core-form',
+  title: 'react-core-form 2.x',
   outputPath: 'docs-dist',
   locales: [['zh-CN', '中文']],
   metas: [
