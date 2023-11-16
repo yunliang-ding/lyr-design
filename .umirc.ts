@@ -5,6 +5,9 @@ export default defineConfig({
   title: 'react-core-form 2.x',
   outputPath: 'docs-dist',
   locales: [['zh-CN', '中文']],
+  favicon:
+    'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
+  logo: 'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
   metas: [
     {
       name: 'revised',
@@ -19,6 +22,9 @@ export default defineConfig({
       content: '低代码相关组件',
     },
   ],
+  theme: {
+    '@c-primary': '#165dff',
+  },
   styles: [
     `
     div,
