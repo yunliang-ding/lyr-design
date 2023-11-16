@@ -1,5 +1,4 @@
 import { useState, useMemo, useEffect } from 'react';
-import classNames from 'classnames';
 import Form from '@/form';
 import Button from '@/button';
 import { SearchProps } from './types';
@@ -148,18 +147,22 @@ export default ({
       },
     });
   }
-  // classNames
-  const searchCls = classNames('core-form-search', {
-    [className]: className !== '',
-    'core-form-search-hidden': hidden,
-    'core-form-search-expand': more,
-    [`core-form-search-${layout}-expand`]: more,
-    [`core-form-search-${layout}`]: true,
-    [`core-form-search-${rest.size || 'default'}`]: true,
-  });
+  const searchCls = ['core-form-search', `core-form-search-${layout}`];
+  if (className) {
+    searchCls.push(className);
+  }
+  if (hidden) {
+    searchCls.push('core-form-search-hidden');
+  }
+  if (more) {
+    searchCls.push(
+      'core-form-search-expand',
+      `core-form-search-${layout}-expand`,
+    );
+  }
   return (
     <Form
-      className={searchCls}
+      className={searchCls.join(' ')}
       layout={layout}
       labelCol={labelCol}
       wrapperCol={wrapperCol}

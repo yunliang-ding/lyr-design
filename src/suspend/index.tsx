@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
 import { uuid } from 'react-core-form-tools';
 import './index.less';
 
@@ -43,17 +42,15 @@ const Suspend: any = ({
   useEffect(() => {
     suspendRef.current.setVisible = setVisible;
   }, []);
+  const classNames = ['react-core-form-suspend-wrap'];
+  if (visible) {
+    classNames.push('show');
+  }
+  if (placement === 'left') {
+    classNames.push('left');
+  }
   return (
-    <div
-      className={classNames(
-        'react-core-form-suspend-wrap',
-        { show: visible },
-        {
-          left: placement === 'left',
-        },
-      )}
-      style={{ top }}
-    >
+    <div className={classNames.join(' ')} style={{ top }}>
       <div
         className="suspend-close"
         style={closeStyle}

@@ -241,6 +241,64 @@ export default ({
     paginationInfo.current,
     resize,
   );
+  // 查询条件区域
+  const searchDom = searchSchema && (
+    <Search
+      {...searchSchema}
+      /** 覆盖的配置 */
+      initialValues={params}
+      onReset={onReset}
+      onSearch={onSearch}
+      searchBtnRender={() => (
+        <Button
+          key="search"
+          type="primary"
+          loading={loading}
+          onClick={() => {
+            onSearch({});
+          }}
+        >
+          查询
+        </Button>
+      )}
+      form={form}
+    />
+  );
+  // 操作栏和提示区域
+  const toolBarAlertDom = (
+    <>
+      <ToolBar
+        title={title}
+        size={size}
+        onSizeChange={onSizeChange}
+        params={getParams()}
+        setColumns={setColumns}
+        columns={_columns}
+        tools={[
+          ...tools.filter((i) => {
+            try {
+              return typeof i.visible === 'function'
+                ? i.visible() !== false
+                : i.visible !== false;
+            } catch (error) {
+              console.log(error);
+              return false;
+            }
+          }),
+          ...defaultTools,
+        ]} // 提前过滤
+        onRefresh={query}
+        onSearch={onSearch}
+        filterIds={_filterIds}
+        onFilter={setFilterIds}
+        tableId={tableId}
+        tableInstance={table}
+      />
+      {alertConfig && alertProps.visible !== false && (
+        <Alert {...alertProps} style={{ marginBottom: 16, paddingLeft: 12 }} />
+      )}
+    </>
+  );
   /** 主体渲染Dom */
   const tableDom = (
     <ArcoTable
@@ -333,73 +391,14 @@ export default ({
       }
     />
   );
-  // 查询条件区域
-  const searchDom = searchSchema && (
-    <Search
-      {...searchSchema}
-      /** 覆盖的配置 */
-      size={size}
-      initialValues={params}
-      onReset={onReset}
-      onSearch={onSearch}
-      searchBtnRender={() => (
-        <Button
-          key="search"
-          type="primary"
-          loading={loading}
-          onClick={() => {
-            onSearch({});
-          }}
-        >
-          查询
-        </Button>
-      )}
-      form={form}
-    />
-  );
-  // 操作栏和提示区域
-  const toolBarAlertDom = (
-    <>
-      <ToolBar
-        title={title}
-        size={size}
-        onSizeChange={onSizeChange}
-        params={getParams()}
-        setColumns={setColumns}
-        columns={_columns}
-        tools={[
-          ...tools.filter((i) => {
-            try {
-              return typeof i.visible === 'function'
-                ? i.visible() !== false
-                : i.visible !== false;
-            } catch (error) {
-              console.log(error);
-              return false;
-            }
-          }),
-          ...defaultTools,
-        ]} // 提前过滤
-        onRefresh={query}
-        onSearch={onSearch}
-        filterIds={_filterIds}
-        onFilter={setFilterIds}
-        tableId={tableId}
-        tableInstance={table}
-      />
-      {alertConfig && alertProps.visible !== false && (
-        <Alert {...alertProps} style={{ marginBottom: 16, paddingLeft: 12 }} />
-      )}
-    </>
-  );
   return (
     <>
       {searchDom}
       <div
         className={
           dataSource.length === 0
-            ? `core-form-table-empty core-form-table core-form-table-${size}`
-            : `core-form-table core-form-table-${size}`
+            ? 'core-form-table-empty core-form-table core-form-table'
+            : 'core-form-table core-form-table'
         }
         style={style}
       >
