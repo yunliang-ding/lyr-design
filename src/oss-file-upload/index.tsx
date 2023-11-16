@@ -2,12 +2,10 @@
 /* eslint-disable no-console */
 /* eslint-disable no-nested-ternary */
 import { useEffect, useState } from 'react';
-import { downloadFile } from 'react-core-form-tools';
 import {
   Upload,
   Message,
   Button,
-  Image,
   Spin,
   Progress,
 } from '@arco-design/web-react';
@@ -139,20 +137,6 @@ export default ({
         beforeUpload={beforeUpload}
         customRequest={multiPartUpload}
         onRemove={onRemove}
-        // renderUploadItem={(originNode, file: any) => {
-        //   return (
-        //     <RenderItemNode
-        //       {...{
-        //         onRemove,
-        //         accept,
-        //         listType,
-        //         file,
-        //         originNode,
-        //         readOnly,
-        //       }}
-        //     />
-        //   );
-        // }}
         {...rest}
         disabled={rest.disabled || readOnly}
       >

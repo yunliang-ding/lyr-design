@@ -21,7 +21,7 @@ export interface CoreFormInstance {
   /** 作为 SearchForm 时候提供刷新功能  */
   refresh: () => void;
   reset: () => void;
-  /** 获取表单校验和 field 的 transform 之后的数据 */
+  /** 获取表单校验之后的数据 */
   submit: () => any;
   /** 获取FormList api */
   formListInstance?: {

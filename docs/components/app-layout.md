@@ -90,13 +90,6 @@ export default () => {
             <Space>
               <a
                 onClick={() => {
-                  setDark(!dark);
-                }}
-              >
-                切换主题
-              </a>
-              <a
-                onClick={() => {
                   setCompact(!compact);
                 }}
               >
