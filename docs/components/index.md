@@ -123,7 +123,6 @@ export default () => {
         'FieldSet 父子级区块',
         'RangeInput 数字范围输入框',
         'OssFileUpload 文件上传',
-        'AppLayout 中后台布局方案',
       ].map((item) => {
         return <Button key={item}>{item}</Button>;
       })}
