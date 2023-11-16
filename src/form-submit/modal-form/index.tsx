@@ -31,8 +31,6 @@ export default ({
   ...rest
 }: ModalFormProps) => {
   /** 宽高设置 */
-  bodyStyle.height = height;
-  style.width = width;
   const [value, onChange] = useState(rest.initialValues);
   const _actions = actions || [
     {
@@ -139,7 +137,10 @@ export default ({
   return (
     <Modal
       {...modalProps}
-      style={style}
+      style={{
+        ...style,
+        width,
+      }}
       className={_className.join(' ')}
       visible={visible}
       title={renderTitle}
@@ -165,7 +166,13 @@ export default ({
       }
       footer={footerNode}
     >
-      <div className="arco-modal-body" style={bodyStyle}>
+      <div
+        className="arco-modal-body"
+        style={{
+          ...bodyStyle,
+          height,
+        }}
+      >
         {typeof render === 'function' ? (
           render({
             value,
