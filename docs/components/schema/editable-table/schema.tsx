@@ -37,6 +37,7 @@ export default {
         type: 'Input',
         props: {
           maxLength: 100,
+          showWordLimit: false,
         },
       },
     },
@@ -48,6 +49,7 @@ export default {
         type: 'Input',
         props: {
           maxLength: 11,
+          showWordLimit: false,
         },
       },
     },
@@ -93,6 +95,9 @@ export default {
         effect: ['sex'],
         visible({ sex }) {
           return sex == 0; // 性别男才展示
+        },
+        props: {
+          showWordLimit: false,
         },
       },
     },

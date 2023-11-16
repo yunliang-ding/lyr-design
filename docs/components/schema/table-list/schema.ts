@@ -1,11 +1,23 @@
+import { SchemaProps } from 'react-core-form';
+
 export default {
   maxCount: 5, // 最多5条
+  defaultAddValue: () => {
+    return {
+      name: '默认姓名',
+      sex: 0,
+      age: 18,
+    };
+  },
   schema: [
     {
       type: 'Input',
       name: 'name',
       label: '姓名',
       required: true,
+      props: {
+        showWordLimit: false,
+      },
     },
     {
       type: 'Select',
@@ -31,16 +43,25 @@ export default {
       label: '年纪',
       effect: ['sex'],
       isVisible: ({ sex }) => sex === 0,
+      props: {
+        showWordLimit: false,
+      },
     },
     {
       type: 'Input',
       name: 'phone',
       label: '手机号',
+      props: {
+        showWordLimit: false,
+      },
     },
     {
       type: 'Input',
       name: 'address',
       label: '地址',
+      props: {
+        showWordLimit: false,
+      },
     },
-  ],
+  ] as SchemaProps[],
 };

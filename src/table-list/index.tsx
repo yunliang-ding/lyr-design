@@ -15,7 +15,7 @@ export default ({
   showNo = true,
   readOnly = false,
   schema = [],
-  defaultValue = [],
+  value = [],
   onChange,
   rowKey = 'id',
   removeConfirm = false,
@@ -30,7 +30,7 @@ export default ({
   }, []);
   useEffect(() => {
     // 扁平化数据打到对应的Form.Item
-    form.setFieldsValue(beforeReceiveInnerValues(defaultValue, columns));
+    form.setFieldsValue(beforeReceiveInnerValues(value, columns));
     firstRef.current = false;
     if (name) {
       actionRef.current[name] = {
@@ -74,14 +74,14 @@ export default ({
         },
       };
     });
-  }, [schema, defaultValue, readOnly]);
+  }, [schema, value, readOnly]);
   /** 渲染表格 */
   const renderDom = (
     <>
       <Table
         rowKey={rowKey}
         pagination={false}
-        data={defaultValue}
+        data={value}
         columns={[
           {
             title: '序号',
@@ -96,7 +96,7 @@ export default ({
           {
             title: '操作',
             dataIndex: '__operation__',
-            width: 60,
+            width: 160,
             visible: readOnly !== true,
             className: 'core-form-table-list-actions',
             render(v, record, index) {
@@ -104,7 +104,7 @@ export default ({
                 <Space>
                   <Button
                     type="text"
-                    disabled={leastOne && defaultValue.length === 1}
+                    disabled={leastOne && value.length === 1}
                     confirm={
                       removeConfirm
                         ? {
@@ -114,8 +114,8 @@ export default ({
                         : undefined
                     }
                     onClick={() => {
-                      defaultValue.splice(index, 1);
-                      onChange?.([...defaultValue]);
+                      value.splice(index, 1);
+                      onChange?.([...value]);
                     }}
                   >
                     删除
@@ -123,8 +123,8 @@ export default ({
                   <Button
                     type="text"
                     onClick={() => {
-                      defaultValue.splice(index, 0, defaultValue[index]);
-                      onChange?.([...defaultValue]);
+                      value.splice(index, 0, value[index]);
+                      onChange?.([...value]);
                     }}
                   >
                     复制
@@ -140,17 +140,14 @@ export default ({
           type="dashed"
           visible={readOnly !== true}
           icon={<IconPlus />}
-          disabled={defaultValue.length >= maxCount}
+          disabled={value.length >= maxCount}
           onClick={() => {
-            defaultValue.push(
+            value.push(
               typeof defaultAddValue === 'function'
                 ? defaultAddValue()
                 : defaultAddValue,
             );
-            form.setFieldsValue(
-              beforeReceiveInnerValues(defaultValue, columns),
-            );
-            onChange?.([...defaultValue]);
+            onChange?.([...value]);
           }}
         >
           添加一行
@@ -163,7 +160,7 @@ export default ({
       <Form
         form={form}
         onValuesChange={(v, vs) => {
-          onChange?.(tranfromInnerValues(vs, defaultValue, columns));
+          onChange?.(tranfromInnerValues(vs, value, columns));
         }}
       >
         {renderDom}

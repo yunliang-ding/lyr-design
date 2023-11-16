@@ -23,7 +23,11 @@ export default () => {
   const [readOnly, setReadOnly] = React.useState(false);
   const [removeConfirm, setRemoveConfirm] = React.useState(false);
   const [leastOne, setLeastOne] = React.useState(false);
-  const [value, onChange] = React.useState([{}]);
+  const [value, onChange] = React.useState([
+    {
+      name: '001',
+    },
+  ]);
 
   return (
     <>
@@ -54,22 +58,14 @@ export default () => {
         showNo={showNo}
         readOnly={readOnly}
         removeConfirm={removeConfirm}
-        defaultValue={value}
+        value={value}
         onChange={onChange}
-        defaultAddValue={() => {
-          return {
-            name: '默认姓名',
-            sex: 0,
-            age: 18,
-          };
-        }}
       />
     </>
   );
 };
 ```
 
-<!--
 ## 配合 Form 表单使用
 
 ```tsx
@@ -89,9 +85,12 @@ export default () => {
       }}
       initialValues={{
         userName: 'test-001',
-        relationList: [{}],
+        relationList: [
+          {
+            name: '001',
+          },
+        ],
       }}
-      onSubmit={onSubmit}
       schema={[
         {
           type: 'Input',
@@ -107,10 +106,11 @@ export default () => {
           props: schema,
         },
       ]}
+      onSubmit={onSubmit}
     />
   );
 };
-``` -->
+```
 
 ## Api
 
