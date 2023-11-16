@@ -32,13 +32,12 @@ export default ({
         {...props}
         {...startProps}
         value={value?.[0]}
-        onChange={(e) => {
-          const v = typeof e === 'object' ? e.target.value : e;
+        onChange={(v) => {
           onChange?.([v, value?.[1]]);
         }}
-        onBlur={(e) => {
+        onBlur={(v) => {
           if (mode === 'InputNumber') {
-            onInnerBlur(e.target?.value, value?.[1]);
+            onInnerBlur(v, value?.[1]);
           }
         }}
       />

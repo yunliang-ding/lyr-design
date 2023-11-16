@@ -10,11 +10,9 @@ const user1Form = ({ onSearch, initialValues = { id: undefined } }) => {
     title: initialValues.id ? '编辑1' : '添加1',
     schema,
     initialValues,
-    modalProps: {
-      bodyStyle: {
-        height: 500,
-        overflow: 'auto',
-      },
+    bodyStyle: {
+      height: 500,
+      overflow: 'auto',
     },
     async onSubmit() {
       await delay(400);

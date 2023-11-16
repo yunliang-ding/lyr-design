@@ -162,11 +162,9 @@ export default () => {
           title: '添加用户',
           schema,
           onSubmit,
-          modalProps: {
-            bodyStyle: {
-              height: 500,
-              overflow: 'auto',
-            },
+          bodyStyle: {
+            height: 500,
+            overflow: 'auto',
           },
         }}
         type="primary"

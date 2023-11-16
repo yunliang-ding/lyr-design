@@ -139,20 +139,20 @@ export default ({
         fileList={value}
         beforeUpload={beforeUpload}
         customRequest={multiPartUpload}
-        renderUploadItem={(originNode, file: any) => {
-          return (
-            <RenderItemNode
-              {...{
-                onRemove,
-                accept,
-                listType,
-                file,
-                originNode,
-                readOnly,
-              }}
-            />
-          );
-        }}
+        // renderUploadItem={(originNode, file: any) => {
+        //   return (
+        //     <RenderItemNode
+        //       {...{
+        //         onRemove,
+        //         accept,
+        //         listType,
+        //         file,
+        //         originNode,
+        //         readOnly,
+        //       }}
+        //     />
+        //   );
+        // }}
         {...rest}
       >
         {readOnly || value.length >= maxCount ? null : uploadButton}

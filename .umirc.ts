@@ -21,10 +21,28 @@ export default defineConfig({
   ],
   styles: [
     `
+    div,
+    span,
+    td,
+    th,
+    a,
+    button,
+    p,
+    label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+    h2{
+      font-size: 18px !important;
+    }
+    li, input, label{
+      font-weight: 500 !important;
+      font-size: 12px !important;
+    }
     .__dumi-default-menu-list
       > li
       > a {
-        font-size: 14px;
+        font-size: 13px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -32,7 +50,7 @@ export default defineConfig({
       .__dumi-default-menu-list
       > a
       > span {
-        font-size: 13px;
+        font-size: 12px;
       }
   `,
   ],

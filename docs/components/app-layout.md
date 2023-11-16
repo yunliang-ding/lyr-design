@@ -128,4 +128,4 @@ export default () => {
 
 ## API
 
-<!-- <API src="../../src/app-layout/index.tsx" hideTitle></API> -->
+<API src="../../src/app-layout/index.tsx" hideTitle></API>
