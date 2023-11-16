@@ -15,8 +15,10 @@ export default interface ProLayout {
   /** 菜单属性 */
   menu: MenuProps & {
     items: {
-      key: string;
-      title: ReactNode;
+      icon?: ReactNode;
+      path: string;
+      label: ReactNode;
+      children?: [];
     }[];
     onClick?: Function;
   };
@@ -34,6 +36,8 @@ export default interface ProLayout {
   rightContentRender: () => ReactNode;
   /** 底部渲染 */
   footerRender: () => ReactNode;
+  /** 底部渲染 */
+  siderFooterRender: (v: boolean) => ReactNode;
   /** 实例引用 */
   layoutRef?: MutableRefObject<{
     listenHashChange: (callBack) => null;

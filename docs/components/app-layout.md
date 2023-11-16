@@ -81,6 +81,9 @@ export default () => {
         },
       }}
       footerRender={() => <div>这个是底部的说明</div>}
+      siderFooterRender={(collapsed) =>
+        collapsed ? null : <div>这个 sider 说明</div>
+      }
       rightContentRender={() => {
         return (
           <div className="app-right-header">

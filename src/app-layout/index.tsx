@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import WaterMark from './watermark';
 import Breadcrumb from './breadcrumb';
 import { getBreadcrumbByMenus } from './util';
-import { IconUnorderedList } from '@arco-design/web-react/icon';
+import { IconLeft, IconRight } from '@arco-design/web-react/icon';
 import './index.less';
 
 export const RenderMenus = (
@@ -61,6 +61,7 @@ export default ({
   ),
   rightContentRender = () => null,
   footerRender = () => null,
+  siderFooterRender = () => null,
   layoutRef = useRef<any>({}),
   children = null,
 }: LayoutProps) => {
@@ -139,9 +140,27 @@ export default ({
       {children}
     </PageHeader>
   );
+  const IconBtn = collapsed ? IconRight : IconLeft;
   return (
     <>
       <div className={classNames.join(' ')}>
+        <IconBtn
+          style={{
+            left: collapsed ? 36 : 196,
+          }}
+          onClick={() => {
+            onCollapse(!collapsed);
+            // 保存 openKeys
+            if (!collapsed) {
+              console.log('openKeys', openKeys);
+              openKeyRef.current = openKeys;
+            } else {
+              setOpenKeys(openKeyRef.current);
+              openKeyRef.current = [];
+            }
+          }}
+          className="app-layout-collapse-btn"
+        />
         {compact ? (
           <>
             <div className="app-layout-left">
@@ -156,7 +175,6 @@ export default ({
                   style={{ width: 208 }}
                   onClickMenuItem={menuClick}
                   selectedKeys={[selectedKey]}
-                  // openKeys={openKeys}
                   collapse={collapsed}
                   theme={dark ? 'dark' : 'light'}
                 >
@@ -175,24 +193,6 @@ export default ({
                     height: '100%',
                   }}
                 >
-                  <IconUnorderedList
-                    onClick={() => {
-                      onCollapse(!collapsed);
-                      // 保存 openKeys
-                      if (!collapsed) {
-                        console.log('openKeys', openKeys);
-                        openKeyRef.current = openKeys;
-                      } else {
-                        setOpenKeys(openKeyRef.current);
-                        openKeyRef.current = [];
-                      }
-                    }}
-                    style={{
-                      display: 'flex',
-                      transform: collapsed ? 'rotate(180deg)' : 'rotate(0deg)',
-                      transition: '.3s',
-                    }}
-                  />
                   <Breadcrumb breadcrumb={pageHeaderProps.breadcrumb} />
                 </div>
                 {rightContentRender()}
@@ -247,7 +247,7 @@ export default ({
                     theme={dark ? 'dark' : 'light'}
                   >
                     {RenderMenus(
-                      (menu.items?.find((item) => item?.key === topKey) as any)
+                      (menu.items?.find((item) => item?.path === topKey) as any)
                         ?.children,
                       true,
                       collapsed,
@@ -255,16 +255,7 @@ export default ({
                   </Menu>
                 </div>
                 <div className="app-layout-body-sider-footer">
-                  <IconUnorderedList
-                    onClick={() => {
-                      onCollapse(!collapsed);
-                    }}
-                    style={{
-                      display: 'flex',
-                      transform: collapsed ? 'rotate(180deg)' : 'rotate(0deg)',
-                      transition: '.3s',
-                    }}
-                  />
+                  {siderFooterRender(collapsed)}
                 </div>
               </div>
             </div>

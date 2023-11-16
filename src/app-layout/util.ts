@@ -10,6 +10,7 @@ export const getBreadcrumbByMenus = (
     const item = children.find((i) => i.path === target);
     if (item) {
       breadcrumb.push({
+        icon: item.icon,
         path: item.path,
         breadcrumbName: item.label,
       });
