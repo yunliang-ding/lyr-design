@@ -48,6 +48,7 @@ export default () => {
   return (
     <OssFileUpload
       value={value}
+      maxCount={9}
       listType="picture-card"
       onChange={(v) => {
         setValue(v);
@@ -126,4 +127,4 @@ export default () => {
 
 ## API
 
-<API src="../../src/oss-file-upload/index.tsx" hideTitle></API>
+<!-- <API src="../../src/oss-file-upload/index.tsx" hideTitle></API> -->

@@ -13,12 +13,12 @@ import {
 } from '@arco-design/web-react';
 import { OssFileUploadProps } from './type';
 import { uuid } from '@/util';
-import { IconClose, IconPlus } from '@arco-design/web-react/icon';
+import { IconPlus } from '@arco-design/web-react/icon';
 import createOssInstance from './util';
 import './index.less';
 
 export default ({
-  text = '上传文件',
+  text = '点击上传',
   listType = 'text',
   accept = listType === 'picture-card'
     ? '.png,.jpg,.jpeg'
@@ -114,31 +114,31 @@ export default ({
   // 文案
   const uploadButton =
     listType === 'picture-card' ? (
-      <div className="react-core-form-oss-upload-button">
-        <Spin loading={loading}>
-          <IconPlus />
-          <div style={{ marginTop: 8 }}>{text}</div>
+      <>
+        <Spin loading={loading} className="oss-file-upload-picture">
+          <IconPlus style={{ fontSize: 18, color: 'var(--color-text-2)' }} />
+          <span>{text}</span>
         </Spin>
         {loading && (
-          <div className="react-core-form-oss-upload-button-percent">
+          <div className="react-core-form-oss-upload-percent">
             <Progress percent={percent} size="small" />
           </div>
         )}
-      </div>
+      </>
     ) : (
-      <div>
-        <Button loading={loading}>{text}</Button>
-      </div>
+      <Button loading={loading}>{text}</Button>
     );
   return (
     <div className="react-core-form-oss-upload">
       <Upload
+        imagePreview
         limit={maxCount}
         accept={accept}
         listType={listType}
         fileList={value}
         beforeUpload={beforeUpload}
         customRequest={multiPartUpload}
+        onRemove={onRemove}
         // renderUploadItem={(originNode, file: any) => {
         //   return (
         //     <RenderItemNode
@@ -154,76 +154,10 @@ export default ({
         //   );
         // }}
         {...rest}
+        disabled={rest.disabled || readOnly}
       >
         {readOnly || value.length >= maxCount ? null : uploadButton}
       </Upload>
-    </div>
-  );
-};
-
-/** 自定义渲染 */
-const RenderItemNode = ({
-  onRemove,
-  readOnly,
-  accept,
-  listType,
-  file,
-  originNode,
-}: any) => {
-  return file.status === 'uploading' ? (
-    originNode
-  ) : listType === 'picture-card' ? (
-    <div className="picture-card-image">
-      {accept?.includes('.mp4') ? (
-        <video
-          controls
-          height={100}
-          width={100}
-          src={file.url}
-          crossOrigin="anonymous"
-        />
-      ) : (
-        <Image width={100} src={file.url} />
-      )}
-      {!readOnly && (
-        <a
-          className="oss-file-item-render-action"
-          style={{
-            position: 'absolute',
-            top: 2,
-            right: 4,
-          }}
-          onClick={() => {
-            onRemove(file);
-          }}
-        >
-          <IconClose />
-        </a>
-      )}
-    </div>
-  ) : (
-    <div className="oss-file-item-render">
-      <div
-        style={{ width: 'calc(100% - 60px)' }}
-        title={file.name}
-        onClick={() => {
-          downloadFile(file.url, file.name);
-        }}
-      >
-        {originNode}
-      </div>
-      <div>
-        {!readOnly && (
-          <a
-            className="oss-file-item-render-action"
-            onClick={() => {
-              onRemove(file);
-            }}
-          >
-            <IconClose />
-          </a>
-        )}
-      </div>
     </div>
   );
 };
