@@ -28,8 +28,8 @@ export const expansionInstanceMethod = ({
         const arr = Object.keys(actionRef.current);
         for (let i = 0; i < arr.length; i++) {
           const key = arr[i];
-          if (typeof actionRef.current[key].validateFields === 'function') {
-            await actionRef.current[key].validateFields(); // TableList 子表单校验
+          if (typeof actionRef.current[key].validate === 'function') {
+            await actionRef.current[key].validate(); // TableList 子表单校验
           }
         }
         return values;
@@ -61,7 +61,6 @@ export const expansionInstanceMethod = ({
     },
     /** 获取指定field的异步加载options */
     getFieldOption: async (fieldName: string) => {
-      console.log(AsyncOptionsCache, `${name}_${fieldName}`);
       if (!(await AsyncOptionsCache[`${name}_${fieldName}`])) {
         await new Promise((res) => setTimeout(res, 100, true)); // 没有找到先等待0.1秒让组件effect执行请求发出去
       }

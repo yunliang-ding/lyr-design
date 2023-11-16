@@ -14,19 +14,19 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { MarkdownViewer } from 'react-core-form';
+import { MarkdownViewer, Button } from 'react-core-form';
 
 export default () => {
   const [codeTheme, setCodeTheme] = React.useState('dark');
   return (
     <div>
-      <button
+      <Button
         onClick={() => {
           setCodeTheme(codeTheme === 'dark' ? 'light' : 'dark');
         }}
       >
         切换代码主题
-      </button>
+      </Button>
       <MarkdownViewer
         codeTheme={codeTheme}
         content={`

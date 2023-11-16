@@ -98,7 +98,7 @@ const ProButton = ({
       {label}
     </Button>
   );
-  if (isPopConfirm) {
+  if (isPopConfirm && !props.disabled) {
     vNode = (
       <Popconfirm
         onConfirm={onClick}

@@ -12,7 +12,7 @@ export interface TableListProps {
   /** 最多条数 */
   maxCount?: number;
   /** 数据源 */
-  value: any[];
+  defaultValue: any[];
   /** 改变的钩子 */
   onChange?: Function;
   /** 唯一标识 */

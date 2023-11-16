@@ -14,8 +14,9 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { TableList, Switch } from 'react-core-form';
+import { TableList } from 'react-core-form';
 import schema from './schema/table-list/schema';
+import { Switch } from '@arco-design/web-react';
 
 export default () => {
   const [showNo, setShowNo] = React.useState(false);
@@ -27,26 +28,22 @@ export default () => {
   return (
     <>
       <Switch
-        checkedChildren="展示序号"
-        unCheckedChildren="展示序号"
+        checkedText="展示序号"
+        uncheckedText="展示序号"
         onChange={setShowNo}
       />
       &nbsp; &nbsp;
-      <Switch
-        checkedChildren="只读"
-        unCheckedChildren="只读"
-        onChange={setReadOnly}
-      />
+      <Switch checkedText="只读" uncheckedText="只读" onChange={setReadOnly} />
       &nbsp; &nbsp;
       <Switch
-        checkedChildren="至少一条"
-        unCheckedChildren="至少一条"
+        checkedText="至少一条"
+        uncheckedText="至少一条"
         onChange={setLeastOne}
       />
       &nbsp; &nbsp;
       <Switch
-        checkedChildren="删除提醒"
-        unCheckedChildren="删除提醒"
+        checkedText="删除提醒"
+        uncheckedText="删除提醒"
         onChange={setRemoveConfirm}
       />
       <br />
@@ -57,7 +54,7 @@ export default () => {
         showNo={showNo}
         readOnly={readOnly}
         removeConfirm={removeConfirm}
-        value={value}
+        defaultValue={value}
         onChange={onChange}
         defaultAddValue={() => {
           return {
@@ -72,6 +69,7 @@ export default () => {
 };
 ```
 
+<!--
 ## 配合 Form 表单使用
 
 ```tsx
@@ -112,7 +110,7 @@ export default () => {
     />
   );
 };
-```
+``` -->
 
 ## Api
 

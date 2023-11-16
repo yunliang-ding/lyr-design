@@ -15,7 +15,7 @@ export default ({
   showNo = true,
   readOnly = false,
   schema = [],
-  value = [],
+  defaultValue = [],
   onChange,
   rowKey = 'id',
   removeConfirm = false,
@@ -29,6 +29,8 @@ export default ({
     return new EventEmit();
   }, []);
   useEffect(() => {
+    // 扁平化数据打到对应的Form.Item
+    form.setFieldsValue(beforeReceiveInnerValues(defaultValue, columns));
     firstRef.current = false;
     if (name) {
       actionRef.current[name] = {
@@ -36,10 +38,6 @@ export default ({
       };
     }
   }, []);
-  // 扁平化数据打到对应的Form.Item
-  useEffect(() => {
-    form.setFieldsValue(beforeReceiveInnerValues(value, columns));
-  }, [value]);
   const columns = useMemo(() => {
     return schema.map((field: any) => {
       return {
@@ -76,14 +74,14 @@ export default ({
         },
       };
     });
-  }, [schema, value, readOnly]);
+  }, [schema, defaultValue, readOnly]);
   /** 渲染表格 */
   const renderDom = (
     <>
       <Table
         rowKey={rowKey}
         pagination={false}
-        data={value}
+        data={defaultValue}
         columns={[
           {
             title: '序号',
@@ -106,7 +104,7 @@ export default ({
                 <Space>
                   <Button
                     type="text"
-                    disabled={leastOne && value.length === 1}
+                    disabled={leastOne && defaultValue.length === 1}
                     confirm={
                       removeConfirm
                         ? {
@@ -116,8 +114,8 @@ export default ({
                         : undefined
                     }
                     onClick={() => {
-                      value.splice(index, 1);
-                      onChange?.([...value]);
+                      defaultValue.splice(index, 1);
+                      onChange?.([...defaultValue]);
                     }}
                   >
                     删除
@@ -125,8 +123,8 @@ export default ({
                   <Button
                     type="text"
                     onClick={() => {
-                      value.splice(index, 0, value[index]);
-                      onChange?.([...value]);
+                      defaultValue.splice(index, 0, defaultValue[index]);
+                      onChange?.([...defaultValue]);
                     }}
                   >
                     复制
@@ -142,14 +140,17 @@ export default ({
           type="dashed"
           visible={readOnly !== true}
           icon={<IconPlus />}
-          disabled={value.length >= maxCount}
+          disabled={defaultValue.length >= maxCount}
           onClick={() => {
-            value.push(
+            defaultValue.push(
               typeof defaultAddValue === 'function'
                 ? defaultAddValue()
                 : defaultAddValue,
             );
-            onChange?.([...value]);
+            form.setFieldsValue(
+              beforeReceiveInnerValues(defaultValue, columns),
+            );
+            onChange?.([...defaultValue]);
           }}
         >
           添加一行
@@ -162,7 +163,7 @@ export default ({
       <Form
         form={form}
         onValuesChange={(v, vs) => {
-          onChange?.(tranfromInnerValues(vs, value, columns));
+          onChange?.(tranfromInnerValues(vs, defaultValue, columns));
         }}
       >
         {renderDom}

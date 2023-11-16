@@ -4,12 +4,16 @@
   position: relative;
   top: -4px;
 }
+.core-form-editable-table .arco-form-item{
+  margin-bottom: 0;
+}
+.core-form-editable-table .arco-table-td{
+  height: 44px;
+  padding: 0 16px;
+}
 .core-form-editable-table .core-form-editable-table-field .arco-form-item-label,
 .core-form-editable-table .core-form-editable-table-field .arco-form-item-explain-error {
   display: none;
-}
-.core-form-editable-table .arco-table-cell {
-  padding: 8px 8px;
 }
 .core-form-editable-table .editable-table-footer-btn,
 .core-form-editable-table .editable-table-footer-btn-disabled {
@@ -20,11 +24,12 @@
 .core-form-editable-table .editable-table-footer-btn-disabled {
   color: rgba(0, 0, 0, 0.251) !important;
 }
-.row-dragging td {
-  padding: 8px;
-}
-.row-dragging {
-  background: #fafafa;
-  border: 1px dashed rgb(var(--primary-6));
-  z-index: 9999;
+.row-dragging .arco-table-td {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: #fff;
+  max-height: 44px;
+  padding: 6px 16px;
+  width: 240px;
 }

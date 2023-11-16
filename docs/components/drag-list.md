@@ -18,6 +18,7 @@ toc: menu
  */
 import React from 'react';
 import { DragList } from 'react-core-form';
+
 export default () => {
   return (
     <div style={{ width: 100 }}>

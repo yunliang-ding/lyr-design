@@ -17,7 +17,8 @@ toc: menu
  * desc: 排序采用的react-sortable-hoc，需要提供rowKey来确定数据的唯一值，否则不能正常工作
  */
 import React from 'react';
-import { EditableTable, Switch } from 'react-core-form';
+import { EditableTable } from 'react-core-form';
+import { Switch } from '@arco-design/web-react';
 import schema from './schema/editable-table/schema';
 
 export default () => {
@@ -26,8 +27,8 @@ export default () => {
   return (
     <>
       <Switch
-        checkedChildren="bottom"
-        unCheckedChildren="top"
+        checkedText="bottom"
+        uncheckedText="top"
         checked={position === 'bottom'}
         onChange={(v) => {
           setPosition(v ? 'bottom' : 'top');
@@ -35,8 +36,8 @@ export default () => {
       />
       &nbsp;&nbsp;
       <Switch
-        checkedChildren="sort"
-        unCheckedChildren="unSort"
+        checkedText="sort"
+        uncheckedText="unSort"
         onChange={setSortable}
         checked={sortable}
       />
@@ -77,7 +78,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { Modal } from 'antd';
+import { Modal } from '@arco-design/web-react';
 import { Form, CardForm, Button } from 'react-core-form';
 import schema from './schema/editable-table/schema';
 
@@ -90,7 +91,7 @@ export default () => {
         title: '提示',
         content: '客户联系人名单有未保存的数据，是否确认提交',
         onOk: async () => {
-          await form.formListInstance.relationList.saveEdit(); // 手动保存正在编辑的行
+          // await form.formListInstance.relationList.saveEdit(); // 手动保存正在编辑的行
           console.log('values: ', values);
         },
       });

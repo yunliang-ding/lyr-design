@@ -26,6 +26,7 @@ export const isExpansionItemProps = {
   __parentKey__: '',
   props: '',
   visible: '',
+  isVisible: '',
   effect: '',
   onEffect: '',
   effectClearField: '',

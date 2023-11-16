@@ -12,14 +12,16 @@ import {
   arrayMove,
 } from 'react-sortable-hoc';
 import { EditTableProps } from './type';
-import { IconDragArrow, IconPlus } from '@arco-design/web-react/icon';
+import { IconDragDotVertical, IconPlus } from '@arco-design/web-react/icon';
 import './index.css';
 
 const SortableItem = SortableElement((props) => <tr {...props} />);
 
 const SortableBody = SortableContainer((props) => <tbody {...props} />);
 
-const DragHandle = SortableHandle(() => <IconDragArrow />);
+const DragHandle = SortableHandle(() => (
+  <IconDragDotVertical style={{ cursor: 'grab' }} />
+));
 
 // TODO value 中不能混入index属性，否则和内置的index属性冲突、待优化
 
@@ -271,14 +273,6 @@ export default ({
       key="table"
       pagination={false}
       columns={[
-        sortable
-          ? {
-              title: '',
-              dataIndex: 'sort',
-              width: 60,
-              render: () => <DragHandle />,
-            }
-          : undefined,
         ..._columns,
         !readOnly
           ? {
@@ -319,7 +313,8 @@ export default ({
                       删除
                     </Button>
                     {editIndex === index && (
-                      <a
+                      <Button
+                        type="text"
                         onClick={() => {
                           if (dataSource[index].__isNew__) {
                             deleteByIndex(index, true);
@@ -329,7 +324,7 @@ export default ({
                         }}
                       >
                         取消
-                      </a>
+                      </Button>
                     )}
                   </Space>
                 );
@@ -340,8 +335,44 @@ export default ({
       components={
         sortable
           ? {
+              header: {
+                operations: ({ selectionNode, expandNode }) => [
+                  {
+                    node: <th />,
+                    width: 40,
+                  },
+                  {
+                    name: 'expandNode',
+                    node: expandNode,
+                  },
+                  {
+                    name: 'selectionNode',
+                    node: selectionNode,
+                  },
+                ],
+              },
               body: {
-                wrapper: (props: any) => (
+                operations: ({ selectionNode, expandNode }) => [
+                  {
+                    node: (
+                      <td>
+                        <div className="arco-table-cell">
+                          <DragHandle />
+                        </div>
+                      </td>
+                    ),
+                    width: 40,
+                  },
+                  {
+                    name: 'expandNode',
+                    node: expandNode,
+                  },
+                  {
+                    name: 'selectionNode',
+                    node: selectionNode,
+                  },
+                ],
+                tbody: (props) => (
                   <SortableBody
                     useDragHandle
                     disableAutoscroll
@@ -352,7 +383,6 @@ export default ({
                 ),
                 row: (props: any) => {
                   const { className, style, ...restProps } = props;
-                  // function findIndex base on Table rowKey props and should always be a right array index
                   const index = dataSource.findIndex(
                     (x) => x[rest.rowKey] === restProps['data-row-key'],
                   );
