@@ -34,7 +34,8 @@ export default ({
   autoNo = false,
   resize = false,
   keepRowSelection = true,
-  loadMoreData,
+  scrollLoading,
+  onReachBottom,
   ...restProp
 }: TableProps) => {
   const [payload, setPayload] = useState({}); // 扩展参数
@@ -381,7 +382,7 @@ export default ({
       }
       {...restProp}
       pagination={
-        restProp.pagination === false
+        restProp.pagination === false || restProp.virtualized
           ? false
           : {
               size,

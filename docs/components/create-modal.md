@@ -18,13 +18,9 @@ export default (props) => {
       onClick={() => {
         CreateModal({
           title: '新增用户',
-          modalProps: {
-            style: {
-              width: 800,
-            },
-          },
           schema,
           column: 2,
+          width: 800,
           async onSubmit(values) {
             alert(JSON.stringify(values));
           },
@@ -32,6 +28,34 @@ export default (props) => {
       }}
     >
       打开一个Modal
+    </Button>
+  );
+};
+```
+
+## 可拖拽
+
+```tsx
+import React from 'react';
+import { CreateModal, Button } from 'react-core-form';
+
+export default (props) => {
+  return (
+    <Button
+      type="primary"
+      onClick={() => {
+        CreateModal({
+          drag: true,
+          title: '可拖拽的Modal',
+          width: 300,
+          height: 100,
+          render() {
+            return <div>可拖拽的Modal</div>;
+          },
+        }).open();
+      }}
+    >
+      打开一个可拖拽Modal
     </Button>
   );
 };
@@ -52,11 +76,7 @@ export default (props) => {
       onClick={() => {
         const modal = CreateModal({
           title: '新增用户',
-          modalProps: {
-            style: {
-              width: 800,
-            },
-          },
+          width: 800,
           schema,
           column: 2,
           actions: [
@@ -103,11 +123,10 @@ export default (props) => {
         CreateModal({
           title: '自定义渲染',
           confirmText: '确认',
-          bodyStyle: {
-            height: 200,
-          },
-          onSubmit() {
+          height: 200,
+          async onSubmit() {
             Message.success('确认完毕');
+            await new Promise((res) => setTimeout(res, 1000));
           },
         }).open({
           render: ({ value }) => {

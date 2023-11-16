@@ -124,6 +124,8 @@ export interface TableProps extends Omit<ArcoTableProps, 'title' | 'columns'> {
    */
   keepRowSelection?: boolean;
   rowSelection?: TableRowSelectionProps;
+  /** 下滑加载数据提示 */
+  scrollLoading?: ReactNode;
   /** 下滑加载数据 */
-  loadMoreData?: Function;
+  onReachBottom?: Function;
 }

@@ -58,7 +58,9 @@ export interface DrawerFormProps extends FormSubmitProps {
 export interface ModalFormProps extends FormSubmitProps {
   /** 内容样式 */
   bodyStyle?: CSSProperties;
-  /** Modal属性设置 */
+  /** 主样式 */
+  style?: CSSProperties;
+  /** 其余 Modal 属性设置 */
   modalProps?: ModalProps;
   /**
    * 是否可见
@@ -67,4 +69,8 @@ export interface ModalFormProps extends FormSubmitProps {
   visible?: boolean;
   /** 是否可拖拽 */
   drag?: boolean;
+  /** 宽 */
+  width?: number | string;
+  /** 高 */
+  height?: number | string;
 }

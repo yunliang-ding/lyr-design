@@ -9,15 +9,16 @@ import Footer from '../footer';
 import './index.less';
 
 export default ({
-  modalProps,
+  width = 500,
+  height = 400,
   form = Form.useForm()[0],
+  modalProps = {},
+  style = {},
+  bodyStyle = {},
   title,
   actionAlign = 'end',
   className,
   visible = false,
-  bodyStyle = {
-    height: 500,
-  },
   onClose = () => {},
   onSubmit = () => {},
   footer = true,
@@ -29,6 +30,9 @@ export default ({
   drag = false,
   ...rest
 }: ModalFormProps) => {
+  /** 宽高设置 */
+  bodyStyle.height = height;
+  style.width = width;
   const [value, onChange] = useState(rest.initialValues);
   const _actions = actions || [
     {
@@ -135,6 +139,7 @@ export default ({
   return (
     <Modal
       {...modalProps}
+      style={style}
       className={_className.join(' ')}
       visible={visible}
       title={renderTitle}
@@ -147,9 +152,13 @@ export default ({
               <Draggable
                 disabled={disabled}
                 bounds={bounds}
+                defaultClassName="arco-drag-modal"
+                positionOffset={{ x: '-50%', y: 0 }}
                 onStart={(event, uiData) => onStart(event, uiData)}
               >
-                <div ref={draggleRef}>{modal}</div>
+                <div ref={draggleRef} style={{ width }}>
+                  {modal}
+                </div>
               </Draggable>
             )
           : undefined

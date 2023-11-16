@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { useRef, useMemo, useCallback, useState } from 'react';
-import { ConfigProvider, Empty, Form, Spin } from '@arco-design/web-react';
+import { Empty, Form, Spin } from '@arco-design/web-react';
 import { cloneDeep, EventEmit } from '@/util';
 import Item from './item';
 import FieldSet from '@/widgets/extension/fields-set';
@@ -30,7 +30,6 @@ export default ({
   /** form-props */
   initialValues = {},
   onValuesChange = () => {},
-  locale,
   getScrollContainer, // 设置滚动容器
   scrollToFirstError = true, // 默认开启滚动到第一个错误的位置
   layout = 'vertical', // 默认使用垂直布局
@@ -213,24 +212,22 @@ export default ({
     _className.push('core-form-readonly');
   }
   return (
-    <ConfigProvider locale={locale}>
-      <Spin loading={spin}>
-        <Form
-          layout={layout}
-          labelCol={labelCol}
-          wrapperCol={wrapperCol}
-          className={_className.join(' ')}
-          form={acroForm}
-          name={name}
-          initialValues={initialValues}
-          onValuesChange={onChange}
-          {...rest}
-        >
-          <Grid gridStyle={gridStyle} column={column}>
-            <RenderSchema itemSchema={cloneSchema} />
-          </Grid>
-        </Form>
-      </Spin>
-    </ConfigProvider>
+    <Spin loading={spin}>
+      <Form
+        layout={layout}
+        labelCol={labelCol}
+        wrapperCol={wrapperCol}
+        className={_className.join(' ')}
+        form={acroForm}
+        name={name}
+        initialValues={initialValues}
+        onValuesChange={onChange}
+        {...rest}
+      >
+        <Grid gridStyle={gridStyle} column={column}>
+          <RenderSchema itemSchema={cloneSchema} />
+        </Grid>
+      </Form>
+    </Spin>
   );
 };

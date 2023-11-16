@@ -4,6 +4,9 @@
   padding-bottom: 16px;
   background-color: var(--color-bg-1);
 }
+.arco-table-header{
+  overflow-x: auto;
+}
 .core-form-table a {
   color: rgb(var(--primary-6));
   cursor: pointer;

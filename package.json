@@ -36,8 +36,6 @@
     "dayjs": "1.11.10",
     "lodash": "4.17.21",
     "react-resizable": "3.0.4",
-    "react-window": "1.8.7",
-    "rc-resize-observer": "1.2.0",
     "react-sortable-hoc": "2.0.0",
     "react-draggable": "4.4.5",
     "react-core-form-tools": "0.0.7",

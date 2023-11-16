@@ -15,7 +15,7 @@ const close = (containId: string) => {
   }, 500);
 };
 
-const ModalFormWapper = ({ containId, tag, ...props }) => {
+const ModalFormWapper = ({ containId, tag, modalProps, ...props }) => {
   const { visible } = useStore(store);
   useEffect(() => {
     store.visible = true;
@@ -29,7 +29,7 @@ const ModalFormWapper = ({ containId, tag, ...props }) => {
         close(containId);
       }}
       modalProps={{
-        ...(props.modalProps || {}),
+        ...modalProps,
         id: containId,
       }}
     />

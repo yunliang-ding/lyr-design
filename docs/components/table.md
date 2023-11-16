@@ -410,14 +410,14 @@ export default () => {
 import React from 'react';
 import { Table } from 'react-core-form';
 import tableSchema from './schema/form-table/schema4';
+import { Spin } from '@arco-design/web-react';
 
-export default () => {
-  const loadMoreData = async (data) => {
-    if (data.length === 60) {
-      return false;
-    }
-    await new Promise((res) => setTimeout(res, 1000));
-    return new Array(20).fill({
+const mockData = async () => {
+  await new Promise((res) => setTimeout(res, 1000));
+  return {
+    total: 20,
+    success: true,
+    list: new Array(30).fill({
       code: 'code',
       username: 'username',
       sex: 'sex',
@@ -426,33 +426,31 @@ export default () => {
       classify: 'classify',
       score: 'score',
       logins: 'logins',
-    });
+    }),
+  };
+};
+
+export default () => {
+  const [scrollLoading, setScrollLoading] = React.useState(
+    <Spin loading={true} />,
+  );
+  const loadMoreData = async (pageNum: number) => {
+    if (pageNum === 4) {
+      return setScrollLoading('No more data');
+    }
+    return mockData();
   };
   return (
     <Table
       {...tableSchema}
-      virtual
+      pagination={false}
+      autoNo
       scroll={{
         y: 400,
       }}
-      loadMoreData={loadMoreData}
-      request={async (params) => {
-        await new Promise((res) => setTimeout(res, 1000));
-        return {
-          total: 20,
-          success: true,
-          list: new Array(20).fill({
-            code: 'code',
-            username: 'username',
-            sex: 'sex',
-            city: 'city',
-            sign: 'sign',
-            classify: 'classify',
-            score: 'score',
-            logins: 'logins',
-          }),
-        };
-      }}
+      scrollLoading={scrollLoading}
+      onReachBottom={loadMoreData}
+      request={mockData}
     />
   );
 };

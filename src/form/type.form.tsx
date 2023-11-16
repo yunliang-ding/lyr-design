@@ -42,8 +42,6 @@ export interface CoreFormProps extends Omit<FormProps, 'fields' | 'form'> {
    * 表单加载完的钩子
    */
   onMount?: (form: CoreFormInstance) => void;
-  /** 国际化 */
-  locale?: any;
   /** 滚动的区域 */
   getScrollContainer?: () => HTMLElement;
   /** 只读表单的空提示 */
