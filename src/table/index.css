@@ -4,6 +4,10 @@
   padding-bottom: 16px;
   background-color: var(--color-bg-1);
 }
+.core-form-table .arco-table-td{
+  padding: 0 16px;
+  height: 44px;
+}
 .arco-table-header{
   overflow-x: auto;
 }
@@ -23,8 +27,12 @@
   align-items: flex-end;
   padding: 0;
 }
+.core-form-table .td-row-operation-area .arco-table-cell-wrap-value{
+  position: relative;
+  left: -8px;
+}
 .core-form-table .td-row-operation-area .arco-btn {
-  padding-left: 0;
+  padding: 0 6px;
 }
 .core-form-table .react-resizable {
   position: relative;

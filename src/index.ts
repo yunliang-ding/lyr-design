@@ -6,7 +6,6 @@ export { default as AnchorCardForm } from './form-submit/anchor-card-form';
 export { default as StepForm } from './form-submit/step-form';
 export { default as CreateModal } from './create-modal';
 export { default as CreateDrawer } from './create-drawer';
-export { default as CreateSpin } from './create-spin';
 export { default as Search } from './search';
 export { default as Table } from './table';
 export { default as EditableTable } from './table-editable';

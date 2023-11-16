@@ -96,9 +96,9 @@ export default ({ rowOperations = {}, tableInstance }: any) => {
                 >
                   <a
                     onClick={(e) => e.preventDefault()}
-                    style={{ paddingLeft: 2 }}
+                    style={{ paddingLeft: 6 }}
                   >
-                    更多
+                    <span style={{ marginRight: 4 }}>更多</span>
                     <IconDown />
                   </a>
                 </Dropdown>
