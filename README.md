@@ -1,177 +1,34 @@
+## 介绍
+
+> react-core-form 目前是一套基于 arco.design 二次封装的，可快捷开发中后台项目的解决方案
+
 ## 安装
 
-组件库本身依赖 ant design，使用需要同时安装 antd，在 src/global.less 中全量引入 antd less 文件
+> 组件库本身依赖 arco.design，使用需要同时安装 arco.design
 
 ```shell
+npm install @arco-design/web-react --save
 npm install react-core-form --save
 ```
 
 ```less
-@import '~antd/dist/antd.less';
+@import '@arco-design/web-react/dist/css/arco.css';
+@import 'react-core-form/dist/index.css';
 ```
 
-## 基本使用
+## 基于 arco.design 的扩展点
 
-```tsx
-import { Form } from 'react-core-form';
-
-export default () => {
-  return (
-    <Form
-      schema={[
-        {
-          type: 'Input',
-          label: '姓名',
-          name: 'name',
-          required: true,
-        },
-        {
-          type: 'Select',
-          label: '爱好',
-          name: 'liked',
-          required: true,
-          props: {
-            options: [
-              {
-                label: '爱好1',
-                value: 0,
-              },
-              {
-                label: '爱好2',
-                value: 1,
-              },
-            ],
-          },
-        },
-      ]}
-    />
-  );
-};
-```
-
-## 使用异步选择器
-
-```tsx
-import { Form } from 'react-core-form';
-
-export default () => {
-  return (
-    <Form
-      schema={[
-        {
-          type: 'AsyncSelect',
-          label: '爱好',
-          name: 'liked',
-          required: true,
-          props: {
-            options: async () => {
-              await new Promise((res) => setTimeout(res, 1000));
-              return [
-                {
-                  label: '爱好1',
-                  value: 0,
-                },
-                {
-                  label: '爱好2',
-                  value: 1,
-                },
-              ];
-            },
-          },
-        },
-      ]}
-    />
-  );
-};
-```
-
-## 使用设置联动
-
-```tsx
-import { Form } from 'react-core-form';
-
-export default () => {
-  return (
-    <Form
-      schema={[
-        {
-          type: 'RadioGroup',
-          label: '性别',
-          name: 'sex',
-          props: {
-            options: [
-              {
-                label: '男',
-                value: 0,
-              },
-              {
-                label: '女',
-                value: 1,
-              },
-            ],
-          },
-        },
-        {
-          type: 'InputNumber',
-          label: '年龄',
-          name: 'age',
-          effect: ['sex'],
-          visible: ({ sex }) => sex === 0,
-        },
-      ]}
-    />
-  );
-};
-```
-
-## 使用自定义渲染
-
-```tsx
-import { Form } from 'react-core-form';
-
-export default () => {
-  return (
-    <Form
-      schema={[
-        {
-          label: '性别',
-          name: 'userList',
-          type: ({ value, onChange, form, ...props }) => {
-            return <div>自定义渲染</div>;
-          },
-        },
-        {
-          type: 'Render',
-          props: {
-            render(form) {
-              return <div>render</div>;
-            },
-          },
-        },
-        {
-          type: 'AsyncRender',
-          props: {
-            async render(form) {
-              await new Promise((res) => setTimeout(res, 1000));
-              return <div>render</div>;
-            },
-          },
-        },
-        {
-          type: 'MyWidget',
-          name: 'my-widget',
-          props: {},
-        },
-      ]}
-      widgets={{
-        MyWidget: ({ value, onChange, form, ...props }) => {
-          return <div>my-widget</div>;
-        },
-      }}
-    />
-  );
-};
-```
+- 扩展 `Button`，自带 loading，二次确认，支持弹框和抽屉的模型配置
+- 扩展 `Form`，基于数据模型的表单渲染，表单联动，异步选择器，自定义组件，默认配置
+- 扩展 `提交表单`，ModalForm, DrawerForm, CardForm, AnchorCardForm, SetpForm。
+- 新增 `CerateModal`, `CreateDrawer`，api 打开抽屉或者弹框，Modal 支持可拖拽
+- 扩展 `Table` ，基于数据模型渲染，扩展 toolBar 配置，request 配置，search 配置
+- 新增 `SearchForm`，可单独或者结合 Table 使用
+- 扩展 `TableList`，`EditableTable` 针对表格编辑的场景
+- 新增 `AppLayout`，中后台布局统一大模版
+- 新增 `MarkDownPreview`，渲染 markdown 组件
+- 扩展 `OssFileUpload` 文件上传组件
+- 扩展 `Suspend` 悬浮组件
 
 ## 在线文档
 

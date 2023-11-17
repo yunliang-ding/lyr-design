@@ -2,7 +2,7 @@
   "name": "react-core-form",
   "description": "基于数据模型快速搭建表单",
   "author": "yunliang-ding",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -38,11 +38,11 @@
     "react-resizable": "3.0.4",
     "react-sortable-hoc": "2.0.0",
     "react-draggable": "4.4.5",
-    "react-core-form-tools": "0.0.7",
-    "react-core-form-store": "0.0.1",
     "react-syntax-highlighter": "15.5.0",
     "react-markdown": "8.0.7",
-    "remark-gfm": "3.0.1"
+    "remark-gfm": "3.0.1",
+    "react-core-form-tools": "^0.0.8",
+    "react-core-form-store": "^0.0.1"
   },
   "peerDependencies": {
     "react": ">=16.9.0",

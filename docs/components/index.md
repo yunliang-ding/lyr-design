@@ -36,32 +36,20 @@ nav:
 > 组件库本身依赖 arco.design，使用需要同时安装 arco.design
 
 ```shell
+npm install @arco-design/web-react --save
 npm install react-core-form --save
 ```
 
 ```less
 @import '@arco-design/web-react/dist/css/arco.css';
+@import 'react-core-form/dist/index.css';
 ```
-
-## 为什么不是 XRender、Formily
-
-<Alert>
-
-- [XRender](https://x-render.gitee.io/form-render) 以及 [Formily](https://v2.formilyjs.org/zh-CN/guide) 都是比较成熟的表单解决方案但是他们在 Schema 规范、以及上手需要一定的学习成本
-
-- 底层我们不能完全掌控，我们不能更好的从业务需求的角度去做扩展、加功能，Api 都是被第三方约束了
-
-- 我们定义的数据模型更加的直观，只要掌握 arco.design 表单使用可立即上手，底层也是我们自己掌控
-
-- 最重要的一点，我们会结合自身的业务场景去做扩展，会内置更多符合业务的通用组件
-
-</Alert>
 
 ## 优势
 
 <Alert type="success">
 
-- Form 我们基于 arco.design 的表单进行扩展、增强，编写好配置即可完成复杂的渲染和交互逻辑
+- 基于 arco.design 的 Form 表单进行扩展、增强，编写好配置即可完成复杂的渲染和交互逻辑
 
 - 我们扩展多种异步选择器的 `widgets`，可以满足大部分的查询场景用少量代码即可实现[ 点击查看](/components/form-advance#使用异步的-options)
 

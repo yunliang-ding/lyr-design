@@ -12,5 +12,5 @@ export default {
   //   name: 'ReactCoreForm',
   //   minFile: true,
   // },
-  // extractCSS: true,
+  extractCSS: true,
 };
