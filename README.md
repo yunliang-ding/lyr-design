@@ -20,15 +20,14 @@ npm install react-core-form --save
 
 - 扩展 `Button`，自带 loading，二次确认，支持弹框和抽屉的模型配置
 - 扩展 `Form`，基于数据模型的表单渲染，表单联动，异步选择器，自定义组件，默认配置
-- 扩展 `提交表单`，ModalForm, DrawerForm, CardForm, AnchorCardForm, SetpForm。
-- 新增 `CerateModal`, `CreateDrawer`，api 打开抽屉或者弹框，Modal 支持可拖拽
+- 扩展 `ModalForm`, `DrawerForm`, `CardForm`, `AnchorCardForm`, `SetpForm`, `SearchForm` 提交表单
 - 扩展 `Table` ，基于数据模型渲染，扩展 toolBar 配置，request 配置，search 配置
-- 新增 `SearchForm`，可单独或者结合 Table 使用
 - 扩展 `TableList`，`EditableTable` 针对表格编辑的场景
+- 扩展 `OssFileUpload` 文件上传组件
+- 新增 `CerateModal`, `CreateDrawer`，支持 api 打开抽屉或者弹框，Modal 支持可拖拽
 - 新增 `AppLayout`，中后台布局统一大模版
 - 新增 `MarkDownPreview`，渲染 markdown 组件
-- 扩展 `OssFileUpload` 文件上传组件
-- 扩展 `Suspend` 悬浮组件
+- 新增 `Suspend` 悬浮组件
 
 ## 在线文档
 
