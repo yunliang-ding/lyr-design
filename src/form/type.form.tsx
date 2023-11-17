@@ -48,7 +48,6 @@ export interface CoreFormProps extends Omit<FormProps, 'fields' | 'form'> {
   readOnlyEmptyValueNode?: ReactNode | string;
   useForm?: FormRefInstance[];
   form?: CoreFormInstance;
-  search?: boolean;
   key?: string | number;
   forceRender?: any;
 }
