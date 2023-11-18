@@ -44,8 +44,8 @@ export type FieldProps =
 export interface SchemaProps<T = FieldProps>
   extends Omit<FormItemProps, 'required' | 'disabled'> {
   key?: string | number;
-  type?: keyof typeof BuiltInWidgetMapping | Function;
-  name: string;
+  type?: keyof typeof BuiltInWidgetMapping | Function | string;
+  name?: string;
   column?: number;
   /** 配置是否展示 */
   visible?: (values: any) => boolean;
