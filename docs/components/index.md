@@ -42,7 +42,6 @@ npm install react-core-form --save
 
 ```less
 @import '@arco-design/web-react/dist/css/arco.css';
-@import 'react-core-form/dist/index.css';
 ```
 
 ## 优势
