@@ -60,19 +60,14 @@ export default defineConfig({
       }
   `,
   ],
-  extraBabelPlugins: [
-    [
-      'import',
-      {
-        libraryName: '@arco-design/web-react',
-        libraryDirectory: 'es',
-        camel2DashComponentName: false,
-        style: true, // 样式按需加载
-      },
-    ],
-  ],
   history: { type: 'hash' },
   hash: false,
+  links: [
+    {
+      href: 'https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css',
+      rel: 'stylesheet',
+    },
+  ],
   scripts: [
     'https://g.alicdn.com/code/lib/ali-oss/6.13.0/aliyun-oss-sdk.min.js',
   ],
