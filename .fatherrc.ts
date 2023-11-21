@@ -9,8 +9,9 @@ export default {
     minify: true,
   },
   // umd: {
-  //   name: 'ReactCoreForm',
+  //   name: 'react-core-form',
   //   minFile: true,
   // },
+  // external: ['react', 'react-dom', '@arco-design/web-react'],
   extractCSS: true,
 };
