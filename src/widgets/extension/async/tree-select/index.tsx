@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 import { useEffect, useState } from 'react';
-import { TreeSelect, Spin, Empty } from '@arco-design/web-react';
+import { Spin, Empty } from '@arco-design/web-react';
 import { AsyncOptionsCache } from '@/util';
 import { IconLoading } from '@arco-design/web-react/icon';
+import TreeSelect from '@/widgets/arco-design/tree-select';
 
 export default (props: any) => {
   const [options, setOptions] = useState([]);

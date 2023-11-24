@@ -4,7 +4,7 @@ import { ExtendInputProps } from '..';
 const queryLoop = (
   data,
   value,
-  fieldNames = { value: 'value', label: 'title', children: 'children' },
+  fieldNames = { value: 'key', label: 'title', children: 'children' },
   labels = [],
 ) => {
   data.some((item) => {
@@ -25,6 +25,7 @@ export default ({
   readOnly,
   ...props
 }: TreeSelectProps & ExtendInputProps) => {
+  console.log(readOnly);
   // 渲染只读视图
   if (readOnly) {
     // 解析options得到label

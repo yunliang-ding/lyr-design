@@ -82,7 +82,7 @@ export default () => {
               return likes.join(',');
             },
             formatter: (likes) => {
-              return likes?.split(',');
+              return likes?.split(',').filter(Boolean);
             },
             props: {
               mode: 'multiple',

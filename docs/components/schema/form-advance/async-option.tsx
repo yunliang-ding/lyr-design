@@ -135,21 +135,21 @@ const schema: SchemaProps[] = [
         const options = [
           {
             title: '部门1',
-            value: '0-0',
+            key: '0-0',
             children: [
               {
                 title: '部门1-1',
-                value: '0-0-1',
+                key: '0-0-1',
               },
               {
                 title: '部门1-2',
-                value: '0-0-2',
+                key: '0-0-2',
               },
             ],
           },
           {
             title: '部门2',
-            value: '0-1',
+            key: '0-1',
           },
         ];
         return options;
