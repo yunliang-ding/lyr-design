@@ -15,7 +15,7 @@ toc: menu
 ```tsx
 import React from 'react';
 import { AppLayout, Button } from 'react-core-form';
-import { Space, Avatar, Dropdown, Menu } from '@arco-design/web-react';
+import { Space, Avatar, Input, Dropdown, Menu } from '@arco-design/web-react';
 import { IconUser } from '@arco-design/web-react/icon';
 import menus from './schema/app-layout/schema';
 import './index.less';
@@ -105,7 +105,23 @@ export default () => {
               >
                 <a>Admin</a>
               </Dropdown>
-              <Avatar style={{ backgroundColor: '#3370ff' }}>
+              <Input
+                type="color"
+                defaultValue="#165dff"
+                style={{ border: 'none', background: '#fff', width: 45 }}
+                onChange={(hex) => {
+                  const r = parseInt('0x' + hex.slice(1, 3));
+                  const g = parseInt('0x' + hex.slice(3, 5));
+                  const b = parseInt('0x' + hex.slice(5, 7));
+                  document
+                    .querySelector('body')
+                    .style.setProperty('--arcoblue-6', [r, g, b].join(','));
+                }}
+              />
+              <Avatar
+                style={{ backgroundColor: 'rgb(var(--primary-6))' }}
+                size={26}
+              >
                 <IconUser />
               </Avatar>
             </Space>
