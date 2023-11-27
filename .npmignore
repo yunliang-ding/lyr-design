@@ -15,3 +15,5 @@
 /.umirc.ts
 tsconfig.json
 typings.d.ts
+yarn-error.log
+yarn.lock
