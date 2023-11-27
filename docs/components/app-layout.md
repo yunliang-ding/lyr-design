@@ -16,7 +16,7 @@ toc: menu
 import React from 'react';
 import { AppLayout, Button } from 'react-core-form';
 import { Space, Avatar, Input, Dropdown, Menu } from '@arco-design/web-react';
-import { IconUser } from '@arco-design/web-react/icon';
+import { IconUser, IconMoon, IconSun } from '@arco-design/web-react/icon';
 import menus from './schema/app-layout/schema';
 import './index.less';
 
@@ -88,6 +88,19 @@ export default () => {
         return (
           <div className="app-right-header">
             <Space>
+              {dark ? (
+                <IconSun
+                  onClick={() => {
+                    setDark(false);
+                  }}
+                />
+              ) : (
+                <IconMoon
+                  onClick={() => {
+                    setDark(true);
+                  }}
+                />
+              )}
               <a
                 onClick={() => {
                   setCompact(!compact);
@@ -108,7 +121,7 @@ export default () => {
               <Input
                 type="color"
                 defaultValue="#165dff"
-                style={{ border: 'none', background: '#fff', width: 45 }}
+                style={{ border: 'none', background: 'none', width: 45 }}
                 onChange={(hex) => {
                   const r = parseInt('0x' + hex.slice(1, 3));
                   const g = parseInt('0x' + hex.slice(3, 5));
