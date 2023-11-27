@@ -18,6 +18,7 @@ import { AppLayout, Button } from 'react-core-form';
 import { Space, Avatar, Input, Dropdown, Menu } from '@arco-design/web-react';
 import { IconUser, IconMoon, IconSun } from '@arco-design/web-react/icon';
 import menus from './schema/app-layout/schema';
+import { generate, getRgbStr } from '@arco-design/color';
 import './index.less';
 
 export default () => {
@@ -123,12 +124,18 @@ export default () => {
                 defaultValue="#165dff"
                 style={{ border: 'none', background: 'none', width: 45 }}
                 onChange={(hex) => {
-                  const r = parseInt('0x' + hex.slice(1, 3));
-                  const g = parseInt('0x' + hex.slice(3, 5));
-                  const b = parseInt('0x' + hex.slice(5, 7));
-                  document
-                    .querySelector('body')
-                    .style.setProperty('--arcoblue-6', [r, g, b].join(','));
+                  const newColor = hex;
+                  const newList = generate(newColor, {
+                    list: true,
+                    dark,
+                  });
+                  newList.forEach((l, index) => {
+                    const rgbStr = getRgbStr(l);
+                    document.body.style.setProperty(
+                      `--arcoblue-${index + 1}`,
+                      rgbStr,
+                    );
+                  });
                 }}
               />
               <Avatar
