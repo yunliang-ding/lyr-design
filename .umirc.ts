@@ -40,6 +40,15 @@ export default defineConfig({
       font-weight: 500 !important;
       font-size: 12px !important;
     }
+    .arco-icon{
+      font-size: 14px !important;
+    }
+    .arco-empty-image .arco-icon{
+      font-size: 48px !important;
+    }
+    .arco-spin-icon .arco-icon{
+      font-size: 20px !important;
+    }
     h2{
       font-size: 18px !important;
     }

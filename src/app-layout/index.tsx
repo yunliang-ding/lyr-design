@@ -7,11 +7,7 @@ import { getBreadcrumbByMenus } from './util';
 import { IconLeft, IconRight } from '@arco-design/web-react/icon';
 import './index.less';
 
-export const RenderMenus = (
-  menus = [],
-  showIcon = false,
-  collapsed = false,
-) => {
+export const RenderMenus = (menus = [], collapsed = false) => {
   return menus.map((item) => {
     return item.children ? (
       <Menu.SubMenu
@@ -28,7 +24,7 @@ export const RenderMenus = (
     ) : (
       <Menu.Item key={item.path}>
         <Space>
-          {showIcon && item.icon}
+          {item.icon}
           {!collapsed && item.label}
         </Space>
       </Menu.Item>
@@ -177,7 +173,7 @@ export default ({
                   collapse={collapsed}
                   theme={dark ? 'dark' : 'light'}
                 >
-                  {RenderMenus(menu.items, false, collapsed)}
+                  {RenderMenus(menu.items, collapsed)}
                 </Menu>
               </div>
             </div>
@@ -227,7 +223,6 @@ export default ({
                         children: undefined,
                       };
                     }),
-                    true,
                   )}
                 </Menu>
               </div>
@@ -248,7 +243,6 @@ export default ({
                     {RenderMenus(
                       (menu.items?.find((item) => item?.path === topKey) as any)
                         ?.children,
-                      true,
                       collapsed,
                     )}
                   </Menu>
