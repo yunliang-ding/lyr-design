@@ -34,20 +34,20 @@ export default defineConfig({
     a,
     button,
     p,
-    li, 
+    label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    h2 {
+      font-size: 18px !important;
+    }
+
+    li,
     input,
     label {
       font-weight: 500 !important;
       font-size: 12px !important;
-    }
-    .arco-icon{
-      font-size: 14px !important;
-    }
-    .arco-empty-image .arco-icon{
-      font-size: 48px !important;
-    }
-    .arco-spin-icon .arco-icon{
-      font-size: 20px !important;
     }
     h2{
       font-size: 18px !important;
