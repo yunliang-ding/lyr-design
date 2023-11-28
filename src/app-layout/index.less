@@ -50,7 +50,7 @@
     &-logo {
       display: flex;
       align-items: center;
-      justify-content: center;
+      padding: 0 24px;
       height: 58px;
       background-color: var(--color-menu-light-bg);
       color: var(--color-neutral-10);
@@ -106,7 +106,7 @@
     &-logo {
       display: flex;
       align-items: center;
-      justify-content: center;
+      padding: 0 24px;
       height: 58px;
       width: 208px;
       a {
@@ -206,6 +206,9 @@
       .arco-page-header {
         padding: 0;
         height: 100%;
+        .arco-page-header-title {
+          font-size: 18px !important;
+        }
         .arco-page-header-heading {
           padding: 0 20px;
           height: fit-content;
@@ -234,6 +237,9 @@
       .arco-page-header {
         padding: 0;
         height: 100%;
+        .arco-page-header-title {
+          font-size: 18px !important;
+        }
       }
       .arco-breadcrumb {
         padding: 6px 0px;
@@ -308,6 +314,9 @@
     width: calc(100% - 48px);
     left: 48px;
     transition: 0.3s;
+  }
+  .app-layout-left-logo {
+    padding: 0 10px;
   }
 }
 // dark

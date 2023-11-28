@@ -34,16 +34,14 @@ export default defineConfig({
     a,
     button,
     p,
+    li, 
+    input,
     label {
-      font-size: 12px;
-      font-weight: 500;
+      font-weight: 500 !important;
+      font-size: 12px !important;
     }
     h2{
       font-size: 18px !important;
-    }
-    li, input, label{
-      font-weight: 500 !important;
-      font-size: 12px !important;
     }
     .__dumi-default-menu-list
       > li
