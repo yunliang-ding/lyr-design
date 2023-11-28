@@ -2,30 +2,38 @@
   display: flex;
   flex-direction: column;
 }
+
 .core-form-drag-list .core-form-drag-list-item {
-  background: #fff;
+  background: var(--color-bg-1);
+  color: var(--color-neutral-10);
   padding: 0 8px;
   width: 100%;
   display: flex;
   align-items: center;
   cursor: pointer;
 }
+
 .core-form-drag-list .core-form-drag-list-item .core-form-drag-list-item-label {
   font-size: 13px;
 }
+
 .core-form-drag-list .core-form-drag-list-item .core-form-drag-list-item-icon {
   cursor: grab;
-  color: #aaa;
+  color: var(--color-neutral-10);
 }
+
 .core-form-drag-list .core-form-drag-list-item .arco-space-item {
   align-items: center;
   display: flex;
 }
+
 .core-form-drag-list .core-form-drag-list-item-active-label {
   color: rgb(var(--primary-6));
 }
+
 .core-form-drag-item-dragging {
-  background: #fafafa;
+  background: var(--color-menu-light-bg);
   border: 1px dashed rgb(var(--primary-6));
   z-index: 9999;
+  color: var(--color-neutral-10);
 }

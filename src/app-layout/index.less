@@ -11,7 +11,7 @@
     margin-right: 0;
   }
   .arco-page-header-content {
-    background-color: #f0f2f5;
+    border-top: none;
   }
   .arco-page-header-head-wrapper {
     padding-left: 16px;
@@ -22,19 +22,15 @@
   .app-layout-collapse-btn {
     font-size: 15px;
     cursor: pointer;
-    color: #333;
+    color: var(--color-neutral-10);
     position: absolute;
     bottom: 80px;
-    background: #fff;
     padding: 3px;
-    box-shadow: 0px 2px 4px 0px #d8dedb;
     border-radius: 50%;
     box-sizing: content-box;
-    border: 1px solid #eee;
-    z-index: 9999;
-    transition: 0.3s;
-    background: var(--color-bg-5) !important;
-    border: 1px solid var(--color-fill-3) !important;
+    z-index: 10;
+    background: var(--color-bg-2) !important;
+    border: 1px solid var(--color-bg-2) !important;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
     transition: all 0.15s;
     &:hover {
@@ -45,16 +41,18 @@
   &-left {
     width: 208px;
     height: 100%;
-    background-color: #fff;
+    background-color: var(--color-menu-light-bg);
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
     position: relative;
-    z-index: 999;
+    z-index: 9;
     transition: 0.3s;
     &-logo {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 58px;
+      background-color: var(--color-menu-light-bg);
+      color: var(--color-neutral-10);
       a {
         display: flex;
         align-items: center;
@@ -63,7 +61,6 @@
         h1 {
           font-size: 16px;
           font-weight: bold;
-          color: #222 !important;
           margin: 0;
           white-space: nowrap;
         }
@@ -84,12 +81,14 @@
     &-header {
       height: 58px;
       width: 100%;
-      padding: 0 18px;
+      padding: 0 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background-color: var(--color-menu-light-bg);
+      color: var(--color-neutral-10);
       box-shadow: 0px 2px 4px rgba(0, 21, 41, 0.08);
-      z-index: 999;
+      z-index: 9;
       position: relative;
     }
   }
@@ -99,8 +98,10 @@
     align-items: center;
     height: 58px;
     box-shadow: 0px 2px 4px rgba(0, 21, 41, 0.08);
-    z-index: 999;
+    z-index: 9;
     position: relative;
+    background-color: var(--color-menu-light-bg);
+    color: var(--color-neutral-10);
     &-logo {
       display: flex;
       align-items: center;
@@ -115,7 +116,6 @@
         h1 {
           font-size: 16px;
           font-weight: bold;
-          color: #222 !important;
           margin: 0;
           white-space: nowrap;
         }
@@ -144,9 +144,10 @@
     &-sider {
       box-shadow: 1px 5px 8px 0 rgba(29, 35, 41, 0.05);
       position: relative;
-      z-index: 998;
+      z-index: 8;
       transition: 0.3s;
-      background-color: #fff;
+      background-color: var(--color-menu-light-bg);
+      color: var(--color-neutral-10);
       &-menu {
         width: 208px;
         height: calc(100% - 44px);
@@ -167,7 +168,7 @@
       width: calc(100% - 208px);
       height: 100%;
       overflow: auto;
-      background-color: #f0f2f5;
+      color: var(--color-neutral-10);
     }
   }
   /** 公共主体模块 */
@@ -178,6 +179,7 @@
     top: 58px;
     overflow: auto;
     height: calc(100% - 58px);
+    background-color: var(--color-fill-2);
     .app-breadcrumb-title-no-tabs {
       .app-breadcrumb-title {
         height: 52px;
@@ -199,13 +201,13 @@
       height: calc(100% - 44px);
       width: 100%;
       overflow: auto;
-      background-color: #f0f2f5;
+      background-color: var(--color-fill-2);
       .arco-page-header {
         padding: 0;
+        height: 100%;
         .arco-page-header-heading {
           padding: 0 20px;
           height: fit-content;
-          background-color: #fff;
           .arco-page-header-heading-title {
             .arco-tabs-nav {
               margin: 0;
@@ -217,29 +219,35 @@
         }
         .arco-page-header-content {
           padding: 16px;
+          background-color: var(--color-fill-2);
+          color: var(--color-neutral-10);
+          height: calc(100% - 54px);
         }
       }
     }
     &-content {
       height: calc(100% - 44px);
       overflow: auto;
-      background-color: #f0f2f5;
+      background-color: var(--color-fill-2);
+      color: var(--color-neutral-10);
       .arco-page-header {
         padding: 0;
+        height: 100%;
       }
       .arco-breadcrumb {
         padding: 6px 0px;
         padding-top: 10px;
-        background: #fff;
       }
       .arco-page-header-heading {
         margin: 0;
         padding: 0 20px;
         padding-bottom: 8px;
-        background: #fff;
       }
       .arco-page-header-content {
         padding: 16px;
+        background-color: var(--color-fill-2);
+        color: var(--color-neutral-10);
+        height: calc(100% - 88px);
       }
     }
     &-footer {
@@ -247,8 +255,9 @@
       width: 100%;
       box-shadow: 0px 0px 4px rgba(0, 21, 41, 0.08);
       position: relative;
-      z-index: 997;
-      background-color: #fff;
+      z-index: 7;
+      background-color: var(--color-menu-light-bg);
+      color: var(--color-neutral-10);
       display: flex;
       align-items: center;
       padding: 0 10px;
@@ -298,25 +307,5 @@
     width: calc(100% - 48px);
     left: 48px;
     transition: 0.3s;
-  }
-}
-.app-layout-dark {
-  .app-layout-left-menu,
-  .app-layout-body-sider-menu,
-  .app-layout-body-sider-footer,
-  .app-layout-left-logo,
-  .app-layout-header-logo {
-    background-color: var(--color-menu-dark-bg);
-    transition: 0.3s;
-    h1 {
-      color: #fff !important;
-    }
-  }
-  .app-layout-header-right {
-    background-color: var(--color-menu-dark-bg);
-    color: #fff;
-  }
-  .app-layout-body-sider-footer {
-    color: #fff;
   }
 }

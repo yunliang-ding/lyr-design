@@ -11,6 +11,10 @@
   height: 44px;
   padding: 0 16px;
 }
+
+.core-form-editable-table .arco-table-tr:hover{
+  background-color: var(--color-bg-1);
+}
 .core-form-editable-table .core-form-editable-table-field .arco-form-item-label,
 .core-form-editable-table .core-form-editable-table-field .arco-form-item-explain-error {
   display: none;
@@ -28,7 +32,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--color-bg-1);
   max-height: 44px;
   padding: 6px 16px;
   width: 240px;

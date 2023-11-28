@@ -92,12 +92,14 @@ export default () => {
               {dark ? (
                 <IconSun
                   onClick={() => {
+                    document.body.removeAttribute('arco-theme');
                     setDark(false);
                   }}
                 />
               ) : (
                 <IconMoon
                   onClick={() => {
+                    document.body.setAttribute('arco-theme', 'dark');
                     setDark(true);
                   }}
                 />
