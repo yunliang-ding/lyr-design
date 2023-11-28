@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
-import { cloneDeepWith } from 'lodash';
+import cloneDeepWith from 'lodash.clonedeepwith';
 import { isEmpty as _isEmpty, uuid as _uuid } from 'react-core-form-tools';
 
 export const isEmpty = _isEmpty;

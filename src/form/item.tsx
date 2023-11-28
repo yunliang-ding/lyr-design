@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { cloneDeep, AsyncOptionsCache, isEmpty, NOTICESELF } from '@/util';
 import CreateWidget from '@/widgets';
-import mergeWith from 'lodash/mergeWith';
+import mergeWith from 'lodash.mergewith';
 import AsyncRender from '@/widgets/extension/async/render';
 import { Form } from '@arco-design/web-react';
 import { beforeFieldRender } from './util';

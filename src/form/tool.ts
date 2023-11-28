@@ -1,6 +1,5 @@
 /* eslint-disable no-await-in-loop */
-import { AsyncOptionsCache } from '@/util';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, AsyncOptionsCache } from '@/util';
 import { scrollToElement } from './util';
 
 export const expansionInstanceMethod = ({
