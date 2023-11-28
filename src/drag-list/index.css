@@ -4,7 +4,7 @@
 }
 
 .core-form-drag-list .core-form-drag-list-item {
-  background: var(--color-bg-1);
+  background: var(--color-fill-0);
   color: var(--color-neutral-10);
   padding: 0 8px;
   width: 100%;
