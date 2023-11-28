@@ -51,7 +51,12 @@ export default () => {
     <AppLayout
       // layoutRef={layoutRef}
       waterMarkProps={{
-        content: '测试用户-123',
+        content: 'arco-water-mark',
+        zIndex: 10,
+        fontStyle: {
+          color: dark ? 'rgba(255, 255, 255, .15)' : 'rgba(0, 0, 0, .15)',
+          fontSize: 12,
+        },
       }}
       compact={compact}
       collapsed={collapsed}

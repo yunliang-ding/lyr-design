@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
 import LayoutProps from './type';
-import { Menu, PageHeader, Space } from '@arco-design/web-react';
+import { Menu, PageHeader, Space, Watermark } from '@arco-design/web-react';
 import { useEffect, useRef, useState } from 'react';
-import WaterMark from './watermark';
 import Breadcrumb from './breadcrumb';
 import { getBreadcrumbByMenus } from './util';
 import { IconLeft, IconRight } from '@arco-design/web-react/icon';
@@ -142,7 +141,7 @@ export default ({
   );
   const IconBtn = collapsed ? IconRight : IconLeft;
   return (
-    <>
+    <Watermark {...waterMarkProps}>
       <div className={classNames.join(' ')}>
         <IconBtn
           style={{
@@ -274,8 +273,8 @@ export default ({
           </div>
           <div className="app-layout-right-body-footer">{footerRender()}</div>
         </div>
-        {waterMarkProps && <WaterMark {...waterMarkProps} />}
+        {/* {waterMarkProps && <WaterMark {...waterMarkProps} />} */}
       </div>
-    </>
+    </Watermark>
   );
 };

@@ -49,10 +49,10 @@
   "peerDependencies": {
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0",
-    "@arco-design/web-react": "2.55.2"
+    "@arco-design/web-react": ">=2.56.0"
   },
   "devDependencies": {
-    "@arco-design/web-react": "2.55.2",
+    "@arco-design/web-react": "2.56.0",
     "antd": "4.24.10",
     "moment": "2.29.4",
     "react": "17.0.2",
