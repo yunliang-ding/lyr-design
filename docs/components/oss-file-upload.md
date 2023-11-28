@@ -28,6 +28,7 @@ export default () => {
     <OssFileUpload
       value={value}
       maxCount={5}
+      accept=".doc,.docx,.pdf,.xlsx,.xls,.txt,.png,.jpg,.jpeg,.css,.js"
       onChange={(v) => {
         setValue(v);
         console.log(v);
