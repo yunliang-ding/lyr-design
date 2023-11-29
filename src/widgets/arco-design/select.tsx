@@ -5,6 +5,7 @@ const WidgetSelect = ({
   readOnlyEmptyValueNode = '-',
   fieldNames = { value: 'value', label: 'label' },
   readOnly,
+  options = [],
   ...props
 }: SelectProps & ExtendInputProps) => {
   if (readOnly) {
@@ -12,7 +13,7 @@ const WidgetSelect = ({
     const values = Array.isArray(props.value) ? props.value : [props.value];
     // 解析options得到labels
     const labels: any =
-      props?.options
+      options
         ?.filter((i: any) => {
           return values.includes(i[fieldNames.value]);
         })
@@ -23,7 +24,16 @@ const WidgetSelect = ({
       </span>
     );
   }
-  return <Select {...props} />;
+  return (
+    <Select
+      {...props}
+      options={options.map((item: any) => ({
+        label: item[fieldNames.label],
+        value: item[fieldNames.value],
+        ...item,
+      }))}
+    />
+  );
 };
 
 WidgetSelect.displayName = 'Select';

@@ -42,9 +42,13 @@ const schema: SchemaProps<{}>[] = [
     label: '下拉选',
     props: {
       showSearch: true,
+      fieldNames: {
+        label: 'title',
+        value: 'id',
+      },
       options: [
-        { label: '选项1', value: 1 },
-        { label: '选项2', value: 2 },
+        { title: '选项1', id: 1 },
+        { title: '选项2', id: 2 },
       ],
     },
   },
