@@ -44,7 +44,8 @@
     "react-markdown": "8.0.7",
     "remark-gfm": "3.0.1",
     "react-core-form-tools": "^1.0.0",
-    "react-core-form-store": "^0.0.2"
+    "react-core-form-store": "^0.0.2",
+    "@arco-design/color": "0.4.0"
   },
   "peerDependencies": {
     "react": ">=16.9.0",
