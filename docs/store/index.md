@@ -15,7 +15,7 @@ nav:
     <img alt="npm" src="http://center.yunliang.cloud/npm/version?package=react-core-form-store">
   </a>
   <a href="https://npmmirror.com/package/react-core-form-store">
-    <img alt="NPM downloads" src="http://center.yunliang.cloud/npm/downloads?package=react-core-form-store">
+    <img alt="npm" src="http://center.yunliang.cloud/npm/downloads?package=react-core-form-store">
   </a>
 </p>
 
@@ -38,25 +38,39 @@ npm install react-core-form-store --save
 ## 基本用法
 
 ```tsx
-import React from 'react';
-import store from './store';
-import { useStore } from 'react-core-form-store';
+import React, { useState } from 'react';
+import Demo1 from './demo1';
+import Demo2 from './demo2';
+import Demo3 from './demo3';
 
 export default () => {
-  const { count, addCount } = useStore(store);
-  console.log('render...');
+  const [show, setShow] = useState(true);
+  const [remove, setRemove] = useState(false);
   return (
     <div>
-      {count}
-      <br />
       <button
-        onClick={async () => {
-          store.count += 1;
-          // await addCount()
+        onClick={() => {
+          setRemove(!remove);
         }}
       >
-        添加
+        模拟卸载
       </button>
+      &nbsp;&nbsp;
+      <button
+        onClick={() => {
+          setShow(!show);
+        }}
+      >
+        模拟切换
+      </button>
+      {!remove && (
+        <>
+          <br />
+          <br />
+          {show ? <Demo1 /> : <Demo2 />}
+          <Demo3 />
+        </>
+      )}
     </div>
   );
 };

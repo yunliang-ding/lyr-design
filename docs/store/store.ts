@@ -1,12 +1,9 @@
 import { CreateStore } from 'react-core-form-store';
 
-export default CreateStore<{
+export const store = CreateStore<{
   count: number;
-  addCount(): void;
+  age: number;
 }>({
   count: 1,
-  async addCount() {
-    // await new Promise(res => setTimeout(res, 1000))
-    this.count += 1;
-  },
+  age: 1,
 });
