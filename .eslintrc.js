@@ -1,6 +1,4 @@
-const { getESLintConfig } = require('@iceworks/spec');
-
-module.exports = getESLintConfig('react-ts', {
+module.exports = {
   rules: {
     '@iceworks/best-practices/no-http-url': 'off',
     '@typescript-eslint/no-require-imports': 'off',
@@ -12,12 +10,5 @@ module.exports = getESLintConfig('react-ts', {
     'no-param-reassign': 'off',
     'no-unsafe-finally': 'off',
     'no-console': 'off',
-    'react/self-closing-comp': [
-      'error',
-      {
-        component: false,
-        html: true,
-      },
-    ],
   },
-});
+};
