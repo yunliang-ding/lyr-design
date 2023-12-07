@@ -42,7 +42,13 @@ npm install react-core-form --save
 
 ```less
 @import '@arco-design/web-react/dist/css/arco.css';
-@import 'react-core-form/dist/index.css';
+```
+
+## 采用 umd 引入
+
+```js
+<script src='http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.js'></script>
+<script src='http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.css'></script>
 ```
 
 ## 优势

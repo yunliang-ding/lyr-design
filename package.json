@@ -40,10 +40,7 @@
     "react-core-form-store": "^0.0.2",
     "react-resizable": "3.0.4",
     "react-sortable-hoc": "2.0.0",
-    "react-draggable": "4.4.5",
-    "react-syntax-highlighter": "15.5.0",
-    "react-markdown": "8.0.7",
-    "remark-gfm": "3.0.1"
+    "react-draggable": "4.4.5"
   },
   "peerDependencies": {
     "react": ">=16.9.0",
