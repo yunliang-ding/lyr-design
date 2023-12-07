@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { uuid } from 'react-core-form-tools';
+import { uuid } from '@/util';
 import './index.less';
 
 const $: any = document.querySelector.bind(document);

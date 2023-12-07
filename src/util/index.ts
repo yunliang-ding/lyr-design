@@ -1,10 +1,29 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import cloneDeepWith from 'lodash.clonedeepwith';
-import { isEmpty as _isEmpty, uuid as _uuid } from 'react-core-form-tools';
+/**
+ * 简易uuid
+ */
+export const uuid = (size: number) => {
+  return Math.random().toString().substr(2, size);
+};
 
-export const isEmpty = _isEmpty;
-export const uuid = _uuid;
+/** 判断空 */
+export const isEmpty = (param: any) => {
+  if (param === null || param === undefined) {
+    return true;
+  }
+  if (Array.isArray(param)) {
+    return param.length === 0;
+  }
+  if (typeof param === 'string') {
+    return param.trim() === '';
+  }
+  if (typeof param === 'object') {
+    return Object.keys(param).length === 0;
+  }
+  return false;
+};
 /**
  * 简易发布订阅
  */

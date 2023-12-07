@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-param-reassign */
 import { getGlobalConfig } from '@/config';
-import { uuid } from 'react-core-form-tools';
+import { uuid } from '@/util';
 
 // 表单项是否弹出层
 export const isPopupContainer = (type: string) => {

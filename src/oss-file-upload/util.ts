@@ -1,4 +1,11 @@
-import { decode } from 'react-core-form-tools';
+export const decode = (str: string): string => {
+  try {
+    return decodeURIComponent(atob(str));
+  } catch (error) {
+    console.log(error);
+    return '';
+  }
+};
 
 export default (
   options = {
