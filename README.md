@@ -16,6 +16,13 @@ npm install react-core-form --save
 @import 'react-core-form/dist/index.css';
 ```
 
+## 采用 umd 引入
+
+```js
+<script src='http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.js'></script>
+<script src='http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.css'></script>
+```
+
 ## 基于 arco.design 的扩展点
 
 - 扩展 `Button`，自带 loading，二次确认，支持弹框和抽屉的模型配置
