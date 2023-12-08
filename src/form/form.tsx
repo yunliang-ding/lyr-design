@@ -8,7 +8,7 @@ import { CoreFormProps } from './type.form';
 import CoreForm from './index';
 import { tranfromSchema } from './util';
 import { expansionInstanceMethod } from './tool';
-import { Grid } from '..';
+import Grid from '../grid';
 import './index.less';
 
 // column布局映射关系

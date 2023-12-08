@@ -44,11 +44,29 @@ npm install react-core-form --save
 @import '@arco-design/web-react/dist/css/arco.css';
 ```
 
-## 采用 umd 引入
+## 采用 cdn 引入
+
+```html
+<link
+  rel="stylesheet"
+  href="http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.css"
+/>
+<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.js"></script>
+```
+
+## 前提需要引入 cdn 前置依赖 到 window
 
 ```js
-<script src='http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.js'></script>
-<script src='http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.css'></script>
+// window.React
+<script src="https://g.alicdn.com/code/lib/react/17.0.2/umd/react.production.min.js"></script>
+// window.ReactDOM
+<script src="https://g.alicdn.com/code/lib/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+// window.arco
+<script src="https://unpkg.com/@arco-design/web-react@latest/dist/arco.min.js"></script>
+// window.arcoicon
+<script src="https://unpkg.com/@arco-design/web-react@latest/dist/arco-icon.min.js"></script>
+// window.jsxRuntime
+<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/jsx-runtime.polyfill.js"></script>
 ```
 
 ## 优势

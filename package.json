@@ -6,6 +6,7 @@
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
+    "umd:build": "cross-env type=umd father-build",
     "build": "father-build"
   },
   "main": "dist/index.js",
@@ -70,6 +71,7 @@
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
     "yorkie": "^2.0.0",
+    "cross-env": "7.0.3",
     "@types/react": "17.0.2"
   },
   "resolutions": {
