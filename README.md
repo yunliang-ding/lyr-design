@@ -31,12 +31,16 @@ npm install react-core-form --save
 ```js
 // window.React
 <script src="https://g.alicdn.com/code/lib/react/17.0.2/umd/react.production.min.js"></script>
+
 // window.ReactDOM
 <script src="https://g.alicdn.com/code/lib/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+
 // window.arco
 <script src="https://unpkg.com/@arco-design/web-react@latest/dist/arco.min.js"></script>
+
 // window.arcoicon
 <script src="https://unpkg.com/@arco-design/web-react@latest/dist/arco-icon.min.js"></script>
+
 // window.jsxRuntime
 <script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/jsx-runtime.polyfill.js"></script>
 ```
