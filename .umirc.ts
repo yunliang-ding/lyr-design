@@ -4,22 +4,17 @@ export default defineConfig({
   mode: 'site',
   title: 'react-core-form 2.x',
   outputPath: 'docs-dist',
-  locales: [['zh-CN', '中文']],
   favicon:
     'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
   logo: 'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
   metas: [
     {
-      name: 'revised',
-      content: '0.0.22',
-    },
-    {
       name: 'keywords',
-      content: 'form-designer, react-core-form',
+      content: 'arco-design 二次封装',
     },
     {
       name: 'description',
-      content: '低代码相关组件',
+      content: '配置化表单',
     },
   ],
   theme: {

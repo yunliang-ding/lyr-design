@@ -1,4 +1,4 @@
-import { Tag } from 'antd';
+import { Tag } from '@arco-design/web-react';
 import React from 'react';
 import { SchemaProps } from 'react-core-form';
 import { isEmpty, uuid } from 'react-core-form-tools';

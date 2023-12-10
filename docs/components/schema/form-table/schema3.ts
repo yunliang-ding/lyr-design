@@ -1,4 +1,4 @@
-import { message } from 'antd';
+import { Message } from '@arco-design/web-react';
 import axios from '../../../axios';
 import { TableProps } from 'react-core-form';
 import schema from './form.schema';
@@ -16,7 +16,7 @@ const user1Form = ({ onSearch, initialValues = { id: undefined } }) => {
     },
     async onSubmit() {
       await delay(400);
-      message.success('保存成功');
+      Message.success('保存成功');
       onSearch?.();
     },
   };
@@ -29,7 +29,7 @@ const user2Form = ({ onSearch, initialValues = { id: undefined } }) => {
     initialValues,
     async onSubmit() {
       await delay(400);
-      message.success('保存成功');
+      Message.success('保存成功');
       onSearch?.();
     },
   };
@@ -154,7 +154,7 @@ const tableSchema: TableProps = {
           },
           onClick: async ({ onSearch }) => {
             await new Promise((res) => setTimeout(res, 1000));
-            message.success('已删除');
+            Message.success('已删除');
             onSearch(); // 刷新
           },
         },
