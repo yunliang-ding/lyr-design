@@ -6,7 +6,7 @@ toc: menu
 
 <Alert>
 
-- 基于 antd Upload 二次封装 内置 Oss 上传逻辑
+- 基于 arco-design Upload 二次封装 内置 Oss 上传逻辑
 
 </Alert>
 
