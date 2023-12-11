@@ -36,8 +36,8 @@ nav:
 > 组件库本身依赖 arco.design，使用需要同时安装 arco.design
 
 ```shell
-npm install @arco-design/web-react --save
-npm install react-core-form --save
+yarn add @arco-design/web-react
+yarn add react-core-form
 ```
 
 ```less
@@ -49,24 +49,24 @@ npm install react-core-form --save
 ```html
 <link
   rel="stylesheet"
-  href="http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.css"
+  href="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css"
 />
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.min.js"></script>
+<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.js"></script>
 ```
 
 ## 前提需要引入 cdn 前置依赖 到 window
 
-```js
-// window.React
-<script src="https://g.alicdn.com/code/lib/react/17.0.2/umd/react.production.min.js"></script>
-// window.ReactDOM
-<script src="https://g.alicdn.com/code/lib/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
-// window.arco
-<script src="https://unpkg.com/@arco-design/web-react@latest/dist/arco.min.js"></script>
-// window.arcoicon
-<script src="https://unpkg.com/@arco-design/web-react@latest/dist/arco-icon.min.js"></script>
-// window.jsxRuntime
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/jsx-runtime.polyfill.js"></script>
+```html
+<!-- window.React -->
+<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js"></script>
+<!-- window.ReactDOM -->
+<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js"></script>
+<!-- window.arco -->
+<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js"></script>
+<!-- window.arcoicon -->
+<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js"></script>
+<!-- window.jsxRuntime -->
+<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
 ```
 
 ## 优势
