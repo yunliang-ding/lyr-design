@@ -2,7 +2,7 @@
   "name": "react-core-form",
   "description": "基于数据模型快速搭建表单",
   "author": "yunliang-ding",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
