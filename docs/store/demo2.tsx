@@ -1,20 +1,20 @@
 import React from 'react';
-import { useStore } from 'react-core-form-store';
+import { Button } from '@arco-design/web-react';
 import { store } from './store';
 
 export default () => {
-  const { count } = useStore(store);
+  const { count } = store.use();
   console.log('demo2 render...');
   return (
     <div>
       {count}
-      <button
+      <Button
         onClick={async () => {
           store.count += 1;
         }}
       >
         添加count
-      </button>
+      </Button>
     </div>
   );
 };

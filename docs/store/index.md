@@ -39,6 +39,7 @@ npm install react-core-form-store --save
 
 ```tsx
 import React, { useState } from 'react';
+import { Button } from '@arco-design/web-react';
 import Demo1 from './demo1';
 import Demo2 from './demo2';
 import Demo3 from './demo3';
@@ -48,21 +49,21 @@ export default () => {
   const [remove, setRemove] = useState(false);
   return (
     <div>
-      <button
+      <Button
         onClick={() => {
           setRemove(!remove);
         }}
       >
         模拟卸载
-      </button>
+      </Button>
       &nbsp;&nbsp;
-      <button
+      <Button
         onClick={() => {
           setShow(!show);
         }}
       >
         模拟切换
-      </button>
+      </Button>
       {!remove && (
         <>
           <br />

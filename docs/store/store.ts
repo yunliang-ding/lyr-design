@@ -1,6 +1,6 @@
-import { CreateStore } from 'react-core-form-store';
+import { create } from 'react-core-form-store';
 
-export const store = CreateStore<{
+export const store = create<{
   count: number;
   age: number;
 }>({

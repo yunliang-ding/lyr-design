@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { ModalFormProps } from '../index';
 import { uuid } from '@/util';
 import store from './store';
-import { useStore } from 'react-core-form-store';
 
 const $: any = document.querySelector.bind(document);
 
@@ -16,7 +15,7 @@ const close = (containId: string) => {
 };
 
 const ModalFormWapper = ({ containId, tag, modalProps, ...props }) => {
-  const { visible } = useStore(store);
+  const { visible } = store.use();
   useEffect(() => {
     store.visible = true;
   }, []);

@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom';
 import DrawerForm from '@/form-submit/drawer-form';
 import { useEffect } from 'react';
 import { DrawerFormProps } from '../index';
-import { useStore } from 'react-core-form-store';
 import { uuid } from '@/util';
 import store from './store';
 
@@ -21,7 +20,7 @@ export const DrawerFormWapper = ({
   drawerProps = {},
   ...props
 }) => {
-  const { visible } = useStore(store);
+  const { visible } = store.use();
   useEffect(() => {
     store.visible = true;
   }, []);

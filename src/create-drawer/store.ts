@@ -1,5 +1,5 @@
-import { CreateStore } from 'react-core-form-store';
+import { create } from 'react-core-form-store';
 
-export default CreateStore({
+export default create({
   visible: false,
 });

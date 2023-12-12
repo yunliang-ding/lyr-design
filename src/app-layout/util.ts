@@ -18,7 +18,7 @@ export const getBreadcrumbByMenus = (
     }
   });
   return {
-    title: breadcrumb[breadcrumb.length - 1].breadcrumbName,
+    title: breadcrumb[breadcrumb.length - 1]?.breadcrumbName,
     breadcrumb,
   };
 };

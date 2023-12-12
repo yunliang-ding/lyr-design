@@ -38,7 +38,7 @@
     "lodash.mergewith": "4.6.2",
     "lodash.debounce": "4.0.8",
     "lodash.clonedeepwith": "4.5.0",
-    "react-core-form-store": "^0.0.2",
+    "react-core-form-store": "^0.0.4",
     "react-resizable": "3.0.4",
     "react-sortable-hoc": "2.0.0",
     "react-draggable": "4.4.5"
