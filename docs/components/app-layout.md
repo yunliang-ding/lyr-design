@@ -64,15 +64,15 @@ export default () => {
       dark={dark}
       pathname={pathname}
       pageHeaderProps={pageHeaderProps}
-      logo={
-        <img
-          src="https://v2.ice.work/img/logo.png"
-          style={{
-            width: 32,
-            height: 32,
-          }}
-        />
-      }
+      // logo={
+      //   <img
+      //     src="https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico"
+      //     style={{
+      //       width: 32,
+      //       height: 32,
+      //     }}
+      //   />
+      // }
       title="中后台通用模版"
       menu={{
         items: menus,
