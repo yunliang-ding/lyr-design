@@ -72,7 +72,7 @@ export default ({
     _className.push(className);
   }
   /** 控制底部按钮渲染 */
-  let footerNode: any = false;
+  let footerNode: any = null;
   if (typeof footerRender === 'function') {
     footerNode = footerRender(form);
   } else if (footer) {
