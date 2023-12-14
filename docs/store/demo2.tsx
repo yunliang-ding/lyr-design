@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@arco-design/web-react';
-import { store } from './store';
+import store from './store';
 
 export default () => {
   const { count } = store.use();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { store } from './store';
+import store from './store';
 
 export default () => {
   const { age, count } = store.use();

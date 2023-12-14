@@ -1,6 +1,6 @@
 import { Button } from '@arco-design/web-react';
 import React from 'react';
-import { store } from './store';
+import store from './store';
 
 export default () => {
   const { age } = store.use();

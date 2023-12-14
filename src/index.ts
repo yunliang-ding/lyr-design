@@ -22,6 +22,10 @@ export type { SchemaProps, FieldProps } from './form/type.item';
 export type { TableProps } from './table/types';
 export type { CoreFormProps } from './form/type.form';
 export type { CoreFormInstance } from './form/type.instance';
-export type { DrawerFormProps, ModalFormProps } from './form-submit/types';
+export type {
+  DrawerFormProps,
+  ModalFormProps,
+  CardFormProps,
+} from './form-submit/types';
 /** 全局配置 */
 export { default as setGlobalConfig } from './config';

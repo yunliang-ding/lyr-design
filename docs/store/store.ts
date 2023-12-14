@@ -1,6 +1,6 @@
 import { create } from 'react-core-form-store';
 
-export const store = create<{
+export default create<{
   count: number;
   age: number;
 }>({
