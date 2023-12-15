@@ -140,7 +140,9 @@ export default ProButton;
 export const WapperSpinOnClick =
   (setLoading, onClick, timer = 0) =>
   async () => {
-    setLoading(true);
+    if (timer) {
+      setLoading(true);
+    }
     try {
       await onClick?.();
     } catch (error) {

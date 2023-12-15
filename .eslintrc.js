@@ -1,6 +1,5 @@
 module.exports = {
   rules: {
-    '@iceworks/best-practices/no-http-url': 'off',
     '@typescript-eslint/no-require-imports': 'off',
     'react-hooks/exhaustive-deps': 'off',
     '@typescript-eslint/indent': 'off',

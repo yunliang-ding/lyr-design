@@ -14,7 +14,6 @@
       "@@/*": ["src/.umi/*"]
     },
     "allowSyntheticDefaultImports": true
-    // "suppressImplicitAnyIndexErrors": true
   },
   "exclude": [
     "node_modules",

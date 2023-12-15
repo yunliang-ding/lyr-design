@@ -16,7 +16,6 @@ export { default as AnchorCard } from './anchor-card';
 export { default as OssFileUpload } from './oss-file-upload';
 export { default as Suspend } from './suspend';
 export { default as AppLayout } from './app-layout';
-export { default as createOssInstance } from './oss-file-upload/util';
 /** 类型 */
 export type { SchemaProps, FieldProps } from './form/type.item';
 export type { TableProps } from './table/types';
