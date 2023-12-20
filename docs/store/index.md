@@ -19,13 +19,11 @@ nav:
   </a>
 </p>
 
-<Alert>
+<Alert type='success'>
 
 - 解决组件之间多层级属性传递问题、 支持 友好的 Ts 类型定义
 
 - 使用 Proxy 拦截了属性的修改，基于 use-sync-external-store 做了简单的封装
-
-- 由于底层基于 Proxy 的特性，在一定程度上可以不被 hooks 规则约束（即支持在任务场景中修改状态）
 
 </Alert>
 
@@ -33,6 +31,44 @@ nav:
 
 ```shell
 npm install react-core-form-store --save
+```
+
+## 创建 store
+
+```js | plus
+import { create } from 'react-core-form-store';
+
+export default create<{
+  count: number;
+  addCount():void;
+}>({
+  count: 1,
+  addCount() {
+    this.count++;
+  },
+});
+```
+
+## 使用 store
+
+```js | plus
+import store from './store';
+
+export default () => {
+  const { count, addCount } = store.use();
+  return (
+    <div>
+      {count}
+      <button
+        onClick={() => {
+          addCount(); // 或者直接 store.count += 1;
+        }}
+      >
+        添加
+      </button>
+    </div>
+  );
+};
 ```
 
 ## 基本用法

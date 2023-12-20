@@ -6,15 +6,12 @@ export default () => {
   const { age } = store.use();
   console.log('demo1 render...');
   return (
-    <div>
-      {age}
-      <Button
-        onClick={async () => {
-          store.age += 1;
-        }}
-      >
-        添加age
-      </Button>
-    </div>
+    <Button
+      onClick={async () => {
+        store.age += 1;
+      }}
+    >
+      添加 age is {age}
+    </Button>
   );
 };

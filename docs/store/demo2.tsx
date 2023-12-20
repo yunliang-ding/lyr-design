@@ -6,15 +6,12 @@ export default () => {
   const { count } = store.use();
   console.log('demo2 render...');
   return (
-    <div>
-      {count}
-      <Button
-        onClick={async () => {
-          store.count += 1;
-        }}
-      >
-        添加count
-      </Button>
-    </div>
+    <Button
+      onClick={async () => {
+        store.count += 1;
+      }}
+    >
+      添加 count is {count}
+    </Button>
   );
 };
