@@ -142,7 +142,11 @@
 }
 
 .core-form-table .arco-table-border .arco-table-container::before {
-  height: 0px;
+  height: .5px;
+}
+
+.core-form-table .arco-table .arco-table-tr:last-child .arco-table-td {
+  border-bottom: 0;
 }
 
 .core-form-table .arco-table-pagination .arco-pagination {

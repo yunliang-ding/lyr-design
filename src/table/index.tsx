@@ -52,7 +52,7 @@ export const defaultPaginationConfig: PaginationConfig = {
   sizeOptions: [10, 20, 50, 100],
   total: 0,
   sizeCanChange: true,
-  hideOnSinglePage: true,
+  // hideOnSinglePage: true,
   showJumper: true,
   showTotal: (total: number) => `共 ${total} 条`,
   activePageItemStyle: {
