@@ -49,11 +49,15 @@ CoreTable.useTable = () => {
 export const defaultPaginationConfig: PaginationConfig = {
   pageNum: 1,
   pageSize: 10,
-  pageSizeOptions: [10, 20, 50, 100],
+  sizeOptions: [10, 20, 50, 100],
   total: 0,
-  showSizeChanger: true,
-  showQuickJumper: true,
+  sizeCanChange: true,
+  hideOnSinglePage: true,
+  showJumper: true,
   showTotal: (total: number) => `共 ${total} 条`,
+  activePageItemStyle: {
+    backgroundColor: 'var(--color-menu-light-bg)',
+  },
 };
 
 export default CoreTable;

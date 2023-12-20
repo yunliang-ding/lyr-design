@@ -26,7 +26,8 @@
 
 .core-form-table .arco-table-pagination {
   margin: 0 !important;
-  height: 50px;
+  height: fit-content;
+  max-height: 42px;
   display: flex;
   align-items: flex-end;
   padding: 0;
@@ -130,4 +131,37 @@
 
 .core-form-table-empty .arco-table-expanded-row-fixed {
   margin: 0 !important;
+}
+
+.core-form-table .arco-table-pagination {
+  background-color: var(--color-neutral-2);
+  align-items: center;
+  border: 1px solid var(--color-neutral-3);
+  border-top: 0;
+  padding: 0 10px;
+}
+
+.core-form-table .arco-table-border .arco-table-container::before {
+  height: 0px;
+}
+
+.core-form-table .arco-table-pagination .arco-pagination {
+  margin-top: 0;
+  padding: 10px 0;
+}
+
+.core-form-table .arco-pagination-total-text {
+  font-size: 12px;
+}
+
+.core-form-table .arco-pagination .arco-pagination-jumper-input {
+  background-color: var(--color-menu-light-bg);
+}
+
+.core-form-table .arco-pagination  .arco-select .arco-select-view{
+  background-color: var(--color-menu-light-bg);
+}
+
+.core-form-table .arco-pagination-jumper>span {
+  font-size: 12px !important;
 }

@@ -467,7 +467,3 @@ export default () => {
 ## Column 扩展属性
 
 <API src="../../src/table/type.column.tsx" hideTitle></API>
-
-## PaginationConfig
-
-<API src="../../src/table/type.pagination.tsx" hideTitle></API>
