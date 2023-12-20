@@ -5,8 +5,8 @@ export default defineConfig({
   title: 'react-core-form 2.x',
   outputPath: 'docs-dist',
   favicon:
-    'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
-  logo: 'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
+  logo: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
   metas: [
     {
       name: 'keywords',
@@ -66,12 +66,12 @@ export default defineConfig({
   hash: false,
   links: [
     {
-      href: 'https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css',
+      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
       rel: 'stylesheet',
     },
   ],
   scripts: [
-    'https://g.alicdn.com/code/lib/ali-oss/6.13.0/aliyun-oss-sdk.min.js',
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js',
   ],
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置

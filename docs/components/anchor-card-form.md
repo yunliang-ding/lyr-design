@@ -19,10 +19,11 @@ export default () => {
   };
   return (
     <AnchorCardForm
-      fixHeight={193} // 偏移量
+      fixHeight={256} // 偏移量
       height={460} // 容器高度
       defaultActivityKey="baseInfo"
       formProps={{
+        title: '我是电梯表单',
         schema: [
           {
             type: 'FieldSet',
