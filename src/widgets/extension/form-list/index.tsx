@@ -17,11 +17,9 @@ export default ({
   label = '',
   actionRef = useRef({}),
   grid = {
-    gridStyle: {
-      rowGap: 0,
-      columnGap: 20,
-    },
-    column: 2,
+    rowGap: 0,
+    colGap: 20,
+    column: 3,
   },
 }: any) => {
   // 是否可以操作
@@ -73,24 +71,33 @@ export default ({
                       </Button>
                     )}
                   </div>
-                  <Grid {...grid}>
+                  <Grid
+                    {...grid}
+                    style={{
+                      gridTemplateColumns: `repeat(${
+                        grid.column || 3
+                      }, minmax(0px, 1fr))`,
+                    }}
+                  >
                     {schema?.map((field: any) => {
                       const _field = { ...field }; // 浅拷贝一下
                       _field.index = index; // 保存下标
                       _field.name = [name, index, _field.name].join('.');
                       return (
-                        <Item
-                          readOnly={readOnly}
-                          disabled={disabled || _field?.props?.disabled}
-                          form={form}
-                          widgets={widgets}
-                          event={event}
-                          initialValues={form.initialValues}
-                          field={_field}
-                          formListName={name} // 子表单的名字
-                          fieldKey={_field.name}
-                          key={_field.name}
-                        />
+                        <Grid.GridItem>
+                          <Item
+                            readOnly={readOnly}
+                            disabled={disabled || _field?.props?.disabled}
+                            form={form}
+                            widgets={widgets}
+                            event={event}
+                            initialValues={form.initialValues}
+                            field={_field}
+                            formListName={name} // 子表单的名字
+                            fieldKey={_field.name}
+                            key={_field.name}
+                          />
+                        </Grid.GridItem>
                       );
                     })}
                   </Grid>

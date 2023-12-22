@@ -53,10 +53,8 @@ const schema: SchemaProps[] = [
       // disabled: true // 禁用
       leastOne: true, // 至少一条
       grid: {
-        gridStyle: {
-          rowGap: 0,
-          columnGap: 20,
-        },
+        rowGap: 0,
+        colGap: 20,
         column: 3,
       },
       schema: [
