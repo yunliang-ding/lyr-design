@@ -21,7 +21,7 @@ export default ({
   clearInitialValuesOnReset = false,
   gridStyle = {
     rowGap: 20,
-    columnGap: 20,
+    colGap: 20,
   },
   className = '',
   searchBtnRender,
@@ -170,8 +170,11 @@ export default ({
       schema={[
         ...cloneSchema,
         {
-          key: 'btn-render',
+          key: 'grid-search-btn',
           className: 'grid-search-btn',
+          style: {
+            justifyContent: 'flex-end',
+          },
           type: () => {
             return (
               <div className="tools-btn-box">

@@ -89,21 +89,21 @@ yarn add react-core-form
 /**
  * title: 所有组件 扩展了 readOnly, disabled 属性
  */
-import * as React from 'react';
-import { Button, Grid } from 'react-core-form';
+import React from 'react';
+import { Button } from 'react-core-form';
 
 export default () => {
   return (
-    <Grid>
+    <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
       {[
         'Input',
-        'AutoComplete',
         'InputNumber',
-        'Rate',
-        'Slider',
         'TextArea',
         'Password',
+        'AutoComplete',
         'Select',
+        'Rate',
+        'Slider',
         'RadioGroup',
         'CheckGroup',
         'DatePicker',
@@ -114,14 +114,6 @@ export default () => {
         'Cascader',
         'Upload',
         'Switch',
-      ].map((item) => {
-        return (
-          <Button key={item} type="dashed">
-            {item}
-          </Button>
-        );
-      })}
-      {[
         'Render 自定义渲染',
         'AsyncRender 自定义异步渲染',
         'AsyncSelect 支持异步',
@@ -131,6 +123,8 @@ export default () => {
         'DebounceSelect 设置防抖',
         'AsyncCascader 支持异步',
         'FormList 子表单',
+        'TableList 编辑表格',
+        'EditableTable 可编辑表格',
         'BlockQuote 平级区块',
         'FieldSet 父子级区块',
         'RangeInput 数字范围输入框',
@@ -138,7 +132,7 @@ export default () => {
       ].map((item) => {
         return <Button key={item}>{item}</Button>;
       })}
-    </Grid>
+    </div>
   );
 };
 ```

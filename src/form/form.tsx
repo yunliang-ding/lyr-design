@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
-import { useRef, useMemo, useCallback, useState } from 'react';
-import { Empty, Form, Spin } from '@arco-design/web-react';
+import { useRef, useMemo, useState } from 'react';
+import { Grid, Empty, Form, Spin } from '@arco-design/web-react';
 import { cloneDeep, EventEmit } from '@/util';
 import Item from './item';
 import FieldSet from '@/widgets/extension/fields-set';
@@ -8,7 +8,6 @@ import { CoreFormProps } from './type.form';
 import CoreForm from './index';
 import { tranfromSchema } from './util';
 import { expansionInstanceMethod } from './tool';
-import Grid from '../grid';
 import './index.less';
 
 // column布局映射关系
@@ -23,7 +22,7 @@ export default ({
   form = CoreForm.useForm()[0],
   column = 1,
   gridStyle = {
-    columnGap: 20,
+    colGap: 20,
     rowGap: 0,
   },
   className = '',
@@ -118,48 +117,36 @@ export default ({
       tranfromSchema(childrenFields, name, field.props.column);
     }
     return childrenFields ? (
-      <Grid
-        gridStyle={field.props.gridStyle || gridStyle}
-        column={field.props.column || 1}
-      >
-        <RenderSchema itemSchema={childrenFields || []} />
+      <Grid {...gridStyle} cols={field.props.column || 1}>
+        {RenderSchema(childrenFields)}
       </Grid>
     ) : (
       <Empty />
     );
   };
-  /** render field */
-  const RenderSchema = useCallback(
-    ({ itemSchema = [] }): any => {
-      return itemSchema.map((field: any, index: number) => {
-        if (field.type === 'FieldSet') {
-          // 基于gridColumnStart设置列数
-          let style = field.style || {};
-          if (field.span) {
-            style = {
-              ...style,
-              gridColumnStart: `span ${field.span}`,
-            };
-          }
-          if (!field.name) {
-            // eslint-disable-next-line no-console
-            console.warn('FieldSet 缺少 name 属性');
-          }
-          // 支持函数默认参数为form
-          const childrenFields =
-            typeof field.props?.children === 'function'
-              ? field.props?.children(form)
-              : field.props?.children;
-          // 格式处理下
-          if (typeof field.props?.children === 'function') {
-            tranfromSchema(childrenFields, name, field.props.column);
-          }
-          const FormItem = (
+  /** Render schema */
+  const RenderSchema = (itemSchema = []) => {
+    return itemSchema.map((field: any, index: number) => {
+      if (field.type === 'FieldSet') {
+        if (!field.name) {
+          console.warn('FieldSet 缺少 name 属性');
+        }
+        // 支持函数默认参数为form
+        const childrenFields =
+          typeof field.props?.children === 'function'
+            ? field.props?.children(form)
+            : field.props?.children;
+        // 格式处理下
+        if (typeof field.props?.children === 'function') {
+          tranfromSchema(childrenFields, name, field.props.column);
+        }
+        return (
+          <Grid.GridItem span={field.span || 1}>
             <FieldSet
               key={field.name}
               fieldName={field.name}
               label={field.label}
-              style={style}
+              style={field.style}
               extra={field.props?.extra}
               subTitle={field.props?.subTitle}
               form={form}
@@ -170,21 +157,19 @@ export default ({
             >
               <RenderFieldSet field={field} />
             </FieldSet>
-          );
-          // 返回节点
-          let vNode = FormItem;
-          // 异步渲染
-          if (typeof field.itemRender === 'function') {
-            vNode = field.itemRender(FormItem, {
-              field,
-              form,
-              disabled,
-              readOnly,
-            });
-          }
-          return vNode;
-        }
-        return (
+          </Grid.GridItem>
+        );
+      }
+      return (
+        <Grid.GridItem
+          span={field.span || 1}
+          className={field.expand && 'grid-item-expand'}
+          style={{
+            // 让查询按钮始终在最右边
+            gridColumnStart:
+              field.key === 'grid-search-btn' ? column : undefined,
+          }}
+        >
           <Item
             event={event}
             disabled={disabled || field?.props?.disabled}
@@ -198,11 +183,10 @@ export default ({
             readOnlyEmptyValueNode={readOnlyEmptyValueNode}
             actionRef={SubFormType.includes(field.type) ? actionRef : undefined}
           />
-        );
-      });
-    },
-    [disabled, readOnly],
-  );
+        </Grid.GridItem>
+      );
+    });
+  };
   // 组装类名
   const _className = [`core-form-${layout}`];
   if (className) {
@@ -211,6 +195,7 @@ export default ({
   if (readOnly) {
     _className.push('core-form-readonly');
   }
+  console.log(gridStyle);
   return (
     <Spin loading={spin}>
       <Form
@@ -224,8 +209,8 @@ export default ({
         onValuesChange={onChange}
         {...rest}
       >
-        <Grid gridStyle={gridStyle} column={column}>
-          <RenderSchema itemSchema={cloneSchema} />
+        <Grid {...gridStyle} cols={column}>
+          {RenderSchema(cloneSchema)}
         </Grid>
       </Form>
     </Spin>

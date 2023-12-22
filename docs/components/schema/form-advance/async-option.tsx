@@ -220,7 +220,7 @@ const schema: SchemaProps[] = [
       async render({ getFieldOption, getFieldValue }) {
         const options = await getFieldOption('sex');
         return (
-          <Tag color="processing">
+          <Tag color="green">
             {options.find((i) => i.value === getFieldValue('sex'))?.label}
           </Tag>
         );

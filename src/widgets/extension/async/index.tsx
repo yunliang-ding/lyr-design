@@ -49,7 +49,7 @@ export default (Component: any) =>
         options={options}
       />
     ) : loading ? (
-      <IconLoading spin />
+      <IconLoading spin style={{ color: 'rgb(var(--primary-6))' }} />
     ) : options?.length > 0 ? (
       <Component {...props} options={options} />
     ) : (

@@ -263,7 +263,7 @@ export default () => {
     <Search
       layout="vertical"
       gridStyle={{
-        columnGap: 20,
+        colGap: 20,
         rowGap: 0,
       }}
       schema={schema}
@@ -322,4 +322,4 @@ export default () => {
 
 ## 基于 Form 扩展 Api
 
-<API src="../../src/search/index.tsx" hideTitle></API>
+<!-- <API src="../../src/search/index.tsx" hideTitle></API> -->

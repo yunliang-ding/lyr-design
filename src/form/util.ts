@@ -152,14 +152,6 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
       field.span = field.span || column;
       field.key = field.props.title;
     }
-    // 基于gridColumnStart设置列数
-    const style = field.style || {};
-    if (field.span) {
-      field.style = {
-        ...style,
-        gridColumnStart: `span ${field.span}`,
-      };
-    }
   });
 };
 

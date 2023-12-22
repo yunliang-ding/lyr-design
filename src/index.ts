@@ -1,5 +1,4 @@
-export const version = '2.1.0';
-export { default as Grid } from './grid';
+export const version = '2.1.3';
 export { default as Button } from './button';
 export { default as Form } from './form';
 export { default as CardForm } from './form-submit/card-form';

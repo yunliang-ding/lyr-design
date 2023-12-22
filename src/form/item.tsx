@@ -92,10 +92,8 @@ export default ({
   const FormItem = (
     <Form.Item
       {...pureFields}
-      field={pureFields.name} // 采用name
-      // 只读模式不需要rules
-      rules={readOnly ? undefined : pureFields.rules}
-      data-expand={cloneField.expand}
+      field={pureFields.name} // 采用 name
+      rules={readOnly ? undefined : pureFields.rules} // 只读模式不需要rules
       key={reload}
     >
       {CreateWidget(

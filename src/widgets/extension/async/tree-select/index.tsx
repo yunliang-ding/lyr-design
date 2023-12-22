@@ -37,7 +37,7 @@ export default (props: any) => {
     };
   }, []);
   return loading ? (
-    <IconLoading spin />
+    <IconLoading spin style={{ color: 'rgb(var(--primary-6))' }} />
   ) : (
     <TreeSelect
       {...props}

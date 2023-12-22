@@ -4,6 +4,12 @@
   margin-bottom: 16px;
   background: var(--color-menu-light-bg);
   width: 100%;
+  .arco-grid {
+    width: 100%;
+  }
+  .arco-grid-item {
+    display: grid;
+  }
   .tools-btn-box {
     display: flex;
     align-items: center;
@@ -30,13 +36,13 @@
     flex: auto;
     max-width: 100%;
   }
-  .arco-form-item[data-expand='true'] {
+  .grid-item-expand {
     display: none;
   }
 }
 .core-form-search-expand {
-  .arco-form-item[data-expand='true'] {
-    display: flex;
+  .grid-item-expand {
+    display: grid;
   }
 }
 /** 水平对齐垂直布局 */
@@ -59,8 +65,8 @@
   }
 }
 .core-form-search-vertical-expand {
-  .arco-form-item[data-expand='true'] {
-    display: block;
+  .grid-item-expand {
+    display: grid;
   }
 }
 .core-form-search-hidden {

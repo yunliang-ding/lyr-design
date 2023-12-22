@@ -56,7 +56,7 @@ const AsyncCascader = (props: any) => {
     }
   });
   return loading ? (
-    <IconLoading spin />
+    <IconLoading spin style={{ color: 'rgb(var(--primary-6))' }} />
   ) : (
     <Cascader {..._props} options={options} loadData={loadData} />
   );
