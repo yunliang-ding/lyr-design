@@ -196,7 +196,6 @@ export default ({
   if (readOnly) {
     _className.push('core-form-readonly');
   }
-  console.log(gridStyle);
   return (
     <Spin loading={spin}>
       <Form
