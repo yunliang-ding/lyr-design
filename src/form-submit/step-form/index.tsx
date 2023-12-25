@@ -72,7 +72,9 @@ export default ({
               return step.schema.map((field) => {
                 return {
                   ...field,
-                  hidden: index !== current ? true : field.hidden, // 其他步骤不展示
+                  gridItemStyle: {
+                    display: index !== current ? 'none' : 'flex',
+                  }, // 其他步骤不展示
                   required: index !== current ? false : field.required, // 其他步骤不校验
                   rules: index !== current ? [] : field.rules, // 其他步骤不校验
                   // type: index !== current ? () => null : field.type, // 其他步骤组件不渲染

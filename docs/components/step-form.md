@@ -56,7 +56,7 @@ export default () => {
         steps={[
           {
             title: '第一步',
-            column: 1,
+            column: 2,
             schema: [
               {
                 type: 'Input',

@@ -80,8 +80,10 @@ export interface SchemaProps<T = FieldProps>
   effectClearField?: boolean;
   /** 副作用执行的钩子 */
   onEffect?: (name: string, form: CoreFormInstance) => void;
-  /** 样式 */
+  /** formItem 样式 */
   style?: React.CSSProperties;
+  /** gridItem 样式 */
+  gridItemStyle?: React.CSSProperties;
   /** 是否必填 */
   required?: ((form: CoreFormInstance) => boolean) | boolean;
   /** 是否只读 */

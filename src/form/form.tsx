@@ -168,6 +168,7 @@ export default ({
             // 让查询按钮始终在最右边
             gridColumnStart:
               field.key === 'grid-search-btn' ? column : undefined,
+            ...(field.gridItemStyle || {}),
           }}
         >
           <Item

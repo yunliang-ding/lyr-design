@@ -39,6 +39,7 @@ export const isExpansionItemProps = {
   readOnly: '',
   disabled: '',
   actionRef: '',
+  gridItemStyle: '',
 };
 
 // 渲染之前做些事情
