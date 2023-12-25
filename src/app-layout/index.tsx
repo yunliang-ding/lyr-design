@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import LayoutProps from './type';
 import { Menu, PageHeader, Space, Watermark } from '@arco-design/web-react';
 import { useEffect, useRef, useState } from 'react';
@@ -61,7 +60,6 @@ export default ({
   children = null,
 }: LayoutProps) => {
   const classNames: string[] = ['app-layout'];
-  const openKeyRef: any = useRef([]); // 临时保存的容器
   const [selectedKey, setSelectedKey] = useState('');
   /** horizontal 模式的一级菜单 */
   const [topKey, setTopKey] = useState('');
@@ -91,6 +89,7 @@ export default ({
   useEffect(() => {
     const clearPath = pathname.split('/').filter(Boolean);
     setSelectedKey(`/${clearPath.join('/')}`);
+    console.log(clearPath.slice(0, clearPath.length - 1).map((i) => `/${i}`));
     setOpenKeys(clearPath.slice(0, clearPath.length - 1).map((i) => `/${i}`)); // 自动打开父级菜单
     setTopKey(`/${clearPath[0]}`);
   }, [pathname]);
@@ -145,14 +144,6 @@ export default ({
           }}
           onClick={() => {
             onCollapse(!collapsed);
-            // 保存 openKeys
-            if (!collapsed) {
-              console.log('openKeys', openKeys);
-              openKeyRef.current = openKeys;
-            } else {
-              setOpenKeys(openKeyRef.current);
-              openKeyRef.current = [];
-            }
           }}
           className="app-layout-collapse-btn"
         />
@@ -168,6 +159,7 @@ export default ({
               <div className="app-layout-left-menu">
                 <Menu
                   style={{ width: 208 }}
+                  openKeys={openKeys}
                   onClickMenuItem={menuClick}
                   selectedKeys={[selectedKey]}
                   collapse={collapsed}
@@ -214,6 +206,7 @@ export default ({
                   mode="horizontal"
                   onClickMenuItem={menuClick}
                   selectedKeys={[topKey]}
+                  openKeys={[]}
                   theme={dark ? 'dark' : 'light'}
                 >
                   {RenderMenus(
@@ -237,6 +230,7 @@ export default ({
                   <Menu
                     onClickMenuItem={menuClick}
                     selectedKeys={[selectedKey]}
+                    openKeys={openKeys}
                     collapse={collapsed}
                     theme={dark ? 'dark' : 'light'}
                   >
@@ -267,7 +261,6 @@ export default ({
           </div>
           <div className="app-layout-right-body-footer">{footerRender()}</div>
         </div>
-        {/* {waterMarkProps && <WaterMark {...waterMarkProps} />} */}
       </div>
     </Watermark>
   );
