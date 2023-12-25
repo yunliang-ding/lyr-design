@@ -56,7 +56,7 @@ export default ({
   return (
     <div className="core-form-step-form">
       <div className="core-form-step-form-header">
-        <Steps {...stepProps} current={current} onChange={onStepsClick}>
+        <Steps {...stepProps} current={current + 1} onChange={onStepsClick}>
           {steps?.map((step) => {
             return (
               <Steps.Step title={step.title} description={step.description} />
