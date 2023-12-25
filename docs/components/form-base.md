@@ -53,7 +53,7 @@ export default () => {
         layout="horizontal"
         column={column}
         schema={schema}
-        onValueChange={(value, values) => {
+        onValuesChange={(value, values) => {
           console.log('onValuesChange ->', value, values);
         }}
       />
