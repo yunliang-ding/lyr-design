@@ -52,12 +52,12 @@ const schema: SchemaProps[] = [
       // readOnly: true // 只读
       // disabled: true // 禁用
       leastOne: true, // 至少一条
+      column: 3, // 3列
       grid: {
         rowGap: 0,
         colGap: 20,
-        column: 3,
       },
-      schema: [
+      children: [
         {
           type: 'Input',
           name: 'name',

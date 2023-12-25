@@ -59,7 +59,10 @@ export default () => {
         readOnly={readOnly}
         removeConfirm={removeConfirm}
         value={value}
-        onChange={onChange}
+        onChange={(v) => {
+          console.log('change', v);
+          onChange(v);
+        }}
       />
     </>
   );
@@ -114,4 +117,4 @@ export default () => {
 
 ## Api
 
-<API src="../../src/table-list/index.tsx" hideTitle></API>
+<!-- <API src="../../src/table-list/index.tsx" hideTitle></API> -->

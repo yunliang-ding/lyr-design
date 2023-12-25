@@ -429,7 +429,7 @@ export default ({
     <div className="core-form-editable-table">
       <Form
         form={form}
-        onValuesChange={(v) => {
+        onChange={(v) => {
           const key = Object.keys(v)[0];
           const field: any = _columns.find((i) => i.dataIndex === key);
           event.publish({

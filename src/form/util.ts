@@ -92,13 +92,12 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
     if (field.props === undefined) {
       field.props = {};
     }
-    if (field.type === 'FieldSet' && Array.isArray(field.props.children)) {
+    if (
+      ['FormList', 'FieldSet'].includes(field.type) &&
+      Array.isArray(field.props.children)
+    ) {
       // 递归下
       return tranfromSchema(field.props.children, name, column);
-    }
-    if (field.type === 'FormList' && Array.isArray(field.props.schema)) {
-      // 递归下
-      tranfromSchema(field.props.schema, name, undefined);
     }
     // Input默认64长度限制
     if (field.type === 'Input') {
@@ -125,7 +124,7 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
         field.props.showWordLimit = true;
       }
     }
-    // 处理popup类挂载容器
+    // 处理 popup allowClear
     if (isPopupContainer(field.type)) {
       if (defaultOpenAllowClear) {
         field.props.allowClear =

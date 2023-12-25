@@ -206,7 +206,7 @@ export default ({
         form={acroForm}
         name={name}
         initialValues={initialValues}
-        onValuesChange={onChange}
+        onChange={onChange}
         {...rest}
       >
         <Grid {...gridStyle} cols={column}>

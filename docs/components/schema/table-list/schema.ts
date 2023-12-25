@@ -9,7 +9,7 @@ export default {
       age: 18,
     };
   },
-  schema: [
+  children: [
     {
       type: 'Input',
       name: 'name',

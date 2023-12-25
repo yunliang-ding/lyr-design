@@ -2,7 +2,7 @@ import { SchemaProps } from '..';
 
 export interface TableListProps {
   /** 数据模型 */
-  schema: SchemaProps<{
+  children: SchemaProps<{
     isVisible?: (record) => boolean;
   }>[];
   /** 最少一条 */

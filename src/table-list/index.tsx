@@ -14,7 +14,7 @@ export default ({
   leastOne = false,
   showNo = true,
   readOnly = false,
-  schema = [],
+  children = [],
   value = [],
   onChange,
   rowKey = 'id',
@@ -37,9 +37,9 @@ export default ({
         ...form,
       };
     }
-  }, []);
+  }, [value]);
   const columns = useMemo(() => {
-    return schema.map((field: any) => {
+    return children.map((field: any) => {
       return {
         title:
           field.required && !readOnly ? (
@@ -74,7 +74,7 @@ export default ({
         },
       };
     });
-  }, [schema, value, readOnly]);
+  }, [children, value, readOnly]);
   /** 渲染表格 */
   const renderDom = (
     <>
@@ -123,7 +123,7 @@ export default ({
                   <Button
                     type="text"
                     onClick={() => {
-                      value.splice(index, 0, value[index]);
+                      value.push({ ...value[index] });
                       onChange?.([...value]);
                     }}
                   >
@@ -159,7 +159,7 @@ export default ({
     <div className="core-form-table-list">
       <Form
         form={form}
-        onValuesChange={(v, vs) => {
+        onChange={(v, vs) => {
           onChange?.(tranfromInnerValues(vs, value, columns));
         }}
       >

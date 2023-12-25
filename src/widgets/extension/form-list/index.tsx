@@ -8,7 +8,7 @@ export default ({
   name,
   event,
   widgets,
-  schema,
+  children,
   disabled = false,
   readOnly = false,
   operation = true,
@@ -16,10 +16,10 @@ export default ({
   leastOne = false,
   label = '',
   actionRef = useRef({}),
+  column = 3,
   grid = {
     rowGap: 0,
     colGap: 20,
-    column: 3,
   },
 }: any) => {
   // 是否可以操作
@@ -74,12 +74,10 @@ export default ({
                   <Grid
                     {...grid}
                     style={{
-                      gridTemplateColumns: `repeat(${
-                        grid.column || 3
-                      }, minmax(0px, 1fr))`,
+                      gridTemplateColumns: `repeat(${column}, minmax(0px, 1fr))`,
                     }}
                   >
-                    {schema?.map((field: any) => {
+                    {children?.map((field: any) => {
                       const _field = { ...field }; // 浅拷贝一下
                       _field.index = index; // 保存下标
                       _field.name = [name, index, _field.name].join('.');
