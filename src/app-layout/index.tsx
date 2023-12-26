@@ -74,6 +74,10 @@ export default ({
       ),
     } as any);
   };
+  const subMenuClick = (path: string) => {
+    const clearPath: string[] = path.split('/').filter(Boolean);
+    setOpenKeys(clearPath.map((i) => `/${i}`));
+  };
   // 监听 hash
   const listenHash = () => {
     const path = location.hash.substring(1);
@@ -89,7 +93,6 @@ export default ({
   useEffect(() => {
     const clearPath = pathname.split('/').filter(Boolean);
     setSelectedKey(`/${clearPath.join('/')}`);
-    console.log(clearPath.slice(0, clearPath.length - 1).map((i) => `/${i}`));
     setOpenKeys(clearPath.slice(0, clearPath.length - 1).map((i) => `/${i}`)); // 自动打开父级菜单
     setTopKey(`/${clearPath[0]}`);
   }, [pathname]);
@@ -161,6 +164,7 @@ export default ({
                   style={{ width: 208 }}
                   openKeys={openKeys}
                   onClickMenuItem={menuClick}
+                  onClickSubMenu={subMenuClick}
                   selectedKeys={[selectedKey]}
                   collapse={collapsed}
                   theme={dark ? 'dark' : 'light'}
