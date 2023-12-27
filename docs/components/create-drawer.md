@@ -92,7 +92,7 @@ export default (props) => {
       onClick={() => {
         CreateDrawer({
           title: '自定义渲染',
-          confirmText: '确认',
+          okText: '确认',
           onSubmit() {
             message.success('确认完毕');
           },

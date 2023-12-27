@@ -18,7 +18,7 @@ export default ({
   footer = true,
   actionAlign = 'end',
   cancelText = '重制',
-  confirmText = '保存',
+  okText = '保存',
   actions,
   ...rest
 }: CardFormProps) => {
@@ -28,7 +28,7 @@ export default ({
       onClick: onClear,
     },
     {
-      label: confirmText,
+      label: okText,
       type: 'primary',
       validator: true,
       spin: true,

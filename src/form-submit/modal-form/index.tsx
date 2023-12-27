@@ -23,7 +23,7 @@ export default ({
   onSubmit = () => {},
   footer = true,
   cancelText = '关闭',
-  confirmText = '保存',
+  okText = '保存',
   actions,
   render,
   footerRender,
@@ -38,7 +38,7 @@ export default ({
       onClick: onClose,
     },
     {
-      label: confirmText,
+      label: okText,
       type: 'primary',
       validator: true,
       spin: true,

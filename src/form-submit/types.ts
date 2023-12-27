@@ -25,7 +25,7 @@ interface FormSubmitProps extends CoreFormProps {
    * 确定的文案
    * @default 确定
    */
-  confirmText?: string;
+  okText?: string;
   /**
    * 自定义渲染
    */

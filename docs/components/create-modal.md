@@ -122,7 +122,7 @@ export default (props) => {
       onClick={() => {
         CreateModal({
           title: '自定义渲染',
-          confirmText: '确认',
+          okText: '确认',
           height: 200,
           async onSubmit() {
             Message.success('确认完毕');
