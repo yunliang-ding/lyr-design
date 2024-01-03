@@ -64,15 +64,23 @@ const ProButton = ({
     typeof modalFormProps === 'function'
   ) {
     if (typeof drawerFormProps === 'function') {
-      onClick = WapperSpinOnClick(setLoading, async () => {
-        const config = await drawerFormProps();
-        CreateDrawer(config).open();
-      });
+      onClick = WapperSpinOnClick(
+        setLoading,
+        async () => {
+          const config = await drawerFormProps();
+          CreateDrawer(config).open();
+        },
+        10,
+      );
     } else if (typeof modalFormProps === 'function') {
-      onClick = WapperSpinOnClick(setLoading, async () => {
-        const config = await modalFormProps();
-        CreateModal(config).open();
-      });
+      onClick = WapperSpinOnClick(
+        setLoading,
+        async () => {
+          const config = await modalFormProps();
+          CreateModal(config).open();
+        },
+        10,
+      );
     } else if (spin) {
       onClick = WapperSpinOnClick(setLoading, props.onClick, 500);
     }
