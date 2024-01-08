@@ -76,7 +76,7 @@ export default defineConfig({
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
       title: '工具集',
-      path: 'http://dev-ops.yunliang.cloud/website/',
+      path: 'http://dev-ops.yunliang.cloud/website/lyr-extra',
     },
     {
       title: '表单设计器',
