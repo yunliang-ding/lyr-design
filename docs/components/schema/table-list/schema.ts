@@ -1,4 +1,4 @@
-import { SchemaProps } from 'react-core-form';
+import { SchemaProps } from 'lyr-design';
 
 export default {
   maxCount: 5, // 最多5条

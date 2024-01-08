@@ -14,7 +14,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { AppLayout, Button } from 'react-core-form';
+import { AppLayout, Button } from 'lyr-design';
 import { Space, Avatar, Input, Dropdown, Menu } from '@arco-design/web-react';
 import { IconUser, IconMoon, IconSun } from '@arco-design/web-react/icon';
 import menus from './schema/app-layout/schema';
@@ -64,15 +64,6 @@ export default () => {
       dark={dark}
       pathname={pathname}
       pageHeaderProps={pageHeaderProps}
-      // logo={
-      //   <img
-      //     src="https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico"
-      //     style={{
-      //       width: 32,
-      //       height: 32,
-      //     }}
-      //   />
-      // }
       title="中后台通用模版"
       menu={{
         items: menus,

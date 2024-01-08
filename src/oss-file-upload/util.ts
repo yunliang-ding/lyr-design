@@ -9,7 +9,7 @@ export const decode = (str: string): string => {
 
 export default (
   options = {
-    bucket: 'react-core-form',
+    bucket: 'lyr-cli-oss',
     region: 'oss-cn-beijing',
   },
 ) => {

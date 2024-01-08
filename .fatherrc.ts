@@ -10,7 +10,7 @@ export default {
     minify: true,
   },
   umd: {
-    name: 'ReactCoreForm',
+    name: 'lyr',
     globals: {
       react: 'React',
       'react-dom': 'ReactDOM',

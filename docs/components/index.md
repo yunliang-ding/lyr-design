@@ -8,14 +8,14 @@ nav:
 ---
 
 <div style="display:flex;align-items:center;margin-bottom:24px">
-  <span style="font-size:30px;font-weight:600;display:inline-block;">react-core-form 2.x</span>
+  <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-design</span>
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
-  <a href="https://npmmirror.com/package/react-core-form">
-    <img alt="npm" src="http://center.yunliang.cloud/npm/version?package=react-core-form">
+  <a href="https://npmmirror.com/package/lyr-design">
+    <img alt="npm" src="http://center.yunliang.cloud/npm/version?package=lyr-design">
   </a>
-  <a href="https://npmmirror.com/package/react-core-form">
-    <img alt="NPM downloads" src="http://center.yunliang.cloud/npm/downloads?package=react-core-form">
+  <a href="https://npmmirror.com/package/lyr-design">
+    <img alt="NPM downloads" src="http://center.yunliang.cloud/npm/downloads?package=lyr-design">
   </a>
 </p>
 
@@ -37,7 +37,7 @@ nav:
 
 ```shell
 yarn add @arco-design/web-react
-yarn add react-core-form
+yarn add lyr-design
 ```
 
 ```less
@@ -49,24 +49,24 @@ yarn add react-core-form
 ```html
 <link
   rel="stylesheet"
-  href="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css"
+  href="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css"
 />
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js"></script>
 ```
 
 ## 前提需要引入 cdn 前置依赖 到 window
 
 ```html
 <!-- window.React -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js"></script>
 <!-- window.ReactDOM -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js"></script>
 <!-- window.arco -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js"></script>
 <!-- window.arcoicon -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js"></script>
 <!-- window.jsxRuntime -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
 ```
 
 ## 优势
@@ -90,7 +90,7 @@ yarn add react-core-form
  * title: 所有组件 扩展了 readOnly, disabled 属性
  */
 import React from 'react';
-import { Button } from 'react-core-form';
+import { Button } from 'lyr-design';
 
 export default () => {
   return (
@@ -151,7 +151,7 @@ export default () => {
 ## 修改配置
 
 ```ts
-import { setGlobalConfig } from 'react-core-form';
+import { setGlobalConfig } from 'lyr-design';
 
 setGlobalConfig({
   defaultInputMaxLength: 100,

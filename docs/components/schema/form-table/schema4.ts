@@ -1,4 +1,4 @@
-import { TableProps } from 'react-core-form';
+import { TableProps } from 'lyr-design';
 
 const tableSchema: TableProps = {
   title: '用户列表',

@@ -1,4 +1,4 @@
-import { create } from 'react-core-form-store';
+import { create } from 'lyr-store';
 
 export default create<{
   count: number;

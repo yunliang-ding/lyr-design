@@ -42,7 +42,7 @@ const Suspend: any = ({
   useEffect(() => {
     suspendRef.current.setVisible = setVisible;
   }, []);
-  const classNames = ['react-core-form-suspend-wrap'];
+  const classNames = ['lyr-design-suspend-wrap'];
   if (visible) {
     classNames.push('show');
   }

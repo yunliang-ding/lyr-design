@@ -14,7 +14,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { TableList } from 'react-core-form';
+import { TableList } from 'lyr-design';
 import schema from './schema/table-list/schema';
 import { Switch } from '@arco-design/web-react';
 
@@ -73,7 +73,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { CardForm } from 'react-core-form';
+import { CardForm } from 'lyr-design';
 import schema from './schema/table-list/schema';
 
 export default () => {

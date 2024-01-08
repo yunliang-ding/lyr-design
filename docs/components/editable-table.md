@@ -17,7 +17,7 @@ toc: menu
  * desc: 排序采用的react-sortable-hoc，需要提供rowKey来确定数据的唯一值，否则不能正常工作
  */
 import React from 'react';
-import { EditableTable } from 'react-core-form';
+import { EditableTable } from 'lyr-design';
 import { Switch } from '@arco-design/web-react';
 import schema from './schema/editable-table/schema';
 
@@ -79,7 +79,7 @@ export default () => {
 ```tsx
 import React from 'react';
 import { Modal } from '@arco-design/web-react';
-import { Form, CardForm, Button } from 'react-core-form';
+import { Form, CardForm, Button } from 'lyr-design';
 import schema from './schema/editable-table/schema';
 
 export default () => {

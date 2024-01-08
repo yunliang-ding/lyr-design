@@ -9,7 +9,7 @@ toc: menu
 ```tsx
 import React from 'react';
 import { Space } from '@arco-design/web-react';
-import { Suspend, Button } from 'react-core-form';
+import { Suspend, Button } from 'lyr-design';
 
 export default () => {
   const { open, close, hide, show } = Suspend.create();

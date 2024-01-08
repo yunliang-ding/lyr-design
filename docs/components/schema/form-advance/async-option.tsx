@@ -1,7 +1,7 @@
 import { Tag } from '@arco-design/web-react';
 import React from 'react';
-import { SchemaProps } from 'react-core-form';
-import { isEmpty, uuid } from 'react-core-form-tools';
+import { SchemaProps } from 'lyr-design';
+import { isEmpty, uuid } from 'lyr-extra';
 
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 const schema: SchemaProps[] = [

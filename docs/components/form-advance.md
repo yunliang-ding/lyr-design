@@ -12,7 +12,7 @@ toc: menu
  * desc: readOnly、disabled、required 属性都支持接受一个函数
  */
 import React from 'react';
-import { Form, Button } from 'react-core-form';
+import { Form, Button } from 'lyr-design';
 
 export default () => {
   const [form] = Form.useForm();
@@ -58,7 +58,7 @@ export default () => {
  * desc: 返回新对象会替换当前值
  */
 import React from 'react';
-import { Form, Button } from 'react-core-form';
+import { Form, Button } from 'lyr-design';
 
 export default () => {
   const [form] = Form.useForm();
@@ -111,7 +111,7 @@ export default () => {
  * desc: 这种模式只会再次渲染单个组件，不会重新渲染Form
  */
 import React from 'react';
-import { Form, Button } from 'react-core-form';
+import { Form, Button } from 'lyr-design';
 import schema from './schema/form-advance/async-option';
 
 export default () => {
@@ -163,7 +163,7 @@ export default () => {
  * desc: 这种模式仅触发自己更新，不会导致Form重新渲染
  */
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 
 export default () => {
   const [form] = Form.useForm();
@@ -235,7 +235,7 @@ export default () => {
  * desc: 内置shouldUpdate方法是表单的每次数值更新都会调用该方法、扩展的effect副作用 仅仅会在依赖修改的时候，触发该组件卸载->创建
  */
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 
 export default () => {
   return (
@@ -315,7 +315,7 @@ export default () => {
  * desc: 当默认值是接口下发需要晚点设置可用该方案
  */
 import React from 'react';
-import { Form, Button } from 'react-core-form';
+import { Form, Button } from 'lyr-design';
 
 export default () => {
   const [reload, setReload] = React.useState(Math.random());
@@ -421,7 +421,7 @@ export default () => {
  * desc: 在通常情况下我们使用effect可以完成复杂的交互，但是在特殊的场景却做不到，我们需要借助 touchSchemaRender。
  */
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import { Switch } from '@arco-design/web-react';
 
 export default () => {
@@ -517,7 +517,7 @@ export default () => {
  * desc: 可替代 touchFieldsRender、完成联动交互
  */
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import { Switch } from '@arco-design/web-react';
 import schema from './schema/advance/schema5';
 
@@ -613,7 +613,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { Form, Button } from 'react-core-form';
+import { Form, Button } from 'lyr-design';
 import schema from './schema/form-advance/form-list';
 
 export default () => {
@@ -684,7 +684,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import DragContainer from './demo/drag';
 
 export default () => {
@@ -722,7 +722,7 @@ export default () => {
  * desc: 自定义渲染的使用场景通常用于展示，如果没有定义name属性则数据不会被表单收集，如果收集请设置name属性，此时将作为[自定义表单组件](https://ant.design/components/form-cn/#components-form-demo-customized-form-controls)渲染。
  */
 import React from 'react';
-import { Form, Button } from 'react-core-form';
+import { Form, Button } from 'lyr-design';
 import { Alert } from '@arco-design/web-react';
 
 export default () => {
@@ -796,7 +796,7 @@ const schema: SchemaProps<{
  * desc: 自定义组件约定，当定义了name属性的FormItem回默认注入2个属性给children，value代表默认值，onChange用于表单收集值，同时会获取Form配置的readOnly属性负责渲染详情视图，建议我们在编写自定义组件的时候，按照业务场景添加详情视图。
  */
 import React from 'react';
-import { Form, Button } from 'react-core-form';
+import { Form, Button } from 'lyr-design';
 import { Input } from '@arco-design/web-react';
 
 export default () => {
@@ -854,7 +854,7 @@ export default () => {
  * desc: 自定义组件约定和上面一致，推荐使用注入widgets的方式，更加符合组件复用的特性
  */
 import React from 'react';
-import { Form, Button } from 'react-core-form';
+import { Form, Button } from 'lyr-design';
 import CountInput from './demo/count-input';
 
 export default () => {
@@ -894,7 +894,7 @@ export default () => {
  * desc: 自定义组件通信，可以挂载到 form 实例
  */
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import { Input, Button } from '@arco-design/web-react';
 
 export default () => {

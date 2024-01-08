@@ -11,7 +11,7 @@ toc: menu
  * title: 默认采用垂直布局，使用水平布局设置layout为horizontal
  */
 import React, { useState } from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import schema from './schema/form-base/schema';
 
 export default () => {
@@ -31,7 +31,7 @@ export default () => {
 
 ```tsx
 import React, { useState } from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import schema from './schema/form-base/schema';
 import { Select } from '@arco-design/web-react';
 
@@ -66,7 +66,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import schema from './schema/form-base/schema1';
 
 export default () => {
@@ -91,7 +91,7 @@ export default () => {
  * desc: 吐出的数据格式按照层级会自动划分 规定必须有name属性
  */
 import React from 'react';
-import { Button, Form } from 'react-core-form';
+import { Button, Form } from 'lyr-design';
 import schema from './schema/form-base/schema2';
 
 export default () => {
@@ -166,7 +166,7 @@ export default () => {
  * desc: 我们将表单的disabled属性穿透到每一个字段中，指定了readOnly属性的表单则会渲染只读组件，即我们在每个小组件中控制了2中模式，详情和编辑。具体使用参看高级用法（自定义组件）
  */
 import React from 'react';
-import { Form, Button } from 'react-core-form';
+import { Form, Button } from 'lyr-design';
 import schema from './schema/form-base/schema';
 import { Switch } from '@arco-design/web-react';
 
@@ -239,7 +239,7 @@ export default () => {
 
 ```tsx
 import React, { useState } from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import schema from './schema/form-base/schema3';
 
 export default () => {
@@ -251,7 +251,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 
 export default () => {
   return (

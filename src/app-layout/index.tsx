@@ -46,7 +46,7 @@ export default ({
   title = '默认应用标题',
   logo = (
     <img
-      src="https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico"
+      src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico"
       style={{
         width: 32,
         height: 32,

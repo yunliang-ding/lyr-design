@@ -1,6 +1,6 @@
-import { CreateStore } from 'react-core-form-store';
+import { create } from 'lyr-store';
 
-export default CreateStore<{
+export default create<{
   payload?: any; // 查询参数
   _columns?: any[]; // 表格列
   _filterIds?: string[]; // 不展示的列

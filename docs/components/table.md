@@ -11,7 +11,7 @@ toc: menu
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import tableSchema from './schema/form-table/schema';
 
 export default () => {
@@ -26,7 +26,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import tableSchema from './schema/form-table/schema1';
 
 export default () => {
@@ -41,7 +41,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 
 const userStateMapping = {
   disabled: '已停用',
@@ -133,7 +133,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import tableSchema from './schema/form-table/schema';
 
 export default () => {
@@ -148,7 +148,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import schema from './schema/form-table/schema';
 
 export default () => {
@@ -164,7 +164,7 @@ export default () => {
  * title: 约定数据源选项包含 index 属性，做为唯一序号
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import tableSchema from './schema/form-table/schema';
 
 export default () => {
@@ -187,7 +187,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table, Button } from 'react-core-form';
+import { Table, Button } from 'lyr-design';
 import tableSchema from './schema/form-table/schema';
 import { Space } from '@arco-design/web-react';
 
@@ -256,7 +256,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import tableSchema from './schema/form-table/schema';
 
 export default () => {
@@ -271,7 +271,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import { Input } from '@arco-design/web-react';
 import tableSchema from './schema/form-table/schema';
 
@@ -310,7 +310,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import tableSchema from './schema/form-table/schema';
 
 export default () => {
@@ -333,7 +333,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import searchSchema from './schema/form-table/search.schema';
 import tableSchema from './schema/form-table/schema';
 
@@ -359,7 +359,7 @@ export default () => {
  * description: 需要清空缓存可以在组件卸载的钩子去决定是否需要清空。
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import tableSchema from './schema/form-table/schema';
 import searchSchema from './schema/form-table/search.schema';
 
@@ -384,7 +384,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import searchSchema from './schema/form-table/search.schema';
 import tableSchema from './schema/form-table/schema3';
 
@@ -408,7 +408,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import tableSchema from './schema/form-table/schema4';
 import { Spin } from '@arco-design/web-react';
 

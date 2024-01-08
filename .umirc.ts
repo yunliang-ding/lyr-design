@@ -2,11 +2,10 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   mode: 'site',
-  title: 'react-core-form 2.x',
+  title: 'lyr-design',
   outputPath: 'docs-dist',
-  favicon:
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
-  logo: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
+  favicon: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
+  logo: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
   metas: [
     {
       name: 'keywords',
@@ -66,30 +65,30 @@ export default defineConfig({
   hash: false,
   links: [
     {
-      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
+      href: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
       rel: 'stylesheet',
     },
   ],
   scripts: [
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js',
   ],
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
       title: '工具集',
-      path: 'http://dev-ops.yunliang.cloud/website/react-core-form-tools',
+      path: 'http://dev-ops.yunliang.cloud/website/',
     },
     {
       title: '表单设计器',
-      path: 'http://dev-ops.yunliang.cloud/website/react-core-form-designer',
+      path: 'http://dev-ops.yunliang.cloud/website/lyr-form-designer',
     },
     {
       title: '代码编辑器',
-      path: 'http://dev-ops.yunliang.cloud/website/react-core-form-code-editor',
+      path: 'http://dev-ops.yunliang.cloud/website/lyr-code-editor',
     },
     {
       title: 'GitHub',
-      path: 'https://github.com/yunliang-ding/react-core-form',
+      path: 'https://github.com/yunliang-ding/lyr-design',
     },
   ],
   apiParser: {

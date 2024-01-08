@@ -1,7 +1,7 @@
 ---
-title: react-core-form
+title: lyr-design
 hero:
-  title: react-core-form 2.x
+  title: lyr-design
   desc: 中后台表单配置化解决方案
   actions:
     - text: 开始使用

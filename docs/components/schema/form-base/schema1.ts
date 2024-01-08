@@ -1,4 +1,4 @@
-import { SchemaProps } from 'react-core-form';
+import { SchemaProps } from 'lyr-design';
 
 const schema: SchemaProps[] = [
   {

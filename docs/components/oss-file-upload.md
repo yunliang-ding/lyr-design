@@ -20,7 +20,7 @@ https://g.alicdn.com/code/lib/ali-oss/6.13.0/aliyun-oss-sdk.min.js
 
 ```tsx
 import React from 'react';
-import { OssFileUpload } from 'react-core-form';
+import { OssFileUpload } from 'lyr-design';
 
 export default () => {
   const [value, setValue] = React.useState([]);
@@ -28,7 +28,7 @@ export default () => {
     <OssFileUpload
       value={value}
       maxCount={5}
-      accept=".doc,.docx,.pdf,.xlsx,.xls,.txt,.png,.jpg,.jpeg,.css,.js"
+      accept=".doc,.docx,.pdf,.xlsx,.xls,.txt,.png,.jpg,.jpeg,.css,.js,.ico"
       onChange={(v) => {
         setValue(v);
         console.log(v);
@@ -42,7 +42,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { OssFileUpload } from 'react-core-form';
+import { OssFileUpload } from 'lyr-design';
 
 export default () => {
   const [value, setValue] = React.useState([]);
@@ -64,7 +64,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { OssFileUpload } from 'react-core-form';
+import { OssFileUpload } from 'lyr-design';
 
 export default () => {
   const [value, setValue] = React.useState([]);
@@ -86,7 +86,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { CardForm } from 'react-core-form';
+import { CardForm } from 'lyr-design';
 
 export default () => {
   return (

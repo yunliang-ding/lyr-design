@@ -1,19 +1,18 @@
 ## 介绍
 
-> react-core-form 目前是一套基于 arco.design 二次封装的，可快捷开发中后台项目的解决方案
+> lyr-design 目前是一套基于 arco.design 二次封装的，可快捷开发中后台项目的解决方案
 
 ## 安装
 
-> 组件库本身依赖 arco.design，使用需要同时安装 arco.design
+> 组件库本身依赖 arco.design，使用需要先安装 arco.design
 
 ```shell
-yarn add @arco-design/web-react
-yarn add react-core-form
+yarn add lyr-design
 ```
 
 ```less
 @import '@arco-design/web-react/dist/css/arco.css';
-@import 'react-core-form/dist/index.css';
+@import 'lyr-design/dist/index.css';
 ```
 
 ## 采用 cdn 引入
@@ -21,27 +20,27 @@ yarn add react-core-form
 ```html
 <link
   rel="stylesheet"
-  href="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css"
+  href="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css"
 />
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js"></script>
 ```
 
 ## 前提需要引入 cdn 前置依赖 到 window
 
 ```html
 <!-- window.React -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js"></script>
 <!-- window.ReactDOM -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js"></script>
 <!-- window.arco -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js"></script>
 <!-- window.arcoicon -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js"></script>
 <!-- window.jsxRuntime -->
-<script src="http://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
+<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
 ```
 
-## 基于 arco.design 的扩展点
+## lyr-design 扩展点
 
 - 扩展 `Button`，自带 loading，二次确认，支持弹框和抽屉的模型配置
 - 扩展 `Form`，基于数据模型的表单渲染，表单联动，异步选择器，自定义组件，默认配置
@@ -55,4 +54,4 @@ yarn add react-core-form
 
 ## 在线文档
 
-[点击跳转文档](http://dev-ops.yunliang.cloud/website/react-core-form)
+[点击跳转文档](http://dev-ops.yunliang.cloud/website/lyr-design)

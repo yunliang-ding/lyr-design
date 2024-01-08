@@ -1,5 +1,5 @@
-import { SchemaProps } from 'react-core-form';
-import { BigNumber } from 'react-core-form-tools';
+import { SchemaProps } from 'lyr-design';
+import { BigNumber } from 'lyr-extra';
 
 const schema: SchemaProps[] = [
   {
