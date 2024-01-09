@@ -80,7 +80,7 @@ export default defineConfig({
     },
     {
       title: '表单设计器',
-      path: 'http://dev-ops.yunliang.cloud/website/lyr-form-designer',
+      path: 'http://dev-ops.yunliang.cloud/website/lyr-low-code',
     },
     {
       title: '代码编辑器',
