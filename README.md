@@ -20,24 +20,24 @@ yarn add lyr-design
 ```html
 <link
   rel="stylesheet"
-  href="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css"
+  href="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css"
 />
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js"></script>
 ```
 
 ## 前提需要引入 cdn 前置依赖 到 window
 
 ```html
 <!-- window.React -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js"></script>
 <!-- window.ReactDOM -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js"></script>
 <!-- window.arco -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js"></script>
 <!-- window.arcoicon -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js"></script>
 <!-- window.jsxRuntime -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
 ```
 
 ## lyr-design 扩展点
@@ -54,4 +54,4 @@ yarn add lyr-design
 
 ## 在线文档
 
-[点击跳转文档](http://dev-ops.yunliang.cloud/website/lyr-design)
+[点击跳转文档](https://dev-ops.yunliang.cloud/website/lyr-design)

@@ -12,10 +12,10 @@ nav:
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
   <a href="https://npmmirror.com/package/lyr-design">
-    <img alt="npm" src="http://center.yunliang.cloud/npm/version?package=lyr-design">
+    <img alt="npm" src="https://center.yunliang.cloud/npm/version?package=lyr-design">
   </a>
   <a href="https://npmmirror.com/package/lyr-design">
-    <img alt="NPM downloads" src="http://center.yunliang.cloud/npm/downloads?package=lyr-design">
+    <img alt="NPM downloads" src="https://center.yunliang.cloud/npm/downloads?package=lyr-design">
   </a>
 </p>
 
@@ -49,24 +49,24 @@ yarn add lyr-design
 ```html
 <link
   rel="stylesheet"
-  href="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css"
+  href="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css"
 />
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js"></script>
 ```
 
 ## 前提需要引入 cdn 前置依赖 到 window
 
 ```html
 <!-- window.React -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js"></script>
 <!-- window.ReactDOM -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js"></script>
 <!-- window.arco -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js"></script>
 <!-- window.arcoicon -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js"></script>
 <!-- window.jsxRuntime -->
-<script src="http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
 ```
 
 ## 优势
