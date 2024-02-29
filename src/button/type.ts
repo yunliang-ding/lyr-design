@@ -1,11 +1,10 @@
 import { ReactNode } from 'react';
-import { CreateDrawerFormProps } from '../create-drawer';
-import { CreateModalFormProps } from '../create-modal';
 import {
   ButtonProps,
   PopconfirmProps,
   TooltipProps,
 } from '@arco-design/web-react';
+import { DrawerFormProps, ModalFormProps } from '..';
 
 type Comfirm = PopconfirmProps & {
   type?: 'pop' | 'alert';
@@ -46,13 +45,11 @@ export interface ProBtnProps extends Omit<ButtonProps, 'onClick'> {
   /**
    * 绑定 弹出层
    */
-  modalFormProps?: CreateModalFormProps | (() => Promise<CreateModalFormProps>);
+  modalFormProps?: ModalFormProps | (() => Promise<ModalFormProps>);
   /**
    * 绑定 抽屉
    */
-  drawerFormProps?:
-    | CreateDrawerFormProps
-    | (() => Promise<CreateDrawerFormProps>);
+  drawerFormProps?: DrawerFormProps | (() => Promise<DrawerFormProps>);
   [key: string]: any;
   /** hover提示文案 */
   tooltip?: TooltipProps | ReactNode;
