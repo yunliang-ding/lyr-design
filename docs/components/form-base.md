@@ -106,41 +106,29 @@ export default () => {
         }}
         form={form}
         initialValues={{
-          'fieldset-1': {
-            input: '这是默认值',
-            inputNumber: 12,
-            select: 1,
-            checkGroup: [1],
-            radioGroup: 1,
-            selectMore: [2],
-          },
-          'fieldset-1-sub': {
-            'input-sub': 'sub',
-            'inputNumber-sub': 12,
-            'date-sub': '2022-05-18',
-          },
-          'fieldset-2': {
-            switch: true,
-            rate: 2,
-            slider: 36,
-            treeSelect: '0-0',
-            cascader: ['zhejiang', 'hangzhou'],
-          },
-          'fieldset-3': {
-            datePicker: '2022-01-10',
-            rangePickerStart: '2022-02-16',
-            rangePickerEnd: '2022-03-01',
-            timePicker: '12:03:00',
-            timeRangeStart: '2022-01-17',
-            timeRangeEnd: '2022-01-19',
-          },
-          'fieldset-4': {
-            input1: '12',
-            'fieldset-4-1': {
-              input2: '1223',
-              'fieldset-4-2': { input3: '2323' },
-            },
-          },
+          input: '这是默认值',
+          inputNumber: 12,
+          select: 1,
+          checkGroup: [1],
+          radioGroup: 1,
+          selectMore: [2],
+          'input-sub': 'sub',
+          'inputNumber-sub': 12,
+          'date-sub': '2022-05-18',
+          switch: true,
+          rate: 2,
+          slider: 36,
+          treeSelect: '0-0',
+          cascader: ['zhejiang', 'hangzhou'],
+          datePicker: '2022-01-10',
+          rangePickerStart: '2022-02-16',
+          rangePickerEnd: '2022-03-01',
+          timePicker: '12:03:00',
+          timeRangeStart: '2022-01-17',
+          timeRangeEnd: '2022-01-19',
+          input1: '12',
+          input2: '1223',
+          input3: '2323',
         }}
       />
       <br />

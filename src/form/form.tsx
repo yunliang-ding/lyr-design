@@ -145,6 +145,7 @@ export default ({
             <FieldSet
               key={field.name}
               fieldName={field.name}
+              itemRender={field.itemRender}
               label={field.label}
               style={field.style}
               extra={field.props?.extra}
@@ -175,7 +176,6 @@ export default ({
             event={event}
             disabled={disabled || field?.props?.disabled}
             readOnly={readOnly}
-            onChange={onChange}
             form={form}
             widgets={widgets}
             initialValues={initialValues}

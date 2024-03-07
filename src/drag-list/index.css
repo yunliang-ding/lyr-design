@@ -1,6 +1,7 @@
 .core-form-drag-list {
   display: flex;
   flex-direction: column;
+  background-color: var(--color-menu-light-bg);
 }
 
 .core-form-drag-list .core-form-drag-list-item {

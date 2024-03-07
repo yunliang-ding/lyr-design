@@ -15,6 +15,7 @@ export default ({
   visible,
   form,
   initialValues,
+  itemRender,
 }) => {
   const [reload, setReload] = useState(Math.random());
   useEffect(() => {
@@ -55,6 +56,9 @@ export default ({
     })
       ? vNode
       : null;
+  }
+  if (typeof itemRender === 'function') {
+    return itemRender(vNode);
   }
   return vNode;
 };
