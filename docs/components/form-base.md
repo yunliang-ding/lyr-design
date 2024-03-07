@@ -88,7 +88,7 @@ export default () => {
 /**
  * background: '#f6f7f9'
  * title: 通过FieldSet组件可以支持区块划分，在每个独立的区块中仍然可以使用灵活布局，多列布局。
- * desc: 吐出的数据格式按照层级会自动划分 规定必须有name属性
+ * desc: 仅布局作用，不需要设置name
  */
 import React from 'react';
 import { Button, Form } from 'lyr-design';

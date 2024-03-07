@@ -4,7 +4,6 @@ import { SchemaProps, Button } from 'lyr-design';
 const schema: SchemaProps[] = [
   {
     type: 'FieldSet',
-    name: 'fieldset-1',
     span: 2, // 占据2列
     label: '基础表单',
     props: {
@@ -89,15 +88,14 @@ const schema: SchemaProps[] = [
   },
   {
     type: 'FieldSet',
-    name: 'fieldset-1-sub',
     span: 2, // 占据2列
     label: '基础表单-联动子项',
     effect: ['select'],
     props: {
       children: (form, isBeforeParse) => {
-        // 这里注意下，是否是前置解析数据结构
+        // 这里注意下，是否是带着默认值渲染的
         const selectValue = isBeforeParse
-          ? form.initialValues['fieldset-1'].select
+          ? form.initialValues.select
           : form.getFieldValue('select');
         if (selectValue === 1) {
           return [
@@ -152,7 +150,6 @@ const schema: SchemaProps[] = [
   },
   {
     type: 'FieldSet',
-    name: 'fieldset-2',
     label: '高级表单',
     effect: ['selectMore'],
     visible({ selectMore }) {
@@ -239,7 +236,6 @@ const schema: SchemaProps[] = [
   },
   {
     type: 'FieldSet',
-    name: 'fieldset-3',
     label: '日期相关',
     props: {
       column: 2,
@@ -269,7 +265,6 @@ const schema: SchemaProps[] = [
   },
   {
     type: 'FieldSet',
-    name: 'fieldset-4',
     span: 2, // 占据2列
     label: '无限嵌套',
     props: {
@@ -282,7 +277,6 @@ const schema: SchemaProps[] = [
         },
         {
           type: 'FieldSet',
-          name: 'fieldset-4-1',
           span: 2,
           label: '无限嵌套',
           props: {
@@ -295,7 +289,6 @@ const schema: SchemaProps[] = [
               },
               {
                 type: 'FieldSet',
-                name: 'fieldset-4-2',
                 span: 2,
                 label: '无限嵌套',
                 props: {
@@ -317,7 +310,6 @@ const schema: SchemaProps[] = [
   },
   {
     type: 'FieldSet',
-    name: 'fieldset-5',
     span: 2, // 占据2列
     label: '空数据展示',
     props: {
