@@ -50,59 +50,6 @@ export default () => {
 };
 ```
 
-## 使用 normalize/formatter 处理数据
-
-```tsx
-/**
- * title: 说明
- * desc: 返回新对象会替换当前值
- */
-import React from 'react';
-import { Form, Button } from 'lyr-design';
-
-export default () => {
-  const [form] = Form.useForm();
-  const submit = async () => {
-    const data = await form.submit(); // 校验并返回数值
-    alert(JSON.stringify(data));
-  };
-  return (
-    <>
-      <Form
-        form={form}
-        initialValues={{
-          likes: '1,2',
-        }}
-        schema={[
-          {
-            type: 'Select',
-            name: 'likes',
-            label: '用户角色',
-            normalize: (likes) => {
-              return likes.join(',');
-            },
-            formatter: (likes) => {
-              return likes?.split(',').filter(Boolean);
-            },
-            props: {
-              mode: 'multiple',
-              options: [
-                { label: '浏览者', value: '1' },
-                { label: '开发者', value: '2' },
-                { label: '管理员', value: '3' },
-              ],
-            },
-          },
-        ]}
-      />
-      <Button type="primary" onClick={submit}>
-        提交
-      </Button>
-    </>
-  );
-};
-```
-
 ## 使用异步的 options
 
 ```tsx
@@ -151,78 +98,6 @@ export default () => {
         }}
       />
     </>
-  );
-};
-```
-
-## 使用 setSchemaByName 更新 field
-
-```tsx
-/**
- * title: 说明
- * desc: 这种模式仅触发自己更新，不会导致Form重新渲染
- */
-import React from 'react';
-import { Form } from 'lyr-design';
-
-export default () => {
-  const [form] = Form.useForm();
-  const onMount = async ({ setSchemaByName }) => {
-    setSchemaByName(
-      'classify',
-      {
-        help: '默认提示',
-        hasFeedback: true,
-        validateStatus: 'error',
-        props: {
-          placeholder: '自定义校验规则',
-          options: [
-            {
-              label: 'Html',
-              value: 'html',
-            },
-          ],
-        },
-      },
-      (source, target) => {
-        if (Array.isArray(target)) {
-          return target;
-        }
-      },
-    );
-  };
-  return (
-    <Form
-      form={form}
-      schema={[
-        {
-          type: 'Select',
-          name: 'classify',
-          label: '员工职位',
-          required: true,
-          props: {
-            onChange(value) {
-              form.setSchemaByName('classify', {
-                hasFeedback: true,
-                help: value ? '' : '员工职位不能为空',
-                validateStatus: value ? 'success' : 'error',
-              });
-            },
-            options: [
-              {
-                label: '前端',
-                value: 1,
-              },
-              {
-                label: '后端',
-                value: 2,
-              },
-            ],
-          },
-        },
-      ]}
-      onMount={onMount}
-    />
   );
 };
 ```
@@ -299,6 +174,68 @@ export default () => {
           },
           visible: ({ sex }) => {
             return sex === 1;
+          },
+        },
+      ]}
+    />
+  );
+};
+```
+
+## 使用 setSchemaByName 更新 field
+
+```tsx
+/**
+ * title: 说明
+ * desc: 这种模式仅触发自己更新，不会导致Form重新渲染
+ */
+import React from 'react';
+import { Form } from 'lyr-design';
+
+export default () => {
+  const effectType = ({ setSchemaByName, getFieldsValue }) => {
+    setSchemaByName('path', {
+      props: {
+        addBefore:
+          getFieldsValue().type === 1
+            ? 'https://dev-ops.yunliang.cloud/website/'
+            : '',
+      },
+    });
+  };
+  return (
+    <Form
+      initialValues={{
+        type: 1,
+      }}
+      onMount={effectType}
+      schema={[
+        {
+          type: 'RadioGroup',
+          label: '类型',
+          name: 'type',
+          props: {
+            type: 'button',
+            options: [
+              {
+                label: '静态站点托管',
+                value: 1,
+              },
+              {
+                label: 'pm2托管',
+                value: 2,
+              },
+            ],
+          },
+        },
+        {
+          type: 'Input',
+          name: 'path',
+          label: '资源访问地址',
+          effect: ['type'],
+          effectClearField: true,
+          onEffect(name, { setSchemaByName, getFieldsValue }) {
+            effectType({ setSchemaByName, getFieldsValue });
           },
         },
       ]}
