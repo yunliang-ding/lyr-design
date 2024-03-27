@@ -30,6 +30,18 @@ export default [
         icon: <IconUser />,
         label: '用户列表',
         path: '/user/list',
+        children: [
+          {
+            icon: <IconUser />,
+            label: '子用户列表',
+            path: '/user/list/sub-list',
+          },
+          {
+            icon: <IconUser />,
+            label: '添加子管理',
+            path: '/user/list/sub-add',
+          },
+        ],
       },
     ],
   },

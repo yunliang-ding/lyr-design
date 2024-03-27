@@ -31,6 +31,15 @@ export const RenderMenus = (menus = [], collapsed = false) => {
   });
 };
 
+// 获取openKey
+const getOpenKeyByPathName = (path: string): string[] =>
+  path
+    .split('/')
+    .map((item, index, arr) => {
+      return arr.slice(0, index + 1).join('/');
+    })
+    .filter(Boolean);
+
 export default ({
   pathname = '/',
   compact = true,
@@ -75,8 +84,14 @@ export default ({
     } as any);
   };
   const subMenuClick = (path: string) => {
-    const clearPath: string[] = path.split('/').filter(Boolean);
-    setOpenKeys(clearPath.map((i) => `/${i}`));
+    let newOpenKey = [...openKeys];
+    if (openKeys.includes(path)) {
+      // 收起功能
+      newOpenKey = openKeys.filter((i) => i !== path);
+    } else {
+      newOpenKey = getOpenKeyByPathName(path);
+    }
+    setOpenKeys(newOpenKey);
   };
   // 监听 hash
   const listenHash = () => {
@@ -93,7 +108,7 @@ export default ({
   useEffect(() => {
     const clearPath = pathname.split('/').filter(Boolean);
     setSelectedKey(`/${clearPath.join('/')}`);
-    setOpenKeys(clearPath.slice(0, clearPath.length - 1).map((i) => `/${i}`)); // 自动打开父级菜单
+    setOpenKeys(getOpenKeyByPathName(pathname)); // 自动打开父级菜单
     setTopKey(`/${clearPath[0]}`);
   }, [pathname]);
   /** 挂载API */
@@ -233,6 +248,7 @@ export default ({
                   {/* 这里渲染当前一级菜单下面的子菜单 */}
                   <Menu
                     onClickMenuItem={menuClick}
+                    onClickSubMenu={subMenuClick}
                     selectedKeys={[selectedKey]}
                     openKeys={openKeys}
                     collapse={collapsed}
