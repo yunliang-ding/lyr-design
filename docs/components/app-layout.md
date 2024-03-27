@@ -86,7 +86,9 @@ export default () => {
         userName: '测试用户',
         droplist: (
           <Menu>
-            <Menu.Item key="logout">切换用户</Menu.Item>
+            <Menu.Item key="logout" onClick={() => console.log('切换用户')}>
+              切换用户
+            </Menu.Item>
           </Menu>
         ),
         avatarUrl:
@@ -119,4 +121,4 @@ export default () => {
 
 ## API
 
-<!-- <API src="../../src/app-layout/index.tsx" hideTitle></API> -->
+<API src="../../src/app-layout/index.tsx" hideTitle></API>

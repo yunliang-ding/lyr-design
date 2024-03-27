@@ -1,5 +1,12 @@
-import { Avatar, ColorPicker, Dropdown, Space } from '@arco-design/web-react';
 import {
+  Avatar,
+  ColorPicker,
+  Dropdown,
+  Space,
+  Tooltip,
+} from '@arco-design/web-react';
+import {
+  IconLayout,
   IconInteraction,
   IconMoonFill,
   IconSunFill,
@@ -39,26 +46,52 @@ export default ({
       {extra}
       <Space size={20}>
         {dark ? (
-          <IconSunFill
-            style={{ cursor: 'pointer' }}
-            onClick={() => {
-              onDarkChange(false);
-            }}
-          />
+          <Tooltip content="点击切换亮色模式" position="bottom">
+            <div
+              className="app-layout-header-right-dark-wrapper"
+              onClick={() => {
+                onDarkChange(false);
+              }}
+            >
+              <IconSunFill />
+            </div>
+          </Tooltip>
         ) : (
-          <IconMoonFill
-            style={{ cursor: 'pointer' }}
-            onClick={() => {
-              onDarkChange(true);
-            }}
-          />
+          <Tooltip content="点击切换暗黑模式" position="bottom">
+            <div
+              className="app-layout-header-right-dark-wrapper"
+              onClick={() => {
+                onDarkChange(true);
+              }}
+            >
+              <IconMoonFill />
+            </div>
+          </Tooltip>
         )}
-        <IconInteraction
-          style={{ cursor: 'pointer' }}
-          onClick={() => {
-            onCompactChange(!compact);
-          }}
-        />
+        {compact ? (
+          <Tooltip content="切换布局" position="bottom">
+            <div
+              className="app-layout-header-right-dark-wrapper"
+              onClick={() => {
+                onCompactChange(false);
+              }}
+            >
+              <IconInteraction style={{ fontSize: 14 }} strokeWidth={4} />
+            </div>
+          </Tooltip>
+        ) : (
+          <Tooltip content="切换布局" position="bottom">
+            <div
+              className="app-layout-header-right-dark-wrapper"
+              onClick={() => {
+                onCompactChange(true);
+              }}
+            >
+              <IconLayout style={{ fontSize: 14 }} strokeWidth={4} />
+            </div>
+          </Tooltip>
+        )}
+
         <ColorPicker
           size="mini"
           defaultValue={themeColor}
@@ -71,6 +104,7 @@ export default ({
             style={{
               whiteSpace: 'nowrap',
               fontWeight: 'bold',
+              cursor: 'pointer',
             }}
           >
             <Avatar size={32} style={{ marginRight: 10 }}>
