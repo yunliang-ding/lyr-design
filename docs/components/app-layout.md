@@ -81,70 +81,34 @@ export default () => {
       siderFooterRender={(collapsed) =>
         collapsed ? null : <div>这个 sider 说明</div>
       }
-      rightContentRender={() => {
-        return (
-          <div className="app-right-header">
-            <Space>
-              {dark ? (
-                <IconSun
-                  onClick={() => {
-                    document.body.removeAttribute('arco-theme');
-                    setDark(false);
-                  }}
-                />
-              ) : (
-                <IconMoon
-                  onClick={() => {
-                    document.body.setAttribute('arco-theme', 'dark');
-                    setDark(true);
-                  }}
-                />
-              )}
-              <a
-                onClick={() => {
-                  setCompact(!compact);
-                }}
-              >
-                切换模式
-              </a>
-              <Dropdown
-                placement="bottom"
-                droplist={
-                  <Menu>
-                    <Menu.Item>退出登录</Menu.Item>
-                  </Menu>
-                }
-              >
-                <a>Admin</a>
-              </Dropdown>
-              <Input
-                type="color"
-                defaultValue="#165dff"
-                style={{ border: 'none', background: 'none', width: 45 }}
-                onChange={(hex) => {
-                  const newColor = hex;
-                  const newList = generate(newColor, {
-                    list: true,
-                    dark,
-                  });
-                  newList.forEach((l, index) => {
-                    const rgbStr = getRgbStr(l);
-                    document.body.style.setProperty(
-                      `--arcoblue-${index + 1}`,
-                      rgbStr,
-                    );
-                  });
-                }}
-              />
-              <Avatar
-                style={{ backgroundColor: 'rgb(var(--primary-6))' }}
-                size={26}
-              >
-                <IconUser />
-              </Avatar>
-            </Space>
-          </div>
-        );
+      rightContentProps={{
+        extra: <h4>自定义渲染区域</h4>,
+        userName: '测试用户',
+        droplist: (
+          <Menu>
+            <Menu.Item key="logout">切换用户</Menu.Item>
+          </Menu>
+        ),
+        avatarUrl:
+          'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/user-logo.png',
+        themeColor: '#165dff',
+        onThemeColorChange: (newColor) => {
+          const newList = generate(newColor, {
+            list: true,
+            dark,
+          });
+          newList.forEach((l, index) => {
+            const rgbStr = getRgbStr(l);
+            document.body.style.setProperty(`--arcoblue-${index + 1}`, rgbStr);
+          });
+        },
+        onDarkChange: (dark) => {
+          document.body.setAttribute('arco-theme', dark && 'dark');
+          setDark(dark);
+        },
+        onCompactChange: (compact) => {
+          setCompact(compact);
+        },
       }}
     >
       内容区域
@@ -155,4 +119,4 @@ export default () => {
 
 ## API
 
-<API src="../../src/app-layout/index.tsx" hideTitle></API>
+<!-- <API src="../../src/app-layout/index.tsx" hideTitle></API> -->

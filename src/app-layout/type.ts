@@ -1,5 +1,6 @@
 import { MutableRefObject, ReactNode } from 'react';
 import type { PageHeaderProps, MenuProps } from '@arco-design/web-react';
+import { RightProps } from './right-content-render';
 
 export default interface ProLayout {
   /** 当前路径 */
@@ -32,8 +33,8 @@ export default interface ProLayout {
   waterMarkProps?: any;
   /** 页面头属性 */
   pageHeaderProps?: PageHeaderProps;
-  /** 顶部右侧渲染 */
-  rightContentRender: () => ReactNode;
+  /** 顶部右侧配置 */
+  rightContentProps: RightProps;
   /** 底部渲染 */
   footerRender: () => ReactNode;
   /** 底部渲染 */

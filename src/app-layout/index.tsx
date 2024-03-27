@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Breadcrumb from './breadcrumb';
 import { getBreadcrumbByMenus } from './util';
 import { IconLeft, IconRight } from '@arco-design/web-react/icon';
+import RightContentRender from './right-content-render';
 import './index.less';
 
 export const RenderMenus = (menus = [], collapsed = false) => {
@@ -62,7 +63,16 @@ export default ({
       }}
     />
   ),
-  rightContentRender = () => null,
+  rightContentProps = {
+    extra: null,
+    droplist: null,
+    themeColor: '#165dff',
+    avatarUrl:
+      'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/user-logo.png',
+    onThemeColorChange: () => {},
+    onDarkChange: () => {},
+    onCompactChange: () => {},
+  },
   footerRender = () => null,
   siderFooterRender = () => null,
   layoutRef = useRef<any>({}),
@@ -153,6 +163,7 @@ export default ({
     </PageHeader>
   );
   const IconBtn = collapsed ? IconRight : IconLeft;
+  /** 右侧渲染逻辑 */
   return (
     <Watermark {...waterMarkProps}>
       <div className={classNames.join(' ')}>
@@ -201,7 +212,13 @@ export default ({
                 >
                   <Breadcrumb breadcrumb={pageHeaderProps.breadcrumb} />
                 </div>
-                {rightContentRender()}
+                <RightContentRender
+                  {...{
+                    dark,
+                    compact,
+                    ...rightContentProps,
+                  }}
+                />
               </div>
             </div>
           </>
@@ -239,7 +256,13 @@ export default ({
                 </Menu>
               </div>
               <div className="app-layout-header-right">
-                {rightContentRender()}
+                <RightContentRender
+                  {...{
+                    dark,
+                    compact,
+                    ...rightContentProps,
+                  }}
+                />
               </div>
             </div>
             <div className="app-layout-body">
