@@ -79,6 +79,10 @@ export default defineConfig({
       path: 'https://dev-ops.yunliang.cloud/website/lyr-extra',
     },
     {
+      title: 'Hooks',
+      path: 'https://dev-ops.yunliang.cloud/website/lyr-hooks',
+    },
+    {
       title: '表单设计器',
       path: 'https://dev-ops.yunliang.cloud/website/lyr-low-code',
     },

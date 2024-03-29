@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "dayjs": "1.11.10",
-    "lyr-store": "0.0.1",
+    "lyr-hooks": "0.0.1",
     "lodash.mergewith": "4.6.2",
     "lodash.debounce": "4.0.8",
     "lodash.clonedeepwith": "4.5.0",

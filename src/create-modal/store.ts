@@ -1,4 +1,4 @@
-import { create } from 'lyr-store';
+import { create } from 'lyr-hooks';
 
 export default create({
   visible: false,
