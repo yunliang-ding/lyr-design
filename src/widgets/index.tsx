@@ -117,4 +117,5 @@ export interface ExtendInputProps {
   readOnly?: boolean;
   splitLabel?: string;
   showCheckAll?: boolean;
+  sort?: boolean;
 }
