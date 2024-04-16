@@ -1,37 +1,11 @@
-import { ReactNode, useEffect, useState } from 'react';
-import {
-  SortableContainer,
-  SortableElement,
-  SortableHandle,
-  arrayMove,
-} from 'react-sortable-hoc';
 import { Space } from '@arco-design/web-react';
 import { IconDragDotVertical } from '@arco-design/web-react/icon';
+import Dnd, { DragWrapperProps } from '../drag-wrapper';
 import './index.css';
 
-const DragHandle = SortableHandle(() => <IconDragDotVertical />);
-
-const SortContainer = SortableContainer((props: any) => (
-  <div className="core-form-drag-list" {...props} />
-));
-
-interface DragListProps {
-  /**
-   * 列表数据源
-   * @default []
-   */
-  list: {
-    /** 唯一标识 */
-    key: string | number;
-    /** 显示文案 */
-    label: ReactNode | string;
-  }[];
+interface DragListProps extends DragWrapperProps {
   /** 列顺序改变事件 */
   onChange?: Function;
-  /** 点击事件事件 */
-  onClick?: Function;
-  /** 默认选中 */
-  defaultActiveKey?: string | number;
   /**
    * 是否展示图标
    * @default true
@@ -39,68 +13,36 @@ interface DragListProps {
   showIcon?: boolean;
 }
 
-export default ({
-  list = [],
-  onChange,
-  onClick,
-  defaultActiveKey,
-  showIcon = true,
-}: DragListProps) => {
-  const [activeKey, setActiveKey] = useState(defaultActiveKey);
-  const [innerList, setInnerList] = useState([...list]);
-  const SortableItem = SortableElement((props: any) => (
-    <div
-      className="core-form-drag-list-item"
-      {...props}
-      onClick={(e) => {
-        setActiveKey(props.value.key);
-        onClick?.(props.value, e);
-      }}
-    />
-  ));
-  useEffect(() => {
-    setInnerList([...list]);
-  }, [list]);
-  // 拖拽结束
-  const onSortEnd = ({
-    oldIndex,
-    newIndex,
-  }: {
-    oldIndex: number;
-    newIndex: number;
-  }) => {
-    if (oldIndex !== newIndex) {
-      const newData = arrayMove([...innerList], oldIndex, newIndex);
-      setInnerList([...newData]);
-      onChange?.(newData);
-    }
-  };
+export default ({ items = [], onChange, showIcon = true }: DragListProps) => {
   return (
-    <div className="core-form-drag-list">
-      <SortContainer
-        distance={1}
-        onSortEnd={onSortEnd}
-        helperClass="core-form-drag-item-dragging"
-      >
-        {innerList.map((i, index) => {
-          return (
-            <SortableItem index={index} key={i.key} value={i}>
-              <Space>
-                {showIcon && <DragHandle />}
-                <div
-                  className={
-                    activeKey === i.key
-                      ? 'core-form-drag-list-item-active-label'
-                      : 'core-form-drag-list-item-label'
-                  }
-                >
-                  {i.label}
-                </div>
+    <Dnd
+      style={{
+        flexDirection: 'column',
+        width: 100,
+      }}
+      onChange={onChange}
+      items={items.map((item: any) => {
+        return {
+          key: item.key,
+          content: (
+            <div
+              style={{
+                width: 100,
+                height: 30,
+                background: '#fff',
+                padding: 4,
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <Space style={{ width: 100 }}>
+                {showIcon && <IconDragDotVertical />}
+                {item.content}
               </Space>
-            </SortableItem>
-          );
-        })}
-      </SortContainer>
-    </div>
+            </div>
+          ),
+        };
+      })}
+    />
   );
 };

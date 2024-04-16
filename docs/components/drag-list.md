@@ -1,5 +1,5 @@
 ---
-order: 12
+order: 13
 title: DragList 拖拽列表
 toc: menu
 ---
@@ -23,17 +23,13 @@ export default () => {
   return (
     <div style={{ width: 100 }}>
       <DragList
-        defaultActiveKey={3}
-        onClick={(item) => {
-          console.log(item);
-        }}
         onChange={(list) => {
           console.log(list);
         }}
-        list={[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
+        items={[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
           return {
             key: i,
-            label: <div style={{ padding: 6 }}>{i}</div>,
+            content: i,
           };
         })}
       />
