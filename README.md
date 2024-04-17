@@ -48,6 +48,7 @@ yarn add lyr-design
 - 扩展 `CardForm`, `AnchorCardForm`, `SetpForm`, `SearchForm` 等提交表单
 - 扩展 `Table` ，基于数据模型渲染，扩展 toolBar 配置，request 配置，search 配置
 - 扩展 `TableList`，`EditableTable` 针对表格编辑的场景
+- 扩展 `DragWrapper`，`DragList` 轻量级拖拽组件
 - 扩展 `OssFileUpload` 文件上传组件
 - 新增 `Suspend` 悬浮组件
 - 新增 `AppLayout`，中后台布局统一大模版
