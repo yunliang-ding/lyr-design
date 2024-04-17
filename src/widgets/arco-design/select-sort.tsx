@@ -11,7 +11,7 @@ export default ({ options, ...rest }) => {
       list.push({
         ...option,
         key: option.value,
-        label: <div style={{ padding: 4 }}>{option.label}</div>,
+        content: <div style={{ padding: 4 }}>{option.label}</div>,
       });
     }
   });
@@ -31,14 +31,11 @@ export default ({ options, ...rest }) => {
         droplist={
           <div
             style={{
-              background: '#fff',
-              width: 150,
-              maxHeight: 150,
               boxShadow: '0 2px 8px #e1e1e1',
             }}
           >
             <DragList
-              list={list}
+              items={list}
               onChange={(v) => {
                 rest.onChange?.(
                   v.map((i: any) => i.value),

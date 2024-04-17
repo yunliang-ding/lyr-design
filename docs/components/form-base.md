@@ -304,11 +304,12 @@ export default () => {
           label: '个人爱好',
           props: {
             sort: true,
+            style: { width: 360 },
             options: [
-              { label: '洗澡', value: 1 },
-              { label: '游戏', value: 2 },
-              { label: '看书', value: 3 },
-              { label: '运动', value: 4 },
+              { label: '选项1', value: 1 },
+              { label: '选项2', value: 2 },
+              { label: '选项3', value: 3 },
+              { label: '选项3', value: 4 },
             ],
           },
         },

@@ -108,7 +108,7 @@ const schema: SchemaProps[] = [
                   value: 3,
                 },
                 {
-                  label: '陪客户吃饭',
+                  label: '联动选项',
                   value: 4,
                   disabled: getFieldValue('userType') === 1,
                 },
