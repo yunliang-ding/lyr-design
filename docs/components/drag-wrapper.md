@@ -39,8 +39,9 @@ export default () => {
                 style={{
                   width: 100,
                   height: 100,
-                  background: '#fff',
-                  color: '#888',
+                  background: 'var(--color-menu-light-bg)',
+                  color: 'var(--color-neutral-10)',
+                  padding: '0 4px',
                 }}
               >
                 {i}
@@ -56,4 +57,4 @@ export default () => {
 
 ## Api
 
-<API src="../../src/drag-wrapper/index.tsx" hideTitle></API>
+<!-- <API src="../../src/drag-wrapper/index.tsx" hideTitle></API> -->

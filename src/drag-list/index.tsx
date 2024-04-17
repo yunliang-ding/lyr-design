@@ -1,7 +1,6 @@
 import { Space } from '@arco-design/web-react';
 import { IconDragDotVertical } from '@arco-design/web-react/icon';
-import Dnd, { DragWrapperProps } from '../drag-wrapper';
-import './index.css';
+import DragWrapper, { DragWrapperProps } from '../drag-wrapper';
 
 interface DragListProps extends DragWrapperProps {
   /** 列顺序改变事件 */
@@ -22,7 +21,7 @@ export default ({
   showIcon = true,
 }: DragListProps) => {
   return (
-    <Dnd
+    <DragWrapper
       style={{
         flexDirection: 'column',
         width,
@@ -36,7 +35,8 @@ export default ({
               style={{
                 width,
                 height: 30,
-                background: '#fff',
+                background: 'var(--color-menu-light-bg)',
+                color: 'var(--color-neutral-10)',
                 padding: '0 4px',
                 display: 'flex',
                 alignItems: 'center',

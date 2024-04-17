@@ -24,33 +24,32 @@ const Item = ({ index, onDrop, children }) => {
   const Element = cloneElement(children, {
     style: {
       ...children?.props?.style,
-      position: 'relative',
       cursor: 'move',
-      borderTop: '2px solid #fff',
+      borderTop: '2px solid var(--color-menu-light-bg)',
     },
     draggable: true,
     onDragOver: (e) => {
       e.preventDefault();
-      e.currentTarget.style.borderTop = '2px solid #1890ff';
+      e.currentTarget.style.borderTop = '2px solid rgb(var(--primary-6))';
     },
     onDragEnter: (e) => {
-      e.currentTarget.style.borderTop = '2px solid #1890ff';
+      e.currentTarget.style.borderTop = '2px solid rgb(var(--primary-6))';
     },
     onDragLeave: (e) => {
-      e.currentTarget.style.borderTop = '2px solid #fff';
+      e.currentTarget.style.borderTop = '2px solid var(--color-menu-light-bg)';
     },
     onDrop: (e) => {
       e.preventDefault();
       onDrop?.(Number(e.dataTransfer.getData('index')));
-      e.currentTarget.style.borderTop = '2px solid #fff';
+      e.currentTarget.style.borderTop = '2px solid var(--color-menu-light-bg)';
     },
     onDragStart: (e) => {
       e.dataTransfer.setData('index', String(index));
-      e.currentTarget.style.opacity = '0.1';
+      e.currentTarget.style.opacity = '0.5';
     },
     onDragEnd: (e) => {
       e.currentTarget.style.opacity = '1';
-      e.currentTarget.style.borderTop = '2px solid #fff';
+      e.currentTarget.style.borderTop = '2px solid var(--color-menu-light-bg)';
     },
   });
   return Element;
