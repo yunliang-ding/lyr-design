@@ -4,6 +4,12 @@ title: DragWrapper 拖拽包裹组件
 toc: menu
 ---
 
+<Alert>
+
+- 最基本的拖拽组件
+
+</Alert>
+
 ## 基本使用
 
 ```tsx
@@ -32,8 +38,8 @@ export default () => {
               style={{
                 width: 100,
                 height: 100,
-                background: '#aaa',
-                color: '#fff',
+                background: '#fff',
+                color: '#888',
               }}
             >
               {i}
@@ -48,4 +54,4 @@ export default () => {
 
 ## Api
 
-<!-- <API src="../../src/dnd/index.tsx" hideTitle></API> -->
+<!-- <API src="../../src/drag-wrapper/index.tsx" hideTitle></API> -->

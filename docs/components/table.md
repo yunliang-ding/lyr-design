@@ -4,6 +4,7 @@ title: Table 数据表格
 toc: menu
 ---
 
+<!--
 ## 使用 数据模型渲染
 
 ```tsx
@@ -154,7 +155,7 @@ import schema from './schema/form-table/schema';
 export default () => {
   return <Table autoNo {...schema} />;
 };
-```
+``` -->
 
 ## 配置 drag 属性，支持可拖动
 
@@ -180,6 +181,7 @@ export default () => {
 };
 ```
 
+<!--
 ## 使用 alertConfig 配置提示信息
 
 ```tsx
@@ -466,4 +468,4 @@ export default () => {
 
 ## Column 扩展属性
 
-<API src="../../src/table/type.column.tsx" hideTitle></API>
+<API src="../../src/table/type.column.tsx" hideTitle></API> -->

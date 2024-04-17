@@ -6,7 +6,7 @@ toc: menu
 
 <Alert>
 
-- 拖拽调整位置列表
+- 基于 `DragWrapper` 扩展的单列拖拽组件
 
 </Alert>
 
@@ -21,19 +21,18 @@ import { DragList } from 'lyr-design';
 
 export default () => {
   return (
-    <div style={{ width: 100 }}>
-      <DragList
-        onChange={(list) => {
-          console.log(list);
-        }}
-        items={[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
-          return {
-            key: i,
-            content: i,
-          };
-        })}
-      />
-    </div>
+    <DragList
+      width={100}
+      onChange={(list) => {
+        console.log(list);
+      }}
+      items={[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
+        return {
+          key: i,
+          content: i,
+        };
+      })}
+    />
   );
 };
 ```

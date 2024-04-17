@@ -1,85 +1,48 @@
-/* eslint-disable prefer-template */
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
-import type { SortEnd } from 'react-sortable-hoc';
+import { DragWrapper } from '..';
 import { IconDragDotVertical } from '@arco-design/web-react/icon';
-import {
-  SortableContainer,
-  SortableElement,
-  SortableHandle,
-} from 'react-sortable-hoc';
 
-export const arrayMoveMutate = (array, from, to) => {
-  const startIndex = to < 0 ? array.length + to : to;
-
-  if (startIndex >= 0 && startIndex < array.length) {
-    const item = array.splice(from, 1)[0];
-    array.splice(startIndex, 0, item);
-  }
-};
-
-export const arrayMove = (array, from, to) => {
-  array = [...array];
-  arrayMoveMutate(array, from, to);
-  return array;
-};
-
-export const DragHandle = SortableHandle(() => (
+export const DragHandle = () => (
   <IconDragDotVertical
     style={{
       cursor: 'move',
       color: '#555',
     }}
   />
-));
-export const SortableWrapper = SortableContainer((props) => {
-  return <tbody {...props} />;
-});
-
-export const SortableItem = SortableElement((props) => {
-  return <tr {...props} />;
-});
-
-export const onSortEnd = ({
-  setDataSource,
-  dataSource,
-  oldIndex,
-  newIndex,
-}:
-  | SortEnd & {
-      setDataSource: any;
-      dataSource: [];
-    }) => {
-  if (oldIndex !== newIndex) {
-    const newData = arrayMove(dataSource.slice(), oldIndex, newIndex).filter(
-      (el) => !!el,
-    );
-    setDataSource(newData);
-    return {
-      oldIndex,
-      newIndex,
-      dataSource: newData,
-    };
-  }
-};
-
-export const DraggableContainer = (props) => (
-  <SortableWrapper
-    useDragHandle
-    helperClass="core-table-row-dragging"
-    onSortEnd={(e) => {
-      props.onDragDone(
-        onSortEnd({
-          setDataSource: props.setDataSource,
-          dataSource: props.dataSource,
-          ...e,
-        }),
-      );
-    }}
-    {...props}
-  />
 );
 
-export const DraggableRow = (props) => {
-  const { record, index, ...rest } = props;
-  return <SortableItem index={index} {...rest} />;
+export const DraggableContainer = (props) => {
+  return (
+    <DragWrapper>
+      <tbody {...props} />
+    </DragWrapper>
+  );
+};
+
+export const DraggableRow = ({
+  record,
+  index,
+  dataSource,
+  setDataSource,
+  onDragDone,
+  ...rest
+}) => {
+  return (
+    <DragWrapper.Item
+      index={index}
+      key={record.id}
+      onDrop={(targetIndex: number) => {
+        const temp = dataSource[targetIndex];
+        // 删除之前的
+        dataSource.splice(targetIndex, 1);
+        // 插入到指定的下标位置
+        dataSource.splice(index, 0, temp);
+        // 更新视图
+        setDataSource([...dataSource]);
+        // 通知外部
+        onDragDone?.(dataSource);
+      }}
+    >
+      <tr {...rest} />
+    </DragWrapper.Item>
+  );
 };

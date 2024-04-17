@@ -329,23 +329,15 @@ export default ({
         drag
           ? {
               header: {
-                operations: ({ selectionNode, expandNode }) => [
+                operations: () => [
                   {
                     node: <th />,
                     width: 40,
                   },
-                  {
-                    name: 'expandNode',
-                    node: expandNode,
-                  },
-                  {
-                    name: 'selectionNode',
-                    node: selectionNode,
-                  },
                 ],
               },
               body: {
-                operations: ({ selectionNode, expandNode }) => [
+                operations: () => [
                   {
                     node: (
                       <td>
@@ -356,25 +348,17 @@ export default ({
                     ),
                     width: 40,
                   },
-                  {
-                    name: 'expandNode',
-                    node: expandNode,
-                  },
-                  {
-                    name: 'selectionNode',
-                    node: selectionNode,
-                  },
                 ],
-                tbody: (props) => (
-                  <DraggableContainer
-                    {...props}
-                    dataSource={dataSource}
-                    setDataSource={setDataSource}
-                    onDragDone={onDragDone}
-                  />
-                ),
+                tbody: (props) => <DraggableContainer {...props} />,
                 row: (props) => {
-                  return <DraggableRow {...props} dataSource={dataSource} />;
+                  return (
+                    <DraggableRow
+                      dataSource={dataSource}
+                      setDataSource={setDataSource}
+                      onDragDone={onDragDone}
+                      {...props}
+                    />
+                  );
                 },
               },
             }

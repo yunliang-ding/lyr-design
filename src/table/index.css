@@ -112,7 +112,7 @@
 }
 
 .core-table-row-dragging {
-  width: fit-content !important;
+  width: 100%;
   border: 1px solid var(--color-menu-light-bg);
 }
 

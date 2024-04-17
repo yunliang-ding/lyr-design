@@ -5,24 +5,20 @@ import { tranfromSchema } from '@/form/util';
 import Item from '../form/item';
 import Button from '@/button';
 import AsyncWapper from './async-wapper';
-import {
-  SortableContainer,
-  SortableElement,
-  SortableHandle,
-  arrayMove,
-} from 'react-sortable-hoc';
 import { EditTableProps } from './type';
-import { IconDragDotVertical, IconPlus } from '@arco-design/web-react/icon';
+import { IconPlus } from '@arco-design/web-react/icon';
 import './index.css';
+import {
+  DraggableContainer,
+  DraggableRow,
+  DragHandle,
+} from '@/table/drag-columns';
 
-const SortableItem = SortableElement((props) => <tr {...props} />);
-
-const SortableBody = SortableContainer((props) => <tbody {...props} />);
-
-const DragHandle = SortableHandle(() => (
-  <IconDragDotVertical style={{ cursor: 'grab' }} />
-));
-
+const arrayMove = (array, from, to) => {
+  array = array.slice();
+  array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
+  return array;
+};
 // TODO value 中不能混入index属性，否则和内置的index属性冲突、待优化
 
 export default ({
@@ -59,6 +55,37 @@ export default ({
       };
     }),
   );
+  /**
+   * 拖拽排序的逻辑
+   */
+  const onSortEnd = async ({
+    oldIndex,
+    newIndex,
+  }: {
+    oldIndex: number;
+    newIndex: number;
+  }) => {
+    await awaitEditComplete();
+    if (oldIndex !== newIndex) {
+      const newData = arrayMove([...dataSource], oldIndex, newIndex);
+      setDataSource([
+        ...newData.map((v, i) => {
+          return {
+            ...v,
+            index: i, // 更新下标
+          };
+        }),
+      ]);
+      onChange?.(
+        newData.map((i) => {
+          const copyItem = { ...i };
+          delete copyItem.index;
+          delete copyItem.__isNew__;
+          return copyItem;
+        }),
+      );
+    }
+  };
   // 扩展列的render
   const renderColumns = useMemo(() => {
     return columns.map((item, rowIndex) => {
@@ -235,37 +262,6 @@ export default ({
       }
       res(true);
     });
-  /**
-   * 拖拽排序的逻辑
-   */
-  const onSortEnd = async ({
-    oldIndex,
-    newIndex,
-  }: {
-    oldIndex: number;
-    newIndex: number;
-  }) => {
-    await awaitEditComplete();
-    if (oldIndex !== newIndex) {
-      const newData = arrayMove([...dataSource], oldIndex, newIndex);
-      setDataSource([
-        ...newData.map((v, i) => {
-          return {
-            ...v,
-            index: i, // 更新下标
-          };
-        }),
-      ]);
-      onChange?.(
-        newData.map((i) => {
-          const copyItem = { ...i };
-          delete copyItem.index;
-          delete copyItem.__isNew__;
-          return copyItem;
-        }),
-      );
-    }
-  };
   // 渲染体
   const renderDom = [
     <Table
@@ -352,7 +348,7 @@ export default ({
                 ],
               },
               body: {
-                operations: ({ selectionNode, expandNode }) => [
+                operations: () => [
                   {
                     node: (
                       <td>
@@ -363,30 +359,33 @@ export default ({
                     ),
                     width: 40,
                   },
-                  {
-                    name: 'expandNode',
-                    node: expandNode,
-                  },
-                  {
-                    name: 'selectionNode',
-                    node: selectionNode,
-                  },
                 ],
-                tbody: (props) => (
-                  <SortableBody
-                    useDragHandle
-                    disableAutoscroll
-                    helperClass="row-dragging"
-                    onSortEnd={onSortEnd}
-                    {...props}
-                  />
-                ),
-                row: (props: any) => {
-                  const { className, style, ...restProps } = props;
-                  const index = dataSource.findIndex(
-                    (x) => x[rest.rowKey] === restProps['data-row-key'],
+                tbody: (props) => <DraggableContainer {...props} />,
+                row: (props) => {
+                  return (
+                    <DraggableRow
+                      dataSource={dataSource}
+                      setDataSource={(newData) => {
+                        setDataSource([
+                          ...newData.map((v, i) => {
+                            return {
+                              ...v,
+                              index: i, // 更新下标
+                            };
+                          }),
+                        ]);
+                        onChange?.(
+                          newData.map((i) => {
+                            const copyItem = { ...i };
+                            delete copyItem.index;
+                            delete copyItem.__isNew__;
+                            return copyItem;
+                          }),
+                        );
+                      }}
+                      {...props}
+                    />
                   );
-                  return <SortableItem index={index} {...restProps} />;
                 },
               },
             }
