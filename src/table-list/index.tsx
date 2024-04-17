@@ -29,7 +29,6 @@ export default ({
   defaultAddValue = {},
   sortable = false,
 }: TableListProps) => {
-  const firstRef = useRef(true);
   const [form] = Form.useForm();
   const event = useMemo(() => {
     return new EventEmit();
@@ -37,7 +36,6 @@ export default ({
   useEffect(() => {
     // 扁平化数据打到对应的Form.Item
     form.setFieldsValue(beforeReceiveInnerValues(value, columns));
-    firstRef.current = false;
     if (name) {
       actionRef.current[name] = {
         ...form,
@@ -81,7 +79,6 @@ export default ({
       };
     });
   }, [children, value, readOnly]);
-  console.log('leastOne', leastOne);
   /** 渲染表格 */
   const renderDom = (
     <>
@@ -107,7 +104,6 @@ export default ({
             visible: readOnly !== true,
             align: 'center' as any,
             render(v, record, index) {
-              console.log(leastOne, value.length);
               return (
                 <Space>
                   <Button
