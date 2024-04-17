@@ -21,7 +21,6 @@ export default ({
   onChange,
   showIcon = true,
 }: DragListProps) => {
-  console.log('width', width);
   return (
     <Dnd
       style={{

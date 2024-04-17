@@ -21,37 +21,39 @@ import { DragWrapper } from 'lyr-design';
 
 export default () => {
   return (
-    <DragWrapper
-      style={{
-        gap: 20,
-      }}
-      onChange={(item) => {
-        console.log(item);
-      }}
-      items={[
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-      ].map((i) => {
-        return {
-          key: i,
-          content: (
-            <div
-              style={{
-                width: 100,
-                height: 100,
-                background: '#fff',
-                color: '#888',
-              }}
-            >
-              {i}
-            </div>
-          ),
-        };
-      })}
-    />
+    <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+      <DragWrapper
+        style={{
+          gap: 20,
+        }}
+        onChange={(item) => {
+          console.log(item);
+        }}
+        items={[
+          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        ].map((i) => {
+          return {
+            key: i,
+            content: (
+              <div
+                style={{
+                  width: 100,
+                  height: 100,
+                  background: '#fff',
+                  color: '#888',
+                }}
+              >
+                {i}
+              </div>
+            ),
+          };
+        })}
+      />
+    </div>
   );
 };
 ```
 
 ## Api
 
-<!-- <API src="../../src/drag-wrapper/index.tsx" hideTitle></API> -->
+<API src="../../src/drag-wrapper/index.tsx" hideTitle></API>

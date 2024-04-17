@@ -5,7 +5,6 @@ import {
   useEffect,
   useState,
 } from 'react';
-import './index.less';
 
 export interface DragWrapperProps {
   /** 配置项 */
@@ -23,7 +22,12 @@ export interface DragWrapperProps {
 const Item = ({ index, onDrop, children }) => {
   /** 扩展节点 */
   const Element = cloneElement(children, {
-    // className: 'lyr-dnd-item',
+    style: {
+      ...children?.props?.style,
+      position: 'relative',
+      cursor: 'move',
+      borderTop: '2px solid #fff',
+    },
     draggable: true,
     onDragOver: (e) => {
       e.preventDefault();
@@ -33,21 +37,20 @@ const Item = ({ index, onDrop, children }) => {
       e.currentTarget.style.borderTop = '2px solid #1890ff';
     },
     onDragLeave: (e) => {
-      e.currentTarget.style.border = '2px solid #fff';
+      e.currentTarget.style.borderTop = '2px solid #fff';
     },
     onDrop: (e) => {
       e.preventDefault();
       onDrop?.(Number(e.dataTransfer.getData('index')));
-      e.currentTarget.style.border = '2px solid #fff';
+      e.currentTarget.style.borderTop = '2px solid #fff';
     },
     onDragStart: (e) => {
       e.dataTransfer.setData('index', String(index));
       e.currentTarget.style.opacity = '0.1';
-      e.currentTarget.style.border = '2px solid #1890ff';
     },
     onDragEnd: (e) => {
       e.currentTarget.style.opacity = '1';
-      e.currentTarget.style.border = '2px solid #fff';
+      e.currentTarget.style.borderTop = '2px solid #fff';
     },
   });
   return Element;
