@@ -13,7 +13,7 @@ import './index.less';
 // column布局映射关系
 const labelColMap = [4, 6, 8, 10];
 const wrapperColMap = [20, 18, 16, 14];
-export const SubFormType = ['FormList', 'TableList', 'EditableTable'];
+export const SubFormType = ['FormList', 'TableList'];
 export default ({
   schema = [],
   widgets = {}, // 注入自定义组件

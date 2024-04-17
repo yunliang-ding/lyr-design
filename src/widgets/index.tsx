@@ -30,7 +30,6 @@ import FormList from './extension/form-list';
 import BlockQuote from './extension/block-quote';
 import FieldSet from './extension/fields-set';
 import RangeInput from './extension/input/range';
-import EditableTable from '@/table-editable';
 import TableList from '@/table-list';
 import OssFileUpload from '@/oss-file-upload';
 import { SubFormType } from '@/form/form';
@@ -69,7 +68,6 @@ export const BuiltInWidgetMapping = {
   BlockQuote,
   FieldSet,
   RangeInput,
-  EditableTable,
   TableList,
   OssFileUpload,
 };

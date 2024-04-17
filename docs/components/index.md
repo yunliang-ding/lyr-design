@@ -124,7 +124,6 @@ export default () => {
         'AsyncCascader 支持异步',
         'FormList 子表单',
         'TableList 编辑表格',
-        'EditableTable 可编辑表格',
         'BlockQuote 平级区块',
         'FieldSet 父子级区块',
         'RangeInput 数字范围输入框',

@@ -7,6 +7,11 @@ import { EventEmit } from '@/util';
 import Button from '@/button';
 import { tranfromInnerValues, beforeReceiveInnerValues } from './util';
 import { IconPlus } from '@arco-design/web-react/icon';
+import {
+  DraggableContainer,
+  DraggableRow,
+  DragHandle,
+} from '@/table/drag-columns';
 import './index.css';
 
 export default ({
@@ -22,6 +27,7 @@ export default ({
   actionRef = useRef({}),
   name,
   defaultAddValue = {},
+  sortable = false,
 }: TableListProps) => {
   const firstRef = useRef(true);
   const [form] = Form.useForm();
@@ -75,6 +81,7 @@ export default ({
       };
     });
   }, [children, value, readOnly]);
+  console.log('leastOne', leastOne);
   /** 渲染表格 */
   const renderDom = (
     <>
@@ -98,8 +105,9 @@ export default ({
             dataIndex: '__operation__',
             width: 160,
             visible: readOnly !== true,
-            className: 'core-form-table-list-actions',
+            align: 'center' as any,
             render(v, record, index) {
+              console.log(leastOne, value.length);
               return (
                 <Space>
                   <Button
@@ -134,6 +142,53 @@ export default ({
             },
           },
         ].filter((i: any) => i.visible !== false)}
+        components={
+          sortable
+            ? {
+                header: {
+                  operations: () => [
+                    {
+                      node: <th />,
+                      width: 40,
+                    },
+                  ],
+                },
+                body: {
+                  operations: () => [
+                    {
+                      node: (
+                        <td>
+                          <div className="arco-table-cell">
+                            <DragHandle />
+                          </div>
+                        </td>
+                      ),
+                      width: 40,
+                    },
+                  ],
+                  tbody: (props) => <DraggableContainer {...props} />,
+                  row: (props) => {
+                    return (
+                      <DraggableRow
+                        dataSource={value}
+                        setDataSource={(newData) => {
+                          onChange([
+                            ...newData.map((v, i) => {
+                              return {
+                                ...v,
+                                index: i, // 更新下标
+                              };
+                            }),
+                          ]);
+                        }}
+                        {...props}
+                      />
+                    );
+                  },
+                },
+              }
+            : {}
+        }
       />
       <div className="core-form-table-list-footer">
         <Button

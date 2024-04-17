@@ -23,6 +23,8 @@ export interface TableListProps {
   removeConfirm?: boolean;
   /** 每次添加的默认值配置 */
   defaultAddValue?: (() => any) | any;
+  /** 支持排序 */
+  sortable?: boolean;
   name?: string;
   actionRef?: any;
 }

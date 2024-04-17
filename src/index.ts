@@ -8,7 +8,6 @@ export { default as CreateModal } from './create-modal';
 export { default as CreateDrawer } from './create-drawer';
 export { default as Search } from './search';
 export { default as Table } from './table';
-export { default as EditableTable } from './table-editable';
 export { default as TableList } from './table-list';
 export { default as DragList } from './drag-list';
 export { default as AnchorCard } from './anchor-card';

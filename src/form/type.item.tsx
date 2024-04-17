@@ -129,10 +129,6 @@ export interface ExtensionProps {
   extra?: ReactNode[];
   // 只读模式下日期范围的分割符默认 ~
   splitLabel?: string;
-  // EditableTable
-  rowKey?: string;
-  columns?: any;
-  creatorButtonProps?: any;
   // AsyncSelect 空提示信息
   emptyDescription?: ReactNode | string;
   showCheckAll?:

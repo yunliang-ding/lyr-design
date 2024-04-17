@@ -15,53 +15,70 @@ toc: menu
 ```tsx
 import React from 'react';
 import { TableList } from 'lyr-design';
+import { useReactive } from 'lyr-hooks';
 import schema from './schema/table-list/schema';
 import { Switch } from '@arco-design/web-react';
 
 export default () => {
-  const [showNo, setShowNo] = React.useState(false);
-  const [readOnly, setReadOnly] = React.useState(false);
-  const [removeConfirm, setRemoveConfirm] = React.useState(false);
-  const [leastOne, setLeastOne] = React.useState(false);
-  const [value, onChange] = React.useState([
-    {
-      name: '001',
-    },
-  ]);
-
+  const store = useReactive({
+    showNo: false,
+    readOnly: false,
+    removeConfirm: false,
+    leastOne: false,
+    sortable: false,
+    value: [
+      {
+        name: '001',
+      },
+      {
+        name: '002',
+      },
+    ],
+  });
   return (
     <>
       <Switch
         checkedText="展示序号"
         uncheckedText="展示序号"
-        onChange={setShowNo}
+        onChange={() => (store.showNo = !store.showNo)}
       />
       &nbsp; &nbsp;
-      <Switch checkedText="只读" uncheckedText="只读" onChange={setReadOnly} />
+      <Switch
+        checkedText="只读"
+        uncheckedText="只读"
+        onChange={() => (store.readOnly = !store.readOnly)}
+      />
       &nbsp; &nbsp;
       <Switch
         checkedText="至少一条"
         uncheckedText="至少一条"
-        onChange={setLeastOne}
+        onChange={() => (store.leastOne = !store.leastOne)}
       />
       &nbsp; &nbsp;
       <Switch
         checkedText="删除提醒"
         uncheckedText="删除提醒"
-        onChange={setRemoveConfirm}
+        onChange={() => (store.removeConfirm = !store.removeConfirm)}
+      />
+      &nbsp; &nbsp;
+      <Switch
+        checkedText="支持排序"
+        uncheckedText="支持排序"
+        onChange={() => (store.sortable = !store.sortable)}
       />
       <br />
       <br />
       <TableList
         {...schema}
-        leastOne={leastOne}
-        showNo={showNo}
-        readOnly={readOnly}
-        removeConfirm={removeConfirm}
-        value={value}
+        leastOne={store.leastOne}
+        showNo={store.showNo}
+        sortable={store.sortable}
+        readOnly={store.readOnly}
+        removeConfirm={store.removeConfirm}
+        value={store.value}
         onChange={(v) => {
           console.log('change', v);
-          onChange(v);
+          store.value = v;
         }}
       />
     </>
@@ -117,4 +134,4 @@ export default () => {
 
 ## Api
 
-<API src="../../src/table-list/index.tsx" hideTitle></API>
+<!-- <API src="../../src/table-list/index.tsx" hideTitle></API> -->
