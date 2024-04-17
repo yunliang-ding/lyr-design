@@ -14,7 +14,7 @@ toc: menu
 
 ```tsx
 /**
- * desc: 排序采用的react-sortable-hoc，需要提供rowKey来确定数据的唯一值，否则不能正常工作
+ * desc: 需要提供rowKey来确定数据的唯一值，否则不能正常工作
  */
 import React from 'react';
 import { EditableTable } from 'lyr-design';
