@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode, useState } from 'react';
+import { CSSProperties, ReactNode, useEffect, useState } from 'react';
 import './index.less';
 
 export interface DragWrapperProps {
@@ -16,6 +16,10 @@ export default ({
   onChange = () => {},
 }: DragWrapperProps) => {
   const [list, setList] = useState(items);
+  // 同步更新
+  useEffect(() => {
+    setList(items);
+  }, [items]);
   return (
     <div className="lyr-dnd" style={style}>
       {list.map((item, index) => {

@@ -22,25 +22,23 @@ export default ({
         return {
           key: column.dataIndex,
           value: column,
-          label: (
-            <div style={{ padding: 4 }}>
-              <Checkbox
-                checked={!filterIds.includes(column.dataIndex)}
-                onChange={() => {
-                  const index = filterIds.findIndex(
-                    (item: any) => item === column.dataIndex,
-                  );
-                  if (index > -1) {
-                    filterIds.splice(index, 1);
-                  } else {
-                    filterIds.push(column.dataIndex);
-                  }
-                  onOk([...filterIds]);
-                }}
-              >
-                {column.title}
-              </Checkbox>
-            </div>
+          content: (
+            <Checkbox
+              checked={!filterIds.includes(column.dataIndex)}
+              onChange={() => {
+                const index = filterIds.findIndex(
+                  (item: any) => item === column.dataIndex,
+                );
+                if (index > -1) {
+                  filterIds.splice(index, 1);
+                } else {
+                  filterIds.push(column.dataIndex);
+                }
+                onOk([...filterIds]);
+              }}
+            >
+              {column.title}
+            </Checkbox>
           ),
         };
       }),
@@ -55,7 +53,7 @@ export default ({
               const _columns = list.map((i) => i.value);
               setColumns(_columns);
             }}
-            list={columnList}
+            items={columnList}
           />
         </Menu>
       }

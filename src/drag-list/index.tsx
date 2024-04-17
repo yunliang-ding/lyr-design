@@ -11,31 +11,41 @@ interface DragListProps extends DragWrapperProps {
    * @default true
    */
   showIcon?: boolean;
+  /** 宽度 */
+  width?: number;
 }
 
-export default ({ items = [], onChange, showIcon = true }: DragListProps) => {
+export default ({
+  width = 160,
+  items = [],
+  onChange,
+  showIcon = true,
+}: DragListProps) => {
   return (
     <Dnd
       style={{
         flexDirection: 'column',
-        width: 100,
+        width,
       }}
       onChange={onChange}
       items={items.map((item: any) => {
         return {
-          key: item.key,
+          ...item,
           content: (
             <div
               style={{
-                width: 100,
+                width,
                 height: 30,
                 background: '#fff',
-                padding: 4,
+                padding: '0 4px',
                 display: 'flex',
                 alignItems: 'center',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
               }}
             >
-              <Space style={{ width: 100 }}>
+              <Space style={{ width }}>
                 {showIcon && <IconDragDotVertical />}
                 {item.content}
               </Space>
