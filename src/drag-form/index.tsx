@@ -1,6 +1,6 @@
 import { arrayMove } from '@/drag-wrapper';
 import { useUpdateEffect } from 'lyr-hooks';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { CardForm, CardFormProps, DragWrapper } from '..';
 import Drag from './drag';
 
@@ -32,8 +32,8 @@ export default ({
     <DragWrapper>
       <CardForm
         gridStyle={{
-          colGap: 20,
-          rowGap: 20,
+          colGap: 10,
+          rowGap: 10,
         }}
         schema={innerSchema.map((item: any, currentIndex: number) => {
           return {

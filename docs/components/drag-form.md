@@ -25,8 +25,8 @@ export default () => {
       onItemDrop={(newSchema) => {
         console.log('onItemDrop', newSchema);
       }}
-      onItemClick={(item) => {
-        console.log('onItemClick', item);
+      onItemClick={(itemKey) => {
+        console.log('onItemClick', itemKey);
       }}
       schema={[
         {

@@ -44,11 +44,11 @@ yarn add lyr-design
 
 - 扩展 `Button`，自带 loading，二次确认，支持弹框和抽屉的模型配置
 - 扩展 `Form`，基于数据模型的表单渲染，表单联动，异步选择器，自定义组件，默认配置
-- 新增 `CreateModal`, `CreateDrawer`，支持 api 打开抽屉或者弹框，Modal 支持可拖拽
-- 扩展 `CardForm`, `AnchorCardForm`, `SetpForm`, `SearchForm` 等提交表单
+- 新增 `CreateModal`， `CreateDrawer`，支持 api 打开抽屉或者弹框，Modal 支持可拖拽
+- 扩展 `CardForm`， `AnchorCardForm`， `SetpForm`， `SearchForm` 等提交表单
 - 扩展 `Table` ，基于数据模型渲染，扩展 toolBar 配置，request 配置，search 配置
 - 扩展 `TableList` 针对表格编辑的场景
-- 扩展 `DragWrapper`，`DragList` 轻量级拖拽组件
+- 扩展 `DragWrapper`，`DragList`， `DragForm` 轻量级拖拽组件
 - 扩展 `OssFileUpload` 文件上传组件
 - 新增 `Suspend` 悬浮组件
 - 新增 `AppLayout`，中后台布局统一大模版
