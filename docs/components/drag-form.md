@@ -23,7 +23,7 @@ export default () => {
    // 需要一个唯一key
   const items = schema.map((i) => ({
     ...i,
-    key: `${uuid(8)}`,
+    key: uuid(8),
   }));
   return (
     <DragForm
@@ -50,12 +50,27 @@ import { uuid } from 'lyr-extra';
 import { DragForm } from 'lyr-design';
 import schema from './schema/form-base/schema2';
 
+const loopSetKey = (children) => {
+  children.forEach((item) => {
+    item.key = uuid(8);
+    if (item.props?.children) {
+      loopSetKey(item.props?.children);
+    }
+  });
+};
+
+// 需要一个唯一key
+const items = schema.map((item) => {
+  if (item.props?.children) {
+    loopSetKey(item.props?.children);
+  }
+  return {
+    ...item,
+    key: uuid(8),
+  };
+});
+
 export default () => {
-  // 需要一个唯一key
-  const items = schema.map((i) => ({
-    ...i,
-    key: `${uuid(8)}`,
-  }));
   return (
     <DragForm
       title="嵌套表单"

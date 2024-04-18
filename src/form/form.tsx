@@ -107,18 +107,9 @@ export default ({
   });
   /** render FieldSet children */
   const RenderFieldSet = ({ field }) => {
-    // 支持函数默认参数为form
-    const childrenFields =
-      typeof field.props?.children === 'function'
-        ? field.props?.children(form)
-        : field.props?.children;
-    // 格式处理下
-    if (typeof field.props?.children === 'function') {
-      tranfromSchema(childrenFields, name, field.props.column);
-    }
-    return childrenFields ? (
+    return field.props?.children ? (
       <Grid {...gridStyle} cols={field.props.column || 1}>
-        {RenderSchema(childrenFields)}
+        {RenderSchema(field.props?.children)}
       </Grid>
     ) : (
       <Empty />
@@ -128,22 +119,10 @@ export default ({
   const RenderSchema = (itemSchema = []) => {
     return itemSchema.map((field: any, index: number) => {
       if (field.type === 'FieldSet') {
-        if (!field.name) {
-          console.warn('FieldSet 缺少 name 属性');
-        }
-        // 支持函数默认参数为form
-        const childrenFields =
-          typeof field.props?.children === 'function'
-            ? field.props?.children(form)
-            : field.props?.children;
-        // 格式处理下
-        if (typeof field.props?.children === 'function') {
-          tranfromSchema(childrenFields, name, field.props.column);
-        }
         return (
           <Grid.GridItem span={field.span || 1}>
             <FieldSet
-              key={field.name}
+              key={field.label}
               fieldName={field.name}
               itemRender={field.itemRender}
               label={field.label}

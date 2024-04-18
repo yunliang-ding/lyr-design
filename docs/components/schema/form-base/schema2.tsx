@@ -91,61 +91,66 @@ const schema: SchemaProps[] = [
     span: 2, // 占据2列
     label: '基础表单-联动子项',
     effect: ['select'],
+    visible: ({ select }) => {
+      return select === 1;
+    },
     props: {
-      children: (form, isBeforeParse) => {
-        // 这里注意下，是否是带着默认值渲染的
-        const selectValue = isBeforeParse
-          ? form.initialValues.select
-          : form.getFieldValue('select');
-        if (selectValue === 1) {
-          return [
-            {
-              type: 'Input',
-              name: 'input-sub',
-              label: '输入框',
-            },
-            {
-              type: 'DatePicker',
-              name: 'date-sub',
-              label: '日期',
-            },
-            {
-              type: 'InputNumber',
-              name: 'inputNumber-sub',
-              label: '数字输入框',
-              props: {
-                min: 1,
-                max: 999,
-              },
-            },
-          ];
-        } else {
-          return [
-            {
-              type: 'Select',
-              name: 'select-sub',
-              label: '下拉选',
-              props: {
-                options: [
-                  { label: '选项1', value: 1 },
-                  { label: '选项2', value: 2 },
-                ],
-              },
-            },
-            {
-              type: 'CheckGroup',
-              name: 'checkGroup-sub',
-              label: '复选框',
-              props: {
-                options: [
-                  { label: '选项1', value: 1 },
-                  { label: '选项2', value: 2 },
-                ],
-              },
-            },
-          ];
-        }
-      },
+      children: [
+        {
+          type: 'Input',
+          name: 'input-sub',
+          label: '输入框',
+        },
+        {
+          type: 'DatePicker',
+          name: 'date-sub',
+          label: '日期',
+        },
+        {
+          type: 'InputNumber',
+          name: 'inputNumber-sub',
+          label: '数字输入框',
+          props: {
+            min: 1,
+            max: 999,
+          },
+        },
+      ],
+    },
+  },
+  {
+    type: 'FieldSet',
+    span: 2, // 占据2列
+    label: '基础表单-联动子项',
+    effect: ['select'],
+    visible: ({ select }) => {
+      return select === 2;
+    },
+    props: {
+      children: [
+        {
+          type: 'Select',
+          name: 'select-sub',
+          label: '下拉选',
+          props: {
+            options: [
+              { label: '选项1', value: 1 },
+              { label: '选项2', value: 2 },
+            ],
+          },
+        },
+        {
+          type: 'CheckGroup',
+          name: 'checkGroup-sub',
+          label: '复选框',
+          props: {
+            options: [
+              { label: '选项1', value: 1 },
+              { label: '选项2', value: 2 },
+            ],
+          },
+        },
+      ],
     },
   },
   {

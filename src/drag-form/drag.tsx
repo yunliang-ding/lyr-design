@@ -13,7 +13,7 @@ export default ({ label, dom, selected = false }) => {
         borderColor: selected ? 'rgb(var(--primary-6))' : '#ccc',
       }}
     >
-      <div style={{ pointerEvents: 'none' }}>{dom}</div>
+      <div>{dom}</div>
       <div className="dragContainerDargKey">{label}</div>
       {selected && (
         <>

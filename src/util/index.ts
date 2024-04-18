@@ -65,27 +65,7 @@ export class EventEmit {
  * 设置异步加载Select的options缓存
  */
 export const AsyncOptionsCache: any = {};
-/**
- * 递归查找指定name的field
- */
-let _field_ = {};
-export const queryFieldByName = (fields, fieldName) => {
-  for (let i = 0; i < fields.length; i++) {
-    const field = fields[i];
-    if (field.name === fieldName) {
-      _field_ = field;
-      break;
-    } else if (
-      field.type === 'FieldSet' &&
-      Array.isArray(field.props.children)
-    ) {
-      // 递归子节点
-      queryFieldByName(field.props.children, fieldName);
-    }
-  }
-  return _field_;
-};
-
+/** 获取类型 */
 export const getType = (obj: any): string => {
   const type = Object.prototype.toString.call(obj).slice(8, -1);
   return type.toLocaleLowerCase();
