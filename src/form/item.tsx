@@ -134,6 +134,7 @@ export default ({
         />
       );
     } else {
+      console.log('GGGG');
       vNode = node;
     }
   }

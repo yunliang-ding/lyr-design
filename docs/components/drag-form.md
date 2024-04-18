@@ -12,54 +12,62 @@ toc: menu
 
 ## 基本使用
 
+<!--
 ```tsx
 import React from 'react';
+import { uuid } from 'lyr-extra';
 import { DragForm } from 'lyr-design';
+import schema from './schema/form-base/schema1';
 
 export default () => {
+   // 需要一个唯一key
+  const items = schema.map((i) => ({
+    ...i,
+    key: `${uuid(8)}`,
+  }));
   return (
     <DragForm
-      title="基础的拖拽表单"
+      title="基础表单"
       column={2}
-      defaultSelectedKey="002"
+      defaultSelectedKey={items[1].key}
       onItemDrop={(newSchema) => {
         console.log('onItemDrop', newSchema);
       }}
       onItemClick={(itemKey) => {
         console.log('onItemClick', itemKey);
       }}
-      schema={[
-        {
-          key: '001',
-          type: 'Input',
-          label: '输入框1',
-          name: 'userName',
-        },
-        {
-          key: '002',
-          type: 'Select',
-          label: '选择框1',
-          name: 'select',
-          props: {
-            options: [],
-          },
-        },
-        {
-          key: '003',
-          type: 'Input',
-          label: '输入框2',
-          name: 'userName1',
-        },
-        {
-          key: '004',
-          type: 'Select',
-          label: '选择框2',
-          name: 'select2',
-          props: {
-            options: [],
-          },
-        },
-      ]}
+      items={items}
+    />
+  );
+};
+``` -->
+
+## 嵌套布局
+
+```tsx
+import React from 'react';
+import { uuid } from 'lyr-extra';
+import { DragForm } from 'lyr-design';
+import schema from './schema/form-base/schema2';
+
+export default () => {
+  // 需要一个唯一key
+  const items = schema.map((i) => ({
+    ...i,
+    key: `${uuid(8)}`,
+  }));
+  return (
+    <DragForm
+      title="嵌套表单"
+      column={2}
+      defaultSelectedKey={items[1].key}
+      onItemDrop={(newSchema) => {
+        console.log('onItemDrop', newSchema);
+      }}
+      onItemClick={(itemKey) => {
+        console.log('onItemClick', itemKey);
+      }}
+      items={items}
     />
   );
 };

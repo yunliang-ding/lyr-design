@@ -30,7 +30,7 @@ export default ({
       unsubscribe(); //  取消订阅
     };
   }, []);
-  const vNode = (
+  let vNode = (
     <div style={style} className="core-form-fieldset" key={reload}>
       <div className="core-form-fieldset-title" id={fieldName}>
         <div className="core-form-fieldset-label">
@@ -48,17 +48,17 @@ export default ({
       <div className="core-form-fieldset-content">{children}</div>
     </div>
   );
+  if (typeof itemRender === 'function') {
+    vNode = itemRender(vNode); // 暂不支持 async
+  }
   // 执行visible逻辑
   if (typeof visible === 'function') {
-    return visible({
+    vNode = visible({
       ...initialValues,
       ...form.getFieldsValue(),
     })
       ? vNode
       : null;
-  }
-  if (typeof itemRender === 'function') {
-    return itemRender(vNode);
   }
   return vNode;
 };

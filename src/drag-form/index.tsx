@@ -1,7 +1,7 @@
 import { arrayMove } from '@/drag-wrapper';
 import { useUpdateEffect } from 'lyr-hooks';
 import { ReactNode, useState } from 'react';
-import { CardForm, CardFormProps, DragWrapper } from '..';
+import { CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
 import Drag from './drag';
 
 interface DragFormProps extends CardFormProps {
@@ -11,16 +11,18 @@ interface DragFormProps extends CardFormProps {
   onItemClick?(list: any): void;
   /** 默认选中的key */
   defaultSelectedKey?: string;
+  /** 数据源 */
+  items: SchemaProps<{}>[];
 }
 
 export default ({
-  schema = [],
+  items = [],
   defaultSelectedKey,
   onItemDrop,
   onItemClick,
   ...rest
 }: DragFormProps) => {
-  const [innerSchema, setInnerSchema]: any = useState(() => schema);
+  const [innerSchema, setInnerSchema]: any = useState(items);
   const [selectedKey, setSelectedKey]: any = useState(defaultSelectedKey);
   useUpdateEffect(() => {
     onItemDrop?.(innerSchema);
@@ -42,7 +44,7 @@ export default ({
               const VNode = (
                 <Drag
                   dom={vDom}
-                  label={item.name}
+                  label={`${item.type}-${item.key}`}
                   selected={selectedKey === item.key}
                 />
               );
