@@ -9,12 +9,13 @@ export { default as CreateDrawer } from './create-drawer';
 export { default as Search } from './search';
 export { default as Table } from './table';
 export { default as TableList } from './table-list';
-export { default as DragList } from './drag-list';
 export { default as AnchorCard } from './anchor-card';
 export { default as OssFileUpload } from './oss-file-upload';
 export { default as Suspend } from './suspend';
 export { default as AppLayout } from './app-layout';
 export { default as DragWrapper } from './drag-wrapper';
+export { default as DragList } from './drag-list';
+export { default as DragForm } from './drag-form';
 /** 类型 */
 export type { SchemaProps, FieldProps } from './form/type.item';
 export type { TableProps } from './table/types';

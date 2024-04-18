@@ -4,6 +4,7 @@ const globalConfig: GlobalConfigProps = {
   defaultOpenAllowClear: true,
   defaultFillPlaceholder: true,
   defaultShowInputCount: true,
+  autoTrimInputSpaceOnBlur: true,
 };
 
 interface GlobalConfigProps {

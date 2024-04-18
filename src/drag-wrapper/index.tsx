@@ -19,7 +19,21 @@ export interface DragWrapperProps {
   children?: ReactNode;
 }
 
-const Item = ({ index, onDrop, children }) => {
+export const arrayMove = (
+  arr: any[],
+  currentIndex: number,
+  targetIndex: number,
+) => {
+  // 拷贝下
+  const temp = arr[targetIndex];
+  // 删除之前的
+  arr.splice(targetIndex, 1);
+  // 插入到指定的下标位置
+  arr.splice(currentIndex, 0, temp);
+  return [...arr];
+};
+
+const Item = ({ index, onDrop, children }: any) => {
   /** 扩展节点 */
   const Element = cloneElement(children, {
     style: {
@@ -61,10 +75,6 @@ const DragWrapper = ({
   children,
 }: DragWrapperProps) => {
   const [list, setList] = useState(items);
-  // 同步更新
-  useEffect(() => {
-    setList(items);
-  }, [items]);
   return (
     <>
       {children
@@ -75,15 +85,11 @@ const DragWrapper = ({
                 key={item.key}
                 index={index}
                 onDrop={(targetIndex: number) => {
-                  const temp = list[targetIndex];
-                  // 删除之前的
-                  list.splice(targetIndex, 1);
-                  // 插入到指定的下标位置
-                  list.splice(index, 0, temp);
+                  const newList = arrayMove(list, index, targetIndex);
                   // 更新视图
-                  setList([...list]);
+                  setList(newList);
                   // 通知外部
-                  onChange(list);
+                  onChange(newList);
                 }}
               >
                 {item.content}

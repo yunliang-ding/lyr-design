@@ -1,3 +1,4 @@
+import { getGlobalConfig } from '@/config';
 import { Input, TextAreaProps } from '@arco-design/web-react';
 import { ExtendInputProps } from '..';
 
@@ -14,5 +15,16 @@ export default ({
       </span>
     );
   }
-  return <Input.TextArea {...props} />;
+  const { autoTrimInputSpaceOnBlur } = getGlobalConfig();
+  return (
+    <Input.TextArea
+      {...props}
+      onBlur={(e) => {
+        if (autoTrimInputSpaceOnBlur) {
+          props.onChange(e.target.value?.trim?.(), e);
+        }
+        props.onBlur?.(e);
+      }}
+    />
+  );
 };

@@ -31,7 +31,7 @@ export interface CoreFormProps extends Omit<FormProps, 'fields' | 'form'> {
   column?: number;
   /**
    * 布局样式设置
-   * @default          {columnGap: 20, rowGap: 0}
+   * @default          {colGap: 20, rowGap: 0}
    */
   gridStyle?: any;
   /**

@@ -18,12 +18,13 @@ export default ({
   const { autoTrimInputSpaceOnBlur } = getGlobalConfig();
   return (
     <Input
+      {...props}
       onBlur={(e) => {
         if (autoTrimInputSpaceOnBlur) {
-          props.onChange(e.target.value?.trim?.(), '');
+          props.onChange(e.target.value?.trim?.(), e);
         }
+        props.onBlur?.(e);
       }}
-      {...props}
     />
   );
 };
