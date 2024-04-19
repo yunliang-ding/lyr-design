@@ -111,9 +111,7 @@ export default ({
       <Grid {...gridStyle} cols={field.props.column || 1}>
         {RenderSchema(field.props?.children)}
       </Grid>
-    ) : (
-      <Empty />
-    );
+    ) : null;
   };
   /** Render schema */
   const RenderSchema = (itemSchema = []) => {

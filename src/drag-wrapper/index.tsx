@@ -27,12 +27,12 @@ export const arrayMove = (
   return [...arr];
 };
 
-const Item = ({ index, onDrop, children }: any) => {
+const Item = ({ index, onDrop, children, virtual = false }: any) => {
   /** 扩展节点 */
   const Element = cloneElement(children, {
     style: {
       ...children?.props?.style,
-      cursor: 'move',
+      cursor: virtual ? 'not-allowed' : 'move',
       borderTop: '2px solid var(--color-menu-light-bg)',
     },
     draggable: true,

@@ -1,20 +1,9 @@
-import { cloneDeep } from '@/util';
+import { cloneDeep, isEmpty } from '@/util';
 import { useUpdateEffect } from 'lyr-hooks';
 import { ReactNode, useState } from 'react';
 import { CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
-import { swapElementsInArray } from './util';
+import { isWrap, swapElementsInArray } from './util';
 import Drag from './drag';
-
-interface DragFormProps extends CardFormProps {
-  /** 拖拽结束 */
-  onItemDrop?(list: any): void;
-  /** 切换事件 */
-  onItemSelected?(list: any): void;
-  /** 默认选中的key */
-  defaultSelectedKey?: string;
-  /** 数据源 */
-  items: SchemaProps<{}>[];
-}
 
 const loopChildren = (
   children: any[],
@@ -23,10 +12,19 @@ const loopChildren = (
   selectedKey,
   setSelectedKey,
 ) => {
+  if (isEmpty(children)) {
+    // 如果是空容器给一个虚拟单位，用于可拖拽节点
+    children.push({
+      virtual: true,
+      type: () => {
+        return <div>容器空节点</div>;
+      },
+    });
+  }
   children.forEach((item, index) => {
-    if (Array.isArray(item.props?.children)) {
+    if (isWrap(item)) {
       loopChildren(
-        item.props.children,
+        item?.props?.children,
         [...currentIndex, index],
         onDrop,
         selectedKey,
@@ -38,11 +36,16 @@ const loopChildren = (
         <Drag
           dom={vDom}
           label={`${item.type}-${item.key}`}
+          virtual={item.virtual}
           selected={selectedKey === item.key}
         />
       );
       return (
-        <DragWrapper.Item index={[...currentIndex, index]} onDrop={onDrop}>
+        <DragWrapper.Item
+          index={[...currentIndex, index]}
+          onDrop={onDrop}
+          virtual={item.virtual}
+        >
           <div
             onClick={(e) => {
               e.stopPropagation();
@@ -57,20 +60,31 @@ const loopChildren = (
   });
 };
 
+export interface DragFormProps extends CardFormProps {
+  /** 拖拽结束 */
+  onChange?(list: any): void;
+  /** 切换事件 */
+  onSelected?(list: any): void;
+  /** 默认选中的key */
+  defaultSelectedKey?: string;
+  /** 数据源 */
+  items: SchemaProps<{}>[];
+}
+
 export default ({
   items = [],
   defaultSelectedKey,
-  onItemDrop,
-  onItemSelected,
+  onChange,
+  onSelected,
   ...rest
 }: DragFormProps) => {
   const [innerSchema, setInnerSchema]: any = useState(cloneDeep(items));
   const [selectedKey, setSelectedKey] = useState(defaultSelectedKey);
   useUpdateEffect(() => {
-    onItemDrop?.(innerSchema);
+    onChange?.(innerSchema);
   }, [innerSchema]);
   useUpdateEffect(() => {
-    onItemSelected?.(selectedKey);
+    onSelected?.(selectedKey);
   }, [selectedKey]);
   return (
     <DragWrapper>
@@ -81,16 +95,18 @@ export default ({
         }}
         schema={innerSchema.map((item: any, currentIndex: number) => {
           const onDrop = (indices1: string, indices2: string) => {
-            swapElementsInArray(
-              innerSchema,
-              indices1.split(','),
-              indices2.split(','),
-            );
-            setInnerSchema([...innerSchema]);
+            if (indices1 !== indices2) {
+              swapElementsInArray(
+                innerSchema,
+                indices1.split(','),
+                indices2.split(','),
+              );
+              setInnerSchema([...innerSchema]);
+            }
           };
-          if (Array.isArray(item.props?.children)) {
+          if (isWrap(item)) {
             loopChildren(
-              item.props.children,
+              item?.props?.children,
               [currentIndex],
               onDrop,
               selectedKey,
@@ -110,7 +126,7 @@ export default ({
               return (
                 <DragWrapper.Item index={currentIndex} onDrop={onDrop}>
                   <div
-                    onClick={(e) => {
+                    onClick={() => {
                       setSelectedKey(item.key);
                     }}
                   >

@@ -30,11 +30,11 @@ export default () => {
       title="基础表单"
       column={2}
       defaultSelectedKey={items[1].key}
-      onItemDrop={(newSchema) => {
-        console.log('onItemDrop', newSchema);
+      onChange={(newSchema) => {
+        console.log('onChange', newSchema);
       }}
-      onItemSelected={(itemKey) => {
-        console.log('onItemSelected', itemKey);
+      onSelected={(itemKey) => {
+        console.log('onSelected', itemKey);
       }}
       items={items}
     />
@@ -76,11 +76,11 @@ export default () => {
       title="嵌套表单"
       column={2}
       defaultSelectedKey={items[1].key}
-      onItemDrop={(newSchema) => {
-        console.log('onItemDrop', newSchema);
+      onChange={(newSchema) => {
+        console.log('onChange', newSchema);
       }}
-      onItemSelected={(itemKey) => {
-        console.log('onItemSelected', itemKey);
+      onSelected={(itemKey) => {
+        console.log('onSelected', itemKey);
       }}
       items={items}
     />

@@ -1,11 +1,11 @@
 import { NOTICESELF } from '@/util';
-import { Empty, Space } from '@arco-design/web-react';
+import { Space } from '@arco-design/web-react';
 import { useEffect, useState } from 'react';
 import './index.less';
 
 export default ({
   style = {},
-  children = <Empty />,
+  children,
   label = '',
   subTitle = '',
   event,
