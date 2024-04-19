@@ -12,7 +12,6 @@ toc: menu
 
 ## 基本使用
 
-<!--
 ```tsx
 import React from 'react';
 import { uuid } from 'lyr-extra';
@@ -20,7 +19,7 @@ import { DragForm } from 'lyr-design';
 import schema from './schema/form-base/schema1';
 
 export default () => {
-   // 需要一个唯一key
+  // 需要一个唯一key
   const items = schema.map((i) => ({
     ...i,
     key: uuid(8),
@@ -40,7 +39,7 @@ export default () => {
     />
   );
 };
-``` -->
+```
 
 ## 嵌套布局
 
@@ -90,4 +89,4 @@ export default () => {
 
 ## Api
 
-<!-- <API src="../../src/drag-list/index.tsx" hideTitle></API> -->
+<API src="../../src/drag-form/index.tsx" hideTitle></API>

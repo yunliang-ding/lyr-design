@@ -12,8 +12,14 @@ const loopChildren = (
   selectedKey,
   setSelectedKey,
 ) => {
+  // 删除虚拟节点
+  const virtualIndex = children.findIndex((i) => i.virtual);
+  if (virtualIndex > -1) {
+    children.splice(virtualIndex, 1);
+  }
+  console.log(children);
   if (isEmpty(children)) {
-    // 如果是空容器给一个虚拟单位，用于可拖拽节点
+    // 如果是空容器给一个虚拟节点，用于可拖拽节点
     children.push({
       virtual: true,
       type: () => {
@@ -60,7 +66,7 @@ const loopChildren = (
   });
 };
 
-export interface DragFormProps extends CardFormProps {
+export interface DragFormProps {
   /** 拖拽结束 */
   onChange?(list: any): void;
   /** 切换事件 */
