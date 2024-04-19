@@ -1,10 +1,4 @@
-import {
-  cloneElement,
-  CSSProperties,
-  ReactNode,
-  useEffect,
-  useState,
-} from 'react';
+import { cloneElement, CSSProperties, ReactNode, useState } from 'react';
 
 export interface DragWrapperProps {
   /** 配置项 */
@@ -43,25 +37,30 @@ const Item = ({ index, onDrop, children }: any) => {
     },
     draggable: true,
     onDragOver: (e) => {
+      e.stopPropagation();
       e.preventDefault();
       e.currentTarget.style.borderTop = '2px solid rgb(var(--primary-6))';
     },
     onDragEnter: (e) => {
+      e.stopPropagation();
       e.currentTarget.style.borderTop = '2px solid rgb(var(--primary-6))';
     },
     onDragLeave: (e) => {
+      e.stopPropagation();
       e.currentTarget.style.borderTop = '2px solid var(--color-menu-light-bg)';
     },
     onDrop: (e) => {
-      e.preventDefault();
-      onDrop?.(Number(e.dataTransfer.getData('index')));
+      e.stopPropagation();
+      onDrop?.(e.dataTransfer.getData('index'), String(index));
       e.currentTarget.style.borderTop = '2px solid var(--color-menu-light-bg)';
     },
     onDragStart: (e) => {
+      e.stopPropagation();
       e.dataTransfer.setData('index', String(index));
       e.currentTarget.style.opacity = '0.5';
     },
     onDragEnd: (e) => {
+      e.stopPropagation();
       e.currentTarget.style.opacity = '1';
       e.currentTarget.style.borderTop = '2px solid var(--color-menu-light-bg)';
     },

@@ -33,8 +33,8 @@ export default () => {
       onItemDrop={(newSchema) => {
         console.log('onItemDrop', newSchema);
       }}
-      onItemClick={(itemKey) => {
-        console.log('onItemClick', itemKey);
+      onItemSelected={(itemKey) => {
+        console.log('onItemSelected', itemKey);
       }}
       items={items}
     />
@@ -79,8 +79,8 @@ export default () => {
       onItemDrop={(newSchema) => {
         console.log('onItemDrop', newSchema);
       }}
-      onItemClick={(itemKey) => {
-        console.log('onItemClick', itemKey);
+      onItemSelected={(itemKey) => {
+        console.log('onItemSelected', itemKey);
       }}
       items={items}
     />

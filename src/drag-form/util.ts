@@ -1,20 +1,21 @@
 /**
- * 递归查找指定key的field
+ * 下面是一个函数，可以用于在一个多级嵌套数组中交换两个元素的位置：
+ * @param array
+ * @param indices1
+ * @param indices2
  */
-let _field_ = {};
-export const queryFieldByName = (fields: any, fieldKey: string) => {
-  for (let i = 0; i < fields.length; i++) {
-    const field = fields[i];
-    if (field.key === fieldKey) {
-      _field_ = field;
-      break;
-    } else if (
-      field.type === 'FieldSet' &&
-      Array.isArray(field.props.children)
-    ) {
-      // 递归子节点
-      queryFieldByName(field.props.children, fieldKey);
-    }
-  }
-  return _field_;
+export const swapElementsInArray = (array, indices1, indices2) => {
+  const getNestedElement = (arr, indices) =>
+    indices.reduce((acc, index) => acc[index], arr);
+  const setNestedElement = (arr, indices, value) => {
+    const lastIndex = indices.pop();
+    const parent = indices.reduce((acc, index) => acc[index], arr);
+    parent[lastIndex] = value;
+  };
+
+  const element1 = getNestedElement(array, indices1);
+  const element2 = getNestedElement(array, indices2);
+
+  setNestedElement(array, indices1, element2);
+  setNestedElement(array, indices2, element1);
 };

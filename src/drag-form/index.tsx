@@ -1,15 +1,15 @@
-import { arrayMove } from '@/drag-wrapper';
 import { cloneDeep } from '@/util';
-import { useReactive, useUpdateEffect } from 'lyr-hooks';
+import { useUpdateEffect } from 'lyr-hooks';
 import { ReactNode, useState } from 'react';
 import { CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
+import { swapElementsInArray } from './util';
 import Drag from './drag';
 
 interface DragFormProps extends CardFormProps {
   /** 拖拽结束 */
   onItemDrop?(list: any): void;
-  /** 点击事件 */
-  onItemClick?(list: any): void;
+  /** 切换事件 */
+  onItemSelected?(list: any): void;
   /** 默认选中的key */
   defaultSelectedKey?: string;
   /** 数据源 */
@@ -18,19 +18,19 @@ interface DragFormProps extends CardFormProps {
 
 const loopChildren = (
   children: any[],
-  setSelectedKey: any,
-  selectedKey: string,
-  currentIndex: number,
+  currentIndex: number[],
   onDrop,
+  selectedKey,
+  setSelectedKey,
 ) => {
   children.forEach((item, index) => {
     if (Array.isArray(item.props?.children)) {
       loopChildren(
         item.props.children,
-        setSelectedKey,
-        selectedKey,
-        currentIndex,
+        [...currentIndex, index],
         onDrop,
+        selectedKey,
+        setSelectedKey,
       );
     }
     item.itemRender = (vDom: ReactNode) => {
@@ -42,13 +42,15 @@ const loopChildren = (
         />
       );
       return (
-        <DragWrapper.Item index={currentIndex} onDrop={onDrop}>
+        <DragWrapper.Item index={[...currentIndex, index]} onDrop={onDrop}>
           <div
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               setSelectedKey(item.key);
             }}
           >
             {VNode}
+            {[...currentIndex, index]}
           </div>
         </DragWrapper.Item>
       );
@@ -60,19 +62,17 @@ export default ({
   items = [],
   defaultSelectedKey,
   onItemDrop,
-  onItemClick,
+  onItemSelected,
   ...rest
 }: DragFormProps) => {
   const [innerSchema, setInnerSchema]: any = useState(cloneDeep(items));
-  const store = useReactive({
-    selectedKey: defaultSelectedKey,
-  });
+  const [selectedKey, setSelectedKey] = useState(defaultSelectedKey);
   useUpdateEffect(() => {
     onItemDrop?.(innerSchema);
   }, [innerSchema]);
   useUpdateEffect(() => {
-    onItemClick?.(store.selectedKey);
-  }, [store.selectedKey]);
+    onItemSelected?.(selectedKey);
+  }, [selectedKey]);
   return (
     <DragWrapper>
       <CardForm
@@ -81,20 +81,22 @@ export default ({
           rowGap: 10,
         }}
         schema={innerSchema.map((item: any, currentIndex: number) => {
-          const onDrop = (targetIndex: number) => {
-            const newSchema = arrayMove(innerSchema, currentIndex, targetIndex);
-            setInnerSchema(newSchema);
+          const onDrop = (indices1: string, indices2: string) => {
+            console.log(indices1.split(','), indices2.split(','));
+            // swapElementsInArray(
+            //   innerSchema,
+            //   indices1.split(','),
+            //   indices2.split(','),
+            // );
+            // setInnerSchema([...innerSchema]);
           };
           if (Array.isArray(item.props?.children)) {
             loopChildren(
               item.props.children,
-              (key: string) => {
-                console.log(key);
-                store.selectedKey = key;
-              },
-              store.selectedKey,
-              currentIndex,
+              [currentIndex],
               onDrop,
+              selectedKey,
+              setSelectedKey,
             );
           }
           return {
@@ -104,14 +106,14 @@ export default ({
                 <Drag
                   dom={vDom}
                   label={`${item.type}-${item.key}`}
-                  selected={store.selectedKey === item.key}
+                  selected={selectedKey === item.key}
                 />
               );
               return (
                 <DragWrapper.Item index={currentIndex} onDrop={onDrop}>
                   <div
-                    onClick={() => {
-                      store.selectedKey = item.key;
+                    onClick={(e) => {
+                      setSelectedKey(item.key);
                     }}
                   >
                     {VNode}
