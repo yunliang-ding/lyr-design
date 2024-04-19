@@ -50,7 +50,6 @@ const loopChildren = (
             }}
           >
             {VNode}
-            {[...currentIndex, index]}
           </div>
         </DragWrapper.Item>
       );
@@ -82,13 +81,12 @@ export default ({
         }}
         schema={innerSchema.map((item: any, currentIndex: number) => {
           const onDrop = (indices1: string, indices2: string) => {
-            console.log(indices1.split(','), indices2.split(','));
-            // swapElementsInArray(
-            //   innerSchema,
-            //   indices1.split(','),
-            //   indices2.split(','),
-            // );
-            // setInnerSchema([...innerSchema]);
+            swapElementsInArray(
+              innerSchema,
+              indices1.split(','),
+              indices2.split(','),
+            );
+            setInnerSchema([...innerSchema]);
           };
           if (Array.isArray(item.props?.children)) {
             loopChildren(
