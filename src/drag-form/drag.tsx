@@ -7,7 +7,13 @@ import {
 } from '@arco-design/web-react/icon';
 import './index.css';
 
-export default ({ virtual = false, label, dom, selected = false }) => {
+export default ({
+  virtual = false,
+  label,
+  dom,
+  selected = false,
+  mask = true,
+}) => {
   return virtual ? (
     <div
       className="dragContainer"
@@ -35,7 +41,7 @@ export default ({ virtual = false, label, dom, selected = false }) => {
         borderColor: selected ? 'rgb(var(--primary-6))' : '#ccc',
       }}
     >
-      <div>{dom}</div>
+      <div style={{ pointerEvents: mask ? 'none' : 'auto' }}>{dom}</div>
       <div className="dragContainerDargKey">{label}</div>
       {selected && (
         <>

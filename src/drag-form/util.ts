@@ -19,7 +19,7 @@ export const isEmptyWrap = ({ type, props }) => {
 export const swapElementsInArray = (array, indices1, indices2) => {
   // 位置没变化返回
   if (String(indices1) === String(indices2)) {
-    return;
+    return false;
   }
   /** 删除 */
   let startParent = array;
@@ -48,7 +48,7 @@ export const swapElementsInArray = (array, indices1, indices2) => {
   if (isWrap(startParent)) {
     // 空节点返回
     if (startParent?.props?.children[removeIndex].virtual) {
-      return;
+      return false;
     }
     removeItem = startParent?.props?.children?.splice?.(removeIndex, 1)?.[0];
   } else {
@@ -56,9 +56,9 @@ export const swapElementsInArray = (array, indices1, indices2) => {
   }
   // 插入
   if (isWrap(endParent)) {
-    console.log(endParent?.props?.children[insertIndex]);
     endParent?.props?.children?.splice?.(insertIndex, 0, removeItem);
   } else {
     endParent?.splice?.(insertIndex, 0, removeItem);
   }
+  return true;
 };

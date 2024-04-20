@@ -10,25 +10,21 @@ toc: menu
 
 </Alert>
 
-## 基本使用
+## 单层布局
 
+<!--
 ```tsx
 import React from 'react';
 import { uuid } from 'lyr-extra';
 import { DragForm } from 'lyr-design';
-import schema from './schema/form-base/schema1';
+import items from './schema/drag-form/schema';
 
 export default () => {
-  // 需要一个唯一key
-  const items = schema.map((i) => ({
-    ...i,
-    key: uuid(8),
-  }));
   return (
     <DragForm
       title="基础表单"
       column={2}
-      defaultSelectedKey={items[1].key}
+      defaultSelectedKey="0001"
       onChange={(newSchema) => {
         console.log('onChange', newSchema);
       }}
@@ -39,49 +35,55 @@ export default () => {
     />
   );
 };
-```
+``` -->
 
 ## 嵌套布局
 
-```tsx
+<!-- ```tsx
 import React from 'react';
 import { uuid } from 'lyr-extra';
 import { DragForm } from 'lyr-design';
-import schema from './schema/form-base/schema2';
-
-const loopSetKey = (children) => {
-  children.forEach((item) => {
-    item.key = uuid(8);
-    if (item.props?.children) {
-      loopSetKey(item.props?.children);
-    }
-  });
-};
-
-// 需要一个唯一key
-const items = schema.map((item) => {
-  if (item.props?.children) {
-    loopSetKey(item.props?.children);
-  }
-  return {
-    ...item,
-    key: uuid(8),
-  };
-});
+import schema from './schema/drag-form/schema1';
 
 export default () => {
   return (
     <DragForm
       title="嵌套表单"
       column={2}
-      defaultSelectedKey={items[1].key}
+      defaultSelectedKey={"0001"}
       onChange={(newSchema) => {
         console.log('onChange', newSchema);
       }}
       onSelected={(itemKey) => {
         console.log('onSelected', itemKey);
       }}
-      items={items}
+      items={schema}
+    />
+  );
+};
+``` -->
+
+## 子表单容器
+
+```tsx
+import React from 'react';
+import { uuid } from 'lyr-extra';
+import { DragForm } from 'lyr-design';
+import schema from './schema/drag-form/schema2';
+
+export default () => {
+  return (
+    <DragForm
+      title="嵌套表单"
+      column={3}
+      defaultSelectedKey={'0001'}
+      onChange={(newSchema) => {
+        console.log('onChange', newSchema);
+      }}
+      onSelected={(itemKey) => {
+        console.log('onSelected', itemKey);
+      }}
+      items={schema}
     />
   );
 };
@@ -89,4 +91,4 @@ export default () => {
 
 ## Api
 
-<API src="../../src/drag-form/index.tsx" hideTitle></API>
+<!-- <API src="../../src/drag-form/index.tsx" hideTitle></API> -->
