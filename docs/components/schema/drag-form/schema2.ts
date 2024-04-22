@@ -4,19 +4,19 @@ const schema: SchemaProps[] = [
   {
     key: '0001',
     type: 'Input',
-    name: 'out',
+    name: 'out1',
     label: '外部元素1',
   },
   {
     key: '0002',
     type: 'Input',
-    name: 'out',
+    name: 'out2',
     label: '外部元素2',
   },
   {
     key: '0003',
     type: 'Select',
-    name: 'select',
+    name: 'out3',
     label: '外部元素3',
     props: {
       options: [
@@ -46,19 +46,19 @@ const schema: SchemaProps[] = [
   {
     key: '0005',
     type: 'Input',
-    name: 'out',
+    name: 'out4',
     label: '外部元素4',
   },
   {
     key: '0006',
     type: 'Input',
-    name: 'out',
+    name: 'out5',
     label: '外部元素5',
   },
   {
     key: '0007',
     type: 'Select',
-    name: 'select',
+    name: 'out6',
     label: '外部元素6',
     props: {
       options: [
