@@ -30,7 +30,6 @@ const loopChildren = (
     ];
   }
   props.children.forEach((item, index) => {
-    console.log('selectedKey-->', selectedKey);
     if (isWrap(item)) {
       loopChildren(
         item?.props,
@@ -40,15 +39,16 @@ const loopChildren = (
         setSelectedKey,
       );
     }
+    // TDDO 临时解决下在itemRender 中取不到最新的selectedKey问题
+    item.__proto__.selectedKey = selectedKey;
     item.itemRender = (vDom: ReactNode) => {
-      console.log('inner selectedKey', selectedKey);
       const VNode = (
         <Drag
           dom={vDom}
           label={`${item.type}-${item.key}`}
           virtual={item.virtual}
           mask={!isWrap(item)}
-          selected={selectedKey === item.key}
+          selected={item.__proto__.selectedKey === item.key}
         />
       );
       return (
@@ -108,7 +108,6 @@ export default ({
           rowGap: 10,
         }}
         schema={innerSchema.map((item: any, currentIndex: number) => {
-          console.log('out', item.key, selectedKey);
           const onDrop = (indices1: string, indices2: string) => {
             if (indices1 !== indices2) {
               const reRender = swapElementsInArray(

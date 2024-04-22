@@ -25,6 +25,8 @@ export interface TableListProps {
   defaultAddValue?: (() => any) | any;
   /** 支持排序 */
   sortable?: boolean;
+  /** 是否可操作 */
+  operation?: boolean;
   name?: string;
   actionRef?: any;
 }

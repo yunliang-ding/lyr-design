@@ -12,7 +12,6 @@ toc: menu
 
 ## 单层布局
 
-<!--
 ```tsx
 import React from 'react';
 import { uuid } from 'lyr-extra';
@@ -22,7 +21,7 @@ import items from './schema/drag-form/schema';
 export default () => {
   return (
     <DragForm
-      title="基础表单"
+      title="单层布局"
       column={2}
       defaultSelectedKey="0001"
       onChange={(newSchema) => {
@@ -35,11 +34,11 @@ export default () => {
     />
   );
 };
-``` -->
+```
 
 ## 嵌套布局
 
-<!-- ```tsx
+```tsx
 import React from 'react';
 import { uuid } from 'lyr-extra';
 import { DragForm } from 'lyr-design';
@@ -48,9 +47,9 @@ import schema from './schema/drag-form/schema1';
 export default () => {
   return (
     <DragForm
-      title="嵌套表单"
+      title="嵌套布局"
       column={2}
-      defaultSelectedKey={"0001"}
+      defaultSelectedKey={'0001'}
       onChange={(newSchema) => {
         console.log('onChange', newSchema);
       }}
@@ -61,7 +60,7 @@ export default () => {
     />
   );
 };
-``` -->
+```
 
 ## 子表单容器
 
@@ -74,7 +73,7 @@ import schema from './schema/drag-form/schema2';
 export default () => {
   return (
     <DragForm
-      title="嵌套表单"
+      title="子表单容器"
       column={3}
       defaultSelectedKey={'0001'}
       onChange={(newSchema) => {
@@ -91,4 +90,4 @@ export default () => {
 
 ## Api
 
-<!-- <API src="../../src/drag-form/index.tsx" hideTitle></API> -->
+<API src="../../src/drag-form/index.tsx" hideTitle></API>

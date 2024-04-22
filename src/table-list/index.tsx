@@ -19,6 +19,7 @@ export default ({
   leastOne = false,
   showNo = true,
   readOnly = false,
+  operation = true,
   children = [],
   value = [],
   onChange,
@@ -108,7 +109,7 @@ export default ({
                 <Space>
                   <Button
                     type="text"
-                    disabled={leastOne && value.length === 1}
+                    disabled={(leastOne && value.length === 1) || !operation}
                     confirm={
                       removeConfirm
                         ? {
@@ -126,6 +127,7 @@ export default ({
                   </Button>
                   <Button
                     type="text"
+                    disabled={!operation}
                     onClick={() => {
                       value.push({ ...value[index] });
                       onChange?.([...value]);
@@ -189,7 +191,7 @@ export default ({
       <div className="core-form-table-list-footer">
         <Button
           type="dashed"
-          visible={readOnly !== true}
+          visible={readOnly !== true && operation}
           icon={<IconPlus />}
           disabled={value.length >= maxCount}
           onClick={() => {

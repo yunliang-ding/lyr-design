@@ -18,6 +18,7 @@ import {
 import { ReactNode } from 'react';
 import { CoreFormInstance } from './type.instance';
 import { BuiltInWidgetMapping } from '../widgets';
+import { TableListProps } from '../table-list/type';
 
 export interface AsyncSelectProps extends Omit<SelectProps, 'options'> {
   options?: any[] | ((form: CoreFormInstance) => any);
@@ -38,6 +39,7 @@ export type FieldProps =
   | TimePickerProps
   | TimeRangePickerProps
   | TreeSelectProps
+  | TableListProps
   | ExtensionProps;
 
 /** SchemaProps */

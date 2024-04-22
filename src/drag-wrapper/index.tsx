@@ -33,26 +33,26 @@ const Item = ({ index, onDrop, children, virtual = false }: any) => {
     style: {
       ...children?.props?.style,
       cursor: virtual ? 'not-allowed' : 'move',
-      borderTop: '2px solid var(--color-menu-light-bg)',
+      borderTop: '3px solid var(--color-menu-light-bg)',
     },
     draggable: true,
     onDragOver: (e) => {
       e.stopPropagation();
       e.preventDefault();
-      e.currentTarget.style.borderTop = '2px solid rgb(var(--primary-6))';
+      e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
     },
     onDragEnter: (e) => {
       e.stopPropagation();
-      e.currentTarget.style.borderTop = '2px solid rgb(var(--primary-6))';
+      e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
     },
     onDragLeave: (e) => {
       e.stopPropagation();
-      e.currentTarget.style.borderTop = '2px solid var(--color-menu-light-bg)';
+      e.currentTarget.style.borderTop = '3px solid var(--color-menu-light-bg)';
     },
     onDrop: (e) => {
       e.stopPropagation();
       onDrop?.(e.dataTransfer.getData('index'), String(index));
-      e.currentTarget.style.borderTop = '2px solid var(--color-menu-light-bg)';
+      e.currentTarget.style.borderTop = '3px solid var(--color-menu-light-bg)';
     },
     onDragStart: (e) => {
       e.stopPropagation();
@@ -62,7 +62,7 @@ const Item = ({ index, onDrop, children, virtual = false }: any) => {
     onDragEnd: (e) => {
       e.stopPropagation();
       e.currentTarget.style.opacity = '1';
-      e.currentTarget.style.borderTop = '2px solid var(--color-menu-light-bg)';
+      e.currentTarget.style.borderTop = '3px solid var(--color-menu-light-bg)';
     },
   });
   return Element;
