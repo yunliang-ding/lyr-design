@@ -42,21 +42,21 @@ export default () => {
 import React from 'react';
 import { uuid } from 'lyr-extra';
 import { DragForm } from 'lyr-design';
-import schema from './schema/drag-form/schema1';
+import items from './schema/drag-form/schema1';
 
 export default () => {
   return (
     <DragForm
       title="嵌套布局"
       column={2}
-      defaultSelectedKey={'0001'}
+      defaultSelectedKey="0001"
       onChange={(newSchema) => {
         console.log('onChange', newSchema);
       }}
       onSelected={(itemKey) => {
         console.log('onSelected', itemKey);
       }}
-      items={schema}
+      items={items}
     />
   );
 };
@@ -68,21 +68,21 @@ export default () => {
 import React from 'react';
 import { uuid } from 'lyr-extra';
 import { DragForm } from 'lyr-design';
-import schema from './schema/drag-form/schema2';
+import items from './schema/drag-form/schema2';
 
 export default () => {
   return (
     <DragForm
       title="子表单容器"
       column={3}
-      defaultSelectedKey={'0001'}
+      defaultSelectedKey="0001"
       onChange={(newSchema) => {
         console.log('onChange', newSchema);
       }}
       onSelected={(itemKey) => {
         console.log('onSelected', itemKey);
       }}
-      items={schema}
+      items={items}
     />
   );
 };
