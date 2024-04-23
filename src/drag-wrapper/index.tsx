@@ -136,6 +136,9 @@ const DragWrapper = ({
                   }
                 }}
                 onDrop={(targetIndex: number) => {
+                  if (String(index) === String(targetIndex)) {
+                    return;
+                  }
                   const newList = arrayMove(list, index, targetIndex);
                   // 更新视图
                   setList(newList);

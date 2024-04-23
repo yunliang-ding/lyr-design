@@ -135,4 +135,4 @@ export default () => {
 
 ## Api
 
-<API src="../../src/drag-wrapper/index.tsx" hideTitle></API>
+<!-- <API src="../../src/drag-wrapper/index.tsx" hideTitle></API> -->
