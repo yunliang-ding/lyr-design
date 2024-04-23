@@ -1,6 +1,6 @@
-import { cloneDeep, isEmpty } from '@/util';
+import { cloneDeep, isEmpty, uuid } from '@/util';
 import { useUpdateEffect } from 'lyr-hooks';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 import { CardForm, DragWrapper, SchemaProps } from '..';
 import { isWrap, swapElementsInArray } from './util';
 import Drag from './drag';
@@ -11,6 +11,8 @@ const loopChildren = (
   onDrop,
   selectedKey,
   setSelectedKey,
+  onAdd,
+  dragId,
 ) => {
   // 删除虚拟节点
   const virtualIndex = props?.children?.findIndex((i) => i.virtual);
@@ -37,6 +39,8 @@ const loopChildren = (
         onDrop,
         selectedKey,
         setSelectedKey,
+        onAdd,
+        dragId,
       );
     }
     // TDDO 临时解决下在itemRender 中取不到最新的selectedKey问题
@@ -55,6 +59,8 @@ const loopChildren = (
         <DragWrapper.Item
           index={[...currentIndex, index]}
           onDrop={onDrop}
+          onAdd={onAdd}
+          dragId={dragId}
           virtual={item.virtual}
         >
           <div
@@ -92,6 +98,7 @@ export default ({
   onSelected,
   ...rest
 }: DragFormProps) => {
+  const dragId = useMemo(() => uuid(8), []); // 唯一id
   const [innerSchema, setInnerSchema]: any = useState(cloneDeep(items));
   const [selectedKey, setSelectedKey] = useState(defaultSelectedKey);
   useUpdateEffect(() => {
@@ -101,7 +108,7 @@ export default ({
     onSelected?.(selectedKey);
   }, [selectedKey]);
   return (
-    <DragWrapper>
+    <DragWrapper dragId={dragId}>
       <CardForm
         gridStyle={{
           colGap: 10,
@@ -120,6 +127,9 @@ export default ({
               }
             }
           };
+          const onAdd = (item, index) => {
+            console.log(item, index);
+          };
           if (isWrap(item)) {
             loopChildren(
               item?.props,
@@ -127,6 +137,8 @@ export default ({
               onDrop,
               selectedKey,
               setSelectedKey,
+              onAdd,
+              dragId,
             );
           }
           return {
@@ -146,7 +158,12 @@ export default ({
                 />
               );
               return (
-                <DragWrapper.Item index={currentIndex} onDrop={onDrop}>
+                <DragWrapper.Item
+                  index={currentIndex}
+                  onDrop={onDrop}
+                  onAdd={onAdd}
+                  dragId={dragId}
+                >
                   <div
                     onClick={() => {
                       setSelectedKey(item.key);

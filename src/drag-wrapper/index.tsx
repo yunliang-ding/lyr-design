@@ -1,4 +1,12 @@
-import { cloneElement, CSSProperties, ReactNode, useState } from 'react';
+import { uuid } from '@/util';
+import {
+  cloneElement,
+  CSSProperties,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 export interface DragWrapperProps {
   /** 配置项 */
@@ -11,7 +19,10 @@ export interface DragWrapperProps {
   /** 改变的钩子 */
   onChange?: Function;
   children?: ReactNode;
+  dragId?: string;
 }
+
+const store = {}; // 全局store
 
 export const arrayMove = (
   arr: any[],
@@ -27,9 +38,17 @@ export const arrayMove = (
   return [...arr];
 };
 
-const Item = ({ index, onDrop, children, virtual = false }: any) => {
+const Item = ({
+  index,
+  dragId,
+  onAdd,
+  onDrop,
+  children,
+  virtual = false,
+}: any) => {
   /** 扩展节点 */
   const Element = cloneElement(children, {
+    className: 'drag-wrapper-item',
     style: {
       ...children?.props?.style,
       cursor: virtual ? 'not-allowed' : 'move',
@@ -51,12 +70,22 @@ const Item = ({ index, onDrop, children, virtual = false }: any) => {
     },
     onDrop: (e) => {
       e.stopPropagation();
-      onDrop?.(e.dataTransfer.getData('index'), String(index));
+      const _dragId = e.dataTransfer.getData('dragId');
+      const _index = e.dataTransfer.getData('index');
+      if (store[_dragId]) {
+        // 同一个模块之间的移动
+        if (_dragId === dragId) {
+          onDrop?.(e.dataTransfer.getData('index'), String(index));
+        } else {
+          onAdd?.(store[_dragId][_index], index); // 把这个外部的item插入到内部的index位置
+        }
+      }
       e.currentTarget.style.borderTop = '3px solid var(--color-menu-light-bg)';
     },
     onDragStart: (e) => {
       e.stopPropagation();
       e.dataTransfer.setData('index', String(index));
+      e.dataTransfer.setData('dragId', String(dragId));
       e.currentTarget.style.opacity = '0.5';
     },
     onDragEnd: (e) => {
@@ -72,7 +101,14 @@ const DragWrapper = ({
   items = [],
   onChange = () => {},
   children,
+  dragId = useMemo(() => uuid(8), []), // 唯一id
 }: DragWrapperProps) => {
+  useEffect(() => {
+    store[dragId] = items; // 存进去
+    () => {
+      delete store[dragId];
+    };
+  }, []);
   const [list, setList] = useState(items);
   return (
     <>
@@ -81,8 +117,19 @@ const DragWrapper = ({
         : list.map((item, index) => {
             return (
               <Item
-                key={item.key}
+                key={item?.key}
                 index={index}
+                dragId={dragId}
+                onAdd={(item, index) => {
+                  list.splice(index, 0, {
+                    ...item,
+                    key: uuid(8),
+                  });
+                  // 更新视图
+                  setList([...list]);
+                  // 通知外部
+                  onChange([...list]);
+                }}
                 onDrop={(targetIndex: number) => {
                   const newList = arrayMove(list, index, targetIndex);
                   // 更新视图
@@ -91,7 +138,7 @@ const DragWrapper = ({
                   onChange(newList);
                 }}
               >
-                {item.content}
+                {item?.content}
               </Item>
             );
           })}

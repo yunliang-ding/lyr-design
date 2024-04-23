@@ -90,4 +90,4 @@ export default () => {
 
 ## Api
 
-<API src="../../src/drag-form/index.tsx" hideTitle></API>
+<!-- <API src="../../src/drag-form/index.tsx" hideTitle></API> -->
