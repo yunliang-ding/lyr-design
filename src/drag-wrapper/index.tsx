@@ -18,6 +18,8 @@ export interface DragWrapperProps {
   style?: CSSProperties;
   /** 改变的钩子 */
   onChange?: Function;
+  /** 是否允许接受外部组件 */
+  accept?: boolean;
   children?: ReactNode;
   dragId?: string;
 }
@@ -102,6 +104,7 @@ const DragWrapper = ({
   onChange = () => {},
   children,
   dragId = useMemo(() => uuid(8), []), // 唯一id
+  accept = false,
 }: DragWrapperProps) => {
   useEffect(() => {
     store[dragId] = items; // 存进去
@@ -121,14 +124,16 @@ const DragWrapper = ({
                 index={index}
                 dragId={dragId}
                 onAdd={(item, index) => {
-                  list.splice(index, 0, {
-                    ...item,
-                    key: uuid(8),
-                  });
-                  // 更新视图
-                  setList([...list]);
-                  // 通知外部
-                  onChange([...list]);
+                  if (accept) {
+                    list.splice(index, 0, {
+                      ...item,
+                      key: uuid(8),
+                    });
+                    // 更新视图
+                    setList([...list]);
+                    // 通知外部
+                    onChange([...list]);
+                  }
                 }}
                 onDrop={(targetIndex: number) => {
                   const newList = arrayMove(list, index, targetIndex);
