@@ -39,8 +39,7 @@
     "lodash.mergewith": "4.6.2",
     "lodash.debounce": "4.0.8",
     "lodash.clonedeepwith": "4.5.0",
-    "react-resizable": "3.0.4",
-    "react-draggable": "4.4.5"
+    "react-resizable": "3.0.4"
   },
   "peerDependencies": {
     "react": ">=16.9.0",
