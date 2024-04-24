@@ -3,8 +3,6 @@ import { useMemo, useRef, useState } from 'react';
 import { uuid } from '@/util';
 import Form from '@/form';
 import { ModalFormProps } from '../types';
-import type { DraggableData, DraggableEvent } from 'react-draggable';
-import Draggable from 'react-draggable';
 import Footer from '../footer';
 import './index.less';
 
@@ -27,7 +25,6 @@ export default ({
   actions,
   render,
   footerRender,
-  drag = false,
   ...rest
 }: ModalFormProps) => {
   /** 宽高设置 */
@@ -78,48 +75,6 @@ export default ({
   if (className) {
     _className.push(className);
   }
-  /** 拖拽逻辑 */
-  const draggleRef = useRef<HTMLDivElement>(null);
-  const [disabled, setDisabled] = useState(false);
-  const [bounds, setBounds] = useState({
-    left: 0,
-    top: 0,
-    bottom: 0,
-    right: 0,
-  });
-  const onStart = (_event: DraggableEvent, uiData: DraggableData) => {
-    const { clientWidth, clientHeight } = window.document.documentElement;
-    const targetRect = draggleRef.current?.getBoundingClientRect();
-    if (!targetRect) {
-      return;
-    }
-    setBounds({
-      left: -targetRect.left + uiData.x,
-      right: clientWidth - (targetRect.right - uiData.x),
-      top: -targetRect.top + uiData.y,
-      bottom: clientHeight - (targetRect.bottom - uiData.y),
-    });
-  };
-  const renderTitle = drag ? (
-    <div
-      style={{
-        width: '100%',
-        cursor: 'move',
-      }}
-      onMouseOver={() => {
-        if (disabled) {
-          setDisabled(false);
-        }
-      }}
-      onMouseOut={() => {
-        setDisabled(true);
-      }}
-    >
-      {title}
-    </div>
-  ) : (
-    title
-  );
   /** 控制底部按钮渲染 */
   let footerNode: any = null;
   if (typeof footerRender === 'function') {
@@ -143,27 +98,10 @@ export default ({
       }}
       className={_className.join(' ')}
       visible={visible}
-      title={renderTitle}
+      title={title}
       onCancel={() => {
         onClose();
       }}
-      modalRender={
-        drag
-          ? (modal) => (
-              <Draggable
-                disabled={disabled}
-                bounds={bounds}
-                defaultClassName="arco-drag-modal"
-                positionOffset={{ x: '-50%', y: 0 }}
-                onStart={(event, uiData) => onStart(event, uiData)}
-              >
-                <div ref={draggleRef} style={{ width }}>
-                  {modal}
-                </div>
-              </Draggable>
-            )
-          : undefined
-      }
       footer={footerNode}
     >
       <div

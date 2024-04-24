@@ -33,34 +33,6 @@ export default (props) => {
 };
 ```
 
-## 可拖拽
-
-```tsx
-import React from 'react';
-import { CreateModal, Button } from 'lyr-design';
-
-export default (props) => {
-  return (
-    <Button
-      type="primary"
-      onClick={() => {
-        CreateModal({
-          drag: true,
-          title: '可拖拽的Modal',
-          width: 300,
-          height: 100,
-          render() {
-            return <div>可拖拽的Modal</div>;
-          },
-        }).open();
-      }}
-    >
-      打开一个可拖拽Modal
-    </Button>
-  );
-};
-```
-
 ## 手动关闭和阻止关闭
 
 ```tsx

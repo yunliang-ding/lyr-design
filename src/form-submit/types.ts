@@ -67,8 +67,6 @@ export interface ModalFormProps extends FormSubmitProps {
    * @default false
    */
   visible?: boolean;
-  /** 是否可拖拽 */
-  drag?: boolean;
   /** 宽 */
   width?: number | string;
   /** 高 */
