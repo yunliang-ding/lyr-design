@@ -24,7 +24,7 @@ export interface DragWrapperProps {
   dragId?: string;
 }
 
-const store = {}; // 全局store
+const store: any = {}; // 全局store
 
 export const arrayMove = (
   arr: any[],
@@ -60,11 +60,15 @@ const Item = ({
     onDragOver: (e) => {
       e.stopPropagation();
       e.preventDefault();
-      e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
+      if (String(store.index) !== String(index) || store.dragId !== dragId) {
+        e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
+      }
     },
     onDragEnter: (e) => {
       e.stopPropagation();
-      e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
+      if (String(store.index) !== String(index) || store.dragId !== dragId) {
+        e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
+      }
     },
     onDragLeave: (e) => {
       e.stopPropagation();
@@ -72,12 +76,12 @@ const Item = ({
     },
     onDrop: (e) => {
       e.stopPropagation();
-      const _dragId = e.dataTransfer.getData('dragId');
-      const _index = e.dataTransfer.getData('index');
+      const _dragId = store.dragId;
+      const _index = store.index;
       if (store[_dragId]) {
         // 同一个模块之间的移动
         if (_dragId === dragId) {
-          onDrop?.(e.dataTransfer.getData('index'), String(index));
+          onDrop?.(_index, index);
         } else {
           onAdd?.(store[_dragId][_index], index); // 把这个外部的item插入到内部的index位置
         }
@@ -86,9 +90,9 @@ const Item = ({
     },
     onDragStart: (e) => {
       e.stopPropagation();
-      e.dataTransfer.setData('index', String(index));
-      e.dataTransfer.setData('dragId', String(dragId));
-      e.currentTarget.style.opacity = '0.5';
+      store.index = index;
+      store.dragId = dragId;
+      e.currentTarget.style.opacity = '0.3';
     },
     onDragEnd: (e) => {
       e.stopPropagation();
