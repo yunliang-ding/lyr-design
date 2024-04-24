@@ -47,6 +47,7 @@ const Item = ({
   onDrop,
   children,
   virtual = false,
+  accept = true,
 }: any) => {
   /** 扩展节点 */
   const Element = cloneElement(children, {
@@ -54,39 +55,51 @@ const Item = ({
     style: {
       ...children?.props?.style,
       cursor: virtual ? 'not-allowed' : 'move',
-      borderTop: '3px solid var(--color-menu-light-bg)',
+      borderTop: accept ? '3px solid var(--color-menu-light-bg)' : 'none',
     },
     draggable: true,
     onDragOver: (e) => {
       e.stopPropagation();
       e.preventDefault();
-      if (String(store.index) !== String(index) || store.dragId !== dragId) {
+      if (
+        (String(store.index) !== String(index) || store.dragId !== dragId) &&
+        accept
+      ) {
         e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
       }
     },
     onDragEnter: (e) => {
       e.stopPropagation();
-      if (String(store.index) !== String(index) || store.dragId !== dragId) {
+      if (
+        (String(store.index) !== String(index) || store.dragId !== dragId) &&
+        accept
+      ) {
         e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
       }
     },
     onDragLeave: (e) => {
       e.stopPropagation();
-      e.currentTarget.style.borderTop = '3px solid var(--color-menu-light-bg)';
+      if (accept) {
+        e.currentTarget.style.borderTop =
+          '3px solid var(--color-menu-light-bg)';
+      }
     },
     onDrop: (e) => {
       e.stopPropagation();
       const _dragId = store.dragId;
       const _index = store.index;
-      if (store[_dragId]) {
+      if (store[_dragId] && accept) {
         // 同一个模块之间的移动
         if (_dragId === dragId) {
-          onDrop?.(_index, index);
+          onDrop?.(String(_index), String(index));
         } else {
-          onAdd?.(store[_dragId][_index], index); // 把这个外部的item插入到内部的index位置
+          onAdd?.(store[_dragId][_index], String(index)); // 把这个外部的item插入到内部的index位置
         }
       }
-      e.currentTarget.style.borderTop = '3px solid var(--color-menu-light-bg)';
+      if (accept) {
+        e.currentTarget.style.borderTop =
+          '3px solid var(--color-menu-light-bg)';
+      }
     },
     onDragStart: (e) => {
       e.stopPropagation();
@@ -96,8 +109,13 @@ const Item = ({
     },
     onDragEnd: (e) => {
       e.stopPropagation();
+      delete store.index;
+      delete store.dragId;
       e.currentTarget.style.opacity = '1';
-      e.currentTarget.style.borderTop = '3px solid var(--color-menu-light-bg)';
+      if (accept) {
+        e.currentTarget.style.borderTop =
+          '3px solid var(--color-menu-light-bg)';
+      }
     },
   });
   return Element;
@@ -108,14 +126,16 @@ const DragWrapper = ({
   onChange = () => {},
   children,
   dragId = useMemo(() => uuid(8), []), // 唯一id
-  accept = false,
+  accept = true,
 }: DragWrapperProps) => {
   useEffect(() => {
-    store[dragId] = items; // 存进去
-    () => {
-      delete store[dragId];
-    };
-  }, []);
+    if (items) {
+      store[dragId] = items; // 存进去
+      () => {
+        delete store[dragId];
+      };
+    }
+  }, [items]);
   const [list, setList] = useState(items);
   return (
     <>
@@ -127,6 +147,7 @@ const DragWrapper = ({
                 key={item?.key}
                 index={index}
                 dragId={dragId}
+                accept={accept}
                 onAdd={(item, index) => {
                   if (accept) {
                     list.splice(index, 0, {

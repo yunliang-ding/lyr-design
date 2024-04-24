@@ -17,8 +17,8 @@ export const isEmptyWrap = ({ type, props }) => {
  * @param indices2
  */
 export const swapElementsInArray = (array, indices1, indices2) => {
-  // 位置没变化返回
-  if (String(indices1) === String(indices2)) {
+  // 不允许插入子节点，或者位置没有变化
+  if (String(indices2).startsWith(String(indices1))) {
     return false;
   }
   /** 删除 */

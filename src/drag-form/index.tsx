@@ -92,7 +92,15 @@ export interface DragFormProps {
 }
 
 export default ({
-  items = [],
+  items = [
+    {
+      key: uuid(8),
+      virtual: true,
+      type: () => {
+        return <div>容器空节点</div>;
+      },
+    } as any,
+  ],
   defaultSelectedKey,
   onChange,
   onSelected,
@@ -107,6 +115,11 @@ export default ({
   useUpdateEffect(() => {
     onSelected?.(selectedKey);
   }, [selectedKey]);
+  // 删除虚拟节点
+  const virtualIndex = innerSchema?.findIndex((i) => i.virtual);
+  if (virtualIndex > -1 && innerSchema.length > 1) {
+    innerSchema.splice(virtualIndex, 1);
+  }
   return (
     <DragWrapper dragId={dragId}>
       <CardForm
@@ -127,8 +140,13 @@ export default ({
               }
             }
           };
+          // 添加表单项
           const onAdd = (item, index) => {
-            console.log(item, index);
+            innerSchema.splice(index, 0, {
+              ...item.schema,
+              key: uuid(8),
+            });
+            setInnerSchema([...innerSchema]);
           };
           if (isWrap(item)) {
             loopChildren(
@@ -152,6 +170,7 @@ export default ({
               const VNode = (
                 <Drag
                   dom={vDom}
+                  virtual={item.virtual}
                   mask={!isWrap(item)}
                   label={`${item.type}-${item.key}`}
                   selected={selectedKey === item.key}

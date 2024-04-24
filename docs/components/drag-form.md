@@ -36,6 +36,58 @@ export default () => {
 };
 ```
 
+## 添加表单元素
+
+```tsx
+import React from 'react';
+import { uuid } from 'lyr-extra';
+import { Button, DragWrapper, DragForm } from 'lyr-design';
+
+export default () => {
+  return (
+    <>
+      <DragWrapper
+        style={{
+          gap: 20,
+        }}
+        onChange={(item) => {
+          console.log(item);
+        }}
+        accept={false} // 静态容器
+        items={[
+          {
+            type: 'Input',
+            name: 'input',
+            label: '输入框',
+          },
+          {
+            type: 'Select',
+            name: 'select',
+            label: '下拉选',
+          },
+        ].map((schema) => {
+          return {
+            key: schema.type,
+            schema: schema,
+            content: <Button style={{ margin: 10 }}>{schema.label}</Button>,
+          };
+        })}
+      />
+      <DragForm
+        title="添加表单元素"
+        column={2}
+        onChange={(newSchema) => {
+          console.log('onChange', newSchema);
+        }}
+        onSelected={(itemKey) => {
+          console.log('onSelected', itemKey);
+        }}
+      />
+    </>
+  );
+};
+```
+
 ## 嵌套布局
 
 ```tsx
@@ -90,4 +142,4 @@ export default () => {
 
 ## Api
 
-<!-- <API src="../../src/drag-form/index.tsx" hideTitle></API> -->
+<API src="../../src/drag-form/index.tsx" hideTitle></API>
