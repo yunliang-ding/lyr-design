@@ -1,8 +1,7 @@
-import { isEmpty, uuid } from '@/util';
+import { cloneDeep, isEmpty, uuid } from '@/util';
 import { useUpdateEffect } from 'lyr-hooks';
-import { cloneDeep } from 'lodash';
 import { ReactNode, useMemo, useState } from 'react';
-import { CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
+import { Search, CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
 import { isWrap, swapElementsInArray } from './util';
 import Drag from './drag';
 
@@ -94,6 +93,8 @@ export interface DragFormProps extends CardFormProps {
   defaultSelectedKey?: string;
   /** 数据源 */
   items: SchemaProps[];
+  /** 表单类型 */
+  type?: 'search' | 'card';
 }
 
 export default ({
@@ -109,6 +110,7 @@ export default ({
   defaultSelectedKey,
   onChange,
   onSelected,
+  type = 'card',
   ...rest
 }: DragFormProps) => {
   const dragId = useMemo(() => uuid(8), []); // 唯一id
@@ -121,9 +123,10 @@ export default ({
   if (virtualIndex > -1 && items.length > 1) {
     items.splice(virtualIndex, 1);
   }
+  const ComponentWrap: any = type === 'search' ? Search : CardForm;
   return (
     <DragWrapper dragId={dragId}>
-      <CardForm
+      <ComponentWrap
         gridStyle={{
           colGap: 10,
           rowGap: 10,
