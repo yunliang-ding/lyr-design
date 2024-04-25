@@ -1,7 +1,7 @@
-import { cloneDeep, isEmpty, uuid } from '@/util';
+import { isEmpty, uuid } from '@/util';
 import { useUpdateEffect } from 'lyr-hooks';
 import { ReactNode, useMemo, useState } from 'react';
-import { CardForm, DragWrapper, SchemaProps } from '..';
+import { CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
 import { isWrap, swapElementsInArray } from './util';
 import Drag from './drag';
 
@@ -80,7 +80,7 @@ const loopChildren = (
   });
 };
 
-export interface DragFormProps {
+export interface DragFormProps extends CardFormProps {
   /** 拖拽结束 */
   onChange?(list: any): void;
   /** 切换事件 */
@@ -88,7 +88,7 @@ export interface DragFormProps {
   /** 默认选中的key */
   defaultSelectedKey?: string;
   /** 数据源 */
-  items: SchemaProps<{}>[];
+  items: SchemaProps[];
 }
 
 export default ({
@@ -99,26 +99,22 @@ export default ({
       type: () => {
         return <div>容器空节点</div>;
       },
-    } as any,
-  ],
+    },
+  ] as any,
   defaultSelectedKey,
   onChange,
   onSelected,
   ...rest
 }: DragFormProps) => {
   const dragId = useMemo(() => uuid(8), []); // 唯一id
-  const [innerSchema, setInnerSchema]: any = useState(cloneDeep(items));
   const [selectedKey, setSelectedKey] = useState(defaultSelectedKey);
-  useUpdateEffect(() => {
-    onChange?.(innerSchema);
-  }, [innerSchema]);
   useUpdateEffect(() => {
     onSelected?.(selectedKey);
   }, [selectedKey]);
   // 删除虚拟节点
-  const virtualIndex = innerSchema?.findIndex((i) => i.virtual);
-  if (virtualIndex > -1 && innerSchema.length > 1) {
-    innerSchema.splice(virtualIndex, 1);
+  const virtualIndex = items?.findIndex((i: any) => i.virtual);
+  if (virtualIndex > -1 && items.length > 1) {
+    items.splice(virtualIndex, 1);
   }
   return (
     <DragWrapper dragId={dragId}>
@@ -127,26 +123,32 @@ export default ({
           colGap: 10,
           rowGap: 10,
         }}
-        schema={innerSchema.map((item: any, currentIndex: number) => {
+        schema={items.map((item: any, currentIndex: number) => {
           const onDrop = (indices1: string, indices2: string) => {
             if (indices1 !== indices2) {
               const reRender = swapElementsInArray(
-                innerSchema,
+                items,
                 indices1.split(','),
                 indices2.split(','),
               );
               if (reRender) {
-                setInnerSchema([...innerSchema]);
+                onChange([...items]);
               }
             }
           };
           // 添加表单项
           const onAdd = (item, index) => {
-            innerSchema.splice(index, 0, {
+            let target = items;
+            const arr = index.split(',');
+            const position = arr.pop();
+            arr.forEach((i: string) => {
+              target = items[i].props.children;
+            });
+            target.splice(position, 0, {
               ...item.schema,
               key: uuid(8),
             });
-            setInnerSchema([...innerSchema]);
+            onChange([...items]);
           };
           if (isWrap(item)) {
             loopChildren(

@@ -14,23 +14,78 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { uuid } from 'lyr-extra';
 import { DragForm } from 'lyr-design';
 import items from './schema/drag-form/schema';
 
 export default () => {
+  const [schema, setSchema] = React.useState(items);
   return (
     <DragForm
       title="单层布局"
       column={2}
       defaultSelectedKey="0001"
+      items={schema}
       onChange={(newSchema) => {
+        setSchema(newSchema);
         console.log('onChange', newSchema);
       }}
       onSelected={(itemKey) => {
         console.log('onSelected', itemKey);
       }}
-      items={items}
+    />
+  );
+};
+```
+
+## 嵌套布局
+
+```tsx
+import React from 'react';
+import { DragForm } from 'lyr-design';
+import items from './schema/drag-form/schema1';
+
+export default () => {
+  const [schema, setSchema] = React.useState(items);
+  return (
+    <DragForm
+      title="嵌套布局"
+      column={2}
+      defaultSelectedKey="0001"
+      onChange={(newSchema) => {
+        setSchema(newSchema);
+        console.log('onChange', newSchema);
+      }}
+      onSelected={(itemKey) => {
+        console.log('onSelected', itemKey);
+      }}
+      items={schema}
+    />
+  );
+};
+```
+
+## 子表单容器
+
+```tsx
+import React from 'react';
+import { DragForm } from 'lyr-design';
+import items from './schema/drag-form/schema2';
+
+export default () => {
+  const [schema, setSchema] = React.useState(items);
+  return (
+    <DragForm
+      title="子表单容器"
+      column={3}
+      defaultSelectedKey="0001"
+      onChange={(newSchema) => {
+        setSchema(newSchema);
+        console.log('onChange', newSchema);
+      }}
+      onSelected={(itemKey) => {
+        console.log('onSelected', itemKey);
+      }}
+      items={schema}
     />
   );
 };
@@ -40,10 +95,22 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { uuid } from 'lyr-extra';
 import { Button, DragWrapper, DragForm } from 'lyr-design';
 
 export default () => {
+  const [schema, setSchema] = React.useState([
+    {
+      key: 'userList',
+      type: 'FormList',
+      label: '用户关系表',
+      name: 'userList',
+      span: 2,
+      props: {
+        label: '用户',
+        children: [],
+      },
+    },
+  ]);
   return (
     <>
       <DragWrapper
@@ -76,7 +143,9 @@ export default () => {
       <DragForm
         title="添加表单元素"
         column={2}
+        items={schema}
         onChange={(newSchema) => {
+          setSchema(newSchema);
           console.log('onChange', newSchema);
         }}
         onSelected={(itemKey) => {
@@ -88,58 +157,6 @@ export default () => {
 };
 ```
 
-## 嵌套布局
-
-```tsx
-import React from 'react';
-import { uuid } from 'lyr-extra';
-import { DragForm } from 'lyr-design';
-import items from './schema/drag-form/schema1';
-
-export default () => {
-  return (
-    <DragForm
-      title="嵌套布局"
-      column={2}
-      defaultSelectedKey="0001"
-      onChange={(newSchema) => {
-        console.log('onChange', newSchema);
-      }}
-      onSelected={(itemKey) => {
-        console.log('onSelected', itemKey);
-      }}
-      items={items}
-    />
-  );
-};
-```
-
-## 子表单容器
-
-```tsx
-import React from 'react';
-import { uuid } from 'lyr-extra';
-import { DragForm } from 'lyr-design';
-import items from './schema/drag-form/schema2';
-
-export default () => {
-  return (
-    <DragForm
-      title="子表单容器"
-      column={3}
-      defaultSelectedKey="0001"
-      onChange={(newSchema) => {
-        console.log('onChange', newSchema);
-      }}
-      onSelected={(itemKey) => {
-        console.log('onSelected', itemKey);
-      }}
-      items={items}
-    />
-  );
-};
-```
-
 ## Api
 
-<API src="../../src/drag-form/index.tsx" hideTitle></API>
+<!-- <API src="../../src/drag-form/index.tsx" hideTitle></API> -->

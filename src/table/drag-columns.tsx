@@ -12,7 +12,7 @@ export const DragHandle = () => (
 
 export const DraggableContainer = (props) => {
   return (
-    <DragWrapper>
+    <DragWrapper dragId="table-list">
       <tbody {...props} />
     </DragWrapper>
   );
@@ -30,6 +30,7 @@ export const DraggableRow = ({
     <DragWrapper.Item
       index={index}
       key={record.id}
+      dragId="table-list"
       onDrop={(targetIndex: number) => {
         const temp = dataSource[targetIndex];
         // 删除之前的
