@@ -1,5 +1,6 @@
 import { isEmpty, uuid } from '@/util';
 import { useUpdateEffect } from 'lyr-hooks';
+import { cloneDeep } from 'lodash';
 import { ReactNode, useMemo, useState } from 'react';
 import { CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
 import { isWrap, swapElementsInArray } from './util';
@@ -45,14 +46,18 @@ const loopChildren = (
     }
     // TDDO 临时解决下在itemRender 中取不到最新的selectedKey问题
     item.__proto__.selectedKey = selectedKey;
-    item.itemRender = (vDom: ReactNode) => {
+    item.itemRender = (vDom: ReactNode, option: any) => {
+      if (option === undefined) {
+        return null;
+      }
+      const { field } = option;
       const VNode = (
         <Drag
           dom={vDom}
-          label={`${item.type}-${item.key}`}
+          label={`${item.type}-${field.key}`}
           virtual={item.virtual}
           mask={!isWrap(item)}
-          selected={item.__proto__.selectedKey === item.key}
+          selected={field.key === item.__proto__.selectedKey}
         />
       );
       return (
@@ -69,7 +74,7 @@ const loopChildren = (
               if (item.virtual) {
                 return;
               }
-              setSelectedKey(item.key);
+              setSelectedKey(field.key);
             }}
           >
             {VNode}
@@ -137,7 +142,8 @@ export default ({
             }
           };
           // 添加表单项
-          const onAdd = (item, index) => {
+          const onAdd = (v, index) => {
+            const item = cloneDeep(v);
             let target = items;
             const arr = index.split(',');
             const position = arr.pop();

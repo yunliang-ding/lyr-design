@@ -25,7 +25,7 @@ export default ({
       <Space>
         <span>空节点元素</span>
         <Tooltip
-          content="当一个容器为空的时候，会提供一个空节点元素辅助拖拽"
+          content="当一个容器为空的时候，会提供一个空节点元素辅助拖拽定位"
           position="right"
         >
           <IconExclamationCircle
