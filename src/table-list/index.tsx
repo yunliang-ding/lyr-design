@@ -29,6 +29,8 @@ export default ({
   name,
   defaultAddValue = {},
   sortable = false,
+  actions = [],
+  copy = true,
 }: TableListProps) => {
   const [form] = Form.useForm();
   const event = useMemo(() => {
@@ -101,12 +103,27 @@ export default ({
           {
             title: '操作',
             dataIndex: '__operation__',
-            width: 160,
             visible: readOnly !== true,
             align: 'center' as any,
             render(v, record, index) {
               return (
                 <Space>
+                  {actions.map((item: any) => {
+                    return (
+                      <Button
+                        {...item}
+                        key={item.label}
+                        onClick={() => {
+                          item.onClick?.(record, (updateValue: any) => {
+                            Object.assign(value[index], updateValue);
+                            onChange?.([...value]);
+                          });
+                        }}
+                      >
+                        {item.label}
+                      </Button>
+                    );
+                  })}
                   <Button
                     type="text"
                     disabled={(leastOne && value.length === 1) || !operation}
@@ -125,16 +142,19 @@ export default ({
                   >
                     删除
                   </Button>
-                  <Button
-                    type="text"
-                    disabled={!operation}
-                    onClick={() => {
-                      value.push({ ...value[index] });
-                      onChange?.([...value]);
-                    }}
-                  >
-                    复制
-                  </Button>
+
+                  {copy && (
+                    <Button
+                      type="text"
+                      disabled={!operation}
+                      onClick={() => {
+                        value.push({ ...value[index] });
+                        onChange?.([...value]);
+                      }}
+                    >
+                      复制
+                    </Button>
+                  )}
                 </Space>
               );
             },

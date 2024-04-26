@@ -1,6 +1,6 @@
 import { cloneDeep, isEmpty, uuid } from '@/util';
 import { useUpdateEffect } from 'lyr-hooks';
-import { ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Search, CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
 import { isWrap, swapElementsInArray } from './util';
 import Drag from './drag';
@@ -89,7 +89,7 @@ export interface DragFormProps extends CardFormProps {
   onChange?(list: any): void;
   /** 切换事件 */
   onSelected?(list: any): void;
-  /** 默认选中的key */
+  /** 选中的key */
   defaultSelectedKey?: string;
   /** 数据源 */
   items: SchemaProps[];
@@ -116,8 +116,13 @@ export default ({
   const dragId = useMemo(() => uuid(8), []); // 唯一id
   const [selectedKey, setSelectedKey] = useState(defaultSelectedKey);
   useUpdateEffect(() => {
-    onSelected?.(selectedKey);
+    if (selectedKey) {
+      onSelected?.(selectedKey);
+    }
   }, [selectedKey]);
+  useEffect(() => {
+    setSelectedKey(defaultSelectedKey);
+  }, [defaultSelectedKey]);
   // 删除虚拟节点
   const virtualIndex = items?.findIndex((i: any) => i.virtual);
   if (virtualIndex > -1 && items.length > 1) {

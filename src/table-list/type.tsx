@@ -1,3 +1,4 @@
+import { ToolsProps } from '../table/types';
 import { SchemaProps } from '..';
 
 export interface TableListProps {
@@ -27,6 +28,8 @@ export interface TableListProps {
   sortable?: boolean;
   /** 是否可操作 */
   operation?: boolean;
+  actions?: ToolsProps[];
+  copy?: boolean;
   name?: string;
   actionRef?: any;
 }

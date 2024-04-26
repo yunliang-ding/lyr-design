@@ -104,6 +104,10 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
     if (field.type === 'Input') {
       field.props.maxLength = field.props.maxLength || defaultInputMaxLength;
     }
+    // 处理开关
+    if (field.type === 'Switch') {
+      field.triggerPropName = 'checked';
+    }
     // 默认开启allowClear和设置placeholder
     if (['Input', 'InputNumber', 'TextArea', 'Password'].includes(field.type)) {
       if (!['InputNumber'].includes(field.type)) {
