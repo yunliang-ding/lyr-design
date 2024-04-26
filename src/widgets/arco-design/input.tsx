@@ -18,6 +18,7 @@ export default ({
   const { autoTrimInputSpaceOnBlur } = getGlobalConfig();
   return (
     <Input
+      autoComplete="off"
       {...props}
       onBlur={(e) => {
         if (autoTrimInputSpaceOnBlur) {

@@ -14,5 +14,5 @@ export default ({
       </span>
     );
   }
-  return <InputNumber {...props} />;
+  return <InputNumber autoComplete="off" {...props} />;
 };
