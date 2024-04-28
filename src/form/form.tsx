@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { useRef, useMemo, useState } from 'react';
-import { Grid, Empty, Form, Spin } from '@arco-design/web-react';
+import { Grid, Form, Spin } from '@arco-design/web-react';
 import { cloneDeep, EventEmit } from '@/util';
 import Item from './item';
 import FieldSet from '@/widgets/extension/fields-set';
@@ -132,6 +132,7 @@ export default ({
               effect={field.effect}
               visible={field.visible}
               event={event}
+              field={field}
             >
               <RenderFieldSet field={field} />
             </FieldSet>

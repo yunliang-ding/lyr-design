@@ -16,6 +16,7 @@ export default ({
   form,
   initialValues,
   itemRender,
+  field,
 }) => {
   const [reload, setReload] = useState(Math.random());
   useEffect(() => {
@@ -49,7 +50,7 @@ export default ({
     </div>
   );
   if (typeof itemRender === 'function') {
-    vNode = itemRender(vNode); // 暂不支持 async
+    vNode = itemRender(vNode, { field }); // 暂不支持 async
   }
   // 执行visible逻辑
   if (typeof visible === 'function') {

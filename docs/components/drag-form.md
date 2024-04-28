@@ -1,5 +1,5 @@
 ---
-order: 14
+order: 28
 title: DragForm 拖拽表单
 toc: menu
 ---
@@ -98,19 +98,7 @@ import React from 'react';
 import { Button, DragWrapper, DragForm } from 'lyr-design';
 
 export default () => {
-  const [schema, setSchema] = React.useState([
-    {
-      key: 'userList',
-      type: 'FormList',
-      label: '用户关系表',
-      name: 'userList',
-      span: 2,
-      props: {
-        label: '用户',
-        children: [],
-      },
-    },
-  ]);
+  const [schema, setSchema] = React.useState();
   return (
     <>
       <DragWrapper
@@ -131,6 +119,14 @@ export default () => {
             type: 'Select',
             name: 'select',
             label: '下拉选',
+          },
+          {
+            type: 'FieldSet',
+            name: 'feldSet',
+            label: '空容器',
+            props: {
+              children: [],
+            },
           },
         ].map((schema) => {
           return {

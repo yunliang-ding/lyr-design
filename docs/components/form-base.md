@@ -284,37 +284,3 @@ export default () => {
   );
 };
 ```
-
-## 下拉多选扩展调整顺序
-
-```tsx
-import React from 'react';
-import { Form } from 'lyr-design';
-
-export default () => {
-  return (
-    <Form
-      initialValues={{
-        likes: [1, 2, 3, 4],
-      }}
-      schema={[
-        {
-          type: 'Select',
-          name: 'likes',
-          label: '个人爱好',
-          props: {
-            sort: true,
-            style: { width: 360 },
-            options: [
-              { label: '选项1', value: 1 },
-              { label: '选项2', value: 2 },
-              { label: '选项3', value: 3 },
-              { label: '选项4', value: 4 },
-            ],
-          },
-        },
-      ]}
-    />
-  );
-};
-```
