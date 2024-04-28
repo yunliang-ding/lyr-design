@@ -16,6 +16,7 @@ export default {
       'react-dom': 'ReactDOM',
       '@arco-design/web-react': 'arco',
       '@arco-design/web-react/icon': 'arcoicon',
+      'react/jsx-runtime': 'jsxRuntime',
     },
   },
   extractCSS: true,
