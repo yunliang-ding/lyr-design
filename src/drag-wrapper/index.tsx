@@ -128,6 +128,7 @@ const DragWrapper = ({
   dragId = useMemo(() => uuid(8), []), // 唯一id
   accept = true,
 }: DragWrapperProps) => {
+  const [list, setList] = useState(items);
   useEffect(() => {
     if (items) {
       store[dragId] = items; // 存进去
@@ -136,7 +137,6 @@ const DragWrapper = ({
       };
     }
   }, [items]);
-  const [list, setList] = useState(items);
   return (
     <>
       {children

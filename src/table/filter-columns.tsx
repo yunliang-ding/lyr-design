@@ -12,7 +12,7 @@ import { IconSettings } from '@arco-design/web-react/icon';
 export default ({
   filterIds = [],
   columns = [],
-  onOk = Function,
+  onOk = () => {},
   setColumns,
   size,
 }: any) => {
@@ -49,6 +49,7 @@ export default ({
       droplist={
         <Menu style={{ height: 220, overflow: 'auto' }}>
           <DragList
+            key={filterIds}
             onChange={(list) => {
               const _columns = list.map((i) => i.value);
               setColumns(_columns);
