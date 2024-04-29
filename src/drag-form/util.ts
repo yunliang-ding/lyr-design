@@ -61,7 +61,7 @@ export const swapElementsInArray = (array, indices1, indices2) => {
   // 子表单节点暂不支持容器
   if (
     ['FormList', 'TableList'].includes(endParent.type) &&
-    isWrap(startParent[removeIndex])
+    isWrap(startParentNode[removeIndex])
   ) {
     return Message.info('子表单节点暂不支持存放容器');
   }
