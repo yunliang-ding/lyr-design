@@ -1,4 +1,5 @@
 import { cloneDeep, isEmpty, uuid } from '@/util';
+import { Message } from '@arco-design/web-react';
 import { useUpdateEffect } from 'lyr-hooks';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Search, CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
@@ -43,6 +44,11 @@ const loopChildren = (
         dragId,
       );
     }
+    item.initialValue = isWrap(item) ? [{}] : undefined; // 控制子表单展示
+    item.props = {
+      ...item.props,
+      operation: !isWrap(item), // 控制子表单在该模式下不可操作
+    };
     // TDDO 临时解决下在itemRender 中取不到最新的selectedKey问题
     item.__proto__.selectedKey = selectedKey;
     item.itemRender = (vDom: ReactNode, option: any) => {
@@ -151,15 +157,24 @@ export default ({
           };
           // 添加表单项
           const onAdd = (v, index) => {
-            const item = cloneDeep(v);
+            const { schema } = cloneDeep(v);
             let target = items;
+            let targetType = '';
             const arr = index.split(',');
-            const position = arr.pop();
+            const insertIndex = arr.pop();
             arr.forEach((i: string) => {
-              target = items[i].props.children;
+              targetType = target[i].type;
+              target = target[i].props.children;
             });
-            target.splice(position, 0, {
-              ...item.schema,
+            // 子表单节点暂不支持容器
+            if (
+              ['FormList', 'TableList'].includes(targetType) &&
+              isWrap(schema)
+            ) {
+              return Message.info('子表单节点暂不支持存放容器');
+            }
+            target.splice(insertIndex, 0, {
+              ...schema,
               key: uuid(8),
             });
             onChange([...items]);

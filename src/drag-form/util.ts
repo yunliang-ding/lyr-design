@@ -1,4 +1,5 @@
 import { isEmpty } from '@/util';
+import { Message } from '@arco-design/web-react';
 /**
  * 判断容器
  */
@@ -22,8 +23,7 @@ export const swapElementsInArray = (array, indices1, indices2) => {
     return false;
   }
   /** 删除 */
-  let startParent = array;
-  let removeItem = {};
+  let startParent = array; // 寻找父节点
   const removeIndex = indices1.pop(); // 最后要删除的下标
   // 起始位置parent
   indices1.forEach((index: number) => {
@@ -34,7 +34,7 @@ export const swapElementsInArray = (array, indices1, indices2) => {
     }
   });
   /** 插入 */
-  let endParent = array;
+  let endParent = array; // 寻找父节点
   const insertIndex = indices2.pop(); // 最后要插入的下标
   // 结束位置parent
   indices2.forEach((index: number) => {
@@ -45,20 +45,30 @@ export const swapElementsInArray = (array, indices1, indices2) => {
     }
   });
   // 删除
-  if (isWrap(startParent)) {
+  let startParentNode = startParent;
+  if (isWrap(startParentNode)) {
     // 空节点返回
-    if (startParent?.props?.children[removeIndex].virtual) {
+    if (startParentNode?.props?.children[removeIndex].virtual) {
       return false;
     }
-    removeItem = startParent?.props?.children?.splice?.(removeIndex, 1)?.[0];
-  } else {
-    removeItem = startParent?.splice?.(removeIndex, 1)?.[0];
+    startParentNode = startParent?.props?.children;
   }
   // 插入
-  if (isWrap(endParent)) {
-    endParent?.props?.children?.splice?.(insertIndex, 0, removeItem);
-  } else {
-    endParent?.splice?.(insertIndex, 0, removeItem);
+  let endParentNode = endParent;
+  if (isWrap(endParentNode)) {
+    endParentNode = endParent?.props?.children;
   }
+  // 子表单节点暂不支持容器
+  if (
+    ['FormList', 'TableList'].includes(endParent.type) &&
+    isWrap(startParent[removeIndex])
+  ) {
+    return Message.info('子表单节点暂不支持存放容器');
+  }
+  endParentNode?.splice?.(
+    insertIndex,
+    0,
+    startParentNode.splice?.(removeIndex, 1)?.[0],
+  );
   return true;
 };

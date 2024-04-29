@@ -121,8 +121,29 @@ export default () => {
             label: '下拉选',
           },
           {
+            type: 'FormList',
+            name: 'formList',
+            label: '子表单容器',
+            span: 2,
+            props: {
+              children: [],
+            },
+          },
+          {
+            type: 'TableList',
+            name: 'tableList',
+            span: 2,
+            label: '编辑表格容器',
+            props: {
+              children: [],
+              showNo: false,
+              copy: false,
+            },
+          },
+          {
             type: 'FieldSet',
             name: 'feldSet',
+            span: 2,
             label: '空容器',
             props: {
               children: [],
@@ -131,7 +152,10 @@ export default () => {
         ].map((schema) => {
           return {
             key: schema.type,
-            schema: schema,
+            schema: {
+              ...schema,
+              name: `${schema.name}-${Math.random()}`,
+            },
             content: <Button style={{ margin: 10 }}>{schema.label}</Button>,
           };
         })}
