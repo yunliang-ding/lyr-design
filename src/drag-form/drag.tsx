@@ -13,6 +13,8 @@ export default ({
   dom,
   selected = false,
   mask = true,
+  onCopy = () => null,
+  onDelete = () => null,
 }) => {
   return virtual ? (
     <div
@@ -49,8 +51,8 @@ export default ({
             <IconDragArrow />
           </div>
           <div className="dragContainerTools">
-            <IconDelete />
-            <IconCopy />
+            <IconDelete onClick={() => onDelete()} />
+            <IconCopy onClick={() => onCopy()} />
           </div>
         </>
       )}

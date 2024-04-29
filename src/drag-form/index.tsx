@@ -63,6 +63,12 @@ const loopChildren = (
           virtual={item.virtual}
           mask={!isWrap(item)}
           selected={field.key === item.__proto__.selectedKey}
+          onDelete={() => {
+            console.log([...currentIndex, index]);
+          }}
+          onCopy={() => {
+            console.log([...currentIndex, index]);
+          }}
         />
       );
       return (
@@ -205,6 +211,12 @@ export default ({
                   mask={!isWrap(item)}
                   label={`${item.type}-${item.key}`}
                   selected={selectedKey === item.key}
+                  onDelete={() => {
+                    console.log(currentIndex);
+                  }}
+                  onCopy={() => {
+                    console.log(currentIndex);
+                  }}
                 />
               );
               return (
