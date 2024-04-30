@@ -12,10 +12,10 @@ nav:
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
   <a href="https://npmmirror.com/package/lyr-design">
-    <img alt="npm" src="https://center.yunliang.cloud/npm/version?package=lyr-design">
+    <img alt="npm" src="https://img.shields.io/npm/dw/lyr-design">
   </a>
   <a href="https://npmmirror.com/package/lyr-design">
-    <img alt="NPM downloads" src="https://center.yunliang.cloud/npm/downloads?package=lyr-design">
+    <img alt="NPM downloads" src="https://img.shields.io/npm/v/lyr-design.svg">
   </a>
 </p>
 
