@@ -5,7 +5,9 @@ import cloneDeepWith from 'lodash.clonedeepwith';
  * 简易uuid
  */
 export const uuid = (size: number) => {
-  return Math.random().toString().substr(2, size);
+  return Math.random()
+    .toString(16)
+    .substring(2, size + 2);
 };
 
 /** 判断空 */

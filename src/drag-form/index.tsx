@@ -179,9 +179,11 @@ export default ({
             ) {
               return Message.info('子表单节点暂不支持存放容器');
             }
+            const unikey = uuid(8);
             target.splice(insertIndex, 0, {
               ...schema,
-              key: uuid(8),
+              name: unikey,
+              key: unikey,
             });
             onChange([...items]);
           };
