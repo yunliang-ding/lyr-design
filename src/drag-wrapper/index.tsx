@@ -55,7 +55,7 @@ const Item = ({
     style: {
       ...children?.props?.style,
       cursor: virtual ? 'not-allowed' : 'move',
-      borderTop: accept ? '3px solid var(--color-menu-light-bg)' : 'none',
+      borderLeft: accept ? '3px solid var(--color-menu-light-bg)' : 'none',
     },
     draggable: true,
     onDragOver: (e) => {
@@ -65,7 +65,7 @@ const Item = ({
         (String(store.index) !== String(index) || store.dragId !== dragId) &&
         accept
       ) {
-        e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
+        e.currentTarget.style.borderLeft = '3px solid rgb(var(--primary-6))';
       }
     },
     onDragEnter: (e) => {
@@ -74,13 +74,13 @@ const Item = ({
         (String(store.index) !== String(index) || store.dragId !== dragId) &&
         accept
       ) {
-        e.currentTarget.style.borderTop = '3px solid rgb(var(--primary-6))';
+        e.currentTarget.style.borderLeft = '3px solid rgb(var(--primary-6))';
       }
     },
     onDragLeave: (e) => {
       e.stopPropagation();
       if (accept) {
-        e.currentTarget.style.borderTop =
+        e.currentTarget.style.borderLeft =
           '3px solid var(--color-menu-light-bg)';
       }
     },
@@ -97,7 +97,7 @@ const Item = ({
         }
       }
       if (accept) {
-        e.currentTarget.style.borderTop =
+        e.currentTarget.style.borderLeft =
           '3px solid var(--color-menu-light-bg)';
       }
     },
@@ -113,7 +113,7 @@ const Item = ({
       delete store.dragId;
       e.currentTarget.style.opacity = '1';
       if (accept) {
-        e.currentTarget.style.borderTop =
+        e.currentTarget.style.borderLeft =
           '3px solid var(--color-menu-light-bg)';
       }
     },
