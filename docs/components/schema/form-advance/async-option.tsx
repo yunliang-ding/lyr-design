@@ -1,6 +1,6 @@
 import { Tag } from '@arco-design/web-react';
 import React from 'react';
-import { SchemaProps } from 'lyr-design';
+import { SchemaProps } from 'lyr-component';
 import { isEmpty, uuid } from 'lyr-extra';
 
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));

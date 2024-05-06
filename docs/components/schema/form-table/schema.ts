@@ -1,5 +1,5 @@
 import axios from '../../../axios';
-import { TableProps } from 'lyr-design';
+import { TableProps } from 'lyr-component';
 
 const tableSchema: TableProps = {
   rowKey: 'id',
@@ -10,7 +10,7 @@ const tableSchema: TableProps = {
   request: async (params) => {
     const {
       data: { list, success, total },
-    }: any = await axios.get('/lyr-design/table', {
+    }: any = await axios.get('/lyr-component/table', {
       params,
     });
     return {

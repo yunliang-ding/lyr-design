@@ -1,18 +1,18 @@
 ## 介绍
 
-> lyr-design 目前是一套基于 arco.design 二次封装的，可快捷开发中后台项目的解决方案
+> lyr-component 目前是一套基于 arco.design 二次封装的，可快捷开发中后台项目的解决方案
 
 ## 安装
 
 > 组件库本身依赖 arco.design，使用需要先安装 arco.design
 
 ```shell
-yarn add lyr-design
+yarn add lyr-component
 ```
 
 ```less
 @import '@arco-design/web-react/dist/css/arco.css';
-@import 'lyr-design/dist/index.css';
+@import 'lyr-component/dist/index.css';
 ```
 
 ## 采用 cdn 引入
@@ -20,9 +20,9 @@ yarn add lyr-design
 ```html
 <link
   rel="stylesheet"
-  href="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css"
+  href="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.css"
 />
-<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.js"></script>
 ```
 
 ## 前提需要引入 cdn 前置依赖 到 window
@@ -40,7 +40,7 @@ yarn add lyr-design
 <script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js"></script>
 ```
 
-## lyr-design 扩展点
+## lyr-component 扩展点
 
 - 扩展 `Button`，自带 loading，二次确认，支持弹框和抽屉的模型配置
 - 扩展 `Form`，基于数据模型的表单渲染，表单联动，异步选择器，自定义组件，默认配置
@@ -55,4 +55,4 @@ yarn add lyr-design
 
 ## 在线文档
 
-[点击跳转文档](https://dev-ops.yunliang.cloud/website/lyr-design)
+[点击跳转文档](https://dev-ops.yunliang.cloud/website/lyr-component)

@@ -22,7 +22,7 @@ toc: menu
  * background: '#fff'
  */
 import * as React from 'react';
-import { Button } from 'lyr-design';
+import { Button } from 'lyr-component';
 
 export default () => {
   const submit = async () => {
@@ -44,7 +44,7 @@ export default () => {
  */
 import * as React from 'react';
 import { Message, Switch } from '@arco-design/web-react';
-import { Button } from 'lyr-design';
+import { Button } from 'lyr-component';
 
 export default () => {
   const [type, setType] = React.useState('pop');
@@ -91,7 +91,7 @@ export default () => {
  */
 import * as React from 'react';
 import { Message } from '@arco-design/web-react';
-import { Button, Form } from 'lyr-design';
+import { Button, Form } from 'lyr-component';
 export default () => {
   const [form] = Form.useForm();
   const submit = async () => {
@@ -144,7 +144,7 @@ export default () => {
  */
 import * as React from 'react';
 import { Message, Space } from '@arco-design/web-react';
-import { Button, Form } from 'lyr-design';
+import { Button, Form } from 'lyr-component';
 import schema from './schema/form-submit/schema';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
@@ -197,7 +197,7 @@ export default () => {
  * background: '#fff'
  */
 import * as React from 'react';
-import { Button } from 'lyr-design';
+import { Button } from 'lyr-component';
 import { Space } from '@arco-design/web-react';
 
 export default () => {
@@ -231,7 +231,7 @@ export default () => {
  * description: 通常在启动入口请求接口数据，之后注入按钮权限数据，一次注入可全局使用。
  */
 import * as React from 'react';
-import { Button } from 'lyr-design';
+import { Button } from 'lyr-component';
 import { Tag } from '@arco-design/web-react';
 
 // 代表当前用户配置了若干个按钮权限

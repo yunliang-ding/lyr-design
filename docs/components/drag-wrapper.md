@@ -17,7 +17,7 @@ toc: menu
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { DragWrapper } from 'lyr-design';
+import { DragWrapper } from 'lyr-component';
 
 export default () => {
   return (
@@ -62,7 +62,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { DragWrapper } from 'lyr-design';
+import { DragWrapper } from 'lyr-component';
 
 export default () => {
   return (

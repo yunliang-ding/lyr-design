@@ -11,7 +11,7 @@ toc: menu
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { AnchorCardForm, Button } from 'lyr-design';
+import { AnchorCardForm, Button } from 'lyr-component';
 
 export default () => {
   const onSubmit = async (values) => {

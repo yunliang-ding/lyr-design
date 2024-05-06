@@ -2,7 +2,7 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   mode: 'site',
-  title: 'lyr-design',
+  title: 'lyr-component',
   outputPath: 'docs-dist',
   favicon: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
   logo: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
@@ -92,7 +92,7 @@ export default defineConfig({
     },
     {
       title: 'GitHub',
-      path: 'https://github.com/yunliang-ding/lyr-design',
+      path: 'https://github.com/yunliang-ding/lyr-component',
     },
   ],
   apiParser: {

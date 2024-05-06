@@ -1,4 +1,4 @@
-import { SchemaProps } from 'lyr-design';
+import { SchemaProps } from 'lyr-component';
 
 export default {
   maxCount: 5, // 最多5条

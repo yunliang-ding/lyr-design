@@ -8,7 +8,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { Button, CreateDrawer } from 'lyr-design';
+import { Button, CreateDrawer } from 'lyr-component';
 import schema from './schema/form-submit/schema';
 
 export default (props) => {
@@ -35,7 +35,7 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { Button, CreateDrawer } from 'lyr-design';
+import { Button, CreateDrawer } from 'lyr-component';
 import { Message } from '@arco-design/web-react';
 import schema from './schema/form-submit/schema';
 
@@ -82,7 +82,7 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { Button, CreateDrawer } from 'lyr-design';
+import { Button, CreateDrawer } from 'lyr-component';
 import { Message } from '@arco-design/web-react';
 
 export default (props) => {
@@ -113,7 +113,7 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { CreateDrawer, Button } from 'lyr-design';
+import { CreateDrawer, Button } from 'lyr-component';
 import schema from './schema/form-submit/schema';
 import { Space } from '@arco-design/web-react';
 

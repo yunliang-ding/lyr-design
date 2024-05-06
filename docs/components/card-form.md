@@ -11,7 +11,7 @@ toc: menu
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { CardForm, Form } from 'lyr-design';
+import { CardForm, Form } from 'lyr-component';
 import schema from './schema/form-submit/schema';
 import { Message } from '@arco-design/web-react';
 
@@ -50,7 +50,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { CardForm } from 'lyr-design';
+import { CardForm } from 'lyr-component';
 import schema from './schema/form-submit/schema';
 import { Message, Button, Space } from '@arco-design/web-react';
 
@@ -100,7 +100,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { CardForm, Form } from 'lyr-design';
+import { CardForm, Form } from 'lyr-component';
 import schema from './schema/form-submit/schema';
 import { Message, Switch } from '@arco-design/web-react';
 

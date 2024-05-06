@@ -118,7 +118,7 @@ export default ({
           <span>{text}</span>
         </Spin>
         {loading && (
-          <div className="lyr-design-oss-upload-percent">
+          <div className="lyr-component-oss-upload-percent">
             <Progress percent={percent} size="small" />
           </div>
         )}
@@ -127,7 +127,7 @@ export default ({
       <Button loading={loading}>{text}</Button>
     );
   return (
-    <div className="lyr-design-oss-upload">
+    <div className="lyr-component-oss-upload">
       <Upload
         imagePreview
         limit={maxCount}

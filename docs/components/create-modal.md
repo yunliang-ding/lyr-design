@@ -8,7 +8,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { CreateModal, Button } from 'lyr-design';
+import { CreateModal, Button } from 'lyr-component';
 import schema from './schema/form-submit/schema';
 
 export default (props) => {
@@ -37,7 +37,7 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { CreateModal, Button } from 'lyr-design';
+import { CreateModal, Button } from 'lyr-component';
 import schema from './schema/form-submit/schema';
 import { Message } from '@arco-design/web-react';
 
@@ -84,7 +84,7 @@ export default (props) => {
 
 ```tsx
 import React from 'react';
-import { CreateModal, Button } from 'lyr-design';
+import { CreateModal, Button } from 'lyr-component';
 import { Message } from '@arco-design/web-react';
 
 export default (props) => {

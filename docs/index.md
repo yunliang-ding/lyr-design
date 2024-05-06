@@ -1,7 +1,7 @@
 ---
-title: lyr-design
+title: lyr-component
 hero:
-  title: lyr-design
+  title: lyr-component
   desc: 中后台表单配置化解决方案
   actions:
     - text: 开始使用

@@ -14,7 +14,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { DragForm } from 'lyr-design';
+import { DragForm } from 'lyr-component';
 import items from './schema/drag-form/schema';
 
 export default () => {
@@ -41,7 +41,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { DragForm } from 'lyr-design';
+import { DragForm } from 'lyr-component';
 import items from './schema/drag-form/schema1';
 
 export default () => {
@@ -68,7 +68,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { DragForm } from 'lyr-design';
+import { DragForm } from 'lyr-component';
 import items from './schema/drag-form/schema2';
 
 export default () => {
@@ -95,7 +95,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { Button, DragWrapper, DragForm } from 'lyr-design';
+import { Button, DragWrapper, DragForm } from 'lyr-component';
 
 export default () => {
   const [schema, setSchema] = React.useState();

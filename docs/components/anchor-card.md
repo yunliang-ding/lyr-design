@@ -17,7 +17,7 @@ toc: menu
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { AnchorCard } from 'lyr-design';
+import { AnchorCard } from 'lyr-component';
 
 const list = [
   {

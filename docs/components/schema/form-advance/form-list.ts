@@ -1,4 +1,4 @@
-import { SchemaProps } from 'lyr-design';
+import { SchemaProps } from 'lyr-component';
 import { BigNumber } from 'lyr-extra';
 
 const schema: SchemaProps[] = [

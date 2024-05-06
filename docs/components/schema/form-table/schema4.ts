@@ -1,4 +1,4 @@
-import { TableProps } from 'lyr-design';
+import { TableProps } from 'lyr-component';
 
 const tableSchema: TableProps = {
   title: '用户列表',

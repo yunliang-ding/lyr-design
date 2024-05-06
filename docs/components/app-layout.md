@@ -14,7 +14,7 @@ toc: menu
 
 ```tsx
 import React from 'react';
-import { AppLayout, Button } from 'lyr-design';
+import { AppLayout, Button } from 'lyr-component';
 import { Space, Avatar, Input, Dropdown, Menu } from '@arco-design/web-react';
 import { IconUser, IconMoon, IconSun } from '@arco-design/web-react/icon';
 import menus from './schema/app-layout/schema';

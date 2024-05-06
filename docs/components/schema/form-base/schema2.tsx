@@ -1,5 +1,5 @@
 import React from 'react';
-import { SchemaProps, Button } from 'lyr-design';
+import { SchemaProps, Button } from 'lyr-component';
 
 const schema: SchemaProps[] = [
   {

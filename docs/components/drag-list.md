@@ -17,7 +17,7 @@ toc: menu
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { DragList } from 'lyr-design';
+import { DragList } from 'lyr-component';
 
 export default () => {
   return (

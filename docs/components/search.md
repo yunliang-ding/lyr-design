@@ -18,7 +18,7 @@ toc: menu
  * title: 默认点击查询按钮会用0.5s的加载交互
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema';
 
 export default () => {
@@ -43,7 +43,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema1';
 
 export default () => {
@@ -68,7 +68,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema';
 
 export default () => {
@@ -94,7 +94,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema';
 
 export default () => {
@@ -121,7 +121,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { Search, Form, Button } from 'lyr-design';
+import { Search, Form, Button } from 'lyr-component';
 import { Space } from '@arco-design/web-react';
 import schema from './schema/form-search/schema';
 
@@ -163,7 +163,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema';
 
 export default () => {
@@ -186,7 +186,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema2';
 
 export default () => {
@@ -208,7 +208,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema3';
 
 export default () => {
@@ -231,7 +231,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema3';
 
 export default () => {
@@ -255,7 +255,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema3';
 
 export default () => {
@@ -282,7 +282,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema3';
 
 export default () => {
@@ -305,7 +305,7 @@ export default () => {
  * background: '#f6f7f9'
  */
 import * as React from 'react';
-import { Search } from 'lyr-design';
+import { Search } from 'lyr-component';
 import schema from './schema/form-search/schema4';
 
 export default () => {

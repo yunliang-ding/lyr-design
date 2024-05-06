@@ -8,14 +8,14 @@ nav:
 ---
 
 <div style="display:flex;align-items:center;margin-bottom:24px">
-  <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-design</span>
+  <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-component</span>
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
-  <a href="https://npmmirror.com/package/lyr-design">
-    <img alt="npm" src="https://img.shields.io/npm/dw/lyr-design">
+  <a href="https://npmmirror.com/package/lyr-component">
+    <img alt="npm" src="https://img.shields.io/npm/dw/lyr-component">
   </a>
-  <a href="https://npmmirror.com/package/lyr-design">
-    <img alt="NPM downloads" src="https://img.shields.io/npm/v/lyr-design.svg">
+  <a href="https://npmmirror.com/package/lyr-component">
+    <img alt="NPM downloads" src="https://img.shields.io/npm/v/lyr-component.svg">
   </a>
 </p>
 
@@ -37,7 +37,7 @@ nav:
 
 ```shell
 yarn add @arco-design/web-react
-yarn add lyr-design
+yarn add lyr-component
 ```
 
 ```less
@@ -49,9 +49,9 @@ yarn add lyr-design
 ```html
 <link
   rel="stylesheet"
-  href="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css"
+  href="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.css"
 />
-<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.js"></script>
 ```
 
 ## 前提需要引入 cdn 前置依赖 到 window
@@ -90,7 +90,7 @@ yarn add lyr-design
  * title: 所有组件 扩展了 readOnly, disabled 属性
  */
 import React from 'react';
-import { Button } from 'lyr-design';
+import { Button } from 'lyr-component';
 
 export default () => {
   return (
@@ -150,7 +150,7 @@ export default () => {
 ## 修改配置
 
 ```ts
-import { setGlobalConfig } from 'lyr-design';
+import { setGlobalConfig } from 'lyr-component';
 
 setGlobalConfig({
   defaultInputMaxLength: 100,

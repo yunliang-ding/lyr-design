@@ -11,7 +11,7 @@ toc: menu
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { StepForm, Form } from 'lyr-design';
+import { StepForm, Form } from 'lyr-component';
 import { Radio } from '@arco-design/web-react';
 
 export default () => {
@@ -178,7 +178,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { CreateModal, Form, Button, StepForm } from 'lyr-design';
+import { CreateModal, Form, Button, StepForm } from 'lyr-component';
 
 const stepModal = CreateModal({
   title: '新增用户',

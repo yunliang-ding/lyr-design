@@ -1,6 +1,6 @@
 import { Message } from '@arco-design/web-react';
 import axios from '../../../axios';
-import { TableProps } from 'lyr-design';
+import { TableProps } from 'lyr-component';
 import schema from './form.schema';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
@@ -44,7 +44,7 @@ const tableSchema: TableProps = {
   request: async (params) => {
     const {
       data: { list, success, total },
-    }: any = await axios.get('/lyr-design/table', {
+    }: any = await axios.get('/lyr-component/table', {
       params,
     });
     return {
