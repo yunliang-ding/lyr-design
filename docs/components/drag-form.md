@@ -23,7 +23,6 @@ export default () => {
     <DragForm
       title="单层布局"
       column={2}
-      defaultSelectedKey="0001"
       items={schema}
       onChange={(newSchema) => {
         setSchema(newSchema);
@@ -50,7 +49,6 @@ export default () => {
     <DragForm
       title="嵌套布局"
       column={2}
-      defaultSelectedKey="0001"
       onChange={(newSchema) => {
         setSchema(newSchema);
         console.log('onChange', newSchema);
@@ -77,7 +75,6 @@ export default () => {
     <DragForm
       title="子表单容器"
       column={3}
-      defaultSelectedKey="0001"
       onChange={(newSchema) => {
         setSchema(newSchema);
         console.log('onChange', newSchema);
