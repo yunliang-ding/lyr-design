@@ -2,12 +2,12 @@ import { SchemaProps } from 'lyr-component';
 
 export default [
   {
-    type: 'Input',
+    widget: 'Input',
     label: '姓名',
     name: 'username',
   },
   {
-    type: 'Select',
+    widget: 'Select',
     label: '性别',
     name: 'sex',
     props: {
@@ -24,27 +24,27 @@ export default [
     },
   },
   {
-    type: 'Input',
+    widget: 'Input',
     label: '城市',
     name: 'city',
   },
   {
-    type: 'Input',
+    widget: 'Input',
     label: '签名',
     name: 'sign',
   },
   {
-    type: 'Input',
+    widget: 'Input',
     label: '职业',
     name: 'classify',
   },
   {
-    type: 'Input',
+    widget: 'Input',
     label: '分数',
     name: 'score',
   },
   {
-    type: 'Input',
+    widget: 'Input',
     label: '登录次数',
     name: 'logins',
   },

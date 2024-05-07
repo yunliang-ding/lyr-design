@@ -6,7 +6,7 @@ import { isEmpty, uuid } from 'lyr-extra';
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 const schema: SchemaProps[] = [
   {
-    type: 'DebounceSelect',
+    widget: 'DebounceSelect',
     name: 'level',
     label: '员工级别',
     props: {
@@ -28,7 +28,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'AsyncSelect',
+    widget: 'AsyncSelect',
     name: 'roles',
     label: '员工角色',
     props: {
@@ -40,7 +40,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'AsyncSelect',
+    widget: 'AsyncSelect',
     name: 'classify',
     label: '员工职位',
     props: {
@@ -72,7 +72,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'AsyncCheckGroup',
+    widget: 'AsyncCheckGroup',
     name: 'liked',
     label: '员工爱好',
     props: {
@@ -101,7 +101,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'AsyncRadioGroup',
+    widget: 'AsyncRadioGroup',
     name: 'sex',
     label: '员工性别',
     props: {
@@ -126,7 +126,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'AsyncTreeSelect',
+    widget: 'AsyncTreeSelect',
     name: 'department',
     label: '员工所在部门',
     props: {
@@ -157,7 +157,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'AsyncCascader',
+    widget: 'AsyncCascader',
     name: 'position',
     label: '员工所在地',
     props: {
@@ -212,7 +212,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'AsyncRender',
+    widget: 'AsyncRender',
     label: '已选择性别',
     effect: ['sex'],
     props: {
@@ -228,7 +228,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'AsyncRadioGroup',
+    widget: 'AsyncRadioGroup',
     name: 'level-empty',
     label: '员工阶级',
     props: {

@@ -26,7 +26,7 @@ export default () => {
         title: '我是电梯表单',
         schema: [
           {
-            type: 'FieldSet',
+            widget: 'FieldSet',
             name: 'baseInfo',
             label: '基础表单',
             props: {
@@ -42,18 +42,18 @@ export default () => {
               ],
               children: [
                 {
-                  type: 'Input',
+                  widget: 'Input',
                   name: 'input',
                   label: '输入框',
                   required: true,
                 },
                 {
-                  type: 'InputNumber',
+                  widget: 'InputNumber',
                   name: 'inputNumber',
                   label: '数字输入框',
                 },
                 {
-                  type: 'Select',
+                  widget: 'Select',
                   name: 'select',
                   label: '下拉选',
                   props: {
@@ -67,13 +67,13 @@ export default () => {
             },
           },
           {
-            type: 'FieldSet',
+            widget: 'FieldSet',
             name: 'advanceInfo',
             label: '高级表单',
             props: {
               children: [
                 {
-                  type: 'Switch',
+                  widget: 'Switch',
                   name: 'switch',
                   label: '开关切换',
                   valuePropName: 'checked',
@@ -83,12 +83,12 @@ export default () => {
                   },
                 },
                 {
-                  type: 'Rate',
+                  widget: 'Rate',
                   name: 'rate',
                   label: '评分组件',
                 },
                 {
-                  type: 'Slider',
+                  widget: 'Slider',
                   name: 'slider',
                   label: '滑块组件',
                   props: {},
@@ -97,18 +97,18 @@ export default () => {
             },
           },
           {
-            type: 'FieldSet',
+            widget: 'FieldSet',
             name: 'dateInfo',
             label: '日期相关',
             props: {
               children: [
                 {
-                  type: 'DatePicker',
+                  widget: 'DatePicker',
                   name: 'datePicker',
                   label: '选择日期',
                 },
                 {
-                  type: 'RangePicker',
+                  widget: 'RangePicker',
                   name: 'rangePicker',
                   label: '区间选取',
                 },
@@ -116,18 +116,18 @@ export default () => {
             },
           },
           {
-            type: 'FieldSet',
+            widget: 'FieldSet',
             name: 'timeInfo',
             label: '时间相关',
             props: {
               children: [
                 {
-                  type: 'TimePicker',
+                  widget: 'TimePicker',
                   name: 'timePicker',
                   label: '时间选择',
                 },
                 {
-                  type: 'TimeRange',
+                  widget: 'TimeRange',
                   name: 'timeRange',
                   label: '时间区间',
                 },

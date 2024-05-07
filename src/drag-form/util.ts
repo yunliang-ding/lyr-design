@@ -3,13 +3,13 @@ import { Message } from '@arco-design/web-react';
 /**
  * 判断容器
  */
-export const isWrap = ({ type }) =>
-  ['FieldSet', 'FormList', 'TableList'].includes(type);
+export const isWrap = ({ widget }) =>
+  ['FieldSet', 'FormList', 'TableList'].includes(widget);
 /**
  * 判读空容器
  */
-export const isEmptyWrap = ({ type, props }) => {
-  return isWrap({ type }) && isEmpty(props?.children);
+export const isEmptyWrap = ({ widget, props }) => {
+  return isWrap({ widget }) && isEmpty(props?.children);
 };
 /** 给定下标数组查找父节点 */
 export const queryParentByIndex = (startParent: any, indices: any) => {
@@ -55,7 +55,7 @@ export const swapElementsInArray = (array, indices1, indices2) => {
   }
   // 子表单节点暂不支持容器
   if (
-    ['FormList', 'TableList'].includes(endParent.type) &&
+    ['FormList', 'TableList'].includes(endParent.widget) &&
     isWrap(startParentNode[removeIndex])
   ) {
     return Message.info('子表单节点暂不支持存放容器');

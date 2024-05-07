@@ -2,12 +2,12 @@ import { SchemaProps } from 'lyr-component';
 
 const schema: SchemaProps[] = [
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'name',
     label: '用户名称',
   },
   {
-    type: 'AsyncSelect',
+    widget: 'AsyncSelect',
     name: 'sex',
     label: '员工性别',
     props: {
@@ -27,18 +27,18 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'DatePicker',
+    widget: 'DatePicker',
     name: 'date',
     label: '入职日期',
   },
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'email',
     label: '电子邮箱',
     expand: true, // 更多展示
   },
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'phone',
     label: '手机号码',
     expand: true, // 更多展示

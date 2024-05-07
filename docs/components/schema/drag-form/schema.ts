@@ -3,20 +3,20 @@ import { SchemaProps } from 'lyr-component';
 const schema: SchemaProps[] = [
   {
     key: '0001',
-    type: 'BlockQuote',
+    widget: 'BlockQuote',
     props: {
       title: '基础表单',
     },
   },
   {
     key: '0002',
-    type: 'Input',
+    widget: 'Input',
     name: 'input',
     label: '输入框',
   },
   {
     key: '0003',
-    type: 'InputNumber',
+    widget: 'InputNumber',
     name: 'inputNumber',
     label: '数字输入框',
     props: {
@@ -26,7 +26,7 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0004',
-    type: 'Select',
+    widget: 'Select',
     name: 'select',
     label: '下拉选',
     props: {
@@ -38,7 +38,7 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0005',
-    type: 'RadioGroup',
+    widget: 'RadioGroup',
     name: 'radioGroup',
     label: '单选按钮组',
     props: {
@@ -50,7 +50,7 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0006',
-    type: 'CheckGroup',
+    widget: 'CheckGroup',
     name: 'checkGroup',
     label: '复选框',
     props: {
@@ -62,7 +62,7 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0007',
-    type: 'BlockQuote',
+    widget: 'BlockQuote',
     props: {
       title: '复杂表单',
       subTitle: '(扩展表单)',
@@ -70,7 +70,7 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0008',
-    type: 'Switch',
+    widget: 'Switch',
     name: 'switch',
     label: '开关切换',
     props: {
@@ -80,13 +80,13 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0009',
-    type: 'Rate',
+    widget: 'Rate',
     name: 'rate',
     label: '评分组件',
   },
   {
     key: '0010',
-    type: 'Slider',
+    widget: 'Slider',
     name: 'slider',
     label: '滑块组件',
   },

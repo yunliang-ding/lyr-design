@@ -2,7 +2,7 @@ import { SchemaProps } from 'lyr-component';
 
 const schema: SchemaProps[] = [
   {
-    type: 'Select',
+    widget: 'Select',
     name: 'level',
     label: '我的级别',
     props: {
@@ -19,7 +19,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'Select',
+    widget: 'Select',
     name: 'sex',
     label: '选择性别',
     props: {
@@ -36,7 +36,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'DatePicker',
+    widget: 'DatePicker',
     name: 'date',
     label: '选择入职日期',
     // 定制布局

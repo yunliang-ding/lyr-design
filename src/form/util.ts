@@ -4,7 +4,7 @@ import { getGlobalConfig } from '@/config';
 import { uuid } from '@/util';
 
 // 表单项是否弹出层
-export const isPopupContainer = (type: string) => {
+export const isPopupContainer = (widget: string) => {
   return [
     'AsyncSelect',
     'AsyncCascader',
@@ -18,7 +18,7 @@ export const isPopupContainer = (type: string) => {
     'RangePicker',
     'TimeRange',
     'TimePicker',
-  ].includes(type);
+  ].includes(widget);
 };
 
 /** Item扩展的属性 */
@@ -30,7 +30,7 @@ export const isExpansionItemProps = {
   effect: '',
   onEffect: '',
   effectClearField: '',
-  type: '',
+  widget: '',
   span: '',
   expand: '',
   autoSearch: '',
@@ -94,23 +94,25 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
       field.props = {};
     }
     if (
-      ['FormList', 'FieldSet'].includes(field.type) &&
+      ['FormList', 'FieldSet'].includes(field.widget) &&
       Array.isArray(field.props.children)
     ) {
       // 递归下
       return tranfromSchema(field.props.children, name, column);
     }
     // Input默认64长度限制
-    if (field.type === 'Input') {
+    if (field.widget === 'Input') {
       field.props.maxLength = field.props.maxLength || defaultInputMaxLength;
     }
     // 处理开关
-    if (field.type === 'Switch') {
+    if (field.widget === 'Switch') {
       field.triggerPropName = 'checked';
     }
     // 默认开启allowClear和设置placeholder
-    if (['Input', 'InputNumber', 'TextArea', 'Password'].includes(field.type)) {
-      if (!['InputNumber'].includes(field.type)) {
+    if (
+      ['Input', 'InputNumber', 'TextArea', 'Password'].includes(field.widget)
+    ) {
+      if (!['InputNumber'].includes(field.widget)) {
         if (defaultOpenAllowClear) {
           field.props.allowClear =
             field.props.allowClear === undefined
@@ -123,26 +125,26 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
       }
       if (
         defaultShowInputCount &&
-        field.type === 'Input' &&
+        field.widget === 'Input' &&
         field.props.showWordLimit === undefined
       ) {
         field.props.showWordLimit = true;
       }
     }
     // 处理 popup allowClear
-    if (isPopupContainer(field.type)) {
+    if (isPopupContainer(field.widget)) {
       if (defaultOpenAllowClear) {
         field.props.allowClear =
           field.props.allowClear === undefined ? true : field.props.allowClear;
       }
       // 区间查询不需要设置
-      if (!['RangePicker', 'TimeRange'].includes(field.type)) {
+      if (!['RangePicker', 'TimeRange'].includes(field.widget)) {
         field.props.placeholder = field.props.placeholder || '请选择'; // 默认提示
       }
     }
     // 配置了showSearch的查询框默认开启模糊匹配
     if (
-      ['Select', 'AsyncSelect'].includes(field.type) &&
+      ['Select', 'AsyncSelect'].includes(field.widget) &&
       field.props.showSearch &&
       typeof field.props.filterOption === 'undefined'
     ) {
@@ -152,7 +154,7 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
       };
     }
     // 简化 BlockQuote 写法、不用写span和key
-    if (field.type === 'BlockQuote') {
+    if (field.widget === 'BlockQuote') {
       field.span = field.span || column;
       field.key = field.props.title;
     }
@@ -173,7 +175,7 @@ export const scrollToElement = (container, childNode, gap = 50) => {
 /** 是否是符合 FieldSet */
 export const isFieldSet = (field) => {
   return (
-    field.type === 'FieldSet' &&
+    field.widget === 'FieldSet' &&
     (Array.isArray(field.props?.children) ||
       typeof field.props?.children === 'function')
   );

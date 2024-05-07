@@ -73,7 +73,7 @@ const loopChildren = (
       const VNode = (
         <Drag
           dom={vDom}
-          label={`${item.type}-${field.key}`}
+          label={`${item.widget}-${field.key}`}
           virtual={item.virtual}
           mask={!isWrap(item)}
           selected={field.key === item.__proto__.selectedKey}
@@ -167,7 +167,7 @@ export default ({
             const arr = index.split(',');
             const insertIndex = arr.pop();
             arr.forEach((i: string) => {
-              targetType = target[i].type;
+              targetType = target[i].widget;
               target = target[i].props.children;
             });
             // 子表单节点暂不支持容器
@@ -212,7 +212,7 @@ export default ({
                   dom={vDom}
                   virtual={item.virtual}
                   mask={!isWrap(item)}
-                  label={`${item.type}-${item.key}`}
+                  label={`${item.widget}-${item.key}`}
                   selected={selectedKey === item.key}
                   onDelete={() => {
                     items.splice(currentIndex, 1);

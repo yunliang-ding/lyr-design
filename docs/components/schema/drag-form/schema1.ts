@@ -3,12 +3,12 @@ import { SchemaProps } from 'lyr-component';
 const schema: SchemaProps[] = [
   {
     key: '0001',
-    type: 'Input',
+    widget: 'Input',
     name: 'out',
     label: '外部元素',
   },
   {
-    type: 'FieldSet',
+    widget: 'FieldSet',
     key: '0002',
     span: 2, // 占据2列
     label: '空容器',
@@ -18,7 +18,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'FieldSet',
+    widget: 'FieldSet',
     span: 2, // 占据2列
     key: '0003',
     label: '基础表单',
@@ -28,13 +28,13 @@ const schema: SchemaProps[] = [
       children: [
         {
           key: '0003-1',
-          type: 'Input',
+          widget: 'Input',
           name: 'input',
           label: '输入框',
         },
         {
           key: '0003-2',
-          type: 'InputNumber',
+          widget: 'InputNumber',
           name: 'inputNumber',
           label: '数字输入框',
           props: {
@@ -44,7 +44,7 @@ const schema: SchemaProps[] = [
         },
         {
           key: '0003-3',
-          type: 'Select',
+          widget: 'Select',
           name: 'select',
           label: '下拉选',
           props: {
@@ -59,7 +59,7 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0004',
-    type: 'FieldSet',
+    widget: 'FieldSet',
     label: '无限嵌套',
     span: 2,
     props: {
@@ -67,12 +67,12 @@ const schema: SchemaProps[] = [
       children: [
         {
           key: '0004-1',
-          type: 'Input',
+          widget: 'Input',
           name: 'input1',
           label: '第一层',
         },
         {
-          type: 'FieldSet',
+          widget: 'FieldSet',
           span: 2,
           label: '无限嵌套',
           key: '0004-2',
@@ -81,12 +81,12 @@ const schema: SchemaProps[] = [
             children: [
               {
                 key: '0004-2-1',
-                type: 'Input',
+                widget: 'Input',
                 name: 'input2',
                 label: '第二层',
               },
               {
-                type: 'FieldSet',
+                widget: 'FieldSet',
                 span: 2,
                 label: '无限嵌套',
                 key: '0004-2-2',
@@ -95,7 +95,7 @@ const schema: SchemaProps[] = [
                   children: [
                     {
                       key: '0004-2-2-1',
-                      type: 'Input',
+                      widget: 'Input',
                       name: 'input3',
                       label: '第三层',
                     },

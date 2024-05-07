@@ -26,13 +26,13 @@ export default () => {
         form={form}
         schema={[
           {
-            type: 'Input',
+            widget: 'Input',
             name: 'name',
             label: '用户姓名',
             required: true,
           },
           {
-            type: 'Input',
+            widget: 'Input',
             name: 'nickname',
             label: '用户昵称',
             tooltip: '判断是否必填',
@@ -117,7 +117,7 @@ export default () => {
     <Form
       schema={[
         {
-          type: 'RadioGroup',
+          widget: 'RadioGroup',
           name: 'sex',
           label: '性别',
           props: {
@@ -129,7 +129,7 @@ export default () => {
           },
         },
         {
-          type: 'InputNumber',
+          widget: 'InputNumber',
           name: 'age',
           label: '年龄',
           effect: ['sex'], // 配置副作用
@@ -139,7 +139,7 @@ export default () => {
           },
         },
         {
-          type: 'AsyncRadioGroup',
+          widget: 'AsyncCheckGroup',
           name: 'level',
           label: '级别 (类型按照年龄划分)',
           effect: ['age', 'sex'], // 配置副作用
@@ -148,26 +148,14 @@ export default () => {
               return getFieldValue('age') > 20
                 ? [
                     {
-                      label: '专科毕业',
-                      value: 0,
-                    },
-                    {
-                      label: '本科毕业',
-                      value: 1,
-                    },
-                    {
-                      label: '985、211毕业',
+                      label: '选项2',
                       value: 2,
                     },
                   ]
                 : [
                     {
-                      label: '普通高中',
-                      value: 3,
-                    },
-                    {
-                      label: '重点高中',
-                      value: 4,
+                      label: '选项1',
+                      value: 1,
                     },
                   ];
             },
@@ -206,16 +194,16 @@ export default () => {
   return (
     <Form
       initialValues={{
-        type: 1,
+        widget: 1,
       }}
       onMount={effectType}
       schema={[
         {
-          type: 'RadioGroup',
+          widget: 'RadioGroup',
           label: '类型',
           name: 'type',
           props: {
-            type: 'button',
+            widget: 'button',
             options: [
               {
                 label: '静态站点托管',
@@ -229,7 +217,7 @@ export default () => {
           },
         },
         {
-          type: 'Input',
+          widget: 'Input',
           name: 'path',
           label: '资源访问地址',
           effect: ['type'],
@@ -285,7 +273,7 @@ export default () => {
         }}
         schema={[
           {
-            type: 'RadioGroup',
+            widget: 'RadioGroup',
             name: 'sex',
             label: '性别',
             props: {
@@ -297,48 +285,10 @@ export default () => {
             },
           },
           {
-            type: 'InputNumber',
+            widget: 'InputNumber',
             name: 'age',
             label: '年龄',
             effect: ['sex'], // 配置副作用
-            visible: ({ sex }) => {
-              return sex === 1;
-            },
-          },
-          {
-            type: 'AsyncRadioGroup',
-            name: 'level',
-            label: '级别 (类型按照年龄划分)',
-            effect: ['age', 'sex'], // 配置副作用
-            props: {
-              options: async ({ getFieldValue }) => {
-                return getFieldValue('age') > 20
-                  ? [
-                      {
-                        label: '专科毕业',
-                        value: 0,
-                      },
-                      {
-                        label: '本科毕业',
-                        value: 1,
-                      },
-                      {
-                        label: '985、211毕业',
-                        value: 2,
-                      },
-                    ]
-                  : [
-                      {
-                        label: '普通高中',
-                        value: 3,
-                      },
-                      {
-                        label: '重点高中',
-                        value: 4,
-                      },
-                    ];
-              },
-            },
             visible: ({ sex }) => {
               return sex === 1;
             },
@@ -372,7 +322,7 @@ export default () => {
           form.setFieldsValue({
             sex: e ? 1 : 2,
           });
-          form.touchSchemaRender(['age', 'level']); // 触发age、level刷新
+          form.touchSchemaRender(['age']); // 触发age、level刷新
         }}
       />
       <br />
@@ -380,7 +330,7 @@ export default () => {
       <Form
         schema={[
           {
-            type: 'RadioGroup',
+            widget: 'RadioGroup',
             name: 'sex',
             label: '性别',
             props: {
@@ -392,48 +342,10 @@ export default () => {
             },
           },
           {
-            type: 'InputNumber',
+            widget: 'InputNumber',
             name: 'age',
             label: '年龄',
             effect: ['sex'], // 配置副作用
-            visible: ({ sex }) => {
-              return sex === 1;
-            },
-          },
-          {
-            type: 'AsyncRadioGroup',
-            name: 'level',
-            label: '级别 (类型按照年龄划分)',
-            effect: ['age', 'sex'], // 配置副作用
-            props: {
-              options: async ({ getFieldValue }) => {
-                return getFieldValue('age') > 20
-                  ? [
-                      {
-                        label: '专科毕业',
-                        value: 0,
-                      },
-                      {
-                        label: '本科毕业',
-                        value: 1,
-                      },
-                      {
-                        label: '985、211毕业',
-                        value: 2,
-                      },
-                    ]
-                  : [
-                      {
-                        label: '普通高中',
-                        value: 3,
-                      },
-                      {
-                        label: '重点高中',
-                        value: 4,
-                      },
-                    ];
-              },
-            },
             visible: ({ sex }) => {
               return sex === 1;
             },
@@ -476,7 +388,7 @@ export default () => {
       <Form
         schema={[
           {
-            type: 'RadioGroup',
+            widget: 'RadioGroup',
             name: 'sex',
             label: '性别',
             props: {
@@ -488,48 +400,10 @@ export default () => {
             },
           },
           {
-            type: 'InputNumber',
+            widget: 'InputNumber',
             name: 'age',
             label: '年龄',
             effect: ['sex'], // 配置副作用
-            visible: ({ sex }) => {
-              return sex === 1;
-            },
-          },
-          {
-            type: 'AsyncRadioGroup',
-            name: 'level',
-            label: '级别 (类型按照年龄划分)',
-            effect: ['age', 'sex'], // 配置副作用
-            props: {
-              options: async ({ getFieldValue }) => {
-                return getFieldValue('age') > 20
-                  ? [
-                      {
-                        label: '专科毕业',
-                        value: 0,
-                      },
-                      {
-                        label: '本科毕业',
-                        value: 1,
-                      },
-                      {
-                        label: '985、211毕业',
-                        value: 2,
-                      },
-                    ]
-                  : [
-                      {
-                        label: '普通高中',
-                        value: 3,
-                      },
-                      {
-                        label: '重点高中',
-                        value: 4,
-                      },
-                    ];
-              },
-            },
             visible: ({ sex }) => {
               return sex === 1;
             },
@@ -630,7 +504,7 @@ export default () => {
       column={2}
       schema={[
         {
-          type: 'Input',
+          widget: 'Input',
           name: 'input-uuid130923923',
           label: '包裹Input',
           itemRender(dom, { field }) {
@@ -638,7 +512,7 @@ export default () => {
           },
         },
         {
-          type: 'Select',
+          widget: 'Select',
           name: 'select-uuid130923923',
           label: '包裹Select',
           itemRender(dom, { field }) {
@@ -667,7 +541,7 @@ export default () => {
     <Form
       schema={[
         {
-          type: 'Render',
+          widget: 'Render',
           key: 'render',
           label: '自定义渲染',
           effect: ['input', 'select'],
@@ -683,12 +557,12 @@ export default () => {
           },
         },
         {
-          type: 'Input',
+          widget: 'Input',
           label: '描述信息',
           name: 'input',
         },
         {
-          type: 'Select',
+          widget: 'Select',
           label: '选择主题',
           name: 'select',
           props: {
@@ -714,7 +588,7 @@ const schema: SchemaProps<{
   userType?: 'admin' | 'normal';
 }>[] = [
   {
-    type: 'UserData',
+    widget: 'UserData',
     name: 'input',
     label: '用户数据',
     props: {
@@ -755,7 +629,7 @@ export default () => {
         readOnly={readOnly}
         schema={[
           {
-            type: ({ readOnly, value, ...rest }) => {
+            widget: ({ readOnly, value, ...rest }) => {
               if (readOnly) return <div>{`https://${value || ''}.com`}</div>;
               return (
                 <Input
@@ -809,7 +683,7 @@ export default () => {
         }}
         schema={[
           {
-            type: 'Input',
+            widget: 'Input',
             name: 'username',
             label: '自定义小部件',
           },
@@ -843,7 +717,7 @@ export default () => {
         {
           name: 'test',
           label: '组件1',
-          type: ({ form }) => {
+          widget: ({ form }) => {
             const [count, setCount] = React.useState(0);
             React.useEffect(() => {
               // 挂载
@@ -869,7 +743,7 @@ export default () => {
         },
         {
           label: '组件2',
-          type: ({ form }) => {
+          widget: ({ form }) => {
             return (
               <Button
                 onClick={() => {

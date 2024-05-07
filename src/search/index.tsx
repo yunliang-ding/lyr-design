@@ -83,7 +83,7 @@ export default ({
       autoSearchNames.push(field.name);
     }
     // 处理输入框回车查询以及粘贴带空格问题
-    if (['Input', 'InputNumber'].includes(field.type)) {
+    if (['Input', 'InputNumber'].includes(field.widget)) {
       if (field.props === undefined) {
         field.props = {};
       }
@@ -91,7 +91,7 @@ export default ({
         search();
       };
       // 解决粘贴 自带空格的问题
-      if (field.props.onPaste === undefined && field.type === 'Input') {
+      if (field.props.onPaste === undefined && field.widget === 'Input') {
         field.props.onPaste = (e) => {
           // eslint-disable-next-line prefer-destructuring
           const target = e.target;
@@ -175,7 +175,7 @@ export default ({
           style: {
             justifyContent: 'flex-end',
           },
-          type: () => {
+          widget: () => {
             return (
               <div className="tools-btn-box">
                 {tools.map((tool: any) => {

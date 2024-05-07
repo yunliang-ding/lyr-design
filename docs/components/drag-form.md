@@ -118,17 +118,17 @@ export default () => {
         accept={false} // 静态容器
         items={[
           {
-            type: 'Input',
+            widget: 'Input',
             name: 'input',
             label: '输入框',
           },
           {
-            type: 'Select',
+            widget: 'Select',
             name: 'select',
             label: '下拉选',
           },
           {
-            type: 'FormList',
+            widget: 'FormList',
             name: 'formList',
             label: '子表单容器',
             span: 2,
@@ -138,7 +138,7 @@ export default () => {
             },
           },
           {
-            type: 'TableList',
+            widget: 'TableList',
             name: 'tableList',
             span: 2,
             label: '编辑表格容器',
@@ -149,7 +149,7 @@ export default () => {
             },
           },
           {
-            type: 'FieldSet',
+            widget: 'FieldSet',
             name: 'feldSet',
             span: 2,
             label: '空容器',
@@ -159,7 +159,7 @@ export default () => {
           },
         ].map((schema) => {
           return {
-            key: schema.type,
+            key: schema.widget,
             schema: {
               ...schema,
               name: `${schema.name}-${Math.random()}`,

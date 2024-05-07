@@ -77,7 +77,6 @@ export default ({
                   }, // 其他步骤不展示
                   required: index !== current ? false : field.required, // 其他步骤不校验
                   rules: index !== current ? [] : field.rules, // 其他步骤不校验
-                  // type: index !== current ? () => null : field.type, // 其他步骤组件不渲染
                 };
               });
             })

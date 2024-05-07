@@ -4,7 +4,7 @@ export default {
   column: 4,
   schema: [
     {
-      type: 'Select',
+      widget: 'Select',
       name: 'level',
       label: '用户级别',
       props: {
@@ -21,18 +21,18 @@ export default {
       },
     },
     {
-      type: 'DatePicker',
+      widget: 'DatePicker',
       name: 'date',
       label: '入职日期',
     },
     {
-      type: 'InputNumber',
+      widget: 'InputNumber',
       name: 'age',
       label: '用户年纪',
       expand: true,
     },
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'address',
       label: '用户地址',
       expand: true,

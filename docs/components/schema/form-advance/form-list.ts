@@ -3,7 +3,7 @@ import { BigNumber } from 'lyr-extra';
 
 const schema: SchemaProps[] = [
   {
-    type: 'Select',
+    widget: 'Select',
     label: '联系人类型',
     name: 'userType',
     required: true,
@@ -21,7 +21,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'InputNumber',
+    widget: 'InputNumber',
     label: '收入总和(元)',
     name: 'totalAmount',
     disabled: true,
@@ -40,7 +40,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'FormList',
+    widget: 'FormList',
     name: 'contactList',
     label: '联系人表单',
     required: true,
@@ -59,13 +59,13 @@ const schema: SchemaProps[] = [
       },
       children: [
         {
-          type: 'Input',
+          widget: 'Input',
           name: 'name',
           label: '姓名',
           required: true,
         },
         {
-          type: 'InputNumber',
+          widget: 'InputNumber',
           name: 'amount',
           label: '收入(元)',
           required: true,
@@ -85,7 +85,7 @@ const schema: SchemaProps[] = [
           },
         },
         {
-          type: 'AsyncCheckGroup',
+          widget: 'AsyncCheckGroup',
           name: 'liked',
           label: '爱好',
           required: true,
@@ -117,7 +117,7 @@ const schema: SchemaProps[] = [
           },
         },
         {
-          type: 'Select',
+          widget: 'Select',
           name: 'sex',
           label: '性别',
           required: true,
@@ -135,7 +135,7 @@ const schema: SchemaProps[] = [
           },
         },
         {
-          type: 'Input',
+          widget: 'Input',
           name: 'age',
           label: '年龄',
           required: true,

@@ -113,13 +113,13 @@ export default () => {
       }}
       schema={[
         {
-          type: 'Input',
+          widget: 'Input',
           label: '用户姓名',
           name: 'userName',
           required: true,
         },
         {
-          type: 'TableList',
+          widget: 'TableList',
           label: '用户联系人',
           name: 'relationList',
           required: true,

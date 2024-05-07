@@ -250,7 +250,7 @@ export default () => {
       }}
       schema={[
         {
-          type: 'CheckGroup',
+          widget: 'CheckGroup',
           name: 'likes',
           label: '个人爱好',
           props: {
@@ -264,7 +264,7 @@ export default () => {
           },
         },
         {
-          type: 'CheckGroup',
+          widget: 'CheckGroup',
           name: 'ranges',
           label: '管理范围',
           props: {

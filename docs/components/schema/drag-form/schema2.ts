@@ -3,19 +3,19 @@ import { SchemaProps } from 'lyr-component';
 const schema: SchemaProps[] = [
   {
     key: '0001',
-    type: 'Input',
+    widget: 'Input',
     name: 'out1',
     label: '外部元素1',
   },
   {
     key: '0002',
-    type: 'Input',
+    widget: 'Input',
     name: 'out2',
     label: '外部元素2',
   },
   {
     key: '0003',
-    type: 'Select',
+    widget: 'Select',
     name: 'out3',
     label: '外部元素3',
     props: {
@@ -27,7 +27,7 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0004',
-    type: 'FormList',
+    widget: 'FormList',
     name: 'formList',
     label: '子表单',
     required: true,
@@ -45,19 +45,19 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0005',
-    type: 'Input',
+    widget: 'Input',
     name: 'out4',
     label: '外部元素4',
   },
   {
     key: '0006',
-    type: 'Input',
+    widget: 'Input',
     name: 'out5',
     label: '外部元素5',
   },
   {
     key: '0007',
-    type: 'Select',
+    widget: 'Select',
     name: 'out6',
     label: '外部元素6',
     props: {
@@ -69,7 +69,7 @@ const schema: SchemaProps[] = [
   },
   {
     key: '0008',
-    type: 'TableList',
+    widget: 'TableList',
     name: 'tableList',
     label: '子表格',
     required: true,

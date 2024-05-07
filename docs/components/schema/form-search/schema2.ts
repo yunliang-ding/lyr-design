@@ -2,7 +2,7 @@ import { SchemaProps } from 'lyr-component';
 
 const schema: SchemaProps[] = [
   {
-    type: 'Select',
+    widget: 'Select',
     name: 'type',
     label: '资产类别',
     autoSearch: true, // 修改直接查询
@@ -26,12 +26,12 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'name',
     label: '用户名称',
   },
   {
-    type: 'Select',
+    widget: 'Select',
     name: 'sex',
     label: '选择性别',
     props: {

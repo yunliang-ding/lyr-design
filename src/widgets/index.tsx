@@ -78,19 +78,19 @@ export const Error = ({ widget }: any) => {
 
 export default (field: any, formInstance: any = {}, widgets = {}) => {
   let Component: any = null;
-  if (typeof field.type === 'function') {
-    Component = field.type;
+  if (typeof field.widget === 'function') {
+    Component = field.widget;
   } else {
     // 优先命中注入的widgets
-    Component = widgets[field.type] || BuiltInWidgetMapping[field.type];
+    Component = widgets[field.widget] || BuiltInWidgetMapping[field.widget];
   }
   // 没有找到渲染提示组件
   if (Component === undefined) {
-    return <Error widget={field.type} />;
+    return <Error widget={field.widget} />;
   }
   // 扩展属性
   const ExpProps: any = {};
-  if (SubFormType.includes(field.type)) {
+  if (SubFormType.includes(field.widget)) {
     ExpProps.actionRef = field.actionRef;
     ExpProps.event = field.event;
     ExpProps.widgets = widgets;

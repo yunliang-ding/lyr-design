@@ -2,18 +2,18 @@ import { SchemaProps } from 'lyr-component';
 
 const schema: SchemaProps[] = [
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'input',
     label: '输入框',
     required: true,
   },
   {
-    type: 'Password',
+    widget: 'Password',
     name: 'password',
     label: '密码输入框',
   },
   {
-    type: 'InputNumber',
+    widget: 'InputNumber',
     name: 'inputNumber',
     label: '数字输入框',
     props: {
@@ -22,7 +22,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'Select',
+    widget: 'Select',
     name: 'select',
     label: '下拉选',
     props: {
@@ -33,7 +33,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'RadioGroup',
+    widget: 'RadioGroup',
     name: 'radioGroup',
     label: '单选按钮组',
     props: {
@@ -44,7 +44,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'CheckGroup',
+    widget: 'CheckGroup',
     name: 'checkGroup',
     label: '复选框',
     props: {
@@ -55,7 +55,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'switch',
     label: '开关切换',
     props: {
@@ -64,17 +64,17 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'Rate',
+    widget: 'Rate',
     name: 'rate',
     label: '评分组件',
   },
   {
-    type: 'Slider',
+    widget: 'Slider',
     name: 'slider',
     label: '滑块组件',
   },
   {
-    type: 'Select',
+    widget: 'Select',
     name: 'selectMore',
     label: '下拉多选',
     props: {
@@ -87,7 +87,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'TreeSelect',
+    widget: 'TreeSelect',
     name: 'treeSelect',
     label: '树形选择器',
     props: {
@@ -114,7 +114,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'Cascader',
+    widget: 'Cascader',
     name: 'cascader',
     label: '级联选择器',
     required: true,
@@ -134,23 +134,23 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'DatePicker',
+    widget: 'DatePicker',
     name: 'datePicker',
     label: '选择日期',
   },
   {
-    type: 'RangePicker',
+    widget: 'RangePicker',
     name: 'rangePicker',
     label: '区间选取',
     required: true,
   },
   {
-    type: 'TimePicker',
+    widget: 'TimePicker',
     name: 'timePicker',
     label: '时间选择',
   },
   {
-    type: 'TimeRange',
+    widget: 'TimeRange',
     name: 'timeRange',
     label: '时间区间',
     required: true,

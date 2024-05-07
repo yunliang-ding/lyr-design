@@ -11,7 +11,7 @@ export default {
   },
   children: [
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'name',
       label: '姓名',
       required: true,
@@ -20,7 +20,7 @@ export default {
       },
     },
     {
-      type: 'Select',
+      widget: 'Select',
       name: 'sex',
       label: '性别',
       required: true,
@@ -38,7 +38,7 @@ export default {
       },
     },
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'age',
       label: '年纪',
       effect: ['sex'],
@@ -48,7 +48,7 @@ export default {
       },
     },
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'phone',
       label: '手机号',
       props: {
@@ -56,7 +56,7 @@ export default {
       },
     },
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'address',
       label: '地址',
       props: {

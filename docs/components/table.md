@@ -12,7 +12,7 @@ toc: menu
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import tableSchema from './schema/form-table/schema';
+import tableSchema from './schema/table/schema';
 
 export default () => {
   return <Table {...tableSchema} />;
@@ -27,7 +27,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import tableSchema from './schema/form-table/schema1';
+import tableSchema from './schema/table/schema1';
 
 export default () => {
   return <Table {...tableSchema} />;
@@ -134,7 +134,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import tableSchema from './schema/form-table/schema';
+import tableSchema from './schema/table/schema';
 
 export default () => {
   return <Table {...tableSchema} resize borderCell />;
@@ -149,7 +149,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import schema from './schema/form-table/schema';
+import schema from './schema/table/schema';
 
 export default () => {
   return <Table autoNo {...schema} />;
@@ -165,7 +165,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import tableSchema from './schema/form-table/schema';
+import tableSchema from './schema/table/schema';
 
 export default () => {
   return (
@@ -188,7 +188,7 @@ export default () => {
  */
 import React from 'react';
 import { Table, Button } from 'lyr-component';
-import tableSchema from './schema/form-table/schema';
+import tableSchema from './schema/table/schema';
 import { Space } from '@arco-design/web-react';
 
 export default () => {
@@ -257,7 +257,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import tableSchema from './schema/form-table/schema';
+import tableSchema from './schema/table/schema';
 
 export default () => {
   return <Table {...tableSchema} filterIds={['sex', 'city', 'sign']} />;
@@ -273,7 +273,7 @@ export default () => {
 import React from 'react';
 import { Table } from 'lyr-component';
 import { Input } from '@arco-design/web-react';
-import tableSchema from './schema/form-table/schema';
+import tableSchema from './schema/table/schema';
 
 export default () => {
   return (
@@ -311,7 +311,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import tableSchema from './schema/form-table/schema';
+import tableSchema from './schema/table/schema';
 
 export default () => {
   return (
@@ -334,8 +334,8 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import searchSchema from './schema/form-table/search.schema';
-import tableSchema from './schema/form-table/schema';
+import searchSchema from './schema/table/search.schema';
+import tableSchema from './schema/table/schema';
 
 export default () => {
   return (
@@ -360,8 +360,8 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import tableSchema from './schema/form-table/schema';
-import searchSchema from './schema/form-table/search.schema';
+import tableSchema from './schema/table/schema';
+import searchSchema from './schema/table/search.schema';
 
 export default () => {
   return (
@@ -385,8 +385,8 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import searchSchema from './schema/form-table/search.schema';
-import tableSchema from './schema/form-table/schema3';
+import searchSchema from './schema/table/search.schema';
+import tableSchema from './schema/table/schema3';
 
 export default () => {
   return (
@@ -409,7 +409,7 @@ export default () => {
  */
 import React from 'react';
 import { Table } from 'lyr-component';
-import tableSchema from './schema/form-table/schema4';
+import tableSchema from './schema/table/schema4';
 import { Spin } from '@arco-design/web-react';
 
 const mockData = async () => {

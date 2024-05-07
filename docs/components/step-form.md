@@ -59,13 +59,13 @@ export default () => {
             column: 2,
             schema: [
               {
-                type: 'Input',
+                widget: 'Input',
                 name: 'name1',
                 label: 'name1',
                 required: true,
               },
               {
-                type: 'Input',
+                widget: 'Input',
                 name: 'name2',
                 label: 'name2',
                 required: true,
@@ -95,13 +95,13 @@ export default () => {
             column: 2,
             schema: [
               {
-                type: 'Input',
+                widget: 'Input',
                 name: 'name3',
                 label: 'name3',
                 required: true,
               },
               {
-                type: 'Input',
+                widget: 'Input',
                 name: 'name4',
                 label: 'name4',
                 required: true,
@@ -131,19 +131,19 @@ export default () => {
             column: 3,
             schema: [
               {
-                type: 'Input',
+                widget: 'Input',
                 name: 'name5',
                 label: 'name5',
                 required: true,
               },
               {
-                type: 'Input',
+                widget: 'Input',
                 name: 'name6',
                 label: 'name6',
                 required: true,
               },
               {
-                type: 'Input',
+                widget: 'Input',
                 name: 'name7',
                 label: 'name7',
               },
@@ -214,13 +214,13 @@ export default (props) => {
                     column: 1,
                     schema: [
                       {
-                        type: 'Input',
+                        widget: 'Input',
                         name: 'name1',
                         label: 'name1',
                         required: true,
                       },
                       {
-                        type: 'Input',
+                        widget: 'Input',
                         name: 'name2',
                         label: 'name2',
                         required: true,
@@ -251,13 +251,13 @@ export default (props) => {
                     column: 2,
                     schema: [
                       {
-                        type: 'Input',
+                        widget: 'Input',
                         name: 'name3',
                         label: 'name3',
                         required: true,
                       },
                       {
-                        type: 'Input',
+                        widget: 'Input',
                         name: 'name4',
                         label: 'name4',
                         required: true,
@@ -288,19 +288,19 @@ export default (props) => {
                     column: 3,
                     schema: [
                       {
-                        type: 'Input',
+                        widget: 'Input',
                         name: 'name5',
                         label: 'name5',
                         required: true,
                       },
                       {
-                        type: 'Input',
+                        widget: 'Input',
                         name: 'name6',
                         label: 'name6',
                         required: true,
                       },
                       {
-                        type: 'Input',
+                        widget: 'Input',
                         name: 'name7',
                         label: 'name7',
                       },

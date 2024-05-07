@@ -116,7 +116,7 @@ export default ({
   /** Render schema */
   const RenderSchema = (itemSchema = []) => {
     return itemSchema.map((field: any, index: number) => {
-      if (field.type === 'FieldSet') {
+      if (field.widget === 'FieldSet') {
         return (
           <Grid.GridItem span={field.span || 1}>
             <FieldSet
@@ -160,7 +160,9 @@ export default ({
             field={field}
             key={field.name || field.key || index}
             readOnlyEmptyValueNode={readOnlyEmptyValueNode}
-            actionRef={SubFormType.includes(field.type) ? actionRef : undefined}
+            actionRef={
+              SubFormType.includes(field.widget) ? actionRef : undefined
+            }
           />
         </Grid.GridItem>
       );

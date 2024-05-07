@@ -3,7 +3,7 @@ import axios from '../../../axios';
 import { TableProps } from 'lyr-component';
 import schema from './form.schema';
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms, true));
 
 const user1Form = ({ onSearch, initialValues = { id: undefined } }) => {
   return {

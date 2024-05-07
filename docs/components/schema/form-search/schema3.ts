@@ -2,7 +2,7 @@ import { SchemaProps } from 'lyr-component';
 
 const schema: SchemaProps[] = [
   {
-    type: 'Select',
+    widget: 'Select',
     name: 'role',
     label: '用户角色',
     props: {
@@ -23,7 +23,7 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'Select',
+    widget: 'Select',
     name: 'sex',
     label: '员工性别',
     props: {
@@ -40,18 +40,18 @@ const schema: SchemaProps[] = [
     },
   },
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'email',
     label: '电子邮箱',
   },
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'phone',
     label: '手机号码',
     expand: true, // 更多展示
   },
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'weixin',
     label: '微信号码',
     expand: true, // 更多展示
