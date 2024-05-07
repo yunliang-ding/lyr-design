@@ -133,6 +133,7 @@ export default () => {
             label: '子表单容器',
             span: 2,
             props: {
+              label: '输入项',
               children: [],
             },
           },

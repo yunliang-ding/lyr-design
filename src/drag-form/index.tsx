@@ -114,15 +114,7 @@ const loopChildren = (
 };
 
 export default ({
-  items = [
-    {
-      key: uuid(8),
-      virtual: true,
-      type: () => {
-        return <div>容器空节点</div>;
-      },
-    },
-  ] as any,
+  items,
   onChange,
   onSelected,
   selectedKey,
@@ -130,6 +122,17 @@ export default ({
   ...rest
 }: DragFormProps) => {
   const dragId = useMemo(() => uuid(8), []); // 唯一id
+  if (isEmpty(items)) {
+    items = [
+      {
+        key: uuid(8),
+        virtual: true,
+        type: () => {
+          return <div>容器空节点</div>;
+        },
+      },
+    ] as any;
+  }
   // 删除虚拟节点
   const virtualIndex = items?.findIndex((i: any) => i.virtual);
   if (virtualIndex > -1 && items.length > 1) {
