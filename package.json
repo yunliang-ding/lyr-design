@@ -2,7 +2,7 @@
   "name": "lyr-component",
   "description": "提效中后台项目开发解决方案",
   "author": "yunliang-ding",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
