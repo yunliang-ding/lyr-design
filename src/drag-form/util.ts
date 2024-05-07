@@ -1,4 +1,4 @@
-import { isEmpty } from '@/util';
+import { cloneDeep, isEmpty, uuid } from '@/util';
 import { Message } from '@arco-design/web-react';
 /**
  * 判断容器
@@ -10,6 +10,17 @@ export const isWrap = ({ type }) =>
  */
 export const isEmptyWrap = ({ type, props }) => {
   return isWrap({ type }) && isEmpty(props?.children);
+};
+/** 给定下标数组查找父节点 */
+export const queryParentByIndex = (startParent: any, indices: any) => {
+  indices.forEach((index: number) => {
+    if (isWrap(startParent)) {
+      startParent = startParent.props.children?.[index];
+    } else {
+      startParent = startParent[index];
+    }
+  });
+  return startParent;
 };
 /**
  * 下面是一个函数，可以用于在一个多级嵌套数组中交换两个元素的位置
@@ -23,27 +34,11 @@ export const swapElementsInArray = (array, indices1, indices2) => {
     return false;
   }
   /** 删除 */
-  let startParent = array; // 寻找父节点
   const removeIndex = indices1.pop(); // 最后要删除的下标
-  // 起始位置parent
-  indices1.forEach((index: number) => {
-    if (isWrap(startParent)) {
-      startParent = startParent.props.children?.[index];
-    } else {
-      startParent = startParent[index];
-    }
-  });
+  const startParent = queryParentByIndex(array, indices1); // 寻找父节点
   /** 插入 */
-  let endParent = array; // 寻找父节点
   const insertIndex = indices2.pop(); // 最后要插入的下标
-  // 结束位置parent
-  indices2.forEach((index: number) => {
-    if (isWrap(endParent)) {
-      endParent = endParent.props.children?.[index];
-    } else {
-      endParent = endParent[index];
-    }
-  });
+  const endParent = queryParentByIndex(array, indices2); // 寻找父节点
   // 删除
   let startParentNode = startParent;
   if (isWrap(startParentNode)) {
@@ -71,4 +66,18 @@ export const swapElementsInArray = (array, indices1, indices2) => {
     startParentNode.splice?.(removeIndex, 1)?.[0],
   );
   return true;
+};
+
+// 节点洗礼
+export const baptismNode = (children: any) => {
+  const _item = cloneDeep(children);
+  _item.forEach((item: any) => {
+    const unikey = uuid(8);
+    item.name = unikey;
+    item.key = unikey;
+    if (isWrap(item)) {
+      item.props.children = baptismNode(item.props.children);
+    }
+  });
+  return _item;
 };

@@ -19,6 +19,7 @@ import items from './schema/drag-form/schema';
 
 export default () => {
   const [schema, setSchema] = React.useState(items);
+  const [selectedKey, setSelectedKey] = React.useState();
   return (
     <DragForm
       title="单层布局"
@@ -28,7 +29,9 @@ export default () => {
         setSchema(newSchema);
         console.log('onChange', newSchema);
       }}
+      selectedKey={selectedKey}
       onSelected={(itemKey) => {
+        setSelectedKey(itemKey);
         console.log('onSelected', itemKey);
       }}
     />
@@ -45,18 +48,21 @@ import items from './schema/drag-form/schema1';
 
 export default () => {
   const [schema, setSchema] = React.useState(items);
+  const [selectedKey, setSelectedKey] = React.useState();
   return (
     <DragForm
       title="嵌套布局"
       column={2}
+      items={schema}
       onChange={(newSchema) => {
         setSchema(newSchema);
         console.log('onChange', newSchema);
       }}
+      selectedKey={selectedKey}
       onSelected={(itemKey) => {
+        setSelectedKey(itemKey);
         console.log('onSelected', itemKey);
       }}
-      items={schema}
     />
   );
 };
@@ -71,18 +77,21 @@ import items from './schema/drag-form/schema2';
 
 export default () => {
   const [schema, setSchema] = React.useState(items);
+  const [selectedKey, setSelectedKey] = React.useState();
   return (
     <DragForm
       title="子表单容器"
       column={3}
+      items={schema}
       onChange={(newSchema) => {
         setSchema(newSchema);
         console.log('onChange', newSchema);
       }}
+      selectedKey={selectedKey}
       onSelected={(itemKey) => {
+        setSelectedKey(itemKey);
         console.log('onSelected', itemKey);
       }}
-      items={schema}
     />
   );
 };
@@ -96,6 +105,7 @@ import { Button, DragWrapper, DragForm } from 'lyr-component';
 
 export default () => {
   const [schema, setSchema] = React.useState();
+  const [selectedKey, setSelectedKey] = React.useState();
   return (
     <>
       <DragWrapper
@@ -165,7 +175,9 @@ export default () => {
           setSchema(newSchema);
           console.log('onChange', newSchema);
         }}
+        selectedKey={selectedKey}
         onSelected={(itemKey) => {
+          setSelectedKey(itemKey);
           console.log('onSelected', itemKey);
         }}
       />

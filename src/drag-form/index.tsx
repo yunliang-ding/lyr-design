@@ -1,10 +1,22 @@
 import { cloneDeep, isEmpty, uuid } from '@/util';
 import { Message } from '@arco-design/web-react';
-import { useUpdateEffect } from 'lyr-hooks';
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { Search, CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
-import { isWrap, swapElementsInArray } from './util';
+import { baptismNode, isWrap, swapElementsInArray } from './util';
 import Drag from './drag';
+
+export interface DragFormProps extends CardFormProps {
+  /** 拖拽结束 */
+  onChange?(list: any): void;
+  /** 切换事件 */
+  onSelected?(list: any): void;
+  /** 选中的key */
+  selectedKey?: string;
+  /** 数据源 */
+  items: SchemaProps[];
+  /** 表单类型 */
+  type?: 'search' | 'card';
+}
 
 const loopChildren = (
   props: any,
@@ -14,6 +26,7 @@ const loopChildren = (
   setSelectedKey,
   onAdd,
   dragId,
+  onChange,
 ) => {
   // 删除虚拟节点
   const virtualIndex = props?.children?.findIndex((i) => i.virtual);
@@ -32,7 +45,7 @@ const loopChildren = (
       },
     ];
   }
-  props.children.forEach((item, index) => {
+  props.children.forEach((item, index, items) => {
     if (isWrap(item)) {
       loopChildren(
         item?.props,
@@ -42,6 +55,7 @@ const loopChildren = (
         setSelectedKey,
         onAdd,
         dragId,
+        onChange,
       );
     }
     item.initialValue = isWrap(item) ? [{}] : undefined; // 控制子表单展示
@@ -64,10 +78,13 @@ const loopChildren = (
           mask={!isWrap(item)}
           selected={field.key === item.__proto__.selectedKey}
           onDelete={() => {
-            console.log([...currentIndex, index]);
+            items.splice(index, 1);
+            setSelectedKey(undefined);
+            onChange();
           }}
           onCopy={() => {
-            console.log([...currentIndex, index]);
+            items.splice(index + 1, 0, ...baptismNode([items[index]]));
+            onChange();
           }}
         />
       );
@@ -96,19 +113,6 @@ const loopChildren = (
   });
 };
 
-export interface DragFormProps extends CardFormProps {
-  /** 拖拽结束 */
-  onChange?(list: any): void;
-  /** 切换事件 */
-  onSelected?(list: any): void;
-  /** 选中的key */
-  defaultSelectedKey?: string;
-  /** 数据源 */
-  items: SchemaProps[];
-  /** 表单类型 */
-  type?: 'search' | 'card';
-}
-
 export default ({
   items = [
     {
@@ -119,22 +123,13 @@ export default ({
       },
     },
   ] as any,
-  defaultSelectedKey,
   onChange,
   onSelected,
+  selectedKey,
   type = 'card',
   ...rest
 }: DragFormProps) => {
   const dragId = useMemo(() => uuid(8), []); // 唯一id
-  const [selectedKey, setSelectedKey] = useState(defaultSelectedKey);
-  useUpdateEffect(() => {
-    if (selectedKey) {
-      onSelected?.(selectedKey);
-    }
-  }, [selectedKey]);
-  useEffect(() => {
-    setSelectedKey(defaultSelectedKey);
-  }, [defaultSelectedKey]);
   // 删除虚拟节点
   const virtualIndex = items?.findIndex((i: any) => i.virtual);
   if (virtualIndex > -1 && items.length > 1) {
@@ -193,9 +188,12 @@ export default ({
               [currentIndex],
               onDrop,
               selectedKey,
-              setSelectedKey,
+              onSelected,
               onAdd,
               dragId,
+              () => {
+                onChange([...items]);
+              },
             );
           }
           return {
@@ -214,10 +212,17 @@ export default ({
                   label={`${item.type}-${item.key}`}
                   selected={selectedKey === item.key}
                   onDelete={() => {
-                    console.log(currentIndex);
+                    items.splice(currentIndex, 1);
+                    onChange([...items]);
+                    onSelected(undefined);
                   }}
                   onCopy={() => {
-                    console.log(currentIndex);
+                    items.splice(
+                      currentIndex + 1,
+                      0,
+                      ...baptismNode([items[currentIndex]]),
+                    );
+                    onChange([...items]);
                   }}
                 />
               );
@@ -230,7 +235,7 @@ export default ({
                 >
                   <div
                     onClick={() => {
-                      setSelectedKey(item.key);
+                      onSelected(item.key);
                     }}
                   >
                     {VNode}

@@ -52,8 +52,18 @@ export default ({
             <IconDragArrow />
           </div>
           <div className="dragContainerTools">
-            <IconDelete onClick={() => onDelete()} />
-            <IconCopy onClick={() => onCopy()} />
+            <IconDelete
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete();
+              }}
+            />
+            <IconCopy
+              onClick={(e) => {
+                e.stopPropagation();
+                onCopy();
+              }}
+            />
           </div>
         </>
       )}
