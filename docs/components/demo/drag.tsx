@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  IconDragArrow,
-  IconDelete,
-  IconCopy,
-} from '@arco-design/web-react/icon';
+import { IconDelete, IconCopy } from '@arco-design/web-react/icon';
 
 const dragContainer: any = {
   position: 'relative',
-  border: '2px solid rgb(var(--primary-6))',
-  padding: '20px 10px',
+  border: '2px dashed rgb(var(--primary-6))',
+  padding: 10,
 };
 const dragContainerDargKey: any = {
   position: 'absolute',
@@ -16,19 +12,6 @@ const dragContainerDargKey: any = {
   right: 4,
   color: 'rgb(var(--primary-6))',
   fontSize: 12,
-};
-const dragContainerDarg: any = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: 22,
-  height: 22,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  background: 'rgb(var(--primary-6))',
-  color: '#fff',
-  cursor: 'pointer',
 };
 const dragContainerTools: any = {
   position: 'absolute',
@@ -57,9 +40,6 @@ export default ({ field, dom, selected = false }) => {
       <div style={dragContainerDargKey}>{field.name}</div>
       {selected && (
         <>
-          <div style={dragContainerDarg}>
-            <IconDragArrow />
-          </div>
           <div style={dragContainerTools}>
             <IconDelete />
             <IconCopy />

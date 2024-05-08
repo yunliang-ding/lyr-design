@@ -1,6 +1,5 @@
 import { Space, Tooltip } from '@arco-design/web-react';
 import {
-  IconDragArrow,
   IconDelete,
   IconCopy,
   IconExclamationCircle,
@@ -39,18 +38,14 @@ export default ({
     </div>
   ) : (
     <div
-      className="dragContainer"
-      style={{
-        borderColor: selected ? 'rgb(var(--primary-6))' : '#ccc',
-      }}
+      className={
+        selected ? 'dragContainer dragContainerSelected' : 'dragContainer'
+      }
     >
       <div style={{ pointerEvents: mask ? 'none' : 'auto' }}>{dom}</div>
-      <div className="dragContainerDargKey">{label}</div>
+      {mask && <div className="dragContainerDargKey">{label}</div>}
       {selected && (
         <>
-          <div className="dragContainerDarg">
-            <IconDragArrow />
-          </div>
           <div className="dragContainerTools">
             <IconDelete
               onClick={(e) => {
