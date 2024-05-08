@@ -2,7 +2,7 @@
 title: lyr-component
 hero:
   title: lyr-component
-  desc: 中后台表单配置化解决方案
+  desc: 中后台开发提效方案
   actions:
     - text: 开始使用
       link: /components
