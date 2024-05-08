@@ -237,7 +237,11 @@ export default ({
                   dragId={dragId}
                 >
                   <div
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (item.virtual) {
+                        return;
+                      }
                       onSelected(item.key);
                     }}
                   >
