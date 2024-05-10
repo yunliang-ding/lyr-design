@@ -3,9 +3,9 @@ import DrawerForm from '@/form-submit/drawer-form';
 import { useEffect } from 'react';
 import { DrawerFormProps } from '../index';
 import { uuid } from '@/util';
-import store from './store';
+import { create } from 'lyr-hooks';
 
-const close = (containId: string) => {
+const close = (containId: string, store: any) => {
   store.visible = false;
   setTimeout(() => {
     $(`#${containId}`)?.remove();
@@ -18,9 +18,10 @@ export const DrawerFormWapper = ({
   tag,
   containId,
   drawerProps = {},
+  store,
   ...props
 }) => {
-  const { visible } = store.use();
+  const { visible } = store.useSnapshot();
   useEffect(() => {
     store.visible = true;
   }, []);
@@ -36,7 +37,7 @@ export const DrawerFormWapper = ({
       }
       onClose={() => {
         props.onClose?.();
-        close(containId);
+        close(containId, store);
       }}
     />
   );
@@ -50,6 +51,9 @@ export const CreateDrawerForm = (props) => {
 
 export default (options: DrawerFormProps) => {
   const containId = `drawerId_${uuid(6)}`;
+  const store = create({
+    visible: false,
+  });
   return {
     open: (config?: DrawerFormProps) => {
       const props: any = {
@@ -59,14 +63,15 @@ export default (options: DrawerFormProps) => {
       CreateDrawerForm({
         ...props,
         containId,
+        store,
         onSubmit: async (data) => {
           await props.onSubmit?.(data);
-          close(containId);
+          close(containId, store);
         },
       });
     },
     close() {
-      close(containId);
+      close(containId, store);
     },
   };
 };

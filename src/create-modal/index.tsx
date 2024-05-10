@@ -3,19 +3,19 @@ import ModalForm from '@/form-submit/modal-form';
 import { useEffect } from 'react';
 import { ModalFormProps } from '../index';
 import { uuid } from '@/util';
-import store from './store';
+import { create } from 'lyr-hooks';
 
 const $: any = document.querySelector.bind(document);
 
-const close = (containId: string) => {
+const close = (containId: string, store: any) => {
   store.visible = false;
   setTimeout(() => {
     $(`#${containId}`)?.parentNode?.remove();
   }, 500);
 };
 
-const ModalFormWapper = ({ containId, tag, modalProps, ...props }) => {
-  const { visible } = store.use();
+const ModalFormWapper = ({ containId, tag, modalProps, store, ...props }) => {
+  const { visible } = store.useSnapshot();
   useEffect(() => {
     store.visible = true;
   }, []);
@@ -25,7 +25,7 @@ const ModalFormWapper = ({ containId, tag, modalProps, ...props }) => {
       visible={visible}
       onClose={() => {
         props.onClose?.();
-        close(containId);
+        close(containId, store);
       }}
       modalProps={{
         ...modalProps,
@@ -43,6 +43,9 @@ const CreateModalForm = (props) => {
 
 export default (options: ModalFormProps) => {
   const containId = `modalId_${uuid(6)}`;
+  const store = create({
+    visible: false,
+  });
   return {
     open: async (config?: ModalFormProps) => {
       const props: any = {
@@ -52,14 +55,15 @@ export default (options: ModalFormProps) => {
       CreateModalForm({
         ...props,
         containId,
+        store,
         onSubmit: async (data) => {
           await props.onSubmit?.(data);
-          close(containId); // 关闭
+          close(containId, store); // 关闭
         },
       });
     },
     close() {
-      close(containId);
+      close(containId, store);
     },
   };
 };

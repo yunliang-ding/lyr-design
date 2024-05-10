@@ -118,7 +118,7 @@ export default ({
     return itemSchema.map((field: any, index: number) => {
       if (field.widget === 'FieldSet') {
         return (
-          <Grid.GridItem span={field.span || 1}>
+          <Grid.GridItem span={field.span || 1} key={field.name || field.label}>
             <FieldSet
               key={field.label}
               fieldName={field.name}
@@ -142,6 +142,7 @@ export default ({
       return (
         <Grid.GridItem
           span={field.span || 1}
+          key={field.name}
           className={field.expand && 'grid-item-expand'}
           style={{
             // 让查询按钮始终在最右边
