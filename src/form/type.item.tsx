@@ -14,8 +14,10 @@ import {
   TreeSelectProps,
   UploadProps,
   FormItemProps,
+  ColorPickerProps,
+  VerificationCodeProps,
 } from '@arco-design/web-react';
-import { ReactNode } from 'react';
+import { ReactNode, ReactElement } from 'react';
 import { CoreFormInstance } from './type.instance';
 import { BuiltInWidgetMapping } from '../widgets';
 import { TableListProps } from '../table-list/type';
@@ -27,6 +29,8 @@ export interface AsyncSelectProps extends Omit<SelectProps, 'options'> {
 export type FieldProps =
   | InputProps
   | InputNumberProps
+  | ColorPickerProps
+  | VerificationCodeProps
   | AutoCompleteProps
   | UploadProps
   | SwitchProps
@@ -47,7 +51,7 @@ export interface SchemaProps<T = FieldProps>
   extends Omit<FormItemProps, 'required' | 'disabled'> {
   key?: string | number;
   /** 组件类型 */
-  widget?: keyof typeof BuiltInWidgetMapping | Function | string;
+  widget?: keyof typeof BuiltInWidgetMapping | ((props: any) => ReactElement);
   name?: string;
   column?: number;
   /** 配置是否展示 */

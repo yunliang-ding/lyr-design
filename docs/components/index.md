@@ -83,7 +83,7 @@ yarn add lyr-component
 
 </Alert>
 
-## 内置表单组件
+## 扩展 widget
 
 ```tsx
 /**
@@ -96,37 +96,19 @@ export default () => {
   return (
     <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
       {[
-        'Input',
-        'InputNumber',
-        'TextArea',
-        'Password',
-        'AutoComplete',
-        'Select',
-        'Rate',
-        'Slider',
-        'RadioGroup',
-        'CheckGroup',
-        'DatePicker',
-        'TimePicker',
-        'TimeRange',
-        'RangePicker',
-        'TreeSelect',
-        'Cascader',
-        'Upload',
-        'Switch',
         'Render 自定义渲染',
-        'AsyncRender 自定义异步渲染',
         'AsyncSelect 支持异步',
         'AsyncCheckGroup 支持异步',
         'AsyncRadioGroup 支持异步',
         'AsyncTreeSelect 支持异步',
         'DebounceSelect 设置防抖',
         'AsyncCascader 支持异步',
+        'AsyncRender 自定义异步渲染',
+        'RangeInput 数字范围输入框',
         'FormList 子表单',
         'TableList 编辑表格',
         'BlockQuote 平级区块',
         'FieldSet 父子级区块',
-        'RangeInput 数字范围输入框',
         'OssFileUpload 文件上传',
       ].map((item) => {
         return <Button key={item}>{item}</Button>;

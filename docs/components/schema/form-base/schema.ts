@@ -75,6 +75,21 @@ const schema: SchemaProps<{}>[] = [
     },
   },
   {
+    widget: 'ColorPicker',
+    name: 'colorPicker',
+    label: '颜色选择器',
+    required: true,
+    props: {
+      showText: true,
+    },
+  },
+  {
+    widget: 'VerificationCode',
+    name: 'verificationCode',
+    label: '验证码',
+    required: true,
+  },
+  {
     widget: 'Switch',
     name: 'switch',
     label: '开关切换',

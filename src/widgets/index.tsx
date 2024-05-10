@@ -17,6 +17,8 @@ import TreeSelect from './arco-design/tree-select';
 import Cascader from './arco-design/cascader';
 import Upload from './arco-design/upload';
 import Switch from './arco-design/switch';
+import ColorPicker from './arco-design/color-picker';
+import VerificationCode from './arco-design/verification-code';
 /** 扩展组件 */
 import Render from './extension/render';
 import AsyncRender from './extension/async/render';
@@ -36,7 +38,7 @@ import { SubFormType } from '@/form/form';
 import { ReactNode } from 'react';
 // 内置组件映射关系
 export const BuiltInWidgetMapping = {
-  // ui
+  // 基础组件
   AutoComplete,
   Input,
   InputNumber,
@@ -55,6 +57,8 @@ export const BuiltInWidgetMapping = {
   Cascader,
   Upload,
   Switch,
+  ColorPicker,
+  VerificationCode,
   // 扩展组件
   AsyncSelect,
   AsyncTreeSelect,
