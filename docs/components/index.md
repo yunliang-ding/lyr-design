@@ -10,7 +10,7 @@ nav:
 <div style="display:flex;align-items:center;margin-bottom:24px">
   <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-component</span>
 </div>
-<p style="display:flex;justify-content:space-between;width:220px">
+<p style="display:flex;justify-content:space-between;width:200px">
   <a href="https://npmmirror.com/package/lyr-component">
     <img alt="npm" src="https://img.shields.io/npm/dt/lyr-component.svg">
   </a>

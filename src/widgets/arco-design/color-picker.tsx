@@ -6,5 +6,5 @@ export default ({
   readOnly,
   ...rest
 }: ColorPickerProps & ExtendInputProps) => {
-  return <ColorPicker {...rest} />;
+  return readOnly ? String(rest.value || '') : <ColorPicker {...rest} />;
 };

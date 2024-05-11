@@ -189,6 +189,8 @@ export default () => {
           input: '这是默认值',
           password: 'qazwsx',
           rangeInputNumber: [12, 34],
+          colorPicker: '#165dff',
+          verificationCode: '999999',
           rangeInput: ['react', 'core-form'],
           inputNumber: '50',
           textArea: '浙江省杭州市',

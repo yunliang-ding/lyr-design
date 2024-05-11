@@ -9,5 +9,5 @@ export default ({
   readOnly,
   ...rest
 }: VerificationCodeProps & ExtendInputProps) => {
-  return <VerificationCode {...rest} />;
+  return readOnly ? String(rest.value || '') : <VerificationCode {...rest} />;
 };
