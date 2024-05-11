@@ -3,7 +3,9 @@
   border: 2px dashed #ccc;
   padding: 10px;
 }
-
+.arco-form-inline .dragContainer{
+  padding-top: 24px;
+}
 .dragContainer:not(:has(:hover)):hover {
   border-color: rgb(var(--primary-6), .5);
 }
