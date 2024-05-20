@@ -5,18 +5,16 @@
 /npm-debug.log*
 /yarn-error.log
 /yarn.lock
-
+/runtime
 # production
 /dist
 /docs-dist
-
+/www
+.theme
+/src/.lyr
 # misc
 .DS_Store
 
-# umi
-.umi
-.umi-production
-.umi-test
 .env.local
 
 # ide

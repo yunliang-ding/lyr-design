@@ -2,29 +2,19 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "jsx": "react-jsx",
     "esModuleInterop": true,
-    "sourceMap": true,
-    "baseUrl": "./",
+    "moduleResolution": "node",
+    "declaration": true,
+    "jsx": "react-jsx",
     "strict": false,
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "outDir": "./dist",
     "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
-    },
-    "allowSyntheticDefaultImports": true
+      "@/*": ["./src/*"],
+      "lyr": ["./src/.lyr"],
+      "react": ["./node_modules/@types/react"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "lib",
-    "es",
-    "mock",
-    "dist",
-    "typings",
-    "**/__test__",
-    "test",
-    "docs",
-    "tests"
-  ]
+  "exclude": ["node_modules"]
 }

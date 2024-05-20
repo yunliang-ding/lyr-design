@@ -1,5 +1,4 @@
 import { Tag } from '@arco-design/web-react';
-import React from 'react';
 import { SchemaProps } from 'lyr-component';
 import { isEmpty, uuid } from 'lyr-extra';
 

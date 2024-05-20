@@ -1,27 +1,6 @@
----
-order: 1.5
-title: Button 扩展
-toc: menu
----
-
-## arco.design 的 Button 基础上扩展了如下
-
-<Alert>
-
-- 自动 loading
-- 二次确认
-- 继承弹框、抽屉
-- 权限控制
-
-</Alert>
-
 ## 设置加载防止重复提交
 
 ```tsx
-/**
- * background: '#fff'
- */
-import * as React from 'react';
 import { Button } from 'lyr-component';
 
 export default () => {
@@ -39,10 +18,6 @@ export default () => {
 ## 设置二次确认提示
 
 ```tsx
-/**
- * background: '#fff'
- */
-import * as React from 'react';
 import { Message, Switch } from '@arco-design/web-react';
 import { Button } from 'lyr-component';
 
@@ -57,7 +32,7 @@ export default () => {
     });
   };
   return (
-    <>
+    <div>
       <Switch
         checkedText="alert"
         uncheckedText="pop"
@@ -78,7 +53,7 @@ export default () => {
       >
         开始部署
       </Button>
-    </>
+    </div>
   );
 };
 ```
@@ -86,12 +61,9 @@ export default () => {
 ## 设置二次确认提示前置校验
 
 ```tsx
-/**
- * background: '#fff'
- */
-import * as React from 'react';
 import { Message } from '@arco-design/web-react';
 import { Button, Form } from 'lyr-component';
+
 export default () => {
   const [form] = Form.useForm();
   const submit = async () => {
@@ -103,7 +75,7 @@ export default () => {
     });
   };
   return (
-    <>
+    <div>
       <Form
         form={form}
         schema={[
@@ -131,7 +103,7 @@ export default () => {
       >
         提交
       </Button>
-    </>
+    </div>
   );
 };
 ```
@@ -139,10 +111,6 @@ export default () => {
 ## 和弹出层整合
 
 ```tsx
-/**
- * background: '#fff'
- */
-import * as React from 'react';
 import { Message, Space } from '@arco-design/web-react';
 import { Button, Form } from 'lyr-component';
 import schema from './schema/form-submit/schema';
@@ -153,7 +121,6 @@ export default () => {
   const onSubmit = async (values) => {
     await delay(400);
     Message.success('保存成功');
-    // return Promise.reject(); // 阻止关闭
   };
   return (
     <Space>
@@ -193,10 +160,6 @@ export default () => {
 ## 与 Tooltip 整合
 
 ```tsx
-/**
- * background: '#fff'
- */
-import * as React from 'react';
 import { Button } from 'lyr-component';
 import { Space } from '@arco-design/web-react';
 
@@ -225,16 +188,9 @@ export default () => {
 ## 配置权限体系
 
 ```tsx
-/**
- * background: '#fff'
- * title: 说明
- * description: 通常在启动入口请求接口数据，之后注入按钮权限数据，一次注入可全局使用。
- */
-import * as React from 'react';
 import { Button } from 'lyr-component';
 import { Tag } from '@arco-design/web-react';
 
-// 代表当前用户配置了若干个按钮权限
 Button.setAuth({
   'user-management-create': '新增用户',
   'user-management-retrieve': '详情',
@@ -247,7 +203,7 @@ Button.setAuth({
 
 export default () => {
   return (
-    <>
+    <div>
       <Button type="primary" auth="user-management-create" />
       <br />
       <br />
@@ -278,19 +234,7 @@ export default () => {
       ) : (
         <Tag color="red">您暂无删除应用的权限</Tag>
       )}
-    </>
+    </div>
   );
 };
 ```
-
-## API
-
-<API src="../../src/button/index.tsx" hideTitle></API>
-
-## 方法扩展
-
-| **属性名** | **描述**               | **类型**                    | **默认** |
-| ---------- | ---------------------- | --------------------------- | -------- |
-| setAuth    | 设置按钮权限           | `(auths: string) => void`   | 无       |
-| getAuth    | 获取按钮权限           | `() => auths`               | 无       |
-| hasAuth    | 判断是否具有该按钮权限 | `(auth: string) => boolean` | 无       |
