@@ -6,7 +6,6 @@
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
-    "umd:build": "cross-env type=umd father-build",
     "build": "father-build"
   },
   "main": "dist/index.js",
