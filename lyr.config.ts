@@ -41,28 +41,6 @@ export default defineConfig({
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js',
   ],
   serverPath: '/apis',
-  navs: [
-    {
-      title: '工具集',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-extra',
-    },
-    {
-      title: 'Hooks',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-hooks',
-    },
-    {
-      title: '表单设计器',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-low-code',
-    },
-    {
-      title: '代码编辑器',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-code-editor',
-    },
-    {
-      title: 'GitHub',
-      path: 'https://github.com/yunliang-ding/lyr-component',
-    },
-  ],
   docsRequire: {
     ArcoDesign: '@arco-design/web-react',
     ArcoIcon: '@arco-design/web-react/icon',
