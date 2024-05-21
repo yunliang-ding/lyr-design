@@ -1,6 +1,6 @@
 ## 基本使用
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema.ts';
 
@@ -21,7 +21,7 @@ export default () => {
 
 ## 设置文本宽度
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema1.ts';
 
@@ -42,7 +42,7 @@ export default () => {
 
 ## 按钮顺序调换
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema.ts';
 
@@ -64,7 +64,7 @@ export default () => {
 
 ## 设置默认值
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema.ts';
 
@@ -87,7 +87,7 @@ export default () => {
 
 ## 外部调用查询
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search, Form, Button } from 'lyr-component';
 import { Space } from '@arco-design/web-react';
 import schema from '@/components/schema/form-search/schema.ts';
@@ -125,7 +125,7 @@ export default () => {
 
 ## 控制加载时间
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema.ts';
 
@@ -144,7 +144,7 @@ export default () => {
 
 ## 设置立即查询
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema2.ts';
 
@@ -162,7 +162,7 @@ export default () => {
 
 ## 更多查询条件
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema3.ts';
 
@@ -181,7 +181,7 @@ export default () => {
 
 ## 默认展开更多查询条件
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema3.ts';
 
@@ -201,7 +201,7 @@ export default () => {
 
 ## 使用垂直布局
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema3.ts';
 
@@ -224,7 +224,7 @@ export default () => {
 
 ## 使用 2 列布局
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema3.ts';
 
@@ -243,7 +243,7 @@ export default () => {
 
 ## 使用异步的 options
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { Search } from 'lyr-component';
 import schema from '@/components/schema/form-search/schema4.ts';
 

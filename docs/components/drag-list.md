@@ -2,7 +2,7 @@
 
 ## 基本使用
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { DragList } from 'lyr-component';
 
 export default () => {

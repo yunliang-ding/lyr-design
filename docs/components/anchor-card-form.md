@@ -1,6 +1,6 @@
 ## 基本使用
 
-```tsx | react
+```tsx | react | #f5f5f5
 import { AnchorCardForm, Button } from 'lyr-component';
 
 export default () => {
