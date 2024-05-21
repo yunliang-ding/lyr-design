@@ -1,14 +1,4 @@
----
-order: 18
-title: OssFileUpload 文件上传
-toc: menu
----
-
-<Alert>
-
-- 基于 arco-design Upload 二次封装 内置 Oss 上传逻辑
-
-</Alert>
+> 基于 arco-design Upload 二次封装 内置 Oss 上传逻辑
 
 ## 依赖 cdn
 
@@ -18,8 +8,7 @@ https://g.alicdn.com/code/lib/ali-oss/6.13.0/aliyun-oss-sdk.min.js
 
 ## 基本使用
 
-```tsx
-import React from 'react';
+```tsx | react
 import { OssFileUpload } from 'lyr-component';
 
 export default () => {
@@ -40,8 +29,7 @@ export default () => {
 
 ## 上传图片
 
-```tsx
-import React from 'react';
+```tsx | react
 import { OssFileUpload } from 'lyr-component';
 
 export default () => {
@@ -62,8 +50,7 @@ export default () => {
 
 ## 上传视频
 
-```tsx
-import React from 'react';
+```tsx | react
 import { OssFileUpload } from 'lyr-component';
 
 export default () => {
@@ -84,8 +71,7 @@ export default () => {
 
 ## 搭配 Form 表单
 
-```tsx
-import React from 'react';
+```tsx | react
 import { CardForm } from 'lyr-component';
 
 export default () => {
@@ -94,7 +80,7 @@ export default () => {
       title="信息采集"
       schema={[
         {
-          type: 'OssFileUpload',
+          widget: 'OssFileUpload',
           label: '用户文件',
           name: 'file',
           required: true,
@@ -103,7 +89,7 @@ export default () => {
           },
         },
         {
-          type: 'OssFileUpload',
+          widget: 'OssFileUpload',
           label: '用户头像',
           name: 'photo',
           props: {
@@ -111,7 +97,7 @@ export default () => {
           },
         },
         {
-          type: 'OssFileUpload',
+          widget: 'OssFileUpload',
           label: '用户视频',
           name: 'video',
           props: {
@@ -125,7 +111,3 @@ export default () => {
   );
 };
 ```
-
-## API
-
-<!-- <API src="../../src/oss-file-upload/index.tsx" hideTitle></API> -->

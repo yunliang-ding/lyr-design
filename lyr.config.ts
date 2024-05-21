@@ -63,6 +63,12 @@ export default defineConfig({
       path: 'https://github.com/yunliang-ding/lyr-component',
     },
   ],
+  docsRequire: {
+    ArcoDesign: '@arco-design/web-react',
+    ArcoIcon: '@arco-design/web-react/icon',
+    ArcoColor: '@arco-design/color',
+    lyrHooks: 'lyr-hooks',
+  },
   menus: [
     {
       label: '介绍',
@@ -77,37 +83,69 @@ export default defineConfig({
           path: '/components/button',
         },
         {
-          label: 'BabelParse',
-          path: '/components/babel-parse',
+          label: 'Form 基本用法',
+          path: '/components/form-base',
         },
         {
-          label: 'ConsoleRender',
-          path: '/components/console-render',
+          label: 'Form 高级用法',
+          path: '/components/form-advance',
         },
         {
-          label: 'copyToClipBoard',
-          path: '/components/copy-to-clip-board',
+          label: 'CardForm 卡片表单',
+          path: '/components/card-form',
         },
         {
-          label: 'docxReplace',
-          path: '/components/docx-replace',
+          label: 'AnchorCardForm 瞄点',
+          path: '/components/anchor-card-form',
         },
         {
-          label: 'downloadFile',
-          path: '/components/download-file',
+          label: 'CreateDrawer 抽屉表单',
+          path: '/components/create-drawer',
         },
         {
-          label: 'getElementSnapshot',
-          path: '/components/get-element-snapshot',
+          label: 'StepForm 分布表单',
+          path: '/components/step-form',
         },
         {
-          label: 'getUrlSearchParams',
-          path: '/components/get-url-search-params',
+          label: 'Search 查询表单',
+          path: '/components/search',
         },
         {
-          label: 'MarkdownViewer',
-          path: '/components/markdown-viewer',
-        }
+          label: 'Table 数据表格',
+          path: '/components/table',
+        },
+        {
+          label: 'TableList 编辑表格',
+          path: '/components/table-list',
+        },
+        {
+          label: 'AnchorCard 喵点卡片',
+          path: '/components/anchor-card',
+        },
+        {
+          label: 'OssFileUpload 上传',
+          path: '/components/oss-file-upload',
+        },
+        {
+          label: 'Suspend 悬浮容器',
+          path: '/components/suspend',
+        },
+        {
+          label: 'AppLayout 应用布局',
+          path: '/components/app-layout',
+        },
+        {
+          label: 'DragWrapper 拖拽',
+          path: '/components/drag-wrapper',
+        },
+        {
+          label: 'DragList 拖拽序列',
+          path: '/components/drag-list',
+        },
+        {
+          label: 'DragForm 拖拽表单',
+          path: '/components/drag-form',
+        },
       ],
     },
   ],

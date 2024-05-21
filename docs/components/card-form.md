@@ -1,19 +1,9 @@
----
-order: 4
-title: CardForm 卡片提交表单
-toc: menu
----
-
 ## 基本使用
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { CardForm, Form } from 'lyr-component';
-import schema from './schema/form-submit/schema';
 import { Message } from '@arco-design/web-react';
+import schema from '@/components/schema/form-submit/schema.ts';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default () => {
@@ -45,14 +35,10 @@ export default () => {
 
 ## 使用 actionAlign 定义操作按钮位置
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { CardForm } from 'lyr-component';
-import schema from './schema/form-submit/schema';
 import { Message, Button, Space } from '@arco-design/web-react';
+import schema from '@/components/schema/form-submit/schema.ts';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default () => {
@@ -66,7 +52,7 @@ export default () => {
   };
 
   return (
-    <>
+    <div>
       <Space>
         <Button onClick={setActionAlign.bind(null, 'start')}>左边</Button>
         <Button onClick={setActionAlign.bind(null, 'center')}>居中</Button>
@@ -88,21 +74,17 @@ export default () => {
         schema={schema}
         column={2}
       />
-    </>
+    </div>
   );
 };
 ```
 
 ## 使用自定义 actions
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { CardForm, Form } from 'lyr-component';
-import schema from './schema/form-submit/schema';
 import { Message, Switch } from '@arco-design/web-react';
+import schema from '@/components/schema/form-submit/schema.ts';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 export default () => {
@@ -120,13 +102,12 @@ export default () => {
   };
   const onClear = () => {
     form.clearValues();
-    // form.clearValues(['input']);
   };
   const actions1 = [
     {
       label: '保草稿',
       type: 'primary',
-      spin: true, // 开启加载
+      spin: true,
       onClick: onSubmit,
     },
     {
@@ -144,8 +125,8 @@ export default () => {
     {
       label: '同意',
       type: 'primary',
-      spin: true, // 开启加载
-      validator: true, // 开启表单检验
+      spin: true,
+      validator: true,
       onClick: onSubmit,
       confirm: {
         title: '提示',
@@ -165,7 +146,7 @@ export default () => {
     },
   ];
   return (
-    <>
+    <div>
       <Switch
         checkedText="加载状态"
         uncheckedText="加载状态"
@@ -213,15 +194,7 @@ export default () => {
         }}
         actions={actions1}
       />
-    </>
+    </div>
   );
 };
 ```
-
-## CardForm 扩展属性
-
-<API src="../../src/form-submit/card-form/index.tsx" hideTitle></API>
-
-## ActionProps 按钮属性
-
-<API src="../../src/form-submit/type.action.tsx" hideTitle></API>

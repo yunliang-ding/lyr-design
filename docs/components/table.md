@@ -1,18 +1,8 @@
----
-order: 6
-title: Table 数据表格
-toc: menu
----
+## 数据模型渲染
 
-## 使用 数据模型渲染
-
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import tableSchema from './schema/table/schema';
+import tableSchema from '@/components/schema/table/schema.ts';
 
 export default () => {
   return <Table {...tableSchema} />;
@@ -21,26 +11,18 @@ export default () => {
 
 ## 使用 ellipsis 扩展、useThousandth 千分位、emptyNode 展示空数据
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import tableSchema from './schema/table/schema1';
+import tableSchema from '@/components/schema/table/schema1.ts';
 
 export default () => {
   return <Table {...tableSchema} />;
 };
 ```
 
-## 使用 enums 配置 列枚举映射关系
+## enums 配置 列枚举映射关系
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
 
 const userStateMapping = {
@@ -81,18 +63,12 @@ export default () => {
         {
           title: '用户性别',
           dataIndex: 'userSex',
-          enums: ['男', '女'], // 基本数组类型
-          // render(userSex) {
-          //   return ['男', '女'][userSex];
-          // },
+          enums: ['男', '女'],
         },
         {
           title: '用户状态',
           dataIndex: 'userState',
-          enums: userStateMapping, // 对象映射
-          // render(userState) {
-          //   return userStateMapping[userState];
-          // },
+          enums: userStateMapping,
         },
         {
           title: '用户类型',
@@ -100,10 +76,7 @@ export default () => {
           enumsConf: {
             isArrObj: true,
           },
-          enums: userTypeList, // List数组对象
-          // render(userSex) {
-          //   return userTypeList.find((i) => i.value === userSex)?.label;
-          // },
+          enums: userTypeList,
         },
       ]}
       request={() => {
@@ -126,15 +99,11 @@ export default () => {
 };
 ```
 
-## 使用 resize 属性 开启拖拽调整宽度
+## resize 属性 开启拖拽调整宽度
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import tableSchema from './schema/table/schema';
+import tableSchema from '@/components/schema/table/schema.ts';
 
 export default () => {
   return <Table {...tableSchema} resize borderCell />;
@@ -143,29 +112,20 @@ export default () => {
 
 ## 开启 autoNo 分页序号
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import schema from './schema/table/schema';
+import tableSchema from '@/components/schema/table/schema.ts';
 
 export default () => {
-  return <Table autoNo {...schema} />;
+  return <Table autoNo {...tableSchema} />;
 };
 ```
 
 ## 配置 drag 属性，支持可拖动
 
-```tsx
-/**
- * background: '#f6f7f9'
- * title: 约定数据源选项包含 index 属性，做为唯一序号
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import tableSchema from './schema/table/schema';
+import tableSchema from '@/components/schema/table/schema.ts';
 
 export default () => {
   return (
@@ -182,14 +142,10 @@ export default () => {
 
 ## 使用 alertConfig 配置提示信息
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table, Button } from 'lyr-component';
-import tableSchema from './schema/table/schema';
 import { Space } from '@arco-design/web-react';
+import tableSchema from '@/components/schema/table/schema.ts';
 
 export default () => {
   return (
@@ -206,16 +162,13 @@ export default () => {
         },
       ]}
       rowSelection={{
-        // 设置默认值
-        // defaultSelectedRows: [],
-        // type: 'radio',
         onChange: (keys, rows) => {
           console.log(keys, rows);
         },
       }}
       alertConfig={(selectedRowKeys, selectedRows, setSelectedRows) => {
         return {
-          visible: selectedRowKeys.length > 0, // 控制展示
+          visible: selectedRowKeys.length > 0,
           content: (
             <Space size={24}>
               <span>已选 {selectedRowKeys.length} 项</span>
@@ -251,13 +204,9 @@ export default () => {
 
 ## 使用 filterIds 配置不展示字段
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import tableSchema from './schema/table/schema';
+import tableSchema from '@/components/schema/table/schema.ts';
 
 export default () => {
   return <Table {...tableSchema} filterIds={['sex', 'city', 'sign']} />;
@@ -266,14 +215,10 @@ export default () => {
 
 ## 使用自定义 tools
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
 import { Input } from '@arco-design/web-react';
-import tableSchema from './schema/table/schema';
+import tableSchema from '@/components/schema/table/schema.ts';
 
 export default () => {
   return (
@@ -305,13 +250,9 @@ export default () => {
 
 ## 使用 paginationConfig 分页配置
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import tableSchema from './schema/table/schema';
+import tableSchema from '@/components/schema/table/schema.ts';
 
 export default () => {
   return (
@@ -319,7 +260,7 @@ export default () => {
       {...tableSchema}
       paginationConfig={{
         sizeCanChange: true,
-        showTotal: (total: number) => `总计 ${total} 条数据`,
+        showTotal: (total) => `总计 ${total} 条数据`,
       }}
     />
   );
@@ -328,14 +269,10 @@ export default () => {
 
 ## 使用 searchSchema 配置查询表单
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import searchSchema from './schema/table/search.schema';
-import tableSchema from './schema/table/schema';
+import tableSchema from '@/components/schema/table/schema.ts';
+import searchSchema from '@/components/schema/table/search.schema.ts';
 
 export default () => {
   return (
@@ -352,16 +289,12 @@ export default () => {
 
 ## 缓存查询条件
 
-```tsx
-/**
- * background: '#f6f7f9'
- * title: 说明
- * description: 需要清空缓存可以在组件卸载的钩子去决定是否需要清空。
- */
-import React from 'react';
+> 需要清空缓存可以在组件卸载的钩子去决定是否需要清空
+
+```tsx | react
 import { Table } from 'lyr-component';
-import tableSchema from './schema/table/schema';
-import searchSchema from './schema/table/search.schema';
+import tableSchema from '@/components/schema/table/schema.ts';
+import searchSchema from '@/components/schema/table/search.schema.ts';
 
 export default () => {
   return (
@@ -379,14 +312,10 @@ export default () => {
 
 ## 配置化 CRUD
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import searchSchema from './schema/table/search.schema';
-import tableSchema from './schema/table/schema3';
+import tableSchema from '@/components/schema/table/schema.ts';
+import searchSchema from '@/components/schema/table/search.schema.ts';
 
 export default () => {
   return (
@@ -403,14 +332,10 @@ export default () => {
 
 ## 下滑加载数据
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Table } from 'lyr-component';
-import tableSchema from './schema/table/schema4';
 import { Spin } from '@arco-design/web-react';
+import tableSchema from '@/components/schema/table/schema4.ts';
 
 const mockData = async () => {
   await new Promise((res) => setTimeout(res, 1000));
@@ -434,7 +359,7 @@ export default () => {
   const [scrollLoading, setScrollLoading] = React.useState(
     <Spin loading={true} />,
   );
-  const loadMoreData = async (pageNum: number) => {
+  const loadMoreData = async (pageNum) => {
     if (pageNum === 4) {
       return setScrollLoading('No more data');
     }
@@ -455,15 +380,3 @@ export default () => {
   );
 };
 ```
-
-## Table 扩展属性
-
-<API src="../../src/table/index.tsx" hideTitle></API>
-
-## Table Instance
-
-<API src="../../src/table/table.instance.tsx" hideTitle></API>
-
-## Column 扩展属性
-
-<API src="../../src/table/type.column.tsx" hideTitle></API>

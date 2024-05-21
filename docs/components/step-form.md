@@ -1,16 +1,6 @@
----
-order: 4.4
-title: StepForm 分步提交表单
-toc: menu
----
-
 ## 基本使用
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { StepForm, Form } from 'lyr-component';
 import { Radio } from '@arco-design/web-react';
 
@@ -45,7 +35,7 @@ export default () => {
           size: 'small',
         }}
         onStepsClick={async (v) => {
-          await form.submit(); // 表单校验
+          await form.submit();
           setCurrent(v);
         }}
         initialValues={{
@@ -176,8 +166,7 @@ export default () => {
 
 ## 结合弹层
 
-```tsx
-import React from 'react';
+```tsx | react
 import { CreateModal, Form, Button, StepForm } from 'lyr-component';
 
 const stepModal = CreateModal({
@@ -186,7 +175,7 @@ const stepModal = CreateModal({
     height: 320,
     padding: 0,
   },
-  footer: false, // 不需要底部按钮
+  footer: false,
 });
 
 export default (props) => {
@@ -337,7 +326,3 @@ export default (props) => {
   );
 };
 ```
-
-## API
-
-<API src="../../src/form-submit/step-form/index.tsx" hideTitle></API>

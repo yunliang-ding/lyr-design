@@ -1,15 +1,8 @@
----
-order: 4.1
-title: CreateModal 弹出层提交表单
-toc: menu
----
-
 ## 基本使用
 
-```tsx
-import React from 'react';
+```tsx | react
 import { CreateModal, Button } from 'lyr-component';
-import schema from './schema/form-submit/schema';
+import schema from '@/components/schema/form-submit/schema.ts';
 
 export default (props) => {
   return (
@@ -35,11 +28,10 @@ export default (props) => {
 
 ## 手动关闭和阻止关闭
 
-```tsx
-import React from 'react';
+```tsx | react
 import { CreateModal, Button } from 'lyr-component';
-import schema from './schema/form-submit/schema';
 import { Message } from '@arco-design/web-react';
+import schema from '@/components/schema/form-submit/schema.ts';
 
 export default (props) => {
   return (
@@ -66,7 +58,7 @@ export default (props) => {
                 await new Promise((res) => setTimeout(res, 1000));
                 console.log(value);
                 Message.error('接口异常');
-                return Promise.reject(); // 阻止关闭
+                return Promise.reject();
               },
             },
           ],
@@ -80,10 +72,9 @@ export default (props) => {
 };
 ```
 
-## CreateModal 自定义渲染
+## 自定义渲染
 
-```tsx
-import React from 'react';
+```tsx | react
 import { CreateModal, Button } from 'lyr-component';
 import { Message } from '@arco-design/web-react';
 
@@ -112,7 +103,3 @@ export default (props) => {
   );
 };
 ```
-
-## CreateModal 扩展属性
-
-<API src="../../src/form-submit/modal-form/index.tsx" hideTitle></API>

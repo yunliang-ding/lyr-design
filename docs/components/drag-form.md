@@ -1,21 +1,10 @@
----
-order: 28
-title: DragForm 拖拽表单
-toc: menu
----
-
-<Alert>
-
-- 基于 `DragWrapper` 扩展的拖拽表单，可基于此设计表单设计器
-
-</Alert>
+> 基于 `DragWrapper` 扩展的拖拽表单，可基于此设计表单设计器
 
 ## 单层布局
 
-```tsx
-import React from 'react';
+```tsx | react
 import { DragForm } from 'lyr-component';
-import items from './schema/drag-form/schema';
+import items from '@/components/schema/drag-form/schema.ts';
 
 export default () => {
   const [schema, setSchema] = React.useState(items);
@@ -41,10 +30,9 @@ export default () => {
 
 ## 嵌套布局
 
-```tsx
-import React from 'react';
+```tsx | react
 import { DragForm } from 'lyr-component';
-import items from './schema/drag-form/schema1';
+import items from '@/components/schema/drag-form/schema1.ts';
 
 export default () => {
   const [schema, setSchema] = React.useState(items);
@@ -70,10 +58,9 @@ export default () => {
 
 ## 子表单容器
 
-```tsx
-import React from 'react';
+```tsx | react
 import { DragForm } from 'lyr-component';
-import items from './schema/drag-form/schema2';
+import items from '@/components/schema/drag-form/schema2.ts';
 
 export default () => {
   const [schema, setSchema] = React.useState(items);
@@ -99,15 +86,14 @@ export default () => {
 
 ## 添加表单元素
 
-```tsx
-import React from 'react';
+```tsx | react
 import { Button, DragWrapper, DragForm } from 'lyr-component';
 
 export default () => {
   const [schema, setSchema] = React.useState();
   const [selectedKey, setSelectedKey] = React.useState();
   return (
-    <>
+    <div>
       <DragWrapper
         style={{
           gap: 20,
@@ -115,7 +101,7 @@ export default () => {
         onChange={(item) => {
           console.log(item);
         }}
-        accept={false} // 静态容器
+        accept={false}
         items={[
           {
             widget: 'Input',
@@ -182,11 +168,7 @@ export default () => {
           console.log('onSelected', itemKey);
         }}
       />
-    </>
+    </div>
   );
 };
 ```
-
-## Api
-
-<!-- <API src="../../src/drag-form/index.tsx" hideTitle></API> -->

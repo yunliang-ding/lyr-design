@@ -1,22 +1,8 @@
----
-order: 27
-title: DragList 拖拽列表
-toc: menu
----
-
-<Alert>
-
-- 基于 `DragWrapper` 扩展的单列拖拽组件
-
-</Alert>
+> 基于 `DragWrapper` 扩展的单列拖拽组件
 
 ## 基本使用
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { DragList } from 'lyr-component';
 
 export default () => {
@@ -36,7 +22,3 @@ export default () => {
   );
 };
 ```
-
-## Api
-
-<API src="../../src/drag-list/index.tsx" hideTitle></API>

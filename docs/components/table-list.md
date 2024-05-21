@@ -1,23 +1,12 @@
----
-order: 6.1
-title: TableList 编辑表格
-toc: menu
----
-
-<Alert>
-
-- TableList 一般适用 4~5 个字段编辑
-
-</Alert>
+> TableList 一般适用 4~5 个字段编辑
 
 ## 基本使用
 
-```tsx
-import React from 'react';
+```tsx | react
 import { TableList } from 'lyr-component';
 import { useReactive } from 'lyr-hooks';
-import schema from './schema/table-list/schema';
 import { Switch } from '@arco-design/web-react';
+import schema from '@/components/schema/table-list/schema.ts';
 
 export default () => {
   const store = useReactive({
@@ -36,7 +25,7 @@ export default () => {
     ],
   });
   return (
-    <>
+    <div>
       <Switch
         checkedText="展示序号"
         uncheckedText="展示序号"
@@ -81,17 +70,16 @@ export default () => {
           store.value = v;
         }}
       />
-    </>
+    </div>
   );
 };
 ```
 
 ## 配合 Form 表单使用
 
-```tsx
-import React from 'react';
+```tsx | react
 import { CardForm } from 'lyr-component';
-import schema from './schema/table-list/schema';
+import schema from '@/components/schema/table-list/schema.ts';
 
 export default () => {
   const onSubmit = async (values) => {
@@ -131,7 +119,3 @@ export default () => {
   );
 };
 ```
-
-## Api
-
-<!-- <API src="../../src/table-list/index.tsx" hideTitle></API> -->

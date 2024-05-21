@@ -1,27 +1,18 @@
----
-order: 3
-title: Form 高级用法
-toc: menu
----
-
 ## 使用 required 函数式解决联动校验
 
-```tsx
-/**
- * title: 说明
- * desc: readOnly、disabled、required 属性都支持接受一个函数
- */
-import React from 'react';
+> readOnly、disabled、required 属性都支持接受一个函数
+
+```tsx | react
 import { Form, Button } from 'lyr-component';
 
 export default () => {
   const [form] = Form.useForm();
   const submit = async () => {
-    const data = await form.submit(); // 校验并返回数值
+    const data = await form.submit();
     alert(JSON.stringify(data));
   };
   return (
-    <>
+    <div>
       <Form
         form={form}
         schema={[
@@ -45,21 +36,16 @@ export default () => {
       <Button type="primary" onClick={submit}>
         提交
       </Button>
-    </>
+    </div>
   );
 };
 ```
 
 ## 使用异步的 options
 
-```tsx
-/**
- * title: 说明
- * desc: 这种模式只会再次渲染单个组件，不会重新渲染Form
- */
-import React from 'react';
+```tsx | react
 import { Form, Button } from 'lyr-component';
-import schema from './schema/form-advance/async-option';
+import schema from '@/components/schema/form-advance/async-option.tsx';
 
 export default () => {
   const [fresh, setFresh] = React.useState(false);
@@ -68,11 +54,10 @@ export default () => {
     setFresh(!fresh);
   };
   const onMount = async ({ getFieldOption }) => {
-    /* 获取options */
     console.log(await getFieldOption('classify'));
   };
   return (
-    <>
+    <div>
       <Button type="primary" onClick={reload} style={{ marginBottom: 20 }}>
         重新加载
       </Button>
@@ -97,19 +82,14 @@ export default () => {
           department: '0-0-1',
         }}
       />
-    </>
+    </div>
   );
 };
 ```
 
 ## 使用 effect 实现联动交互
 
-```tsx
-/**
- * title: 说明
- * desc: 内置shouldUpdate方法是表单的每次数值更新都会调用该方法、扩展的effect副作用 仅仅会在依赖修改的时候，触发该组件卸载->创建
- */
-import React from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
 
 export default () => {
@@ -132,8 +112,8 @@ export default () => {
           widget: 'InputNumber',
           name: 'age',
           label: '年龄',
-          effect: ['sex'], // 配置副作用
-          // effectClearField: true, // 清空
+          effect: ['sex'],
+          effectClearField: true,
           visible: ({ sex }) => {
             return sex === 1;
           },
@@ -142,7 +122,7 @@ export default () => {
           widget: 'AsyncCheckGroup',
           name: 'level',
           label: '级别 (类型按照年龄划分)',
-          effect: ['age', 'sex'], // 配置副作用
+          effect: ['age', 'sex'],
           props: {
             options: async ({ getFieldValue }) => {
               return getFieldValue('age') > 20
@@ -172,12 +152,7 @@ export default () => {
 
 ## 使用 setSchemaByName 更新 field
 
-```tsx
-/**
- * title: 说明
- * desc: 这种模式仅触发自己更新，不会导致Form重新渲染
- */
-import React from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
 
 export default () => {
@@ -234,12 +209,7 @@ export default () => {
 
 ## 使用 setInitialValues 解决 setFieldsValues 无法触发表单联动等问题
 
-```tsx
-/**
- * title: 说明
- * desc: 当默认值是接口下发需要晚点设置可用该方案
- */
-import React from 'react';
+```tsx | react
 import { Form, Button } from 'lyr-component';
 
 export default () => {
@@ -265,7 +235,6 @@ export default () => {
           setFormLoading(true);
           await new Promise((res) => setTimeout(res, 1000));
           setFormLoading(false);
-          // 模拟请求接口之后重新设置默认值
           setInitialValues({
             sex: 1,
             age: 30,
@@ -288,7 +257,7 @@ export default () => {
             widget: 'InputNumber',
             name: 'age',
             label: '年龄',
-            effect: ['sex'], // 配置副作用
+            effect: ['sex'],
             visible: ({ sex }) => {
               return sex === 1;
             },
@@ -302,12 +271,7 @@ export default () => {
 
 ## 使用 touchSchemaRender 完成复杂联动交互
 
-```tsx
-/**
- * title: 说明
- * desc: 在通常情况下我们使用effect可以完成复杂的交互，但是在特殊的场景却做不到，我们需要借助 touchSchemaRender。
- */
-import React from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
 import { Switch } from '@arco-design/web-react';
 
@@ -322,7 +286,7 @@ export default () => {
           form.setFieldsValue({
             sex: e ? 1 : 2,
           });
-          form.touchSchemaRender(['age']); // 触发age、level刷新
+          form.touchSchemaRender(['age']);
         }}
       />
       <br />
@@ -345,7 +309,7 @@ export default () => {
             widget: 'InputNumber',
             name: 'age',
             label: '年龄',
-            effect: ['sex'], // 配置副作用
+            effect: ['sex'],
             visible: ({ sex }) => {
               return sex === 1;
             },
@@ -360,20 +324,14 @@ export default () => {
 
 ## 使用 setFieldsValueTouchOnValuesChange 完成复杂联动交互
 
-```tsx
-/**
- * title: 说明
- * desc: 可替代 touchFieldsRender、完成联动交互
- */
-import React from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
 import { Switch } from '@arco-design/web-react';
-import schema from './schema/advance/schema5';
 
 export default () => {
   const [form] = Form.useForm();
   return (
-    <>
+    <div>
       <Switch
         checkedText="男"
         uncheckedText="女"
@@ -403,7 +361,7 @@ export default () => {
             widget: 'InputNumber',
             name: 'age',
             label: '年龄',
-            effect: ['sex'], // 配置副作用
+            effect: ['sex'],
             visible: ({ sex }) => {
               return sex === 1;
             },
@@ -411,7 +369,7 @@ export default () => {
         ]}
         form={form}
       />
-    </>
+    </div>
   );
 };
 ```
@@ -422,23 +380,22 @@ export default () => {
 - 子表单依赖主表单 => 子表单爱好的选项和主表单的联系人类型相关
 - 子表单依赖子表单 => 子表单项性别是男才有年龄的输入框，当姓名为空的时候收入项禁用
 
-```tsx
-import React from 'react';
+```tsx | react
 import { Form, Button } from 'lyr-component';
-import schema from './schema/form-advance/form-list';
+import schema from '@/components/schema/form-advance/form-list.ts';
 
 export default () => {
   const [form] = Form.useForm();
   const [readOnly, setReadOnly] = React.useState(false);
   const submit = async () => {
-    const data = await form.submit(); // 校验并返回数值
+    const data = await form.submit();
     alert(JSON.stringify(data));
   };
   const onValuesChange = (value, values) => {
     console.log('onValuesChange ->', value, values);
   };
   return (
-    <>
+    <div>
       <Button
         onClick={setReadOnly.bind(null, !readOnly)}
         style={{ marginBottom: 20 }}
@@ -486,17 +443,16 @@ export default () => {
       <Button type="primary" onClick={submit}>
         提交
       </Button>
-    </>
+    </div>
   );
 };
 ```
 
 ## 使用 itemRender 扩展渲染
 
-```tsx
-import React from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
-import DragContainer from './demo/drag';
+import DragContainer from '@/components/demo/drag.tsx';
 
 export default () => {
   return (
@@ -527,12 +483,7 @@ export default () => {
 
 ## 使用自定义渲染
 
-```tsx
-/**
- * title: 说明
- * desc: 自定义渲染的使用场景通常用于展示，如果没有定义name属性则数据不会被表单收集，如果收集请设置name属性，此时将作为[自定义表单组件](https://ant.design/components/form-cn/#components-form-demo-customized-form-controls)渲染。
- */
-import React from 'react';
+```tsx | react
 import { Form, Button } from 'lyr-component';
 import { Alert } from '@arco-design/web-react';
 
@@ -601,12 +552,7 @@ const schema: SchemaProps<{
 
 ## 使用自定义组件（定义 type 类型为 Function）（不推荐）
 
-```tsx
-/**
- * title: 说明
- * desc: 自定义组件约定，当定义了name属性的FormItem回默认注入2个属性给children，value代表默认值，onChange用于表单收集值，同时会获取Form配置的readOnly属性负责渲染详情视图，建议我们在编写自定义组件的时候，按照业务场景添加详情视图。
- */
-import React from 'react';
+```tsx | react
 import { Form, Button } from 'lyr-component';
 import { Input } from '@arco-design/web-react';
 
@@ -614,7 +560,7 @@ export default () => {
   const [form] = Form.useForm();
   const [readOnly, setReadOnly] = React.useState(false);
   const submit = async () => {
-    const data = await form.submit(); // 校验并返回数值
+    const data = await form.submit();
     alert(JSON.stringify(data));
   };
   return (
@@ -659,19 +605,14 @@ export default () => {
 
 ## 使用自定义组件（采用 widgets 实现）
 
-```tsx
-/**
- * title: 说明
- * desc: 自定义组件约定和上面一致，推荐使用注入widgets的方式，更加符合组件复用的特性
- */
-import React from 'react';
+```tsx | react
 import { Form, Button } from 'lyr-component';
-import CountInput from './demo/count-input';
+import CountInput from '@/components/demo/count-input.tsx';
 
 export default () => {
   const [form] = Form.useForm();
   const submit = async () => {
-    const data = await form.submit(); // 校验并返回数值
+    const data = await form.submit();
     alert(JSON.stringify(data));
   };
   return (
@@ -679,7 +620,7 @@ export default () => {
       <Form
         form={form}
         widgets={{
-          Input: CountInput, // 使用扩展的Input覆盖内置的Input部件、数据模型不变
+          Input: CountInput,
         }}
         schema={[
           {
@@ -699,12 +640,7 @@ export default () => {
 
 ## 自定义组件之间的通信
 
-```tsx
-/**
- * title: 说明
- * desc: 自定义组件通信，可以挂载到 form 实例
- */
-import React from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
 import { Input, Button } from '@arco-design/web-react';
 
@@ -720,7 +656,6 @@ export default () => {
           widget: ({ form }) => {
             const [count, setCount] = React.useState(0);
             React.useEffect(() => {
-              // 挂载
               form.getCount = () => {
                 return count;
               };

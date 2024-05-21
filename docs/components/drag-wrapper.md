@@ -1,22 +1,8 @@
----
-order: 26
-title: DragWrapper 拖拽包裹组件
-toc: menu
----
-
-<Alert>
-
-- 最基本的拖拽组件
-
-</Alert>
+> 最基本的拖拽组件
 
 ## 基本使用
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { DragWrapper } from 'lyr-component';
 
 export default () => {
@@ -57,11 +43,7 @@ export default () => {
 
 ## 模块之间联动
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { DragWrapper } from 'lyr-component';
 
 export default () => {
@@ -75,7 +57,7 @@ export default () => {
           onChange={(item) => {
             console.log(item);
           }}
-          accept={false} // 静态容器
+          accept={false}
           items={['Input', 'Select', 'Checkbox'].map((i) => {
             return {
               key: i,
@@ -132,7 +114,3 @@ export default () => {
   );
 };
 ```
-
-## Api
-
-<API src="../../src/drag-wrapper/index.tsx" hideTitle></API>

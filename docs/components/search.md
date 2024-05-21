@@ -1,25 +1,8 @@
----
-order: 5.9
-title: Search 查询表单
-toc: menu
----
-
-<Alert>
-
-- 通过传入的 schema 自动渲染、并包含查询、重制、等功能、展开更多等
-
-</Alert>
-
 ## 基本使用
 
-```tsx
-/**
- * background: '#f6f7f9'
- * title: 默认点击查询按钮会用0.5s的加载交互
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema';
+import schema from '@/components/schema/form-search/schema.ts';
 
 export default () => {
   return (
@@ -38,13 +21,9 @@ export default () => {
 
 ## 设置文本宽度
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema1';
+import schema from '@/components/schema/form-search/schema1.ts';
 
 export default () => {
   return (
@@ -63,13 +42,9 @@ export default () => {
 
 ## 按钮顺序调换
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema';
+import schema from '@/components/schema/form-search/schema.ts';
 
 export default () => {
   return (
@@ -89,13 +64,9 @@ export default () => {
 
 ## 设置默认值
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema';
+import schema from '@/components/schema/form-search/schema.ts';
 
 export default () => {
   return (
@@ -116,14 +87,10 @@ export default () => {
 
 ## 外部调用查询
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { Search, Form, Button } from 'lyr-component';
 import { Space } from '@arco-design/web-react';
-import schema from './schema/form-search/schema';
+import schema from '@/components/schema/form-search/schema.ts';
 
 export default () => {
   const [form] = Form.useForm();
@@ -134,7 +101,7 @@ export default () => {
           type="primary"
           spin
           onClick={async () => {
-            const values = await form.submit(); // 提交
+            const values = await form.submit();
             console.log('search', values);
           }}
         >
@@ -158,13 +125,9 @@ export default () => {
 
 ## 控制加载时间
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema';
+import schema from '@/components/schema/form-search/schema.ts';
 
 export default () => {
   return (
@@ -181,13 +144,9 @@ export default () => {
 
 ## 设置立即查询
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema2';
+import schema from '@/components/schema/form-search/schema2.ts';
 
 export default () => {
   return (
@@ -203,13 +162,9 @@ export default () => {
 
 ## 更多查询条件
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema3';
+import schema from '@/components/schema/form-search/schema3.ts';
 
 export default () => {
   return (
@@ -226,13 +181,9 @@ export default () => {
 
 ## 默认展开更多查询条件
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema3';
+import schema from '@/components/schema/form-search/schema3.ts';
 
 export default () => {
   return (
@@ -250,13 +201,9 @@ export default () => {
 
 ## 使用垂直布局
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema3';
+import schema from '@/components/schema/form-search/schema3.ts';
 
 export default () => {
   return (
@@ -277,13 +224,9 @@ export default () => {
 
 ## 使用 2 列布局
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema3';
+import schema from '@/components/schema/form-search/schema3.ts';
 
 export default () => {
   return (
@@ -300,13 +243,9 @@ export default () => {
 
 ## 使用异步的 options
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import * as React from 'react';
+```tsx | react
 import { Search } from 'lyr-component';
-import schema from './schema/form-search/schema4';
+import schema from '@/components/schema/form-search/schema4.ts';
 
 export default () => {
   return (
@@ -319,7 +258,3 @@ export default () => {
   );
 };
 ```
-
-## 基于 Form 扩展 Api
-
-<!-- <API src="../../src/search/index.tsx" hideTitle></API> -->

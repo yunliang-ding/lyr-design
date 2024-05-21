@@ -1,15 +1,8 @@
----
-order: 4.2
-title: CreateDrawer 抽屉提交表单
-toc: menu
----
-
 ## 基本使用
 
-```tsx
-import React from 'react';
+```tsx | react
 import { Button, CreateDrawer } from 'lyr-component';
-import schema from './schema/form-submit/schema';
+import schema from '@/components/schema/form-submit/schema.ts';
 
 export default (props) => {
   return (
@@ -33,11 +26,10 @@ export default (props) => {
 
 ## 手动关闭和阻止关闭
 
-```tsx
-import React from 'react';
+```tsx | react
 import { Button, CreateDrawer } from 'lyr-component';
 import { Message } from '@arco-design/web-react';
-import schema from './schema/form-submit/schema';
+import schema from '@/components/schema/form-submit/schema.ts';
 
 export default (props) => {
   return (
@@ -64,7 +56,7 @@ export default (props) => {
                 await new Promise((res) => setTimeout(res, 1000));
                 console.log(value);
                 Message.error('接口异常');
-                return Promise.reject(); // 阻止关闭
+                return Promise.reject();
               },
             },
           ],
@@ -78,10 +70,9 @@ export default (props) => {
 };
 ```
 
-## CreateDrawer 自定义渲染
+## 自定义渲染
 
-```tsx
-import React from 'react';
+```tsx | react
 import { Button, CreateDrawer } from 'lyr-component';
 import { Message } from '@arco-design/web-react';
 
@@ -111,29 +102,29 @@ export default (props) => {
 
 ## 自定义渲染底部按钮
 
-```tsx
-import React from 'react';
+```tsx | react
 import { CreateDrawer, Button } from 'lyr-component';
-import schema from './schema/form-submit/schema';
 import { Space } from '@arco-design/web-react';
+import schema from '@/components/schema/form-submit/schema.ts';
+
+const drawer = CreateDrawer({
+  title: '新增用户',
+  schema,
+  containId: 'footer-render-drawer',
+});
 
 export default (props) => {
   return (
     <Button
-      type="primary"
       onClick={() => {
-        CreateDrawer({
-          title: '新增用户',
-          schema,
-          containId: 'footer-render-drawer',
-        }).open({
+        drawer.open({
           footerRender: (form) => {
             return (
               <Space>
                 <a>这个是一个描述信息</a>
                 <Button
                   onClick={() => {
-                    CreateDrawer.close('footer-render-drawer');
+                    drawer.close();
                   }}
                 >
                   取消
@@ -143,7 +134,7 @@ export default (props) => {
                   onClick={async () => {
                     const data = await form.submit();
                     alert(JSON.stringify(data));
-                    CreateDrawer.close('footer-render-drawer'); // 关闭
+                    drawer.close();
                   }}
                 >
                   提交
@@ -159,7 +150,3 @@ export default (props) => {
   );
 };
 ```
-
-## CreateDrawer 扩展属性
-
-<API src="../../src/form-submit/drawer-form/index.tsx" hideTitle></API>

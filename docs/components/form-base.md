@@ -1,18 +1,8 @@
----
-order: 2.1
-title: Form 基本用法
-toc: menu
----
-
 ## 使用数据模型渲染
 
-```tsx
-/**
- * title: 默认采用垂直布局，使用水平布局设置layout为horizontal
- */
-import React, { useState } from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
-import schema from './schema/form-base/schema';
+import schema from '@/components/schema/form-base/schema.ts';
 
 export default () => {
   return (
@@ -29,10 +19,10 @@ export default () => {
 
 ## 使用 column 等份布局
 
-```tsx
-import React, { useState } from 'react';
+```tsx | react
+import { useState } from 'react';
 import { Form } from 'lyr-component';
-import schema from './schema/form-base/schema';
+import schema from '@/components/schema/form-base/schema.ts';
 import { Select } from '@arco-design/web-react';
 
 export default () => {
@@ -64,10 +54,9 @@ export default () => {
 
 ## 使用 BlockQuote 平级划分区块
 
-```tsx
-import React from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
-import schema from './schema/form-base/schema1';
+import schema from '@/components/schema/form-base/schema1.ts';
 
 export default () => {
   return (
@@ -84,15 +73,11 @@ export default () => {
 
 ## 使用 FieldSet 父子级划分区块
 
-```tsx
-/**
- * background: '#f6f7f9'
- * title: 通过FieldSet组件可以支持区块划分，在每个独立的区块中仍然可以使用灵活布局，多列布局。
- * desc: 仅布局作用，不需要设置name
- */
-import React from 'react';
-import { Button, Form } from 'lyr-component';
-import schema from './schema/form-base/schema2';
+> 通过FieldSet组件可以支持区块划分，在每个独立的区块中仍然可以使用灵活布局，多列布局
+
+```tsx | react
+import { Form } from 'lyr-component';
+import schema from '@/components/schema/form-base/schema2.tsx';
 
 export default () => {
   const [form] = Form.useForm();
@@ -131,16 +116,6 @@ export default () => {
           input3: '2323',
         }}
       />
-      <br />
-      <br />
-      <Button
-        type="primary"
-        onClick={() => {
-          alert(JSON.stringify(form.getValues()));
-        }}
-      >
-        提交
-      </Button>
     </div>
   );
 };
@@ -148,21 +123,16 @@ export default () => {
 
 ## 使用 disabled、readOnly
 
-```tsx
-/**
- * title: 说明
- * desc: 我们将表单的disabled属性穿透到每一个字段中，指定了readOnly属性的表单则会渲染只读组件，即我们在每个小组件中控制了2中模式，详情和编辑。具体使用参看高级用法（自定义组件）
- */
-import React from 'react';
+```tsx | react
 import { Form, Button } from 'lyr-component';
-import schema from './schema/form-base/schema';
 import { Switch } from '@arco-design/web-react';
+import schema from '@/components/schema/form-base/schema.ts';
 
 export default () => {
   const [disabled, setDisabled] = React.useState(false);
   const [readOnly, setReadOnly] = React.useState(false);
   return (
-    <>
+    <div>
       <Switch
         checkedText="disabled"
         uncheckedText="disabled"
@@ -220,17 +190,16 @@ export default () => {
           ],
         }}
       />
-    </>
+    </div>
   );
 };
 ```
 
 ## 使用 span 灵活布局
 
-```tsx
-import React, { useState } from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
-import schema from './schema/form-base/schema3';
+import schema from '@/components/schema/form-base/schema3.ts';
 
 export default () => {
   return <Form schema={schema} column={3} />;
@@ -238,9 +207,7 @@ export default () => {
 ```
 
 ## 复选框扩展支持全选
-
-```tsx
-import React from 'react';
+```tsx | react
 import { Form } from 'lyr-component';
 
 export default () => {

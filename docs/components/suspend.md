@@ -1,13 +1,6 @@
----
-order: 22
-title: Suspend 悬浮容器
-toc: menu
----
-
 ## 基本使用
 
-```tsx
-import React from 'react';
+```tsx | react
 import { Space } from '@arco-design/web-react';
 import { Suspend, Button } from 'lyr-component';
 
@@ -51,7 +44,3 @@ export default () => {
   );
 };
 ```
-
-## Api
-
-<API src="../../src/suspend/type.tsx" hideTitle></API>

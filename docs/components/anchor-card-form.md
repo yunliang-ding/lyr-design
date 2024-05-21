@@ -1,16 +1,6 @@
----
-order: 4.3
-title: AnchorCardForm 电梯表单
-toc: menu
----
-
 ## 基本使用
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { AnchorCardForm, Button } from 'lyr-component';
 
 export default () => {
@@ -19,8 +9,8 @@ export default () => {
   };
   return (
     <AnchorCardForm
-      fixHeight={256} // 偏移量
-      height={460} // 容器高度
+      fixHeight={256}
+      height={460}
       defaultActivityKey="baseInfo"
       formProps={{
         title: '我是电梯表单',
@@ -31,12 +21,12 @@ export default () => {
             label: '基础表单',
             props: {
               column: 2,
-              subTitle: '这个是一个描述信息...',
+              subTitle: '一个描述信息...',
               extra: [
-                <Button type="outline" key="operation">
+                <Button type="outline" key="operation" size="small">
                   操作区域
                 </Button>,
-                <Button type="outline" key="more">
+                <Button type="outline" key="more" size="small">
                   更多操作
                 </Button>,
               ],
@@ -155,7 +145,3 @@ export default () => {
   );
 };
 ```
-
-## API
-
-<API src="../../src/form-submit/anchor-card-form/index.tsx" hideTitle></API>

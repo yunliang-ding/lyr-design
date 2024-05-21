@@ -1,22 +1,8 @@
----
-order: 15
-title: AnchorCard 锚点卡片
-toc: menu
----
-
-<Alert>
-
-- 左侧面板支持点击滑动定位到指定的卡片
-
-</Alert>
+> 左侧面板支持点击滑动定位到指定的卡片
 
 ## 基本使用
 
-```tsx
-/**
- * background: '#f6f7f9'
- */
-import React from 'react';
+```tsx | react
 import { AnchorCard } from 'lyr-component';
 
 const list = [
@@ -59,7 +45,3 @@ export default () => {
   );
 };
 ```
-
-## API
-
-<API src="../../src/anchor-card/index.tsx" hideTitle></API>

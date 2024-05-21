@@ -1,6 +1,6 @@
 ## 设置加载防止重复提交
 
-```tsx
+```tsx | react
 import { Button } from 'lyr-component';
 
 export default () => {
@@ -17,7 +17,7 @@ export default () => {
 
 ## 设置二次确认提示
 
-```tsx
+```tsx | react
 import { Message, Switch } from '@arco-design/web-react';
 import { Button } from 'lyr-component';
 
@@ -60,7 +60,7 @@ export default () => {
 
 ## 设置二次确认提示前置校验
 
-```tsx
+```tsx | react
 import { Message } from '@arco-design/web-react';
 import { Button, Form } from 'lyr-component';
 
@@ -80,7 +80,7 @@ export default () => {
         form={form}
         schema={[
           {
-            type: 'Input',
+            widget: 'Input',
             required: true,
             name: 'username',
             label: '用户名称',
@@ -97,7 +97,7 @@ export default () => {
           {
             title: '提示下',
             content: '是否确认发布?',
-          } as any
+          }
         }
         onClick={submit}
       >
@@ -110,10 +110,10 @@ export default () => {
 
 ## 和弹出层整合
 
-```tsx
+```tsx | react
 import { Message, Space } from '@arco-design/web-react';
 import { Button, Form } from 'lyr-component';
-import schema from './schema/form-submit/schema';
+import schema from '@/components/schema/form-submit/schema.ts';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms, true));
 
@@ -159,7 +159,7 @@ export default () => {
 
 ## 与 Tooltip 整合
 
-```tsx
+```tsx | react
 import { Button } from 'lyr-component';
 import { Space } from '@arco-design/web-react';
 
@@ -187,7 +187,7 @@ export default () => {
 
 ## 配置权限体系
 
-```tsx
+```tsx | react
 import { Button } from 'lyr-component';
 import { Tag } from '@arco-design/web-react';
 

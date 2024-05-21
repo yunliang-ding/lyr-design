@@ -1,35 +1,15 @@
----
-order: 25
-title: AppLayout 应用布局
-toc: menu
----
-
-<Alert>
-
-- 中后台应用外层壳子布局解决方法
-
-</Alert>
-
 ## 基本使用
 
-```tsx
-import React from 'react';
+> 中后台应用外层壳子布局解决方法
+
+```tsx | react
 import { AppLayout, Button } from 'lyr-component';
 import { Space, Avatar, Input, Dropdown, Menu } from '@arco-design/web-react';
 import { IconUser, IconMoon, IconSun } from '@arco-design/web-react/icon';
-import menus from './schema/app-layout/schema';
 import { generate, getRgbStr } from '@arco-design/color';
-import './index.less';
+import menus from '@/components/schema/app-layout/schema.tsx';
 
 export default () => {
-  // 接入项目的时候，使用 AppLayout 内置的 listenHashChange 可监听 hash
-  // useEffect(() => {
-  //   const removeListener = layoutRef.current.listenHashChange(({ currentBreadcrumb }) => {
-  //     /** 设置当前路由的默认面包屑 */
-  //     breadcrumbDispatch.update(currentBreadcrumb);
-  //   });
-  //   return removeListener;
-  // }, []);
   const [pathname, setPathName] = React.useState('/workbench/my');
   const [compact, setCompact] = React.useState(true);
   const [dark, setDark] = React.useState(false);
@@ -49,7 +29,6 @@ export default () => {
   });
   return (
     <AppLayout
-      // layoutRef={layoutRef}
       waterMarkProps={{
         content: 'arco-water-mark',
         zIndex: 10,
@@ -68,11 +47,9 @@ export default () => {
       menu={{
         items: menus,
         onClick: ({ path, currentBreadcrumb }) => {
-          // location.hash = path // 接入项目的时候，只需要这行代码，改变 hash 即可
           setPathName(path);
           setPageHeaderProps({
             ...currentBreadcrumb,
-            // 扩展操作按钮
             extra: <Button type="primary">添加</Button>,
           });
         },
@@ -119,6 +96,23 @@ export default () => {
 };
 ```
 
-## API
+> 接入项目的时候，使用 AppLayout 内置的 listenHashChange 可监听 hash
 
-<API src="../../src/app-layout/index.tsx" hideTitle></API>
+```tsx
+useEffect(() => {
+  const removeListener = layoutRef.current.listenHashChange(
+    ({ currentBreadcrumb }) => {
+      /** 设置当前路由的默认面包屑 */
+      breadcrumbDispatch.update(currentBreadcrumb);
+    },
+  );
+  return removeListener;
+}, []);
+
+menu={{
+  items: menus,
+  onClick: ({ path, currentBreadcrumb }) => {
+    location.hash = path // 接入项目的时候，只需要这行代码，改变 hash 即可
+  },
+}}
+```
