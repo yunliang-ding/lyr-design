@@ -2,7 +2,7 @@
 
 ## 基本使用
 
-```tsx | react
+```tsx | react | var(--color-fill-2)
 import { AnchorCard } from 'lyr-component';
 
 const list = [
@@ -35,13 +35,6 @@ const list = [
 ];
 
 export default () => {
-  return (
-    <AnchorCard
-      list={list}
-      fixHeight={104}
-      fixedTop={104}
-      defaultActivityKey="基本信息"
-    />
-  );
+  return <AnchorCard height={600} list={list} defaultActivityKey="基本信息" />;
 };
 ```

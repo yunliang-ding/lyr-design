@@ -9,7 +9,6 @@ export default () => {
   };
   return (
     <AnchorCardForm
-      fixHeight={256}
       height={460}
       defaultActivityKey="baseInfo"
       formProps={{

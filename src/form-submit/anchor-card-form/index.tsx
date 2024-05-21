@@ -14,7 +14,7 @@ interface AnchorCardFormProps extends Omit<AnchorCardProps, 'tabs'> {
   /** 外层容器名 */
   className?: string;
   /** 容器高度 */
-  height?: number;
+  height: number;
 }
 
 export default ({
@@ -42,6 +42,8 @@ export default ({
   return (
     <div className="anchor-card-form">
       <AnchorCard
+        height={height + 100}
+        scrollElement=".arco-card-body"
         list={schema
           .filter((item) => item.visible?.(formProps.initialValues) !== false)
           .map((item: any) => {
@@ -50,9 +52,6 @@ export default ({
               title: item.label,
             };
           })}
-        getContainer={() =>
-          document.querySelector(`.${className} .arco-card-body`)
-        }
         {...rest}
       >
         <CardForm {...formProps} cardProps={defaultCardProps} />

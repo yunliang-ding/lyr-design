@@ -1,6 +1,6 @@
 import { Card, CardProps, Grid } from '@arco-design/web-react';
-import { useState, ReactNode, useEffect } from 'react';
-import { getElementTop, getLinkTabs } from './util';
+import { useState, ReactNode, useRef, useEffect } from 'react';
+import { getLinkTabs } from './util';
 import './index.css';
 
 export interface AnchorCardProps {
@@ -14,24 +14,20 @@ export interface AnchorCardProps {
     /** 卡片属性  */
     cardProps?: CardProps;
   }[];
-  /** 设置挂载Dom容器 */
-  getContainer?: () => HTMLElement;
+  /** 容器的高度 */
+  height: number;
   /** 默认选中 */
   defaultActivityKey?: string;
-  /** 设置固定高度 */
-  fixHeight?: number;
-  /** 固定高度 */
-  fixedTop?: number;
   children?: ReactNode;
+  scrollElement?: string;
 }
 
 export default ({
   list,
-  getContainer,
+  height = 500,
   defaultActivityKey,
-  fixHeight = 24,
-  fixedTop = 0,
   children = null,
+  scrollElement = '.anchor-card-right',
 }: AnchorCardProps) => {
   let ticking = false;
   const tabs = list.map((item) => {
@@ -41,6 +37,7 @@ export default ({
     };
   });
   const [activeKey, setActiveKey] = useState(defaultActivityKey);
+  const wrapperRef: any = useRef({});
   // 监听滚动区域
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, true);
@@ -60,7 +57,7 @@ export default ({
         }
         const linkTabs = getLinkTabs(tabs);
         linkTabs.forEach((item) => {
-          if (Number(elementScrollTop) + Number(fixHeight) >= item.offsetTop) {
+          if (Number(elementScrollTop) >= item.offsetTop) {
             setActiveKey(item.key);
           }
         });
@@ -68,26 +65,25 @@ export default ({
       });
     }
   };
-  const onAnchorClick = (key) => {
-    const el = document.querySelector(`#${key}`);
+  const onAnchorClick = (key: string) => {
+    const el: any = document.querySelector(`#${key}`);
     if (el) {
       setActiveKey(key);
-      const dom = getContainer?.() || document.documentElement;
-      dom.scrollTo({
-        top: getElementTop(el) - fixHeight,
+      console.log(wrapperRef.current.querySelector(scrollElement), el.offsetTop)
+      wrapperRef.current.querySelector(scrollElement).scrollTo({
+        top: el.offsetTop,
         behavior: 'smooth',
       });
     }
   };
   // 左侧锚点模块的高度
   return (
-    <Grid.Row className="anchor-card-content">
-      <Grid.Col
-        span={6}
-        flex="160px"
-        className="anchor-card-left"
-        style={{ top: fixedTop }}
-      >
+    <div
+      className="anchor-card-content"
+      style={{ height, overflow: 'auto' }}
+      ref={wrapperRef}
+    >
+      <Grid.Col span={6} flex="160px" className="anchor-card-left">
         {tabs.map((item) => {
           return (
             <div
@@ -123,6 +119,6 @@ export default ({
             );
           })}
       </Grid.Col>
-    </Grid.Row>
+    </div>
   );
 };

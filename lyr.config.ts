@@ -75,13 +75,9 @@ export default defineConfig({
       path: '/',
     },
     {
-      label: '组件',
+      label: '表单相关',
       path: '/components',
       children: [
-        {
-          label: 'Button 扩展',
-          path: '/components/button',
-        },
         {
           label: 'Form 基本用法',
           path: '/components/form-base',
@@ -91,60 +87,80 @@ export default defineConfig({
           path: '/components/form-advance',
         },
         {
-          label: 'CardForm 卡片表单',
+          label: 'CardForm 卡片',
           path: '/components/card-form',
+        },
+        {
+          label: 'CreateModal 弹出层',
+          path: '/components/create-modal',
+        },
+        {
+          label: 'CreateDrawer 抽屉',
+          path: '/components/create-drawer',
+        },
+        {
+          label: 'StepForm 分布操作',
+          path: '/components/step-form',
         },
         {
           label: 'AnchorCardForm 瞄点',
           path: '/components/anchor-card-form',
         },
+      ],
+    },
+    {
+      label: '数据展示',
+      path: '/display',
+      children: [
         {
-          label: 'CreateDrawer 抽屉表单',
-          path: '/components/create-drawer',
-        },
-        {
-          label: 'StepForm 分布表单',
-          path: '/components/step-form',
-        },
-        {
-          label: 'Search 查询表单',
-          path: '/components/search',
+          label: 'Search 查询',
+          path: '/display/search',
         },
         {
           label: 'Table 数据表格',
-          path: '/components/table',
-        },
-        {
-          label: 'TableList 编辑表格',
-          path: '/components/table-list',
+          path: '/display/table',
         },
         {
           label: 'AnchorCard 喵点卡片',
-          path: '/components/anchor-card',
-        },
-        {
-          label: 'OssFileUpload 上传',
-          path: '/components/oss-file-upload',
-        },
-        {
-          label: 'Suspend 悬浮容器',
-          path: '/components/suspend',
+          path: '/display/anchor-card',
         },
         {
           label: 'AppLayout 应用布局',
-          path: '/components/app-layout',
+          path: '/display/app-layout',
+        },
+      ],
+    },
+    {
+      label: '其他',
+      path: '/other',
+      children: [
+        {
+          label: 'Button 扩展',
+          path: '/other/button',
+        },
+        {
+          label: 'Suspend 悬浮容器',
+          path: '/other/suspend',
+        },
+        {
+          label: 'TableList 编辑表格',
+          path: '/other/table-list',
+        },
+        {
+          label: 'OssFileUpload 上传',
+          path: '/other/oss-file-upload',
         },
         {
           label: 'DragWrapper 拖拽',
-          path: '/components/drag-wrapper',
+          path: '/other/drag-wrapper',
         },
         {
           label: 'DragList 拖拽序列',
-          path: '/components/drag-list',
+          path: '/other/drag-list',
         },
         {
           label: 'DragForm 拖拽表单',
-          path: '/components/drag-form',
+          path: '/other/drag-form',
         },
       ],
     },

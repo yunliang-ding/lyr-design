@@ -50,11 +50,11 @@ yarn add lyr-component
 
 - 基于 arco.design 的 Form 表单进行扩展、增强，编写好配置即可完成复杂的渲染和交互逻辑
 
-- 扩展多种异步选择器的 `widgets`，可以满足大部分的查询场景用少量代码即可实现[ 点击查看](/components/form-advance#使用异步的-options)
+- 扩展多种异步选择器的 `widgets`，可以满足大部分的查询场景用少量代码即可实现
 
-- 内置组件，支持详情和编辑 2 种渲染模式可一键切换[ 点击查看](/components/form-base#使用-disabledreadonly)
+- 内置组件，支持详情和编辑 2 种渲染模式可一键切换
 
-- 通过支持自定义渲染、自定义组件的模式，可以 100%覆盖业务场景[ 点击查看](/components/form-advance#使用自定义渲染)
+- 通过支持自定义渲染、自定义组件的模式，可以 100%覆盖业务场景
 
 ## 扩展 widget
 
@@ -80,7 +80,7 @@ export default () => {
         'FieldSet 父子级区块',
         'OssFileUpload 文件上传',
       ].map((item) => {
-        return <Button key={item}>{item}</Button>;
+        return <Button size="small" key={item}>{item}</Button>;
       })}
     </div>
   );
@@ -127,8 +127,8 @@ interface GlobalConfigProps {
 
 ## 高级用法
 
-- [如何处理的简单联动？](/components/form-advance#使用-effect-实现联动交互)
-- [如何支持定制化渲染逻辑？](/components/form-advance#使用自定义渲染)
-- [如何编写自定义组件？](/components/form-advance#使用自定义组件采用-widgets-实现)
-- [我的下拉选择数据源是通过接口获取的怎么在模型中配置？](/components/form-advance#使用异步的-options)
-- [弹出一个提交表单，不希望通过 visible 控制怎么实现？](/components/create-modal)
+- 如何处理的简单联动
+- 如何支持定制化渲染逻辑
+- 如何编写自定义组件
+- 下拉选择数据源是通过接口获取的怎么在模型中配置
+- 弹出一个提交表单，不希望通过 visible 控制怎么实现
