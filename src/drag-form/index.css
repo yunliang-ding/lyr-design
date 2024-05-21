@@ -1,6 +1,6 @@
 .dragContainer {
   position: relative;
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--color-fill-3);
   padding: 10px;
 }
 .arco-form-inline .dragContainer{
