@@ -2,7 +2,7 @@
 
 ## 基本使用
 
-```tsx | react | #f5f5f5
+```tsx | react | var(--color-fill-2)
 import { DragWrapper } from 'lyr-component';
 
 export default () => {
@@ -43,7 +43,7 @@ export default () => {
 
 ## 模块之间联动
 
-```tsx | react | #f5f5f5
+```tsx | react | var(--color-fill-2)
 import { DragWrapper } from 'lyr-component';
 
 export default () => {

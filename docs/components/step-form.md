@@ -1,6 +1,6 @@
 ## 基本使用
 
-```tsx | react | #f5f5f5
+```tsx | react | var(--color-fill-2)
 import { StepForm, Form } from 'lyr-component';
 import { Radio } from '@arco-design/web-react';
 

@@ -2,7 +2,7 @@
 
 > 中后台应用外层壳子布局解决方法
 
-```tsx | react | #f5f5f5
+```tsx | react | var(--color-fill-2)
 import { AppLayout, Button } from 'lyr-component';
 import { Space, Avatar, Input, Dropdown, Menu } from '@arco-design/web-react';
 import { IconUser, IconMoon, IconSun } from '@arco-design/web-react/icon';

@@ -2,7 +2,7 @@
 
 ## 基本使用
 
-```tsx | react | #f5f5f5
+```tsx | react | var(--color-fill-2)
 import { DragList } from 'lyr-component';
 
 export default () => {
