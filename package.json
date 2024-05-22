@@ -39,7 +39,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "lyr-extra": "0.0.6",
-    "lyr-docs": "0.0.20",
+    "lyr-docs": "0.0.22",
     "typescript": "5.3.2",
     "@arco-design/web-react": "2.61.1",
     "@arco-design/color": "0.4.0",
