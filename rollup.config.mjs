@@ -5,6 +5,9 @@ import typescript from "@rollup/plugin-typescript";
 import less from "rollup-plugin-less";
 import external from "rollup-plugin-peer-deps-external";
 import { terser } from "rollup-plugin-terser";
+import replace from 'rollup-plugin-replace'
+
+const env = process.env.NODE_ENV
 
 export default defineConfig({
   input: "./src/index.ts",
@@ -32,6 +35,9 @@ export default defineConfig({
     },
   ],
   plugins: [
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(env)
+    }),
     resolve(),
     external(),
     commonjs(),
