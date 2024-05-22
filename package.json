@@ -2,7 +2,7 @@
   "name": "lyr-component",
   "description": "中后台开发提效方案",
   "author": "yunliang-ding",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "start": "lyr-docs dev",
     "build": "rollup -c",
@@ -39,7 +39,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "lyr-extra": "0.0.6",
-    "lyr-docs": "0.0.22",
+    "lyr-docs": "0.0.26",
     "typescript": "5.3.2",
     "@arco-design/web-react": "2.61.1",
     "@arco-design/color": "0.4.0",
