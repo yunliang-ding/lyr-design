@@ -22,6 +22,7 @@ export default defineConfig({
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js',
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js',
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-extra.min.js',
   ],
   buildScript: [
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js',
@@ -39,6 +40,7 @@ export default defineConfig({
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js',
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js',
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-extra.min.js',
   ],
   serverPath: '/apis',
   docsRequire: {
@@ -47,6 +49,32 @@ export default defineConfig({
     ArcoColor: '@arco-design/color',
     lyrHooks: 'lyr-hooks',
   },
+  navs: [
+    {
+      title: 'lyr-extra',
+      path: 'https://dev-ops.yunliang.cloud/website/lyr-extra',
+    },
+    {
+      title: 'lyr-hooks',
+      path: 'https://dev-ops.yunliang.cloud/website/lyr-hooks',
+    },
+    {
+      title: 'lyr-low-code',
+      path: 'https://dev-ops.yunliang.cloud/website/lyr-low-code',
+    },
+    {
+      title: 'lyr-code-editor',
+      path: 'https://dev-ops.yunliang.cloud/website/lyr-code-editor',
+    },
+    {
+      title: 'lyr-cli',
+      path: 'https://dev-ops.yunliang.cloud/website/lyr-cli',
+    },
+    {
+      title: 'lyr-docs',
+      path: 'https://dev-ops.yunliang.cloud/website/lyr-docs',
+    },
+  ],
   menus: [
     {
       label: '介绍',
