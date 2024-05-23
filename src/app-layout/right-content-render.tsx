@@ -68,37 +68,39 @@ export default ({
             </div>
           </Tooltip>
         )}
-        {compact ? (
-          <Tooltip content="切换布局" position="bottom">
-            <div
-              className="app-layout-header-right-dark-wrapper"
-              onClick={() => {
-                onCompactChange(false);
-              }}
-            >
-              <IconInteraction style={{ fontSize: 14 }} strokeWidth={4} />
-            </div>
-          </Tooltip>
-        ) : (
-          <Tooltip content="切换布局" position="bottom">
-            <div
-              className="app-layout-header-right-dark-wrapper"
-              onClick={() => {
-                onCompactChange(true);
-              }}
-            >
-              <IconLayout style={{ fontSize: 14 }} strokeWidth={4} />
-            </div>
-          </Tooltip>
+        {onCompactChange &&
+          (compact ? (
+            <Tooltip content="切换布局1" position="bottom">
+              <div
+                className="app-layout-header-right-dark-wrapper"
+                onClick={() => {
+                  onCompactChange(false);
+                }}
+              >
+                <IconInteraction style={{ fontSize: 14 }} strokeWidth={4} />
+              </div>
+            </Tooltip>
+          ) : (
+            <Tooltip content="切换布局" position="bottom">
+              <div
+                className="app-layout-header-right-dark-wrapper"
+                onClick={() => {
+                  onCompactChange(true);
+                }}
+              >
+                <IconLayout style={{ fontSize: 14 }} strokeWidth={4} />
+              </div>
+            </Tooltip>
+          ))}
+        {onThemeColorChange && (
+          <ColorPicker
+            size="mini"
+            defaultValue={themeColor}
+            onChange={(newColor) => {
+              onThemeColorChange(newColor);
+            }}
+          />
         )}
-
-        <ColorPicker
-          size="mini"
-          defaultValue={themeColor}
-          onChange={(newColor) => {
-            onThemeColorChange(newColor);
-          }}
-        />
         <Dropdown position="bottom" droplist={droplist}>
           <a
             style={{

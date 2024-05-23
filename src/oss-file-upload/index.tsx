@@ -26,6 +26,7 @@ export default ({
   value = [],
   readOnly = false,
   onChange,
+  readOnlyEmptyValueNode = "-",
   ...rest
 }: OssFileUploadProps) => {
   // 加载中

@@ -1,13 +1,11 @@
 import { Select, SelectProps } from '@arco-design/web-react';
 import { ExtendInputProps } from '..';
-import SelectSort from './select-sort';
 
 const WidgetSelect = ({
   readOnlyEmptyValueNode = '-',
   fieldNames = { value: 'value', label: 'label' },
   readOnly,
   options = [],
-  sort = false,
   ...props
 }: SelectProps & ExtendInputProps) => {
   if (readOnly) {
@@ -31,11 +29,7 @@ const WidgetSelect = ({
     value: item[fieldNames.value],
     ...item,
   }));
-  return sort ? (
-    <SelectSort options={newOptions} {...props} />
-  ) : (
-    <Select options={newOptions} {...props} />
-  );
+  return <Select options={newOptions} {...props} />
 };
 
 WidgetSelect.displayName = 'Select';

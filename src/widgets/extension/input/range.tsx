@@ -27,7 +27,7 @@ export default ({
       }
     >
       <Component
-        precision={mode === 'InputNumber' && 2}
+        precision={mode === 'InputNumber' ? 2 : undefined}
         placeholder="请输入"
         {...props}
         {...startProps}
@@ -43,7 +43,7 @@ export default ({
       />
       <span>-</span>
       <Component
-        precision={mode === 'InputNumber' && 2}
+        precision={mode === 'InputNumber' ? 2 : undefined}
         placeholder="请输入"
         {...props}
         {...endProps}

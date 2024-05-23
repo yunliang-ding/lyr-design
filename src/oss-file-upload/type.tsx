@@ -21,4 +21,5 @@ export interface OssFileUploadProps extends UploadProps {
   maxCount?: number;
   name?: any;
   form?: any;
+  readOnlyEmptyValueNode?: any;
 }
