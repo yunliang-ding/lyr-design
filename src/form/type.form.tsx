@@ -1,10 +1,10 @@
 import { FormProps } from '@arco-design/web-react';
-import { MutableRefObject, ReactNode } from 'react';
+import { MutableRefObject, ReactElement, ReactNode } from 'react';
 import { CoreFormInstance } from './type.instance';
 import { SchemaProps } from './type.item';
 
 /** FormProps */
-export interface CoreFormProps extends Omit<FormProps, 'fields' | 'form'> {
+export interface CoreFormProps extends Omit<FormProps, 'form'> {
   /**
    * 表单的数据模型
    * @default          []
@@ -13,7 +13,9 @@ export interface CoreFormProps extends Omit<FormProps, 'fields' | 'form'> {
   /**
    * 注入自定义组件
    */
-  widgets?: any;
+  widgets?: {
+    [key: string]: string | ((props: any) => ReactElement);
+  };
   /**
    * 是否只读
    * @default           false
@@ -33,7 +35,10 @@ export interface CoreFormProps extends Omit<FormProps, 'fields' | 'form'> {
    * 布局样式设置
    * @default          {colGap: 20, rowGap: 0}
    */
-  gridStyle?: any;
+  gridStyle?: {
+    colGap?: number;
+    rowGap?: number;
+  };
   /**
    * 最外层类名
    */

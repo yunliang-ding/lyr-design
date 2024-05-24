@@ -6,11 +6,6 @@ import {
 } from '@arco-design/web-react';
 import { DrawerFormProps, ModalFormProps } from '..';
 
-type Comfirm = PopconfirmProps & {
-  type?: 'pop' | 'alert';
-  content?: React.ReactNode;
-};
-
 export interface BtnProps extends ButtonProps {
   [key: string]: any;
 }
@@ -24,7 +19,10 @@ export interface ProBtnProps extends Omit<ButtonProps, 'onClick'> {
   /**
    * 二次确认的配置
    */
-  confirm?: Comfirm;
+  confirm?: PopconfirmProps & {
+    type?: 'pop' | 'alert';
+    content?: React.ReactNode;
+  };
   /**
    * 配置权限
    */

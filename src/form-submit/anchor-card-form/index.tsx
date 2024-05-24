@@ -8,7 +8,7 @@ import Form from '@/form';
 import { AnchorCardProps } from '../../anchor-card';
 import './index.less';
 
-interface AnchorCardFormProps extends Omit<AnchorCardProps, 'tabs'> {
+interface AnchorCardFormProps extends AnchorCardProps {
   /** form 属性 */
   formProps: CardFormProps;
   /** 外层容器名 */

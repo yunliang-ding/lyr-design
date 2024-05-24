@@ -30,7 +30,6 @@ export default defineConfig({
         'react/jsx-runtime': 'jsxRuntime',
         '@arco-design/web-react': 'arco',
         '@arco-design/web-react/icon': 'arcoicon',
-        'react/jsx-runtime': 'jsxRuntime',
       },
     },
   ],

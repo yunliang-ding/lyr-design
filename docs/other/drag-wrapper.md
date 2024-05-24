@@ -114,3 +114,21 @@ export default () => {
   );
 };
 ```
+
+## API
+
+```ts
+export interface DragWrapperProps {
+  /** 配置项 */
+  items?: {
+    key: number | string;
+    content: ReactNode;
+  }[];
+  /** 容器样式 */
+  style?: CSSProperties;
+  /** 改变的钩子 */
+  onChange?: Function;
+  /** 是否允许接受外部组件 */
+  accept?: boolean;
+}
+```

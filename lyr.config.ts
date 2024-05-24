@@ -112,16 +112,16 @@ export default defineConfig({
           label: 'AnchorCardForm 瞄点',
           path: '/components/anchor-card-form',
         },
+        {
+          label: 'Search 查询',
+          path: '/components/search',
+        },
       ],
     },
     {
       label: '数据展示',
       path: '/display',
       children: [
-        {
-          label: 'Search 查询',
-          path: '/display/search',
-        },
         {
           label: 'Table 数据表格',
           path: '/display/table',
