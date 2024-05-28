@@ -269,7 +269,7 @@ export default () => {
 
 ## 使用 searchSchema 配置查询表单
 
-```tsx | react
+```tsx | react | var(--color-fill-2)
 import { Table } from 'lyr-component';
 import tableSchema from '@/components/schema/table/schema.ts';
 import searchSchema from '@/components/schema/table/search.schema.ts';
@@ -291,7 +291,7 @@ export default () => {
 
 > 需要清空缓存可以在组件卸载的钩子去决定是否需要清空
 
-```tsx | react
+```tsx | react | var(--color-fill-2)
 import { Table } from 'lyr-component';
 import tableSchema from '@/components/schema/table/schema.ts';
 import searchSchema from '@/components/schema/table/search.schema.ts';
@@ -312,7 +312,7 @@ export default () => {
 
 ## 配置化 CRUD
 
-```tsx | react
+```tsx | react | var(--color-fill-2)
 import { Table } from 'lyr-component';
 import tableSchema from '@/components/schema/table/schema.ts';
 import searchSchema from '@/components/schema/table/search.schema.ts';

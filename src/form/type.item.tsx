@@ -149,6 +149,3 @@ export interface ExtensionProps {
    */
   openOptionsCache?: boolean;
 }
-const Hello: React.FC<SchemaProps<{}>> = () => null;
-
-export default Hello;

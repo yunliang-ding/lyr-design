@@ -45,7 +45,3 @@ export interface TableColumnType extends TableColumnProps<any> {
   /** tooltipProps */
   tooltipProps?: TooltipProps;
 }
-
-const Hello: React.FC<TableColumnType> = () => null;
-
-export default Hello;

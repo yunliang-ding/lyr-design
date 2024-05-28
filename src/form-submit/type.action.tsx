@@ -56,6 +56,3 @@ export interface ActionProps {
   tooltip?: TooltipProps | ReactNode;
 }
 
-const Hello: React.FC<ActionProps> = () => null;
-
-export default Hello;

@@ -16,7 +16,3 @@ export interface TableInstance {
   /** 设置展开的行 */
   setExpandedRowKeys: Function;
 }
-
-const Hello: React.FC<TableInstance> = () => null;
-
-export default Hello;

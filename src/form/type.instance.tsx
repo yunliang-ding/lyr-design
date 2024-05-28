@@ -52,7 +52,3 @@ export interface CoreFormInstance {
   isFieldsValidating?: (nameList?: string[]) => boolean;
   setFields?: (fields?: any[]) => void;
 }
-
-const Hello: React.FC<CoreFormInstance> = () => null;
-
-export default Hello;

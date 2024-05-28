@@ -7,7 +7,3 @@ export interface PaginationConfig extends PaginationProps {
    */
   pageNum: number;
 }
-
-const Hello: React.FC<PaginationConfig> = () => null;
-
-export default Hello;
