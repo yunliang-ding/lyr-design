@@ -44,6 +44,7 @@
     "@arco-design/web-react": "2.61.1",
     "@arco-design/color": "0.4.0",
     "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2",
     "@types/lodash.mergewith": "4.6.9",
     "@types/lodash.debounce": "4.0.9",
     "@types/lodash.clonedeepwith": "4.5.9",

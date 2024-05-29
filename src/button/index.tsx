@@ -2,8 +2,8 @@ import { isValidElement, useState } from 'react';
 import { Button, Popconfirm, Modal, Tooltip } from '@arco-design/web-react';
 import { ProBtnProps } from './type';
 import { isEmpty, isObject } from '../util';
-import CreateModal from '@/create-modal';
-import CreateDrawer from '@/create-drawer';
+import CreateModal from '../create-modal';
+import CreateDrawer from '../create-drawer';
 // 私有变量只能 set、get
 export const authName = Symbol('');
 /**
