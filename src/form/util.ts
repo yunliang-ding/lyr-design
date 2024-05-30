@@ -82,6 +82,7 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
     defaultOpenAllowClear,
     defaultFillPlaceholder,
     defaultShowInputCount,
+    defaultShowSearch,
   } = getGlobalConfig();
   /** 开始扩展 */
   schema?.forEach((field: any) => {
@@ -142,15 +143,44 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
         field.props.placeholder = field.props.placeholder || '请选择'; // 默认提示
       }
     }
-    // 配置了showSearch的查询框默认开启模糊匹配
+    // 设置默认模糊查询
+    if (defaultShowSearch) {
+      if (
+        [
+          'Select',
+          'AsyncSelect',
+          'TreeSelect',
+          'AsyncTreeSelect',
+          'Cascader',
+          'AsyncCascader',
+        ].includes(field.widget) &&
+        field.props.showSearch === undefined
+      ) {
+        field.props.showSearch = true; // 开启
+      }
+    }
     if (
       ['Select', 'AsyncSelect'].includes(field.widget) &&
       field.props.showSearch &&
-      typeof field.props.filterOption === 'undefined'
+      field.props.filterOption === undefined
     ) {
-      field.props.filterOption = (inputValue: string, option) => {
-        // 不做大小写兼容
-        return option.props.children.includes(inputValue);
+      field.props.filterOption = (inputValue: string, option: any) => {
+        // 大小写 + trim
+        return String(option.props.children)
+          .toLowerCase()
+          .includes(String(inputValue).toLowerCase().trim());
+      };
+    }
+    if (
+      ['TreeSelect', 'AsyncTreeSelect'].includes(field.widget) &&
+      field.props.showSearch &&
+      field.props.filterTreeNode === undefined
+    ) {
+      field.props.filterTreeNode = (inputValue: string, treeNode: any) => {
+        // 大小写 + trim
+        return String(treeNode.props.title)
+          .toLowerCase()
+          .includes(String(inputValue).toLowerCase().trim());
       };
     }
     // 简化 BlockQuote 写法、不用写span和key

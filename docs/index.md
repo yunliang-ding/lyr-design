@@ -122,6 +122,8 @@ interface GlobalConfigProps {
   autoTrimInputSpaceOnBlur: boolean;
   /** 默认展示输入框的计数器 */
   defaultShowInputCount: boolean;
+  /** 默认开启下拉选模糊查询(支持大小写和trim) */
+  defaultShowSearch?: boolean;
 }
 ```
 
