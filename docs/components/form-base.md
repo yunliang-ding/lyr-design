@@ -56,13 +56,21 @@ export default () => {
 
 ```tsx | react
 import { Form } from 'lyr-component';
-import schema from '@/components/schema/form-base/schema1.ts';
+import schema from '@/components/schema/form-base/schema.ts';
 
 export default () => {
   return (
     <Form
       column={2}
-      schema={schema}
+      schema={[
+        {
+          widget: 'BlockQuote',
+          props: {
+            title: '区块划分',
+          },
+        },
+        ...schema,
+      ]}
       onValuesChange={(value, values) => {
         console.log('onValuesChange ->', value, values);
       }}
@@ -97,20 +105,15 @@ export default () => {
           checkGroup: [1],
           radioGroup: 1,
           selectMore: [2],
-          'input-sub': 'sub',
-          'inputNumber-sub': 12,
-          'date-sub': '2022-05-18',
           switch: true,
           rate: 2,
           slider: 36,
-          treeSelect: '0-0',
+          treeSelect: '0-0-1',
           cascader: ['zhejiang', 'hangzhou'],
-          datePicker: '2022-01-10',
-          rangePickerStart: '2022-02-16',
-          rangePickerEnd: '2022-03-01',
-          timePicker: '12:03:00',
-          timeRangeStart: '2022-01-17',
-          timeRangeEnd: '2022-01-19',
+          datePicker: '2021-05-18',
+          rangePicker: ['2022-03-18', '2022-04-18'],
+          timePicker: '15:08:23',
+          timeRange: ['15:08:23', '23:08:23'],
           input1: '12',
           input2: '1223',
           input3: '2323',
@@ -161,7 +164,7 @@ export default () => {
           rangeInputNumber: [12, 34],
           colorPicker: '#165dff',
           verificationCode: '999999',
-          rangeInput: ['react', 'core-form'],
+          rangeInput: ['lyr', 'component'],
           inputNumber: '50',
           textArea: '浙江省杭州市',
           select: 1,
@@ -174,13 +177,9 @@ export default () => {
           treeSelect: '0-0-1',
           cascader: ['zhejiang', 'hangzhou'],
           datePicker: '2021-05-18',
-          startDate1: '2022-03-18',
-          endDate1: '2022-04-18',
-          startDate: '2022-05-18',
-          endDate: '2022-06-18',
+          rangePicker: ['2022-03-18', '2022-04-18'],
           timePicker: '15:08:23',
-          startTime: '15:08:23',
-          endTime: '23:08:23',
+          timeRange: ['15:08:23', '23:08:23'],
           upload: [
             {
               uid: '1',
@@ -254,7 +253,6 @@ export default () => {
   );
 };
 ```
-
 
 # Form 类型扩展
 

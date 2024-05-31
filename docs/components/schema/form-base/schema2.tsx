@@ -1,4 +1,3 @@
-import React from 'react';
 import { SchemaProps, Button } from 'lyr-component';
 
 const schema: SchemaProps[] = [
@@ -115,21 +114,21 @@ const schema: SchemaProps[] = [
             treeData: [
               {
                 title: 'Node1',
-                value: '0-0',
+                key: '0-0',
                 children: [
                   {
                     title: 'Child Node1',
-                    value: '0-0-1',
+                    key: '0-0-1',
                   },
                   {
                     title: 'Child Node2',
-                    value: '0-0-2',
+                    key: '0-0-2',
                   },
                 ],
               },
               {
                 title: 'Node2',
-                value: '0-1',
+                key: '0-1',
               },
             ],
           },

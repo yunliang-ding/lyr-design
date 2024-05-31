@@ -94,9 +94,8 @@ export default () => {
 - Input 开启计数器，最大长度 `64`
 - 输入框 placeholder `请输入`，下拉框 placeholder `请选择`
 - 输入框、选择框开启 `allowClear`
+- 下拉选、下拉树选择，默认开启 `showSearch`
 - FormItem required: true 等于 rules:[{required: true, message: `${label}不能为空`}]
-- 下拉选配置了 showSearch 可实现模糊查询的功能不需要设置 filterOption
-- 对于时间日期选择器，会自动进行 moment 和 string 的转化
 
 ## 修改配置
 
@@ -104,11 +103,12 @@ export default () => {
 import { setGlobalConfig } from 'lyr-component';
 
 setGlobalConfig({
-  defaultInputMaxLength: 100,
+  defaultInputMaxLength: 64,
   defaultOpenAllowClear: true,
   defaultFillPlaceholder: true,
   defaultShowInputCount: true,
   autoTrimInputSpaceOnBlur: true,
+  defaultShowSearch: true,
 });
 
 interface GlobalConfigProps {
