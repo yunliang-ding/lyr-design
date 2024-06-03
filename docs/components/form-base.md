@@ -254,7 +254,7 @@ export default () => {
 };
 ```
 
-# Form 类型扩展
+## Form 类型扩展
 
 ```ts
 import { FormProps } from '@arco-design/web-react';
@@ -307,7 +307,7 @@ export interface CoreFormProps extends Omit<FormProps, 'form'> {
 }
 ```
 
-# Form.Item 类型扩展
+## Form.Item 类型扩展
 
 ```ts
 import { FormItemProps } from '@arco-design/web-react';
