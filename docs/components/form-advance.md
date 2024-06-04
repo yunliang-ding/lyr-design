@@ -550,7 +550,7 @@ const schema: SchemaProps<{
 ];
 ```
 
-## 使用自定义组件（定义 type 类型为 Function）（不推荐）
+## 定义 type 类型为 Function
 
 ```tsx | react
 import { Form, Button } from 'lyr-component';
@@ -603,7 +603,7 @@ export default () => {
 };
 ```
 
-## 使用自定义组件（采用 widgets 实现）
+## 使用自定义组件
 
 ```tsx | react
 import { Form, Button } from 'lyr-component';

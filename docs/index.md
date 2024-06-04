@@ -129,8 +129,8 @@ interface GlobalConfigProps {
 
 ## 高级用法
 
-- 如何处理的简单联动
-- 如何支持定制化渲染逻辑
-- 如何编写自定义组件
-- 下拉选择数据源是通过接口获取的怎么在模型中配置
-- 弹出一个提交表单，不希望通过 visible 控制怎么实现
+- [如何处理的简单联动](#/components/form-advance#使用effect实现联动交互)
+- [如何支持定制化渲染逻辑](#/components/form-advance#使用自定义渲染)
+- [如何编写自定义组件](#/components/form-advance#使用自定义组件)
+- [下拉选择数据源是通过接口获取的怎么在模型中配置](#/components/form-advance#使用异步的options)
+- [弹出一个提交表单，不希望通过 visible 控制怎么实现](#/components/create-modal)
