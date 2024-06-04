@@ -109,7 +109,7 @@ export default defineConfig({
           path: '/components/step-form',
         },
         {
-          label: 'AnchorCardForm 瞄点',
+          label: 'AnchorCardForm 锚点',
           path: '/components/anchor-card-form',
         },
         {
@@ -127,7 +127,7 @@ export default defineConfig({
           path: '/display/table',
         },
         {
-          label: 'AnchorCard 喵点卡片',
+          label: 'AnchorCard 锚点卡片',
           path: '/display/anchor-card',
         },
         {
