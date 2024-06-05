@@ -37,6 +37,7 @@ const schema: SchemaProps[] = [
       maxCount: 3, // 最多3条
       leastOne: true, // 至少一条
       column: 3, // 3列
+      children: [],
       grid: {
         rowGap: 0,
         colGap: 20,

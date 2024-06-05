@@ -28,70 +28,75 @@ export default () => {
     ],
   });
   return (
-    <AppLayout
-      waterMarkProps={{
-        content: 'arco-water-mark',
-        zIndex: 10,
-        fontStyle: {
-          color: dark ? 'rgba(255, 255, 255, .15)' : 'rgba(0, 0, 0, .15)',
-          fontSize: 12,
-        },
-      }}
-      compact={compact}
-      collapsed={collapsed}
-      onCollapse={setCollapsed}
-      dark={dark}
-      pathname={pathname}
-      pageHeaderProps={pageHeaderProps}
-      title="中后台通用模版"
-      menu={{
-        items: menus,
-        onClick: ({ path, currentBreadcrumb }) => {
-          setPathName(path);
-          setPageHeaderProps({
-            ...currentBreadcrumb,
-            extra: <Button type="primary">添加</Button>,
-          });
-        },
-      }}
-      footerRender={() => <div>这个是底部的说明</div>}
-      siderFooterRender={(collapsed) =>
-        collapsed ? null : <div>这个 sider 说明</div>
-      }
-      rightContentProps={{
-        extra: <h4>自定义渲染区域</h4>,
-        userName: '测试用户',
-        droplist: (
-          <Menu>
-            <Menu.Item key="logout" onClick={() => console.log('切换用户')}>
-              切换用户
-            </Menu.Item>
-          </Menu>
-        ),
-        avatarUrl:
-          'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/user-logo.png',
-        themeColor: '#165dff',
-        onThemeColorChange: (newColor) => {
-          const newList = generate(newColor, {
-            list: true,
-            dark,
-          });
-          newList.forEach((l, index) => {
-            const rgbStr = getRgbStr(l);
-            document.body.style.setProperty(`--arcoblue-${index + 1}`, rgbStr);
-          });
-        },
-        onDarkChange: (dark) => {
-          document.body.setAttribute('arco-theme', dark && 'dark');
-          setDark(dark);
-        },
-        onCompactChange: (compact) => {
-          setCompact(compact);
-        },
-      }}
-    >
-      内容区域
-    </AppLayout>
+    <div style={{ width: '100vw' }}>
+      <AppLayout
+        waterMarkProps={{
+          content: 'arco-water-mark',
+          zIndex: 10,
+          fontStyle: {
+            color: dark ? 'rgba(255, 255, 255, .15)' : 'rgba(0, 0, 0, .15)',
+            fontSize: 12,
+          },
+        }}
+        compact={compact}
+        collapsed={collapsed}
+        onCollapse={setCollapsed}
+        dark={dark}
+        pathname={pathname}
+        pageHeaderProps={pageHeaderProps}
+        title="中后台通用模版"
+        menu={{
+          items: menus,
+          onClick: ({ path, currentBreadcrumb }) => {
+            setPathName(path);
+            setPageHeaderProps({
+              ...currentBreadcrumb,
+              extra: <Button type="primary">添加</Button>,
+            });
+          },
+        }}
+        footerRender={() => <div>这个是底部的说明</div>}
+        siderFooterRender={(collapsed) =>
+          collapsed ? null : <div>这个 sider 说明</div>
+        }
+        rightContentProps={{
+          extra: <h4>自定义渲染区域</h4>,
+          userName: '测试用户',
+          droplist: (
+            <Menu>
+              <Menu.Item key="logout" onClick={() => console.log('切换用户')}>
+                切换用户
+              </Menu.Item>
+            </Menu>
+          ),
+          avatarUrl:
+            'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/user-logo.png',
+          themeColor: '#165dff',
+          onThemeColorChange: (newColor) => {
+            const newList = generate(newColor, {
+              list: true,
+              dark,
+            });
+            newList.forEach((l, index) => {
+              const rgbStr = getRgbStr(l);
+              document.body.style.setProperty(
+                `--arcoblue-${index + 1}`,
+                rgbStr,
+              );
+            });
+          },
+          onDarkChange: (dark) => {
+            document.body.setAttribute('arco-theme', dark && 'dark');
+            setDark(dark);
+          },
+          onCompactChange: (compact) => {
+            setCompact(compact);
+          },
+        }}
+      >
+        内容区域
+      </AppLayout>
+    </div>
   );
 };
 ```

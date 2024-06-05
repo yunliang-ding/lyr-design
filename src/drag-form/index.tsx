@@ -64,7 +64,7 @@ const loopChildren = (
       operation: !isWrap(item), // 控制子表单在该模式下不可操作
     };
     // TDDO 临时解决下在itemRender 中取不到最新的selectedKey问题
-    item.__proto__.selectedKey = selectedKey;
+    (window as any).__itemSelectKey__ = selectedKey
     item.itemRender = (vDom: ReactNode, option: any) => {
       if (option === undefined) {
         return null;
@@ -76,7 +76,7 @@ const loopChildren = (
           label={`${item.widget}-${field.key}`}
           virtual={item.virtual}
           mask={!isWrap(item)}
-          selected={field.key === item.__proto__.selectedKey}
+          selected={field.key === (window as any).__itemSelectKey__}
           onDelete={() => {
             items.splice(index, 1);
             setSelectedKey(undefined);
