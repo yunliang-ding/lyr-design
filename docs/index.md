@@ -15,13 +15,7 @@ yarn add @arco-design/web-react
 yarn add lyr-component
 ```
 
-### 样式
-
-```less
-@import '@arco-design/web-react/dist/css/arco.css';
-```
-
-## 采用 cdn 引入
+## umd 版本
 
 ```html
 <link
@@ -31,7 +25,7 @@ yarn add lyr-component
 <script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.js"></script>
 ```
 
-## 前提需要引入 cdn 前置依赖 到 window
+> 依赖 cdn
 
 ```html
 <!-- window.React -->
