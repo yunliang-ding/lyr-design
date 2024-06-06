@@ -52,7 +52,7 @@ yarn add lyr-component
 
 ## 扩展 widget
 
-```tsx | react
+```tsx | pureReact
 import { Button } from 'lyr-component';
 
 export default () => {
