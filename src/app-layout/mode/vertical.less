@@ -1,0 +1,96 @@
+.app-layout-vertical {
+  flex-direction: row;
+  &-left {
+    width: 208px;
+    height: 100%;
+    background-color: var(--color-menu-light-bg);
+    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+    position: relative;
+    z-index: 10;
+    transition: 0.3s;
+    &-logo {
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      height: 58px;
+      background-color: var(--color-menu-light-bg);
+      color: var(--color-neutral-10);
+      a {
+        display: flex;
+        align-items: center;
+        height: 80%;
+        gap: 10px;
+        h1 {
+          font-size: 16px;
+          font-weight: bold;
+          margin: 0;
+          white-space: nowrap;
+        }
+      }
+    }
+    &-menu {
+      height: calc(100% - 58px);
+      overflow: auto;
+      transition: 0.3s;
+      .arco-space-item {
+        font-weight: bold;
+      }
+    }
+  }
+  &-right {
+    width: calc(100% - 208px);
+    transition: 0.3s;
+    &-header {
+      height: 58px;
+      width: 100%;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--color-menu-light-bg);
+      color: var(--color-neutral-10);
+      box-shadow: 0px 2px 4px rgba(0, 21, 41, 0.08);
+      z-index: 9;
+      position: relative;
+    }
+    &-body {
+      width: 100%;
+      height: calc(100% - 58px);
+      background-color: var(--color-fill-2);
+      &-content {
+        width: 100%;
+        height: calc(100% - 44px);
+        overflow: auto;
+      }
+      &-footer {
+        height: 44px;
+        width: 100%;
+        box-shadow: 0px 0px 4px rgba(0, 21, 41, 0.08);
+        position: relative;
+        z-index: 7;
+        background-color: var(--color-menu-light-bg);
+        color: var(--color-neutral-10);
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+      }
+      .app-breadcrumb-title-no-tabs {
+        .app-breadcrumb-title {
+          height: 52px;
+          display: flex;
+          align-items: center;
+        }
+      }
+      .app-breadcrumb-title-hash-tabs {
+        .app-breadcrumb-title {
+          padding-top: 10px;
+        }
+      }
+      .arco-page-header-heading-extra {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+    }
+  }
+}

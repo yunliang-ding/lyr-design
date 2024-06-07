@@ -2,7 +2,6 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   position: relative;
   background-color: var(--color-menu-light-bg);
   div {
@@ -10,9 +9,6 @@
   }
   .arco-menu-inline .arco-icon {
     margin-right: 2px !important;
-  }
-  .app-layout-body-sider .arco-icon {
-    margin-right: 8px !important;
   }
   .arco-page-header-content {
     border-top: none;
@@ -23,7 +19,18 @@
   .arco-menu-horizontal .arco-menu-inner {
     padding: 14px 0;
   }
-  .app-layout-collapse-btn {
+  .arco-breadcrumb {
+    span {
+      font-weight: bold;
+    }
+  }
+  .arco-menu-inline-collapsed {
+    width: 58px;
+  }
+  .arco-page-header-heading-left {
+    margin: 0px;
+  }
+  &-collapse-btn {
     font-size: 15px;
     cursor: pointer;
     color: var(--color-neutral-10);
@@ -41,312 +48,30 @@
       transform: scale(1.1);
     }
   }
-  /** 模式一 */
-  &-left {
-    width: 208px;
-    height: 100%;
-    background-color: var(--color-menu-light-bg);
-    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
-    position: relative;
-    z-index: 10;
-    transition: 0.3s;
-    &-logo {
-      display: flex;
-      align-items: center;
-      padding: 0 24px;
-      height: 58px;
-      background-color: var(--color-menu-light-bg);
-      color: var(--color-neutral-10);
-      a {
-        display: flex;
-        align-items: center;
-        height: 80%;
-        gap: 10px;
-        h1 {
-          font-size: 16px;
-          font-weight: bold;
-          margin: 0;
-          white-space: nowrap;
-        }
-      }
-    }
-    &-menu {
-      height: calc(100% - 58px);
-      overflow: auto;
+  &-collapsed {
+    .app-layout-vertical-left,
+    .app-layout-horizontal-body-sider {
+      width: 48px;
       transition: 0.3s;
-      .arco-space-item {
-        font-weight: bold;
-      }
     }
-  }
-  &-right {
-    width: calc(100% - 208px);
-    transition: 0.3s;
-    &-header {
-      height: 58px;
-      width: 100%;
-      padding: 0 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: var(--color-menu-light-bg);
-      color: var(--color-neutral-10);
-      box-shadow: 0px 2px 4px rgba(0, 21, 41, 0.08);
-      z-index: 9;
-      position: relative;
-    }
-  }
-  /** 模式二 */
-  &-header {
-    display: flex;
-    align-items: center;
-    height: 58px;
-    box-shadow: 0px 2px 4px rgba(0, 21, 41, 0.08);
-    z-index: 9;
-    position: relative;
-    background-color: var(--color-menu-light-bg);
-    color: var(--color-neutral-10);
-    &-logo {
-      display: flex;
-      align-items: center;
-      padding: 0 24px;
-      height: 58px;
-      width: 208px;
-      a {
-        display: flex;
-        align-items: center;
-        height: 80%;
-        gap: 10px;
-        h1 {
-          font-size: 16px;
-          font-weight: bold;
-          margin: 0;
-          white-space: nowrap;
-        }
-      }
-    }
-    &-menu {
-      width: calc(100% - 608px);
-      overflow: auto;
+    .app-layout-vertical-right,
+    .app-layout-horizontal-body-right {
+      width: calc(100% - 48px);
       transition: 0.3s;
-      .arco-space-item {
-        font-weight: bold;
-      }
-    }
-    &-right {
-      width: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      height: 100%;
-      padding: 0 10px;
-      &-dark-wrapper {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        cursor: pointer;
-        background-color: var(--color-fill-2);
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        align-items: center;
-        justify-content: center;
-        font-weight: 500;
-      }
     }
   }
-  &-body {
-    display: flex;
-    height: calc(100% - 58px);
-    &-sider {
-      box-shadow: 1px 5px 8px 0 rgba(29, 35, 41, 0.05);
-      position: relative;
-      z-index: 8;
-      transition: 0.3s;
-      background-color: var(--color-menu-light-bg);
-      color: var(--color-neutral-10);
-      &-menu {
-        width: 208px;
-        height: calc(100% - 44px);
-        overflow: auto;
-        .arco-space-item {
-          font-weight: bold;
-        }
-      }
-      &-footer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 44px;
-      }
+  &-dark {
+    .app-layout-vertical-left,
+    .app-layout-vertical-right-header,
+    .app-layout-horizontal-body-sider,
+    .app-layout-horizontal-header {
+      box-shadow: 0px 2px 4px var(--color-bg-1) !important;
     }
-    &-main {
-      width: calc(100% - 208px);
-      height: 100%;
-      overflow: auto;
-      color: var(--color-neutral-10);
+    .app-layout-vertical-right-body-footer {
+      box-shadow: 0px 0px 4px var(--color-bg-1) !important;
     }
-  }
-  /** 公共主体模块 */
-  .app-layout-right-body {
-    position: absolute;
-    left: 208px;
-    width: calc(100% - 208px);
-    top: 58px;
-    overflow: auto;
-    height: calc(100% - 58px);
-    background-color: var(--color-fill-2);
-    .app-breadcrumb-title-no-tabs {
-      .app-breadcrumb-title {
-        height: 52px;
-        display: flex;
-        align-items: center;
-      }
+    .app-layout-collapse-btn {
+      box-shadow: 0 4px 10px 0 var(--color-bg-1);
     }
-    .app-breadcrumb-title-hash-tabs {
-      .app-breadcrumb-title {
-        padding-top: 10px;
-      }
-    }
-    .arco-page-header-heading-extra {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    &-compact-content {
-      height: calc(100% - 44px);
-      width: 100%;
-      overflow: auto;
-      background-color: var(--color-fill-1);
-      .arco-page-header {
-        padding: 0;
-        height: 100%;
-        .arco-page-header-title {
-          font-size: 18px !important;
-        }
-        .arco-page-header-heading {
-          padding: 0 20px;
-          height: fit-content;
-          .arco-page-header-heading-title {
-            .arco-tabs-nav {
-              margin: 0;
-              &::before {
-                border: none;
-              }
-            }
-          }
-        }
-        .arco-page-header-content {
-          padding: 16px;
-          background-color: var(--color-fill-1);
-          color: var(--color-neutral-10);
-          height: calc(100% - 56px);
-        }
-      }
-    }
-    &-content {
-      height: calc(100% - 44px);
-      overflow: auto;
-      background-color: var(--color-fill-1);
-      color: var(--color-neutral-10);
-      .arco-page-header {
-        padding: 0;
-        height: 100%;
-        .arco-page-header-title {
-          font-size: 18px !important;
-        }
-      }
-      .arco-breadcrumb {
-        padding: 6px 0px;
-        padding-top: 10px;
-      }
-      .arco-page-header-heading {
-        margin: 0;
-        padding: 0 20px;
-        padding-bottom: 8px;
-      }
-      .arco-page-header-content {
-        padding: 16px;
-        background-color: var(--color-fill-1);
-        color: var(--color-neutral-10);
-        height: calc(100% - 88px);
-      }
-    }
-    &-footer {
-      height: 44px;
-      width: 100%;
-      box-shadow: 0px 0px 4px rgba(0, 21, 41, 0.08);
-      position: relative;
-      z-index: 7;
-      background-color: var(--color-menu-light-bg);
-      color: var(--color-neutral-10);
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-    }
-  }
-  .arco-menu.arco-menu-inline-collapsed {
-    width: 58px;
-  }
-  .arco-breadcrumb {
-    span {
-      font-weight: bold;
-    }
-  }
-}
-.arco-page-header-heading-left {
-  margin: 0px;
-}
-.app-layout-compact {
-  flex-direction: row;
-  .arco-breadcrumb + .arco-page-header-head {
-    margin-top: 0;
-    padding-top: 12px;
-  }
-  .arco-page-header-head-wrapper {
-    .arco-breadcrumb {
-      display: none;
-    }
-  }
-}
-.app-layout-collapsed {
-  .app-layout-left,
-  .app-layout-body-sider-menu,
-  .app-layout-body-sider {
-    width: 48px;
-    transition: 0.3s;
-  }
-  .app-layout-header-logo-compact {
-    width: 48px;
-  }
-  .app-layout-header-menu {
-    width: calc(100% - 348px);
-  }
-  .app-layout-right {
-    width: calc(100% - 48px);
-  }
-  .app-layout-right-body {
-    width: calc(100% - 48px);
-    left: 48px;
-    transition: 0.3s;
-  }
-  .app-layout-left-logo {
-    padding: 0 10px;
-  }
-}
-// dark
-.app-layout-dark {
-  .app-layout-right-header,
-  .app-layout-left,
-  .app-layout-body-sider,
-  .app-layout-header {
-    box-shadow: 0px 2px 4px var(--color-bg-1) !important;
-  }
-  .app-layout-right-body-footer {
-    box-shadow: 0px 0px 4px var(--color-bg-1) !important;
-  }
-  .app-layout-collapse-btn {
-    box-shadow: 0 4px 10px 0 var(--color-bg-1);
   }
 }

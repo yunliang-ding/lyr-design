@@ -3,6 +3,8 @@ import type { PageHeaderProps, MenuProps } from '@arco-design/web-react';
 import { RightProps } from './right-content-render';
 
 export default interface ProLayout {
+  /** 布局方式 */
+  layout?: 'horizontal' | 'vertical'
   /** 当前路径 */
   pathname?: string;
   /** 是否收起 */

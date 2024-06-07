@@ -5,17 +5,11 @@ import {
   Space,
   Tooltip,
 } from '@arco-design/web-react';
-import {
-  IconLayout,
-  IconInteraction,
-  IconMoonFill,
-  IconSunFill,
-} from '@arco-design/web-react/icon';
+import { IconMoonFill, IconSunFill } from '@arco-design/web-react/icon';
 import { ReactNode } from 'react';
 
 export interface RightProps {
   dark?: boolean;
-  compact?: boolean;
   userName?: string;
   droplist?: ReactNode;
   avatarUrl?: string;
@@ -23,17 +17,13 @@ export interface RightProps {
   themeColor?: string;
   /** 切换主题色 */
   onThemeColorChange?: (color: string) => void;
-  /** 切换布局 */
-  onCompactChange?: (compact: boolean) => void;
   /** 切换主题 */
   onDarkChange?: (dark: boolean) => void;
 }
 
 export default ({
   dark,
-  compact,
   onDarkChange,
-  onCompactChange,
   themeColor,
   onThemeColorChange,
   avatarUrl,
@@ -68,30 +58,6 @@ export default ({
             </div>
           </Tooltip>
         )}
-        {onCompactChange &&
-          (compact ? (
-            <Tooltip content="切换布局1" position="bottom">
-              <div
-                className="app-layout-header-right-dark-wrapper"
-                onClick={() => {
-                  onCompactChange(false);
-                }}
-              >
-                <IconInteraction style={{ fontSize: 14 }} strokeWidth={4} />
-              </div>
-            </Tooltip>
-          ) : (
-            <Tooltip content="切换布局" position="bottom">
-              <div
-                className="app-layout-header-right-dark-wrapper"
-                onClick={() => {
-                  onCompactChange(true);
-                }}
-              >
-                <IconLayout style={{ fontSize: 14 }} strokeWidth={4} />
-              </div>
-            </Tooltip>
-          ))}
         {onThemeColorChange && (
           <ColorPicker
             size="mini"
