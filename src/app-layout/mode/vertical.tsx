@@ -23,7 +23,7 @@ export default ({
   return (
     <>
       <div className="app-layout-vertical-left">
-        <div className="app-layout-left-logo">
+        <div className="app-layout-vertical-left-logo">
           <a>
             {logo}
             <h1 hidden={collapsed}>{title}</h1>

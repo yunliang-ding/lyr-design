@@ -1,4 +1,5 @@
 .app-layout-horizontal {
+  flex-direction: column;
   &-header {
     display: flex;
     align-items: center;
@@ -95,6 +96,7 @@
       }
       &-content {
         overflow: auto;
+        padding: 12px;
         height: calc(100% - 88px);
         background-color: var(--color-fill-1);
         color: var(--color-neutral-10);
