@@ -4,7 +4,7 @@ import { RightProps } from './right-content-render';
 
 export default interface ProLayout {
   /** 布局方式 */
-  layout?: 'horizontal' | 'vertical'
+  layout?: 'horizontal' | 'vertical' | 'inline'
   /** 当前路径 */
   pathname?: string;
   /** 是否收起 */

@@ -1,10 +1,11 @@
 import LayoutProps from './type';
-import { Menu, PageHeader, Space, Watermark } from '@arco-design/web-react';
+import { Menu, Space, Watermark } from '@arco-design/web-react';
 import { useEffect, useRef, useState } from 'react';
 import { getBreadcrumbByMenus } from './util';
 import { IconLeft, IconRight } from '@arco-design/web-react/icon';
 import Horizontal from './mode/horizontal';
 import Vertical from './mode/vertical';
+import Inline from './mode/inline';
 import './index.less';
 
 export const RenderMenus = (menus = [], collapsed = false) => {
@@ -148,51 +149,33 @@ export default ({
   }
   const IconBtn = collapsed ? IconRight : IconLeft;
   /** 右侧渲染逻辑 */
+  const restProps = {
+    menu,
+    title,
+    logo,
+    breadcrumb: pageHeaderProps.breadcrumb,
+    rightContentProps,
+    RenderMenus,
+    openKeys,
+    menuClick,
+    subMenuClick,
+    selectedKey,
+    collapsed,
+    dark,
+    siderFooterRender,
+    topKey,
+    content: children,
+    footerRender,
+  };
   return (
     <Watermark {...waterMarkProps}>
       <div className={classNames.join(' ')}>
         {layout === 'vertical' ? (
-          <Vertical
-            {...{
-              menu,
-              title,
-              logo,
-              breadcrumb: pageHeaderProps.breadcrumb,
-              rightContentProps,
-              RenderMenus,
-              openKeys,
-              menuClick,
-              subMenuClick,
-              selectedKey,
-              collapsed,
-              dark,
-              siderFooterRender,
-              topKey,
-              content: children,
-              footerRender,
-            }}
-          />
+          <Vertical {...restProps} />
+        ) : layout === 'horizontal' ? (
+          <Horizontal {...restProps} />
         ) : (
-          <Horizontal
-            {...{
-              menu,
-              title,
-              logo,
-              breadcrumb: pageHeaderProps.breadcrumb,
-              rightContentProps,
-              RenderMenus,
-              openKeys,
-              menuClick,
-              subMenuClick,
-              selectedKey,
-              collapsed,
-              dark,
-              siderFooterRender,
-              topKey,
-              content: children,
-              footerRender,
-            }}
-          />
+          <Inline {...restProps} />
         )}
       </div>
       <IconBtn
