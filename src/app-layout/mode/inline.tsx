@@ -8,6 +8,7 @@ export default ({
   title,
   pageTitle,
   logo,
+  extra,
   rightContentProps,
   RenderMenus,
   openKeys,
@@ -65,6 +66,7 @@ export default ({
         <div className="app-layout-inline-body-right">
           <div className="app-layout-inline-body-right-title">
             <h3>{pageTitle}</h3>
+            <div>{extra}</div>
           </div>
           <div className="app-layout-inline-body-right-content">{content}</div>
           <div className="app-layout-inline-body-right-footer">

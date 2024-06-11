@@ -7,6 +7,7 @@ export default ({
   menu,
   title,
   logo,
+  extra,
   rightContentProps,
   RenderMenus,
   openKeys,
@@ -84,6 +85,7 @@ export default ({
         <div className="app-layout-horizontal-body-right">
           <div className="app-layout-horizontal-body-right-breadcrumb">
             <Breadcrumb breadcrumb={breadcrumb} />
+            <div>{extra}</div>
           </div>
           <div className="app-layout-horizontal-body-right-content">
             {content}

@@ -9,6 +9,7 @@ export default ({
   pageTitle,
   logo,
   breadcrumb,
+  extra,
   rightContentProps,
   RenderMenus,
   openKeys,
@@ -66,6 +67,7 @@ export default ({
         <div className="app-layout-vertical-right-body">
           <div className="app-layout-vertical-right-body-title">
             <h3>{pageTitle}</h3>
+            <div>{extra}</div>
           </div>
           <div className="app-layout-vertical-right-body-content">
             {content}
