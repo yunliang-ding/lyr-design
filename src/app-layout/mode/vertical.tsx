@@ -6,6 +6,7 @@ import './vertical.less';
 export default ({
   menu,
   title,
+  pageTitle,
   logo,
   breadcrumb,
   rightContentProps,
@@ -63,10 +64,15 @@ export default ({
           />
         </div>
         <div className="app-layout-vertical-right-body">
+          <div className="app-layout-vertical-right-body-title">
+            <h3>{pageTitle}</h3>
+          </div>
           <div className="app-layout-vertical-right-body-content">
             {content}
           </div>
-          <div className="app-layout-vertical-right-body-footer">{footerRender()}</div>
+          <div className="app-layout-vertical-right-body-footer">
+            {footerRender()}
+          </div>
         </div>
       </div>
     </>

@@ -154,6 +154,7 @@ export default ({
     title,
     logo,
     breadcrumb: pageHeaderProps.breadcrumb,
+    pageTitle: pageHeaderProps.title,
     rightContentProps,
     RenderMenus,
     openKeys,

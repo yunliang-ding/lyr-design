@@ -6,6 +6,7 @@ import './inline.less';
 export default ({
   menu,
   title,
+  pageTitle,
   logo,
   rightContentProps,
   RenderMenus,
@@ -17,7 +18,6 @@ export default ({
   dark,
   footerRender,
   siderFooterRender,
-  topKey,
   content,
   breadcrumb,
 }: any) => {
@@ -63,9 +63,10 @@ export default ({
           </div>
         </div>
         <div className="app-layout-inline-body-right">
-          <div className="app-layout-inline-body-right-content">
-            {content}
+          <div className="app-layout-inline-body-right-title">
+            <h3>{pageTitle}</h3>
           </div>
+          <div className="app-layout-inline-body-right-content">{content}</div>
           <div className="app-layout-inline-body-right-footer">
             {footerRender()}
           </div>

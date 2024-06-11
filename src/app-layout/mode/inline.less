@@ -32,6 +32,7 @@
       width: calc(100% - 608px);
       overflow: auto;
       transition: 0.3s;
+      padding: 0 10px;
       .arco-space-item {
         font-weight: bold;
       }
@@ -88,8 +89,9 @@
       width: calc(100% - 208px);
       height: 100%;
       background-color: var(--color-fill-2);
-      &-breadcrumb{
+      &-title{
         height: 44px;
+        padding: 0 12px;
         display: flex;
         align-items: center;
         background-color: var(--color-menu-light-bg);
@@ -97,31 +99,9 @@
       &-content {
         overflow: auto;
         padding: 12px;
-        height: calc(100% - 44px);
+        height: calc(100% - 88px);
         background-color: var(--color-fill-1);
         color: var(--color-neutral-10);
-        .arco-page-header {
-          padding: 0;
-          height: 100%;
-          .arco-page-header-title {
-            font-size: 18px !important;
-          }
-        }
-        .arco-breadcrumb {
-          padding: 6px 0px;
-          padding-top: 10px;
-        }
-        .arco-page-header-heading {
-          margin: 0;
-          padding: 0 20px;
-          padding-bottom: 8px;
-        }
-        .arco-page-header-content {
-          padding: 16px;
-          background-color: var(--color-fill-1);
-          color: var(--color-neutral-10);
-          height: calc(100% - 88px);
-        }
       }
       &-footer {
         height: 44px;

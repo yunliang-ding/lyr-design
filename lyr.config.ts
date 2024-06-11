@@ -176,5 +176,9 @@ export default defineConfig({
         },
       ],
     },
+    {
+      label: '更新日志',
+      path: '/logs',
+    },
   ],
 });
