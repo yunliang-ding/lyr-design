@@ -1,4 +1,4 @@
-import { CoreFormProps } from '../form/type.form';
+import { CoreFormProps } from '../form/form.type';
 import { ReactNode } from 'react';
 
 export interface SearchProps extends Omit<CoreFormProps, 'onReset'> {
@@ -16,3 +16,5 @@ export interface SearchProps extends Omit<CoreFormProps, 'onReset'> {
   clearInitialValuesOnReset?: boolean;
   searchBtnRender?: ReactNode;
 }
+
+export default (props: SearchProps) => null;

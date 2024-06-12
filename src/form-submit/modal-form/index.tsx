@@ -1,8 +1,8 @@
 import { Modal } from '@arco-design/web-react';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { uuid } from '@/util';
 import Form from '@/form';
-import { ModalFormProps } from '../types';
+import { ModalFormProps } from './type';
 import Footer from '../footer';
 import './index.less';
 

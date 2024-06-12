@@ -1,5 +1,5 @@
-import { TooltipProps } from '@arco-design/web-react';
 import { ReactNode } from 'react';
+import { TooltipProps } from '@arco-design/web-react';
 
 export interface ActionProps {
   /**
@@ -56,3 +56,4 @@ export interface ActionProps {
   tooltip?: TooltipProps | ReactNode;
 }
 
+export default (props: ActionProps) => null;

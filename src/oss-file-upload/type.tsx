@@ -23,3 +23,5 @@ export interface OssFileUploadProps extends UploadProps {
   form?: any;
   readOnlyEmptyValueNode?: any;
 }
+
+export default (props: OssFileUploadProps) => null;

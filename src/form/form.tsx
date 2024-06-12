@@ -4,7 +4,7 @@ import { Grid, Form, Spin } from '@arco-design/web-react';
 import { cloneDeep, EventEmit } from '@/util';
 import Item from './item';
 import FieldSet from '@/widgets/extension/fields-set';
-import { CoreFormProps } from './type.form';
+import { CoreFormProps } from './form.type';
 import CoreForm from './index';
 import { tranfromSchema } from './util';
 import { expansionInstanceMethod } from './tool';

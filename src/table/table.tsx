@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { TableProps } from './types';
+import { TableProps } from './type';
 import { transformColumns } from './util';
 import { Table as ArcoTable, Button, Alert } from '@arco-design/web-react';
 import Form from '@/form';

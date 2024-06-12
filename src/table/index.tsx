@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useRef } from 'react';
-import { TableProps } from './types';
-import { PaginationConfig } from './type.pagination';
-import { TableInstance } from './table.instance';
+import { PaginationConfig, TableProps } from './type';
+import { TableInstance } from './instance.type';
 import Table from './table';
 import './index.css';
 

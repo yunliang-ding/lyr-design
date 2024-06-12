@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Form from './form';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { CoreFormProps, FormRefInstance } from './type.form';
-import { SchemaProps } from './type.item';
+import { CoreFormProps, FormRefInstance } from './form.type';
+import { SchemaProps } from './item.type';
 import { AsyncOptionsCache, uuid } from '@/util';
 
 /** 组件入口 */

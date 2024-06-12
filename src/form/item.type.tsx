@@ -18,7 +18,7 @@ import {
   VerificationCodeProps,
 } from '@arco-design/web-react';
 import { ReactNode, ReactElement } from 'react';
-import { CoreFormInstance } from './type.instance';
+import { CoreFormInstance } from './instance.type';
 import { BuiltInWidgetMapping } from '../widgets';
 import { TableListProps } from '../table-list/type';
 
@@ -149,3 +149,5 @@ export interface ExtensionProps {
    */
   openOptionsCache?: boolean;
 }
+
+export default (props: SchemaProps) => null;

@@ -52,3 +52,5 @@ export interface ProBtnProps extends Omit<ButtonProps, 'onClick'> {
   /** hover提示文案 */
   tooltip?: TooltipProps | ReactNode;
 }
+
+export default (props: ProBtnProps) => null;

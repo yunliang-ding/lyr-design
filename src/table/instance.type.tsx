@@ -16,3 +16,5 @@ export interface TableInstance {
   /** 设置展开的行 */
   setExpandedRowKeys: Function;
 }
+
+export default (props: TableInstance) => null;

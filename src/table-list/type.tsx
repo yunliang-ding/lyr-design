@@ -1,5 +1,5 @@
-import { ToolsProps } from '../table/types';
 import { SchemaProps } from '..';
+import { ToolsProps } from '../table/tools.type';
 
 export interface TableListProps {
   /** 数据模型 */
@@ -33,3 +33,5 @@ export interface TableListProps {
   name?: string;
   actionRef?: any;
 }
+
+export default (props: TableListProps) => null;

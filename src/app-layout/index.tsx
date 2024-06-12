@@ -1,4 +1,4 @@
-import LayoutProps from './type';
+import { AppLayoutProps } from './type';
 import { Menu, Space, Watermark } from '@arco-design/web-react';
 import { useEffect, useRef, useState } from 'react';
 import { getBreadcrumbByMenus } from './util';
@@ -69,7 +69,7 @@ export default ({
   siderFooterRender = () => null,
   layoutRef = useRef<any>({}),
   children = null,
-}: LayoutProps) => {
+}: AppLayoutProps) => {
   const classNames: string[] = ['app-layout', `app-layout-${layout}`];
   const [selectedKey, setSelectedKey] = useState('');
   /** horizontal 模式的一级菜单 */
@@ -171,16 +171,13 @@ export default ({
         ) : (
           <Inline {...restProps} />
         )}
+        <IconBtn
+          onClick={() => {
+            onCollapse(!collapsed);
+          }}
+          className="app-layout-expand-btn"
+        />
       </div>
-      <IconBtn
-        style={{
-          left: collapsed ? 36 : 196,
-        }}
-        onClick={() => {
-          onCollapse(!collapsed);
-        }}
-        className="app-layout-collapse-btn"
-      />
     </Watermark>
   );
 };

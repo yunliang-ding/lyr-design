@@ -45,3 +45,5 @@ export interface TableColumnType extends TableColumnProps<any> {
   /** tooltipProps */
   tooltipProps?: TooltipProps;
 }
+
+export default (props: TableColumnType) => null;

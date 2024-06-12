@@ -17,14 +17,12 @@ export { default as DragWrapper } from './drag-wrapper';
 export { default as DragList } from './drag-list';
 export { default as DragForm } from './drag-form';
 /** 类型 */
-export type { SchemaProps, FieldProps } from './form/type.item';
-export type { TableProps } from './table/types';
-export type { CoreFormProps } from './form/type.form';
-export type { CoreFormInstance } from './form/type.instance';
-export type {
-  DrawerFormProps,
-  ModalFormProps,
-  CardFormProps,
-} from './form-submit/types';
+export type { SchemaProps, FieldProps } from './form/item.type';
+export type { TableProps } from './table/type';
+export type { CoreFormProps } from './form/form.type';
+export type { CoreFormInstance } from './form/instance.type';
+export type { DrawerFormProps } from './form-submit/drawer-form/type';
+export type { ModalFormProps } from './form-submit/modal-form/type';
+export type { CardFormProps } from './form-submit/card-form/type';
 /** 全局配置 */
 export { default as setGlobalConfig } from './config';

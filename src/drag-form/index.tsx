@@ -1,22 +1,10 @@
 import { cloneDeep, isEmpty, uuid } from '@/util';
 import { Message } from '@arco-design/web-react';
 import { ReactNode, useMemo } from 'react';
-import { Search, CardForm, CardFormProps, DragWrapper, SchemaProps } from '..';
+import { Search, CardForm, DragWrapper } from '..';
 import { baptismNode, isWrap, swapElementsInArray } from './util';
 import Drag from './drag';
-
-export interface DragFormProps extends CardFormProps {
-  /** 拖拽结束 */
-  onChange?(list: any): void;
-  /** 切换事件 */
-  onSelected?(list: any): void;
-  /** 选中的key */
-  selectedKey?: string;
-  /** 数据源 */
-  items: SchemaProps[];
-  /** 表单类型 */
-  type?: 'search' | 'card';
-}
+import { DragFormProps } from './type';
 
 const loopChildren = (
   props: any,

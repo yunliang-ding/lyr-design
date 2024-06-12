@@ -1,5 +1,5 @@
-import { ActionProps } from '../form-submit/type.action';
-import { SchemaProps } from './type.item';
+import { ActionProps } from '../form-submit/action.type';
+import { SchemaProps } from './item.type';
 
 export interface CoreFormInstance {
   /** 设置新的默认值、之后Form会重新渲染 */
@@ -52,3 +52,5 @@ export interface CoreFormInstance {
   isFieldsValidating?: (nameList?: string[]) => boolean;
   setFields?: (fields?: any[]) => void;
 }
+
+export default (props: CoreFormInstance) => null;

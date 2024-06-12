@@ -1,26 +1,8 @@
-import { Card, CardProps, Grid } from '@arco-design/web-react';
-import { useState, ReactNode, useRef, useEffect } from 'react';
+import { Card, Grid } from '@arco-design/web-react';
+import { useState, useRef, useEffect } from 'react';
 import { getLinkTabs } from './util';
+import { AnchorCardProps } from './type';
 import './index.css';
-
-export interface AnchorCardProps {
-  list: {
-    /** 唯一标识 */
-    key?: string;
-    /** 文案 */
-    title: string;
-    /** 内容 */
-    content?: ReactNode;
-    /** 卡片属性  */
-    cardProps?: CardProps;
-  }[];
-  /** 容器的高度 */
-  height: number;
-  /** 默认选中 */
-  defaultActivityKey?: string;
-  children?: ReactNode;
-  scrollElement?: string;
-}
 
 export default ({
   list,

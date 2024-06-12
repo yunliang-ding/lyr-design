@@ -1,41 +1,27 @@
 /* eslint-disable import/no-cycle */
-import { SearchProps } from '../search/types';
+import { SearchProps } from '../search/type';
 import {
   AlertProps,
   TableProps as ArcoTableProps,
-  TooltipProps,
+  PaginationProps,
 } from '@arco-design/web-react';
-import { CSSProperties, ReactNode } from 'react';
-import { TableColumnType } from './type.column';
-import { TableInstance } from './table.instance';
-import { PaginationConfig } from './type.pagination';
 import {
   ColumnProps,
   RowSelectionProps,
 } from '@arco-design/web-react/es/Table';
-import { ModalFormProps, DrawerFormProps } from '../form-submit/types';
+import { CSSProperties, ReactNode } from 'react';
+import { TableColumnType } from './column.type';
+import { TableInstance } from './instance.type';
+import { ToolsProps } from './tools.type';
 
-export interface ToolsProps {
-  label?: string | ReactNode;
-  key?: string;
-  type?: string;
-  btnType?: string;
-  disabled?: boolean;
-  auth?: any;
-  spin?: boolean;
-  visible?: boolean | ((record?: any) => boolean);
-  confirm?: object;
-  onClick?: (table: TableInstance) => any;
-  tooltip?: TooltipProps | ReactNode;
-  menu?: any;
-  icon?: ReactNode;
-  modalFormProps?:
-    | ModalFormProps
-    | ((table: TableInstance) => ModalFormProps | Promise<ModalFormProps>);
-  drawerFormProps?:
-    | DrawerFormProps
-    | ((table: TableInstance) => DrawerFormProps | Promise<DrawerFormProps>);
+export interface PaginationConfig extends PaginationProps {
+  /**
+   * 当前页码
+   * @default 1
+   */
+  pageNum: number;
 }
+
 
 export interface RowOperationsTypes extends ColumnProps<any> {
   /** 是否展示 */
@@ -129,3 +115,5 @@ export interface TableProps extends Omit<ArcoTableProps, 'title' | 'columns'> {
   /** 下滑加载数据 */
   onReachBottom?: Function;
 }
+
+export default (props: TableProps) => null;

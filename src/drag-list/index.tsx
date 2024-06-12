@@ -1,18 +1,8 @@
 import { Space } from '@arco-design/web-react';
 import { IconDragDotVertical } from '@arco-design/web-react/icon';
-import DragWrapper, { DragWrapperProps } from '../drag-wrapper';
+import DragWrapper from '../drag-wrapper';
+import { DragListProps } from './type';
 
-interface DragListProps extends DragWrapperProps {
-  /** 列顺序改变事件 */
-  onChange?: Function;
-  /**
-   * 是否展示图标
-   * @default true
-   */
-  showIcon?: boolean;
-  /** 宽度 */
-  width?: number;
-}
 
 export default ({
   width = 160,

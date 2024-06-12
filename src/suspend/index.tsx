@@ -1,34 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { uuid } from '@/util';
+import { SuspendProps } from './type';
 import './index.less';
 
 const $: any = document.querySelector.bind(document);
-
-export interface SuspendProps {
-  /** 容器内容 */
-  content?: React.ReactNode;
-  /**
-   * 是否默认弹出
-   * @default true
-   */
-  show: boolean;
-  /**
-   * 顶部距离
-   * @default 50%
-   */
-  top?: string;
-  /**
-   * 位置
-   * @default right
-   */
-  placement?: 'left' | 'right';
-  /** 样式 */
-  closeStyle?: CSSProperties;
-  /** 实例引用 */
-  suspendRef?: any;
-}
 
 const Suspend: any = ({
   content,

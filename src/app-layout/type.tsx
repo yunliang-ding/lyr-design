@@ -1,10 +1,10 @@
 import { MutableRefObject, ReactNode } from 'react';
 import type { PageHeaderProps, MenuProps } from '@arco-design/web-react';
-import { RightProps } from './right-content-render';
+import { RightProps } from './right.type';
 
-export default interface ProLayout {
+export interface AppLayoutProps {
   /** 布局方式 */
-  layout?: 'horizontal' | 'vertical' | 'inline'
+  layout?: 'horizontal' | 'vertical' | 'inline';
   /** 当前路径 */
   pathname?: string;
   /** 是否收起 */
@@ -47,3 +47,5 @@ export default interface ProLayout {
   }>;
   children?: ReactNode;
 }
+
+export default (props: AppLayoutProps) => null;

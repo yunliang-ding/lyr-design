@@ -1,7 +1,7 @@
 import { FormProps } from '@arco-design/web-react';
 import { MutableRefObject, ReactElement, ReactNode } from 'react';
-import { CoreFormInstance } from './type.instance';
-import { SchemaProps } from './type.item';
+import { CoreFormInstance } from './instance.type';
+import { SchemaProps } from './item.type';
 
 /** FormProps */
 export interface CoreFormProps extends Omit<FormProps, 'form'> {
@@ -60,3 +60,5 @@ export interface CoreFormProps extends Omit<FormProps, 'form'> {
 export interface FormRefInstance extends Omit<MutableRefObject<{}>, 'current'> {
   current: CoreFormInstance;
 }
+
+export default (props: CoreFormProps) => null;

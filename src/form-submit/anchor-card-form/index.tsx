@@ -1,21 +1,8 @@
-/**
- * 电梯表单组件
- */
-import { CardFormProps } from '../types';
+import { AnchorCardFormProps } from './type';
 import CardForm from '@/form-submit/card-form';
 import AnchorCard from '@/anchor-card';
 import Form from '@/form';
-import { AnchorCardProps } from '../../anchor-card';
 import './index.less';
-
-interface AnchorCardFormProps extends AnchorCardProps {
-  /** form 属性 */
-  formProps: CardFormProps;
-  /** 外层容器名 */
-  className?: string;
-  /** 容器高度 */
-  height: number;
-}
 
 export default ({
   height = 500,
