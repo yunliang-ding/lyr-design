@@ -28,7 +28,13 @@ export default ({
       <div className="app-layout-horizontal-header">
         <div className="app-layout-horizontal-header-logo">
           <a>
-            {logo}
+            <img
+              src={logo}
+              style={{
+                width: 32,
+                height: 32,
+              }}
+            />
             <h1>{title}</h1>
           </a>
         </div>

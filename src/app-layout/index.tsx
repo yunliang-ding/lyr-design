@@ -55,15 +55,7 @@ export default ({
   waterMarkProps,
   pageHeaderProps = {},
   title = '默认应用标题',
-  logo = (
-    <img
-      src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico"
-      style={{
-        width: 32,
-        height: 32,
-      }}
-    />
-  ),
+  logo = 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
   rightContentProps = {
     extra: null,
     droplist: null,

@@ -27,7 +27,15 @@ export default ({
       <div className="app-layout-vertical-left">
         <div className="app-layout-vertical-left-logo">
           <a>
-            {logo}
+            <img
+              src={logo}
+              style={{
+                width: 32,
+                height: 32,
+                position: 'relative',
+                right: collapsed ? 14 : 0,
+              }}
+            />
             <h1 hidden={collapsed}>{title}</h1>
           </a>
         </div>

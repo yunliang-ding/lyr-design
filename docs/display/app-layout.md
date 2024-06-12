@@ -176,8 +176,8 @@ export default interface ProLayout {
   };
   /** 应用标题 */
   title?: ReactNode;
-  /** 渲染logo */
-  logo?: ReactNode;
+  /** 渲染logo, url */
+  logo?: string;
   /** 扩展类名 */
   className?: string;
   /** 水印配置 */
