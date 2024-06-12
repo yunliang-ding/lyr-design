@@ -44,7 +44,6 @@ const schema: SchemaProps[] = [
     label: '员工职位',
     props: {
       mode: 'multiple',
-      showSearch: true,
       maxTagCount: 2,
       options: async (form) => {
         console.log('classify ->', form); // 可以拿到表单实例

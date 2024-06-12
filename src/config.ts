@@ -6,6 +6,7 @@ const globalConfig: GlobalConfigProps = {
   defaultShowInputCount: true,
   autoTrimInputSpaceOnBlur: true,
   defaultShowSearch: true,
+  defaultSetPopupContainer: true,
 };
 
 interface GlobalConfigProps {
@@ -21,6 +22,8 @@ interface GlobalConfigProps {
   defaultShowInputCount?: boolean;
   /** 默认开启模糊查询 */
   defaultShowSearch?: boolean;
+  /** 默认给下拉选设置 PopupContainer */
+  defaultSetPopupContainer?: boolean;
 }
 
 export const getGlobalConfig = () => {

@@ -103,6 +103,7 @@ setGlobalConfig({
   defaultShowInputCount: true,
   autoTrimInputSpaceOnBlur: true,
   defaultShowSearch: true,
+  defaultSetPopupContainer: true,
 });
 
 interface GlobalConfigProps {
@@ -118,6 +119,8 @@ interface GlobalConfigProps {
   defaultShowInputCount: boolean;
   /** 默认开启下拉选模糊查询(支持大小写和trim) */
   defaultShowSearch?: boolean;
+  /** 默认给下拉选设置 PopupContainer */
+  defaultSetPopupContainer?: boolean;
 }
 ```
 

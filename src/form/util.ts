@@ -83,6 +83,7 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
     defaultFillPlaceholder,
     defaultShowInputCount,
     defaultShowSearch,
+    defaultSetPopupContainer,
   } = getGlobalConfig();
   /** 开始扩展 */
   schema?.forEach((field: any) => {
@@ -141,6 +142,26 @@ export const tranfromSchema = (schema: any[], name: string, column = 1) => {
       // 区间查询不需要设置
       if (!['RangePicker', 'TimeRange'].includes(field.widget)) {
         field.props.placeholder = field.props.placeholder || '请选择'; // 默认提示
+      }
+    }
+    // 设置默认模糊查询
+    if (defaultSetPopupContainer) {
+      if (
+        [
+          'Select',
+          'AsyncSelect',
+          'TreeSelect',
+          'AsyncTreeSelect',
+          'Cascader',
+          'AsyncCascader',
+          'DatePicker',
+          'TimePicker',
+          'TimeRange',
+          'RangePicker',
+        ].includes(field.widget) &&
+        field.props.getPopupContainer === undefined
+      ) {
+        field.props.getPopupContainer = (node: any) => node.parentNode;
       }
     }
     // 设置默认模糊查询
