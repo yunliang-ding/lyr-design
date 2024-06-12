@@ -239,49 +239,6 @@ export default () => {
 
 ## API
 
-```ts
-import {
-  ButtonProps,
-  PopconfirmProps,
-  TooltipProps,
-} from '@arco-design/web-react';
-
-export interface ProBtnProps extends ButtonProps {
-  /**
-   * 是否按照点击事件自动加载loading
-   * @default false
-   */
-  spin?: boolean;
-  /**
-   * 二次确认的配置
-   */
-  confirm?: PopconfirmProps & {
-    type?: 'pop' | 'alert';
-    content?: React.ReactNode;
-  };
-  /**
-   * 配置权限
-   */
-  auth?: string;
-  /**
-   * 前置点击事件
-   */
-  onBeforeClick?: () => void;
-  /**
-   * 是否可见
-   * @default true
-   */
-  visible?: boolean;
-  /**
-   * 绑定 弹出层
-   */
-  modalFormProps?: ModalFormProps | (() => Promise<ModalFormProps>);
-  /**
-   * 绑定 抽屉
-   */
-  drawerFormProps?: DrawerFormProps | (() => Promise<DrawerFormProps>);
-  /** hover提示文案 */
-  tooltip?: TooltipProps | ReactNode;
-}
-
+```API
+/src/button/type.tsx
 ```
