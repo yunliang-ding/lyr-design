@@ -254,135 +254,14 @@ export default () => {
 };
 ```
 
-## Form 类型扩展
+## API
 
-```ts
-import { FormProps } from '@arco-design/web-react';
-
-export interface CoreFormProps extends Omit<FormProps, 'form'> {
-  /**
-   * 表单的数据模型
-   * @default          []
-   */
-  schema?: SchemaProps[] | ((form: CoreFormInstance) => SchemaProps[]);
-  /**
-   * 注入自定义组件
-   */
-  widgets?: {
-    [key: string]: string | ((props: any) => ReactElement);
-  };
-  /**
-   * 是否只读
-   * @default           false
-   */
-  readOnly?: boolean;
-  /**
-   * 是否禁用
-   * @default           false
-   */
-  disabled?: boolean;
-  /**
-   * 等分布局属性
-   * @default          1
-   */
-  column?: number;
-  /*
-   * 布局样式设置
-   * @default          {colGap: 20, rowGap: 0}
-   */
-  gridStyle?: {
-    colGap?: number;
-    rowGap?: number;
-  };
-  /**
-   * 最外层类名
-   */
-  className?: string;
-  /**
-   * 表单加载完的钩子
-   */
-  onMount?: (form: CoreFormInstance) => void;
-  /** 只读表单的空提示 */
-  readOnlyEmptyValueNode?: ReactNode | string;
-}
+```API
+/src/form/form.type.tsx
 ```
 
-## Form.Item 类型扩展
+## Form.Item
 
-```ts
-import { FormItemProps } from '@arco-design/web-react';
-
-export type FieldProps =
-  | InputProps
-  | InputNumberProps
-  | ColorPickerProps
-  | VerificationCodeProps
-  | AutoCompleteProps
-  | UploadProps
-  | SwitchProps
-  | RateProps
-  | AsyncSelectProps
-  | RadioProps
-  | RadioGroupProps
-  | CheckboxProps
-  | DatePickerProps
-  | TimePickerProps
-  | TimeRangePickerProps
-  | TreeSelectProps
-  | TableListProps
-  | ExtensionProps;
-
-/** 添加扩展属性 */
-export interface SchemaProps<T = FieldProps>
-  extends Omit<FormItemProps, 'required' | 'disabled'> {
-  key?: string | number;
-  /** 组件类型 */
-  widget?: keyof typeof BuiltInWidgetMapping | ((props: any) => ReactElement);
-  column?: number;
-  /** 配置是否展示 */
-  visible?: (values: any) => boolean;
-  /**
-   * 占据的格子数
-   * @default          1
-   */
-  span?: number;
-  /**
-   * 查询表单 是否点击更多展开
-   * @default          false
-   */
-  expand?: boolean;
-  /**
-   * 查询表单 改变是否触发查询
-   * @default          false
-   */
-  autoSearch?: boolean;
-  /** 自定义渲染逻辑(支持异步) */
-  itemRender?: (
-    dom: React.ReactNode,
-    options: {
-      field: SchemaProps;
-      form: CoreFormInstance;
-      disabled: boolean;
-      readonly: boolean;
-    },
-  ) => React.ReactNode;
-  /** 设置副作用，当设置的字段发生变化时，会自动触发渲染 */
-  effect?: string[];
-  /** 副作用变化时 自动重置字段 */
-  effectClearField?: boolean;
-  /** 副作用执行的钩子 */
-  onEffect?: (name: string, form: CoreFormInstance) => void;
-  /** formItem 样式 */
-  style?: React.CSSProperties;
-  /** gridItem 样式 */
-  gridItemStyle?: React.CSSProperties;
-  /** 是否必填 */
-  required?: ((form: CoreFormInstance) => boolean) | boolean;
-  /** 是否只读 */
-  readOnly?: ((form: CoreFormInstance) => boolean) | boolean;
-  /** 是否禁用 */
-  disabled?: ((form: CoreFormInstance) => boolean) | boolean;
-  /** 表单项属性设置 */
-  props?: FieldProps | T;
-}
+```API
+/src/form/item.type.tsx
 ```

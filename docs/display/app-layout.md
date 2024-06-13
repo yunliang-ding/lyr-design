@@ -2,15 +2,7 @@
 
 ```tsx | react | var(--color-fill-2)
 import { AppLayout, Button } from 'lyr-component';
-import {
-  Radio,
-  Space,
-  Avatar,
-  Input,
-  Dropdown,
-  Menu,
-} from '@arco-design/web-react';
-import { IconUser, IconMoon, IconSun } from '@arco-design/web-react/icon';
+import { Radio, Space, Menu } from '@arco-design/web-react';
 import { generate, getRgbStr } from '@arco-design/color';
 import menus from '@/components/schema/app-layout/schema.tsx';
 
@@ -66,6 +58,7 @@ export default () => {
         dark={dark}
         pathname={pathname}
         pageHeaderProps={pageHeaderProps}
+        logo="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico"
         title="中后台通用模版"
         menu={{
           items: menus,
@@ -146,74 +139,12 @@ menu={{
 
 ## API
 
-```ts
-import { MutableRefObject, ReactNode } from 'react';
-import type { PageHeaderProps, MenuProps } from '@arco-design/web-react';
-import { RightProps } from './right-content-render';
-
-export default interface ProLayout {
-  /** 布局方式 */
-  layout?: 'horizontal' | 'vertical' | 'inline'
-  /** 当前路径 */
-  pathname?: string;
-  /** 是否收起 */
-  collapsed?: boolean;
-  /** 收起展开勾子 */
-  onCollapse?: Function;
-  /** 是否紧凑排版 */
-  compact?: boolean;
-  /** 是否黑色主题 */
-  dark?: boolean;
-  /** 菜单属性 */
-  menu: MenuProps & {
-    items: {
-      icon?: ReactNode;
-      path: string;
-      label: ReactNode;
-      children?: [];
-    }[];
-    onClick?: Function;
-  };
-  /** 应用标题 */
-  title?: ReactNode;
-  /** 渲染logo, url */
-  logo?: string;
-  /** 扩展类名 */
-  className?: string;
-  /** 水印配置 */
-  waterMarkProps?: any;
-  /** 页面头属性 */
-  pageHeaderProps?: PageHeaderProps;
-  /** 顶部右侧配置 */
-  rightContentProps: RightProps;
-  /** 底部渲染 */
-  footerRender: () => ReactNode;
-  /** 底部渲染 */
-  siderFooterRender: (v: boolean) => ReactNode;
-  /** 实例引用 */
-  layoutRef?: MutableRefObject<{
-    listenHashChange: (callBack) => null;
-  }>;
-  children?: ReactNode;
-}
+```API
+/src/app-layout/type.tsx
 ```
 
 ## RightProps
 
-```ts
-export interface RightProps {
-  dark?: boolean;
-  compact?: boolean;
-  userName?: string;
-  droplist?: ReactNode;
-  avatarUrl?: string;
-  extra?: ReactNode;
-  themeColor?: string;
-  /** 切换主题色 */
-  onThemeColorChange?: (color: string) => void;
-  /** 切换布局 */
-  onCompactChange?: (compact: boolean) => void;
-  /** 切换主题 */
-  onDarkChange?: (dark: boolean) => void;
-}
+```API
+/src/app-layout/right.type.tsx
 ```

@@ -329,22 +329,6 @@ export default (props) => {
 
 ## API
 
-```ts
-/** 分步提交表单 */
-export interface StepFormProps extends CoreFormProps {
-  /** 当前步骤 */
-  current?: number;
-  /** 手动切换步骤 */
-  onStepsClick?: (current) => void;
-  /** 步骤属性 */
-  stepProps?: StepProps;
-  /** 配置每一步的表单项和操作按钮 */
-  steps: {
-    title: ReactNode;
-    description?: ReactNode;
-    column?: number;
-    schema: SchemaProps[];
-    actions: ActionProps[];
-  }[];
-}
+```API
+/src/form-submit/step-form/type.tsx
 ```

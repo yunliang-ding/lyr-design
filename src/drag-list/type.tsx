@@ -12,5 +12,4 @@ export interface DragListProps extends DragWrapperProps {
   width?: number;
 }
 
-export default (props: DragListProps
-  ) => null;
+export default (props: DragListProps) => null;

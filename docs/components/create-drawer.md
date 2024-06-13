@@ -153,11 +153,6 @@ export default (props) => {
 
 ## API
 
-```ts
-export interface DrawerFormProps extends FormSubmitProps {
-  /** Drawer属性设置 */
-  drawerProps?: DrawerProps;
-  /** 宽度 */
-  width?: number | string;
-}
+```API
+/src/form-submit/drawer-form/type.tsx
 ```

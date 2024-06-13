@@ -2,12 +2,7 @@ import { CSSProperties, ReactNode } from "react";
 
 export interface SuspendProps {
   /** 容器内容 */
-  content?: ReactNode;
-  /**
-   * 是否默认弹出
-   * @default true
-   */
-  show: boolean;
+  content: ReactNode;
   /**
    * 顶部距离
    * @default 50%
@@ -22,6 +17,7 @@ export interface SuspendProps {
   closeStyle?: CSSProperties;
   /** 实例引用 */
   suspendRef?: any;
+  show: boolean;
 }
 
 export default (props: SuspendProps) => null;

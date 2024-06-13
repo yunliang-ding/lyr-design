@@ -42,22 +42,6 @@ export default () => {
 
 ## API
 
-```ts
-export interface AnchorCardProps {
-  /** 集合 */
-  list: {
-    /** 唯一标识 */
-    key?: string;
-    /** 文案 */
-    title: string;
-    /** 内容 */
-    content?: ReactNode;
-    /** 卡片属性  */
-    cardProps?: CardProps;
-  }[];
-  /** 容器的高度 */
-  height: number;
-  /** 默认选中 */
-  defaultActivityKey?: string;
-}
+```API
+/src/anchor-card/type.tsx
 ```
