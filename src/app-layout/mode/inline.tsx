@@ -72,7 +72,9 @@ export default ({
         <div className="app-layout-inline-body-right">
           <div className="app-layout-inline-body-right-title">
             <h3>{pageTitle}</h3>
-            <div>{extra}</div>
+            <div className="app-layout-vertical-right-body-title-extra">
+              {extra}
+            </div>
           </div>
           <div className="app-layout-inline-body-right-content">{content}</div>
           <div className="app-layout-inline-body-right-footer">

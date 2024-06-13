@@ -91,7 +91,9 @@ export default ({
         <div className="app-layout-horizontal-body-right">
           <div className="app-layout-horizontal-body-right-breadcrumb">
             <Breadcrumb breadcrumb={breadcrumb} />
-            <div>{extra}</div>
+            <div className="app-layout-vertical-right-body-title-extra">
+              {extra}
+            </div>
           </div>
           <div className="app-layout-horizontal-body-right-content">
             {content}

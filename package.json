@@ -2,7 +2,7 @@
   "name": "lyr-component",
   "description": "中后台开发提效方案",
   "author": "yunliang-ding",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "scripts": {
     "start": "lyr-docs dev",
     "build": "rollup -c",
