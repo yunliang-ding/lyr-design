@@ -10,7 +10,7 @@
 /dist
 /docs-dist
 /www
-.theme
+/src/.theme
 /src/.lyr
 # misc
 .DS_Store
