@@ -95,7 +95,7 @@ export default () => {
             'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/user-logo.png',
         }}
       >
-        内容区域
+        {pathname}
       </AppLayout>
     </div>
   );
