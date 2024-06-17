@@ -8,8 +8,9 @@ import menus from '@/components/schema/app-layout/schema.tsx';
 
 export default () => {
   const [pathname, setPathName] = React.useState('/workbench/my');
-  const [layout, setLayout] = React.useState('vertical');
   const [dark, setDark] = React.useState(false);
+  const [layout, setLayout] = React.useState('vertical');
+  const [themeColor, setThemeColor] = React.useState('#165dff');
   const [collapsed, setCollapsed] = React.useState(false);
   const [pageHeaderProps, setPageHeaderProps] = React.useState({
     title: '我的工作台',
@@ -26,23 +27,6 @@ export default () => {
   });
   return (
     <div style={{ width: '100vw' }}>
-      <Space>
-        <span>切换布局</span>
-        <Radio.Group
-          value={layout}
-          onChange={(v) => {
-            setLayout(v);
-          }}
-          type="button"
-          options={[
-            { label: 'vertical', value: 'vertical' },
-            { label: 'horizontal', value: 'horizontal' },
-            { label: 'inline', value: 'inline' },
-          ]}
-        />
-      </Space>
-      <br />
-      <br />
       <AppLayout
         waterMarkProps={{
           content: 'arco-water-mark',
@@ -56,6 +40,29 @@ export default () => {
         collapsed={collapsed}
         onCollapse={setCollapsed}
         dark={dark}
+        onDarkChange={(dark) => {
+          document.body.setAttribute('arco-theme', dark && 'dark');
+          setDark(dark);
+        }}
+        themeColor={themeColor}
+        onSetting={(value) => {
+          if (value.themeColor) {
+            setThemeColor(value.themeColor);
+            const newList = generate(value.themeColor, {
+              list: true,
+              dark,
+            });
+            newList.forEach((l, index) => {
+              const rgbStr = getRgbStr(l);
+              document.body.style.setProperty(
+                `--arcoblue-${index + 1}`,
+                rgbStr,
+              );
+            });
+          } else if (value.layout) {
+            setLayout(value.layout);
+          }
+        }}
         pathname={pathname}
         pageHeaderProps={pageHeaderProps}
         logo="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico"
@@ -86,27 +93,6 @@ export default () => {
           ),
           avatarUrl:
             'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/user-logo.png',
-          themeColor: '#165dff',
-          onThemeColorChange: (newColor) => {
-            const newList = generate(newColor, {
-              list: true,
-              dark,
-            });
-            newList.forEach((l, index) => {
-              const rgbStr = getRgbStr(l);
-              document.body.style.setProperty(
-                `--arcoblue-${index + 1}`,
-                rgbStr,
-              );
-            });
-          },
-          onDarkChange: (dark) => {
-            document.body.setAttribute('arco-theme', dark && 'dark');
-            setDark(dark);
-          },
-          onCompactChange: (compact) => {
-            setCompact(compact);
-          },
         }}
       >
         内容区域

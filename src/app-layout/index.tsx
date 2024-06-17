@@ -47,6 +47,7 @@ export default ({
   layout = 'vertical',
   className,
   dark = false,
+  onDarkChange = () => {},
   collapsed = false,
   onCollapse = () => {},
   menu = {
@@ -56,14 +57,13 @@ export default ({
   pageHeaderProps = {},
   title = '默认应用标题',
   logo = 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
+  themeColor = '#165dff',
+  onSetting = () => {},
   rightContentProps = {
     extra: null,
     droplist: null,
-    themeColor: '#165dff',
     avatarUrl:
       'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/user-logo.png',
-    onThemeColorChange: () => {},
-    onDarkChange: () => {},
   },
   footerRender = () => null,
   siderFooterRender = () => null,
@@ -148,7 +148,12 @@ export default ({
     breadcrumb: pageHeaderProps.breadcrumb,
     pageTitle: pageHeaderProps.title,
     extra: pageHeaderProps.extra,
-    rightContentProps,
+    rightContentProps: {
+      ...rightContentProps,
+      themeColor,
+      onDarkChange,
+      onSetting,
+    },
     RenderMenus,
     openKeys,
     menuClick,
@@ -165,11 +170,29 @@ export default ({
     <Watermark {...waterMarkProps}>
       <div className={classNames.join(' ')}>
         {layout === 'vertical' ? (
-          <Vertical {...restProps} />
+          <Vertical
+            {...restProps}
+            rightContentProps={{
+              ...restProps.rightContentProps,
+              layout: 'vertical',
+            }}
+          />
         ) : layout === 'horizontal' ? (
-          <Horizontal {...restProps} />
+          <Horizontal
+            {...restProps}
+            rightContentProps={{
+              ...restProps.rightContentProps,
+              layout: 'horizontal',
+            }}
+          />
         ) : (
-          <Inline {...restProps} />
+          <Inline
+            {...restProps}
+            rightContentProps={{
+              ...restProps.rightContentProps,
+              layout: 'inline',
+            }}
+          />
         )}
         <IconBtn
           onClick={() => {

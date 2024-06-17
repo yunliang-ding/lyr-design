@@ -2,7 +2,7 @@ import { CSSProperties, ReactNode } from "react";
 
 export interface DragWrapperProps {
   /** 配置项 */
-  items: {
+  items?: {
     key: number | string;
     content: ReactNode;
   }[];

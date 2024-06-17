@@ -1,22 +1,22 @@
+import { Avatar, Dropdown, Space, Tooltip } from '@arco-design/web-react';
 import {
-  Avatar,
-  ColorPicker,
-  Dropdown,
-  Space,
-  Tooltip,
-} from '@arco-design/web-react';
-import { IconMoonFill, IconSunFill } from '@arco-design/web-react/icon';
+  IconMoonFill,
+  IconSettings,
+  IconSunFill,
+} from '@arco-design/web-react/icon';
+import { Button } from '..';
 import { RightProps } from './right.type';
 
 export default ({
-  dark,
-  onDarkChange,
-  themeColor,
-  onThemeColorChange,
   avatarUrl,
   droplist,
   userName,
   extra,
+  dark,
+  onDarkChange,
+  themeColor,
+  layout,
+  onSetting,
 }: RightProps) => {
   return (
     <div style={{ display: 'flex', gap: 20 }}>
@@ -24,36 +24,100 @@ export default ({
       <Space size={20}>
         {dark ? (
           <Tooltip content="点击切换亮色模式" position="bottom">
-            <div
-              className="app-layout-header-right-dark-wrapper"
+            <Button
+              style={{
+                borderRadius: 'var(--border-radius-circle)',
+                padding: 0,
+                height: 32,
+                width: 32,
+              }}
               onClick={() => {
                 onDarkChange(false);
               }}
             >
               <IconSunFill />
-            </div>
+            </Button>
           </Tooltip>
         ) : (
           <Tooltip content="点击切换暗黑模式" position="bottom">
-            <div
-              className="app-layout-header-right-dark-wrapper"
+            <Button
+              style={{
+                borderRadius: 'var(--border-radius-circle)',
+                padding: 0,
+                height: 32,
+                width: 32,
+              }}
               onClick={() => {
                 onDarkChange(true);
               }}
             >
               <IconMoonFill />
-            </div>
+            </Button>
           </Tooltip>
         )}
-        {onThemeColorChange && (
-          <ColorPicker
-            size="mini"
-            defaultValue={themeColor}
-            onChange={(newColor) => {
-              onThemeColorChange(newColor);
+        <Tooltip content="页面设置" position="bottom">
+          <Button
+            style={{
+              borderRadius: 'var(--border-radius-circle)',
+              padding: 0,
+              height: 32,
+              width: 32,
             }}
-          />
-        )}
+            drawerFormProps={{
+              title: '页面设置',
+              footer: false,
+              onMount({ setFieldsValue }) {
+                setFieldsValue({
+                  themeColor,
+                  layout,
+                });
+              },
+              schema: [
+                {
+                  widget: 'ColorPicker',
+                  label: '系统主题色',
+                  name: 'themeColor',
+                  props: {
+                    onChange(v: string) {
+                      onSetting({
+                        themeColor: v,
+                      });
+                    },
+                  },
+                },
+                {
+                  widget: 'RadioGroup',
+                  label: '布局风格',
+                  name: 'layout',
+                  props: {
+                    type: 'button',
+                    options: [
+                      {
+                        label: 'horizontal',
+                        value: 'horizontal',
+                      },
+                      {
+                        label: 'vertical',
+                        value: 'vertical',
+                      },
+                      {
+                        label: 'inline',
+                        value: 'inline',
+                      },
+                    ],
+                    onChange(v: string) {
+                      onSetting({
+                        layout: v,
+                      });
+                    },
+                  },
+                },
+              ],
+            }}
+          >
+            <IconSettings />
+          </Button>
+        </Tooltip>
         <Dropdown position="bottom" droplist={droplist}>
           <a
             style={{

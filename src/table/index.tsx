@@ -15,7 +15,7 @@ const CoreTable = (props: TableProps) => {
       {
         type: 'Refresh',
       },
-    ],
+    ] as any,
     locale,
     ...rest
   } = props;

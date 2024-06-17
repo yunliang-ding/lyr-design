@@ -8,6 +8,10 @@ export interface AppLayoutProps {
    * @default vertical
    */
   layout?: 'horizontal' | 'vertical' | 'inline';
+  /** 主题色 */
+  themeColor?: string;
+  /** 点击设置的回调 */
+  onSetting?(v: any): void;
   /** 当前路径 */
   pathname?: string;
   /** 是否收起 */
@@ -16,6 +20,8 @@ export interface AppLayoutProps {
   onCollapse?: Function;
   /** 是否黑色主题 */
   dark?: boolean;
+  /** 切换主题 */
+  onDarkChange?: (dark: boolean) => void;
   /** 菜单属性 */
   menu: MenuProps & {
     items: {
