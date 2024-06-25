@@ -56,6 +56,7 @@ export default defineConfig({
     ArcoIcon: '@arco-design/web-react/icon',
     ArcoColor: '@arco-design/color',
     lyrHooks: 'lyr-hooks',
+    axios: 'axios',
   },
   navs: [
     {

@@ -36,7 +36,7 @@
     "@arco-design/color": "0.4.0"
   },
   "devDependencies": {
-    "lyr-docs": "0.0.67",
+    "lyr-docs": "0.0.69",
     "@arco-design/color": "0.4.0",
     "@types/lodash.mergewith": "4.6.9",
     "@types/lodash.debounce": "4.0.9",
