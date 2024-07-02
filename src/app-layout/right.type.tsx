@@ -7,8 +7,8 @@ export interface RightProps {
   droplist?: ReactNode;
   /** 头像地址 */
   avatarUrl?: string;
-  /** 点击 */
-  avatarClick?(): void;
+  /** 自定义渲染 */
+  avatarRender?: () => ReactNode;
   /** 右侧自定义渲染  */
   extra?: ReactNode;
   dark?: any;

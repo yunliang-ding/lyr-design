@@ -9,7 +9,13 @@ import { RightProps } from './right.type';
 
 export default ({
   avatarUrl,
-  avatarClick,
+  avatarRender = () => {
+    return (
+      <Avatar size={26} style={{ marginRight: 10 }}>
+        <img alt="avatar" src={avatarUrl} />
+      </Avatar>
+    );
+  },
   droplist,
   userName,
   extra,
@@ -127,9 +133,7 @@ export default ({
               cursor: 'pointer',
             }}
           >
-            <Avatar size={26} style={{ marginRight: 10, background: 'transparent' }}>
-              <img alt="avatar" src={avatarUrl} onClick={avatarClick} />
-            </Avatar>
+            {avatarRender()}
             {userName}
           </a>
         </Dropdown>
