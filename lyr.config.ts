@@ -59,28 +59,38 @@ export default defineConfig({
   },
   navs: [
     {
-      title: 'lyr-extra',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-extra',
+      title: '周边生态',
+      children: [
+        {
+          title: 'lyr-extra',
+          path: 'https://dev-ops.yunliang.cloud/website/lyr-extra',
+        },
+        {
+          title: 'lyr-hooks',
+          path: 'https://dev-ops.yunliang.cloud/website/lyr-hooks',
+        },
+        {
+          title: 'lyr-low-code',
+          path: 'https://dev-ops.yunliang.cloud/website/lyr-low-code',
+        },
+        {
+          title: 'lyr-code-editor',
+          path: 'https://dev-ops.yunliang.cloud/website/lyr-code-editor',
+        },
+      ],
     },
     {
-      title: 'lyr-hooks',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-hooks',
-    },
-    {
-      title: 'lyr-low-code',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-low-code',
-    },
-    {
-      title: 'lyr-code-editor',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-code-editor',
-    },
-    {
-      title: 'lyr-cli',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-cli',
-    },
-    {
-      title: 'lyr-docs',
-      path: 'https://dev-ops.yunliang.cloud/website/lyr-docs',
+      title: '脚手架',
+      children: [
+        {
+          title: 'lyr-cli',
+          path: 'https://dev-ops.yunliang.cloud/website/lyr-cli',
+        },
+        {
+          title: 'lyr-docs',
+          path: 'https://dev-ops.yunliang.cloud/website/lyr-docs',
+        },
+      ],
     },
   ],
   menus: [

@@ -2,7 +2,7 @@
   "name": "lyr-component",
   "description": "中后台开发提效方案",
   "author": "yunliang-ding",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "scripts": {
     "start": "lyr-docs dev",
     "build": "rollup -c",
@@ -36,7 +36,7 @@
     "@arco-design/color": "0.4.0"
   },
   "devDependencies": {
-    "lyr-docs": "0.0.77",
+    "lyr-docs": "0.0.85",
     "@arco-design/color": "0.4.0",
     "@types/lodash.mergewith": "4.6.9",
     "@types/lodash.debounce": "4.0.9",

@@ -9,6 +9,7 @@ import { RightProps } from './right.type';
 
 export default ({
   avatarUrl,
+  avatarClick,
   droplist,
   userName,
   extra,
@@ -28,8 +29,8 @@ export default ({
               style={{
                 borderRadius: 'var(--border-radius-circle)',
                 padding: 0,
-                height: 32,
-                width: 32,
+                height: 30,
+                width: 30,
               }}
               onClick={() => {
                 onDarkChange(false);
@@ -44,8 +45,8 @@ export default ({
               style={{
                 borderRadius: 'var(--border-radius-circle)',
                 padding: 0,
-                height: 32,
-                width: 32,
+                height: 30,
+                width: 30,
               }}
               onClick={() => {
                 onDarkChange(true);
@@ -60,8 +61,8 @@ export default ({
             style={{
               borderRadius: 'var(--border-radius-circle)',
               padding: 0,
-              height: 32,
-              width: 32,
+              height: 30,
+              width: 30,
             }}
             drawerFormProps={{
               title: '页面设置',
@@ -126,8 +127,8 @@ export default ({
               cursor: 'pointer',
             }}
           >
-            <Avatar size={32} style={{ marginRight: 10 }}>
-              <img alt="avatar" src={avatarUrl} />
+            <Avatar size={26} style={{ marginRight: 10, background: 'transparent' }}>
+              <img alt="avatar" src={avatarUrl} onClick={avatarClick} />
             </Avatar>
             {userName}
           </a>

@@ -1,4 +1,33 @@
-## 设计初衷
+```jsx | pureReact
+export default () => {
+  return (
+    <>
+      <p
+        className="package-version"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 20,
+          position: 'relative',
+          top: 3,
+        }}
+      >
+        <a href={`https://npmmirror.com/package/lyr-component`} target="_blank">
+          <img alt="npm" src={`https://img.shields.io/npm/dt/lyr-component`} />
+        </a>
+        <a href={`https://npmmirror.com/package/lyr-component`} target="_blank">
+          <img
+            alt="NPM downloads"
+            src={`https://img.shields.io/npm/v/lyr-component.svg`}
+          />
+        </a>
+      </p>
+    </>
+  );
+};
+```
+
+## 说明
 
 - 将视图层 Jsx 中所依赖的配置抽离成独立 schema 模块，避免后期不同人开发导致单个页面庞大不好维护
 
@@ -74,7 +103,11 @@ export default () => {
         'FieldSet 父子级区块',
         'OssFileUpload 文件上传',
       ].map((item) => {
-        return <Button size="small" key={item}>{item}</Button>;
+        return (
+          <Button size="small" key={item}>
+            {item}
+          </Button>
+        );
       })}
     </div>
   );
